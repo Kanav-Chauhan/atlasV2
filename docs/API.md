@@ -38,3 +38,18 @@ Errors are `{"detail": "<plain English>"}`.
 | POST | `/search/lab` | admin (super admin later) | body `{q, as_email?: str}` (a user of the same org; default = caller) → `{q, as_email, took_ms: {vector, keyword, fusion, rerank}, stages: {vector: [Hit], keyword: [Hit], fused: [Hit], reranked: [Hit]}}`, each `Hit = {chunk_id, document_id, title, page, section, text (first 300 chars), score, rank}`, top 20 per stage (reranked top 5). |
 | GET | `/documents/{id}/chunks` | users who can read it | `[{chunk_id, index, page, section, tokens, text}]` in document order |
 | GET | `/evals/latest` | admin | the latest retrieval eval run summary `{run_id, created_at, modes: {vector|hybrid|hybrid_rerank: {hit_at_1, hit_at_3, hit_at_5, mrr, context_recall, leaks, n}}}` or 404 |
+
+## Endpoints (Phase 5: answering)
+
+The Ask page uses the Vercel AI SDK `useChat` with `DefaultChatTransport({ api: "/api/chat" })`, so `/chat` speaks the
+**AI SDK UI message stream** (SSE, header `x-vercel-ai-ui-message-stream: v1`).
+
+| Method | Path | Who | Returns |
+|---|---|---|---|
+| POST | `/chat` | any user | body `{id: thread_id, messages: [UIMessage]}` (only the last user message is used; history comes from the LangGraph checkpointer keyed by `thread_id` + user). Streams parts: `start`; `data-status` `{stage: "guard"\|"cache"\|"route"\|"rewrite"\|"retrieve"\|"rerank"\|"grade"\|"retry"\|"answer"}` (transient); `text-start`/`text-delta`/`text-end` for the answer; `data-sources` `{sources: [{n, chunk_id, document_id, title, doc_no, page, section, text, superseded}]}` (only the sources actually cited); `data-meta` `{route: "smalltalk"\|"offtopic"\|"blocked"\|"rag", abstained: bool, cached: bool, rewritten_query?: str, language: "en"\|"hi", message_id, trace_id?}`; `finish`. |
+| GET | `/chats` | any user | the user's threads `[{id, title, updated_at}]`, newest first |
+| GET | `/chats/{id}` | owner of the thread | `{id, title, messages: [UIMessage]}` (with sources + meta as data parts) |
+| DELETE | `/chats/{id}` | owner | `204` |
+| POST | `/feedback` | any user | `{message_id, value: "up"\|"down", comment?: str}` → `204` (stored for Insights) |
+| GET | `/me/suggested` | any user | `{questions: [str]}` — the user's suggested questions (from demo_corpus/orgs/<org>.json) |
+| POST | `/documents/request` | any user | `{question: str, note?: str}` → `204` ("Request a document" from a not-found answer; shown to admins/managers in Insights) |
