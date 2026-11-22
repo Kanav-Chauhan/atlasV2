@@ -1,0 +1,953 @@
+[
+ {
+  "id": 0,
+  "kind": "answerable",
+  "asker": "employee@nimbus.example",
+  "doc": "Laptop and Device Security Standard",
+  "q": "After how many minutes of inactivity must a Nimbus laptop screen lock?",
+  "reference": "Screens auto-lock after 5 minutes of inactivity; the setting is enforced.",
+  "A": {
+   "abstained": false,
+   "answer": "Screens auto-lock after **5 minutes** of inactivity. [1]",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Laptop and Device Security Standard",
+     "text": "#### 4.2 Screen lock\n\n- Screens **auto-lock after 5 minutes** of inactivity. This setting is enforced and cannot be changed by users.\n- Lock your screen manually (Windows+L, or Ctrl+Cmd+Q) whenever you step away, even for a moment.\n- Unlock requires password, PIN or biometric (Windows Hello / Touch ID)."
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "Nimbus laptop screens auto-lock after **5 minutes** of inactivity, and this setting cannot be changed by users [1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Laptop and Device Security Standard",
+     "text": "#### 4.2 Screen lock\n\n- Screens **auto-lock after 5 minutes** of inactivity. This setting is enforced and cannot be changed by users.\n- Lock your screen manually (Windows+L, or Ctrl+Cmd+Q) whenever you step away, even for a moment.\n- Unlock requires password, PIN or biometric (Windows Hello / Touch ID)."
+    }
+   ]
+  }
+ },
+ {
+  "id": 1,
+  "kind": "answerable",
+  "asker": "rnd@sanjeevani.example",
+  "doc": "Travel Policy",
+  "q": "As a Band C employee staying at the Baddi plant guest house, what daily allowance do I get?",
+  "reference": "₹500 per day: the Band C daily allowance is ₹1,000, reduced by 50% when a plant guest house is used.",
+  "A": {
+   "abstained": false,
+   "answer": "As a Band C employee, your standard daily allowance is ₹1,000 [1]. Since you are staying at the Baddi plant guest house, the allowance is reduced by 50%, giving you **₹500 per day** [1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Travel Policy",
+     "text": "### 6. Hotel and daily allowance (domestic)\n\nCity categories: **Metro** – Mumbai, Delhi NCR, Bengaluru, Chennai, Kolkata, Hyderabad; **Tier 1** – Ahmedabad, Pune, Visakhapatnam, Chandigarh, Lucknow, Jaipur, and other state capitals; **Tier 2** – all other locations including Baddi and Changodar.\n\n| **Band**   | **Hotel – Metro (per night)**   | **Hotel – Tier 1**   | **Hotel – Tier 2**   | **Daily allowance (food &amp; incidentals)**   |\n|------------|---------------------------------|----------------------|----------------------|------------------------------------------------|\n| Band A     | Actuals (company-contracted)    | Actuals              | Actuals              | ₹2,500                                         |\n| Band B     | ₹7,000                          | ₹5,500               | ₹4,000               | ₹1,500                                         |\n| Band C     | ₹4,500                          | ₹3,500               | ₹2,500               | ₹1,000                                         |\n| Band D     | ₹2,500                          | ₹2,000               | ₹1,500               | ₹600                                           |\n\n6.1 Plant guest houses at Changodar, Baddi and Vizag must be used when rooms are available. When a guest house is used, the daily allowance is reduced by 50%. 6.2 Hotel limits exclude GST. A valid GST invoice in the company's name (GSTIN of the relevant site) is mandatory."
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "As a Band C employee, your base daily allowance is ₹1,000. When staying at the Baddi plant guest house, the daily allowance is reduced by 50%, so you would receive **₹500 per day** [1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Travel Policy",
+     "text": "### 6. Hotel and daily allowance (domestic)\n\nCity categories: **Metro** – Mumbai, Delhi NCR, Bengaluru, Chennai, Kolkata, Hyderabad; **Tier 1** – Ahmedabad, Pune, Visakhapatnam, Chandigarh, Lucknow, Jaipur, and other state capitals; **Tier 2** – all other locations including Baddi and Changodar.\n\n| **Band**   | **Hotel – Metro (per night)**   | **Hotel – Tier 1**   | **Hotel – Tier 2**   | **Daily allowance (food &amp; incidentals)**   |\n|------------|---------------------------------|----------------------|----------------------|------------------------------------------------|\n| Band A     | Actuals (company-contracted)    | Actuals              | Actuals              | ₹2,500                                         |\n| Band B     | ₹7,000                          | ₹5,500               | ₹4,000               | ₹1,500                                         |\n| Band C     | ₹4,500                          | ₹3,500               | ₹2,500               | ₹1,000                                         |\n| Band D     | ₹2,500                          | ₹2,000               | ₹1,500               | ₹600                                           |\n\n6.1 Plant guest houses at Changodar, Baddi and Vizag must be used when rooms are available. When a guest house is used, the daily allowance is reduced by 50%. 6.2 Hotel limits exclude GST. A valid GST invoice in the company's name (GSTIN of the relevant site) is mandatory."
+    }
+   ]
+  }
+ },
+ {
+  "id": 2,
+  "kind": "answerable",
+  "asker": "owner@nimbus.example",
+  "doc": "Board Meeting Minutes – 14 May 2026",
+  "q": "By how much did the Board approve topping up the ESOP pool on 14 May 2026?",
+  "reference": "By 1.5% of the fully diluted share capital, subject to shareholder approval by special resolution.",
+  "A": {
+   "abstained": false,
+   "answer": "The Board approved topping up the ESOP pool by **1.5% of the fully diluted share capital** on 14 May 2026 (Resolution 68.4) [1][2].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Board Meeting Minutes – 14 May 2026",
+     "text": "## 7. ESOP pool top-up\n\nMs. Anjali Deshpande presented a proposal to top up the Nimbus Employee Stock Option Plan 2019 pool by 1.5% of the fully diluted share capital, to support retention of L5 and above and key hires for the Data &amp; AI practice. The current pool has 0.4% unallocated. The Nomination and Remuneration Committee had recommended the proposal on 7 May 2026.\n\nResolution 68.4: RESOLVED THAT, subject to approval of the shareholders by special resolution, the ESOP pool be increased by 1.5% of the fully diluted share capital, and the Nomination and Remuneration Committee be authorised to grant options from the enlarged pool. (Mr. Qureshi abstained.)\n\n\n\n\n\nThe Board approved convening the Annual General Meeting on 24 July 2026, including the special resolution for the ESOP top-up."
+    },
+    {
+     "n": 2,
+     "title": "FY2026-27 Budget and Headcount Plan",
+     "text": "## 6. Other approvals linked to the budget\n\n- ESOP pool top-up of 1.5% of fully diluted share capital (Resolution 68.4), subject to shareholder approval at the AGM on 24 July 2026. The associated non-cash ESOP charge of ₹6.2 crore is included in employee expense.\n- Investment of ₹12 crore (opex) in NimbusOps go-to-market for the Middle East."
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "The Board approved topping up the ESOP pool by **1.5% of the fully diluted share capital** on 14 May 2026 (Resolution 68.4) [1][2].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Board Meeting Minutes – 14 May 2026",
+     "text": "## 7. ESOP pool top-up\n\nMs. Anjali Deshpande presented a proposal to top up the Nimbus Employee Stock Option Plan 2019 pool by 1.5% of the fully diluted share capital, to support retention of L5 and above and key hires for the Data &amp; AI practice. The current pool has 0.4% unallocated. The Nomination and Remuneration Committee had recommended the proposal on 7 May 2026.\n\nResolution 68.4: RESOLVED THAT, subject to approval of the shareholders by special resolution, the ESOP pool be increased by 1.5% of the fully diluted share capital, and the Nomination and Remuneration Committee be authorised to grant options from the enlarged pool. (Mr. Qureshi abstained.)\n\n\n\n\n\nThe Board approved convening the Annual General Meeting on 24 July 2026, including the special resolution for the ESOP top-up."
+    },
+    {
+     "n": 2,
+     "title": "FY2026-27 Budget and Headcount Plan",
+     "text": "## 6. Other approvals linked to the budget\n\n- ESOP pool top-up of 1.5% of fully diluted share capital (Resolution 68.4), subject to shareholder approval at the AGM on 24 July 2026. The associated non-cash ESOP charge of ₹6.2 crore is included in employee expense.\n- Investment of ₹12 crore (opex) in NimbusOps go-to-market for the Middle East."
+    }
+   ]
+  }
+ },
+ {
+  "id": 3,
+  "kind": "denied",
+  "asker": "manager@nimbus.example",
+  "doc": "Board Meeting Minutes – 14 May 2026",
+  "q": "By how much did the Board approve topping up the ESOP pool on 14 May 2026?",
+  "reference": "By 1.5% of the fully diluted share capital, subject to shareholder approval by special resolution.",
+  "A": {
+   "abstained": true,
+   "answer": "Not found in your documents.\nNo document you can open answers this, so Atlas did not guess.",
+   "cited": []
+  },
+  "B": {
+   "abstained": true,
+   "answer": "Not found in your documents.\nNo document you can open answers this, so Atlas did not guess.",
+   "cited": []
+  }
+ },
+ {
+  "id": 4,
+  "kind": "answerable",
+  "asker": "ops@kaveri.example",
+  "doc": "Trade Settlement and Fund Accounting SOP",
+  "q": "By what time must the day's trades be reconciled against contract notes?",
+  "reference": "By 6:30 pm; unmatched trades are escalated to the Fund Accounting Lead and the dealer.",
+  "A": {
+   "abstained": false,
+   "answer": "The day's trades must be reconciled against contract notes by **6:30 pm** [1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Trade Settlement and Fund Accounting SOP",
+     "text": "## 3. Daily timetable\n\n| Time    | Step                                                                                              | Owner            |\n|---------|---------------------------------------------------------------------------------------------------|------------------|\n| 9:15 am | Confirm previous day's settlement status with custodian; list any failed trades                   | Trade Settlement |\n| 9:30 am | Cash forecast for each scheme sent to fund managers (subscriptions, redemptions, settlements due) | Fund Accounting  |\n| 3:00 pm | Investor transaction cut-off; RTA freezes the day's applications                                  | RTA / Operations |\n\n\n\n\n\n| 3:45 pm   | Dealing desk sends end-of-day trade file                              | Dealing                   |\n|-----------|-----------------------------------------------------------------------|---------------------------|\n| 4:30 pm   | Broker contract notes received electronically                         | Trade Settlement          |\n| 6:30 pm   | All of the day's trades matched and reconciled against contract notes | Trade Settlement          |\n| 7:00 pm   | Settlement instructions sent to the custodian for T+1 settlement      | Trade Settlement          |\n| 7:30 pm   | RTA unit capital file received and reconciled                         | Fund Accounting           |\n| 9:00 pm   | NAV computed for all schemes and plans                                | Fund Accounting - maker   |\n| 9:30 pm   | NAV checked and signed off                                            | Fund Accounting - checker |\n| 10:30 pm  | NAV published on website and app (internal target)                    | Operations                |\n| 11:00 pm  | Regulatory deadline for NAV publication on Kaveri and AMFI websites   | Opera"
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "The day's trades must be reconciled against contract notes by **6:30 pm** [1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Trade Settlement and Fund Accounting SOP",
+     "text": "## 3. Daily timetable\n\n| Time    | Step                                                                                              | Owner            |\n|---------|---------------------------------------------------------------------------------------------------|------------------|\n| 9:15 am | Confirm previous day's settlement status with custodian; list any failed trades                   | Trade Settlement |\n| 9:30 am | Cash forecast for each scheme sent to fund managers (subscriptions, redemptions, settlements due) | Fund Accounting  |\n| 3:00 pm | Investor transaction cut-off; RTA freezes the day's applications                                  | RTA / Operations |\n\n\n\n\n\n| 3:45 pm   | Dealing desk sends end-of-day trade file                              | Dealing                   |\n|-----------|-----------------------------------------------------------------------|---------------------------|\n| 4:30 pm   | Broker contract notes received electronically                         | Trade Settlement          |\n| 6:30 pm   | All of the day's trades matched and reconciled against contract notes | Trade Settlement          |\n| 7:00 pm   | Settlement instructions sent to the custodian for T+1 settlement      | Trade Settlement          |\n| 7:30 pm   | RTA unit capital file received and reconciled                         | Fund Accounting           |\n| 9:00 pm   | NAV computed for all schemes and plans                                | Fund Accounting - maker   |\n| 9:30 pm   | NAV checked and signed off                                            | Fund Accounting - checker |\n| 10:30 pm  | NAV published on website and app (internal target)                    | Operations                |\n| 11:00 pm  | Regulatory deadline for NAV publication on Kaveri and AMFI websites   | Opera"
+    }
+   ]
+  }
+ },
+ {
+  "id": 5,
+  "kind": "denied",
+  "asker": "analyst@kaveri.example",
+  "doc": "Trade Settlement and Fund Accounting SOP",
+  "q": "By what time must the day's trades be reconciled against contract notes?",
+  "reference": "By 6:30 pm; unmatched trades are escalated to the Fund Accounting Lead and the dealer.",
+  "A": {
+   "abstained": false,
+   "answer": "The documents do not specify a deadline for reconciling the day's trades against contract notes. Passage 1 only states that contract notes for pre‑cleared trades must be submitted to Compliance within 2 trading days of the trade [1]. No reconciliation timeframe is mentioned.",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Personal Trading Policy",
+     "text": "## 7. Disclosures\n\n| Disclosure                            | Who                 | Deadline                       |\n|---------------------------------------|---------------------|--------------------------------|\n| Initial holdings statement            | All covered persons | Within 10 days of joining      |\n| Quarterly transaction report          | All covered persons | Within 15 days of quarter end  |\n| Annual holdings statement             | All covered persons | By 30 April each year          |\n| New demat or trading account          | All covered persons | Within 7 days of opening       |\n| Contract notes for pre-cleared trades | All covered persons | Within 2 trading days of trade |\n\nBrokers may be asked to send duplicate contract notes directly to Compliance."
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "The provided passage does not specify a timeframe for reconciling daily trade execution against contract notes. It only lists disclosure deadlines, including that contract notes for pre‑cleared trades must be submitted within 2 trading days of the trade [1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Personal Trading Policy",
+     "text": "## 7. Disclosures\n\n| Disclosure                            | Who                 | Deadline                       |\n|---------------------------------------|---------------------|--------------------------------|\n| Initial holdings statement            | All covered persons | Within 10 days of joining      |\n| Quarterly transaction report          | All covered persons | Within 15 days of quarter end  |\n| Annual holdings statement             | All covered persons | By 30 April each year          |\n| New demat or trading account          | All covered persons | Within 7 days of opening       |\n| Contract notes for pre-cleared trades | All covered persons | Within 2 trading days of trade |\n\nBrokers may be asked to send duplicate contract notes directly to Compliance."
+    }
+   ]
+  }
+ },
+ {
+  "id": 6,
+  "kind": "answerable",
+  "asker": "qa@sanjeevani.example",
+  "doc": "CDSCO Product Licence Renewal Summary",
+  "q": "By when must the Unit III Vizag manufacturing licence retention fee be paid?",
+  "reference": "Internally by 06 November 2026; the statutory deadline is 20 November 2026.",
+  "A": {
+   "abstained": false,
+   "answer": "The Unit III Vizag manufacturing licence retention fee must be paid by **06 November 2026** (internal deadline), with the statutory deadline being **20 November 2026** [1][2].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "CDSCO Product Licence Renewal Summary",
+     "text": "## 3. Site manufacturing licences\n\n| Unit                              | Licence no. (Form 25)   | Licensing authority                          | Dosage forms                            | Last retention fee paid   | Next retention fee due   | Status                             |\n|-----------------------------------|-------------------------|----------------------------------------------|-----------------------------------------|---------------------------|--------------------------|------------------------------------|\n| Unit I - Ahmedabad (Changodar)    | G/25/1874               | Gujarat Food and Drug Control Administration | Tablets, capsules                       | 12 March 2026             | 12 March 2031            | Valid                              |\n| Unit II - Baddi, Himachal Pradesh | MB/09/412               | State Drugs Controller, Himachal Pradesh     | Oral liquids, creams/ ointments         | 21 August 2026            | 28 August 2031           | Valid                              |\n| Unit III - Vizag SEZ              | AP/ VSP/25/2016/88      | Drugs Control Administration, Andhra Pradesh | Tablets, capsules (export and domestic) | 20 November 2021          | 20 November 2026         | Fee to be paid by 06 November 2026 |"
+    },
+    {
+     "n": 2,
+     "title": "CDSCO Product Licence Renewal Summary",
+     "text": "## 7. Actions due in FY27\n\n| No.   | Action   | Owner   | Due date   | Status   |\n|-------|----------|---------|------------|----------|\n\n\n\n\n\n|   1 | Pay Unit III Form 25 retention fee                                 | Nirav Pandya      | 06 November 2026 (statutory 20 November 2026)   | Not started                      |\n|-----|--------------------------------------------------------------------|-------------------|-------------------------------------------------|----------------------------------|\n|   2 | Submit Unit III WHO-GMP renewal application                        | Site RA, Unit III | 31 October 2026                                 | In progress                      |\n|   3 | Obtain renewed Unit I WHO-GMP certificate                          | Site RA, Unit I   | November 2026                                   | Awaiting authority               |\n|   4 | Endorsement of Glucosan-M 1000 SR (new strength) on Unit I licence | Nirav Pandya      | 31 January 2027                                 | Application filed 05 August 2026 |\n|   5 | Update licence records after Vizag Block C completion              | Site RA, Unit III | FY28                                            | Not started                      |"
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "The Unit III Vizag licence retention fee must be paid by 06 November 2026 (the statutory deadline is 20 November 2026)【1】【2】",
+   "cited": []
+  }
+ },
+ {
+  "id": 7,
+  "kind": "answerable",
+  "asker": "owner@kaveri.example",
+  "doc": "Project Plan – GIFT City Feeder Fund Launch",
+  "q": "By when must the custodian and administrator for the GIFT City feeder fund be selected?",
+  "reference": "By 31 August 2026 (RFP issued by 15 June 2026).",
+  "A": {
+   "abstained": false,
+   "answer": "The custodian and administrator must be selected by **31 August 2026** [1][2][3].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "GIFT City Feeder Fund Proposal",
+     "text": "### 8. Timeline\n\n| **Milestone**                              | **Target date**          |\n|--------------------------------------------|--------------------------|\n| Board approval                             | 25 April 2026            |\n| FME application to IFSCA                   | 30 June 2026             |\n| Custodian and administrator selected       | 31 August 2026           |\n| Office ready; team hired                   | October 2026             |\n| IFSCA registration and fund filing cleared | November 2026            |\n| Pre-marketing                              | November – December 2026 |\n| Launch                                     | January 2027             |\n| 12-month post-launch review to Board       | January 2028             |"
+    },
+    {
+     "n": 2,
+     "title": "GIFT City Feeder Fund Proposal",
+     "text": "### 3. Structure\n\n| **Item**                    | **Proposal**                                                                     |\n|-----------------------------|----------------------------------------------------------------------------------|\n| Fund name                   | Kaveri India Flexi Cap Feeder Fund (IFSC)                                        |\n| Manager                     | Kaveri Capital Advisors (IFSC) – new FME branch/subsidiary registered with IFSCA |\n| Underlying fund             | Kaveri Flexi Cap Fund (fund manager: Divya Menon)                                |\n| Currency                    | US dollar                                                                        |\n| Investors                   | NRIs, foreign individuals, family offices and institutions                       |\n| Minimum investment          | USD 150,000                                                                      |\n| Dealing                     | Daily subscriptions; weekly redemptions                                          |\n| Custodian and administrator | To be appointed through RFP by August 2026                                       |\n| Office                      | Leased office in GIFT City, Gandhinagar, from October 2026                       |\n\n3.1 Indian resident investors will not be offered the fund."
+    },
+    {
+     "n": 3,
+     "title": "Project Plan – GIFT City Feeder Fund Launch",
+     "text": "### 4. Milestones\n\n| **Milestone**                                       | **Target date**          | **Workstream**   | **Status (15 May 2026)**   |\n|-----------------------------------------------------|--------------------------|------------------|----------------------------|\n| Board approval                                      | 25 April 2026            | Sponsor          | Done                       |\n| Legal counsel engaged                               | 15 May 2026              | WS1              | Done                       |\n| FME application filed with IFSCA                    | 30 June 2026             | WS1              | On track                   |\n| Custodian and administrator RFP issued              | 15 June 2026             | WS2              | On track                   |\n| Custodian and administrator selected                | 31 August 2026           | WS2              | On track                   |\n| Principal Officer – IFSC hired                      | 31 August 2026           | WS6              | Search started             |\n| Remaining 4 IFSC roles hired                        | September 2026           | WS6              | Not started                |\n| GIFT City office ready                              | October 2026             | WS6              | Lease under negotiation    |\n| Fund accounting and portal tested (user acceptance) | 31 October 2026          | WS3              | Not started                |\n| IFSCA registration and fund filing cleared          | November 2026            | WS1              | Not started                |\n| Pre-marketing to existing NRI clients               | November – December 2026 | WS4              | Not started                |\n| Seed capital of ₹25 crore invested                  | Launch day            "
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "By 31 August 2026 [1][2][3].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Project Plan – GIFT City Feeder Fund Launch",
+     "text": "### 7. Dependencies\n\n- WS2 (custody) cannot finish until WS1 has filed with IFSCA, because the custodian needs the FME registration number to open accounts.\n- WS3 user acceptance testing needs the administrator from WS2 selected by 31 August 2026.\n- WS4 pre-marketing may only start once WS1 confirms the offer document has been filed.\n- WS6 hires must include the IFSC compliance officer before the fund filing in November 2026."
+    },
+    {
+     "n": 2,
+     "title": "GIFT City Feeder Fund Proposal",
+     "text": "### 8. Timeline\n\n| **Milestone**                              | **Target date**          |\n|--------------------------------------------|--------------------------|\n| Board approval                             | 25 April 2026            |\n| FME application to IFSCA                   | 30 June 2026             |\n| Custodian and administrator selected       | 31 August 2026           |\n| Office ready; team hired                   | October 2026             |\n| IFSCA registration and fund filing cleared | November 2026            |\n| Pre-marketing                              | November – December 2026 |\n| Launch                                     | January 2027             |\n| 12-month post-launch review to Board       | January 2028             |"
+    },
+    {
+     "n": 3,
+     "title": "Project Plan – GIFT City Feeder Fund Launch",
+     "text": "### 4. Milestones\n\n| **Milestone**                                       | **Target date**          | **Workstream**   | **Status (15 May 2026)**   |\n|-----------------------------------------------------|--------------------------|------------------|----------------------------|\n| Board approval                                      | 25 April 2026            | Sponsor          | Done                       |\n| Legal counsel engaged                               | 15 May 2026              | WS1              | Done                       |\n| FME application filed with IFSCA                    | 30 June 2026             | WS1              | On track                   |\n| Custodian and administrator RFP issued              | 15 June 2026             | WS2              | On track                   |\n| Custodian and administrator selected                | 31 August 2026           | WS2              | On track                   |\n| Principal Officer – IFSC hired                      | 31 August 2026           | WS6              | Search started             |\n| Remaining 4 IFSC roles hired                        | September 2026           | WS6              | Not started                |\n| GIFT City office ready                              | October 2026             | WS6              | Lease under negotiation    |\n| Fund accounting and portal tested (user acceptance) | 31 October 2026          | WS3              | Not started                |\n| IFSCA registration and fund filing cleared          | November 2026            | WS1              | Not started                |\n| Pre-marketing to existing NRI clients               | November – December 2026 | WS4              | Not started                |\n| Seed capital of ₹25 crore invested                  | Launch day            "
+    }
+   ]
+  }
+ },
+ {
+  "id": 8,
+  "kind": "not_found",
+  "asker": "employee@nimbus.example",
+  "doc": null,
+  "q": "Can I bring my dog to the Nimbus office in Pune?",
+  "reference": "not found",
+  "A": {
+   "abstained": true,
+   "answer": "Not found in your documents.\nNo document you can open answers this, so Atlas did not guess.",
+   "cited": []
+  },
+  "B": {
+   "abstained": false,
+   "answer": "The provided Nimbus documents do not include any pet visitation policy or rules about bringing dogs to the Pune office, so this question is not covered by the available passages.",
+   "cited": []
+  }
+ },
+ {
+  "id": 9,
+  "kind": "answerable",
+  "asker": "sales@sanjeevani.example",
+  "doc": "Sanjeevani Cough Relief Syrup Product Sheet",
+  "q": "Can Sanjeevani Cough Relief Syrup be given to a three-year-old child?",
+  "reference": "No. The syrup must not be used in children below four years of age (mandatory CDSCO label warning).",
+  "A": {
+   "abstained": false,
+   "answer": "No, Sanjeevani Cough Relief Syrup must not be given to a three‑year‑old child. The product sheet lists children below 4 years as a contraindication and states “Not to be used” for that age group [1][2]. The FAQ also explicitly warns that the syrup must not be given to children below four years of age [3].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Sanjeevani Cough Relief Syrup Product Sheet",
+     "text": "### 5. Dosage and administration\n\n| **Age group**                      | **Dose**               | **Maximum frequency**                                      |\n|------------------------------------|------------------------|------------------------------------------------------------|\n| Adults and children above 12 years | 10 mL                  | Every 6–8 hours; not more than 4 doses (40 mL) in 24 hours |\n| Children 6–12 years                | 5 mL                   | Every 6–8 hours; not more than 4 doses (20 mL) in 24 hours |\n| Children 4–6 years                 | Only on medical advice | As directed by the physician                               |\n| Children below 4 years             | **Not to be used**     | —                                                          |\n\n5.1 Use the 10 mL measuring cup supplied with the pack. Do not use household spoons. 5.2 Do not use for more than 7 days. If the cough persists beyond 7 days or is accompanied by high fever, rash or persistent headache, consult a doctor.\n\n**Mandatory label warning (as required by CDSCO for this fixed-dose combination):** \"This fixed-dose combination should not be used in children below four years of age.\""
+    },
+    {
+     "n": 2,
+     "title": "Sanjeevani Cough Relief Syrup Product Sheet",
+     "text": "### 6. Contraindications\n\n- Children below 4 years of age\n- Patients taking monoamine oxidase inhibitors (MAOIs), or within 14 days of stopping them\n- Hypersensitivity to any ingredient\n- Patients at risk of respiratory failure, or during an acute asthma attack\n- Narrow-angle glaucoma, urinary retention or prostatic enlargement (due to chlorpheniramine)"
+    },
+    {
+     "n": 3,
+     "title": "Medicine Information and Side-Effect Reporting FAQ",
+     "text": "## 3. How should I store my medicines at home?\n\n| Medicine | How to store | Shelf life (unopened) | After opening |\n|---|---|---|---|\n| Glucosan-M 500 | Below 30°C; protect from moisture – keep tablets in the strip until use; do not keep in the bathroom | 36 months | — |\n| Cardivas 10 | Below 30°C; protect from light and moisture | 36 months | — |\n| Amlosan 5 | Below 30°C; protect from light | 36 months | — |\n| Pantosan 40 | Below 30°C; protect from moisture; swallow whole, do not crush | 24 months | — |\n| Sanjeevani Cough Relief Syrup | Below 30°C; do not refrigerate; protect from light | 24 months | Use within 30 days after opening |\n| Dermacalm Cream | Below 25°C; do not freeze; close the cap tightly | 30 months | Use within 3 months after opening |\n\nGeneral tips:\n\n- Keep all medicines out of the sight and reach of children.\n- Do not use any medicine after the expiry date (\"EXP MM/YYYY\"); it may be used until the last day of that month.\n- Do not use tablets that are discoloured, broken or damp, or syrup that has changed colour.\n- Sanjeevani Cough Relief Syrup must not be given to children below four years of age.\n- Dermacalm Cream should not be used for more than 3 weeks without medical advice."
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "No. Children below 4 years of age must not be given Sanjeevani Cough Relief Syrup [1][2]. The product sheet lists children below 4 years as a contraindication [3], and the dosage table marks this age group as \"Not to be used\" [1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Sanjeevani Cough Relief Syrup Product Sheet",
+     "text": "### 5. Dosage and administration\n\n| **Age group**                      | **Dose**               | **Maximum frequency**                                      |\n|------------------------------------|------------------------|------------------------------------------------------------|\n| Adults and children above 12 years | 10 mL                  | Every 6–8 hours; not more than 4 doses (40 mL) in 24 hours |\n| Children 6–12 years                | 5 mL                   | Every 6–8 hours; not more than 4 doses (20 mL) in 24 hours |\n| Children 4–6 years                 | Only on medical advice | As directed by the physician                               |\n| Children below 4 years             | **Not to be used**     | —                                                          |\n\n5.1 Use the 10 mL measuring cup supplied with the pack. Do not use household spoons. 5.2 Do not use for more than 7 days. If the cough persists beyond 7 days or is accompanied by high fever, rash or persistent headache, consult a doctor.\n\n**Mandatory label warning (as required by CDSCO for this fixed-dose combination):** \"This fixed-dose combination should not be used in children below four years of age.\""
+    },
+    {
+     "n": 2,
+     "title": "Medicine Information and Side-Effect Reporting FAQ",
+     "text": "## 3. How should I store my medicines at home?\n\n| Medicine | How to store | Shelf life (unopened) | After opening |\n|---|---|---|---|\n| Glucosan-M 500 | Below 30°C; protect from moisture – keep tablets in the strip until use; do not keep in the bathroom | 36 months | — |\n| Cardivas 10 | Below 30°C; protect from light and moisture | 36 months | — |\n| Amlosan 5 | Below 30°C; protect from light | 36 months | — |\n| Pantosan 40 | Below 30°C; protect from moisture; swallow whole, do not crush | 24 months | — |\n| Sanjeevani Cough Relief Syrup | Below 30°C; do not refrigerate; protect from light | 24 months | Use within 30 days after opening |\n| Dermacalm Cream | Below 25°C; do not freeze; close the cap tightly | 30 months | Use within 3 months after opening |\n\nGeneral tips:\n\n- Keep all medicines out of the sight and reach of children.\n- Do not use any medicine after the expiry date (\"EXP MM/YYYY\"); it may be used until the last day of that month.\n- Do not use tablets that are discoloured, broken or damp, or syrup that has changed colour.\n- Sanjeevani Cough Relief Syrup must not be given to children below four years of age.\n- Dermacalm Cream should not be used for more than 3 weeks without medical advice."
+    },
+    {
+     "n": 3,
+     "title": "Sanjeevani Cough Relief Syrup Product Sheet",
+     "text": "### 6. Contraindications\n\n- Children below 4 years of age\n- Patients taking monoamine oxidase inhibitors (MAOIs), or within 14 days of stopping them\n- Hypersensitivity to any ingredient\n- Patients at risk of respiratory failure, or during an acute asthma attack\n- Narrow-angle glaucoma, urinary retention or prostatic enlargement (due to chlorpheniramine)"
+    }
+   ]
+  }
+ },
+ {
+  "id": 10,
+  "kind": "answerable",
+  "asker": "compliance@kaveri.example",
+  "doc": "Distributor (MFD) Empanelment Agreement – Standard Terms",
+  "q": "Can a mutual fund distributor accept cash from an investor?",
+  "reference": "No; accepting cash is a material breach and grounds for immediate termination.",
+  "A": {
+   "abstained": false,
+   "answer": "No. The Distributor shall never accept cash from an investor for any Kaveri investment, in any amount, and must not collect money into its own account; all payments must go directly from the investor's bank account to the scheme's account. Acceptance of cash is a material breach and grounds for immediate termination [1][2][3].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Distributor (MFD) Empanelment Agreement – Standard Terms",
+     "text": "## 3. KYC and AML duties of the Distributor\n\n3.1 The Distributor shall ensure every investor it introduces has completed KYC before the first transaction. Kaveri's KYC Desk performs the CKYC lookup and PAN verification; the Distributor must collect correct documents and must not submit a transaction for an investor whose KYC is incomplete or on hold.\n\n3.2 The Distributor shall support Kaveri's periodic re-KYC cycle: every 2 years for high-risk investors, every 5 years for medium-risk and every 8 years for low-risk investors.\n\n3.3 No cash. The Distributor shall never accept cash from an investor for any Kaveri investment, in any amount, and shall never collect money into its own account. All payments must go directly from the investor's own bank account to the scheme's account. Acceptance of cash is a material breach.\n\n3.4 The Distributor shall tell Kaveri's Principal Officer (the CCO) within 2 working days of noticing any transaction or behaviour that appears suspicious, so that Kaveri can file a Suspicious Transaction Report with FIU-IND within 7 days of suspicion being established. The Distributor shall not tell the investor (no tipping-off).\n\n3.5 Investors who are politically exposed persons (PEPs) must be flagged to Kaveri at the time of the application; Kaveri onboards them only with CCO approval."
+    },
+    {
+     "n": 2,
+     "title": "Distributor (MFD) Empanelment Agreement – Standard Terms",
+     "text": "## 7. Termination\n\n- 7.1 Either party may end the empanelment without cause by giving 30 days' written notice.\n- 7.2 Kaveri may end the empanelment immediately, by written notice, on any of these grounds:\n1. Acceptance of cash from an investor, or collection of investor money into the Distributor's own account.\n2. Mis-selling established by Compliance, or a promise of guaranteed returns.\n3. Lapse or cancellation of the ARN, or action by SEBI or AMFI debarring the Distributor.\n4. Submission of forged or incomplete KYC documents.\n5. Breach of the no-tipping-off or confidentiality obligations.\n6. Sharing commission with investors or with persons without an ARN.\n7. Insolvency, or a criminal conviction involving fraud or dishonesty.\n8. Any other material breach not cured within 15 days of written notice.\n- 7.3 On termination, trail commission stops from the termination date for termination for cause under 7.2. For termination without cause, trail commission continues on existing assets as long as the investor keeps the Distributor as the distributor of record and the ARN remains valid.\n- 7.4 The Distributor's investors are informed of the termination and may continue with another distributor or switch to the direct plan."
+    },
+    {
+     "n": 3,
+     "title": "KYC and Customer Due Diligence Policy",
+     "text": "## 6. Payment Rules\n\n- 6.1 Cash is not accepted for any subscription, PMS contribution or AIF drawdown, in any amount. Branch staff who are offered cash shall decline and record the attempt in the KYC exceptions register.\n- 6.2 Subscriptions shall come only from a bank account held in the name of the investor (first holder). Thirdparty payments are refused except for the exemptions permitted for minors (parent/guardian) and employer payroll SIPs, each with a declaration."
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "No, a mutual fund distributor cannot accept cash from an investor. According to Kaveri Capital's KYC and Customer Due Diligence Policy, cash is not accepted for any subscription, PMS contribution, or AIF drawdown in any amount, and branch staff must decline cash offers and record the attempt in the KYC exceptions register [1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "KYC and Customer Due Diligence Policy",
+     "text": "## 6. Payment Rules\n\n- 6.1 Cash is not accepted for any subscription, PMS contribution or AIF drawdown, in any amount. Branch staff who are offered cash shall decline and record the attempt in the KYC exceptions register.\n- 6.2 Subscriptions shall come only from a bank account held in the name of the investor (first holder). Thirdparty payments are refused except for the exemptions permitted for minors (parent/guardian) and employer payroll SIPs, each with a declaration."
+    }
+   ]
+  }
+ },
+ {
+  "id": 11,
+  "kind": "denied",
+  "asker": "rm@kaveri.example",
+  "doc": "Distributor (MFD) Empanelment Agreement – Standard Terms",
+  "q": "Can a mutual fund distributor accept cash from an investor?",
+  "reference": "No; accepting cash is a material breach and grounds for immediate termination.",
+  "A": {
+   "abstained": false,
+   "answer": "No. Kaveri Capital does not accept cash for any investment, in any amount, across all its products including mutual funds. Investors must pay by cheque, NEFT, RTGS, UPI or mandate from a bank account in their own name [1][2][3].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Product Guide – Which Kaveri Fund Fits Which Investor",
+     "text": "## 5. Suitability red flags\n\nStop and escalate to the branch head if:\n\n- the client wants to invest in Small Cap with money needed within 3 years;\n- a senior citizen wants to move more than 50% of their savings into equity in one go;\n- the client asks for \"guaranteed\" returns from any equity, PMS or AIF product;\n- the client offers cash – **cash is never accepted** for any Kaveri product;\n- the client is, or is related to, a politically exposed person (PEP) – onboarding needs Compliance approval."
+    },
+    {
+     "n": 2,
+     "title": "PMS and AIF Client Onboarding Checklist",
+     "text": "#### Step 6 – First funding\n\n|   **#** | **Rule**                                                                                                                                       |\n|---------|------------------------------------------------------------------------------------------------------------------------------------------------|\n|     6.1 | **Cash is never accepted**, in any amount. Funds must come by cheque, NEFT or RTGS from a bank account in the client's own name (first holder) |\n|     6.2 | Third-party payments are rejected and returned to source                                                                                       |\n|     6.3 | Securities are transferred from the client's own demat account only                                                                            |\n|     6.4 | Funding must reach the account within 30 days of agreement signing, or the file is re-verified                                                 |\n\n6.5 PMS money is deployed into the portfolio typically within **15 working days** of funds being received."
+    },
+    {
+     "n": 3,
+     "title": "Investor Service FAQ – Redemptions, Exit Loads and Statements",
+     "text": "## 1. Buying and redeeming\n\n**What is the cut-off time for same-day NAV?**\n3:00 pm on business days, for both equity and debt schemes. Redemptions received before 3:00 pm get that day's NAV. For purchases, the money must also be credited to the scheme's bank account before 3:00 pm; otherwise the next business day's NAV applies.\n\n**I placed a redemption on Saturday. Which NAV will I get?**\nThe next business day's NAV (normally Monday's).\n\n**How long does a redemption take to reach my bank account?**\nWithin 3 working days of the redemption date for all schemes. For the Arbitrage and Short Duration funds we usually pay within 2 working days. If we are late beyond the regulatory timeline, we pay interest at 15% per annum for each day of delay.\n\n**Where is my redemption money paid?**\nOnly to the bank account registered in your folio. We never pay redemption proceeds to a third-party account.\n\n**Can I pay or invest in cash?**\nNo. Kaveri does not accept cash for any investment, in any amount. Please pay by cheque, NEFT, RTGS, UPI or mandate from a bank account in your own name."
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "No. Kaveri does not accept cash for any investment, in any amount — this applies to all Kaveri products including mutual funds [1][2][3]. Payments must be made by cheque, NEFT, RTGS, UPI or mandate from a bank account in the investor's own name [2][3].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Product Guide – Which Kaveri Fund Fits Which Investor",
+     "text": "## 5. Suitability red flags\n\nStop and escalate to the branch head if:\n\n- the client wants to invest in Small Cap with money needed within 3 years;\n- a senior citizen wants to move more than 50% of their savings into equity in one go;\n- the client asks for \"guaranteed\" returns from any equity, PMS or AIF product;\n- the client offers cash – **cash is never accepted** for any Kaveri product;\n- the client is, or is related to, a politically exposed person (PEP) – onboarding needs Compliance approval."
+    },
+    {
+     "n": 2,
+     "title": "PMS and AIF Client Onboarding Checklist",
+     "text": "#### Step 6 – First funding\n\n|   **#** | **Rule**                                                                                                                                       |\n|---------|------------------------------------------------------------------------------------------------------------------------------------------------|\n|     6.1 | **Cash is never accepted**, in any amount. Funds must come by cheque, NEFT or RTGS from a bank account in the client's own name (first holder) |\n|     6.2 | Third-party payments are rejected and returned to source                                                                                       |\n|     6.3 | Securities are transferred from the client's own demat account only                                                                            |\n|     6.4 | Funding must reach the account within 30 days of agreement signing, or the file is re-verified                                                 |\n\n6.5 PMS money is deployed into the portfolio typically within **15 working days** of funds being received."
+    },
+    {
+     "n": 3,
+     "title": "Investor Service FAQ – Redemptions, Exit Loads and Statements",
+     "text": "## 1. Buying and redeeming\n\n**What is the cut-off time for same-day NAV?**\n3:00 pm on business days, for both equity and debt schemes. Redemptions received before 3:00 pm get that day's NAV. For purchases, the money must also be credited to the scheme's bank account before 3:00 pm; otherwise the next business day's NAV applies.\n\n**I placed a redemption on Saturday. Which NAV will I get?**\nThe next business day's NAV (normally Monday's).\n\n**How long does a redemption take to reach my bank account?**\nWithin 3 working days of the redemption date for all schemes. For the Arbitrage and Short Duration funds we usually pay within 2 working days. If we are late beyond the regulatory timeline, we pay interest at 15% per annum for each day of delay.\n\n**Where is my redemption money paid?**\nOnly to the bank account registered in your folio. We never pay redemption proceeds to a third-party account.\n\n**Can I pay or invest in cash?**\nNo. Kaveri does not accept cash for any investment, in any amount. Please pay by cheque, NEFT, RTGS, UPI or mandate from a bank account in your own name."
+    }
+   ]
+  }
+ },
+ {
+  "id": 12,
+  "kind": "answerable",
+  "asker": "sales@sanjeevani.example",
+  "doc": "Product Returns and Expiry Replacement Policy",
+  "q": "Can a pharmacy return near-expiry Dermacalm Cream?",
+  "reference": "Yes, through its stockist, for replacement, if the tubes are sealed, in their cartons and have 3 months or less of shelf life left, and were stored below 25°C.",
+  "A": {
+   "abstained": false,
+   "answer": "Yes, a pharmacy can return near-expiry Dermacalm Cream through its stockist for replacement, provided the tubes are sealed, in their original cartons, and have 3 months or less of shelf life remaining. The pharmacy must also confirm on the return form that the product was stored below 25°C as required. [1][2]",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Product Returns and Expiry Replacement Policy",
+     "text": "## 4. What can be returned\n\n| Category                                                                                  | Accepted?                       | Credit                                             |\n|-------------------------------------------------------------------------------------------|---------------------------------|----------------------------------------------------|\n| Near-expiry stock (3 months or less of shelf life remaining), sealed and in original pack | Yes - replaced with fresh stock | 100% replacement of the same product               |\n| Expired stock, returned within 6 months after the expiry month                            | Yes                             | Credit note at 100% of the price to stockist (PTS) |\n| Expired stock returned more than 6 months after expiry                                    | No                              | -                                                  |\n\n\n\n\n\n| Damaged in transit (breakage, leakage, crushed cartons)                   | Yes, if reported within 48 hours of receipt   | 100% replacement                                 |\n|---------------------------------------------------------------------------|-----------------------------------------------|--------------------------------------------------|\n| Recalled batches                                                          | Yes, always                                   | Full credit at invoice price plus return freight |\n| Opened or partly used packs (e.g. opened bottles, tubes with broken seal) | No, except recalled batches                   | -                                                |\n| Physician samples (\"Not for sale\")                                        | No - samples must never be sold               | -                           "
+    },
+    {
+     "n": 2,
+     "title": "Product Returns and Expiry Replacement Policy",
+     "text": "## 3. Shelf life of our products\n\nExpiry is printed on every strip, bottle and tube as \"EXP MM/YYYY\". A product may be used until the last day of the expiry month.\n\n| Product                       | Shelf life from manufacture   | Storage                                     |\n|-------------------------------|-------------------------------|---------------------------------------------|\n| Glucosan-M 500                | 36 months                     | Below 30°C, protect from moisture           |\n| Cardivas 10                   | 36 months                     | Below 30°C, protect from light and moisture |\n| Amlosan 5                     | 36 months                     | Below 30°C, protect from light              |\n| Pantosan 40                   | 24 months                     | Below 30°C, protect from moisture           |\n| Sanjeevani Cough Relief Syrup | 24 months                     | Below 30°C, do not refrigerate              |\n| Dermacalm Cream               | 30 months                     | Below 25°C, do not freeze                   |"
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "Yes, a pharmacy can return near-expiry Dermacalm Cream through its stockist for replacement, provided the tubes are sealed, in their cartons, and have 3 months or less of shelf life remaining. The pharmacy must also confirm on the return form that the product was stored below 25°C as labelled [1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Product Returns and Expiry Replacement Policy",
+     "text": "## 4. What can be returned\n\n| Category                                                                                  | Accepted?                       | Credit                                             |\n|-------------------------------------------------------------------------------------------|---------------------------------|----------------------------------------------------|\n| Near-expiry stock (3 months or less of shelf life remaining), sealed and in original pack | Yes - replaced with fresh stock | 100% replacement of the same product               |\n| Expired stock, returned within 6 months after the expiry month                            | Yes                             | Credit note at 100% of the price to stockist (PTS) |\n| Expired stock returned more than 6 months after expiry                                    | No                              | -                                                  |\n\n\n\n\n\n| Damaged in transit (breakage, leakage, crushed cartons)                   | Yes, if reported within 48 hours of receipt   | 100% replacement                                 |\n|---------------------------------------------------------------------------|-----------------------------------------------|--------------------------------------------------|\n| Recalled batches                                                          | Yes, always                                   | Full credit at invoice price plus return freight |\n| Opened or partly used packs (e.g. opened bottles, tubes with broken seal) | No, except recalled batches                   | -                                                |\n| Physician samples (\"Not for sale\")                                        | No - samples must never be sold               | -                           "
+    }
+   ]
+  }
+ },
+ {
+  "id": 13,
+  "kind": "not_found",
+  "asker": "employee@nimbus.example",
+  "doc": null,
+  "q": "Can employees bring their pets to the Nimbus office?",
+  "reference": "not found",
+  "A": {
+   "abstained": false,
+   "answer": "The supplied passages do not contain any policy or guidance about bringing pets or companion animals to the Nimbus office [1][2][3][4][5].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "POSH Policy – Prevention of Sexual Harassment",
+     "text": "## 1. Policy statement\n\nNimbus Infotech Pvt. Ltd. is committed to a workplace free from sexual harassment. This policy is framed under the Sexual Harassment of Women at Workplace (Prevention, Prohibition and Redressal) Act, 2013 (the \"POSH Act\") and its Rules. While the Act protects women, Nimbus extends the complaint mechanism in this policy to employees of all genders."
+    },
+    {
+     "n": 2,
+     "title": "Information Security Policy",
+     "text": "## 2. Scope\n\nThe policy applies to:\n\n- All employees, contractors, interns and third parties with access to Nimbus systems or data.\n- All Nimbus locations: Pune, Bengaluru, Hyderabad, Dubai, and client sites where Nimbus staff work.\n- All information assets: corporate IT, client environments we manage, and the NimbusOps SaaS platform (AWS ap-south-1 Mumbai, DR in ap-south-2 Hyderabad)."
+    },
+    {
+     "n": 3,
+     "title": "Code of Conduct",
+     "text": "## 1. Purpose\n\nThis Code sets out the standards of behaviour Nimbus Infotech Pvt. Ltd. (\"Nimbus\") expects from everyone who works for or with it. It applies to all employees, trainees, interns, contractors and consultants in every Nimbus location: Pune, Bengaluru, Hyderabad and Dubai, and at client sites.\n\nThe Code does not replace detailed policies. Where a specific policy exists (for example the POSH Policy, the Information Security Policy or the Travel and Expense Policy), that policy applies in addition to this Code."
+    },
+    {
+     "n": 4,
+     "title": "Information Security Policy",
+     "text": "## 1. Purpose\n\nThis is the top-level information security policy of Nimbus Infotech Pvt. Ltd. It states management's commitment to protecting the confidentiality, integrity and availability of Nimbus and client information, and it sets the framework under which all other security policies, standards and procedures are issued. It forms part of the Information Security Management System (ISMS) certified to ISO 27001:2022 and supports the SOC 2 Type II report for NimbusOps."
+    },
+    {
+     "n": 5,
+     "title": "Acceptable Use Policy",
+     "text": "## 1. Purpose\n\nThis policy describes what you may and may not do with Nimbus IT resources: laptops, phones, accounts, networks, cloud services, software and data. It protects you, Nimbus and our clients."
+    }
+   ]
+  },
+  "B": {
+   "abstained": true,
+   "answer": "Not found in your documents.\nNo document you can open answers this, so Atlas did not guess.",
+   "cited": []
+  }
+ },
+ {
+  "id": 14,
+  "kind": "answerable",
+  "asker": "manager@nimbus.example",
+  "doc": "Hiring Approval Workflow",
+  "q": "Can recruitment agencies be used for any role, and what fee is allowed?",
+  "reference": "Only for L4 and above or hot-skill roles, with the fee capped at 8.33% of first-year fixed pay.",
+  "A": {
+   "abstained": true,
+   "answer": "Not found in your documents.\nNo document you can open answers this, so Atlas did not guess.",
+   "cited": []
+  },
+  "B": {
+   "abstained": false,
+   "answer": "No. Recruitment agencies may only be used for L4 and above roles or hot-skill roles, and the fee is capped at 8.33% of first-year fixed pay. [1]",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Hiring Approval Workflow",
+     "text": "## 5. Step-by-step workflow\n\n\n\n\n\n1. Raise requisition (Manager). In HRMS &gt; Requisition, enter grade, location (Pune, Bengaluru or Hyderabad), cost centre, type, skills and a justification. Attach the SOW number for billable positions.\n2. Approve (as per matrix). HRMS routes automatically.\n3. Internal posting (Talent Acquisition). All approved roles at L3 and above are posted on the internal job board for 7 days before external sourcing. Internal candidates who meet the criteria must be interviewed.\n4. External sourcing (Talent Acquisition). Employee referrals, job boards, and empanelled agencies. Agencies may only be used for L4 and above or hot-skill roles, with a fee capped at 8.33% of first-year fixed pay.\n5. Interview loop (Manager and panel).\n\n| Grade   | Rounds                                                                           |\n|---------|----------------------------------------------------------------------------------|\n| L2 - L3 | Online coding test, 2 technical rounds, manager round                            |\n| L4 - L5 | 2 technical/design rounds, manager round, HR round                               |\n| L6 - L7 | Architecture or leadership round, business unit head, CPO or CTO round, HR round |\n\nFeedback must be entered in the HRMS within 24 hours of each interview.\n\n1. Selection decision (Hiring manager). Requires at least 2 \"hire\" recommendations and no \"strong no-hire\".\n2. Offer approval. Talent Acquisition prepares the offer within the salary band guidance provided by Total Rewards. Offer approvals:\n1. Background verification. Started on offer acceptance by the empanelled BGV vendor: education, last two employers, address, criminal record database check. For client-facing roles, any extra checks the client requires.\n2. Pre-joining. Manager com"
+    }
+   ]
+  }
+ },
+ {
+  "id": 15,
+  "kind": "answerable",
+  "asker": "owner@kaveri.example",
+  "doc": "Careers at Kaveri – Roles, Hiring and Internships",
+  "q": "Does Kaveri offer summer internships, and when do applications close?",
+  "reference": "Yes: an 8-week summer internship at Bengaluru (first Monday of May to end of June), 12 places; applications open 1 December and close 31 January.",
+  "A": {
+   "abstained": false,
+   "answer": "Yes, Kaveri offers summer internships. Applications close on 31 January. [1]",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Careers at Kaveri – Roles, Hiring and Internships",
+     "text": "### 6.1 Summer internship\n\n- **Yes, we offer summer internships.** The programme runs for **8 weeks, from the first Monday of May to the end of June**, at the Bengaluru head office.\n- Open to MBA and CFA candidates and to final-year undergraduates in finance, economics, statistics or engineering.\n- **12 places** each year: 8 in Research, 2 in Risk, 2 in Operations and Technology.\n- Applications open on 1 December and close on **31 January**. Shortlisted candidates do a written stock note and two interviews in February; offers go out by 15 March.\n- Each intern has a mentor and delivers a final presentation to the Head of Research or the function head in the last week.\n- A paid stipend is provided. Outstation interns get a travel allowance."
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "Yes, Kaveri offers summer internships, and applications close on **31 January** [1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Careers at Kaveri – Roles, Hiring and Internships",
+     "text": "### 6.1 Summer internship\n\n- **Yes, we offer summer internships.** The programme runs for **8 weeks, from the first Monday of May to the end of June**, at the Bengaluru head office.\n- Open to MBA and CFA candidates and to final-year undergraduates in finance, economics, statistics or engineering.\n- **12 places** each year: 8 in Research, 2 in Risk, 2 in Operations and Technology.\n- Applications open on 1 December and close on **31 January**. Shortlisted candidates do a written stock note and two interviews in February; offers go out by 15 March.\n- Each intern has a mentor and delivers a final presentation to the Head of Research or the function head in the last week.\n- A paid stipend is provided. Outstation interns get a travel allowance."
+    }
+   ]
+  }
+ },
+ {
+  "id": 16,
+  "kind": "answerable",
+  "asker": "owner@sanjeevani.example",
+  "doc": "Careers at Sanjeevani – Hiring and Campus Programme FAQ",
+  "q": "Does Sanjeevani charge a fee for job applications?",
+  "reference": "No. Sanjeevani never charges any fee at any stage of hiring; anyone asking for money in its name is committing fraud.",
+  "A": {
+   "abstained": false,
+   "answer": "No, Sanjeevani never charges any fee at any stage of hiring, including for applications, tests, interviews, training, uniforms, medical checks, or security deposits. [1]",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Careers at Sanjeevani – Hiring and Campus Programme FAQ",
+     "text": "## 5. Do you charge any fee?\n\n**No. Sanjeevani never charges any fee at any stage of hiring** – not for applications, tests, interviews, training, uniforms, medical checks or \"security deposits\". We do not use agents who collect money from candidates.\n\nIf anyone asks you for money in Sanjeevani's name, or sends an offer letter from a free personal email address instead of an @sanjeevani.example address, it is fraud. Do not pay. Please report it to **careers@sanjeevani.example** or to the HR helpdesk at hr.helpdesk@sanjeevani.example."
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "No, Sanjeevani never charges any fee at any stage of hiring, including for job applications [1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Careers at Sanjeevani – Hiring and Campus Programme FAQ",
+     "text": "## 5. Do you charge any fee?\n\n**No. Sanjeevani never charges any fee at any stage of hiring** – not for applications, tests, interviews, training, uniforms, medical checks or \"security deposits\". We do not use agents who collect money from candidates.\n\nIf anyone asks you for money in Sanjeevani's name, or sends an offer letter from a free personal email address instead of an @sanjeevani.example address, it is fraud. Do not pay. Please report it to **careers@sanjeevani.example** or to the HR helpdesk at hr.helpdesk@sanjeevani.example."
+    }
+   ]
+  }
+ },
+ {
+  "id": 17,
+  "kind": "answerable",
+  "asker": "hr@sanjeevani.example",
+  "doc": "Careers at Sanjeevani – Hiring and Campus Programme FAQ",
+  "q": "Does Sanjeevani hire freshers at the Vizag plant?",
+  "reference": "Yes. Unit III Vizag hires freshers every year through campus drives at Andhra University and pharmacy colleges in Andhra Pradesh, mainly for QC, production and validation roles.",
+  "A": {
+   "abstained": false,
+   "answer": "Yes, Sanjeevani hires freshers at the Vizag plant (Unit III) every year through campus drives at Andhra University and pharmacy colleges in Andhra Pradesh, mainly for QC, production and validation roles [1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Careers at Sanjeevani – Hiring and Campus Programme FAQ",
+     "text": "## 2. Do you hire freshers?\n\nYes. Freshers are hired at all three plants, at the R&D centre and in the field force.\n\n- **Plants (Units I, II and III):** B.Pharm, M.Pharm and M.Sc (Chemistry or Microbiology) graduates join as Production or QC Trainees. ITI and diploma holders join as Trainee Operators or Trainee Technicians.\n- **Unit III – Vizag:** yes, Vizag hires freshers every year through campus drives at Andhra University and pharmacy colleges in Andhra Pradesh, mainly for QC, production and validation roles.\n- **R&D, Hyderabad:** M.Pharm and M.Sc freshers join as Research Associates.\n- **Field sales:** science graduates (B.Sc, B.Pharm) aged up to 27 years join as Medical Representative Trainees."
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "Yes, Sanjeevani hires freshers at the Vizag plant (Unit III) every year through campus drives at Andhra University and pharmacy colleges in Andhra Pradesh, mainly for QC, production and validation roles [1]. The Sanjeevani Graduate Trainee Programme also allocates 35 trainees to Unit III for FY2026‑27 [2].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Careers at Sanjeevani – Hiring and Campus Programme FAQ",
+     "text": "## 2. Do you hire freshers?\n\nYes. Freshers are hired at all three plants, at the R&D centre and in the field force.\n\n- **Plants (Units I, II and III):** B.Pharm, M.Pharm and M.Sc (Chemistry or Microbiology) graduates join as Production or QC Trainees. ITI and diploma holders join as Trainee Operators or Trainee Technicians.\n- **Unit III – Vizag:** yes, Vizag hires freshers every year through campus drives at Andhra University and pharmacy colleges in Andhra Pradesh, mainly for QC, production and validation roles.\n- **R&D, Hyderabad:** M.Pharm and M.Sc freshers join as Research Associates.\n- **Field sales:** science graduates (B.Sc, B.Pharm) aged up to 27 years join as Medical Representative Trainees."
+    },
+    {
+     "n": 2,
+     "title": "Careers at Sanjeevani – Hiring and Campus Programme FAQ",
+     "text": "## 6. Campus trainee programme\n\nThe **Sanjeevani Graduate Trainee Programme (SGTP)** is our main entry route for fresh graduates.\n\n| Item | Detail |\n|---|---|\n| Eligible degrees | B.Pharm, M.Pharm, M.Sc (Chemistry, Microbiology, Biotechnology), B.Tech (Chemical, Mechanical) |\n| Minimum marks | 60% aggregate, no active backlogs |\n| Intake (FY2026-27) | 120 trainees: Unit I 40, Unit II 25, Unit III 35, R&D 20 |\n| Campus season | August to December |\n| Joining | June–July of the following year, after final results |\n| Duration | 12 months |\n| Structure | 2-week induction at Ahmedabad, then rotations in production, QC and QA (plant trainees) or formulation and analytical labs (R&D trainees) |\n| Confirmation | On completing 12 months with a \"Meets expectations\" rating and passing all GMP qualifications |\n\nDuring the first week every trainee completes Basic GMP and data integrity (ALCOA+) training, plant safety and PPE training, and the Code of Business Conduct. Trainees work in cleanroom areas only after gowning qualification."
+    }
+   ]
+  }
+ },
+ {
+  "id": 18,
+  "kind": "answerable",
+  "asker": "owner@sanjeevani.example",
+  "doc": "FDA Re-inspection February 2026 Summary",
+  "q": "During the February 2026 FDA re-inspection, how many OOS results from 2025 did the investigators review and how many were closed within 30 days?",
+  "reference": "41 OOS results; 40 were closed within 30 days and 1 was extended with Head QA approval (closed on day 37).",
+  "A": {
+   "abstained": false,
+   "answer": "The investigators reviewed 41 OOS results from 2025; 40 were closed within 30 days (1 was extended with Head QA approval and closed on day 37). [1]",
+   "cited": [
+    {
+     "n": 1,
+     "title": "FDA Re-inspection February 2026 Summary",
+     "text": "## 4. Verification of 2024 CAPAs\n\n| 2024 Observation                       | What the investigators checked                                                                              | Outcome                                           |\n|----------------------------------------|-------------------------------------------------------------------------------------------------------------|---------------------------------------------------|\n| Audit trail review                     | Audit trail review records for 30 batches released in 2025; asked analysts to demonstrate the review report | No issues; reviewer signatures present for all 30 |\n| Cleaning validation (shared equipment) | Worst-case matrix, MACO calculations, re-validation report for BB-03 and CM-05                              | Accepted                                          |\n| OOS timeliness                         | OOS log 2025: 41 OOS, 40 closed within 30 days, 1 extended with Head QA approval (closed day 37)            | Accepted                                          |"
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "Investigators reviewed 41 OOS results from 2025, and 40 were closed within 30 days [1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "FDA Re-inspection February 2026 Summary",
+     "text": "## 4. Verification of 2024 CAPAs\n\n| 2024 Observation                       | What the investigators checked                                                                              | Outcome                                           |\n|----------------------------------------|-------------------------------------------------------------------------------------------------------------|---------------------------------------------------|\n| Audit trail review                     | Audit trail review records for 30 batches released in 2025; asked analysts to demonstrate the review report | No issues; reviewer signatures present for all 30 |\n| Cleaning validation (shared equipment) | Worst-case matrix, MACO calculations, re-validation report for BB-03 and CM-05                              | Accepted                                          |\n| OOS timeliness                         | OOS log 2025: 41 OOS, 40 closed within 30 days, 1 extended with Head QA approval (closed day 37)            | Accepted                                          |"
+    }
+   ]
+  }
+ },
+ {
+  "id": 19,
+  "kind": "answerable",
+  "asker": "sales@sanjeevani.example",
+  "doc": "Product Returns and Expiry Replacement Policy",
+  "q": "How are recalled products refunded?",
+  "reference": "Full credit at the invoice price plus return freight, whether packs are sealed, opened or part-used; the 2% expiry cap does not apply. Patients get a replacement or refund at their pharmacy.",
+  "A": {
+   "abstained": false,
+   "answer": "Recalled stock returned through the trade receives full credit at the invoice price plus the cost of return freight, whether packs are sealed, opened or part-used, and the 2% expiry cap does not apply [1][2]. Patients may return a recalled product to the pharmacy where it was bought and receive a replacement pack or a refund if no replacement is available; the pharmacy is reimbursed by Sanjeevani through its stockist [1]. Stockists must quarantine and return recalled stock to the C&F agent, and Sanjeevani pays full credit and freight [3].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Product Returns and Expiry Replacement Policy",
+     "text": "## 7. Recalled products\n\n7.1 When Sanjeevani recalls a batch, we publish the product, batch number and reason on our website and inform stockists, pharmacies and the drug regulators. Pharmacies must stop selling the batch immediately. 7.2 Refund: all recalled stock returned through the trade receives full credit at the invoice price plus the cost of return freight, whether the packs are sealed, opened or part-used. The 2% expiry cap does not apply to recalls. 7.3 Patients holding a recalled product may return it to the pharmacy where it was bought; the pharmacy gives a replacement pack of the same medicine (or a refund if no replacement is available) and is reimbursed by Sanjeevani through its stockist. 7.4 Example - batch CR-2309 (August 2025): Sanjeevani voluntarily recalled batch CR-2309 of Sanjeevani Cough Relief Syrup in August 2025 because of a label misprint (the label showed the wrong manufacturing licence number). There was no safety impact. 18,400 bottles had been distributed. Stockists and pharmacies received full credit at invoice price for every returned bottle, and freight was reimbursed."
+    },
+    {
+     "n": 2,
+     "title": "Product Returns and Expiry Replacement Policy",
+     "text": "## 4. What can be returned\n\n| Category                                                                                  | Accepted?                       | Credit                                             |\n|-------------------------------------------------------------------------------------------|---------------------------------|----------------------------------------------------|\n| Near-expiry stock (3 months or less of shelf life remaining), sealed and in original pack | Yes - replaced with fresh stock | 100% replacement of the same product               |\n| Expired stock, returned within 6 months after the expiry month                            | Yes                             | Credit note at 100% of the price to stockist (PTS) |\n| Expired stock returned more than 6 months after expiry                                    | No                              | -                                                  |\n\n\n\n\n\n| Damaged in transit (breakage, leakage, crushed cartons)                   | Yes, if reported within 48 hours of receipt   | 100% replacement                                 |\n|---------------------------------------------------------------------------|-----------------------------------------------|--------------------------------------------------|\n| Recalled batches                                                          | Yes, always                                   | Full credit at invoice price plus return freight |\n| Opened or partly used packs (e.g. opened bottles, tubes with broken seal) | No, except recalled batches                   | -                                                |\n| Physician samples (\"Not for sale\")                                        | No - samples must never be sold               | -                           "
+    },
+    {
+     "n": 3,
+     "title": "Stockist and Distributor Agreement – Standard Terms",
+     "text": "### 7. Expiry, damage and recall returns\n\n7.1 Expired, near-expiry and damaged goods are returned and credited under the Product Returns and Expiry Replacement Policy (SPL/SAL/POL-108). Expiry credit is limited to 2% of the stockist's purchases in the previous 12 months. 7.2 In a recall, the stockist must stop sale immediately on receiving the recall notice, quarantine the stock, retrieve it from retailers and return it to the C&amp;F agent within the timeline in the notice. Sanjeevani pays full credit and the freight for recalled goods."
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "Recalled products are refunded as follows: **trade partners (stockists/pharmacies) receive full credit at the invoice price plus return freight for all returned recalled stock, regardless of whether packs are sealed, opened or part‑used, and the 2% expiry cap does not apply** [1][2][3]. **Patients return the recalled product to the pharmacy where it was bought; the pharmacy provides a replacement pack (or a refund if no replacement is available) and is reimbursed by Sanjeevani through its stockist** [1][4].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Product Returns and Expiry Replacement Policy",
+     "text": "## 7. Recalled products\n\n7.1 When Sanjeevani recalls a batch, we publish the product, batch number and reason on our website and inform stockists, pharmacies and the drug regulators. Pharmacies must stop selling the batch immediately. 7.2 Refund: all recalled stock returned through the trade receives full credit at the invoice price plus the cost of return freight, whether the packs are sealed, opened or part-used. The 2% expiry cap does not apply to recalls. 7.3 Patients holding a recalled product may return it to the pharmacy where it was bought; the pharmacy gives a replacement pack of the same medicine (or a refund if no replacement is available) and is reimbursed by Sanjeevani through its stockist. 7.4 Example - batch CR-2309 (August 2025): Sanjeevani voluntarily recalled batch CR-2309 of Sanjeevani Cough Relief Syrup in August 2025 because of a label misprint (the label showed the wrong manufacturing licence number). There was no safety impact. 18,400 bottles had been distributed. Stockists and pharmacies received full credit at invoice price for every returned bottle, and freight was reimbursed."
+    },
+    {
+     "n": 2,
+     "title": "Stockist and Distributor Agreement – Standard Terms",
+     "text": "### 7. Expiry, damage and recall returns\n\n7.1 Expired, near-expiry and damaged goods are returned and credited under the Product Returns and Expiry Replacement Policy (SPL/SAL/POL-108). Expiry credit is limited to 2% of the stockist's purchases in the previous 12 months. 7.2 In a recall, the stockist must stop sale immediately on receiving the recall notice, quarantine the stock, retrieve it from retailers and return it to the C&amp;F agent within the timeline in the notice. Sanjeevani pays full credit and the freight for recalled goods."
+    },
+    {
+     "n": 3,
+     "title": "Product Returns and Expiry Replacement Policy",
+     "text": "## 4. What can be returned\n\n| Category                                                                                  | Accepted?                       | Credit                                             |\n|-------------------------------------------------------------------------------------------|---------------------------------|----------------------------------------------------|\n| Near-expiry stock (3 months or less of shelf life remaining), sealed and in original pack | Yes - replaced with fresh stock | 100% replacement of the same product               |\n| Expired stock, returned within 6 months after the expiry month                            | Yes                             | Credit note at 100% of the price to stockist (PTS) |\n| Expired stock returned more than 6 months after expiry                                    | No                              | -                                                  |\n\n\n\n\n\n| Damaged in transit (breakage, leakage, crushed cartons)                   | Yes, if reported within 48 hours of receipt   | 100% replacement                                 |\n|---------------------------------------------------------------------------|-----------------------------------------------|--------------------------------------------------|\n| Recalled batches                                                          | Yes, always                                   | Full credit at invoice price plus return freight |\n| Opened or partly used packs (e.g. opened bottles, tubes with broken seal) | No, except recalled batches                   | -                                                |\n| Physician samples (\"Not for sale\")                                        | No - samples must never be sold               | -                           "
+    },
+    {
+     "n": 4,
+     "title": "Medicine Information and Side-Effect Reporting FAQ",
+     "text": "## 4. Where can I find recall notices?\n\nWhen we recall a batch, we publish the product name, batch number, reason and what you should do on the \"Product notices\" page of our website, and we inform pharmacies, stockists and the drug regulators.\n\n**Recent recall:**\n\n| Product | Batch | Date | Reason | What to do |\n|---|---|---|---|---|\n| Sanjeevani Cough Relief Syrup, 100 mL | CR-2309 | August 2025 | Label misprint (wrong manufacturing licence number on the label). No safety impact. | Return the bottle to your pharmacy for a free replacement. The recall was closed in October 2025. |\n\nIf your pack's batch number is not listed on the notices page, it is not affected by any recall."
+    }
+   ]
+  }
+ },
+ {
+  "id": 20,
+  "kind": "answerable",
+  "asker": "qa@sanjeevani.example",
+  "doc": "Medicine Information and Side-Effect Reporting FAQ",
+  "q": "How do I report a side effect of Cardivas 10?",
+  "reference": "Call the 24×7 toll-free safety hotline 1800-233-4100 (option 1), email drugsafety@sanjeevani.example, or tell your doctor or pharmacist; give the batch number, what happened and your contact.",
+  "A": {
+   "abstained": false,
+   "answer": "You can report a Cardivas 10 side effect by calling the toll-free safety hotline 1800-233-4100 (option 1, 24/7), emailing drugsafety@sanjeevani.example, telling your doctor or pharmacist, speaking to a medical representative, or reporting directly to the national Pharmacovigilance Programme of India (PvPI) [1]. Provide the medicine name, batch number and expiry date, what happened and when, the person’s age/sex and other medicines, and your contact number [2]. If the reaction is severe (difficulty breathing, facial swelling, fainting, very low blood sugar), stop and seek medical help immediately before reporting [3].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Medicine Information and Side-Effect Reporting FAQ",
+     "text": "## 1. How do I report a side effect?\n\nYou can report any unwanted or unexpected effect you think may be linked to a Sanjeevani medicine – for example muscle pain while taking **Cardivas 10**, stomach upset with **Glucosan-M 500**, or skin thinning with **Dermacalm Cream**. You do not need to be sure the medicine caused it.\n\n| Channel | Details | Available |\n|---|---|---|\n| Safety hotline (toll-free) | **1800-233-4100**, option 1 | 24 hours, 7 days a week |\n| Email | **drugsafety@sanjeevani.example** | Any time |\n| Through your doctor or pharmacist | They forward it to us or to the national programme | — |\n| Our medical representatives | Any report they hear is forwarded to the safety team within 24 hours | — |\n| National programme | You may also report directly to the Pharmacovigilance Programme of India (PvPI) | — |"
+    },
+    {
+     "n": 2,
+     "title": "Medicine Information and Side-Effect Reporting FAQ",
+     "text": "### 1.1 What information should I give?\n\n1. The name of the medicine (for example \"Cardivas 10\"), the batch number and expiry date printed on the strip, bottle or tube.\n2. What happened, when it started, and whether it has stopped.\n3. The age and sex of the person affected, and any other medicines they take.\n4. Your contact number, so that our safety doctor can follow up if needed.\n\nEven an incomplete report is useful. Your personal details are kept confidential and are used only for drug safety."
+    },
+    {
+     "n": 3,
+     "title": "Medicine Information and Side-Effect Reporting FAQ",
+     "text": "### 1.2 What happens after I report?\n\n- We acknowledge your report within **2 working days**.\n- A safety physician reviews every report. Serious reports are sent to the national regulator within the legal timelines (within 15 calendar days for serious unexpected reactions, and within 7 calendar days for fatal or life-threatening ones).\n- Our Qualified Person for Pharmacovigilance, Dr. Rohit Kulkarni, oversees the system, reporting to Pooja Desai, Head, Regulatory Affairs.\n\nIf the side effect is severe (difficulty breathing, swelling of the face, fainting, very low blood sugar), **stop and seek medical help immediately** before reporting."
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "You can report a side effect of **Cardivas 10** through any of these channels: call the toll‑free safety hotline **1800‑233‑4100 (option 1)** (24/7), email **drugsafety@sanjeevani.example**, give the details to your doctor or pharmacist (they forward it), tell a Sanjeevani medical representative (they forward within 24 hours), or report directly to the Pharmacovigilance Programme of India (PvPI) [1]. When reporting, include the medicine name, batch number, expiry date, what happened and when, the patient’s age/sex and other medicines, and your contact number for follow‑up [2].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Medicine Information and Side-Effect Reporting FAQ",
+     "text": "## 1. How do I report a side effect?\n\nYou can report any unwanted or unexpected effect you think may be linked to a Sanjeevani medicine – for example muscle pain while taking **Cardivas 10**, stomach upset with **Glucosan-M 500**, or skin thinning with **Dermacalm Cream**. You do not need to be sure the medicine caused it.\n\n| Channel | Details | Available |\n|---|---|---|\n| Safety hotline (toll-free) | **1800-233-4100**, option 1 | 24 hours, 7 days a week |\n| Email | **drugsafety@sanjeevani.example** | Any time |\n| Through your doctor or pharmacist | They forward it to us or to the national programme | — |\n| Our medical representatives | Any report they hear is forwarded to the safety team within 24 hours | — |\n| National programme | You may also report directly to the Pharmacovigilance Programme of India (PvPI) | — |"
+    },
+    {
+     "n": 2,
+     "title": "Medicine Information and Side-Effect Reporting FAQ",
+     "text": "### 1.1 What information should I give?\n\n1. The name of the medicine (for example \"Cardivas 10\"), the batch number and expiry date printed on the strip, bottle or tube.\n2. What happened, when it started, and whether it has stopped.\n3. The age and sex of the person affected, and any other medicines they take.\n4. Your contact number, so that our safety doctor can follow up if needed.\n\nEven an incomplete report is useful. Your personal details are kept confidential and are used only for drug safety."
+    }
+   ]
+  }
+ },
+ {
+  "id": 21,
+  "kind": "answerable",
+  "asker": "security@nimbus.example",
+  "doc": "Vulnerability Management Standard",
+  "q": "How fast must a critical vulnerability on an internet-facing system be fixed?",
+  "reference": "Within 7 days on internet-facing systems (15 days on internal systems); actively exploited Criticals within 72 hours.",
+  "A": {
+   "abstained": false,
+   "answer": "A critical vulnerability on an internet-facing system must be remediated within 7 days [1]. If it is actively exploited (listed in the CISA KEV catalogue or flagged by CERT-In), it must be fixed or mitigated within 72 hours on any system [1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Vulnerability Management Standard",
+     "text": "## 5. Severity and remediation deadlines\n\nSeverity is based on the CVSS v3.1 base score, raised by one level if the asset holds Restricted data or the vulnerability is listed as known-exploited.\n\n| Severity (CVSS v3.1)   | Internet-facing systems   | Internal systems         |\n|------------------------|---------------------------|--------------------------|\n| Critical (9.0-10.0)    | 7 days                    | 15 days                  |\n| High (7.0-8.9)         | 30 days                   | 45 days                  |\n| Medium (4.0-6.9)       | 90 days                   | 120 days                 |\n| Low (below 4.0)        | Next planned maintenance  | Next planned maintenance |\n\n- Actively exploited Critical vulnerabilities (listed in the CISA KEV catalogue or flagged by CERT-In) must be fixed or mitigated within 72 hours, on any system. The CISO may order an emergency change outside the normal release window.\n- The deadline starts when the SOC raises the remediation ticket, which must happen within 1 business day of the scan result.\n- Endpoint operating system patches are pushed within 7 days of release; laptops that are not patched within 21 days lose network access until updated."
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "A critical vulnerability on an internet-facing system must be fixed within 7 days [1]. If it is actively exploited, it must be fixed or mitigated within 72 hours on any system [1]. The deadline starts when the SOC raises the remediation ticket, which must happen within 1 business day of the scan result [1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Vulnerability Management Standard",
+     "text": "## 5. Severity and remediation deadlines\n\nSeverity is based on the CVSS v3.1 base score, raised by one level if the asset holds Restricted data or the vulnerability is listed as known-exploited.\n\n| Severity (CVSS v3.1)   | Internet-facing systems   | Internal systems         |\n|------------------------|---------------------------|--------------------------|\n| Critical (9.0-10.0)    | 7 days                    | 15 days                  |\n| High (7.0-8.9)         | 30 days                   | 45 days                  |\n| Medium (4.0-6.9)       | 90 days                   | 120 days                 |\n| Low (below 4.0)        | Next planned maintenance  | Next planned maintenance |\n\n- Actively exploited Critical vulnerabilities (listed in the CISA KEV catalogue or flagged by CERT-In) must be fixed or mitigated within 72 hours, on any system. The CISO may order an emergency change outside the normal release window.\n- The deadline starts when the SOC raises the remediation ticket, which must happen within 1 business day of the scan result.\n- Endpoint operating system patches are pushed within 7 days of release; laptops that are not patched within 21 days lose network access until updated."
+    }
+   ]
+  }
+ },
+ {
+  "id": 22,
+  "kind": "answerable",
+  "asker": "owner@sanjeevani.example",
+  "doc": "Board Meeting Minutes – 22 April 2026",
+  "q": "How is the ₹310 crore Vizag capacity expansion being funded?",
+  "reference": "₹190 crore from internal accruals and a term loan of up to ₹120 crore.",
+  "A": {
+   "abstained": false,
+   "answer": "The ₹310 crore Vizag capacity expansion is funded through **internal accruals of ₹190 crore** and a **term loan of up to ₹120 crore** (7‑year tenure, 2‑year moratorium, indicative rate 8.6%) [1][2].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Board Meeting Minutes – 22 April 2026",
+     "text": "## 5. Vizag capacity expansion\n\nVenkat Raju presented the investment proposal for a new oral-solids block at Unit III - Vizag SEZ (detailed in the Vizag Expansion Investment Note). The Board noted that the US FDA re-inspection of Unit III in February 2026 closed with no observations, which supports the case for adding US-market capacity.\n\nResolution 5.1: RESOLVED THAT approval be and is hereby accorded for capital expenditure of ₹310 crore for the Vizag capacity expansion project, to be funded through internal accruals of ₹190 crore and a term loan of up to ₹120 crore, and that the MD &amp; CEO be authorised to finalise contracts and borrowings within this limit.\n\nThe Board directed that progress be reported at every quarterly meeting and that any overrun above 5% of the approved amount be brought back to the Board."
+    },
+    {
+     "n": 2,
+     "title": "Vizag Expansion Investment Note",
+     "text": "### 5. Funding\n\n| **Source**                                                         | **₹ crore**   |\n|--------------------------------------------------------------------|---------------|\n| Internal accruals                                                  | 190           |\n| Term loan (7-year tenure, 2-year moratorium, indicative rate 8.6%) | 120           |\n| **Total**                                                          | **310**       |\n\nNet debt / EBITDA is expected to peak at 0.75× in FY28, well within the internal ceiling of 1.5×."
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "The ₹310 crore Vizag capacity expansion is funded by **₹190 crore from internal accruals** and a **₹120 crore term loan** (7‑year tenure, 2‑year moratorium, indicative rate 8.6 %) [1][2].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Board Meeting Minutes – 22 April 2026",
+     "text": "## 5. Vizag capacity expansion\n\nVenkat Raju presented the investment proposal for a new oral-solids block at Unit III - Vizag SEZ (detailed in the Vizag Expansion Investment Note). The Board noted that the US FDA re-inspection of Unit III in February 2026 closed with no observations, which supports the case for adding US-market capacity.\n\nResolution 5.1: RESOLVED THAT approval be and is hereby accorded for capital expenditure of ₹310 crore for the Vizag capacity expansion project, to be funded through internal accruals of ₹190 crore and a term loan of up to ₹120 crore, and that the MD &amp; CEO be authorised to finalise contracts and borrowings within this limit.\n\nThe Board directed that progress be reported at every quarterly meeting and that any overrun above 5% of the approved amount be brought back to the Board."
+    },
+    {
+     "n": 2,
+     "title": "Vizag Expansion Investment Note",
+     "text": "### 5. Funding\n\n| **Source**                                                         | **₹ crore**   |\n|--------------------------------------------------------------------|---------------|\n| Internal accruals                                                  | 190           |\n| Term loan (7-year tenure, 2-year moratorium, indicative rate 8.6%) | 120           |\n| **Total**                                                          | **310**       |\n\nNet debt / EBITDA is expected to peak at 0.75× in FY28, well within the internal ceiling of 1.5×."
+    }
+   ]
+  }
+ },
+ {
+  "id": 23,
+  "kind": "answerable",
+  "asker": "legal@nimbus.example",
+  "doc": "Contract Review and Signing Authority Guideline",
+  "q": "How long does Legal take to review an NDA on third-party paper?",
+  "reference": "2 business days (1 business day for the Nimbus template with changes).",
+  "A": {
+   "abstained": false,
+   "answer": "Legal takes **2 business days** to review an NDA on third-party paper [1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Contract Review and Signing Authority Guideline",
+     "text": "## 6. Review turnaround times\n\nTimes are in business days from the day Legal receives a complete request (contract draft, deal summary, approved pricing and the counterparty's contact).\n\n| Request                                 | Turnaround      |\n|-----------------------------------------|-----------------|\n| NDA on third-party paper                | 2 business days |\n| NDA on Nimbus template with changes     | 1 business day  |\n| SOW or change request                   | 3 business days |\n| NimbusOps order with non-standard terms | 3 business days |\n| Supplier contract                       | 5 business days |\n\n\n\n\n\n| New MSA (client or supplier)   | 10 business days for the first mark-up   |\n|--------------------------------|------------------------------------------|\n| Data processing agreement      | 5 business days                          |\n\nUrgent requests can be raised with a business reason; Legal aims to respond within 1 business day but urgent handling is limited to 3 requests per week per business unit."
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "Legal takes **2 business days** to review an NDA on third-party paper [1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Contract Review and Signing Authority Guideline",
+     "text": "## 6. Review turnaround times\n\nTimes are in business days from the day Legal receives a complete request (contract draft, deal summary, approved pricing and the counterparty's contact).\n\n| Request                                 | Turnaround      |\n|-----------------------------------------|-----------------|\n| NDA on third-party paper                | 2 business days |\n| NDA on Nimbus template with changes     | 1 business day  |\n| SOW or change request                   | 3 business days |\n| NimbusOps order with non-standard terms | 3 business days |\n| Supplier contract                       | 5 business days |\n\n\n\n\n\n| New MSA (client or supplier)   | 10 business days for the first mark-up   |\n|--------------------------------|------------------------------------------|\n| Data processing agreement      | 5 business days                          |\n\nUrgent requests can be raised with a business reason; Legal aims to respond within 1 business day but urgent handling is limited to 3 requests per week per business unit."
+    }
+   ]
+  }
+ },
+ {
+  "id": 24,
+  "kind": "answerable",
+  "asker": "sales@sanjeevani.example",
+  "doc": "Whistleblower Policy",
+  "q": "How long does Sanjeevani take to complete a whistleblower investigation?",
+  "reference": "Within 60 days of receipt of the complaint; extensions need the Audit Committee Chairperson's approval.",
+  "A": {
+   "abstained": false,
+   "answer": "Sanjeevani completes a whistleblower investigation and submits the report within **60 days of receipt**; extensions beyond 60 days require approval from the Audit Committee Chairperson [1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Whistleblower Policy",
+     "text": "## 5. Handling process\n\n|   Step | Action                                                                     | Timeline                  |\n|--------|----------------------------------------------------------------------------|---------------------------|\n|      1 | Acknowledgement to reporter (if contact details given)                     | Within 3 working days     |\n|      2 | Preliminary assessment by Compliance Officer                               | Within 10 working days    |\n|      3 | Investigation team appointed (HR, Internal Audit, QA or Legal as relevant) | Within 15 working days    |\n|      4 | Investigation completed and report submitted                               | Within 60 days of receipt |\n|      5 | Action decided by Ethics Committee; outcome communicated to reporter       | Within 15 days of report  |\n\n- 5.1 Any concern involving data integrity or product quality is also notified to the Head, Quality Assurance (Corporate) within 24 hours of receipt, so that impact on released batches can be assessed immediately. 5.2 Extensions beyond 60 days require approval of the Audit Committee Chairperson."
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "Sanjeevani completes a whistleblower investigation within 60 days of receipt; extensions beyond 60 days require approval from the Audit Committee Chairperson [1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Whistleblower Policy",
+     "text": "## 5. Handling process\n\n|   Step | Action                                                                     | Timeline                  |\n|--------|----------------------------------------------------------------------------|---------------------------|\n|      1 | Acknowledgement to reporter (if contact details given)                     | Within 3 working days     |\n|      2 | Preliminary assessment by Compliance Officer                               | Within 10 working days    |\n|      3 | Investigation team appointed (HR, Internal Audit, QA or Legal as relevant) | Within 15 working days    |\n|      4 | Investigation completed and report submitted                               | Within 60 days of receipt |\n|      5 | Action decided by Ethics Committee; outcome communicated to reporter       | Within 15 days of report  |\n\n- 5.1 Any concern involving data integrity or product quality is also notified to the Head, Quality Assurance (Corporate) within 24 hours of receipt, so that impact on released batches can be assessed immediately. 5.2 Extensions beyond 60 days require approval of the Audit Committee Chairperson."
+    }
+   ]
+  }
+ },
+ {
+  "id": 25,
+  "kind": "answerable",
+  "asker": "manager@nimbus.example",
+  "doc": "Handling Performance Issues – PIP Guide",
+  "q": "How long does a formal Performance Improvement Plan (PIP) last?",
+  "reference": "60 days, which may be extended once by up to 30 days, with documented reviews every 2 weeks.",
+  "A": {
+   "abstained": false,
+   "answer": "A formal PIP lasts **60 days** and may be extended once by up to 30 days [1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Handling Performance Issues – PIP Guide",
+     "text": "#### 5.1 Duration and structure\n\n| **Item**          | **Standard**                                                                   |\n|-------------------|--------------------------------------------------------------------------------|\n| Duration          | **60 days** (may be extended once by up to 30 days)                            |\n| Objectives        | 3 to 5 measurable objectives, each with a clear success measure                |\n| Check-ins         | Documented review every **2 weeks** (at least 4 reviews)                       |\n| Participants      | Manager and employee; HR Business Partner attends the first and final meetings |\n| Template          | HRMS > Performance > PIP                                                       |\n| Approval to start | Skip-level manager and HR Business Partner                                     |"
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "A formal PIP lasts **60 days** and may be extended once by up to 30 days [1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Handling Performance Issues – PIP Guide",
+     "text": "#### 5.1 Duration and structure\n\n| **Item**          | **Standard**                                                                   |\n|-------------------|--------------------------------------------------------------------------------|\n| Duration          | **60 days** (may be extended once by up to 30 days)                            |\n| Objectives        | 3 to 5 measurable objectives, each with a clear success measure                |\n| Check-ins         | Documented review every **2 weeks** (at least 4 reviews)                       |\n| Participants      | Manager and employee; HR Business Partner attends the first and final meetings |\n| Template          | HRMS > Performance > PIP                                                       |\n| Approval to start | Skip-level manager and HR Business Partner                                     |"
+    }
+   ]
+  }
+ },
+ {
+  "id": 26,
+  "kind": "denied",
+  "asker": "employee@nimbus.example",
+  "doc": "Handling Performance Issues – PIP Guide",
+  "q": "How long does a formal Performance Improvement Plan (PIP) last?",
+  "reference": "60 days, which may be extended once by up to 30 days, with documented reviews every 2 weeks.",
+  "A": {
+   "abstained": true,
+   "answer": "Not found in your documents.\nNo document you can open answers this, so Atlas did not guess.",
+   "cited": []
+  },
+  "B": {
+   "abstained": true,
+   "answer": "Not found in your documents.\nNo document you can open answers this, so Atlas did not guess.",
+   "cited": []
+  }
+ },
+ {
+  "id": 27,
+  "kind": "answerable",
+  "asker": "product@nimbus.example",
+  "doc": "NimbusOps Product FAQ",
+  "q": "How long is the NimbusOps free trial and how many hosts does it cover?",
+  "reference": "14 days of the Standard plan for up to 50 hosts, with no credit card needed.",
+  "A": {
+   "abstained": false,
+   "answer": "The NimbusOps free trial lasts **14 days** and covers up to **50 hosts** on the Standard plan [1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "NimbusOps Product FAQ",
+     "text": "### Is there a free trial?\n\nYes. You get a **14-day free trial** of the Standard plan for up to **50 hosts**. No credit card is needed. At the end of the trial your account is paused, not deleted, for another 30 days so you can sign up without losing your setup."
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "The NimbusOps free trial lasts **14 days** and covers up to **50 hosts** on the Standard plan [1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "NimbusOps Product FAQ",
+     "text": "### Is there a free trial?\n\nYes. You get a **14-day free trial** of the Standard plan for up to **50 hosts**. No credit card is needed. At the end of the trial your account is paused, not deleted, for another 30 days so you can sign up without losing your setup."
+    }
+   ]
+  }
+ }
+]

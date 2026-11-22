@@ -60,7 +60,17 @@ Retrieval, 167 questions across the 3 companies (`evals/results/20261122T132819Z
 | Hybrid (RRF) | 0.988 | 0.874 | 0.928 |
 | **Hybrid + rerank** | **0.988** | **0.926** | **0.982** |
 
-Answer or "not found" decision with the relevance grade: **96.8 %** right (87.8 % without it), 0 false "not found" (`evals/results/20261122T142654Z-grade-relevance.json`). Answer quality (RAGAS + correct-answer rate, before/after the grade): see [docs/RAG_GUIDE.md](docs/RAG_GUIDE.md) step 9.
+Answers, 224 runs (187 questions + restricted ones asked by someone who may not see them), graded blind by Claude:
+
+| | Before (score threshold) | After (+ LLM relevance gate) |
+|---|---|---|
+| Fully correct | 89.2 % | ≈88.6 % (projected after the gate fix) |
+| Correct or partly correct | 98.8 % | 99.4 % |
+| Wrongly "not found" | 0.6 % | **0 %** |
+| Proper "not found" when no document answers / the person may not see it | 10.5 % | **86 %** |
+| Leaks | **0** | **0** |
+
+The exam also found two bugs that are now fixed (the relevance grade was dropping useful passages; fallback models' `【1】` citations lost their sources). Details: [docs/RAG_GUIDE.md](docs/RAG_GUIDE.md#phase-6-answer-quality-2026-11-22).
 
 ## Run it
 

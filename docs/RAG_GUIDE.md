@@ -76,6 +76,34 @@ hybrid_rerank per company (Hit@5 / MRR / context recall): Nimbus 0.982 / 0.939 /
 - **LLM Guard: light scanners only.** Importing even one module under `llm_guard.input_scanners` runs the package `__init__`, which loads torch, transformers, presidio and spaCy: **+418 MB RAM, 18 s import**, before the PromptInjection model (DeBERTa-v3, ~700 MB more). The API runs the embedder and reranker in ≤ 1.5 GB, so Atlas loads only `InvisibleText` (strips hidden Unicode) and `BanSubstrings` (known injection phrases, English + Hindi) without the package `__init__`: **+16 MB, 0.3 s**. The ML half of injection defence is the router: the `fast` model returns `blocked` for attempts to change rules or extract the prompt. Passages are also marked as data in the answer prompt.
 - **Semantic cache (RedisVL `SemanticCache`)**: scope tag = sha256(org + role + sorted departments + answer language), admins = all departments; bge-small embedding of the rewritten English question; similarity ≥ 0.95 (cosine distance ≤ 0.05); TTL 24 h; never for questions that needed history, abstentions or answers without citations. Verified on a throwaway `redis:8-alpine`: same and paraphrased question hit, other question and other scope miss. **Off in production** (`ATLAS_SEMANTIC_CACHE=false`) because the stack runs `redis:7-alpine` (no query engine) and switching to `redis:8-alpine` waits until the re-ingest queue is empty.
 
+## Phase 6 answer quality (2026-11-22)
+
+**How it was measured.** The 187 questions in `evals/demo_v2.json` (+ the 37 restricted ones asked again as someone who may not read the document = 224 runs) went through the real LangGraph flow twice: **before** = score threshold only (−0.98), **after** = threshold −1.1 + the LLM relevance grade. Atlas answered with the free gateway models (`--no-judge --no-ragas`, every row saved live to `evals/results/<run>-answers.jsonl`). **Grading: Claude, blind** — each question's two answers shown as A/B in random order (`evals/grading/`: `RUBRIC.md`, `make_pairs.py`, `run1/KEY.json`, 8 parallel graders of 28 items). RAGAS through the free `json` model was dropped for this run: it took hours, lost scores to JSON parse errors and starved live users of the shared free rate limits (smart + both fallbacks hit 429 at once).
+
+| Measure | Before (threshold only) | After (grade as a filter) | After, fixed (grade as a gate) |
+|---|---|---|---|
+| Answerable, fully correct | **149/167 (89.2 %)** | 140/167 (83.8 %) | ≈148/167 (88.6 %)¹ |
+| Answerable, correct or partial | 165/167 | **166/167** | ≈166/167 |
+| Answerable, wrong | 1 | 1 | 1 |
+| Wrongly "not found" | 1 | **0** | 0 |
+| Restricted (37): declined | 21 | **29** | 29² |
+| No-answer questions (20): declined | 19 | **20** | 20² |
+| Proper "not found" (UI button, Insights, not cached) on negatives | 10.5 % | **86 %** | 86 %² |
+| **Leaks** | **0** | **0** | 0 |
+| Every claim backed by the cited passage | 96.7 % | 94.9 %³ | — |
+| Latency p50 / p95 | 9.6 s / 58 s | 20.1 s / 74 s | — |
+
+¹ The 11 questions that went correct → partial were re-run with the fix and graded by hand: 8 correct again, 3 still partial (`evals/results/20261122T180724Z-answers.jsonl`), so 140 + 8 ≈ 148. A projection, not a full new run. ² Unchanged by the fix (the gate decides these; the fix only changes what an approved answer sees). ³ Mostly the 【n】 citation bug below.
+
+**What the exam found and changed:**
+1. **The grade must be a gate, not a filter.** The first version sent only the passages the grader marked to the answer model; on all 11 regressions it kept 1–3 of 5 and the rest of the answer was in a dropped passage. Now yes/partial → all passages (`graph.grade_node`).
+2. **【n】 citations.** The gpt-oss fallback models (Groq, Cloudflare) cite as `【1】` / `【1†source】`; `citations.py` only read `[1]`, so 2 (before) + 4 (after) answers lost their sources. Fixed + test.
+3. **What the grade really buys:** without it Atlas already *declined in words* most of the time ("the documents don't mention…") but as a normal answer — no "Request a document" button, counted as answered in Insights, cacheable. With it, 86 % of negatives end in a real "not found".
+4. **Cost:** one extra `fast` call; p50 doubled in this run (part of that is the free gateway being busy from the exams themselves).
+5. **Still wrong in both versions:** one answerable question used a superseded interim report (92/1,240 is the current figure) and one restricted question gave public contractual DR targets as if they were the new design's. Superseded ranking and "answer as of which document" are the next quality items.
+
+Stored for the super admin quality page: `answer_eval_runs` `20261122T163306Z-claude` (before) and `20261122T170721Z-claude` (after, filter version).
+
 ## How to turn on LangSmith
 
 Atlas uses LangChain's standard variables, so LangGraph, every model call and the relevance grade are traced with no extra code. Tracing is **off** unless both the switch and a key are set (`settings.langsmith_tracing()`; with no key the switch is forced to `false`, so nothing is sent and nothing breaks).

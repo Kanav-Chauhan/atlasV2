@@ -1,0 +1,939 @@
+[
+ {
+  "id": 168,
+  "kind": "answerable",
+  "asker": "hr@nimbus.example",
+  "doc": "Referral Bonus Policy",
+  "q": "What referral bonus does an employee get for referring a Senior Software Engineer (L3)?",
+  "reference": "₹60,000, paid after the hire completes 90 days of service (plus ₹25,000 if it is a hot-skill role).",
+  "A": {
+   "abstained": false,
+   "answer": "An employee gets ₹60,000 for referring a Senior Software Engineer (L3). [1]",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Referral Bonus Policy",
+     "text": "## 3. Bonus amounts\n\n| Grade of the referred hire              | Referral bonus   |\n|-----------------------------------------|------------------|\n| L2 Software Engineer                    | ₹40,000          |\n| L3 Senior Software Engineer             | ₹60,000          |\n| L4 Tech Lead                            | ₹80,000          |\n| L5 Engineering Manager / Architect      | ₹1,00,000        |\n| L6 Senior Manager / Principal and above | ₹1,50,000        |"
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "An employee receives **₹60,000** for referring a Senior Software Engineer (L3) [1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Referral Bonus Policy",
+     "text": "## 3. Bonus amounts\n\n| Grade of the referred hire              | Referral bonus   |\n|-----------------------------------------|------------------|\n| L2 Software Engineer                    | ₹40,000          |\n| L3 Senior Software Engineer             | ₹60,000          |\n| L4 Tech Lead                            | ₹80,000          |\n| L5 Engineering Manager / Architect      | ₹1,00,000        |\n| L6 Senior Manager / Principal and above | ₹1,50,000        |"
+    }
+   ]
+  }
+ },
+ {
+  "id": 169,
+  "kind": "answerable",
+  "asker": "owner@kaveri.example",
+  "doc": "Compensation Bands and Bonus Pool FY2026-27",
+  "q": "What stipend does Kaveri pay MBA summer interns?",
+  "reference": "₹75,000 per month for MBA / CFA summer interns (₹40,000 for undergraduates).",
+  "A": {
+   "abstained": false,
+   "answer": "Kaveri Capital pays MBA summer interns a stipend of **₹75,000 per month** for the 8‑week summer internship programme [1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Compensation Bands and Bonus Pool FY2026-27",
+     "text": "## 3.3 Interns\n\n| Programme                                         | Stipend           |\n|---------------------------------------------------|-------------------|\n| Summer internship (8 weeks), MBA / CFA candidates | ₹75,000 per month |\n| Summer internship (8 weeks), undergraduate        | ₹40,000 per month |\n| Winter research internship (6 weeks)              | ₹40,000 per month |\n\nInterns are not eligible for the bonus pool. Outstation interns receive a one-time travel allowance of ₹15,000."
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "Kaveri pays MBA summer interns a stipend of **₹75,000 per month** for the 8‑week programme [1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Compensation Bands and Bonus Pool FY2026-27",
+     "text": "## 3.3 Interns\n\n| Programme                                         | Stipend           |\n|---------------------------------------------------|-------------------|\n| Summer internship (8 weeks), MBA / CFA candidates | ₹75,000 per month |\n| Summer internship (8 weeks), undergraduate        | ₹40,000 per month |\n| Winter research internship (6 weeks)              | ₹40,000 per month |\n\nInterns are not eligible for the bonus pool. Outstation interns receive a one-time travel allowance of ₹15,000."
+    }
+   ]
+  }
+ },
+ {
+  "id": 170,
+  "kind": "denied",
+  "asker": "guest@kaveri.example",
+  "doc": "Compensation Bands and Bonus Pool FY2026-27",
+  "q": "What stipend does Kaveri pay MBA summer interns?",
+  "reference": "₹75,000 per month for MBA / CFA summer interns (₹40,000 for undergraduates).",
+  "A": {
+   "abstained": true,
+   "answer": "Not found in your documents.\nNo document you can open answers this, so Atlas did not guess.",
+   "cited": []
+  },
+  "B": {
+   "abstained": false,
+   "answer": "The documents confirm that summer interns receive **a paid stipend** and outstation interns get a travel allowance, but they do not state the stipend amount for MBA interns [1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Careers at Kaveri – Roles, Hiring and Internships",
+     "text": "### 6.1 Summer internship\n\n- **Yes, we offer summer internships.** The programme runs for **8 weeks, from the first Monday of May to the end of June**, at the Bengaluru head office.\n- Open to MBA and CFA candidates and to final-year undergraduates in finance, economics, statistics or engineering.\n- **12 places** each year: 8 in Research, 2 in Risk, 2 in Operations and Technology.\n- Applications open on 1 December and close on **31 January**. Shortlisted candidates do a written stock note and two interviews in February; offers go out by 15 March.\n- Each intern has a mentor and delivers a final presentation to the Head of Research or the function head in the last week.\n- A paid stipend is provided. Outstation interns get a travel allowance."
+    }
+   ]
+  }
+ },
+ {
+  "id": 171,
+  "kind": "not_found",
+  "asker": "hr@sanjeevani.example",
+  "doc": null,
+  "q": "What stipend is paid to trainees in the Sanjeevani Graduate Trainee Programme?",
+  "reference": "not found",
+  "A": {
+   "abstained": true,
+   "answer": "Not found in your documents.\nNo document you can open answers this, so Atlas did not guess.",
+   "cited": []
+  },
+  "B": {
+   "abstained": false,
+   "answer": "The provided documents do not specify the stipend amount for trainees in the Sanjeevani Graduate Trainee Programme. Passage [1] notes that fixed‑term trainees are paid under their individual contracts and are not covered by the standard salary grades policy.",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Salary Grades and Allowances FY2026-27",
+     "text": "## 2. Scope\n\nApplies to all 2,850 permanent employees at the Ahmedabad head office, Unit I - Ahmedabad (Changodar), Unit II - Baddi, Unit III - Vizag SEZ, the Hyderabad R&amp;D centre (Genome Valley) and the field sales force of ~180 medical representatives. Contract workers, apprentices and fixed-term trainees are paid under their contracts and are not covered."
+    }
+   ]
+  }
+ },
+ {
+  "id": 172,
+  "kind": "answerable",
+  "asker": "employee@nimbus.example",
+  "doc": "BRD – Zenith Retail Omnichannel Inventory Sync",
+  "q": "What stock refresh time does the Zenith inventory sync BRD require?",
+  "reference": "Store stock refresh latency under 15 minutes at p95, down from an overnight refresh.",
+  "A": {
+   "abstained": false,
+   "answer": "The BRD requires **store stock refresh latency in S/4HANA under 15 minutes at p95** (goal G1 and acceptance criterion AC-1) [1][2]. Additionally, every POS sale, return, and exchange must be posted to S/4HANA within **5 minutes** (FR-01) [3].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "BRD – Zenith Retail Omnichannel Inventory Sync",
+     "text": "### 8. Acceptance criteria\n\nThe inventory sync stream is accepted when all of the following are met in UAT and confirmed in the first 30 days of hypercare:\n\n| **#**   | **Criterion**                                                                      | **Evidence**            |\n|---------|------------------------------------------------------------------------------------|-------------------------|\n| AC-1    | p95 stock refresh latency under 15 minutes over 7 consecutive days, all 480 stores | SAC latency report      |\n| AC-2    | Peak test at 2x Diwali-day volume passed with no lost messages                     | SIT 2 test report       |\n| AC-3    | Availability API p95 under 300 ms at 500 requests per second                       | Performance test report |\n| AC-4    | Daily reconciliation differences above 0.5% in fewer than 5 stores per day         | Reconciliation report   |\n| AC-5    | FR-06 failover of a store demonstrated in UAT                                      | UAT script UDN-INV-031  |"
+    },
+    {
+     "n": 2,
+     "title": "BRD – Zenith Retail Omnichannel Inventory Sync",
+     "text": "### 2. Goals and success measures\n\n| **#**   | **Goal**                        | **Measure**                            | **Baseline**           | **Target**                                    |\n|---------|---------------------------------|----------------------------------------|------------------------|-----------------------------------------------|\n| G1      | Near-real-time stock visibility | Store stock refresh latency in S/4HANA | Overnight (up to 26 h) | **Under 15 minutes** at p95                   |\n| G2      | Fewer cancelled online orders   | Cancellations due to stock mismatch    | 1,850 per week         | Below 400 per week within 3 months of go-live |\n| G3      | Wider BOPIS coverage            | Stores offering BOPIS                  | 62                     | All 480 stores by end of hypercare            |\n| G4      | Accurate stock for allocation   | Stock accuracy (cycle count vs system) | 91%                    | 97% or higher                                 |\n| G5      | Fewer manual stock checks       | Staff time on stock calls              | 40 min/store/day       | 10 min/store/day                              |\n\nG1 is the same target as Objective 2 of the Project Charter (\"from overnight to &lt; 15 min\")."
+    },
+    {
+     "n": 3,
+     "title": "BRD – Zenith Retail Omnichannel Inventory Sync",
+     "text": "### 5. Functional requirements\n\n| **ID**   | **Requirement**                                                                                                                                                    | **Priority**   |\n|----------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------|\n| FR-01    | Every POS sale, return and exchange is posted to S/4HANA as a stock movement within **5 minutes** of the transaction, in store-level batches of at most 200 lines. | Must           |\n| FR-02    | DC goods movements in EWM update available stock immediately (synchronous posting).                                                                                | Must           |\n| FR-03    | E-commerce orders create a **soft reservation** against the fulfilling store or DC within 60 seconds; unpaid reservations expire after 30 minutes.                 | Must           |\n| FR-04    | The stock availability API returns available-to-promise quantity by article, size and store in under **300 milliseconds** at p95.                                  | Must           |\n| FR-05    | The API applies a safety buffer per article category (default 2 units for apparel, 1 unit for home furnishings) before showing stock online.                       | Must           |\n| FR-06    | If a store's POS feed is delayed by more than 30 minutes, that store is automatically hidden from BOPIS and \"Find in Store\" until the feed recovers.               | Must           |\n| FR-07    | Store managers see a stock exceptions dashboard in SAP Analytics Cloud, refreshed every 15 minutes.                                                                | Should         |\n| FR-08    | "
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "The BRD requires **p95 stock refresh latency under 15 minutes** (measured over 7 consecutive days across all 480 stores) [1][2].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "BRD – Zenith Retail Omnichannel Inventory Sync",
+     "text": "### 8. Acceptance criteria\n\nThe inventory sync stream is accepted when all of the following are met in UAT and confirmed in the first 30 days of hypercare:\n\n| **#**   | **Criterion**                                                                      | **Evidence**            |\n|---------|------------------------------------------------------------------------------------|-------------------------|\n| AC-1    | p95 stock refresh latency under 15 minutes over 7 consecutive days, all 480 stores | SAC latency report      |\n| AC-2    | Peak test at 2x Diwali-day volume passed with no lost messages                     | SIT 2 test report       |\n| AC-3    | Availability API p95 under 300 ms at 500 requests per second                       | Performance test report |\n| AC-4    | Daily reconciliation differences above 0.5% in fewer than 5 stores per day         | Reconciliation report   |\n| AC-5    | FR-06 failover of a store demonstrated in UAT                                      | UAT script UDN-INV-031  |"
+    },
+    {
+     "n": 2,
+     "title": "BRD – Zenith Retail Omnichannel Inventory Sync",
+     "text": "### 2. Goals and success measures\n\n| **#**   | **Goal**                        | **Measure**                            | **Baseline**           | **Target**                                    |\n|---------|---------------------------------|----------------------------------------|------------------------|-----------------------------------------------|\n| G1      | Near-real-time stock visibility | Store stock refresh latency in S/4HANA | Overnight (up to 26 h) | **Under 15 minutes** at p95                   |\n| G2      | Fewer cancelled online orders   | Cancellations due to stock mismatch    | 1,850 per week         | Below 400 per week within 3 months of go-live |\n| G3      | Wider BOPIS coverage            | Stores offering BOPIS                  | 62                     | All 480 stores by end of hypercare            |\n| G4      | Accurate stock for allocation   | Stock accuracy (cycle count vs system) | 91%                    | 97% or higher                                 |\n| G5      | Fewer manual stock checks       | Staff time on stock calls              | 40 min/store/day       | 10 min/store/day                              |\n\nG1 is the same target as Objective 2 of the Project Charter (\"from overnight to &lt; 15 min\")."
+    }
+   ]
+  }
+ },
+ {
+  "id": 173,
+  "kind": "answerable",
+  "asker": "compliance@kaveri.example",
+  "doc": "Distributor (MFD) Empanelment Agreement – Standard Terms",
+  "q": "What trail commission does Kaveri pay distributors on the Flexi Cap Fund?",
+  "reference": "0.85% a year on regular plan AUM, trail only, no upfront commission.",
+  "A": {
+   "abstained": false,
+   "answer": "Kaveri pays an annual trail commission of **0.85%** on the regular plan AUM of the Kaveri Flexi Cap Fund. [1]",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Distributor (MFD) Empanelment Agreement – Standard Terms",
+     "text": "## 2. Commission\n\n- 2.1 Commission is paid only from the regular plan TER and is trail-based only. Kaveri pays no upfront commission of any kind, in cash or kind.\n- 2.2 Trail commission is paid monthly, by the 10th of the following month, by bank transfer to the Distributor's registered account, on the average AUM of the Distributor's investors in the month.\n- 2.3 Commission is not paid on: direct plan investments; investments made after the Distributor's ARN has\n\n| Scheme                         | Annual trail commission (on regular plan AUM)   |\n|--------------------------------|-------------------------------------------------|\n| Kaveri Bluechip Fund           | 0.80%                                           |\n| Kaveri Flexi Cap Fund          | 0.85%                                           |\n| Kaveri Small Cap Opportunities | 0.62%                                           |\n| Kaveri Short Duration Fund     | 0.45%                                           |\n| Kaveri Arbitrage Fund          | 0.55%                                           |\n\n\n\n\n\nlapsed; investments made through a transaction later found to breach KYC rules; or units redeemed within 365 days where an exit load applied (commission paid on those units in the first year is recovered).\n\n2.4 The Distributor may not pass on any part of the commission to investors as a rebate, and may not share it with any person who does not hold a valid ARN.\n\n2.5 Rates may be changed by Kaveri with 30 days' written notice. Commission rates are disclosed in investors' consolidated account statements."
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "Kaveri pays an annual trail commission of **0.85%** on the Kaveri Flexi Cap Fund (regular plan AUM) [1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Distributor (MFD) Empanelment Agreement – Standard Terms",
+     "text": "## 2. Commission\n\n- 2.1 Commission is paid only from the regular plan TER and is trail-based only. Kaveri pays no upfront commission of any kind, in cash or kind.\n- 2.2 Trail commission is paid monthly, by the 10th of the following month, by bank transfer to the Distributor's registered account, on the average AUM of the Distributor's investors in the month.\n- 2.3 Commission is not paid on: direct plan investments; investments made after the Distributor's ARN has\n\n| Scheme                         | Annual trail commission (on regular plan AUM)   |\n|--------------------------------|-------------------------------------------------|\n| Kaveri Bluechip Fund           | 0.80%                                           |\n| Kaveri Flexi Cap Fund          | 0.85%                                           |\n| Kaveri Small Cap Opportunities | 0.62%                                           |\n| Kaveri Short Duration Fund     | 0.45%                                           |\n| Kaveri Arbitrage Fund          | 0.55%                                           |\n\n\n\n\n\nlapsed; investments made through a transaction later found to breach KYC rules; or units redeemed within 365 days where an exit load applied (commission paid on those units in the first year is recovered).\n\n2.4 The Distributor may not pass on any part of the commission to investors as a rebate, and may not share it with any person who does not hold a valid ARN.\n\n2.5 Rates may be changed by Kaveri with 30 days' written notice. Commission rates are disclosed in investors' consolidated account statements."
+    }
+   ]
+  }
+ },
+ {
+  "id": 174,
+  "kind": "answerable",
+  "asker": "cfo@kaveri.example",
+  "doc": "FY2025-26 Financial Statements Summary",
+  "q": "What was Kaveri's employee benefits expense in FY2025-26?",
+  "reference": "₹84.6 crore in FY2025-26, up from ₹73.2 crore in FY2024-25.",
+  "A": {
+   "abstained": false,
+   "answer": "Kaveri's employee benefits expense in FY2025-26 was ₹84.6 crore. [1][2][3]",
+   "cited": [
+    {
+     "n": 1,
+     "title": "FY2025-26 Financial Statements Summary",
+     "text": "## 2. Statement of Profit and Loss\n\n| Particulars                                       |   FY2024-25 |   FY2025-26 |\n|---------------------------------------------------|-------------|-------------|\n| Management fees - mutual-fund-style schemes       |       131.5 |       152.3 |\n| PMS fees (management and performance)             |        25.8 |        30.6 |\n| AIF fees (management 5.1, performance 4.7)        |         7.2 |         9.8 |\n| Advisory fees - institutional mandates            |        10.9 |        12.4 |\n| Revenue from operations                           |       175.4 |       205.1 |\n| Other income (treasury and interest)              |         5.6 |         6.9 |\n| Total revenue                                     |       181.0 |       212.0 |\n| Employee benefits expense                         |        73.2 |        84.6 |\n| Distribution, marketing and scheme expenses borne |        12.6 |        14.2 |"
+    },
+    {
+     "n": 2,
+     "title": "FY2026-27 Budget",
+     "text": "## 4. Expense Budget\n\n| Expense line                                |   FY2025-26 Actual |   FY2026-27 Budget | Owner                          |\n|---------------------------------------------|--------------------|--------------------|--------------------------------|\n| Employee cost                               |               84.6 |               96.0 | Deepa Nambiar / Gaurav Agarwal |\n| Technology and data                         |               11.8 |               14.0 | Mohit Arora                    |\n| Distribution, marketing and scheme expenses |               14.2 |               16.8 | Head - Sales & Marketing       |\n| Rent and office                             |                6.4 |                7.9 | Gaurav Agarwal                 |\n| Legal and professional fees                 |                4.1 |                4.6 | Shalini Kapoor                 |\n| Regulatory and statutory fees               |                2.3 |                2.7 | Shalini Kapoor                 |\n| Other administrative                        |                5.9 |                6.8 | Gaurav Agarwal                 |\n| Total operating expenses                    |              129.3 |              148.8 |                                |"
+    },
+    {
+     "n": 3,
+     "title": "FY2026-27 Budget",
+     "text": "## 1. Headline Numbers\n\n| Metric                   | FY2025-26 Actual   | FY2026-27 Budget   | Change   |\n|--------------------------|--------------------|--------------------|----------|\n| Total revenue            | 212.0              | 248.0              | +17.0%   |\n| Employee cost            | 84.6               | 96.0               | +13.5%   |\n| Technology spend         | 11.8               | 14.0               | +18.6%   |\n| Total operating expenses | 129.3              | 148.8              | +15.1%   |\n| Cost-to-income ratio     | 61.0%              | 60.0%              | -1.0 pt  |\n| Profit after tax         | 58.0               | 69.7               | +20.2%   |\n| Closing AUM              | 18,650             | 21,900             | +17.4%   |\n| Headcount (31 March)     | 310                | 338                | +28      |"
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "Kaveri's employee benefits expense in FY2025-26 was **84.6** [1][2][3].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "FY2025-26 Financial Statements Summary",
+     "text": "## 2. Statement of Profit and Loss\n\n| Particulars                                       |   FY2024-25 |   FY2025-26 |\n|---------------------------------------------------|-------------|-------------|\n| Management fees - mutual-fund-style schemes       |       131.5 |       152.3 |\n| PMS fees (management and performance)             |        25.8 |        30.6 |\n| AIF fees (management 5.1, performance 4.7)        |         7.2 |         9.8 |\n| Advisory fees - institutional mandates            |        10.9 |        12.4 |\n| Revenue from operations                           |       175.4 |       205.1 |\n| Other income (treasury and interest)              |         5.6 |         6.9 |\n| Total revenue                                     |       181.0 |       212.0 |\n| Employee benefits expense                         |        73.2 |        84.6 |\n| Distribution, marketing and scheme expenses borne |        12.6 |        14.2 |"
+    },
+    {
+     "n": 2,
+     "title": "FY2026-27 Budget",
+     "text": "## 4. Expense Budget\n\n| Expense line                                |   FY2025-26 Actual |   FY2026-27 Budget | Owner                          |\n|---------------------------------------------|--------------------|--------------------|--------------------------------|\n| Employee cost                               |               84.6 |               96.0 | Deepa Nambiar / Gaurav Agarwal |\n| Technology and data                         |               11.8 |               14.0 | Mohit Arora                    |\n| Distribution, marketing and scheme expenses |               14.2 |               16.8 | Head - Sales & Marketing       |\n| Rent and office                             |                6.4 |                7.9 | Gaurav Agarwal                 |\n| Legal and professional fees                 |                4.1 |                4.6 | Shalini Kapoor                 |\n| Regulatory and statutory fees               |                2.3 |                2.7 | Shalini Kapoor                 |\n| Other administrative                        |                5.9 |                6.8 | Gaurav Agarwal                 |\n| Total operating expenses                    |              129.3 |              148.8 |                                |"
+    },
+    {
+     "n": 3,
+     "title": "FY2026-27 Budget",
+     "text": "## 1. Headline Numbers\n\n| Metric                   | FY2025-26 Actual   | FY2026-27 Budget   | Change   |\n|--------------------------|--------------------|--------------------|----------|\n| Total revenue            | 212.0              | 248.0              | +17.0%   |\n| Employee cost            | 84.6               | 96.0               | +13.5%   |\n| Technology spend         | 11.8               | 14.0               | +18.6%   |\n| Total operating expenses | 129.3              | 148.8              | +15.1%   |\n| Cost-to-income ratio     | 61.0%              | 60.0%              | -1.0 pt  |\n| Profit after tax         | 58.0               | 69.7               | +20.2%   |\n| Closing AUM              | 18,650             | 21,900             | +17.4%   |\n| Headcount (31 March)     | 310                | 338                | +28      |"
+    }
+   ]
+  }
+ },
+ {
+  "id": 175,
+  "kind": "answerable",
+  "asker": "analyst@kaveri.example",
+  "doc": "Kaveri Small Cap Opportunities Factsheet March 2026",
+  "q": "What was the 1-year return of Kaveri Small Cap Opportunities versus its benchmark to March 2026?",
+  "reference": "22.4% (direct plan) against 24.8% for the Nifty Smallcap 250 TRI, an underperformance of 2.4 percentage points.",
+  "A": {
+   "abstained": false,
+   "answer": "The fund returned **22.4%** over the 1‑year period ending March 2026, while the Nifty Smallcap 250 TRI benchmark returned **24.8%** [1][2].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Kaveri Small Cap Opportunities Factsheet March 2026",
+     "text": "## 7. Fund manager commentary\n\nFY2025-26 was a strong year for small caps, with the Nifty Smallcap 250 TRI returning 24.8%. The fund returned 22.4%. The shortfall came mainly from our deliberate underweight in defence and PSU stocks, which rallied sharply on order announcements but where we found valuations difficult to justify, and from two holdings in building materials that disappointed on margins.\n\nWe have used the year to strengthen the portfolio's quality and liquidity. We have reduced positions in several less-liquid names and raised cash to 7.1%. Lump-sum inflows remain capped at ₹2 lakh per PAN per day to protect existing investors from dilution in a segment where valuations are stretched; SIP flows continue without restriction.\n\nOur long-term record is intact: since inception the fund has compounded at 19.6% a year against 16.4% for the benchmark. We continue to focus on owner-operated businesses with clean balance sheets, return on capital above 15% and transparent governance."
+    },
+    {
+     "n": 2,
+     "title": "Kaveri Small Cap Opportunities Factsheet March 2026",
+     "text": "## 3. Performance (Direct Plan, Growth)\n\n| Period          | Fund (CAGR)   | Nifty Smallcap 250 TRI   | Value of ₹10,000 - Fund   | Value of ₹10,000 - Benchmark   |\n|-----------------|---------------|--------------------------|---------------------------|--------------------------------|\n| 1 year          | 22.4%         | 24.8%                    | ₹12,240                   | ₹12,480                        |\n| 3 years         | 24.1%         | 22.6%                    | ₹19,113                   | ₹18,422                        |\n| 5 years         | 27.5%         | 26.1%                    | ₹33,710                   | ₹31,898                        |\n| Since inception | 19.6%         | 16.4%                    | ₹41,870                   | ₹33,690                        |\n\n\n\n\n\nRegular Plan 1-year return: 21.3%. Past performance may or may not be sustained in future.\n\nThe fund underperformed its benchmark over 1 year by 2.4 percentage points but remains ahead over 3 years, 5 years and since inception."
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "The fund returned 22.4% versus the Nifty Smallcap 250 TRI benchmark of 24.8% over 1 year to March 2026, underperforming by 2.4 percentage points. [1][2]",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Kaveri Small Cap Opportunities Factsheet March 2026",
+     "text": "## 7. Fund manager commentary\n\nFY2025-26 was a strong year for small caps, with the Nifty Smallcap 250 TRI returning 24.8%. The fund returned 22.4%. The shortfall came mainly from our deliberate underweight in defence and PSU stocks, which rallied sharply on order announcements but where we found valuations difficult to justify, and from two holdings in building materials that disappointed on margins.\n\nWe have used the year to strengthen the portfolio's quality and liquidity. We have reduced positions in several less-liquid names and raised cash to 7.1%. Lump-sum inflows remain capped at ₹2 lakh per PAN per day to protect existing investors from dilution in a segment where valuations are stretched; SIP flows continue without restriction.\n\nOur long-term record is intact: since inception the fund has compounded at 19.6% a year against 16.4% for the benchmark. We continue to focus on owner-operated businesses with clean balance sheets, return on capital above 15% and transparent governance."
+    },
+    {
+     "n": 2,
+     "title": "Kaveri Small Cap Opportunities Factsheet March 2026",
+     "text": "## 3. Performance (Direct Plan, Growth)\n\n| Period          | Fund (CAGR)   | Nifty Smallcap 250 TRI   | Value of ₹10,000 - Fund   | Value of ₹10,000 - Benchmark   |\n|-----------------|---------------|--------------------------|---------------------------|--------------------------------|\n| 1 year          | 22.4%         | 24.8%                    | ₹12,240                   | ₹12,480                        |\n| 3 years         | 24.1%         | 22.6%                    | ₹19,113                   | ₹18,422                        |\n| 5 years         | 27.5%         | 26.1%                    | ₹33,710                   | ₹31,898                        |\n| Since inception | 19.6%         | 16.4%                    | ₹41,870                   | ₹33,690                        |\n\n\n\n\n\nRegular Plan 1-year return: 21.3%. Past performance may or may not be sustained in future.\n\nThe fund underperformed its benchmark over 1 year by 2.4 percentage points but remains ahead over 3 years, 5 years and since inception."
+    }
+   ]
+  }
+ },
+ {
+  "id": 176,
+  "kind": "answerable",
+  "asker": "rnd@sanjeevani.example",
+  "doc": "Bioequivalence Study Summary – Cardivas 10",
+  "q": "What was the Cmax test/reference ratio and 90% confidence interval in the Cardivas 10 bioequivalence study?",
+  "reference": "Cmax ratio 98.4% with a 90% CI of 91.2–106.1%, within the 80.00–125.00% limits.",
+  "A": {
+   "abstained": false,
+   "answer": "The Cmax test/reference ratio was 98.4% with a 90% confidence interval of 91.2–106.1% [1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Bioequivalence Study Summary – Cardivas 10",
+     "text": "## 4. Pharmacokinetic Results (n = 34)\n\n| Parameter         |   Test (geometric mean) |   Reference (geometric mean) | T/R ratio (%)   | 90% CI (%)   | Intra-subject CV (%)   |\n|-------------------|-------------------------|------------------------------|-----------------|--------------|------------------------|\n| Cmax (ng/mL)      |                    6.21 |                         6.31 | 98.4            | 91.2- 106.1  | 18.6                   |\n| AUC0-t (ng·h/mL)  |                    58.9 |                         58.2 | 101.2           | 95.8- 106.9  | 12.4                   |\n| AUC0-∞ (ng·h/ mL) |                    61.7 |                         61.1 | 101.0           | 95.7- 106.5  | 12.1                   |\n| Tmax (h), median  |                     4.0 |                          4.0 | -               | -            | -                      |\n| t½ (h), mean      |                    19.4 |                         19.8 | -               | -            | -                      |\n\nAll 90% confidence intervals lie within 80.00-125.00%. Cardivas 10 is bioequivalent to the reference product under fasting conditions."
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "The Cmax test/reference ratio was 98.4% with a 90% confidence interval of 91.2–106.1% [1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Bioequivalence Study Summary – Cardivas 10",
+     "text": "## 4. Pharmacokinetic Results (n = 34)\n\n| Parameter         |   Test (geometric mean) |   Reference (geometric mean) | T/R ratio (%)   | 90% CI (%)   | Intra-subject CV (%)   |\n|-------------------|-------------------------|------------------------------|-----------------|--------------|------------------------|\n| Cmax (ng/mL)      |                    6.21 |                         6.31 | 98.4            | 91.2- 106.1  | 18.6                   |\n| AUC0-t (ng·h/mL)  |                    58.9 |                         58.2 | 101.2           | 95.8- 106.9  | 12.4                   |\n| AUC0-∞ (ng·h/ mL) |                    61.7 |                         61.1 | 101.0           | 95.7- 106.5  | 12.1                   |\n| Tmax (h), median  |                     4.0 |                          4.0 | -               | -            | -                      |\n| t½ (h), mean      |                    19.4 |                         19.8 | -               | -            | -                      |\n\nAll 90% confidence intervals lie within 80.00-125.00%. Cardivas 10 is bioequivalent to the reference product under fasting conditions."
+    }
+   ]
+  }
+ },
+ {
+  "id": 177,
+  "kind": "answerable",
+  "asker": "compliance@kaveri.example",
+  "doc": "Q4 FY26 Risk Dashboard",
+  "q": "What was the Small Cap fund's 5-day liquidity at 31 March 2026?",
+  "reference": "11.8%, below the 15% floor (a breach), down from 14.1% at 31 December 2025.",
+  "A": {
+   "abstained": false,
+   "answer": "The Kaveri Small Cap Opportunities fund's 5-day liquidity at 30% participation was **11.8%** on 31 March 2026 [1][2][3].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Q4 FY26 Risk Dashboard",
+     "text": "## 3. Liquidity\n\n| Scheme                         | % liquidatable in 5 days at 30% participation   | Floor / trigger   | Q3 FY26   | Status       |\n|--------------------------------|-------------------------------------------------|-------------------|-----------|--------------|\n| Kaveri Small Cap Opportunities | 11.8%                                           | 15% floor         | 14.1%     | RED - BREACH |\n| Kaveri Flexi Cap Fund          | 72.4%                                           | 40% trigger       | 74.0%     | GREEN        |\n\n\n\n\n\n| Kaveri Bluechip Fund   | 96.2%   | 60% trigger   | 96.5%   | GREEN   |\n|------------------------|---------|---------------|---------|---------|\n\n- 3.1 The Small Cap measure fell from 14.1% at 31 December 2025 to 11.8% at 31 March 2026. Causes: (a) a 34% fall in traded volumes across the Nifty Smallcap 250 in February and March 2026; (b) net inflows of ₹212 crore in the quarter, deployed largely into existing positions; (c) six positions in lower-volume names, including Vindhyagiri Cementworks, that together form 13.3% of NAV.\n- 3.2 Per section 7.3 of the Policy, the fund manager (Rahul Saxena) submitted the remediation plan on 3 April 2026; it was approved by the CRO and CIO on 6 April 2026 and noted by Investment Committee 48 on 9 April 2026. Details are in the Small Cap Liquidity Breach Remediation Plan (KCA/RSK/NOTE-015). Interim checkpoint: 13.5% by 15 May 2026.\n- 3.3 Cash and equivalents in Small Cap: 7.1% of NAV. Lump-sum subscriptions remain capped at ₹2 lakh per PAN per day."
+    },
+    {
+     "n": 2,
+     "title": "Small Cap Liquidity Breach Remediation Plan",
+     "text": "### 1. Breach Details\n\n| **Item**                   | **Detail**                                                                    |\n|----------------------------|-------------------------------------------------------------------------------|\n| Scheme                     | Kaveri Small Cap Opportunities                                                |\n| Scheme AUM (31 March 2026) | ₹2,310 crore                                                                  |\n| Limit                      | At least 15% of portfolio liquidatable in 5 trading days at 30% participation |\n| Actual on 31 March 2026    | 11.8%                                                                         |\n| Breach type                | Passive (market volumes and inflows)                                          |\n| Breach register ID         | BR-FY26-08                                                                    |\n| Plan submitted             | 3 April 2026                                                                  |\n| Plan approved              | 6 April 2026 by CRO and CIO                                                   |\n| Noted by                   | Investment Committee 48, 9 April 2026                                         |\n| Final deadline             | 30 June 2026                                                                  |"
+    },
+    {
+     "n": 3,
+     "title": "Small Cap Liquidity Breach Remediation Plan",
+     "text": "### 4. Projected Liquidity\n\n| **Checkpoint**   | **Date**      | **Target liquidity (5 days, 30%)**   | **Expected cumulative trimming**   |\n|------------------|---------------|--------------------------------------|------------------------------------|\n| Start            | 31 March 2026 | 11.8% (actual)                       | 0%                                 |\n| Interim          | 15 May 2026   | 13.5%                                | 50% of planned sales               |\n| Final            | 30 June 2026  | 15.0% minimum (projected 16.1%)      | 100% of planned sales              |\n\n4.1 The projection assumes market volumes stay at March 2026 levels. If volumes recover, the target will be met earlier.\n\n4.2 Because the Vindhyagiri Cementworks exit is due by 15 May 2026, most of the improvement to the interim checkpoint is expected to come from that sale."
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "The Kaveri Small Cap Opportunities fund's 5-day liquidity at 30% participation was **11.8%** on 31 March 2026 [1][2].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Q4 FY26 Risk Dashboard",
+     "text": "## 3. Liquidity\n\n| Scheme                         | % liquidatable in 5 days at 30% participation   | Floor / trigger   | Q3 FY26   | Status       |\n|--------------------------------|-------------------------------------------------|-------------------|-----------|--------------|\n| Kaveri Small Cap Opportunities | 11.8%                                           | 15% floor         | 14.1%     | RED - BREACH |\n| Kaveri Flexi Cap Fund          | 72.4%                                           | 40% trigger       | 74.0%     | GREEN        |\n\n\n\n\n\n| Kaveri Bluechip Fund   | 96.2%   | 60% trigger   | 96.5%   | GREEN   |\n|------------------------|---------|---------------|---------|---------|\n\n- 3.1 The Small Cap measure fell from 14.1% at 31 December 2025 to 11.8% at 31 March 2026. Causes: (a) a 34% fall in traded volumes across the Nifty Smallcap 250 in February and March 2026; (b) net inflows of ₹212 crore in the quarter, deployed largely into existing positions; (c) six positions in lower-volume names, including Vindhyagiri Cementworks, that together form 13.3% of NAV.\n- 3.2 Per section 7.3 of the Policy, the fund manager (Rahul Saxena) submitted the remediation plan on 3 April 2026; it was approved by the CRO and CIO on 6 April 2026 and noted by Investment Committee 48 on 9 April 2026. Details are in the Small Cap Liquidity Breach Remediation Plan (KCA/RSK/NOTE-015). Interim checkpoint: 13.5% by 15 May 2026.\n- 3.3 Cash and equivalents in Small Cap: 7.1% of NAV. Lump-sum subscriptions remain capped at ₹2 lakh per PAN per day."
+    },
+    {
+     "n": 2,
+     "title": "Small Cap Liquidity Breach Remediation Plan",
+     "text": "### 1. Breach Details\n\n| **Item**                   | **Detail**                                                                    |\n|----------------------------|-------------------------------------------------------------------------------|\n| Scheme                     | Kaveri Small Cap Opportunities                                                |\n| Scheme AUM (31 March 2026) | ₹2,310 crore                                                                  |\n| Limit                      | At least 15% of portfolio liquidatable in 5 trading days at 30% participation |\n| Actual on 31 March 2026    | 11.8%                                                                         |\n| Breach type                | Passive (market volumes and inflows)                                          |\n| Breach register ID         | BR-FY26-08                                                                    |\n| Plan submitted             | 3 April 2026                                                                  |\n| Plan approved              | 6 April 2026 by CRO and CIO                                                   |\n| Noted by                   | Investment Committee 48, 9 April 2026                                         |\n| Final deadline             | 30 June 2026                                                                  |"
+    }
+   ]
+  }
+ },
+ {
+  "id": 178,
+  "kind": "answerable",
+  "asker": "owner@sanjeevani.example",
+  "doc": "CAPA Register Q1 FY27",
+  "q": "What was the overall CAPA on-time closure rate in Q1 FY27, and which unit was lowest?",
+  "reference": "88% overall against a 90% target; Unit II Baddi was lowest at 78% (Unit I 90%, Unit III 100%).",
+  "A": {
+   "abstained": false,
+   "answer": "The overall CAPA on-time closure rate in Q1 FY27 was 88%, and Unit II (Baddi) had the lowest rate at 78% [1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "CAPA Register Q1 FY27",
+     "text": "### 2. Summary Metrics\n\n| **Metric**                     | **Unit I Ahmedabad**   | **Unit II Baddi**   | **Unit III Vizag**   | **Total**   |\n|--------------------------------|------------------------|---------------------|----------------------|-------------|\n| Open at start of quarter       | 9                      | 6                   | 4                    | 19          |\n| Raised in quarter              | 7                      | 11                  | 5                    | 23          |\n| Closed in quarter              | 10                     | 9                   | 6                    | 25          |\n| Open at end of quarter         | 6                      | 8                   | 3                    | 17          |\n| Overdue at end of quarter      | 1                      | 2                   | 0                    | 3           |\n| On-time closure rate           | 90%                    | 78%                 | 100%                 | 88%         |\n| Effectiveness checks performed | 5                      | 4                   | 3                    | 12          |\n| Effectiveness checks failed    | 0                      | 1                   | 0                    | 1           |\n\nTarget on-time closure rate is 90%. Unit II missed the target because of the 8 CAPAs raised from the Q4 FY26 internal audit."
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "The overall CAPA on‑time closure rate for Q1 FY27 was **88%**, and the lowest unit rate was **Unit II Baddi at 78%** [1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "CAPA Register Q1 FY27",
+     "text": "### 2. Summary Metrics\n\n| **Metric**                     | **Unit I Ahmedabad**   | **Unit II Baddi**   | **Unit III Vizag**   | **Total**   |\n|--------------------------------|------------------------|---------------------|----------------------|-------------|\n| Open at start of quarter       | 9                      | 6                   | 4                    | 19          |\n| Raised in quarter              | 7                      | 11                  | 5                    | 23          |\n| Closed in quarter              | 10                     | 9                   | 6                    | 25          |\n| Open at end of quarter         | 6                      | 8                   | 3                    | 17          |\n| Overdue at end of quarter      | 1                      | 2                   | 0                    | 3           |\n| On-time closure rate           | 90%                    | 78%                 | 100%                 | 88%         |\n| Effectiveness checks performed | 5                      | 4                   | 3                    | 12          |\n| Effectiveness checks failed    | 0                      | 1                   | 0                    | 1           |\n\nTarget on-time closure rate is 90%. Unit II missed the target because of the 8 CAPAs raised from the Q4 FY26 internal audit."
+    }
+   ]
+  }
+ },
+ {
+  "id": 179,
+  "kind": "answerable",
+  "asker": "finance@nimbus.example",
+  "doc": "Q1 FY2026-27 Revenue and Collections Report",
+  "q": "What were Nimbus's Q1 FY27 debtor days?",
+  "reference": "58 days at 30 June 2026, down from 61 days at 31 March 2026.",
+  "A": {
+   "abstained": false,
+   "answer": "Nimbus's Q1 FY27 debtor days (Days Sales Outstanding) were **58 days** as of 30 June 2026, an improvement from 61 days at 31 March 2026 [1][2].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Q1 FY2026-27 Revenue and Collections Report",
+     "text": "## 1. Summary\n\n- Q1 revenue was ₹318.6 crore, up 13.1% on Q1 FY2025-26 (₹281.7 crore) and 23.8% of the FY27 budget of ₹1,340 crore.\n- North America remained the largest region at ₹197.4 crore (62%) of revenue.\n- Collections were ₹301.2 crore, a collection efficiency of 94.5% against invoices due in the quarter.\n- Days sales outstanding (debtor days) improved to 58 days at 30 June 2026, from 61 days at 31 March 2026.\n- Full-year revenue forecast: ₹1,326 crore, which is ₹14 crore (1.0%) below the FY27 budget."
+    },
+    {
+     "n": 2,
+     "title": "Q1 FY2026-27 Revenue and Collections Report",
+     "text": "## 4. Collections and receivables\n\n| Measure                      | 30 June 2026   | 31 March 2026   |\n|------------------------------|----------------|-----------------|\n| Trade receivables            | 204.6          | 198.3           |\n| Of which not yet due         | 141.2          | 132.9           |\n| Overdue 1-30 days            | 38.5           | 40.1            |\n| Overdue 31-90 days           | 19.8           | 18.6            |\n| Overdue above 90 days        | 5.1            | 6.7             |\n| Days sales outstanding (DSO) | 58 days        | 61 days         |\n| Provision for doubtful debts | 3.2            | 3.4             |\n\nDSO by region: North America 54 days, India 67 days, Middle East and Europe 63 days. The North America improvement continues from the collections process changes made in FY26."
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "Nimbus's Q1 FY27 debtor days were 58 days at 30 June 2026, down from 61 days at 31 March 2026. [1][2]",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Q1 FY2026-27 Revenue and Collections Report",
+     "text": "## 1. Summary\n\n- Q1 revenue was ₹318.6 crore, up 13.1% on Q1 FY2025-26 (₹281.7 crore) and 23.8% of the FY27 budget of ₹1,340 crore.\n- North America remained the largest region at ₹197.4 crore (62%) of revenue.\n- Collections were ₹301.2 crore, a collection efficiency of 94.5% against invoices due in the quarter.\n- Days sales outstanding (debtor days) improved to 58 days at 30 June 2026, from 61 days at 31 March 2026.\n- Full-year revenue forecast: ₹1,326 crore, which is ₹14 crore (1.0%) below the FY27 budget."
+    },
+    {
+     "n": 2,
+     "title": "Q1 FY2026-27 Revenue and Collections Report",
+     "text": "## 4. Collections and receivables\n\n| Measure                      | 30 June 2026   | 31 March 2026   |\n|------------------------------|----------------|-----------------|\n| Trade receivables            | 204.6          | 198.3           |\n| Of which not yet due         | 141.2          | 132.9           |\n| Overdue 1-30 days            | 38.5           | 40.1            |\n| Overdue 31-90 days           | 19.8           | 18.6            |\n| Overdue above 90 days        | 5.1            | 6.7             |\n| Days sales outstanding (DSO) | 58 days        | 61 days         |\n| Provision for doubtful debts | 3.2            | 3.4             |\n\nDSO by region: North America 54 days, India 67 days, Middle East and Europe 63 days. The North America improvement continues from the collections process changes made in FY26."
+    }
+   ]
+  }
+ },
+ {
+  "id": 180,
+  "kind": "answerable",
+  "asker": "owner@sanjeevani.example",
+  "doc": "Stockist Credit and Collections Policy",
+  "q": "When are supplies stopped for overdue payments?",
+  "reference": "When any invoice is more than 15 days overdue (45 days from invoice on 30-day terms), when outstanding exceeds the credit limit by more than 10%, after a dishonoured cheque/NACH, or if the drug licence has expired.",
+  "A": {
+   "abstained": false,
+   "answer": "Supplies are stopped when any invoice is more than 15 days overdue (i.e., 45 days from invoice for a stockist on 30‑day terms) [1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Stockist Credit and Collections Policy",
+     "text": "## 7. When supplies are stopped (credit hold)\n\nThe Zonal Commercial Manager places the customer on credit hold in the ERP, and the C&amp;F agent stops all invoicing, when any of the following happens:\n\n| Trigger                                                                                             | Action                                                                        |\n|-----------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------|\n| Any invoice is more than 15 days overdue (i.e. 45 days from invoice for a stockist on 30-day terms) | Supplies stopped until the overdue invoice is paid                            |\n| Total outstanding exceeds the credit limit by more than 10%                                         | Supplies stopped until outstanding is back within the limit                   |\n| A cheque or NACH debit is dishonoured                                                               | Supplies stopped; future dispatches only against advance payment for 3 months |\n| The customer's drug licence (Form 20B/21B) has expired                                              | Supplies stopped until a valid licence copy is received                       |\n\n- 7.1 Only the National Sales Manager may release a credit hold before the overdue is cleared, for a maximum of 7 days, and only once per customer per quarter. 7.2 Recall returns and expiry credit notes are not adjusted against overdue invoices without Credit Control approval."
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "Supplies are stopped when any invoice is more than 15 days overdue (i.e. 45 days from invoice for a stockist on 30-day terms), until the overdue invoice is paid. [1] Supplies are also stopped if total outstanding exceeds the credit limit by more than 10%, until the outstanding is back within the limit. [1] A dishonoured cheque or NACH debit stops supplies, with future dispatches only against advance payment for 3 months. [1] Supplies are stopped if the customer’s drug licence (Form 20B/21B) has expired, until a valid licence copy is received. [1]",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Stockist Credit and Collections Policy",
+     "text": "## 7. When supplies are stopped (credit hold)\n\nThe Zonal Commercial Manager places the customer on credit hold in the ERP, and the C&amp;F agent stops all invoicing, when any of the following happens:\n\n| Trigger                                                                                             | Action                                                                        |\n|-----------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------|\n| Any invoice is more than 15 days overdue (i.e. 45 days from invoice for a stockist on 30-day terms) | Supplies stopped until the overdue invoice is paid                            |\n| Total outstanding exceeds the credit limit by more than 10%                                         | Supplies stopped until outstanding is back within the limit                   |\n| A cheque or NACH debit is dishonoured                                                               | Supplies stopped; future dispatches only against advance payment for 3 months |\n| The customer's drug licence (Form 20B/21B) has expired                                              | Supplies stopped until a valid licence copy is received                       |\n\n- 7.1 Only the National Sales Manager may release a credit hold before the overdue is cleared, for a maximum of 7 days, and only once per customer per quarter. 7.2 Recall returns and expiry credit notes are not adjusted against overdue invoices without Credit Control approval."
+    }
+   ]
+  }
+ },
+ {
+  "id": 181,
+  "kind": "answerable",
+  "asker": "qa@sanjeevani.example",
+  "doc": "US FDA Inspection 2024 – Response and CAPA Summary",
+  "q": "When did Sanjeevani submit its response to the 2024 US FDA Form 483 for Unit III Vizag?",
+  "reference": "On 05 April 2024, within 15 business days of the inspection that ended 19 March 2024.",
+  "A": {
+   "abstained": false,
+   "answer": "Sanjeevani Pharma Ltd. submitted its response to the 2024 US FDA Form 483 for Unit III Vizag on 05 April 2024 [1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "US FDA Inspection 2024 – Response and CAPA Summary",
+     "text": "## 1. Inspection Overview\n\n| Item                  | Detail                                                                                                                             |\n|-----------------------|------------------------------------------------------------------------------------------------------------------------------------|\n| Site                  | Unit III - Vizag (Visakhapatnam) SEZ, export oral solids unit                                                                      |\n| Inspection type       | Routine surveillance (cGMP) and pre-approval for one pending ANDA                                                                  |\n| Dates                 | 11-19 March 2024 (7 inspection days)                                                                                               |\n| Investigators         | 2 US FDA investigators, 1 chemist                                                                                                  |\n| Products reviewed     | Rosuvastatin 10 mg tablets (export equivalent of Cardivas 10), Amlodipine 5 mg tablets, Pantoprazole 40 mg delayed-release tablets |\n| Outcome at close- out | Form FDA 483 issued with 3 observations                                                                                            |\n| Response submitted    | 05 April 2024 (within 15 business days)                                                                                            |\n| Final classification  | Voluntary Action Indicated (VAI)                                                                                                   |\n| CAPA status           | All CAPAs closed by October 2024 (last closure 25 October 2024)                                                                    |"
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "Sanjeevani Pharma Ltd. submitted its response to the 2024 US FDA Form 483 for Unit III Vizag on **05 April 2024** [1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "US FDA Inspection 2024 – Response and CAPA Summary",
+     "text": "## 1. Inspection Overview\n\n| Item                  | Detail                                                                                                                             |\n|-----------------------|------------------------------------------------------------------------------------------------------------------------------------|\n| Site                  | Unit III - Vizag (Visakhapatnam) SEZ, export oral solids unit                                                                      |\n| Inspection type       | Routine surveillance (cGMP) and pre-approval for one pending ANDA                                                                  |\n| Dates                 | 11-19 March 2024 (7 inspection days)                                                                                               |\n| Investigators         | 2 US FDA investigators, 1 chemist                                                                                                  |\n| Products reviewed     | Rosuvastatin 10 mg tablets (export equivalent of Cardivas 10), Amlodipine 5 mg tablets, Pantoprazole 40 mg delayed-release tablets |\n| Outcome at close- out | Form FDA 483 issued with 3 observations                                                                                            |\n| Response submitted    | 05 April 2024 (within 15 business days)                                                                                            |\n| Final classification  | Voluntary Action Indicated (VAI)                                                                                                   |\n| CAPA status           | All CAPAs closed by October 2024 (last closure 25 October 2024)                                                                    |"
+    }
+   ]
+  }
+ },
+ {
+  "id": 182,
+  "kind": "denied",
+  "asker": "rnd@sanjeevani.example",
+  "doc": "US FDA Inspection 2024 – Response and CAPA Summary",
+  "q": "When did Sanjeevani submit its response to the 2024 US FDA Form 483 for Unit III Vizag?",
+  "reference": "On 05 April 2024, within 15 business days of the inspection that ended 19 March 2024.",
+  "A": {
+   "abstained": true,
+   "answer": "Not found in your documents.\nNo document you can open answers this, so Atlas did not guess.",
+   "cited": []
+  },
+  "B": {
+   "abstained": false,
+   "answer": "The provided documents do not mention when Sanjeevani submitted its response to the 2024 US FDA Form 483 for Unit III Vizag. The milestones list the 2024 inspection and the 2026 re‑inspection closure, and the training policy notes that training was strengthened after the 2024 inspection, but no Form 483 response date is given.",
+   "cited": []
+  }
+ },
+ {
+  "id": 183,
+  "kind": "answerable",
+  "asker": "qa@sanjeevani.example",
+  "doc": "Project Plan – Vizag Unit III Capacity Expansion",
+  "q": "When does the new Vizag line start commercial batches?",
+  "reference": "April 2028, for non-US markets; US supply follows PAS approval in FY29.",
+  "A": {
+   "abstained": false,
+   "answer": "The first commercial batches from the new Vizag Unit III (Block C) are planned for **April 2028** for non‑US markets [1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Project Plan – Vizag Unit III Capacity Expansion",
+     "text": "### 2. Phases and milestones\n\n| **Phase**         | **Milestone**                                                                                          | **Planned date**   | **Status (31 Oct 2026)**                  |\n|-------------------|--------------------------------------------------------------------------------------------------------|--------------------|-------------------------------------------|\n| 0 – Approvals     | Board approval                                                                                         | 22 April 2026      | Done                                      |\n| 0 – Approvals     | Environmental clearance and SEZ approvals                                                              | July 2026          | Done (received 18 July 2026)              |\n| 1 – Civil         | Ground-breaking                                                                                        | August 2026        | Done (21 August 2026)                     |\n| 1 – Civil         | Foundations and ground-floor slab                                                                      | December 2026      | In progress – 34% of civil works complete |\n| 1 – Civil         | Building completion (structure, cleanroom panels, HVAC ducting)                                        | June 2027          | On track                                  |\n| 2 – Equipment     | Process equipment delivered (2 granulation trains, 4 compression machines, 2 coaters, 2 encapsulators) | June 2027          | Purchase orders placed for 9 of 10 items  |\n| 3 – Qualification | IQ/OQ/PQ of equipment, HVAC and utilities                                                              | July–December 2027 | Not started                               |\n| 4 – Validation    | Process validation a"
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "The first commercial batches from the new Vizag Unit III (Block C) are planned for **April 2028** for non‑US markets [1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Project Plan – Vizag Unit III Capacity Expansion",
+     "text": "### 2. Phases and milestones\n\n| **Phase**         | **Milestone**                                                                                          | **Planned date**   | **Status (31 Oct 2026)**                  |\n|-------------------|--------------------------------------------------------------------------------------------------------|--------------------|-------------------------------------------|\n| 0 – Approvals     | Board approval                                                                                         | 22 April 2026      | Done                                      |\n| 0 – Approvals     | Environmental clearance and SEZ approvals                                                              | July 2026          | Done (received 18 July 2026)              |\n| 1 – Civil         | Ground-breaking                                                                                        | August 2026        | Done (21 August 2026)                     |\n| 1 – Civil         | Foundations and ground-floor slab                                                                      | December 2026      | In progress – 34% of civil works complete |\n| 1 – Civil         | Building completion (structure, cleanroom panels, HVAC ducting)                                        | June 2027          | On track                                  |\n| 2 – Equipment     | Process equipment delivered (2 granulation trains, 4 compression machines, 2 coaters, 2 encapsulators) | June 2027          | Purchase orders placed for 9 of 10 items  |\n| 3 – Qualification | IQ/OQ/PQ of equipment, HVAC and utilities                                                              | July–December 2027 | Not started                               |\n| 4 – Validation    | Process validation a"
+    }
+   ]
+  }
+ },
+ {
+  "id": 184,
+  "kind": "denied",
+  "asker": "sales@sanjeevani.example",
+  "doc": "Project Plan – Vizag Unit III Capacity Expansion",
+  "q": "When does the new Vizag line start commercial batches?",
+  "reference": "April 2028, for non-US markets; US supply follows PAS approval in FY29.",
+  "A": {
+   "abstained": true,
+   "answer": "Not found in your documents.\nNo document you can open answers this, so Atlas did not guess.",
+   "cited": []
+  },
+  "B": {
+   "abstained": true,
+   "answer": "Not found in your documents.\nNo document you can open answers this, so Atlas did not guess.",
+   "cited": []
+  }
+ },
+ {
+  "id": 185,
+  "kind": "answerable",
+  "asker": "hr@nimbus.example",
+  "doc": "Variable Pay Plan",
+  "q": "When is the FY2026-27 variable pay paid out?",
+  "reference": "In the July 2027 payroll, after audited results and ratings are final.",
+  "A": {
+   "abstained": false,
+   "answer": "The FY2026-27 variable pay annual payout is scheduled for the **July 2027 payroll**, after audited results and ratings are finalized [1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Variable Pay Plan",
+     "text": "## 6. Payment schedule\n\n| Component                      | Timing                                                                                        |\n|--------------------------------|-----------------------------------------------------------------------------------------------|\n| Annual payout for FY2026-27    | July 2027 payroll, after audited results and ratings                                          |\n| Advance (optional, L2-L4 only) | 25% of target paid quarterly in July, October and January, adjusted against the annual payout |\n\nIf advances paid exceed the final annual payout, the excess is recovered from the July payout and, if needed, from the next two monthly salaries."
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "The annual payout for FY2026-27 is scheduled for the July 2027 payroll, after audited results and ratings are finalized [1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Variable Pay Plan",
+     "text": "## 6. Payment schedule\n\n| Component                      | Timing                                                                                        |\n|--------------------------------|-----------------------------------------------------------------------------------------------|\n| Annual payout for FY2026-27    | July 2027 payroll, after audited results and ratings                                          |\n| Advance (optional, L2-L4 only) | 25% of target paid quarterly in July, October and January, adjusted against the annual payout |\n\nIf advances paid exceed the final annual payout, the excess is recovered from the July payout and, if needed, from the next two monthly salaries."
+    }
+   ]
+  }
+ },
+ {
+  "id": 186,
+  "kind": "denied",
+  "asker": "manager@nimbus.example",
+  "doc": "Variable Pay Plan",
+  "q": "When is the FY2026-27 variable pay paid out?",
+  "reference": "In the July 2027 payroll, after audited results and ratings are final.",
+  "A": {
+   "abstained": false,
+   "answer": "The provided passages do not specify when FY2026-27 variable pay is paid out. They only note that pro-rata variable pay may be included in full and final settlement if allowed by the Variable Pay Plan [1], and that variable pay follows the final annual rating [2].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Notice Period and Exit Process",
+     "text": "## 10. Full and final settlement\n\n1. Full and final (F&amp;F) settlement is paid within 45 days of the LWD, after clearance is complete.\n2. F&amp;F includes salary up to LWD, encashment of earned leave (up to 30 days, on basic pay), gratuity if 5 years of service are complete, reimbursements due, and any pro-rata variable pay that the Variable Pay Plan allows; less notice shortfall recovery, unrecovered advances and dues.\n\n\n\n\n\n3. The relieving letter and experience letter are issued within 7 days of F&amp;F, by email from hrhelp@nimbus.example.\n4. PF transfer or withdrawal is initiated by the employee through the EPFO portal; HR approves within 7 working days."
+    },
+    {
+     "n": 2,
+     "title": "Handling Performance Issues – PIP Guide",
+     "text": "### 7. Effects during a PIP\n\n- The employee is not eligible for promotion or internal transfer.\n- Variable pay follows the final annual rating, not the PIP itself.\n- Leave may be taken normally; the PIP end date moves by the number of leave days above 5."
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "The provided passages do not specify when the FY2026-27 variable pay is paid out. They only mention that pro-rata variable pay (as allowed by the Variable Pay Plan) is included in the full and final settlement [1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Notice Period and Exit Process",
+     "text": "## 10. Full and final settlement\n\n1. Full and final (F&amp;F) settlement is paid within 45 days of the LWD, after clearance is complete.\n2. F&amp;F includes salary up to LWD, encashment of earned leave (up to 30 days, on basic pay), gratuity if 5 years of service are complete, reimbursements due, and any pro-rata variable pay that the Variable Pay Plan allows; less notice shortfall recovery, unrecovered advances and dues.\n\n\n\n\n\n3. The relieving letter and experience letter are issued within 7 days of F&amp;F, by email from hrhelp@nimbus.example.\n4. PF transfer or withdrawal is initiated by the employee through the EPFO portal; HR approves within 7 working days."
+    }
+   ]
+  }
+ },
+ {
+  "id": 187,
+  "kind": "answerable",
+  "asker": "owner@kaveri.example",
+  "doc": "GIFT City Feeder Fund Proposal",
+  "q": "When is the GIFT City feeder fund expected to launch and how much seed capital will Kaveri put in?",
+  "reference": "Target launch is January 2027, with seed capital of ₹25 crore from Kaveri's own funds.",
+  "A": {
+   "abstained": false,
+   "answer": "The feeder fund is targeted to launch in **January 2027**, and Kaveri will commit **₹25 crore (≈ USD 3 million) as seed capital** [1][2][3][4].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Board Meeting Minutes – 25 April 2026",
+     "text": "## 5. GIFT City Feeder Fund\n\n5.1 The CIO and CFO presented the proposal for a USD-denominated feeder fund at GIFT City (IFSC), investing in the Kaveri Flexi Cap Fund, aimed at NRI and foreign investors. Target launch January 2027. Set-up cost ₹6.5 crore over FY27; seed capital ₹25 crore from own funds.\n\n5.2 The Board discussed regulatory approval timelines with IFSCA, currency risk, and whether demand estimates were conservative. Mr. Mathur asked that the business case be reviewed after the first 12 months.\n\nResolution 58.3: \"RESOLVED THAT the Company be and is hereby authorised to establish a fund management entity in GIFT City IFSC and launch a feeder fund investing in Kaveri Flexi Cap Fund, with a target launch in January 2027, and to invest seed capital of up to ₹25 crore; and that the MD &amp; CEO be authorised to make all filings with IFSCA and other authorities.\""
+    },
+    {
+     "n": 2,
+     "title": "GIFT City Feeder Fund Proposal",
+     "text": "### 6. Seed Capital\n\n6.1 ₹25 crore (about USD 3 million) will be invested at launch and held for at least 3 years, under the Treasury and Investment of Own Funds Policy. This seed provides a starting AUM and meets IFSCA's manager contribution requirement."
+    },
+    {
+     "n": 3,
+     "title": "GIFT City Feeder Fund Proposal",
+     "text": "### 9. Decision Requested\n\n9.1 Approve establishment of the GIFT City FME and launch of the feeder fund with target launch January 2027; set-up costs of ₹6.5 crore; seed capital of ₹25 crore; and delegated authority to the MD &amp; CEO for filings."
+    },
+    {
+     "n": 4,
+     "title": "GIFT City Feeder Fund Proposal",
+     "text": "### 1. Recommendation\n\n1.1 Kaveri should set up a fund management entity (FME) in GIFT City International Financial Services Centre (IFSC), Gandhinagar, and launch a US-dollar feeder fund, the **Kaveri India Flexi Cap Feeder Fund (IFSC)**, investing substantially all its assets in the Kaveri Flexi Cap Fund. Target launch: **January 2027**.\n\n1.2 The Board is asked to approve: (a) set-up costs of ₹6.5 crore in FY2026-27; (b) seed capital of ₹25 crore from own funds; and (c) authority for the MD &amp; CEO to make filings with the International Financial Services Centres Authority (IFSCA)."
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "The GIFT City feeder fund is targeting a **January 2027** launch, and Kaveri will invest **₹25 crore** as seed capital from its own funds [1][2].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Board Meeting Minutes – 25 April 2026",
+     "text": "## 5. GIFT City Feeder Fund\n\n5.1 The CIO and CFO presented the proposal for a USD-denominated feeder fund at GIFT City (IFSC), investing in the Kaveri Flexi Cap Fund, aimed at NRI and foreign investors. Target launch January 2027. Set-up cost ₹6.5 crore over FY27; seed capital ₹25 crore from own funds.\n\n5.2 The Board discussed regulatory approval timelines with IFSCA, currency risk, and whether demand estimates were conservative. Mr. Mathur asked that the business case be reviewed after the first 12 months.\n\nResolution 58.3: \"RESOLVED THAT the Company be and is hereby authorised to establish a fund management entity in GIFT City IFSC and launch a feeder fund investing in Kaveri Flexi Cap Fund, with a target launch in January 2027, and to invest seed capital of up to ₹25 crore; and that the MD &amp; CEO be authorised to make all filings with IFSCA and other authorities.\""
+    },
+    {
+     "n": 2,
+     "title": "GIFT City Feeder Fund Proposal",
+     "text": "### 1. Recommendation\n\n1.1 Kaveri should set up a fund management entity (FME) in GIFT City International Financial Services Centre (IFSC), Gandhinagar, and launch a US-dollar feeder fund, the **Kaveri India Flexi Cap Feeder Fund (IFSC)**, investing substantially all its assets in the Kaveri Flexi Cap Fund. Target launch: **January 2027**.\n\n1.2 The Board is asked to approve: (a) set-up costs of ₹6.5 crore in FY2026-27; (b) seed capital of ₹25 crore from own funds; and (c) authority for the MD &amp; CEO to make filings with the International Financial Services Centres Authority (IFSCA)."
+    }
+   ]
+  }
+ },
+ {
+  "id": 188,
+  "kind": "answerable",
+  "asker": "product@nimbus.example",
+  "doc": "NimbusOps Product FAQ",
+  "q": "Where is NimbusOps customer data stored?",
+  "reference": "In India: AWS ap-south-1 (Mumbai), with disaster recovery in ap-south-2 (Hyderabad); it is never replicated outside India.",
+  "A": {
+   "abstained": false,
+   "answer": "NimbusOps customer data is stored in India on AWS **ap-south-1 (Mumbai)** with disaster recovery/failover in **ap-south-2 (Hyderabad)**; no customer data is replicated outside India [1][2][3].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "NimbusOps Product FAQ",
+     "text": "### Where is my data stored?\n\nAll NimbusOps customer data is stored in India, in Amazon Web Services **ap-south-1 (Mumbai)**, with disaster recovery in **ap-south-2 (Hyderabad)**. We do not replicate customer data outside India."
+    },
+    {
+     "n": 2,
+     "title": "BRD – NimbusOps AI Alert Summaries",
+     "text": "### 6. Data, security and compliance\n\n- All processing stays in AWS **ap-south-1 (Mumbai)**, the NimbusOps primary region, with failover to ap-south-2 (Hyderabad). No alert data leaves India, in line with the NimbusOps data residency commitment.\n- The language model runs inside the NimbusOps AWS account; customer data is **not used to train** any model and is not shared with third parties.\n- Only alert metadata (rule name, host, service, metric value, timestamps) is sent to the model, never raw log lines.\n- Summaries are stored with the incident and follow the same 13-month retention as events.\n- The feature must pass a SOC 2 Type II control review before GA, as it adds a new processing component within the audit scope.\n- Every summary is labelled \"AI-generated\" in the UI and notifications."
+    },
+    {
+     "n": 3,
+     "title": "Data Protection Policy – DPDP Act 2023",
+     "text": "## 8. Cross-border transfers\n\nPersonal data may be transferred outside India except to countries restricted by notification of the Central Government. NimbusOps customer data is hosted in India (AWS ap-south-1 Mumbai, DR in ap-south-2 Hyderabad). Transfers of employee data to the Dubai office are limited to what is needed for local HR administration."
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "NimbusOps customer data is stored in India in AWS **ap-south-1 (Mumbai)** with disaster recovery in **ap-south-2 (Hyderabad)**; no customer data is replicated outside India [1][2][3].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "NimbusOps Product FAQ",
+     "text": "### Where is my data stored?\n\nAll NimbusOps customer data is stored in India, in Amazon Web Services **ap-south-1 (Mumbai)**, with disaster recovery in **ap-south-2 (Hyderabad)**. We do not replicate customer data outside India."
+    },
+    {
+     "n": 2,
+     "title": "BRD – NimbusOps AI Alert Summaries",
+     "text": "### 6. Data, security and compliance\n\n- All processing stays in AWS **ap-south-1 (Mumbai)**, the NimbusOps primary region, with failover to ap-south-2 (Hyderabad). No alert data leaves India, in line with the NimbusOps data residency commitment.\n- The language model runs inside the NimbusOps AWS account; customer data is **not used to train** any model and is not shared with third parties.\n- Only alert metadata (rule name, host, service, metric value, timestamps) is sent to the model, never raw log lines.\n- Summaries are stored with the incident and follow the same 13-month retention as events.\n- The feature must pass a SOC 2 Type II control review before GA, as it adds a new processing component within the audit scope.\n- Every summary is labelled \"AI-generated\" in the UI and notifications."
+    },
+    {
+     "n": 3,
+     "title": "Data Protection Policy – DPDP Act 2023",
+     "text": "## 8. Cross-border transfers\n\nPersonal data may be transferred outside India except to countries restricted by notification of the Central Government. NimbusOps customer data is hosted in India (AWS ap-south-1 Mumbai, DR in ap-south-2 Hyderabad). Transfers of employee data to the Dubai office are limited to what is needed for local HR administration."
+    }
+   ]
+  }
+ },
+ {
+  "id": 189,
+  "kind": "answerable",
+  "asker": "employee@nimbus.example",
+  "doc": "Welcome to Nimbus",
+  "q": "Where should I forward a suspicious email?",
+  "reference": "Forward it to phish@nimbus.example.",
+  "A": {
+   "abstained": false,
+   "answer": "Forward suspicious emails to **phish@nimbus.example** (or use the Report Phish button) [1][2][3].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Welcome to Nimbus",
+     "text": "## 7. Where to find things\n\n| Need | Where |\n|---|---|\n| IT help, access requests | ServiceDesk portal, or extension 4357 (HELP) |\n| HR questions, letters, payroll | HR Help in the HRMS, or hr-help@nimbus.example |\n| Suspicious email | Forward to phish@nimbus.example |\n| Security incident | security@nimbus.example or the 24x7 SOC line, extension 7000 |\n| Travel booking | Travel desk in the expense tool |\n| Policies | The Company Handbook and IT & Security Policies collections in Atlas |"
+    },
+    {
+     "n": 2,
+     "title": "Incident Reporting Procedure",
+     "text": "## 4. How to report\n\n| Situation                            | Channel                                                                      | Timeline                       |\n|--------------------------------------|------------------------------------------------------------------------------|--------------------------------|\n| Suspicious email (not clicked)       | Forward as attachment to phish@nimbus.example or use the Report Phish button | Same day                       |\n| Clicked a link / entered credentials | Call the SOC on extension 7000 (24x7), then email security@nimbus.example    | Immediately, within 30 minutes |\n| Lost or stolen device                | ServiceDesk ext. 4357 or security@nimbus.example                             | Within 1 hour                  |\n| Data sent to wrong recipient         | security@nimbus.example and your manager                                     | Within 1 hour                  |\n| Service outage (NimbusOps or client) | Page the on-call via the incident bot: /incident declare in Slack            | Immediately                    |\n\n\n\n\n\nDo not try to investigate on your own, delete evidence, or contact the attacker. Do not discuss the incident on public channels."
+    },
+    {
+     "n": 3,
+     "title": "Acceptable Use Policy",
+     "text": "## 5. Email and collaboration\n\n| Allowed                                                                    | Not allowed                                                                   |\n|----------------------------------------------------------------------------|-------------------------------------------------------------------------------|\n| Business communication on Nimbus email, Slack, Teams (for client meetings) | Auto-forwarding Nimbus email to personal accounts                             |\n| Sharing files through Nimbus Google Drive / SharePoint with named people   | \"Anyone with the link\" sharing for Internal, Confidential or Restricted files |\n\n\n\n\n\n| Joining client collaboration tools when the client invites you   | Creating unofficial Slack or WhatsApp groups to share client data   |\n|------------------------------------------------------------------|---------------------------------------------------------------------|\n| Reporting suspicious mail to phish@nimbus.example                | Clicking links or opening attachments you were not expecting        |"
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "Forward suspicious emails to **phish@nimbus.example** (or use the Report Phish button) [1][2][3].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Welcome to Nimbus",
+     "text": "## 7. Where to find things\n\n| Need | Where |\n|---|---|\n| IT help, access requests | ServiceDesk portal, or extension 4357 (HELP) |\n| HR questions, letters, payroll | HR Help in the HRMS, or hr-help@nimbus.example |\n| Suspicious email | Forward to phish@nimbus.example |\n| Security incident | security@nimbus.example or the 24x7 SOC line, extension 7000 |\n| Travel booking | Travel desk in the expense tool |\n| Policies | The Company Handbook and IT & Security Policies collections in Atlas |"
+    },
+    {
+     "n": 2,
+     "title": "Incident Reporting Procedure",
+     "text": "## 4. How to report\n\n| Situation                            | Channel                                                                      | Timeline                       |\n|--------------------------------------|------------------------------------------------------------------------------|--------------------------------|\n| Suspicious email (not clicked)       | Forward as attachment to phish@nimbus.example or use the Report Phish button | Same day                       |\n| Clicked a link / entered credentials | Call the SOC on extension 7000 (24x7), then email security@nimbus.example    | Immediately, within 30 minutes |\n| Lost or stolen device                | ServiceDesk ext. 4357 or security@nimbus.example                             | Within 1 hour                  |\n| Data sent to wrong recipient         | security@nimbus.example and your manager                                     | Within 1 hour                  |\n| Service outage (NimbusOps or client) | Page the on-call via the incident bot: /incident declare in Slack            | Immediately                    |\n\n\n\n\n\nDo not try to investigate on your own, delete evidence, or contact the attacker. Do not discuss the incident on public channels."
+    },
+    {
+     "n": 3,
+     "title": "Acceptable Use Policy",
+     "text": "## 5. Email and collaboration\n\n| Allowed                                                                    | Not allowed                                                                   |\n|----------------------------------------------------------------------------|-------------------------------------------------------------------------------|\n| Business communication on Nimbus email, Slack, Teams (for client meetings) | Auto-forwarding Nimbus email to personal accounts                             |\n| Sharing files through Nimbus Google Drive / SharePoint with named people   | \"Anyone with the link\" sharing for Internal, Confidential or Restricted files |\n\n\n\n\n\n| Joining client collaboration tools when the client invites you   | Creating unofficial Slack or WhatsApp groups to share client data   |\n|------------------------------------------------------------------|---------------------------------------------------------------------|\n| Reporting suspicious mail to phish@nimbus.example                | Clicking links or opening attachments you were not expecting        |"
+    }
+   ]
+  }
+ },
+ {
+  "id": 190,
+  "kind": "answerable",
+  "asker": "owner@kaveri.example",
+  "doc": "Careers at Kaveri – Roles, Hiring and Internships",
+  "q": "Which NISM certification does a research analyst need after joining Kaveri, and by when?",
+  "reference": "NISM Series XV: Research Analyst, within 90 days of joining.",
+  "A": {
+   "abstained": false,
+   "answer": "A research analyst needs NISM Series XV: Research Analyst certification, within 90 days of joining Kaveri Capital. [1][2]",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Careers at Kaveri – Roles, Hiring and Internships",
+     "text": "## 5. Certifications some roles need\n\nSEBI requires certain roles to hold a certificate from the National Institute of Securities Markets (NISM). You do not need it to apply, but you must pass it by the deadline after joining. Kaveri reimburses the exam fee for the first two attempts.\n\n| Role | NISM certification needed | Deadline after joining |\n|---|---|---|\n| Research analyst | Series XV: Research Analyst | 90 days |\n| PMS relationship manager | Series XXI-A: PMS Distributors | 90 days |\n| Mutual fund sales / distribution | Series V-A: Mutual Fund Distributors | 90 days |\n| Dealer | Series VIII: Equity Derivatives, and Series V-A | 90 days |\n| Fund accounting (Operations) | Series V-B: Mutual Fund Foundation | 180 days |\n| Compliance officer | Series III-A: Securities Intermediaries Compliance | 180 days |\n| PMS portfolio manager | Series XXI-B: Portfolio Managers | Before appointment |\n\nSomeone who misses the deadline moves to a role that does not need the certificate until they pass."
+    },
+    {
+     "n": 2,
+     "title": "Learning and Certification Policy – NISM",
+     "text": "## 3. Mandatory certifications by role\n\n| Role                                             | Mandatory NISM certification                            | Deadline for new joiners   |\n|--------------------------------------------------|---------------------------------------------------------|----------------------------|\n| PMS portfolio managers and principal officer     | NISM Series XXI-B: Portfolio Managers                   | Before appointment         |\n| PMS relationship managers and distribution staff | NISM Series XXI-A: PMS Distributors                     | Within 90 days of joining  |\n| Research analysts                                | NISM Series XV: Research Analyst                        | Within 90 days of joining  |\n| Mutual fund distribution / sales staff           | NISM Series V-A: Mutual Fund Distributors               | Within 90 days of joining  |\n| Compliance officers                              | NISM Series III-A: Securities Intermediaries Compliance | Within 180 days of joining |\n| Investment advisory staff (wealth)               | NISM Series X-A and X-B: Investment Adviser             | Within 180 days of joining |\n| Operations (fund accounting)                     | NISM Series V-B: Mutual Fund Foundation                 | Within 180 days of joining |\n| AIF team                                         | NISM Series XIX-C: Alternative Investment Fund Managers | Within 90 days of joining  |\n\nAn employee who does not pass the required certification by the deadline is moved to a non-client-facing role (or a role that does not require the certificate) until it is obtained. They may not sign research reports, advise clients or manage portfolios."
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "A research analyst needs NISM Series XV: Research Analyst certification, and must pass it within 90 days of joining Kaveri. [1][2]",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Careers at Kaveri – Roles, Hiring and Internships",
+     "text": "## 5. Certifications some roles need\n\nSEBI requires certain roles to hold a certificate from the National Institute of Securities Markets (NISM). You do not need it to apply, but you must pass it by the deadline after joining. Kaveri reimburses the exam fee for the first two attempts.\n\n| Role | NISM certification needed | Deadline after joining |\n|---|---|---|\n| Research analyst | Series XV: Research Analyst | 90 days |\n| PMS relationship manager | Series XXI-A: PMS Distributors | 90 days |\n| Mutual fund sales / distribution | Series V-A: Mutual Fund Distributors | 90 days |\n| Dealer | Series VIII: Equity Derivatives, and Series V-A | 90 days |\n| Fund accounting (Operations) | Series V-B: Mutual Fund Foundation | 180 days |\n| Compliance officer | Series III-A: Securities Intermediaries Compliance | 180 days |\n| PMS portfolio manager | Series XXI-B: Portfolio Managers | Before appointment |\n\nSomeone who misses the deadline moves to a role that does not need the certificate until they pass."
+    },
+    {
+     "n": 2,
+     "title": "Learning and Certification Policy – NISM",
+     "text": "## 3. Mandatory certifications by role\n\n| Role                                             | Mandatory NISM certification                            | Deadline for new joiners   |\n|--------------------------------------------------|---------------------------------------------------------|----------------------------|\n| PMS portfolio managers and principal officer     | NISM Series XXI-B: Portfolio Managers                   | Before appointment         |\n| PMS relationship managers and distribution staff | NISM Series XXI-A: PMS Distributors                     | Within 90 days of joining  |\n| Research analysts                                | NISM Series XV: Research Analyst                        | Within 90 days of joining  |\n| Mutual fund distribution / sales staff           | NISM Series V-A: Mutual Fund Distributors               | Within 90 days of joining  |\n| Compliance officers                              | NISM Series III-A: Securities Intermediaries Compliance | Within 180 days of joining |\n| Investment advisory staff (wealth)               | NISM Series X-A and X-B: Investment Adviser             | Within 180 days of joining |\n| Operations (fund accounting)                     | NISM Series V-B: Mutual Fund Foundation                 | Within 180 days of joining |\n| AIF team                                         | NISM Series XIX-C: Alternative Investment Fund Managers | Within 90 days of joining  |\n\nAn employee who does not pass the required certification by the deadline is moved to a non-client-facing role (or a role that does not require the certificate) until it is obtained. They may not sign research reports, advise clients or manage portfolios."
+    }
+   ]
+  }
+ },
+ {
+  "id": 191,
+  "kind": "answerable",
+  "asker": "product@nimbus.example",
+  "doc": "BRD – NimbusOps AI Alert Summaries",
+  "q": "Which NimbusOps plans get AI alert summaries?",
+  "reference": "Standard (up to 1,000 incidents per month per account) and Enterprise (unlimited); Starter does not get it.",
+  "A": {
+   "abstained": false,
+   "answer": "**Standard** and **Enterprise** plans include AI alert summaries; the **Starter** plan does not [1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "BRD – NimbusOps AI Alert Summaries",
+     "text": "### 4. Plan availability\n\n| **Plan**   | **AI alert summaries**   | **Notes**                                                                           |\n|------------|--------------------------|-------------------------------------------------------------------------------------|\n| Starter    | **Not included**         | Starter evaluates alerts every 60 seconds and has no incident grouping              |\n| Standard   | **Included**             | Grouping and summaries for up to 1,000 incidents per month per account              |\n| Enterprise | **Included**             | Unlimited incidents, plus weekly noise report and summary export via the public API |\n\nNo separate add-on is planned for Starter in FY27. Commercial terms for Standard and Enterprise are unchanged by this feature; pricing decisions are owned by Sales and are outside this BRD."
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "Standard and Enterprise plans include AI alert summaries; Starter does not [1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "BRD – NimbusOps AI Alert Summaries",
+     "text": "### 4. Plan availability\n\n| **Plan**   | **AI alert summaries**   | **Notes**                                                                           |\n|------------|--------------------------|-------------------------------------------------------------------------------------|\n| Starter    | **Not included**         | Starter evaluates alerts every 60 seconds and has no incident grouping              |\n| Standard   | **Included**             | Grouping and summaries for up to 1,000 incidents per month per account              |\n| Enterprise | **Included**             | Unlimited incidents, plus weekly noise report and summary export via the public API |\n\nNo separate add-on is planned for Starter in FY27. Commercial terms for Standard and Enterprise are unchanged by this feature; pricing decisions are owned by Sales and are outside this BRD."
+    }
+   ]
+  }
+ },
+ {
+  "id": 192,
+  "kind": "denied",
+  "asker": "employee@nimbus.example",
+  "doc": "BRD – NimbusOps AI Alert Summaries",
+  "q": "Which NimbusOps plans get AI alert summaries?",
+  "reference": "Standard (up to 1,000 incidents per month per account) and Enterprise (unlimited); Starter does not get it.",
+  "A": {
+   "abstained": false,
+   "answer": "Standard and Enterprise plans include AI alert summaries starting January 2027 [1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "NimbusOps Product FAQ",
+     "text": "## 2. Plans\n\nNimbusOps has three plans. All plans are billed per monitored host per month, on an annual contract.\n\n| Feature | Starter | Standard | Enterprise |\n|---|---|---|---|\n| Alert evaluation interval | 60 seconds | 30 seconds | 30 seconds |\n| Metric history | 15 days | 13 months | 13 months |\n| Log retention | – | 30 days | 90 days |\n| Notifications | Email and Slack | All integrations | All integrations |\n| Single sign-on (SAML / OIDC) | – | – | Yes |\n| Audit log export | – | – | Yes |\n| Availability SLA with service credits | – | – | Yes (99.9%) |\n| Named Customer Success Manager | – | – | Yes |\n| AI alert summaries (from January 2027) | – | Yes | Yes |"
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "Standard and Enterprise plans include AI alert summaries (starting January 2027); the Starter plan does not. [1]",
+   "cited": [
+    {
+     "n": 1,
+     "title": "NimbusOps Product FAQ",
+     "text": "## 2. Plans\n\nNimbusOps has three plans. All plans are billed per monitored host per month, on an annual contract.\n\n| Feature | Starter | Standard | Enterprise |\n|---|---|---|---|\n| Alert evaluation interval | 60 seconds | 30 seconds | 30 seconds |\n| Metric history | 15 days | 13 months | 13 months |\n| Log retention | – | 30 days | 90 days |\n| Notifications | Email and Slack | All integrations | All integrations |\n| Single sign-on (SAML / OIDC) | – | – | Yes |\n| Audit log export | – | – | Yes |\n| Availability SLA with service credits | – | – | Yes (99.9%) |\n| Named Customer Success Manager | – | – | Yes |\n| AI alert summaries (from January 2027) | – | Yes | Yes |"
+    }
+   ]
+  }
+ },
+ {
+  "id": 193,
+  "kind": "answerable",
+  "asker": "employee@nimbus.example",
+  "doc": "Travel and Expense Policy",
+  "q": "Which class can I fly on a 10-hour international flight for work?",
+  "reference": "Premium economy, because the flight time is above 8 hours (economy applies under 8 hours).",
+  "A": {
+   "abstained": false,
+   "answer": "You may travel in **premium economy** on a 10‑hour international flight for work [1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Travel and Expense Policy",
+     "text": "## 4.1 Class of travel\n\n- Domestic flights: economy class for all grades.\n- International flights: economy class when the scheduled flight time is under 8 hours; premium economy when the flight time is above 8 hours.\n- Rail: AC 2-tier, or AC chair car for day trips under 6 hours.\n\nFlight time means the scheduled duration of the longest single sector, not total journey time including layovers."
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "For a 10‑hour international flight you may fly **premium economy** (flight time above 8 hours) [1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Travel and Expense Policy",
+     "text": "## 4.1 Class of travel\n\n- Domestic flights: economy class for all grades.\n- International flights: economy class when the scheduled flight time is under 8 hours; premium economy when the flight time is above 8 hours.\n- Rail: AC 2-tier, or AC chair car for day trips under 6 hours.\n\nFlight time means the scheduled duration of the longest single sector, not total journey time including layovers."
+    }
+   ]
+  }
+ },
+ {
+  "id": 194,
+  "kind": "not_found",
+  "asker": "owner@kaveri.example",
+  "doc": null,
+  "q": "Which insurer provides Kaveri's directors and officers (D&O) liability cover, and for what amount?",
+  "reference": "not found",
+  "A": {
+   "abstained": true,
+   "answer": "Not found in your documents.\nNo document you can open answers this, so Atlas did not guess.",
+   "cited": []
+  },
+  "B": {
+   "abstained": false,
+   "answer": "The provided passages do not mention Kaveri's directors and officers (D&O) liability cover, the insurer, or the coverage amount. The documents cover AML policy, travel and entertainment policy, personal trading policy, KYC/CDD policy, and distributor empanelment terms, but not insurance details.",
+   "cited": []
+  }
+ },
+ {
+  "id": 195,
+  "kind": "answerable",
+  "asker": "ops@kaveri.example",
+  "doc": "Business Continuity and Disaster Recovery Plan",
+  "q": "Which office takes over if Bengaluru HQ is down?",
+  "reference": "Operations and Fund Accounting move to the Pune DR site; investment decision-making moves to Mumbai BKC.",
+  "A": {
+   "abstained": false,
+   "answer": "If Bengaluru HQ is unavailable, **Operations, Fund Accounting and Technology shift to the Pune DR site**, while **investment decision‑making and the dealing desk move to the Mumbai BKC office** (where the CIO and fund managers relocate) [1][1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Business Continuity and Disaster Recovery Plan",
+     "text": "### 2. Sites\n\n| **Site**                        | **Role in normal times**                                                                                   | **Role in a disruption**                                                                  |\n|---------------------------------|------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------|\n| Bengaluru head office (MG Road) | Primary site for Investments, Research, Operations, Fund Accounting, Risk, Compliance, Finance, Technology | —                                                                                         |\n| Pune (Baner) – DR site          | Retail distribution branch; hosts the disaster recovery data centre and 20 standby seats                   | **Takes over Operations, Fund Accounting and Technology if Bengaluru HQ is down**         |\n| Mumbai (BKC)                    | Dealing desk, institutional sales, PMS relationship managers                                               | **Takes over fund management and dealing decisions; CIO and fund managers relocate here** |\n| Chennai (Anna Salai)            | Investor service centre                                                                                    | Backup for investor call centre and complaints                                            |\n| New Delhi (Connaught Place)     | Distribution and PMS sales                                                                                 | Work-from-home fallback only                                                              |\n\n2.1 If Bengaluru HQ is unavailable, **Operations and Fund Accounting move to the Pune DR site**, and **investment decision-mak"
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "Pune (Baner) DR site takes over Operations, Fund Accounting and Technology, while Mumbai BKC takes over fund management and dealing decisions, with the CIO and fund managers relocating there. [1]",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Business Continuity and Disaster Recovery Plan",
+     "text": "### 2. Sites\n\n| **Site**                        | **Role in normal times**                                                                                   | **Role in a disruption**                                                                  |\n|---------------------------------|------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------|\n| Bengaluru head office (MG Road) | Primary site for Investments, Research, Operations, Fund Accounting, Risk, Compliance, Finance, Technology | —                                                                                         |\n| Pune (Baner) – DR site          | Retail distribution branch; hosts the disaster recovery data centre and 20 standby seats                   | **Takes over Operations, Fund Accounting and Technology if Bengaluru HQ is down**         |\n| Mumbai (BKC)                    | Dealing desk, institutional sales, PMS relationship managers                                               | **Takes over fund management and dealing decisions; CIO and fund managers relocate here** |\n| Chennai (Anna Salai)            | Investor service centre                                                                                    | Backup for investor call centre and complaints                                            |\n| New Delhi (Connaught Place)     | Distribution and PMS sales                                                                                 | Work-from-home fallback only                                                              |\n\n2.1 If Bengaluru HQ is unavailable, **Operations and Fund Accounting move to the Pune DR site**, and **investment decision-mak"
+    }
+   ]
+  }
+ }
+]

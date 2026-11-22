@@ -67,6 +67,16 @@ def test_cite_check_streaming_split_markers() -> None:
     assert c.dropped == [9]
 
 
+def test_cite_check_reads_gpt_oss_style_markers() -> None:
+    # the gpt-oss fallback models write 【n】 or 【n†source】 (found by the Phase 6 exam)
+    text, order = citations.check("Fee is ₹3,500【2】. Due 6 Nov【1†L3-L5】【9】.", passages=2)
+    assert text == "Fee is ₹3,500[1]. Due 6 Nov[2]."
+    assert order == [2, 1]
+    c = citations.Citations(passages=1)
+    out = "".join(c.feed(d) for d in ["Fee ₹3,500 【", "1†sou", "rce】 ok"]) + c.flush()
+    assert out == "Fee ₹3,500 [1] ok"
+
+
 def test_cite_check_keeps_plain_brackets() -> None:
     text, order = citations.check("See [the policy] and [2].", passages=2)
     assert text == "See [the policy] and [1]."

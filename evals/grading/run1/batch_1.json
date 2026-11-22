@@ -1,0 +1,931 @@
+[
+ {
+  "id": 28,
+  "kind": "answerable",
+  "asker": "analyst@kaveri.example",
+  "doc": "Mandatory Block Leave Policy",
+  "q": "How long must the mandatory block leave be for dealers and fund managers, and why is it required?",
+  "reference": "10 consecutive working days every calendar year; it is a fraud-control measure so that someone else runs their book while they are away.",
+  "A": {
+   "abstained": false,
+   "answer": "The mandatory block leave for dealers and fund managers must be **10 consecutive working days** each calendar year [1][2]. It is required by the Mandatory Block Leave Policy, which obliges every covered employee to take this block annually and debits it from their privilege leave [2].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Leave Policy 2026",
+     "text": "## 4. Privilege leave\n\n- 4.1 PL is intended for planned vacations and must be applied for at least 10 working days in advance for periods of 3 days or more.\n- 4.2 PL may be taken in half-day units.\n\n\n\n\n\n- 4.3 Dealers and fund managers must also take mandatory block leave of 10 consecutive working days every year under the Mandatory Block Leave Policy (KCA/HR/POL-002). PL is used for the block leave.\n- 4.4 PL above the 30-day accumulation cap lapses on 31 December each year."
+    },
+    {
+     "n": 2,
+     "title": "Mandatory Block Leave Policy",
+     "text": "## 3. The requirement\n\n- 3.1 Each covered employee must take 10 consecutive working days of leave in every calendar year.\n- 3.2 Weekends and public holidays falling within the block do not count toward the 10 working days, but do not break continuity.\n- 3.3 The block is debited from the employee's privilege leave (20 days per year under the Leave Policy 2026). If PL is insufficient, HR will grant special leave for the shortfall.\n- 3.4 The block may not be split. A block interrupted by a recall (see section 7) must be retaken in full."
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "Dealers and fund managers must take 10 consecutive working days of mandatory block leave every calendar year [1][2]. The provided documents do not explain why the block leave is required.",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Leave Policy 2026",
+     "text": "## 4. Privilege leave\n\n- 4.1 PL is intended for planned vacations and must be applied for at least 10 working days in advance for periods of 3 days or more.\n- 4.2 PL may be taken in half-day units.\n\n\n\n\n\n- 4.3 Dealers and fund managers must also take mandatory block leave of 10 consecutive working days every year under the Mandatory Block Leave Policy (KCA/HR/POL-002). PL is used for the block leave.\n- 4.4 PL above the 30-day accumulation cap lapses on 31 December each year."
+    },
+    {
+     "n": 2,
+     "title": "Mandatory Block Leave Policy",
+     "text": "## 3. The requirement\n\n- 3.1 Each covered employee must take 10 consecutive working days of leave in every calendar year.\n- 3.2 Weekends and public holidays falling within the block do not count toward the 10 working days, but do not break continuity.\n- 3.3 The block is debited from the employee's privilege leave (20 days per year under the Leave Policy 2026). If PL is insufficient, HR will grant special leave for the shortfall.\n- 3.4 The block may not be split. A block interrupted by a recall (see section 7) must be retaken in full."
+    }
+   ]
+  }
+ },
+ {
+  "id": 29,
+  "kind": "answerable",
+  "asker": "manager@nimbus.example",
+  "doc": "Harbor Logistics – Incident Post-Mortem INC-2291",
+  "q": "How long was HarborTrack down during INC-2291 and what service credit did Harbor receive?",
+  "reference": "2 hours 47 minutes; a service credit of USD 17,500, i.e. 5% of the USD 112,500 monthly managed cloud operations fee.",
+  "A": {
+   "abstained": false,
+   "answer": "HarborTrack was down for **2 hours 47 minutes** during INC-2291, and Harbor received a **service credit of USD 17,500** (5% of the monthly managed services fee) [1][2].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Harbor Logistics – Cloud Migration Status Report Q1 FY27",
+     "text": "## 5. INC-2291 summary\n\nOn 11 June 2026 the HarborTrack warehouse management system was unavailable for 2 hours 47 minutes after a Terraform change made during the wave 9 cutover removed database access for the application tier. Thirty-eight distribution centres could not release outbound shipments. A service credit of USD 17,500 (5% of the monthly managed services fee) was issued under the MSA. The full post-mortem is document NIM/DEL/ RPT-006. Seven corrective actions were agreed; five are closed and two are due by 31 July 2026."
+    },
+    {
+     "n": 2,
+     "title": "Harbor Logistics – Incident Post-Mortem INC-2291",
+     "text": "## 1. Summary\n\n| Item                | Detail                                                         |\n|---------------------|----------------------------------------------------------------|\n| Incident            | INC-2291 - HarborTrack WMS unavailable                         |\n| Client              | Harbor Logistics Inc.                                          |\n| Date                | Thursday 11 June 2026                                          |\n| Start (impact)      | 02:14 ET (11:44 IST)                                           |\n| Mitigated           | 05:01 ET (14:31 IST)                                           |\n| Duration of impact  | 2 hours 47 minutes                                             |\n| Severity            | SEV1 (customer-wide outage of a business-critical application) |\n| Incident Commander  | Daniel Brooks, Engagement Lead                                 |\n| Root cause category | Change management - infrastructure-as-code                     |\n| Service credit      | USD 17,500 (5% of monthly managed services fee)                |\n\nThis is a blameless review. Its purpose is to understand how our systems and processes allowed the failure and to prevent recurrence."
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "HarborTrack was unavailable for 2 hours 47 minutes during INC-2291 [1][2][3][4]. Harbor received a service credit of USD 17,500, equal to 5% of the monthly managed services fee [1][5][2].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Harbor Logistics – Cloud Migration Status Report Q1 FY27",
+     "text": "## 5. INC-2291 summary\n\nOn 11 June 2026 the HarborTrack warehouse management system was unavailable for 2 hours 47 minutes after a Terraform change made during the wave 9 cutover removed database access for the application tier. Thirty-eight distribution centres could not release outbound shipments. A service credit of USD 17,500 (5% of the monthly managed services fee) was issued under the MSA. The full post-mortem is document NIM/DEL/ RPT-006. Seven corrective actions were agreed; five are closed and two are due by 31 July 2026."
+    },
+    {
+     "n": 2,
+     "title": "Harbor Logistics – Incident Post-Mortem INC-2291",
+     "text": "## 1. Summary\n\n| Item                | Detail                                                         |\n|---------------------|----------------------------------------------------------------|\n| Incident            | INC-2291 - HarborTrack WMS unavailable                         |\n| Client              | Harbor Logistics Inc.                                          |\n| Date                | Thursday 11 June 2026                                          |\n| Start (impact)      | 02:14 ET (11:44 IST)                                           |\n| Mitigated           | 05:01 ET (14:31 IST)                                           |\n| Duration of impact  | 2 hours 47 minutes                                             |\n| Severity            | SEV1 (customer-wide outage of a business-critical application) |\n| Incident Commander  | Daniel Brooks, Engagement Lead                                 |\n| Root cause category | Change management - infrastructure-as-code                     |\n| Service credit      | USD 17,500 (5% of monthly managed services fee)                |\n\nThis is a blameless review. Its purpose is to understand how our systems and processes allowed the failure and to prevent recurrence."
+    },
+    {
+     "n": 3,
+     "title": "Harbor Logistics – Incident Post-Mortem INC-2291",
+     "text": "## 2. Impact\n\n- HarborTrack, Harbor's warehouse management system, could not connect to its PostgreSQL database for 2 hours 47 minutes.\n- 38 of 41 distribution centres were unable to release outbound shipments or print shipping labels. The three remaining sites run a legacy local system.\n- Approximately 11,400 orders were delayed; Harbor estimates 2,300 missed same-day carrier pickups.\n- No data was lost. All queued scanner transactions were replayed after recovery."
+    },
+    {
+     "n": 4,
+     "title": "Harbor Logistics – Incident Post-Mortem INC-2291",
+     "text": "## 4. Timeline (Eastern Time)\n\n| Time   | Event                                                                                                                                                                                             |\n|--------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|\n| 01:30  | Wave 9 cutover window opens (approved change CHG-HL-1182).                                                                                                                                        |\n| 01:52  | Terraform apply for module ht-network starts. Plan showed \"1 to add, 1 to change, 1 to destroy\" for security groups.                                                                              |\n| 02:09  | Old sg-ht-db replaced; new group created without the inbound rule from the HarborTrack app subnets (rule referenced a variable left empty in the wave 9 tfvars).                                  |\n| 02:14  | HarborTrack app servers start failing database connections. Scanners at distribution centres show \"Server unavailable\".                                                                           |\n| 02:31  | First call from Harbor's Atlanta DC to Harbor service desk. Nimbus NOC not yet alerted: the database connectivity check for HarborTrack was scheduled to be onboarded to NimbusOps after cutover. |\n| 02:46  | Harbor service desk calls Nimbus NOC (Bengaluru). P1 opened; SEV1 declared at 02:51.                                                                                                              |\n| 02:58  | Bridge opened; Daniel Brooks takes IC role. Migration team assumes app-tier misconfiguration and start"
+    },
+    {
+     "n": 5,
+     "title": "Harbor Logistics – Incident Post-Mortem INC-2291",
+     "text": "## 9. Commercial outcome\n\nUnder the MSA service level schedule, a P1 outage of a business-critical application exceeding 2 hours earns a service credit of 5% of the monthly managed cloud operations fee (USD 112,500), i.e. USD 17,500, applied to the June 2026 invoice. Harbor accepted the credit and this report at the steering committee on 15 July 2026."
+    }
+   ]
+  }
+ },
+ {
+  "id": 30,
+  "kind": "answerable",
+  "asker": "qa@sanjeevani.example",
+  "doc": "ANDA Submission Status Tracker",
+  "q": "How many ANDA approvals did Sanjeevani receive in FY2025-26, and for which applications?",
+  "reference": "Three: ANDAs 215529 (telmisartan), 216604 (glimepiride) and 217248 (atorvastatin).",
+  "A": {
+   "abstained": false,
+   "answer": "Sanjeevani received **three ANDA approvals in FY2025‑26**: ANDA 215529 (Telmisartan tablets), ANDA 216604 (Glimepiride tablets) and ANDA 217248 (Atorvastatin calcium tablets) [1][2].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "ANDA Submission Status Tracker",
+     "text": "2, 4 mg        | 15 Apr 2025         | Jun 2025        | 31.2                          |\n|         217248 | Atorvastatin calcium tablets   | 10, 20, 40, 80 mg | 26 Feb 2026         | May 2026        | — (launched FY27)             |\n\nThree approvals (215529, 216604 and 217248) were received in FY2025-26. Total FY26 US generics revenue of ₹512 crore also includes ₹41.8 crore from contract supply agreements not shown above. Approval of 217248 followed within one week of the NAI classification of the February 2026 re-inspection."
+    },
+    {
+     "n": 2,
+     "title": "ANDA Submission Status Tracker",
+     "text": "### 2. Approved ANDAs\n\n|   **ANDA no.** | **Product**                    | **Strengths**     | **Approval date**   | **US launch**   | **FY26 US sales (₹ crore)**   |\n|----------------|--------------------------------|-------------------|---------------------|-----------------|-------------------------------|\n|         207714 | Metformin HCl ER tablets       | 500 mg            | 14 May 2019         | Jul 2019        | 96.4                          |\n|         208302 | Amlodipine besylate tablets    | 2.5, 5, 10 mg     | 22 Nov 2019         | Jan 2020        | 58.1                          |\n|         209951 | Pantoprazole sodium DR tablets | 20, 40 mg         | 03 Mar 2020         | Apr 2020        | 72.6                          |\n|         211458 | Rosuvastatin calcium tablets   | 5, 10, 20, 40 mg  | 19 Aug 2021         | Oct 2021        | 81.9                          |\n|         212870 | Losartan potassium tablets     | 25, 50, 100 mg    | 07 Jun 2022         | Aug 2022        | 44.0                          |\n|         214163 | Montelukast sodium tablets     | 10 mg             | 28 Feb 2023         | Apr 2023        | 38.7                          |\n|         215529 | Telmisartan tablets            | 20, 40, 80 mg     | 11 Jun 2025         | Aug 2025        | 47.3                          |\n|         216604 | Glimepiride tablets            | 1, 2, 4 mg        | 15 Apr 2025         | Jun 2025        | 31.2                          |\n|         217248 | Atorvastatin calcium tablets   | 10, 20, 40,"
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "Sanjeevani received **three** ANDA approvals in FY2025‑26: **ANDA 215529, 216604, and 217248** [1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "ANDA Submission Status Tracker",
+     "text": "2, 4 mg        | 15 Apr 2025         | Jun 2025        | 31.2                          |\n|         217248 | Atorvastatin calcium tablets   | 10, 20, 40, 80 mg | 26 Feb 2026         | May 2026        | — (launched FY27)             |\n\nThree approvals (215529, 216604 and 217248) were received in FY2025-26. Total FY26 US generics revenue of ₹512 crore also includes ₹41.8 crore from contract supply agreements not shown above. Approval of 217248 followed within one week of the NAI classification of the February 2026 re-inspection."
+    }
+   ]
+  }
+ },
+ {
+  "id": 31,
+  "kind": "denied",
+  "asker": "sales@sanjeevani.example",
+  "doc": "ANDA Submission Status Tracker",
+  "q": "How many ANDA approvals did Sanjeevani receive in FY2025-26, and for which applications?",
+  "reference": "Three: ANDAs 215529 (telmisartan), 216604 (glimepiride) and 217248 (atorvastatin).",
+  "A": {
+   "abstained": true,
+   "answer": "Not found in your documents.\nNo document you can open answers this, so Atlas did not guess.",
+   "cited": []
+  },
+  "B": {
+   "abstained": false,
+   "answer": "The provided passages do not contain any information about ANDA approvals received by Sanjeevani in FY2025‑26 or the specific applications involved. The documents cover company overview, a product recall policy, a product sheet for Cough Relief Syrup, and HR‑related FAQs, but no regulatory approval data.",
+   "cited": []
+  }
+ },
+ {
+  "id": 32,
+  "kind": "answerable",
+  "asker": "manager@nimbus.example",
+  "doc": "Harbor Logistics – Account Overview",
+  "q": "How many Harbor Logistics applications had been migrated to AWS by 30 June 2026?",
+  "reference": "287 of 412 applications (70%).",
+  "A": {
+   "abstained": false,
+   "answer": "287 applications had been migrated to AWS by 30 June 2026 [1][2][3].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Harbor Logistics – Cloud Migration Status Report Q1 FY27",
+     "text": "## 1. Executive summary\n\nOverall status: AMBER.\n\nThe migration factory completed waves 8 and 9 in the quarter, moving 74 applications to AWS and bringing the total to 287 of 412 applications (70%). Cost and quality metrics are on track. Status is Amber because of the HarborTrack outage during the wave 9 cutover on 11 June 2026 (INC-2291) and a schedule risk on the mainframe-dependent applications in waves 13-14. The Memphis data centre exit date of 31 December 2026 is unchanged but now has only 9 days of float.\n\n| Dimension   | Status   | Comment                                            |\n|-------------|----------|----------------------------------------------------|\n| Schedule    | Amber    | Waves 8-9 on time; waves 13-14 at risk (mainframe) |\n| Budget      | Green    | 2.1% under plan year to date                       |\n| Quality     | Amber    | One SEV1 (INC-2291); rollback rate 3.4%            |\n| Scope       | Green    | 2 applications added, 3 retired by change request  |\n| People      | Amber    | Bengaluru NOC attrition                            |"
+    },
+    {
+     "n": 2,
+     "title": "Harbor Logistics – Account Overview",
+     "text": "#### 2.2 Progress at a glance (30 June 2026)\n\n| **Measure**                                      | **Value**               |\n|--------------------------------------------------|-------------------------|\n| Applications migrated                            | 287 of 412 (70%)        |\n| Waves complete                                   | 9 of 14                 |\n| Memphis data centre exit target                  | 31 December 2026        |\n| On-prem servers decommissioned                   | 1,140 of 1,690          |\n| Harbor infrastructure run-cost reduction to date | 27% vs. FY2023 baseline |"
+    },
+    {
+     "n": 3,
+     "title": "Harbor Logistics – Cloud Migration Status Report Q1 FY27",
+     "text": "## 2. Progress by wave\n\n| Wave   |   Applications | Planned cutover     | Actual cutover                              | Status                |\n|--------|----------------|---------------------|---------------------------------------------|-----------------------|\n| 1-7    |            213 | Oct 2023 - Mar 2026 | As planned                                  | Complete              |\n| 8      |             38 | 16 May 2026         | 16 May 2026                                 | Complete              |\n| 9      |             36 | 6-13 June 2026      | 13 June 2026 (one app moved after INC-2291) | Complete              |\n| 10     |             31 | 22 August 2026      | -                                           | In preparation        |\n| 11     |             29 | 26 September 2026   | -                                           | Discovery complete    |\n| 12     |             27 | 31 October 2026     | -                                           | Discovery in progress |\n| 13     |             22 | 21 November 2026    | -                                           | At risk (mainframe)   |\n| 14     |             16 | 12 December 2026    | -                                           | At risk (mainframe)   |\n\n\n\n\n\n| Total   | 412   | 287 migrated   |\n|---------|-------|----------------|\n\nDisposition of the 287 migrated applications: 171 rehosted, 89 replatformed, 15 refactored, 12 retired."
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "By 30 June 2026, 287 of 412 Harbor Logistics applications (70%) had been migrated to AWS. [1][2]",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Harbor Logistics – Cloud Migration Status Report Q1 FY27",
+     "text": "## 1. Executive summary\n\nOverall status: AMBER.\n\nThe migration factory completed waves 8 and 9 in the quarter, moving 74 applications to AWS and bringing the total to 287 of 412 applications (70%). Cost and quality metrics are on track. Status is Amber because of the HarborTrack outage during the wave 9 cutover on 11 June 2026 (INC-2291) and a schedule risk on the mainframe-dependent applications in waves 13-14. The Memphis data centre exit date of 31 December 2026 is unchanged but now has only 9 days of float.\n\n| Dimension   | Status   | Comment                                            |\n|-------------|----------|----------------------------------------------------|\n| Schedule    | Amber    | Waves 8-9 on time; waves 13-14 at risk (mainframe) |\n| Budget      | Green    | 2.1% under plan year to date                       |\n| Quality     | Amber    | One SEV1 (INC-2291); rollback rate 3.4%            |\n| Scope       | Green    | 2 applications added, 3 retired by change request  |\n| People      | Amber    | Bengaluru NOC attrition                            |"
+    },
+    {
+     "n": 2,
+     "title": "Harbor Logistics – Account Overview",
+     "text": "#### 2.2 Progress at a glance (30 June 2026)\n\n| **Measure**                                      | **Value**               |\n|--------------------------------------------------|-------------------------|\n| Applications migrated                            | 287 of 412 (70%)        |\n| Waves complete                                   | 9 of 14                 |\n| Memphis data centre exit target                  | 31 December 2026        |\n| On-prem servers decommissioned                   | 1,140 of 1,690          |\n| Harbor infrastructure run-cost reduction to date | 27% vs. FY2023 baseline |"
+    }
+   ]
+  }
+ },
+ {
+  "id": 33,
+  "kind": "answerable",
+  "asker": "owner@sanjeevani.example",
+  "doc": "Stockist Credit and Collections Policy",
+  "q": "How many credit days does a stockist get?",
+  "reference": "30 days from invoice date (15 days for a new stockist in its first 6 months).",
+  "A": {
+   "abstained": false,
+   "answer": "A stockist (distributor) gets **30 days from invoice date** as credit period [1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Stockist Credit and Collections Policy",
+     "text": "## 4. Credit terms\n\n| Customer type                         | Credit period             | Security required                          |\n|---------------------------------------|---------------------------|--------------------------------------------|\n| Stockist (distributor)                | 30 days from invoice date | Security deposit ₹2 lakh plus NACH mandate |\n| Super-stockist (North-East and J&K)   | 45 days                   | Security deposit ₹5 lakh plus NACH mandate |\n| Private hospital / nursing home chain | 45 days                   | Post-dated cheques for 2 months' purchases |\n| Government tender (central or state)  | 90 days, or as per tender | Performance guarantee as per tender        |\n| New stockist (first 6 months)         | 15 days                   | Security deposit ₹2 lakh plus NACH mandate |\n\n\n\n\n\n- 4.1 A cash discount of 1% of invoice value is given for payment received within 7 days of invoice. 4.2 Security deposits earn no interest and are refunded within 30 days after the account is closed and all dues are settled."
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "A stockist (distributor) gets **30 days from invoice date** as the standard credit period [1]. New stockists in their first 6 months receive only 15 days [1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Stockist Credit and Collections Policy",
+     "text": "## 4. Credit terms\n\n| Customer type                         | Credit period             | Security required                          |\n|---------------------------------------|---------------------------|--------------------------------------------|\n| Stockist (distributor)                | 30 days from invoice date | Security deposit ₹2 lakh plus NACH mandate |\n| Super-stockist (North-East and J&K)   | 45 days                   | Security deposit ₹5 lakh plus NACH mandate |\n| Private hospital / nursing home chain | 45 days                   | Post-dated cheques for 2 months' purchases |\n| Government tender (central or state)  | 90 days, or as per tender | Performance guarantee as per tender        |\n| New stockist (first 6 months)         | 15 days                   | Security deposit ₹2 lakh plus NACH mandate |\n\n\n\n\n\n- 4.1 A cash discount of 1% of invoice value is given for payment received within 7 days of invoice. 4.2 Security deposits earn no interest and are refunded within 30 days after the account is closed and all dues are settled."
+    }
+   ]
+  }
+ },
+ {
+  "id": 34,
+  "kind": "denied",
+  "asker": "salesmanager@sanjeevani.example",
+  "doc": "Stockist Credit and Collections Policy",
+  "q": "How many credit days does a stockist get?",
+  "reference": "30 days from invoice date (15 days for a new stockist in its first 6 months).",
+  "A": {
+   "abstained": false,
+   "answer": "A stockist gets **30 days** from the invoice date, as per the Stockist Credit and Collections Policy [1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Stockist and Distributor Agreement – Standard Terms",
+     "text": "### 5. Orders and stock\n\n| **Item**                 | **Standard term**                                                    |\n|--------------------------|----------------------------------------------------------------------|\n| Minimum order value      | ₹1,50,000 per order (excluding GST)                                  |\n| Minimum monthly purchase | ₹10 lakh in metros; ₹4 lakh in other towns                           |\n| Stock norm               | 30 days of sales of every focus brand                                |\n| Order cycle              | Orders by Monday and Thursday; dispatch from C&F within 48 hours     |\n| Payment                  | 30 days from invoice, per the Stockist Credit and Collections Policy |\n\n5.1 The stockist must maintain at least 98% availability of the four focus brands (Glucosan-M 500, Cardivas 10, Amlosan 5, Pantosan 40) to retailers in its territory."
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "A stockist gets 30 days of credit from the invoice date, per the Stockist Credit and Collections Policy. [1]",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Stockist and Distributor Agreement – Standard Terms",
+     "text": "### 5. Orders and stock\n\n| **Item**                 | **Standard term**                                                    |\n|--------------------------|----------------------------------------------------------------------|\n| Minimum order value      | ₹1,50,000 per order (excluding GST)                                  |\n| Minimum monthly purchase | ₹10 lakh in metros; ₹4 lakh in other towns                           |\n| Stock norm               | 30 days of sales of every focus brand                                |\n| Order cycle              | Orders by Monday and Thursday; dispatch from C&F within 48 hours     |\n| Payment                  | 30 days from invoice, per the Stockist Credit and Collections Policy |\n\n5.1 The stockist must maintain at least 98% availability of the four focus brands (Glucosan-M 500, Cardivas 10, Amlosan 5, Pantosan 40) to retailers in its territory."
+    }
+   ]
+  }
+ },
+ {
+  "id": 35,
+  "kind": "answerable",
+  "asker": "hr@nimbus.example",
+  "doc": "Leave Policy FY2026-27",
+  "q": "How many days of earned leave do Nimbus employees get per financial year?",
+  "reference": "18 days of earned leave per financial year, accrued at 1.5 days per completed month.",
+  "A": {
+   "abstained": false,
+   "answer": "Nimbus employees receive **18 days of earned leave per financial year** [1][2][3][4].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Leave Policy FY2026-27",
+     "text": "## 4.1 Accrual\n\nEmployees receive 18 days of earned leave per financial year, accrued at 1.5 days at the end of each completed month of service. Employees who join after the 15th of a month start accruing from the next month."
+    },
+    {
+     "n": 2,
+     "title": "Welcome to Nimbus",
+     "text": "## 5. How we work\n\n- **Working week:** Monday to Friday, 9.5 hours a day including breaks.\n- **Hybrid:** 3 office days a week. See the *Hybrid Work Policy* for anchor days and exceptions.\n- **Leave:** 18 days of earned leave, 10 days of casual/sick leave and 12 public holidays per financial year. See the *Leave Policy* (HR) and the *Holiday Calendar FY2026-27* for your city.\n- **Notice period:** 60 days, or 90 days for Senior Manager (L6) and above."
+    },
+    {
+     "n": 3,
+     "title": "Employee Benefits Guide",
+     "text": "## 6. Leave-related benefits\n\nLeave entitlements are set out in the Leave Policy FY2026-27 (HR Policies). In summary, each financial year employees receive 18 days of earned leave, 10 days of casual/sick leave and 12 public holidays. Maternity leave is 26 weeks under the Maternity Benefit Act and paternity leave is 2 weeks."
+    },
+    {
+     "n": 4,
+     "title": "Leave Policy FY2026-27",
+     "text": "## 3. Summary of entitlements\n\n| Leave type                | Entitlement per financial year                           | Accrual                                    | Carry forward               |\n|---------------------------|----------------------------------------------------------|--------------------------------------------|-----------------------------|\n| Earned leave (EL)         | 18 days                                                  | 1.5 days per completed month               | Up to 30 days               |\n| Casual/sick leave (CL/SL) | 10 days                                                  | Credited on 1 April (pro rata for joiners) | Not carried forward         |\n| Public holidays           | 12 days                                                  | As per city holiday calendar               | -                           |\n| Maternity leave           | 26 weeks                                                 | -                                          | -                           |\n| Paternity leave           | 2 weeks                                                  | -                                          | -                           |\n| Bereavement leave         | 5 working days per event                                 | -                                          | -                           |\n| Marriage leave            | 5 working days, once during employment                   | -                                          | -                           |\n| Compensatory off          | 1 day per holiday/weekend day worked at business request | -                                          | Must be used within 60 days |"
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "Nimbus employees receive **18 days of earned leave per financial year** [1][2][3][4].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Leave Policy FY2026-27",
+     "text": "## 4.1 Accrual\n\nEmployees receive 18 days of earned leave per financial year, accrued at 1.5 days at the end of each completed month of service. Employees who join after the 15th of a month start accruing from the next month."
+    },
+    {
+     "n": 2,
+     "title": "Welcome to Nimbus",
+     "text": "## 5. How we work\n\n- **Working week:** Monday to Friday, 9.5 hours a day including breaks.\n- **Hybrid:** 3 office days a week. See the *Hybrid Work Policy* for anchor days and exceptions.\n- **Leave:** 18 days of earned leave, 10 days of casual/sick leave and 12 public holidays per financial year. See the *Leave Policy* (HR) and the *Holiday Calendar FY2026-27* for your city.\n- **Notice period:** 60 days, or 90 days for Senior Manager (L6) and above."
+    },
+    {
+     "n": 3,
+     "title": "Employee Benefits Guide",
+     "text": "## 6. Leave-related benefits\n\nLeave entitlements are set out in the Leave Policy FY2026-27 (HR Policies). In summary, each financial year employees receive 18 days of earned leave, 10 days of casual/sick leave and 12 public holidays. Maternity leave is 26 weeks under the Maternity Benefit Act and paternity leave is 2 weeks."
+    },
+    {
+     "n": 4,
+     "title": "Leave Policy FY2026-27",
+     "text": "## 3. Summary of entitlements\n\n| Leave type                | Entitlement per financial year                           | Accrual                                    | Carry forward               |\n|---------------------------|----------------------------------------------------------|--------------------------------------------|-----------------------------|\n| Earned leave (EL)         | 18 days                                                  | 1.5 days per completed month               | Up to 30 days               |\n| Casual/sick leave (CL/SL) | 10 days                                                  | Credited on 1 April (pro rata for joiners) | Not carried forward         |\n| Public holidays           | 12 days                                                  | As per city holiday calendar               | -                           |\n| Maternity leave           | 26 weeks                                                 | -                                          | -                           |\n| Paternity leave           | 2 weeks                                                  | -                                          | -                           |\n| Bereavement leave         | 5 working days per event                                 | -                                          | -                           |\n| Marriage leave            | 5 working days, once during employment                   | -                                          | -                           |\n| Compensatory off          | 1 day per holiday/weekend day worked at business request | -                                          | Must be used within 60 days |"
+    }
+   ]
+  }
+ },
+ {
+  "id": 36,
+  "kind": "answerable",
+  "asker": "compliance@kaveri.example",
+  "doc": "Leave Policy 2026",
+  "q": "How many days of privilege leave do Kaveri Capital employees get per calendar year?",
+  "reference": "20 days of privilege leave per calendar year (plus 8 casual and 10 sick leave days).",
+  "A": {
+   "abstained": false,
+   "answer": "Kaveri Capital employees receive **20 days of privilege leave per calendar year** [1]. This is also confirmed in the benefits summary [2] and the Mandatory Block Leave Policy [3].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Leave Policy 2026",
+     "text": "## 3. Leave entitlements\n\n| Leave type           |   Days per calendar year | Credit                         | Carry forward             | Encashment                             |\n|----------------------|--------------------------|--------------------------------|---------------------------|----------------------------------------|\n| Privilege leave (PL) |                       20 | 5 days per quarter, in advance | Up to 30 days accumulated | On exit, up to 30 days at basic salary |\n| Casual leave (CL)    |                        8 | Full credit on 1 January       | No                        | No                                     |\n| Sick leave (SL)      |                       10 | Full credit on 1 January       | Up to 30 days accumulated | No                                     |\n| Optional holidays    |                        2 | From the published list        | No                        | No                                     |\n\nEach employee therefore receives 20 days of privilege leave, 8 days of casual leave and 10 days of sick leave per calendar year. Employees joining mid-year receive a pro-rata credit, rounded to the nearest half day."
+    },
+    {
+     "n": 2,
+     "title": "Careers at Kaveri – Roles, Hiring and Internships",
+     "text": "## 7. Benefits in brief\n\n| Benefit | Detail |\n|---|---|\n| Leave | 20 days privilege, 8 days casual, 10 days sick per calendar year |\n| Learning | Annual learning budget of ₹40,000 (G3–G4) or ₹75,000 (G1–G2); CFA and FRM sponsorship |\n| Health | Group medical cover for employee, spouse, children and parents |\n| Bonus | Annual performance bonus under the firm's performance framework |"
+    },
+    {
+     "n": 3,
+     "title": "Mandatory Block Leave Policy",
+     "text": "## 3. The requirement\n\n- 3.1 Each covered employee must take 10 consecutive working days of leave in every calendar year.\n- 3.2 Weekends and public holidays falling within the block do not count toward the 10 working days, but do not break continuity.\n- 3.3 The block is debited from the employee's privilege leave (20 days per year under the Leave Policy 2026). If PL is insufficient, HR will grant special leave for the shortfall.\n- 3.4 The block may not be split. A block interrupted by a recall (see section 7) must be retaken in full."
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "Kaveri Capital employees receive **20 days of privilege leave per calendar year** [1][2].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Careers at Kaveri – Roles, Hiring and Internships",
+     "text": "## 7. Benefits in brief\n\n| Benefit | Detail |\n|---|---|\n| Leave | 20 days privilege, 8 days casual, 10 days sick per calendar year |\n| Learning | Annual learning budget of ₹40,000 (G3–G4) or ₹75,000 (G1–G2); CFA and FRM sponsorship |\n| Health | Group medical cover for employee, spouse, children and parents |\n| Bonus | Annual performance bonus under the firm's performance framework |"
+    },
+    {
+     "n": 2,
+     "title": "Leave Policy 2026",
+     "text": "## 3. Leave entitlements\n\n| Leave type           |   Days per calendar year | Credit                         | Carry forward             | Encashment                             |\n|----------------------|--------------------------|--------------------------------|---------------------------|----------------------------------------|\n| Privilege leave (PL) |                       20 | 5 days per quarter, in advance | Up to 30 days accumulated | On exit, up to 30 days at basic salary |\n| Casual leave (CL)    |                        8 | Full credit on 1 January       | No                        | No                                     |\n| Sick leave (SL)      |                       10 | Full credit on 1 January       | Up to 30 days accumulated | No                                     |\n| Optional holidays    |                        2 | From the published list        | No                        | No                                     |\n\nEach employee therefore receives 20 days of privilege leave, 8 days of casual leave and 10 days of sick leave per calendar year. Employees joining mid-year receive a pro-rata credit, rounded to the nearest half day."
+    }
+   ]
+  }
+ },
+ {
+  "id": 37,
+  "kind": "answerable",
+  "asker": "rnd@sanjeevani.example",
+  "doc": "Leave Policy 2026",
+  "q": "How many days of privilege, casual and sick leave do Sanjeevani employees get each year?",
+  "reference": "21 days of privilege leave, 7 days of casual leave and 7 days of sick leave per calendar year.",
+  "A": {
+   "abstained": false,
+   "answer": "Sanjeevani employees receive **21 days of privilege leave, 7 days of casual leave, and 7 days of sick leave** each calendar year [1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Leave Policy 2026",
+     "text": "## 3. Leave entitlement summary\n\n| Leave type           | Days per calendar year   | Accrual                           | Carry forward               | Encashment                                           |\n|----------------------|--------------------------|-----------------------------------|-----------------------------|------------------------------------------------------|\n| Privilege leave (PL) | 21                       | 1.75 days per month               | Up to 45 days total balance | Yes, above 30 days at year-end; full balance at exit |\n| Casual leave (CL)    | 7                        | Credited on 1 January             | No (lapses on 31 December)  | No                                                   |\n| Sick leave (SL)      | 7                        | Credited on 1 January             | Up to 21 days total balance | No                                                   |\n| Maternity leave      | 26 weeks                 | As per Maternity Benefit Act 1961 | -                           | -                                                    |\n| Paternity leave      | 5 working days           | Per event                         | -                           | -                                                    |\n| Bereavement leave    | 3 working days           | Per event (immediate family)      | -                           | -                                                    |\n| Marriage leave       | 3 working days           | Once during service               | -                           | -                                                    |\n\nIn short, every employee receives 21 privilege leave, 7 casual leave and 7 sick leave per calendar year."
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "Sanjeevani employees receive **21 days of privilege leave, 7 days of casual leave, and 7 days of sick leave** each calendar year [1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Leave Policy 2026",
+     "text": "## 3. Leave entitlement summary\n\n| Leave type           | Days per calendar year   | Accrual                           | Carry forward               | Encashment                                           |\n|----------------------|--------------------------|-----------------------------------|-----------------------------|------------------------------------------------------|\n| Privilege leave (PL) | 21                       | 1.75 days per month               | Up to 45 days total balance | Yes, above 30 days at year-end; full balance at exit |\n| Casual leave (CL)    | 7                        | Credited on 1 January             | No (lapses on 31 December)  | No                                                   |\n| Sick leave (SL)      | 7                        | Credited on 1 January             | Up to 21 days total balance | No                                                   |\n| Maternity leave      | 26 weeks                 | As per Maternity Benefit Act 1961 | -                           | -                                                    |\n| Paternity leave      | 5 working days           | Per event                         | -                           | -                                                    |\n| Bereavement leave    | 3 working days           | Per event (immediate family)      | -                           | -                                                    |\n| Marriage leave       | 3 working days           | Once during service               | -                           | -                                                    |\n\nIn short, every employee receives 21 privilege leave, 7 casual leave and 7 sick leave per calendar year."
+    }
+   ]
+  }
+ },
+ {
+  "id": 38,
+  "kind": "answerable",
+  "asker": "rnd@sanjeevani.example",
+  "doc": "Leave Policy 2026",
+  "q": "How many days of privilege, casual and sick leave do Sanjeevani employees get?",
+  "reference": "21 privilege leave, 7 casual leave and 7 sick leave per calendar year.",
+  "A": {
+   "abstained": false,
+   "answer": "Every employee receives 21 privilege leave, 7 casual leave and 7 sick leave per calendar year [1]. This applies to all permanent employees at the Ahmedabad head office, all units, the Hyderabad R&D centre and the field force [2].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Leave Policy 2026",
+     "text": "## 3. Leave entitlement summary\n\n| Leave type           | Days per calendar year   | Accrual                           | Carry forward               | Encashment                                           |\n|----------------------|--------------------------|-----------------------------------|-----------------------------|------------------------------------------------------|\n| Privilege leave (PL) | 21                       | 1.75 days per month               | Up to 45 days total balance | Yes, above 30 days at year-end; full balance at exit |\n| Casual leave (CL)    | 7                        | Credited on 1 January             | No (lapses on 31 December)  | No                                                   |\n| Sick leave (SL)      | 7                        | Credited on 1 January             | Up to 21 days total balance | No                                                   |\n| Maternity leave      | 26 weeks                 | As per Maternity Benefit Act 1961 | -                           | -                                                    |\n| Paternity leave      | 5 working days           | Per event                         | -                           | -                                                    |\n| Bereavement leave    | 3 working days           | Per event (immediate family)      | -                           | -                                                    |\n| Marriage leave       | 3 working days           | Once during service               | -                           | -                                                    |\n\nIn short, every employee receives 21 privilege leave, 7 casual leave and 7 sick leave per calendar year."
+    },
+    {
+     "n": 2,
+     "title": "Leave Policy 2026",
+     "text": "## 2. Scope\n\nThis policy applies to all permanent employees of Sanjeevani Pharma Ltd. at the Ahmedabad head office, Unit I Changodar, Unit II Baddi, Unit III Vizag SEZ, the Hyderabad R&amp;D centre and the field force. Workmen covered by a long-term settlement at a site follow the settlement where it is more favourable. Leave is administered on a calendar-year basis (January-December)."
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "Sanjeevani employees receive **21 days of privilege leave**, **7 days of casual leave**, and **7 days of sick leave** per calendar year [1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Leave Policy 2026",
+     "text": "## 3. Leave entitlement summary\n\n| Leave type           | Days per calendar year   | Accrual                           | Carry forward               | Encashment                                           |\n|----------------------|--------------------------|-----------------------------------|-----------------------------|------------------------------------------------------|\n| Privilege leave (PL) | 21                       | 1.75 days per month               | Up to 45 days total balance | Yes, above 30 days at year-end; full balance at exit |\n| Casual leave (CL)    | 7                        | Credited on 1 January             | No (lapses on 31 December)  | No                                                   |\n| Sick leave (SL)      | 7                        | Credited on 1 January             | Up to 21 days total balance | No                                                   |\n| Maternity leave      | 26 weeks                 | As per Maternity Benefit Act 1961 | -                           | -                                                    |\n| Paternity leave      | 5 working days           | Per event                         | -                           | -                                                    |\n| Bereavement leave    | 3 working days           | Per event (immediate family)      | -                           | -                                                    |\n| Marriage leave       | 3 working days           | Once during service               | -                           | -                                                    |\n\nIn short, every employee receives 21 privilege leave, 7 casual leave and 7 sick leave per calendar year."
+    }
+   ]
+  }
+ },
+ {
+  "id": 39,
+  "kind": "answerable",
+  "asker": "hr@nimbus.example",
+  "doc": "Leave Policy FY2026-27",
+  "q": "How many days of unused earned leave can a Nimbus employee carry forward into the next year?",
+  "reference": "Up to 30 days; earned leave beyond 30 days lapses on 31 March.",
+  "A": {
+   "abstained": false,
+   "answer": "Up to 30 days of unused earned leave can be carried forward into the next financial year [1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Leave Policy FY2026-27",
+     "text": "## 4.3 Carry forward and lapse\n\nAt the end of the financial year, up to 30 days of unused earned leave are carried forward into the next year. EL beyond 30 days lapses on 31 March. There is no encashment of earned leave while in service. On exit, accumulated EL up to 30 days is encashed on basic pay as part of full and final settlement."
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "Up to 30 days of unused earned leave are carried forward into the next year. [1]",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Leave Policy FY2026-27",
+     "text": "## 4.3 Carry forward and lapse\n\nAt the end of the financial year, up to 30 days of unused earned leave are carried forward into the next year. EL beyond 30 days lapses on 31 March. There is no encashment of earned leave while in service. On exit, accumulated EL up to 30 days is encashed on basic pay as part of full and final settlement."
+    }
+   ]
+  }
+ },
+ {
+  "id": 40,
+  "kind": "not_found",
+  "asker": "owner@nimbus.example",
+  "doc": null,
+  "q": "How many desks does the Nimbus Dubai sales office have?",
+  "reference": "not found",
+  "A": {
+   "abstained": false,
+   "answer": "The provided documents do not mention the number of desks in the Nimbus Dubai sales office.",
+   "cited": []
+  },
+  "B": {
+   "abstained": true,
+   "answer": "Not found in your documents.\nNo document you can open answers this, so Atlas did not guess.",
+   "cited": []
+  }
+ },
+ {
+  "id": 41,
+  "kind": "answerable",
+  "asker": "qa@sanjeevani.example",
+  "doc": "Pharmacovigilance System Master File Summary",
+  "q": "How many expedited pharmacovigilance reports were submitted late in FY2025-26?",
+  "reference": "2 out of 143 expedited reports were late (both by one day), giving 98.6% compliance.",
+  "A": {
+   "abstained": false,
+   "answer": "2 expedited pharmacovigilance reports were submitted late in FY2025-26 [1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Pharmacovigilance System Master File Summary",
+     "text": "## 5. Reporting Timelines\n\n| Report type                       | Timeline                                                               | Recipient    |\n|-----------------------------------|------------------------------------------------------------------------|--------------|\n| Serious unexpected ADR (domestic) | Within 15 calendar days of receipt                                     | PvPI / CDSCO |\n| Fatal or life-threatening ADR     | Initial report within 7 calendar days; follow-up within 8 further days | PvPI / CDSCO |\n| Non-serious ADR                   | Included in PSUR                                                       | CDSCO        |\n| PSUR for new drugs                | Every 6 months for the first 2 years, then annually for 2 years        | CDSCO        |\n| Export partner ICSR               | Per safety data exchange agreement, typically within 5 working days    | Partner      |\n\nCompliance with expedited timelines in FY2025-26 was 98.6% (2 late reports out of 143 expedited reports, both by one day; CAPA raised)."
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "2 expedited pharmacovigilance reports were submitted late in FY2025-26 (out of 143 expedited reports) [1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Pharmacovigilance System Master File Summary",
+     "text": "## 5. Reporting Timelines\n\n| Report type                       | Timeline                                                               | Recipient    |\n|-----------------------------------|------------------------------------------------------------------------|--------------|\n| Serious unexpected ADR (domestic) | Within 15 calendar days of receipt                                     | PvPI / CDSCO |\n| Fatal or life-threatening ADR     | Initial report within 7 calendar days; follow-up within 8 further days | PvPI / CDSCO |\n| Non-serious ADR                   | Included in PSUR                                                       | CDSCO        |\n| PSUR for new drugs                | Every 6 months for the first 2 years, then annually for 2 years        | CDSCO        |\n| Export partner ICSR               | Per safety data exchange agreement, typically within 5 working days    | Partner      |\n\nCompliance with expedited timelines in FY2025-26 was 98.6% (2 late reports out of 143 expedited reports, both by one day; CAPA raised)."
+    }
+   ]
+  }
+ },
+ {
+  "id": 42,
+  "kind": "answerable",
+  "asker": "owner@sanjeevani.example",
+  "doc": "Internal Audit Report – Unit II Baddi Q4 FY26",
+  "q": "How many observations did the Q4 FY26 internal audit of Unit II Baddi raise, by classification?",
+  "reference": "8 observations: 0 Critical, 2 Major and 6 Minor.",
+  "A": {
+   "abstained": false,
+   "answer": "The Q4 FY26 internal audit of Unit II Baddi raised **8 observations in total: 0 Critical, 2 Major, and 6 Minor** [1][2].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Internal Audit Report – Unit II Baddi Q4 FY26",
+     "text": "### 2. Executive Summary\n\nThe site is in a generally satisfactory state of control. The audit raised **8 observations: 0 Critical, 2 Major and 6 Minor**. The Major observations relate to the oral liquid manufacturing area (temperature excursion handling in the syrup compounding room) and to line clearance for labelling, which was a contributing cause of the August 2025 recall of Sanjeevani Cough Relief Syrup batch CR-2309. Overall audit rating: **Acceptable with improvement** (score 82/100, previous 78/100)."
+    },
+    {
+     "n": 2,
+     "title": "Internal Audit Report – Unit II Baddi Q4 FY26",
+     "text": "### 4. Observations\n\n| **Obs. No.**   | **Classification**   | **Area**                   | **Observation**                                                                                                                                                                   | **Reference**   |\n|----------------|----------------------|----------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------|\n| BD-01          | Major                | Syrup compounding room     | Room temperature exceeded 25°C on 7 days in February 2026 (maximum 27.4°C); no deviation was raised, and the impact on 4 batches was not assessed. Grade D limit is 20–25°C       | SPL/QA/SOP-004  |\n| BD-02          | Major                | Labelling line L-2         | Line clearance checklist does not require verification of the label text against the approved artwork at start-up; label proof sheet not retained in BPR for 2 of 10 BPRs sampled | SPL/QA/SOP-012  |\n| BD-03          | Minor                | Ointment filling (Grade C) | Gowning qualification of 2 operators expired in January 2026 (annual requalification overdue by 3 and 6 weeks)                                                                    | SPL/PRD/SOP-008 |\n| BD-04          | Minor                | Purified water             | PW-02 point of use POU-07 sampled only twice in February instead of weekly rotation plan                                                                                          | SPL/QC/SOP-033  |\n| BD-05          | Minor                | QC laboratory              | Two volumetric flasks in use without calibration label                                        "
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "The Q4 FY26 internal audit of Unit II Baddi raised **8 observations in total: 0 Critical, 2 Major, and 6 Minor** [1][2].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Internal Audit Report – Unit II Baddi Q4 FY26",
+     "text": "### 2. Executive Summary\n\nThe site is in a generally satisfactory state of control. The audit raised **8 observations: 0 Critical, 2 Major and 6 Minor**. The Major observations relate to the oral liquid manufacturing area (temperature excursion handling in the syrup compounding room) and to line clearance for labelling, which was a contributing cause of the August 2025 recall of Sanjeevani Cough Relief Syrup batch CR-2309. Overall audit rating: **Acceptable with improvement** (score 82/100, previous 78/100)."
+    },
+    {
+     "n": 2,
+     "title": "Internal Audit Report – Unit II Baddi Q4 FY26",
+     "text": "### 4. Observations\n\n| **Obs. No.**   | **Classification**   | **Area**                   | **Observation**                                                                                                                                                                   | **Reference**   |\n|----------------|----------------------|----------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------|\n| BD-01          | Major                | Syrup compounding room     | Room temperature exceeded 25°C on 7 days in February 2026 (maximum 27.4°C); no deviation was raised, and the impact on 4 batches was not assessed. Grade D limit is 20–25°C       | SPL/QA/SOP-004  |\n| BD-02          | Major                | Labelling line L-2         | Line clearance checklist does not require verification of the label text against the approved artwork at start-up; label proof sheet not retained in BPR for 2 of 10 BPRs sampled | SPL/QA/SOP-012  |\n| BD-03          | Minor                | Ointment filling (Grade C) | Gowning qualification of 2 operators expired in January 2026 (annual requalification overdue by 3 and 6 weeks)                                                                    | SPL/PRD/SOP-008 |\n| BD-04          | Minor                | Purified water             | PW-02 point of use POU-07 sampled only twice in February instead of weekly rotation plan                                                                                          | SPL/QC/SOP-033  |\n| BD-05          | Minor                | QC laboratory              | Two volumetric flasks in use without calibration label                                        "
+    }
+   ]
+  }
+ },
+ {
+  "id": 43,
+  "kind": "answerable",
+  "asker": "cfo@kaveri.example",
+  "doc": "Statutory Audit Management Letter FY26",
+  "q": "How many observations did the statutory auditors raise in the FY26 management letter, and how were they rated?",
+  "reference": "Five observations: one High (PMS performance fee computation), three Medium and one Low.",
+  "A": {
+   "abstained": false,
+   "answer": "The statutory auditors raised five observations in the FY26 management letter: one rated High, three rated Medium, and one rated Low. [1][2]",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Statutory Audit Management Letter FY26",
+     "text": "## 1. Auditor's Covering Remarks\n\n- 1.1 We have completed our audit of the standalone financial statements of Kaveri Capital Advisors Pvt. Ltd. for the year ended 31 March 2026 and issued an unmodified opinion dated 25 April 2026.\n- 1.2 During the audit we noted certain matters relating to internal financial controls which, while not material weaknesses and not affecting our opinion, we bring to management's attention. We have rated each observation:\n- 1.3 We identified no material weakness and no significant deficiency in internal financial controls over financial reporting. Five observations are listed below: one High, three Medium and one Low.\n\n| Rating   | Meaning                                             |\n|----------|-----------------------------------------------------|\n| High     | Significant control gap; fix within 3 months        |\n| Medium   | Control gap with moderate risk; fix within 6 months |\n| Low      | Improvement opportunity                             |"
+    },
+    {
+     "n": 2,
+     "title": "Statutory Audit Management Letter FY26",
+     "text": "## 2. Summary of Observations\n\n| No.   | Area                | Observation                                                                                | Rating   | Owner          | Target date       |\n|-------|---------------------|--------------------------------------------------------------------------------------------|----------|----------------|-------------------|\n| ML-01 | Revenue - PMS       | Performance fee computation relied on spreadsheets; high-water mark not system-enforced    | High     | Gaurav Agarwal | 31 July 2026      |\n| ML-02 | IT general controls | Quarterly user access review for the fund accounting system completed late in two quarters | Medium   | Mohit Arora    | 30 September 2026 |\n| ML-03 | Payables            | 17 vendor invoices (₹38.6 lakh) paid without a matched purchase order                      | Medium   | Gaurav Agarwal | 30 September 2026 |\n| ML-04 | Taxation            | TDS receivable ledger not reconciled with Form 26AS; unreconciled difference ₹21.4 lakh    | Medium   | Gaurav Agarwal | 31 August 2026    |\n| ML-05 | Fixed assets        | Physical verification of IT assets at branches not done in FY26                            | Low      | Mohit Arora    | 31 December 2026  |"
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "The statutory auditors raised **five observations** in the FY26 management letter: **one High, three Medium, and one Low** [1][2].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Statutory Audit Management Letter FY26",
+     "text": "## 1. Auditor's Covering Remarks\n\n- 1.1 We have completed our audit of the standalone financial statements of Kaveri Capital Advisors Pvt. Ltd. for the year ended 31 March 2026 and issued an unmodified opinion dated 25 April 2026.\n- 1.2 During the audit we noted certain matters relating to internal financial controls which, while not material weaknesses and not affecting our opinion, we bring to management's attention. We have rated each observation:\n- 1.3 We identified no material weakness and no significant deficiency in internal financial controls over financial reporting. Five observations are listed below: one High, three Medium and one Low.\n\n| Rating   | Meaning                                             |\n|----------|-----------------------------------------------------|\n| High     | Significant control gap; fix within 3 months        |\n| Medium   | Control gap with moderate risk; fix within 6 months |\n| Low      | Improvement opportunity                             |"
+    },
+    {
+     "n": 2,
+     "title": "Statutory Audit Management Letter FY26",
+     "text": "## 2. Summary of Observations\n\n| No.   | Area                | Observation                                                                                | Rating   | Owner          | Target date       |\n|-------|---------------------|--------------------------------------------------------------------------------------------|----------|----------------|-------------------|\n| ML-01 | Revenue - PMS       | Performance fee computation relied on spreadsheets; high-water mark not system-enforced    | High     | Gaurav Agarwal | 31 July 2026      |\n| ML-02 | IT general controls | Quarterly user access review for the fund accounting system completed late in two quarters | Medium   | Mohit Arora    | 30 September 2026 |\n| ML-03 | Payables            | 17 vendor invoices (₹38.6 lakh) paid without a matched purchase order                      | Medium   | Gaurav Agarwal | 30 September 2026 |\n| ML-04 | Taxation            | TDS receivable ledger not reconciled with Form 26AS; unreconciled difference ₹21.4 lakh    | Medium   | Gaurav Agarwal | 31 August 2026    |\n| ML-05 | Fixed assets        | Physical verification of IT assets at branches not done in FY26                            | Low      | Mohit Arora    | 31 December 2026  |"
+    }
+   ]
+  }
+ },
+ {
+  "id": 44,
+  "kind": "answerable",
+  "asker": "rnd@sanjeevani.example",
+  "doc": "Clinical Site List and Enrolment Status",
+  "q": "How many patients discontinued the SJ-2041 Phase III trial?",
+  "reference": "92 patients, 7.4% of the 1,240 randomised (as of 30 September 2026).",
+  "A": {
+   "abstained": false,
+   "answer": "40 patients discontinued the SJ‑2041 Phase III trial [1]",
+   "cited": [
+    {
+     "n": 1,
+     "title": "SJ-2041 Interim Analysis Report",
+     "text": "## 5. Patient Disposition (all randomised at cut-off)\n\n| Disposition   | SJ-2041   | Comparator   | Total   |\n|---------------|-----------|--------------|---------|\n| Randomised    | 590       | 590          | 1,180   |\n| Discontinued  | 40        | 47           | 87      |\n| Dropout rate  | 6.8%      | 8.0%         | 7.4%    |\n\nReasons for discontinuation (total 87): withdrawal of consent 33, lost to follow-up 26, adverse event 15, protocol deviation 8, lack of efficacy 5."
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "87 patients discontinued in total as of the interim cut-off: 40 in the SJ-2041 arm and 47 in the comparator arm. [1]",
+   "cited": [
+    {
+     "n": 1,
+     "title": "SJ-2041 Interim Analysis Report",
+     "text": "## 5. Patient Disposition (all randomised at cut-off)\n\n| Disposition   | SJ-2041   | Comparator   | Total   |\n|---------------|-----------|--------------|---------|\n| Randomised    | 590       | 590          | 1,180   |\n| Discontinued  | 40        | 47           | 87      |\n| Dropout rate  | 6.8%      | 8.0%         | 7.4%    |\n\nReasons for discontinuation (total 87): withdrawal of consent 33, lost to follow-up 26, adverse event 15, protocol deviation 8, lack of efficacy 5."
+    }
+   ]
+  }
+ },
+ {
+  "id": 45,
+  "kind": "not_found",
+  "asker": "employee@nimbus.example",
+  "doc": null,
+  "q": "How many story points does the NimbusOps team deliver per sprint on average?",
+  "reference": "not found",
+  "A": {
+   "abstained": true,
+   "answer": "Not found in your documents.\nNo document you can open answers this, so Atlas did not guess.",
+   "cited": []
+  },
+  "B": {
+   "abstained": true,
+   "answer": "Not found in your documents.\nNo document you can open answers this, so Atlas did not guess.",
+   "cited": []
+  }
+ },
+ {
+  "id": 46,
+  "kind": "answerable",
+  "asker": "sales@sanjeevani.example",
+  "doc": "Field Force Guidelines FY27",
+  "q": "How many strips of Glucosan-M samples can a medical representative give a doctor per month?",
+  "reference": "A maximum of 10 strips per doctor per month.",
+  "A": {
+   "abstained": false,
+   "answer": "A medical representative can give a maximum of **10 strips of Glucosan-M per doctor per month** [1][2][3][4].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Glucosan-M Brand Plan FY27",
+     "text": "#### 6.1 Doctor engagement\n\n- Target list: 24,000 doctors (A: 7,200; B: 9,600; C: 7,200), aligned with the Field Force Guidelines FY27.\n- Detailing priority 1 in every call for diabetologists and consulting physicians.\n- Samples: maximum 10 strips per doctor per month and 60 per year, as per the Sample Distribution Policy."
+    },
+    {
+     "n": 2,
+     "title": "Field Force Guidelines FY27",
+     "text": "## 8. Compliance essentials\n\n- 8.1 No gifts, cash, meals, travel or personal benefits to doctors (UCPMP 2024). 8.2 Samples only as per the Sample Distribution Policy (for Glucosan-M, a maximum of 10 strips per doctor per month). 8.3 Any adverse event or product complaint heard during a call must be reported to Pharmacovigilance within 24 hours via the CRM \"Report AE\" button. 8.4 Competitor disparagement is prohibited."
+    },
+    {
+     "n": 3,
+     "title": "UCPMP Compliance Guide for Field Staff",
+     "text": "## 5. Samples (summary)\n\n5.1 Samples must be marked \"Physician's Sample - Not to be sold\". 5.2 Samples may only be given to HCPs qualified to prescribe the product. 5.3 Under UCPMP 2024, the number of free samples of a product given to an HCP must not exceed 12 sample packs per HCP per year for a new product; the value of samples given by the company must not exceed 2% of its domestic sales in a year. 5.4 Sanjeevani's internal limits are stricter for some brands; for example, a maximum of 10 strips per doctor per month for GlucosanM. See the Sample Distribution Policy for full details."
+    },
+    {
+     "n": 4,
+     "title": "Sample Distribution Policy",
+     "text": "### 5. Sample allowance by brand\n\n| **Brand**                     | **Sample pack**     | **Max per doctor per month**   | **Max per doctor per year**   | **Eligible specialties**             |\n|-------------------------------|---------------------|--------------------------------|-------------------------------|--------------------------------------|\n| Glucosan-M 500                | Strip of 10 tablets | 10 strips                      | 60 strips                     | Diabetologists, physicians, GPs      |\n| Cardivas 10                   | Strip of 5 tablets  | 6 strips                       | 36 strips                     | Cardiologists, physicians            |\n| Amlosan 5                     | Strip of 10 tablets | 6 strips                       | 36 strips                     | Physicians, GPs, cardiologists       |\n| Pantosan 40                   | Strip of 5 tablets  | 6 strips                       | 36 strips                     | Gastroenterologists, physicians, GPs |\n| Sanjeevani Cough Relief Syrup | 30 mL sample bottle | 4 bottles                      | 12 bottles                    | GPs, ENT, paediatricians             |\n| Dermacalm Cream               | 5 g tube            | 4 tubes                        | 20 tubes                      | Dermatologists only                  |\n\n5.1 The maximum for Glucosan-M is **10 strips per doctor per month**. Exceeding the monthly limit is not allowed even if the doctor has not received samples in earlier months. 5.2 For new product launches, the UCPMP limit of 12 sample packs per doctor per year applies, unless stricter limits are set above. 5.3 Total sample value for FY27 is budgeted within 1.5% of domestic sales, below the 2% ceiling in UCPMP 2024."
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "A medical representative may give a doctor a maximum of 10 strips of Glucosan-M samples per month [1][2][3]. The annual limit is 60 strips, and the monthly cap cannot be exceeded even if the doctor received no samples in earlier months [3].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Glucosan-M Brand Plan FY27",
+     "text": "#### 6.1 Doctor engagement\n\n- Target list: 24,000 doctors (A: 7,200; B: 9,600; C: 7,200), aligned with the Field Force Guidelines FY27.\n- Detailing priority 1 in every call for diabetologists and consulting physicians.\n- Samples: maximum 10 strips per doctor per month and 60 per year, as per the Sample Distribution Policy."
+    },
+    {
+     "n": 2,
+     "title": "Field Force Guidelines FY27",
+     "text": "## 8. Compliance essentials\n\n- 8.1 No gifts, cash, meals, travel or personal benefits to doctors (UCPMP 2024). 8.2 Samples only as per the Sample Distribution Policy (for Glucosan-M, a maximum of 10 strips per doctor per month). 8.3 Any adverse event or product complaint heard during a call must be reported to Pharmacovigilance within 24 hours via the CRM \"Report AE\" button. 8.4 Competitor disparagement is prohibited."
+    },
+    {
+     "n": 3,
+     "title": "Sample Distribution Policy",
+     "text": "### 5. Sample allowance by brand\n\n| **Brand**                     | **Sample pack**     | **Max per doctor per month**   | **Max per doctor per year**   | **Eligible specialties**             |\n|-------------------------------|---------------------|--------------------------------|-------------------------------|--------------------------------------|\n| Glucosan-M 500                | Strip of 10 tablets | 10 strips                      | 60 strips                     | Diabetologists, physicians, GPs      |\n| Cardivas 10                   | Strip of 5 tablets  | 6 strips                       | 36 strips                     | Cardiologists, physicians            |\n| Amlosan 5                     | Strip of 10 tablets | 6 strips                       | 36 strips                     | Physicians, GPs, cardiologists       |\n| Pantosan 40                   | Strip of 5 tablets  | 6 strips                       | 36 strips                     | Gastroenterologists, physicians, GPs |\n| Sanjeevani Cough Relief Syrup | 30 mL sample bottle | 4 bottles                      | 12 bottles                    | GPs, ENT, paediatricians             |\n| Dermacalm Cream               | 5 g tube            | 4 tubes                        | 20 tubes                      | Dermatologists only                  |\n\n5.1 The maximum for Glucosan-M is **10 strips per doctor per month**. Exceeding the monthly limit is not allowed even if the doctor has not received samples in earlier months. 5.2 For new product launches, the UCPMP limit of 12 sample packs per doctor per year applies, unless stricter limits are set above. 5.3 Total sample value for FY27 is budgeted within 1.5% of domestic sales, below the 2% ceiling in UCPMP 2024."
+    }
+   ]
+  }
+ },
+ {
+  "id": 47,
+  "kind": "answerable",
+  "asker": "rnd@sanjeevani.example",
+  "doc": "Investigator Payments Policy",
+  "q": "How much does Sanjeevani pay a site for each patient who completes the SJ-2041 trial?",
+  "reference": "₹42,000 per completed patient, paid visit by visit, with 10% held back until close-out.",
+  "A": {
+   "abstained": false,
+   "answer": "Sanjeevani pays the site **₹42,000 per completed patient** (as illustrated in the FMV grid of the Investigator Payments Policy) [1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Clinical Research Services Agreement – SJ-2041 (CRO)",
+     "text": "## 5. Site payments through the CRO\n\n5.1 The CRO pays sites only for visits recorded in the EDC and verified by monitoring, using the FMV grid of the Investigator Payments Policy (for example ₹42,000 per completed patient) and holding back 10% until close-out. 5.2 Sanjeevani funds the pass-through account monthly, against the CRO's visit report of the 5th of each month. The CRO may not add any mark-up to site payments. 5.3 The CRO must not make any payment to an investigator outside the signed Clinical Trial Agreement."
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "Sanjeevani pays **₹42,000 per completed patient** for the SJ-2041 trial, as specified in the FMV grid of the Investigator Payments Policy [1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Clinical Research Services Agreement – SJ-2041 (CRO)",
+     "text": "## 5. Site payments through the CRO\n\n5.1 The CRO pays sites only for visits recorded in the EDC and verified by monitoring, using the FMV grid of the Investigator Payments Policy (for example ₹42,000 per completed patient) and holding back 10% until close-out. 5.2 Sanjeevani funds the pass-through account monthly, against the CRO's visit report of the 5th of each month. The CRO may not add any mark-up to site payments. 5.3 The CRO must not make any payment to an investigator outside the signed Clinical Trial Agreement."
+    }
+   ]
+  }
+ },
+ {
+  "id": 48,
+  "kind": "denied",
+  "asker": "qa@sanjeevani.example",
+  "doc": "Investigator Payments Policy",
+  "q": "How much does Sanjeevani pay a site for each patient who completes the SJ-2041 trial?",
+  "reference": "₹42,000 per completed patient, paid visit by visit, with 10% held back until close-out.",
+  "A": {
+   "abstained": true,
+   "answer": "Not found in your documents.\nNo document you can open answers this, so Atlas did not guess.",
+   "cited": []
+  },
+  "B": {
+   "abstained": false,
+   "answer": "The documents do not specify any per-patient site payment for the SJ-2041 trial; [1] identifies SJ-2041 as a Phase III programme and states that detailed trial information is restricted to the Clinical team. [1]",
+   "cited": [
+    {
+     "n": 1,
+     "title": "About Sanjeevani",
+     "text": "## 3. Our products\n\n| Brand | Molecule / strength | Therapy area | Made at |\n|---|---|---|---|\n| Glucosan-M 500 | Metformin 500 mg SR tablet | Diabetes | Unit I |\n| Cardivas 10 | Rosuvastatin 10 mg tablet | Cardiac | Unit I |\n| Amlosan 5 | Amlodipine 5 mg tablet | Hypertension | Unit I |\n| Pantosan 40 | Pantoprazole 40 mg tablet | Gastro | Unit I |\n| Sanjeevani Cough Relief Syrup | Dextromethorphan + chlorpheniramine | Respiratory | Unit II |\n| Dermacalm Cream | Mometasone 0.1% | Dermatology | Unit II |\n\nOur most important pipeline programme is **SJ-2041**, a novel DPP-4 inhibitor / metformin fixed-dose combination for type 2 diabetes, currently in Phase III. Detailed trial information is restricted to the Clinical team."
+    }
+   ]
+  }
+ },
+ {
+  "id": 49,
+  "kind": "answerable",
+  "asker": "employee@nimbus.example",
+  "doc": "Design Doc – NimbusOps Multi-Region Active-Passive DR",
+  "q": "How much extra per month does the active-passive DR design cost?",
+  "reference": "₹9.6 lakh per month extra, approved by Pradeep Joshi on 2 June 2026.",
+  "A": {
+   "abstained": false,
+   "answer": "The active-passive DR design costs an additional **₹9.6 lakh per month** [1][2].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Design Doc – NimbusOps Multi-Region Active-Passive DR",
+     "text": "## 4. Cost\n\n| Item | Monthly cost (₹ lakh) |\n|---|---|\n| DR EKS baseline from 30% to 50% | 4.8 |\n| MSK DR cluster from 3 to 6 brokers | 2.6 |\n| VictoriaMetrics full-resolution replica | 1.5 |\n| Route 53 ARC and Step Functions | 0.7 |\n| **Total additional** | **9.6** |\n\nThe additional ₹9.6 lakh per month is above the ₹5 lakh threshold in the Cloud Cost Management Guideline and was approved by Pradeep Joshi (Head of Infrastructure & SRE) on 2 June 2026. It is funded from the FY27 NimbusOps cloud budget."
+    },
+    {
+     "n": 2,
+     "title": "Design Doc – NimbusOps Multi-Region Active-Passive DR",
+     "text": "## 8. Decision log\n\n| Date | Decision | By |\n|---|---|---|\n| 21 May 2026 | Stay active-passive; active-active deferred until tenant sharding | ARB |\n| 28 May 2026 | DR baseline 50%, not 100% (saves ₹4.8 lakh per month) | Meera Iyer |\n| 2 June 2026 | Additional cloud spend of ₹9.6 lakh per month approved | Pradeep Joshi |\n| 4 June 2026 | Design accepted as ADR-0042 | ARB (chair Siddharth Rao) |"
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "The active-passive DR design costs an additional **₹9.6 lakh per month** [1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Design Doc – NimbusOps Multi-Region Active-Passive DR",
+     "text": "## 4. Cost\n\n| Item | Monthly cost (₹ lakh) |\n|---|---|\n| DR EKS baseline from 30% to 50% | 4.8 |\n| MSK DR cluster from 3 to 6 brokers | 2.6 |\n| VictoriaMetrics full-resolution replica | 1.5 |\n| Route 53 ARC and Step Functions | 0.7 |\n| **Total additional** | **9.6** |\n\nThe additional ₹9.6 lakh per month is above the ₹5 lakh threshold in the Cloud Cost Management Guideline and was approved by Pradeep Joshi (Head of Infrastructure & SRE) on 2 June 2026. It is funded from the FY27 NimbusOps cloud budget."
+    }
+   ]
+  }
+ },
+ {
+  "id": 50,
+  "kind": "not_found",
+  "asker": "hr@nimbus.example",
+  "doc": null,
+  "q": "How much is the Nimbus annual Diwali bonus?",
+  "reference": "not found",
+  "A": {
+   "abstained": false,
+   "answer": "The provided documents do not mention an annual Diwali bonus. They cover referral bonuses, group term life insurance, salary band definitions, and travel policies, but not a Diwali bonus.",
+   "cited": []
+  },
+  "B": {
+   "abstained": true,
+   "answer": "Not found in your documents.\nNo document you can open answers this, so Atlas did not guess.",
+   "cited": []
+  }
+ },
+ {
+  "id": 51,
+  "kind": "not_found",
+  "asker": "analyst@kaveri.example",
+  "doc": null,
+  "q": "How much is the employee referral bonus at Kaveri Capital?",
+  "reference": "not found",
+  "A": {
+   "abstained": true,
+   "answer": "Not found in your documents.\nNo document you can open answers this, so Atlas did not guess.",
+   "cited": []
+  },
+  "B": {
+   "abstained": false,
+   "answer": "The provided passages do not mention an employee referral bonus. They cover leave, learning budget, health cover, and annual performance bonus, but no referral bonus detail is given.",
+   "cited": []
+  }
+ },
+ {
+  "id": 52,
+  "kind": "answerable",
+  "asker": "manager@nimbus.example",
+  "doc": "Zenith Retail – SAP S/4HANA Project Charter",
+  "q": "How much is the go-live milestone payment in the Zenith Retail S/4HANA project?",
+  "reference": "₹9.50 crore (25% of the ₹38 crore fixed price), planned for April 2027.",
+  "A": {
+   "abstained": false,
+   "answer": "The go-live milestone (M5 – Successful go-live) payment is ₹9.50 crore, which is 25% of the fixed price, planned for April 2027. [1]",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Zenith Retail – SAP S/4HANA Project Charter",
+     "text": "## 5. Commercials\n\nThe engagement is fixed price at ₹38 crore (excluding GST), with milestone-based payments.\n\n| Milestone                               | %    |   Amount (₹ crore) | Planned date   |\n|-----------------------------------------|------|--------------------|----------------|\n| M1 - Kick-off and project plan approved | 10%  |               3.80 | February 2026  |\n| M2 - Design (Explore) sign-off          | 15%  |               5.70 | May 2026       |\n| M3 - Build complete and SIT 1 exit      | 20%  |               7.60 | September 2026 |\n| M4 - UAT sign-off                       | 20%  |               7.60 | November 2026  |\n| M5 - Successful go-live                 | 25%  |               9.50 | April 2027     |\n| M6 - Hypercare exit                     | 10%  |               3.80 | June 2027      |\n| Total                                   | 100% |              38.00 |                |\n\nChange requests are priced at the Enterprise Apps rate card (blended ₹1.65 lakh per person-month offshore) and require Steering Committee approval above ₹25 lakh."
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "The go-live milestone (M5 - Successful go-live) payment is **₹9.50 crore** (25% of the total fixed price) [1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Zenith Retail – SAP S/4HANA Project Charter",
+     "text": "## 5. Commercials\n\nThe engagement is fixed price at ₹38 crore (excluding GST), with milestone-based payments.\n\n| Milestone                               | %    |   Amount (₹ crore) | Planned date   |\n|-----------------------------------------|------|--------------------|----------------|\n| M1 - Kick-off and project plan approved | 10%  |               3.80 | February 2026  |\n| M2 - Design (Explore) sign-off          | 15%  |               5.70 | May 2026       |\n| M3 - Build complete and SIT 1 exit      | 20%  |               7.60 | September 2026 |\n| M4 - UAT sign-off                       | 20%  |               7.60 | November 2026  |\n| M5 - Successful go-live                 | 25%  |               9.50 | April 2027     |\n| M6 - Hypercare exit                     | 10%  |               3.80 | June 2027      |\n| Total                                   | 100% |              38.00 |                |\n\nChange requests are priced at the Enterprise Apps rate card (blended ₹1.65 lakh per person-month offshore) and require Steering Committee approval above ₹25 lakh."
+    }
+   ]
+  }
+ },
+ {
+  "id": 53,
+  "kind": "answerable",
+  "asker": "salesmanager@sanjeevani.example",
+  "doc": "Stockist and Distributor Agreement – Standard Terms",
+  "q": "How much notice ends a stockist agreement?",
+  "reference": "60 days' written notice by either party without cause; immediate for material breach or payment default over 90 days.",
+  "A": {
+   "abstained": false,
+   "answer": "The standard notice is **60 days' written notice** for termination without cause. Other situations end the agreement immediately (material breach, payment default >90 days) or automatically (licence cancellation) [1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Stockist and Distributor Agreement – Standard Terms",
+     "text": "### 9. Termination\n\n| **Situation**                                                                                            | **Notice**                                                  |\n|----------------------------------------------------------------------------------------------------------|-------------------------------------------------------------|\n| Either party, without cause                                                                              | **60 days' written notice**                                 |\n| Material breach (diversion, sale of samples, spurious or tampered stock, two failed storage inspections) | Immediate, by written notice from Sanjeevani                |\n| Payment default more than 90 days past due                                                               | Immediate, under the Stockist Credit and Collections Policy |\n| Licence cancelled or suspended                                                                           | Automatic, from the date of cancellation                    |\n\n9.1 On termination, saleable stock with at least 12 months of shelf life remaining is bought back at the price paid, less 5% handling. The security deposit is refunded within 30 days after all dues are settled."
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "Either party can end the agreement without cause by giving **60 days' written notice** [1]. Other situations (material breach, payment default >90 days, licence cancellation) allow immediate or automatic termination [1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Stockist and Distributor Agreement – Standard Terms",
+     "text": "### 9. Termination\n\n| **Situation**                                                                                            | **Notice**                                                  |\n|----------------------------------------------------------------------------------------------------------|-------------------------------------------------------------|\n| Either party, without cause                                                                              | **60 days' written notice**                                 |\n| Material breach (diversion, sale of samples, spurious or tampered stock, two failed storage inspections) | Immediate, by written notice from Sanjeevani                |\n| Payment default more than 90 days past due                                                               | Immediate, under the Stockist Credit and Collections Policy |\n| Licence cancelled or suspended                                                                           | Automatic, from the date of cancellation                    |\n\n9.1 On termination, saleable stock with at least 12 months of shelf life remaining is bought back at the price paid, less 5% handling. The security deposit is refunded within 30 days after all dues are settled."
+    }
+   ]
+  }
+ },
+ {
+  "id": 54,
+  "kind": "answerable",
+  "asker": "legal@nimbus.example",
+  "doc": "Master Services Agreement – Harbor Logistics Inc.",
+  "q": "How much notice is needed to not renew the Harbor Logistics MSA?",
+  "reference": "Written notice at least 90 days before the end of the term (by 2 July 2026); the MSA does not renew automatically.",
+  "A": {
+   "abstained": false,
+   "answer": "A party that does not intend to renew must give written notice at least **90 days before the end of the term** (by 2 July 2026 for the current term ending 30 September 2026) [1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Master Services Agreement – Harbor Logistics Inc.",
+     "text": "## 2. Term and renewal\n\n- Initial term: three years, from 1 October 2023 to 30 September 2026.\n- No automatic renewal. The MSA ends on 30 September 2026 unless the parties sign a renewal or extension.\n- Notice of non-renewal: a party that does not intend to renew must give the other party written notice at least 90 days before the end of the term, that is, by 2 July 2026. Neither party has given such notice.\n- Holdover: if no renewal is signed by the end of the term, services continue month to month for up to 90 days at the then-current rates, while the parties negotiate.\n- Annual escalation: rates increase by 3% on each 1 October anniversary."
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "A party must give written notice at least 90 days before the end of the term, that is, by 2 July 2026. [1]",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Master Services Agreement – Harbor Logistics Inc.",
+     "text": "## 2. Term and renewal\n\n- Initial term: three years, from 1 October 2023 to 30 September 2026.\n- No automatic renewal. The MSA ends on 30 September 2026 unless the parties sign a renewal or extension.\n- Notice of non-renewal: a party that does not intend to renew must give the other party written notice at least 90 days before the end of the term, that is, by 2 July 2026. Neither party has given such notice.\n- Holdover: if no renewal is signed by the end of the term, services continue month to month for up to 90 days at the then-current rates, while the parties negotiate.\n- Annual escalation: rates increase by 3% on each 1 October anniversary."
+    }
+   ]
+  }
+ },
+ {
+  "id": 55,
+  "kind": "answerable",
+  "asker": "cfo@kaveri.example",
+  "doc": "FY2026-27 Budget",
+  "q": "How much of the FY2026-27 technology budget is for market data and research terminals?",
+  "reference": "₹4.6 crore out of the total technology spend of ₹14 crore.",
+  "A": {
+   "abstained": false,
+   "answer": "₹4.6 crore is allocated for market data and research terminals in the FY2026‑27 technology budget [1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "FY2026-27 Budget",
+     "text": "## 4.2 Technology spend of ₹14 crore\n\n| Item                                             |   ₹ crore |\n|--------------------------------------------------|-----------|\n| Market data and research terminals               |       4.6 |\n| Order management and risk systems licences       |       3.2 |\n| Cloud hosting and cybersecurity                  |       2.7 |\n| Straight-through processing project (Operations) |       1.5 |\n| Client portal and app upgrade                    |       1.3 |\n| GIFT City systems set-up                         |       0.7 |\n| Total                                            |      14.0 |"
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "₹4.6 crore is allocated for market data and research terminals in the FY2026-27 technology budget [1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "FY2026-27 Budget",
+     "text": "## 4.2 Technology spend of ₹14 crore\n\n| Item                                             |   ₹ crore |\n|--------------------------------------------------|-----------|\n| Market data and research terminals               |       4.6 |\n| Order management and risk systems licences       |       3.2 |\n| Cloud hosting and cybersecurity                  |       2.7 |\n| Straight-through processing project (Operations) |       1.5 |\n| Client portal and app upgrade                    |       1.3 |\n| GIFT City systems set-up                         |       0.7 |\n| Total                                            |      14.0 |"
+    }
+   ]
+  }
+ }
+]

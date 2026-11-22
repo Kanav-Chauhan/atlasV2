@@ -1,0 +1,913 @@
+[
+ {
+  "id": 112,
+  "kind": "answerable",
+  "asker": "qa@sanjeevani.example",
+  "doc": "SOP – Purified Water System Monitoring",
+  "q": "What is the alert level for purified water conductivity?",
+  "reference": "1.0 µS/cm; the action level and specification is 1.3 µS/cm at 25°C.",
+  "A": {
+   "abstained": false,
+   "answer": "The alert level for purified water conductivity is **1.0 µS/cm** [1][2].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "SOP – Purified Water System Monitoring",
+     "text": "## 5.1 Specification and levels\n\n\n\n\n\n| Parameter                                   | Specification       | Alert level   | Action level   | Method                                          |\n|---------------------------------------------|---------------------|---------------|----------------|-------------------------------------------------|\n| Conductivity (online, loop return)          | ≤ 1.3 µS/cm at 25°C | 1.0 µS/ cm    | 1.3 µS/cm      | IP/USP <645> stage 1                            |\n| Total Organic Carbon                        | ≤ 500 ppb           | 300 ppb       | 500 ppb        | Online TOC analyser                             |\n| Total aerobic microbial count               | ≤ 100 CFU/mL        | 50 CFU/ mL    | 100 CFU/ mL    | Membrane filtration, R2A agar, 30- 35°C, 5 days |\n| Pathogens (E. coli, Pseudomonas aeruginosa) | Absent in 100 mL    | -             | Any detection  | IP method                                       |\n| pH                                          | 5.0-7.0             | -             | -              | IP method                                       |\n| Nitrates                                    | ≤ 0.2 ppm           | -             | -              | IP method                                       |"
+    },
+    {
+     "n": 2,
+     "title": "SOP – Purified Water System Monitoring",
+     "text": "## 8. Revision History\n\n|   Version | Effective         | Summary of change                                                             |\n|-----------|-------------------|-------------------------------------------------------------------------------|\n|       1.0 | 01 May 2018       | First issue                                                                   |\n|       2.0 | 01 January 2023   | Unit III ozonated system added; online TOC                                    |\n|       2.1 | 01 September 2025 | Alert level for conductivity set at 1.0 µS/cm; 3-consecutive-alert rule added |"
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "The alert level for purified water conductivity is 1.0 µS/cm [1][2].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "SOP – Purified Water System Monitoring",
+     "text": "## 5.1 Specification and levels\n\n\n\n\n\n| Parameter                                   | Specification       | Alert level   | Action level   | Method                                          |\n|---------------------------------------------|---------------------|---------------|----------------|-------------------------------------------------|\n| Conductivity (online, loop return)          | ≤ 1.3 µS/cm at 25°C | 1.0 µS/ cm    | 1.3 µS/cm      | IP/USP <645> stage 1                            |\n| Total Organic Carbon                        | ≤ 500 ppb           | 300 ppb       | 500 ppb        | Online TOC analyser                             |\n| Total aerobic microbial count               | ≤ 100 CFU/mL        | 50 CFU/ mL    | 100 CFU/ mL    | Membrane filtration, R2A agar, 30- 35°C, 5 days |\n| Pathogens (E. coli, Pseudomonas aeruginosa) | Absent in 100 mL    | -             | Any detection  | IP method                                       |\n| pH                                          | 5.0-7.0             | -             | -              | IP method                                       |\n| Nitrates                                    | ≤ 0.2 ppm           | -             | -              | IP method                                       |"
+    },
+    {
+     "n": 2,
+     "title": "SOP – Purified Water System Monitoring",
+     "text": "## 8. Revision History\n\n|   Version | Effective         | Summary of change                                                             |\n|-----------|-------------------|-------------------------------------------------------------------------------|\n|       1.0 | 01 May 2018       | First issue                                                                   |\n|       2.0 | 01 January 2023   | Unit III ozonated system added; online TOC                                    |\n|       2.1 | 01 September 2025 | Alert level for conductivity set at 1.0 µS/cm; 3-consecutive-alert rule added |"
+    }
+   ]
+  }
+ },
+ {
+  "id": 113,
+  "kind": "not_found",
+  "asker": "sales@sanjeevani.example",
+  "doc": null,
+  "q": "What is the cafeteria meal subsidy at the Hyderabad R&D centre?",
+  "reference": "not found",
+  "A": {
+   "abstained": false,
+   "answer": "The provided documents do not mention any cafeteria meal subsidy for the Hyderabad R&D centre. The only meal-related benefit described is a free meal for plant employees working night shifts (at least 10 per month) under the Shift and Overtime Policy [1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Shift and Overtime Policy",
+     "text": "## 5. Shift allowance\n\n\n\n\n\n| Shift         | Allowance        |\n|---------------|------------------|\n| A (Morning)   | Nil              |\n| B (Afternoon) | ₹1,200 per month |\n| C (Night)     | ₹2,800 per month |\n\n5.1 The night-shift allowance of ₹2,800 per month is paid to plant employees who work at least 10 night shifts in the month; below 10 night shifts it is paid pro-rata at ₹280 per night shift. 5.2 Night-shift employees receive a free meal and company transport from fixed pick-up points. 5.3 Shift allowance is not part of basic salary and does not count for PF, gratuity or leave encashment."
+    }
+   ]
+  },
+  "B": {
+   "abstained": true,
+   "answer": "Not found in your documents.\nNo document you can open answers this, so Atlas did not guess.",
+   "cited": []
+  }
+ },
+ {
+  "id": 114,
+  "kind": "answerable",
+  "asker": "owner@nimbus.example",
+  "doc": "Hyderabad Campus Expansion Proposal",
+  "q": "What is the capital cost per seat of the Hyderabad campus expansion?",
+  "reference": "₹2.25 lakh per seat (₹45 crore for about 2,000 seats).",
+  "A": {
+   "abstained": false,
+   "answer": "The capital cost per seat for the Hyderabad campus expansion is **₹2.25 lakh** [1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Hyderabad Campus Expansion Proposal",
+     "text": "### 5. Financials\n\n| **₹ crore**                            |   **FY27** |   **FY28** | **FY29**   |\n|----------------------------------------|------------|------------|------------|\n| Capex                                  |       27.0 |       18.0 | —          |\n| Additional rent and maintenance (opex) |        5.9 |       17.4 | 18.2       |\n| Depreciation (fit-out over 9 years)    |        1.2 |        4.4 | 5.0        |\n| Seats enabled (cumulative)             |      1,050 |      2,000 | 2,000      |\n| Incremental revenue supported          |         48 |        210 | 330        |\n\n- Cost per seat (capex): ₹2.25 lakh.\n- Payback on capex: about **3.2 years**, assuming 75% of new seats are used by billable staff at the planned utilisation of 79%.\n- Funding: internal accruals. Cash and investments were ₹212 crore at 31 March 2026; no borrowing required."
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "The capital cost per seat for the Hyderabad campus expansion is **₹2.25 lakh** [1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Hyderabad Campus Expansion Proposal",
+     "text": "### 5. Financials\n\n| **₹ crore**                            |   **FY27** |   **FY28** | **FY29**   |\n|----------------------------------------|------------|------------|------------|\n| Capex                                  |       27.0 |       18.0 | —          |\n| Additional rent and maintenance (opex) |        5.9 |       17.4 | 18.2       |\n| Depreciation (fit-out over 9 years)    |        1.2 |        4.4 | 5.0        |\n| Seats enabled (cumulative)             |      1,050 |      2,000 | 2,000      |\n| Incremental revenue supported          |         48 |        210 | 330        |\n\n- Cost per seat (capex): ₹2.25 lakh.\n- Payback on capex: about **3.2 years**, assuming 75% of new seats are used by billable staff at the planned utilisation of 79%.\n- Funding: internal accruals. Cash and investments were ₹212 crore at 31 March 2026; no borrowing required."
+    }
+   ]
+  }
+ },
+ {
+  "id": 115,
+  "kind": "answerable",
+  "asker": "rnd@sanjeevani.example",
+  "doc": "Serious Adverse Event Reporting SOP",
+  "q": "What is the compensation insurance cover for the SJ-2041 trial?",
+  "reference": "Up to ₹10 crore in aggregate, with ₹50 lakh per participant.",
+  "A": {
+   "abstained": false,
+   "answer": "The SJ-2041 trial has clinical trial insurance covering up to **₹10 crore aggregate** with **₹50 lakh per participant** [1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Serious Adverse Event Reporting SOP",
+     "text": "## 5.5 Compensation\n\nPer the NDCT Rules, 2019, participants are entitled to free medical management for any injury as long as required, and financial compensation for trial-related injury or death. Sanjeevani pays compensation within 30 days of the order of the Licensing Authority. Clinical trial insurance for SJ-2041 covers up to ₹10 crore aggregate with ₹50 lakh per participant."
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "The clinical trial insurance for SJ-2041 covers up to **₹10 crore aggregate** with **₹50 lakh per participant** [1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Serious Adverse Event Reporting SOP",
+     "text": "## 5.5 Compensation\n\nPer the NDCT Rules, 2019, participants are entitled to free medical management for any injury as long as required, and financial compensation for trial-related injury or death. Sanjeevani pays compensation within 30 days of the order of the Licensing Authority. Clinical trial insurance for SJ-2041 covers up to ₹10 crore aggregate with ₹50 lakh per participant."
+    }
+   ]
+  }
+ },
+ {
+  "id": 116,
+  "kind": "answerable",
+  "asker": "analyst@kaveri.example",
+  "doc": "NAV Computation and Cut-off Timings",
+  "q": "What is the cut-off time for getting same-day NAV in Kaveri's mutual-fund schemes?",
+  "reference": "3:00 pm on business days; for purchases the funds must also be realised in the scheme's account before 3:00 pm.",
+  "A": {
+   "abstained": false,
+   "answer": "The cut-off time for same-day NAV in Kaveri's mutual-fund schemes is **3:00 pm on business days** for both equity and debt schemes [1][2]. For purchases, the funds must also be realised in the scheme's bank account before 3:00 pm; otherwise the next business day's NAV applies [1][2].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "NAV Computation and Cut-off Timings",
+     "text": "## 1. Quick answer: which NAV applies?\n\nFor all Kaveri mutual-fund-style schemes (Bluechip, Flexi Cap, Small Cap Opportunities, Short Duration, Arbitrage):\n\n| Transaction | Received by Kaveri before 3:00 pm | Received at or after 3:00 pm |\n|---|---|---|\n| Purchase / SIP / switch-in | Same day's NAV, **if funds are realised** in the scheme's bank account before 3:00 pm | Next business day's NAV (subject to funds realised) |\n| Redemption / switch-out | Same day's NAV | Next business day's NAV |\n\n- **Cut-off time is 3:00 pm** on business days, for both equity and debt schemes.\n- For purchases, what matters is when the **money reaches the scheme's account**, not when the investor clicked \"invest\". A purchase submitted at 11:00 am but with funds credited at 3:20 pm gets the next business day's NAV.\n- The time stamp is the one recorded by the registrar's system or the Kaveri website/app server, not the investor's phone clock.\n- A \"business day\" excludes Saturdays, Sundays and stock-exchange or bank holidays in Mumbai."
+    },
+    {
+     "n": 2,
+     "title": "Investor Service FAQ – Redemptions, Exit Loads and Statements",
+     "text": "## 1. Buying and redeeming\n\n**What is the cut-off time for same-day NAV?**\n3:00 pm on business days, for both equity and debt schemes. Redemptions received before 3:00 pm get that day's NAV. For purchases, the money must also be credited to the scheme's bank account before 3:00 pm; otherwise the next business day's NAV applies.\n\n**I placed a redemption on Saturday. Which NAV will I get?**\nThe next business day's NAV (normally Monday's).\n\n**How long does a redemption take to reach my bank account?**\nWithin 3 working days of the redemption date for all schemes. For the Arbitrage and Short Duration funds we usually pay within 2 working days. If we are late beyond the regulatory timeline, we pay interest at 15% per annum for each day of delay.\n\n**Where is my redemption money paid?**\nOnly to the bank account registered in your folio. We never pay redemption proceeds to a third-party account.\n\n**Can I pay or invest in cash?**\nNo. Kaveri does not accept cash for any investment, in any amount. Please pay by cheque, NEFT, RTGS, UPI or mandate from a bank account in your own name."
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "The cut-off time for same-day NAV in all Kaveri mutual-fund schemes is **3:00 pm on business days**, applicable to both equity and debt schemes [1][2][3].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "NAV Computation and Cut-off Timings",
+     "text": "## 1. Quick answer: which NAV applies?\n\nFor all Kaveri mutual-fund-style schemes (Bluechip, Flexi Cap, Small Cap Opportunities, Short Duration, Arbitrage):\n\n| Transaction | Received by Kaveri before 3:00 pm | Received at or after 3:00 pm |\n|---|---|---|\n| Purchase / SIP / switch-in | Same day's NAV, **if funds are realised** in the scheme's bank account before 3:00 pm | Next business day's NAV (subject to funds realised) |\n| Redemption / switch-out | Same day's NAV | Next business day's NAV |\n\n- **Cut-off time is 3:00 pm** on business days, for both equity and debt schemes.\n- For purchases, what matters is when the **money reaches the scheme's account**, not when the investor clicked \"invest\". A purchase submitted at 11:00 am but with funds credited at 3:20 pm gets the next business day's NAV.\n- The time stamp is the one recorded by the registrar's system or the Kaveri website/app server, not the investor's phone clock.\n- A \"business day\" excludes Saturdays, Sundays and stock-exchange or bank holidays in Mumbai."
+    },
+    {
+     "n": 2,
+     "title": "Investor Service FAQ – Redemptions, Exit Loads and Statements",
+     "text": "## 1. Buying and redeeming\n\n**What is the cut-off time for same-day NAV?**\n3:00 pm on business days, for both equity and debt schemes. Redemptions received before 3:00 pm get that day's NAV. For purchases, the money must also be credited to the scheme's bank account before 3:00 pm; otherwise the next business day's NAV applies.\n\n**I placed a redemption on Saturday. Which NAV will I get?**\nThe next business day's NAV (normally Monday's).\n\n**How long does a redemption take to reach my bank account?**\nWithin 3 working days of the redemption date for all schemes. For the Arbitrage and Short Duration funds we usually pay within 2 working days. If we are late beyond the regulatory timeline, we pay interest at 15% per annum for each day of delay.\n\n**Where is my redemption money paid?**\nOnly to the bank account registered in your folio. We never pay redemption proceeds to a third-party account.\n\n**Can I pay or invest in cash?**\nNo. Kaveri does not accept cash for any investment, in any amount. Please pay by cheque, NEFT, RTGS, UPI or mandate from a bank account in your own name."
+    },
+    {
+     "n": 3,
+     "title": "NAV Computation and Cut-off Timings",
+     "text": "## 9. FAQ\n\n**A client sent money by NEFT at 2:45 pm but the bank credited it at 3:05 pm. Which NAV?** Next business day's NAV, because funds were realised after cut-off.\n\n**A redemption request came in on Saturday. Which NAV?** Monday's NAV (or the next business day if Monday is a holiday).\n\n**Who can approve an exception to cut-off?** No one. Cut-off rules are regulatory and Kaveri does not grant exceptions.\n\n**Where do I report a suspected wrong NAV?** Email the Fund Accounting lead and the Head of Operations immediately; do not discuss with the client until Operations confirms."
+    }
+   ]
+  }
+ },
+ {
+  "id": 117,
+  "kind": "answerable",
+  "asker": "employee@nimbus.example",
+  "doc": "Travel and Expense Policy",
+  "q": "What is the daily allowance for business travel to a metro city in India?",
+  "reference": "₹3,500 per day (non-metro ₹2,500, international USD 75).",
+  "A": {
+   "abstained": false,
+   "answer": "The daily allowance for business travel to a metro city in India is ₹3,500 per day [1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Travel and Expense Policy",
+     "text": "## 6. Daily allowance\n\nInstead of claiming meals and incidentals against bills, travellers receive a flat daily allowance (DA):\n\n| Location                | Daily allowance   |\n|-------------------------|-------------------|\n| Metro city in India     | ₹3,500 per day    |\n| Non-metro city in India | ₹2,500 per day    |\n| International           | USD 75 per day    |\n\n- DA is paid for each calendar day away from the base location. Travel days count as full days if departure is before 2:00 pm, otherwise half days.\n- When a client or Nimbus provides meals (for example, at a conference), DA is reduced by 50% for that day.\n- DA is not paid for travel within the base city."
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "The daily allowance for travel to a metro city in India is **₹3,500 per day**【1】.",
+   "cited": []
+  }
+ },
+ {
+  "id": 118,
+  "kind": "answerable",
+  "asker": "qa@sanjeevani.example",
+  "doc": "Specification – Glucosan-M 500 SR Tablets",
+  "q": "What is the dissolution acceptance criterion for Glucosan-M 500 SR tablets?",
+  "reference": "Not less than 80% (Q) released in 10 hours (with 20–40% at 1 hour and 45–65% at 3 hours).",
+  "A": {
+   "abstained": false,
+   "answer": "The dissolution acceptance criterion for Glucosan-M 500 SR tablets requires: 20–40% released at 1 hour, 45–65% at 3 hours, and **not less than 80% (Q) released at 10 hours**, which is the critical release criterion. Acceptance follows the IP/USP acceptance table for extended‑release dosage forms (Levels L1–L3) [1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Specification – Glucosan-M 500 SR Tablets",
+     "text": "## 4. Dissolution Specification\n\nApparatus: USP Type II (paddle), 100 rpm. Medium: 1,000 mL phosphate buffer pH 6.8 at 37 ± 0.5°C. Analysis by UV at 233 nm.\n\n| Time point   | Amount released       |\n|--------------|-----------------------|\n| 1 hour       | 20-40%                |\n| 3 hours      | 45-65%                |\n| 10 hours     | Not less than 80% (Q) |\n\nAcceptance follows the IP/USP acceptance table for extended-release dosage forms (Levels L1-L3). The 10-hour time point is the critical release criterion: not less than 80% (Q) released in 10 hours."
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "The dissolution acceptance criterion for Glucosan‑M 500 SR tablets is defined at three time points: 1 hour (20‑40% released), 3 hours (45‑65% released), and 10 hours (not less than 80% (Q) released). The 10‑hour point is the critical release criterion, and overall acceptance follows the IP/USP acceptance table for extended‑release dosage forms (Levels L1‑L3) [1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Specification – Glucosan-M 500 SR Tablets",
+     "text": "## 4. Dissolution Specification\n\nApparatus: USP Type II (paddle), 100 rpm. Medium: 1,000 mL phosphate buffer pH 6.8 at 37 ± 0.5°C. Analysis by UV at 233 nm.\n\n| Time point   | Amount released       |\n|--------------|-----------------------|\n| 1 hour       | 20-40%                |\n| 3 hours      | 45-65%                |\n| 10 hours     | Not less than 80% (Q) |\n\nAcceptance follows the IP/USP acceptance table for extended-release dosage forms (Levels L1-L3). The 10-hour time point is the critical release criterion: not less than 80% (Q) released in 10 hours."
+    }
+   ]
+  }
+ },
+ {
+  "id": 119,
+  "kind": "answerable",
+  "asker": "qa@sanjeevani.example",
+  "doc": "Specification – Glucosan-M 500 SR Tablets",
+  "q": "What is the dissolution specification for Glucosan-M 500 SR tablets?",
+  "reference": "Not less than 80% (Q) released in 10 hours.",
+  "A": {
+   "abstained": false,
+   "answer": "The dissolution specification uses USP Type II (paddle) at 100 rpm in 1,000 mL phosphate buffer pH 6.8 at 37 ± 0.5 °C, analyzed by UV at 233 nm. Release limits: 20–40 % at 1 hour, 45–65 % at 3 hours, and not less than 80 % (Q) at 10 hours, with acceptance per IP/USP extended‑release tables (L1–L3). The 10‑hour point is the critical release criterion. [1]",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Specification – Glucosan-M 500 SR Tablets",
+     "text": "## 4. Dissolution Specification\n\nApparatus: USP Type II (paddle), 100 rpm. Medium: 1,000 mL phosphate buffer pH 6.8 at 37 ± 0.5°C. Analysis by UV at 233 nm.\n\n| Time point   | Amount released       |\n|--------------|-----------------------|\n| 1 hour       | 20-40%                |\n| 3 hours      | 45-65%                |\n| 10 hours     | Not less than 80% (Q) |\n\nAcceptance follows the IP/USP acceptance table for extended-release dosage forms (Levels L1-L3). The 10-hour time point is the critical release criterion: not less than 80% (Q) released in 10 hours."
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "The dissolution test uses a USP Type II (paddle) apparatus at 100 rpm with 1,000 mL phosphate‑buffer pH 6.8 at 37 ± 0.5 °C and UV detection at 233 nm. The release limits are 20‑40 % at 1 hour, 45‑65 % at 3 hours, and not less than 80 % (Q) at 10 hours, the critical criterion [1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Specification – Glucosan-M 500 SR Tablets",
+     "text": "## 4. Dissolution Specification\n\nApparatus: USP Type II (paddle), 100 rpm. Medium: 1,000 mL phosphate buffer pH 6.8 at 37 ± 0.5°C. Analysis by UV at 233 nm.\n\n| Time point   | Amount released       |\n|--------------|-----------------------|\n| 1 hour       | 20-40%                |\n| 3 hours      | 45-65%                |\n| 10 hours     | Not less than 80% (Q) |\n\nAcceptance follows the IP/USP acceptance table for extended-release dosage forms (Levels L1-L3). The 10-hour time point is the critical release criterion: not less than 80% (Q) released in 10 hours."
+    }
+   ]
+  }
+ },
+ {
+  "id": 120,
+  "kind": "answerable",
+  "asker": "compliance@kaveri.example",
+  "doc": "Kaveri Arbitrage Fund Factsheet March 2026",
+  "q": "What is the exit load on the Kaveri Arbitrage Fund?",
+  "reference": "0.25% if redeemed within 15 days of allotment; nil thereafter.",
+  "A": {
+   "abstained": false,
+   "answer": "The Kaveri Arbitrage Fund charges an exit load of **0.25% if redeemed within 15 days of allotment**; there is no exit load after that period [1][2][3].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Investor Service FAQ – Redemptions, Exit Loads and Statements",
+     "text": "## 2. Exit loads\n\n**What exit load applies to the equity funds?**\n\n| Scheme | Exit load |\n|---|---|\n| Kaveri Bluechip Fund | 1% if redeemed within 365 days of allotment |\n| Kaveri Flexi Cap Fund | 1% if redeemed within 365 days of allotment |\n| Kaveri Small Cap Opportunities | 1% if redeemed within 365 days of allotment |\n| Kaveri Short Duration Fund | Nil |\n| Kaveri Arbitrage Fund | 0.25% if redeemed within 15 days of allotment |\n\n**Is there an exit load if I redeem my Flexi Cap units after 8 months?**\nYes. Eight months is within 365 days of allotment, so an exit load of 1% applies to those units. Units held for more than 365 days carry no exit load.\n\n**How is the exit load worked out if I invested through a SIP?**\nEach SIP instalment is treated separately on a first-in, first-out basis. When you redeem, the oldest units are redeemed first, and only units still within 365 days of their own allotment date carry the 1% load.\n\n**Does a switch between Kaveri funds attract exit load?**\nYes. A switch is treated as a redemption from the first scheme for exit load purposes.\n\n**Are dividend reinvestment units charged exit load?**\nNo.\n\n**What is the exit load on the PMS?**\n\n| Withdrawal within (from date of each contribution) | Exit load |\n|---|---|\n| Year 1 | 3% |\n| Year 2 | 2% |\n| Year 3 | 1% |\n| After 3 years | Nil |\n\n**And on the AIF?**\nThe Kaveri Long-Short AIF III has a 12-month lock-in from each contribution. After the lock-in, an exit load of 1% applies in months 13–24 and nil after that. Redemptions are monthly with 30 days' notice."
+    },
+    {
+     "n": 2,
+     "title": "Kaveri Arbitrage Fund Factsheet March 2026",
+     "text": "## 1. Fund at a glance\n\n| Item                             | Detail                                                                                               |\n|----------------------------------|------------------------------------------------------------------------------------------------------|\n| Category                         | Arbitrage fund (hybrid)                                                                              |\n| Inception date                   | 20 August 2020                                                                                       |\n| Fund manager                     | Farida Sheikh (managing since inception); equity arbitrage desk support from the Mumbai dealing team |\n| Benchmark                        | Nifty 50 Arbitrage                                                                                   |\n| AUM (31 March 2026)              | ₹1,100 crore                                                                                         |\n| Monthly average AUM (March 2026) | ₹1,064 crore                                                                                         |\n| NAV - Direct Plan, Growth        | ₹13.58                                                                                               |\n| NAV - Regular Plan, Growth       | ₹13.04                                                                                               |\n| Total expense ratio              | Direct 0.35%; Regular 1.02%                                                                          |\n| Minimum investment               | ₹5,000 lump sum; ₹1,000 per month SIP                                                                |\n| Exit load                        | 0.25% if redeemed within 15 days from allotment; nil therea"
+    },
+    {
+     "n": 3,
+     "title": "Product Guide – Which Kaveri Fund Fits Which Investor",
+     "text": "## 1. The line-up at a glance\n\n| Product | Type | Min. investment | Ideal horizon | Riskometer | Exit load |\n|---|---|---|---|---|---|\n| Kaveri Arbitrage Fund | Hybrid (arbitrage) | ₹5,000 | 3 months+ | Low | 0.25% within 15 days |\n| Kaveri Short Duration Fund | Debt | ₹5,000 | 1–3 years | Moderate | Nil |\n| Kaveri Bluechip Fund | Large cap | ₹1,000 | 5 years+ | Very High | 1% within 365 days |\n| Kaveri Flexi Cap Fund | Flexi cap | ₹1,000 | 5 years+ | Very High | 1% within 365 days |\n| Kaveri Small Cap Opportunities | Small cap | ₹5,000 | 7 years+ | Very High | 1% within 365 days |\n| Kaveri Focused Equity PMS | PMS | ₹50 lakh | 5 years+ | — (high risk) | Per client agreement |\n| Kaveri Long-Short AIF III | AIF Cat III | ₹1 crore | 3 years+ | — (high risk) | Per PPM |"
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "0.25% if redeemed within 15 days of allotment; nil thereafter. [1][2][3]",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Investor Service FAQ – Redemptions, Exit Loads and Statements",
+     "text": "## 2. Exit loads\n\n**What exit load applies to the equity funds?**\n\n| Scheme | Exit load |\n|---|---|\n| Kaveri Bluechip Fund | 1% if redeemed within 365 days of allotment |\n| Kaveri Flexi Cap Fund | 1% if redeemed within 365 days of allotment |\n| Kaveri Small Cap Opportunities | 1% if redeemed within 365 days of allotment |\n| Kaveri Short Duration Fund | Nil |\n| Kaveri Arbitrage Fund | 0.25% if redeemed within 15 days of allotment |\n\n**Is there an exit load if I redeem my Flexi Cap units after 8 months?**\nYes. Eight months is within 365 days of allotment, so an exit load of 1% applies to those units. Units held for more than 365 days carry no exit load.\n\n**How is the exit load worked out if I invested through a SIP?**\nEach SIP instalment is treated separately on a first-in, first-out basis. When you redeem, the oldest units are redeemed first, and only units still within 365 days of their own allotment date carry the 1% load.\n\n**Does a switch between Kaveri funds attract exit load?**\nYes. A switch is treated as a redemption from the first scheme for exit load purposes.\n\n**Are dividend reinvestment units charged exit load?**\nNo.\n\n**What is the exit load on the PMS?**\n\n| Withdrawal within (from date of each contribution) | Exit load |\n|---|---|\n| Year 1 | 3% |\n| Year 2 | 2% |\n| Year 3 | 1% |\n| After 3 years | Nil |\n\n**And on the AIF?**\nThe Kaveri Long-Short AIF III has a 12-month lock-in from each contribution. After the lock-in, an exit load of 1% applies in months 13–24 and nil after that. Redemptions are monthly with 30 days' notice."
+    },
+    {
+     "n": 2,
+     "title": "Kaveri Arbitrage Fund Factsheet March 2026",
+     "text": "## 1. Fund at a glance\n\n| Item                             | Detail                                                                                               |\n|----------------------------------|------------------------------------------------------------------------------------------------------|\n| Category                         | Arbitrage fund (hybrid)                                                                              |\n| Inception date                   | 20 August 2020                                                                                       |\n| Fund manager                     | Farida Sheikh (managing since inception); equity arbitrage desk support from the Mumbai dealing team |\n| Benchmark                        | Nifty 50 Arbitrage                                                                                   |\n| AUM (31 March 2026)              | ₹1,100 crore                                                                                         |\n| Monthly average AUM (March 2026) | ₹1,064 crore                                                                                         |\n| NAV - Direct Plan, Growth        | ₹13.58                                                                                               |\n| NAV - Regular Plan, Growth       | ₹13.04                                                                                               |\n| Total expense ratio              | Direct 0.35%; Regular 1.02%                                                                          |\n| Minimum investment               | ₹5,000 lump sum; ₹1,000 per month SIP                                                                |\n| Exit load                        | 0.25% if redeemed within 15 days from allotment; nil therea"
+    },
+    {
+     "n": 3,
+     "title": "Product Guide – Which Kaveri Fund Fits Which Investor",
+     "text": "## 1. The line-up at a glance\n\n| Product | Type | Min. investment | Ideal horizon | Riskometer | Exit load |\n|---|---|---|---|---|---|\n| Kaveri Arbitrage Fund | Hybrid (arbitrage) | ₹5,000 | 3 months+ | Low | 0.25% within 15 days |\n| Kaveri Short Duration Fund | Debt | ₹5,000 | 1–3 years | Moderate | Nil |\n| Kaveri Bluechip Fund | Large cap | ₹1,000 | 5 years+ | Very High | 1% within 365 days |\n| Kaveri Flexi Cap Fund | Flexi cap | ₹1,000 | 5 years+ | Very High | 1% within 365 days |\n| Kaveri Small Cap Opportunities | Small cap | ₹5,000 | 7 years+ | Very High | 1% within 365 days |\n| Kaveri Focused Equity PMS | PMS | ₹50 lakh | 5 years+ | — (high risk) | Per client agreement |\n| Kaveri Long-Short AIF III | AIF Cat III | ₹1 crore | 3 years+ | — (high risk) | Per PPM |"
+    }
+   ]
+  }
+ },
+ {
+  "id": 121,
+  "kind": "answerable",
+  "asker": "qa@sanjeevani.example",
+  "doc": "SOP – Cleanroom Gowning",
+  "q": "What is the finger-dab acceptance limit for Grade C gowning qualification?",
+  "reference": "Finger dab ≤ 5 CFU per glove, and gown contact plates ≤ 5 CFU per plate.",
+  "A": {
+   "abstained": false,
+   "answer": "The finger‑dab acceptance limit for Grade C gowning qualification is **≤ 5 CFU per glove** [1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "SOP – Cleanroom Gowning",
+     "text": "## 5.6 Gowning qualification\n\n1. New employees complete classroom training and 3 consecutive successful gowning demonstrations before first entry to Grade C.\n2. Contact plates (RODAC, 55 mm) are taken from 5 locations: both gloved hands (finger dab), forearms, chest and hood.\n3. Acceptance for Grade C qualification: finger dab ≤ 5 CFU/glove; gown contact plates ≤ 5 CFU/plate.\n4. Requalification is annual. A person who fails twice is retrained and may not enter Grade C until requalified."
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "The finger-dab acceptance limit for Grade C gowning qualification is **≤ 5 CFU/glove** [1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "SOP – Cleanroom Gowning",
+     "text": "## 5.6 Gowning qualification\n\n1. New employees complete classroom training and 3 consecutive successful gowning demonstrations before first entry to Grade C.\n2. Contact plates (RODAC, 55 mm) are taken from 5 locations: both gloved hands (finger dab), forearms, chest and hood.\n3. Acceptance for Grade C qualification: finger dab ≤ 5 CFU/glove; gown contact plates ≤ 5 CFU/plate.\n4. Requalification is annual. A person who fails twice is retrained and may not enter Grade C until requalified."
+    }
+   ]
+  }
+ },
+ {
+  "id": 122,
+  "kind": "answerable",
+  "asker": "hr@nimbus.example",
+  "doc": "Salary Bands FY2026-27",
+  "q": "What is the fixed salary band for an L3 Senior Software Engineer at Nimbus?",
+  "reference": "₹10–18 lakh per annum fixed.",
+  "A": {
+   "abstained": false,
+   "answer": "The fixed salary band for an L3 Senior Software Engineer is **₹10–18 lakh per annum** (minimum ₹10 lakh, midpoint ₹14 lakh, maximum ₹18 lakh) [1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Salary Bands FY2026-27",
+     "text": "## 4. Salary bands (₹ lakh per annum, fixed pay)\n\n| Grade   | Title                           |   Minimum |   Midpoint |   Maximum |\n|---------|---------------------------------|-----------|------------|-----------|\n| L2      | Software Engineer               |       6.0 |        8.0 |      10.0 |\n| L3      | Senior Software Engineer        |      10.0 |       14.0 |      18.0 |\n| L4      | Tech Lead                       |      18.0 |       23.0 |      28.0 |\n| L5      | Engineering Manager / Architect |      28.0 |       35.0 |      42.0 |\n| L6      | Senior Manager / Principal      |      42.0 |       51.0 |      60.0 |\n| L7      | Director                        |      60.0 |       75.0 |      90.0 |\n\nIn words: L2 is ₹6-10 lakh, L3 ₹10-18 lakh, L4 ₹18-28 lakh, L5 ₹28-42 lakh, L6 ₹42-60 lakh and L7 ₹60-90 lakh per annum fixed."
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "The fixed salary band for an L3 Senior Software Engineer is ₹10–18 lakh per annum (minimum ₹10 lakh, midpoint ₹14 lakh, maximum ₹18 lakh). [1]",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Salary Bands FY2026-27",
+     "text": "## 4. Salary bands (₹ lakh per annum, fixed pay)\n\n| Grade   | Title                           |   Minimum |   Midpoint |   Maximum |\n|---------|---------------------------------|-----------|------------|-----------|\n| L2      | Software Engineer               |       6.0 |        8.0 |      10.0 |\n| L3      | Senior Software Engineer        |      10.0 |       14.0 |      18.0 |\n| L4      | Tech Lead                       |      18.0 |       23.0 |      28.0 |\n| L5      | Engineering Manager / Architect |      28.0 |       35.0 |      42.0 |\n| L6      | Senior Manager / Principal      |      42.0 |       51.0 |      60.0 |\n| L7      | Director                        |      60.0 |       75.0 |      90.0 |\n\nIn words: L2 is ₹6-10 lakh, L3 ₹10-18 lakh, L4 ₹18-28 lakh, L5 ₹28-42 lakh, L6 ₹42-60 lakh and L7 ₹60-90 lakh per annum fixed."
+    }
+   ]
+  }
+ },
+ {
+  "id": 123,
+  "kind": "denied",
+  "asker": "employee@nimbus.example",
+  "doc": "Salary Bands FY2026-27",
+  "q": "What is the fixed salary band for an L3 Senior Software Engineer at Nimbus?",
+  "reference": "₹10–18 lakh per annum fixed.",
+  "A": {
+   "abstained": false,
+   "answer": "The documents do not publish fixed salary bands. Passage [1] states that compensation ranges by grade are not published in the handbook and advises employees to talk to their manager or HR Business Partner for pay questions. [1]",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Welcome to Nimbus",
+     "text": "## 4. Career grades\n\nEvery role at Nimbus maps to one of seven grades. Your grade appears in your offer letter and on the HRMS profile.\n\n| Grade | Typical title |\n|---|---|\n| L1 | Trainee |\n| L2 | Software Engineer |\n| L3 | Senior Software Engineer |\n| L4 | Tech Lead |\n| L5 | Engineering Manager / Architect |\n| L6 | Senior Manager / Principal |\n| L7 | Director |\n\nCompensation ranges by grade are not published in the handbook. Talk to your manager or HR Business Partner if you have questions about your own pay."
+    }
+   ]
+  },
+  "B": {
+   "abstained": true,
+   "answer": "Not found in your documents.\nNo document you can open answers this, so Atlas did not guess.",
+   "cited": []
+  }
+ },
+ {
+  "id": 124,
+  "kind": "answerable",
+  "asker": "employee@nimbus.example",
+  "doc": "Employee Benefits Guide",
+  "q": "What is the group term life insurance cover for employees?",
+  "reference": "3 times annual fixed pay, with a minimum of ₹20 lakh, paid by Nimbus.",
+  "A": {
+   "abstained": false,
+   "answer": "The group term life insurance cover is equal to **3 times the employee's annual fixed pay**, with a **minimum of ₹20 lakh**, and the premium is paid by Nimbus. Nominations are managed through the HRMS. [1]",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Employee Benefits Guide",
+     "text": "## 3.2 Group term life insurance\n\nCover equal to 3 times annual fixed pay, with a minimum of ₹20 lakh, paid by Nimbus. Nominations are updated in the HRMS."
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "Group term life insurance cover is equal to 3 times annual fixed pay, with a minimum of ₹20 lakh, paid by Nimbus. [1]",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Employee Benefits Guide",
+     "text": "## 3.2 Group term life insurance\n\nCover equal to 3 times annual fixed pay, with a minimum of ₹20 lakh, paid by Nimbus. Nominations are updated in the HRMS."
+    }
+   ]
+  }
+ },
+ {
+  "id": 125,
+  "kind": "answerable",
+  "asker": "analyst@kaveri.example",
+  "doc": "Travel and Entertainment Policy",
+  "q": "What is the hotel limit per night in Mumbai for a G3 employee?",
+  "reference": "₹8,500 per night, excluding taxes.",
+  "A": {
+   "abstained": false,
+   "answer": "The hotel limit per night in Mumbai for a G3 employee is ₹8,500 (excluding taxes) [1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Travel and Entertainment Policy",
+     "text": "## 6. Hotel limits (per night, excluding taxes)\n\n| Grade   | Mumbai / New Delhi   | Bengaluru / Chennai / Pune   | Other cities   |\n|---------|----------------------|------------------------------|----------------|\n| G1      | At actuals           | At actuals                   | At actuals     |\n| G2      | ₹12,000              | ₹9,000                       | ₹7,000         |\n| G3      | ₹8,500               | ₹7,000                       | ₹5,500         |\n| G4      | ₹6,000               | ₹5,000                       | ₹4,000         |\n\nEmployees should use the Company's empanelled hotels where available. Staying with friends or family attracts a flat allowance of ₹1,500 per night."
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "The hotel limit per night in Mumbai for a G3 employee is **₹8,500** (excluding taxes) [1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Travel and Entertainment Policy",
+     "text": "## 6. Hotel limits (per night, excluding taxes)\n\n| Grade   | Mumbai / New Delhi   | Bengaluru / Chennai / Pune   | Other cities   |\n|---------|----------------------|------------------------------|----------------|\n| G1      | At actuals           | At actuals                   | At actuals     |\n| G2      | ₹12,000              | ₹9,000                       | ₹7,000         |\n| G3      | ₹8,500               | ₹7,000                       | ₹5,500         |\n| G4      | ₹6,000               | ₹5,000                       | ₹4,000         |\n\nEmployees should use the Company's empanelled hotels where available. Staying with friends or family attracts a flat allowance of ₹1,500 per night."
+    }
+   ]
+  }
+ },
+ {
+  "id": 126,
+  "kind": "answerable",
+  "asker": "analyst@kaveri.example",
+  "doc": "India Strategy Outlook FY27",
+  "q": "What is the house-view Nifty 50 year-end target and how was it derived?",
+  "reference": "26,800, based on 18.5x forward earnings on September 2027E Nifty EPS of ₹1,450.",
+  "A": {
+   "abstained": false,
+   "answer": "The house-view Nifty 50 year‑end target is **26,800**, derived by applying an 18.5× forward P/E to the September 2027 estimated Nifty EPS of ₹1,450 [1][2].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "India Strategy Outlook FY27",
+     "text": "## 1. Summary of the house view\n\n| Call                                     | View                                                               |\n|------------------------------------------|--------------------------------------------------------------------|\n| Nifty 50 year-end target (December 2026) | 26,800                                                             |\n| Nifty 50 at 31 March 2026                | 24,060                                                             |\n| Implied upside                           | 11.4%                                                              |\n| Overweight                               | Banks; capital goods                                               |\n| Underweight                              | IT services; FMCG                                                  |\n| Neutral                                  | Automobiles, pharmaceuticals, oil and gas, metals, cement, telecom |\n| Preferred market-cap tilt                | Large and mid caps over small caps                                 |\n\nOur Nifty 50 year-end target is 26,800, based on 18.5x forward earnings on September 2027E Nifty EPS of ₹1,450. This is close to the 10-year average forward P/E of 18.9x. We see earnings, not re-rating, as the source of returns in FY27."
+    },
+    {
+     "n": 2,
+     "title": "IC Meeting 48 Minutes – 9 April 2026",
+     "text": "## 4. Adoption of the April 2026 house view\n\nThe Head of Research presented the India Strategy Outlook FY27. Main points: Nifty 50 year-end target of 26,800 (18.5x September 2027E EPS of ₹1,450); overweight banks and capital goods; underweight IT services and FMCG; preference for large and mid caps over small caps.\n\nThe CIO asked whether the target was too conservative given falling bond yields. The Head of Research said the target assumes no re-rating and that the bull case of 28,900 captures a re-rating scenario.\n\nResolution 48/1: RESOLVED that the Committee adopts the April 2026 house view, including the Nifty 50 year-end target of 26,800 and the sector stances presented, as the reference for portfolio positioning until the July 2026 review. Carried unanimously (6-0)."
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "The house-view Nifty 50 year-end target is **26,800**, derived by applying an 18.5× forward P/E to the September 2027E Nifty EPS of ₹1,450 — a multiple near the 10‑year average of 18.9× — and it assumes no re‑rating, with returns expected from earnings growth [1][2][3].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "India Strategy Outlook FY27",
+     "text": "## 1. Summary of the house view\n\n| Call                                     | View                                                               |\n|------------------------------------------|--------------------------------------------------------------------|\n| Nifty 50 year-end target (December 2026) | 26,800                                                             |\n| Nifty 50 at 31 March 2026                | 24,060                                                             |\n| Implied upside                           | 11.4%                                                              |\n| Overweight                               | Banks; capital goods                                               |\n| Underweight                              | IT services; FMCG                                                  |\n| Neutral                                  | Automobiles, pharmaceuticals, oil and gas, metals, cement, telecom |\n| Preferred market-cap tilt                | Large and mid caps over small caps                                 |\n\nOur Nifty 50 year-end target is 26,800, based on 18.5x forward earnings on September 2027E Nifty EPS of ₹1,450. This is close to the 10-year average forward P/E of 18.9x. We see earnings, not re-rating, as the source of returns in FY27."
+    },
+    {
+     "n": 2,
+     "title": "IC Meeting 48 Minutes – 9 April 2026",
+     "text": "## 4. Adoption of the April 2026 house view\n\nThe Head of Research presented the India Strategy Outlook FY27. Main points: Nifty 50 year-end target of 26,800 (18.5x September 2027E EPS of ₹1,450); overweight banks and capital goods; underweight IT services and FMCG; preference for large and mid caps over small caps.\n\nThe CIO asked whether the target was too conservative given falling bond yields. The Head of Research said the target assumes no re-rating and that the bull case of 28,900 captures a re-rating scenario.\n\nResolution 48/1: RESOLVED that the Committee adopts the April 2026 house view, including the Nifty 50 year-end target of 26,800 and the sector stances presented, as the reference for portfolio positioning until the July 2026 review. Carried unanimously (6-0)."
+    },
+    {
+     "n": 3,
+     "title": "Monthly Macro Dashboard April 2026",
+     "text": "## 1. One-line summary\n\nGrowth is steady, inflation is benign, the RBI is on hold at 5.50% and domestic flows are offsetting foreign selling. Nothing in April's data changes the April house view (Nifty 50 year-end target 26,800; overweight banks and capital goods; underweight IT services and FMCG)."
+    }
+   ]
+  }
+ },
+ {
+  "id": 127,
+  "kind": "denied",
+  "asker": "compliance@kaveri.example",
+  "doc": "India Strategy Outlook FY27",
+  "q": "What is the house-view Nifty 50 year-end target and how was it derived?",
+  "reference": "26,800, based on 18.5x forward earnings on September 2027E Nifty EPS of ₹1,450.",
+  "A": {
+   "abstained": true,
+   "answer": "Not found in your documents.\nNo document you can open answers this, so Atlas did not guess.",
+   "cited": []
+  },
+  "B": {
+   "abstained": false,
+   "answer": "The provided documents do not contain Kaveri Capital's house-view Nifty 50 year-end target or the methodology for deriving such a projection. The passages cover historical performance (TWRR, CAGR) for the Focused Equity PMS and Arbitrage Fund, risk metrics, and fund manager commentary on arbitrage spreads, but no forward-looking Nifty 50 index target or calculation basis.",
+   "cited": []
+  }
+ },
+ {
+  "id": 128,
+  "kind": "not_found",
+  "asker": "owner@kaveri.example",
+  "doc": null,
+  "q": "What is the joining bonus offered to new fund managers at Kaveri?",
+  "reference": "not found",
+  "A": {
+   "abstained": true,
+   "answer": "Not found in your documents.\nNo document you can open answers this, so Atlas did not guess.",
+   "cited": []
+  },
+  "B": {
+   "abstained": false,
+   "answer": "The documents do not mention any joining bonus for new fund managers. The only bonus referenced is an annual performance bonus under the firm's performance framework [1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Careers at Kaveri – Roles, Hiring and Internships",
+     "text": "## 7. Benefits in brief\n\n| Benefit | Detail |\n|---|---|\n| Leave | 20 days privilege, 8 days casual, 10 days sick per calendar year |\n| Learning | Annual learning budget of ₹40,000 (G3–G4) or ₹75,000 (G1–G2); CFA and FRM sponsorship |\n| Health | Group medical cover for employee, spouse, children and parents |\n| Bonus | Annual performance bonus under the firm's performance framework |"
+    }
+   ]
+  }
+ },
+ {
+  "id": 129,
+  "kind": "answerable",
+  "asker": "compliance@kaveri.example",
+  "doc": "Kaveri Bluechip Fund Factsheet March 2026",
+  "q": "What is the largest holding of the Kaveri Bluechip Fund as of March 2026 and its weight?",
+  "reference": "Sahyadri Bank Ltd at 8.9% of net assets.",
+  "A": {
+   "abstained": false,
+   "answer": "The largest holding is Sahyadri Bank Ltd (Banks sector) at 8.9% of net assets. [1]",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Kaveri Bluechip Fund Factsheet March 2026",
+     "text": "## 5. Top 10 holdings\n\n|   # | Company                         | Sector        | % of net assets   |\n|-----|---------------------------------|---------------|-------------------|\n|   1 | Sahyadri Bank Ltd               | Banks         | 8.9%              |\n|   2 | Tungabhadra Bank Ltd            | Banks         | 7.4%              |\n|   3 | Infoweave Technologies Ltd      | IT services   | 5.1%              |\n|   4 | Sindhu Petro Ltd                | Oil and gas   | 4.9%              |\n|   5 | Vindhyachal Bank Ltd            | Banks         | 4.6%              |\n|   6 | Trishul Heavy Engineering Ltd   | Capital goods | 4.2%              |\n|   7 | Kalinga State Bank              | Banks         | 3.6%              |\n|   8 | Pashupati Motors Ltd            | Automobiles   | 3.5%              |\n|   9 | Sanchar Netlink Ltd             | Telecom       | 3.3%              |\n|  10 | Nirmalaya Consumer Products Ltd | FMCG          | 3.1%              |\n|     | Total top 10                    |               | 48.6%             |\n\nAll company names in this factsheet are illustrative."
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "The largest holding is **Sahyadri Bank Ltd** at **8.9%** of net assets [1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Kaveri Bluechip Fund Factsheet March 2026",
+     "text": "## 5. Top 10 holdings\n\n|   # | Company                         | Sector        | % of net assets   |\n|-----|---------------------------------|---------------|-------------------|\n|   1 | Sahyadri Bank Ltd               | Banks         | 8.9%              |\n|   2 | Tungabhadra Bank Ltd            | Banks         | 7.4%              |\n|   3 | Infoweave Technologies Ltd      | IT services   | 5.1%              |\n|   4 | Sindhu Petro Ltd                | Oil and gas   | 4.9%              |\n|   5 | Vindhyachal Bank Ltd            | Banks         | 4.6%              |\n|   6 | Trishul Heavy Engineering Ltd   | Capital goods | 4.2%              |\n|   7 | Kalinga State Bank              | Banks         | 3.6%              |\n|   8 | Pashupati Motors Ltd            | Automobiles   | 3.5%              |\n|   9 | Sanchar Netlink Ltd             | Telecom       | 3.3%              |\n|  10 | Nirmalaya Consumer Products Ltd | FMCG          | 3.1%              |\n|     | Total top 10                    |               | 48.6%             |\n\nAll company names in this factsheet are illustrative."
+    }
+   ]
+  }
+ },
+ {
+  "id": 130,
+  "kind": "answerable",
+  "asker": "legal@nimbus.example",
+  "doc": "Master Services Agreement – Harbor Logistics Inc.",
+  "q": "What is the liability cap in the Harbor Logistics MSA?",
+  "reference": "Fees paid or payable in the 12 months before the event, with a 2x super-cap for confidentiality and data protection breaches.",
+  "A": {
+   "abstained": false,
+   "answer": "Each party's total liability under the MSA in any contract year is limited to the fees paid or payable in the 12 months before the event giving rise to the claim [1]. For breaches of confidentiality or data protection obligations, the cap is two times (2x) the 12-month fees [1]. Fraud, wilful misconduct, gross negligence, and third-party intellectual property indemnity are uncapped [1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Master Services Agreement – Harbor Logistics Inc.",
+     "text": "## 5. Limitation of liability\n\n- Liability cap: each party's total liability under the MSA in any contract year is limited to the fees paid or payable in the 12 months before the event giving rise to the claim.\n- Super-cap: for breaches of confidentiality or data protection obligations, the cap is two times (2x) the 12-month fees.\n- Uncapped: fraud, wilful misconduct, gross negligence, and each party's indemnity for third-party intellectual property claims.\n- Neither party is liable for indirect or consequential losses, including loss of profit, except under the uncapped items.\n\nThese caps are within the Nimbus standard position; any increase at renewal needs CFO and Legal approval, as set out in the Contract Review and Signing Authority Guideline and the Discount Approval Policy."
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "Each party's total liability under the MSA in any contract year is limited to the fees paid or payable in the 12 months before the event giving rise to the claim [1]. For breaches of confidentiality or data protection obligations, the cap is two times (2x) the 12-month fees [1]. Liability is uncapped for fraud, wilful misconduct, gross negligence, and third-party intellectual property indemnity claims [1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Master Services Agreement – Harbor Logistics Inc.",
+     "text": "## 5. Limitation of liability\n\n- Liability cap: each party's total liability under the MSA in any contract year is limited to the fees paid or payable in the 12 months before the event giving rise to the claim.\n- Super-cap: for breaches of confidentiality or data protection obligations, the cap is two times (2x) the 12-month fees.\n- Uncapped: fraud, wilful misconduct, gross negligence, and each party's indemnity for third-party intellectual property claims.\n- Neither party is liable for indirect or consequential losses, including loss of profit, except under the uncapped items.\n\nThese caps are within the Nimbus standard position; any increase at renewal needs CFO and Legal approval, as set out in the Contract Review and Signing Authority Guideline and the Discount Approval Policy."
+    }
+   ]
+  }
+ },
+ {
+  "id": 131,
+  "kind": "denied",
+  "asker": "manager@nimbus.example",
+  "doc": "Master Services Agreement – Harbor Logistics Inc.",
+  "q": "What is the liability cap in the Harbor Logistics MSA?",
+  "reference": "Fees paid or payable in the 12 months before the event, with a 2x super-cap for confidentiality and data protection breaches.",
+  "A": {
+   "abstained": true,
+   "answer": "Not found in your documents.\nNo document you can open answers this, so Atlas did not guess.",
+   "cited": []
+  },
+  "B": {
+   "abstained": false,
+   "answer": "The provided documents do not specify the liability cap or limitation of liability clause in the Harbor Logistics Master Services Agreement. They only reference the MSA in relation to the contract structure and a service credit of USD 17,500 issued under it for incident INC-2291.",
+   "cited": []
+  }
+ },
+ {
+  "id": 132,
+  "kind": "answerable",
+  "asker": "owner@nimbus.example",
+  "doc": "Rate Card FY2026-27",
+  "q": "What is the list price of the NimbusOps Enterprise plan?",
+  "reference": "USD 5.00 (₹390) per monitored host per month, billed annually.",
+  "A": {
+   "abstained": false,
+   "answer": "The NimbusOps Enterprise plan has a list price of **USD 5.00 per monitored host per month** (or **₹390 per monitored host per month**), billed annually [1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Rate Card FY2026-27",
+     "text": "## 8. NimbusOps subscriptions (per monitored host per month, billed annually)\n\n\n\n\n\n| Plan       |   List price (USD) |   List price (₹) | Includes                                                                             |\n|------------|--------------------|------------------|--------------------------------------------------------------------------------------|\n| Starter    |               2.00 |              150 | 60-second alert evaluation, 15-day metric history, email/Slack notifications         |\n| Standard   |               3.50 |              270 | 30-second evaluation, 13-month history, 30-day logs, all integrations                |\n| Enterprise |               5.00 |              390 | Standard + SSO, 90-day logs, audit export, 99.9% SLA with service credits, named CSM |\n\nVolume tiers (applied automatically, not counted as discount): 5,000-19,999 hosts 10% off; 20,000+ hosts 18% off. Minimum annual commitment: USD 6,000 / ₹5 lakh."
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "The NimbusOps Enterprise plan list price is **USD 5.00 per monitored host per month** (₹390 per host per month) [1][2].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Rate Card FY2026-27",
+     "text": "## 8. NimbusOps subscriptions (per monitored host per month, billed annually)\n\n\n\n\n\n| Plan       |   List price (USD) |   List price (₹) | Includes                                                                             |\n|------------|--------------------|------------------|--------------------------------------------------------------------------------------|\n| Starter    |               2.00 |              150 | 60-second alert evaluation, 15-day metric history, email/Slack notifications         |\n| Standard   |               3.50 |              270 | 30-second evaluation, 13-month history, 30-day logs, all integrations                |\n| Enterprise |               5.00 |              390 | Standard + SSO, 90-day logs, audit export, 99.9% SLA with service credits, named CSM |\n\nVolume tiers (applied automatically, not counted as discount): 5,000-19,999 hosts 10% off; 20,000+ hosts 18% off. Minimum annual commitment: USD 6,000 / ₹5 lakh."
+    },
+    {
+     "n": 2,
+     "title": "Rate Card FY2026-27",
+     "text": "## 2. Changes from FY2025-26\n\n- Offshore rates increased by an average of 4.5%; onshore North America by 3.5%.\n- New role: GenAI Engineer (offshore and onshore).\n- NimbusOps Enterprise plan price increased from USD 4.75 to USD 5.00 per host per month."
+    }
+   ]
+  }
+ },
+ {
+  "id": 133,
+  "kind": "denied",
+  "asker": "employee@nimbus.example",
+  "doc": "Rate Card FY2026-27",
+  "q": "What is the list price of the NimbusOps Enterprise plan?",
+  "reference": "USD 5.00 (₹390) per monitored host per month, billed annually.",
+  "A": {
+   "abstained": false,
+   "answer": "The documents do not list a fixed price for a NimbusOps Enterprise plan. The product FAQ states that pricing depends on the number of monitored hosts and the contract term, and directs inquiries to the sales team [1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "NimbusOps Product FAQ",
+     "text": "# NimbusOps Product FAQ\n\n| Document No. | Version | Effective | Department | Classification | Approved by |\n|---|---|---|---|---|---|\n| NIM/ENG/GDL-002 | 2.0 | 01 August 2026 | NimbusOps Product | Public | Meera Iyer, Chief Technology Officer |\n\nAnswers to the questions we hear most often from teams evaluating NimbusOps. For pricing, please talk to our sales team; prices depend on the number of monitored hosts and the contract term."
+    }
+   ]
+  },
+  "B": {
+   "abstained": true,
+   "answer": "Not found in your documents.\nNo document you can open answers this, so Atlas did not guess.",
+   "cited": []
+  }
+ },
+ {
+  "id": 134,
+  "kind": "answerable",
+  "asker": "sales@sanjeevani.example",
+  "doc": "Glucosan-M 500 Product Monograph",
+  "q": "What is the maximum daily dose of Glucosan-M 500 SR?",
+  "reference": "2,000 mg once daily, taken with the evening meal.",
+  "A": {
+   "abstained": false,
+   "answer": "The maximum daily dose of Glucosan-M 500 SR is 2,000 mg once daily. [1][2]",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Glucosan-M 500 Product Monograph",
+     "text": "## 5. Dosage and administration\n\n5.1 Tablets must be swallowed whole with water and must not be crushed, chewed or split. 5.2 Take once daily with the evening meal.\n\n| Step              | Dose                                                                              |\n|-------------------|-----------------------------------------------------------------------------------|\n| Starting dose     | 500 mg once daily with the evening meal                                           |\n| Titration         | Increase by 500 mg at intervals of not less than 1 week, based on fasting glucose |\n| Usual maintenance | 1,000-1,500 mg once daily                                                         |\n| Maximum dose      | 2,000 mg once daily                                                               |\n\n5.3 Patients switching from immediate-release metformin may start Glucosan-M at the same total daily dose, up to 2,000 mg once daily. 5.4 Renal impairment: assess eGFR before starting and at least annually.\n\n| eGFR (mL/min/1.73 m²)   | Recommendation                                                                                             |\n|-------------------------|------------------------------------------------------------------------------------------------------------|\n| ≥ 45                    | No dose adjustment                                                                                         |\n| 30-44                   | Do not initiate; if already on therapy, assess benefit-risk and consider dose reduction (max 1,000 mg/day) |\n| < 30                    | Contraindicated                                                                                            |\n\n5.5 Paediatric use: not recommended for children below 18 years (SR formulation)."
+    },
+    {
+     "n": 2,
+     "title": "Glucosan-M Brand Plan FY27",
+     "text": "### 5. Positioning and key messages\n\n**Positioning:** \"Once-daily metformin that patients stay on.\"\n\nApproved messages (all consistent with the product monograph):\n\n1.\tOnce-daily with the evening meal: simpler regimen.\n\n2.\tSR matrix with gradual release over about 10 hours; fewer GI side effects than immediate-release metformin in many patients.\n\n3.\tAssured quality: assay 95.0–105.0%, dissolution not less than 80% (Q) released in 10 hours, made at our WHO-GMP Unit I.\n\n4.\tMaximum dose 2,000 mg once daily; titrate weekly in 500 mg steps.\n\nNo claims of superiority over other SR brands may be made."
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "The maximum daily dose of Glucosan-M 500 SR is **2,000 mg once daily** [1][2].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Glucosan-M 500 Product Monograph",
+     "text": "## 5. Dosage and administration\n\n5.1 Tablets must be swallowed whole with water and must not be crushed, chewed or split. 5.2 Take once daily with the evening meal.\n\n| Step              | Dose                                                                              |\n|-------------------|-----------------------------------------------------------------------------------|\n| Starting dose     | 500 mg once daily with the evening meal                                           |\n| Titration         | Increase by 500 mg at intervals of not less than 1 week, based on fasting glucose |\n| Usual maintenance | 1,000-1,500 mg once daily                                                         |\n| Maximum dose      | 2,000 mg once daily                                                               |\n\n5.3 Patients switching from immediate-release metformin may start Glucosan-M at the same total daily dose, up to 2,000 mg once daily. 5.4 Renal impairment: assess eGFR before starting and at least annually.\n\n| eGFR (mL/min/1.73 m²)   | Recommendation                                                                                             |\n|-------------------------|------------------------------------------------------------------------------------------------------------|\n| ≥ 45                    | No dose adjustment                                                                                         |\n| 30-44                   | Do not initiate; if already on therapy, assess benefit-risk and consider dose reduction (max 1,000 mg/day) |\n| < 30                    | Contraindicated                                                                                            |\n\n5.5 Paediatric use: not recommended for children below 18 years (SR formulation)."
+    },
+    {
+     "n": 2,
+     "title": "Glucosan-M Brand Plan FY27",
+     "text": "### 5. Positioning and key messages\n\n**Positioning:** \"Once-daily metformin that patients stay on.\"\n\nApproved messages (all consistent with the product monograph):\n\n1.\tOnce-daily with the evening meal: simpler regimen.\n\n2.\tSR matrix with gradual release over about 10 hours; fewer GI side effects than immediate-release metformin in many patients.\n\n3.\tAssured quality: assay 95.0–105.0%, dissolution not less than 80% (Q) released in 10 hours, made at our WHO-GMP Unit I.\n\n4.\tMaximum dose 2,000 mg once daily; titrate weekly in 500 mg steps.\n\nNo claims of superiority over other SR brands may be made."
+    }
+   ]
+  }
+ },
+ {
+  "id": 135,
+  "kind": "answerable",
+  "asker": "analyst@kaveri.example",
+  "doc": "Personal Trading Policy",
+  "q": "What is the minimum holding period for personal trades by Kaveri employees?",
+  "reference": "30 days from the trade date, after pre-clearance.",
+  "A": {
+   "abstained": false,
+   "answer": "The minimum holding period for personal trades by Kaveri employees is **30 days**, counted from the trade date [1][2].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Personal Trading Policy",
+     "text": "## 5. Minimum holding period\n\n- 5.1 Securities bought must be held for a 30-day minimum holding period, counted from the trade date.\n- 5.2 The CCO may grant a hardship exception (for example, medical emergency, home purchase) in writing. Exceptions are logged and reported to the Board Risk Committee quarterly.\n- 5.3 Any profit from a sale within 30 days without an exception is disgorged to the Company's CSR fund."
+    },
+    {
+     "n": 2,
+     "title": "Code of Conduct and Ethics",
+     "text": "## 7. Personal trading\n\nAll personal trading is governed by the Personal Trading Policy (KCA/CMP/POL-022). In summary: preclearance is required for every trade in listed equities and derivatives, the minimum holding period is 30 days, no dealing is permitted in stocks on the restricted list, and violations are reported to the CCO within 1 working day."
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "The minimum holding period for personal trades by Kaveri employees is **30 days**, counted from the trade date [1][2].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Personal Trading Policy",
+     "text": "## 5. Minimum holding period\n\n- 5.1 Securities bought must be held for a 30-day minimum holding period, counted from the trade date.\n- 5.2 The CCO may grant a hardship exception (for example, medical emergency, home purchase) in writing. Exceptions are logged and reported to the Board Risk Committee quarterly.\n- 5.3 Any profit from a sale within 30 days without an exception is disgorged to the Company's CSR fund."
+    },
+    {
+     "n": 2,
+     "title": "Code of Conduct and Ethics",
+     "text": "## 7. Personal trading\n\nAll personal trading is governed by the Personal Trading Policy (KCA/CMP/POL-022). In summary: preclearance is required for every trade in listed equities and derivatives, the minimum holding period is 30 days, no dealing is permitted in stocks on the restricted list, and violations are reported to the CCO within 1 working day."
+    }
+   ]
+  }
+ },
+ {
+  "id": 136,
+  "kind": "answerable",
+  "asker": "employee@nimbus.example",
+  "doc": "Acceptable Use Policy",
+  "q": "What is the minimum password length at Nimbus?",
+  "reference": "At least 14 characters, and MFA is mandatory on every account.",
+  "A": {
+   "abstained": false,
+   "answer": "The minimum password length for regular user accounts is **14 characters** [1][2]. Administrative and privileged accounts require a minimum of **20 characters**, generated by the password manager [3].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Welcome to Nimbus",
+     "text": "### 6.1 Day 1\n\n1. Report to the reception of your base office at 9:30 am with your original ID and education documents.\n2. Collect your laptop from the IT desk. It arrives encrypted (BitLocker on Windows, FileVault on macOS) and enrolled in device management.\n3. Set your password (minimum 14 characters) and register MFA on the Nimbus Authenticator app. You cannot access email, Slack or the HRMS without MFA.\n4. Attend the 2-hour induction session run by People Operations at 11:00 am."
+    },
+    {
+     "n": 2,
+     "title": "Password and MFA Standard",
+     "text": "## 3.1 User passwords\n\n| Requirement       | Value                                                                                                                        |\n|-------------------|------------------------------------------------------------------------------------------------------------------------------|\n| Minimum length    | 14 characters                                                                                                                |\n| Maximum length    | At least 64 characters supported                                                                                             |\n| Complexity rules  | None enforced; passphrases of 4 or more random words are encouraged                                                          |\n| Blocked passwords | Checked against a list of breached and common passwords, and words such as \"Nimbus\", \"Pune\", \"Hinjewadi\" and the user's name |\n| Password history  | Last 5 passwords cannot be reused                                                                                            |\n| Expiry            | No scheduled expiry; rotation only on compromise                                                                             |\n| Failed attempts   | Account locked for 15 minutes after 10 failed attempts                                                                       |"
+    },
+    {
+     "n": 3,
+     "title": "Password and MFA Standard",
+     "text": "## 3.3 Administrative and privileged accounts\n\n- Minimum length of 20 characters, generated by the password manager.\n- Separate admin accounts (prefix adm-) are used for privileged work; normal accounts are never given admin rights.\n- Privileged access to production (including NimbusOps on AWS) is granted just-in-time for a maximum of 8 hours through the privileged access management tool, with ticket reference."
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "The minimum password length for regular user accounts at Nimbus is **14 characters** [1][2]. For administrative and privileged accounts, a longer minimum of 20 characters applies [3].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Welcome to Nimbus",
+     "text": "### 6.1 Day 1\n\n1. Report to the reception of your base office at 9:30 am with your original ID and education documents.\n2. Collect your laptop from the IT desk. It arrives encrypted (BitLocker on Windows, FileVault on macOS) and enrolled in device management.\n3. Set your password (minimum 14 characters) and register MFA on the Nimbus Authenticator app. You cannot access email, Slack or the HRMS without MFA.\n4. Attend the 2-hour induction session run by People Operations at 11:00 am."
+    },
+    {
+     "n": 2,
+     "title": "Password and MFA Standard",
+     "text": "## 3.1 User passwords\n\n| Requirement       | Value                                                                                                                        |\n|-------------------|------------------------------------------------------------------------------------------------------------------------------|\n| Minimum length    | 14 characters                                                                                                                |\n| Maximum length    | At least 64 characters supported                                                                                             |\n| Complexity rules  | None enforced; passphrases of 4 or more random words are encouraged                                                          |\n| Blocked passwords | Checked against a list of breached and common passwords, and words such as \"Nimbus\", \"Pune\", \"Hinjewadi\" and the user's name |\n| Password history  | Last 5 passwords cannot be reused                                                                                            |\n| Expiry            | No scheduled expiry; rotation only on compromise                                                                             |\n| Failed attempts   | Account locked for 15 minutes after 10 failed attempts                                                                       |"
+    },
+    {
+     "n": 3,
+     "title": "Password and MFA Standard",
+     "text": "## 3.3 Administrative and privileged accounts\n\n- Minimum length of 20 characters, generated by the password manager.\n- Separate admin accounts (prefix adm-) are used for privileged work; normal accounts are never given admin rights.\n- Privileged access to production (including NimbusOps on AWS) is granted just-in-time for a maximum of 8 hours through the privileged access management tool, with ticket reference."
+    }
+   ]
+  }
+ },
+ {
+  "id": 137,
+  "kind": "answerable",
+  "asker": "sales@sanjeevani.example",
+  "doc": "Field Force Guidelines FY27",
+  "q": "What is the monthly doctor call target for a medical representative in FY27?",
+  "reference": "180 doctor visits per MR per month (about 8–9 calls per field day over at least 22 field days).",
+  "A": {
+   "abstained": false,
+   "answer": "180 doctor visits per MR per month [1][2].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Field Force Guidelines FY27",
+     "text": "## 3.1 Doctor coverage\n\n| Norm                               | Target                    |\n|------------------------------------|---------------------------|\n| Doctor calls per MR per month      | 180 doctor visits         |\n| Working days in field per month    | Minimum 22                |\n| Average doctor calls per field day | 8-9                       |\n| Chemist calls per field day        | 4                         |\n| Doctors on the MR's master list    | 200 (A: 60, B: 80, C: 60) |"
+    },
+    {
+     "n": 2,
+     "title": "Field Force Guidelines FY27",
+     "text": "## 10. Revision History\n\n|   Version | Date          | Change                                                                              |\n|-----------|---------------|-------------------------------------------------------------------------------------|\n|       1.0 | 01 April 2026 | FY27 issue; call target unchanged at 180 doctor visits; incentive cap raised to 22% |"
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "The monthly doctor call target for a medical representative in FY27 is **180 doctor visits** per month [1][2].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Field Force Guidelines FY27",
+     "text": "## 3.1 Doctor coverage\n\n| Norm                               | Target                    |\n|------------------------------------|---------------------------|\n| Doctor calls per MR per month      | 180 doctor visits         |\n| Working days in field per month    | Minimum 22                |\n| Average doctor calls per field day | 8-9                       |\n| Chemist calls per field day        | 4                         |\n| Doctors on the MR's master list    | 200 (A: 60, B: 80, C: 60) |"
+    },
+    {
+     "n": 2,
+     "title": "Field Force Guidelines FY27",
+     "text": "## 10. Revision History\n\n|   Version | Date          | Change                                                                              |\n|-----------|---------------|-------------------------------------------------------------------------------------|\n|       1.0 | 01 April 2026 | FY27 issue; call target unchanged at 180 doctor visits; incentive cap raised to 22% |"
+    }
+   ]
+  }
+ },
+ {
+  "id": 138,
+  "kind": "answerable",
+  "asker": "employee@nimbus.example",
+  "doc": "NimbusOps Database Failover Runbook",
+  "q": "What is the monthly error budget for NimbusOps under its availability SLO?",
+  "reference": "43 minutes 12 seconds per 30-day month (99.9% monthly availability SLO).",
+  "A": {
+   "abstained": false,
+   "answer": "The monthly error budget for NimbusOps under its 99.9% availability SLO is **43 minutes 12 seconds per 30-day month** [1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "NimbusOps Database Failover Runbook",
+     "text": "## 1. Scope\n\nThis runbook covers failover of the NimbusOps primary metadata database: Amazon RDS for PostgreSQL 16, cluster `nops-prod-pg01`, running Multi-AZ in AWS ap-south-1 (Mumbai) with a cross-region read replica `nops-dr-pg01` in ap-south-2 (Hyderabad). It does not cover the time-series store or Kafka (see NIM/ENG/RB-002).\n\nNimbusOps commitments that drive this runbook:\n\n| Objective | Target |\n|---|---|\n| Monthly availability SLO | 99.9% |\n| Recovery Point Objective (RPO) | 15 min |\n| Recovery Time Objective (RTO) | 1 h |\n| Error budget per 30-day month | 43 min 12 s |"
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "The monthly error budget is **43 minutes 12 seconds** [1]",
+   "cited": [
+    {
+     "n": 1,
+     "title": "NimbusOps Database Failover Runbook",
+     "text": "## 1. Scope\n\nThis runbook covers failover of the NimbusOps primary metadata database: Amazon RDS for PostgreSQL 16, cluster `nops-prod-pg01`, running Multi-AZ in AWS ap-south-1 (Mumbai) with a cross-region read replica `nops-dr-pg01` in ap-south-2 (Hyderabad). It does not cover the time-series store or Kafka (see NIM/ENG/RB-002).\n\nNimbusOps commitments that drive this runbook:\n\n| Objective | Target |\n|---|---|\n| Monthly availability SLO | 99.9% |\n| Recovery Point Objective (RPO) | 15 min |\n| Recovery Time Objective (RTO) | 1 h |\n| Error budget per 30-day month | 43 min 12 s |"
+    }
+   ]
+  }
+ },
+ {
+  "id": 139,
+  "kind": "answerable",
+  "asker": "qa@sanjeevani.example",
+  "doc": "Shift and Overtime Policy",
+  "q": "What is the night-shift allowance for plant employees?",
+  "reference": "₹2,800 per month for employees working at least 10 night shifts in the month; otherwise ₹280 per night shift pro-rata.",
+  "A": {
+   "abstained": false,
+   "answer": "The night-shift allowance for plant employees is **₹2,800 per month** if they work at least 10 night shifts in the month; for fewer than 10 night shifts it is paid pro-rata at **₹280 per night shift** [1]. This rate was last updated to ₹2,800 effective 1 April 2026 [2].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Shift and Overtime Policy",
+     "text": "## 5. Shift allowance\n\n\n\n\n\n| Shift         | Allowance        |\n|---------------|------------------|\n| A (Morning)   | Nil              |\n| B (Afternoon) | ₹1,200 per month |\n| C (Night)     | ₹2,800 per month |\n\n5.1 The night-shift allowance of ₹2,800 per month is paid to plant employees who work at least 10 night shifts in the month; below 10 night shifts it is paid pro-rata at ₹280 per night shift. 5.2 Night-shift employees receive a free meal and company transport from fixed pick-up points. 5.3 Shift allowance is not part of basic salary and does not count for PF, gratuity or leave encashment."
+    },
+    {
+     "n": 2,
+     "title": "Shift and Overtime Policy",
+     "text": "## 12. Revision History\n\n|   Version | Date          | Change                                                                   |\n|-----------|---------------|--------------------------------------------------------------------------|\n|       1.0 | 01 April 2023 | First issue                                                              |\n|       2.0 | 01 April 2025 | Night-shift allowance raised from ₹2,200 to ₹2,500                       |\n|       2.1 | 01 April 2026 | Night-shift allowance raised to ₹2,800; quarterly OT cap set at 75 hours |"
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "The night-shift allowance for plant employees is **₹2,800 per month** for those working at least 10 night shifts in a month; for fewer than 10 night shifts it is paid pro-rata at **₹280 per night shift** [1][2].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Shift and Overtime Policy",
+     "text": "## 5. Shift allowance\n\n\n\n\n\n| Shift         | Allowance        |\n|---------------|------------------|\n| A (Morning)   | Nil              |\n| B (Afternoon) | ₹1,200 per month |\n| C (Night)     | ₹2,800 per month |\n\n5.1 The night-shift allowance of ₹2,800 per month is paid to plant employees who work at least 10 night shifts in the month; below 10 night shifts it is paid pro-rata at ₹280 per night shift. 5.2 Night-shift employees receive a free meal and company transport from fixed pick-up points. 5.3 Shift allowance is not part of basic salary and does not count for PF, gratuity or leave encashment."
+    },
+    {
+     "n": 2,
+     "title": "Shift and Overtime Policy",
+     "text": "## 12. Revision History\n\n|   Version | Date          | Change                                                                   |\n|-----------|---------------|--------------------------------------------------------------------------|\n|       1.0 | 01 April 2023 | First issue                                                              |\n|       2.0 | 01 April 2025 | Night-shift allowance raised from ₹2,200 to ₹2,500                       |\n|       2.1 | 01 April 2026 | Night-shift allowance raised to ₹2,800; quarterly OT cap set at 75 hours |"
+    }
+   ]
+  }
+ }
+]

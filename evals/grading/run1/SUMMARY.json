@@ -1,0 +1,64 @@
+{
+ "before": {
+  "answerable_correct": "149/167 (89.2%)",
+  "answerable_correct_or_partial": "165/167 (98.8%)",
+  "answerable_wrong": "1/167 (0.6%)",
+  "false_not_found": "1/167 (0.6%)",
+  "denied_declined": "21/37 (56.8%)",
+  "denied_answered_ok": "15/37 (40.5%)",
+  "denied_wrong": "1/37 (2.7%)",
+  "leaks": 0,
+  "no_answer_declined": "19/20 (95.0%)",
+  "no_answer_wrong": "0/20 (0.0%)",
+  "faithful_yes": "177/183 (96.7%)",
+  "faithful_partly": "4/183 (2.2%)",
+  "faithful_no": "2/183 (1.1%)",
+  "verdicts": {
+   "answerable": {
+    "correct": 149,
+    "false_not_found": 1,
+    "partial": 16,
+    "wrong": 1
+   },
+   "denied": {
+    "declined": 21,
+    "answered_ok": 15,
+    "wrong": 1
+   },
+   "not_found": {
+    "declined": 19,
+    "answered_ok": 1
+   }
+  }
+ },
+ "after": {
+  "answerable_correct": "140/167 (83.8%)",
+  "answerable_correct_or_partial": "166/167 (99.4%)",
+  "answerable_wrong": "1/167 (0.6%)",
+  "false_not_found": "0/167 (0.0%)",
+  "denied_declined": "29/37 (78.4%)",
+  "denied_answered_ok": "7/37 (18.9%)",
+  "denied_wrong": "1/37 (2.7%)",
+  "leaks": 0,
+  "no_answer_declined": "20/20 (100.0%)",
+  "no_answer_wrong": "0/20 (0.0%)",
+  "faithful_yes": "166/175 (94.9%)",
+  "faithful_partly": "5/175 (2.9%)",
+  "faithful_no": "4/175 (2.3%)",
+  "verdicts": {
+   "answerable": {
+    "correct": 140,
+    "partial": 26,
+    "wrong": 1
+   },
+   "denied": {
+    "declined": 29,
+    "answered_ok": 7,
+    "wrong": 1
+   },
+   "not_found": {
+    "declined": 20
+   }
+  }
+ }
+}

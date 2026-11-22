@@ -348,18 +348,15 @@ async def retrieve_node(state: State, runtime: Runtime[Ctx]) -> dict[str, Any]:
     return {"passages": passages, "top_score": passages[0]["score"] if passages else -99.0}
 
 
-def kept_passages(passages: list[dict[str, Any]], marked: list[int]) -> list[dict[str, Any]]:
-    """The passages the grader marked (1-based, original order); all of them if it marked
-    none that exist (a yes/partial verdict with a bad list must not lose the context)."""
-    keep = sorted({n for n in marked if 1 <= n <= len(passages)})
-    return [passages[n - 1] for n in keep] if keep else passages
-
-
 async def grade_node(state: State, runtime: Runtime[Ctx]) -> dict[str, Any]:
     """Corrective RAG in two checks. 1: the cross-encoder's top score against a calibrated
     threshold (cheap, no AI call). 2: the `fast` model reads the passages and says whether
     they answer the question (yes / partial / no + which passages). Weak or "no" → one retry
-    with a different query, then "not found"."""
+    with a different query, then "not found".
+    The grade is a GATE, not a filter: on yes/partial ALL passages go to the answer model.
+    Keeping only the marked ones (first version) cut fully correct answers from 149 to 140
+    of 167 in the Phase 6 exam: the second half of an answer often sat in an unmarked passage
+    (evals/grading/run1)."""
     _status(runtime, "grade")
     ctx = runtime.context
     passages = state["passages"]
@@ -383,13 +380,7 @@ async def grade_node(state: State, runtime: Runtime[Ctx]) -> dict[str, Any]:
     log_entry |= {"verdict": out.verdict, "marked": out.passages}
     if out.verdict == "no":
         return fail | {"relevance": "no", "grade_log": grade_log}
-    kept = kept_passages(passages, out.passages)
-    return {
-        "grade": "answer",
-        "relevance": out.verdict,
-        "passages": kept,
-        "grade_log": grade_log,
-    }
+    return {"grade": "answer", "relevance": out.verdict, "grade_log": grade_log}
 
 
 def after_grade(state: State) -> str:

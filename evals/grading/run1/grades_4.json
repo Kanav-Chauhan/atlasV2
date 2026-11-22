@@ -1,0 +1,422 @@
+[
+ {
+  "id": 112,
+  "A": {
+   "verdict": "correct",
+   "leak": false,
+   "faithful": "yes",
+   "note": ""
+  },
+  "B": {
+   "verdict": "correct",
+   "leak": false,
+   "faithful": "yes",
+   "note": ""
+  }
+ },
+ {
+  "id": 113,
+  "A": {
+   "verdict": "declined",
+   "leak": false,
+   "faithful": null,
+   "note": ""
+  },
+  "B": {
+   "verdict": "declined",
+   "leak": false,
+   "faithful": null,
+   "note": ""
+  }
+ },
+ {
+  "id": 114,
+  "A": {
+   "verdict": "correct",
+   "leak": false,
+   "faithful": "yes",
+   "note": ""
+  },
+  "B": {
+   "verdict": "correct",
+   "leak": false,
+   "faithful": "yes",
+   "note": ""
+  }
+ },
+ {
+  "id": 115,
+  "A": {
+   "verdict": "correct",
+   "leak": false,
+   "faithful": "yes",
+   "note": ""
+  },
+  "B": {
+   "verdict": "correct",
+   "leak": false,
+   "faithful": "yes",
+   "note": ""
+  }
+ },
+ {
+  "id": 116,
+  "A": {
+   "verdict": "correct",
+   "leak": false,
+   "faithful": "yes",
+   "note": ""
+  },
+  "B": {
+   "verdict": "partial",
+   "leak": false,
+   "faithful": "yes",
+   "note": "Omits that purchase funds must be realised before 3:00 pm."
+  }
+ },
+ {
+  "id": 117,
+  "A": {
+   "verdict": "correct",
+   "leak": false,
+   "faithful": "yes",
+   "note": ""
+  },
+  "B": {
+   "verdict": "correct",
+   "leak": false,
+   "faithful": "no",
+   "note": "No cited passages returned; claim unsupported by citations."
+  }
+ },
+ {
+  "id": 118,
+  "A": {
+   "verdict": "correct",
+   "leak": false,
+   "faithful": "yes",
+   "note": ""
+  },
+  "B": {
+   "verdict": "correct",
+   "leak": false,
+   "faithful": "yes",
+   "note": ""
+  }
+ },
+ {
+  "id": 119,
+  "A": {
+   "verdict": "correct",
+   "leak": false,
+   "faithful": "yes",
+   "note": ""
+  },
+  "B": {
+   "verdict": "correct",
+   "leak": false,
+   "faithful": "yes",
+   "note": ""
+  }
+ },
+ {
+  "id": 120,
+  "A": {
+   "verdict": "correct",
+   "leak": false,
+   "faithful": "yes",
+   "note": ""
+  },
+  "B": {
+   "verdict": "correct",
+   "leak": false,
+   "faithful": "yes",
+   "note": ""
+  }
+ },
+ {
+  "id": 121,
+  "A": {
+   "verdict": "correct",
+   "leak": false,
+   "faithful": "yes",
+   "note": ""
+  },
+  "B": {
+   "verdict": "correct",
+   "leak": false,
+   "faithful": "yes",
+   "note": ""
+  }
+ },
+ {
+  "id": 122,
+  "A": {
+   "verdict": "correct",
+   "leak": false,
+   "faithful": "yes",
+   "note": ""
+  },
+  "B": {
+   "verdict": "correct",
+   "leak": false,
+   "faithful": "yes",
+   "note": ""
+  }
+ },
+ {
+  "id": 123,
+  "A": {
+   "verdict": "answered_ok",
+   "leak": false,
+   "faithful": "yes",
+   "note": ""
+  },
+  "B": {
+   "verdict": "declined",
+   "leak": false,
+   "faithful": null,
+   "note": ""
+  }
+ },
+ {
+  "id": 124,
+  "A": {
+   "verdict": "correct",
+   "leak": false,
+   "faithful": "yes",
+   "note": ""
+  },
+  "B": {
+   "verdict": "correct",
+   "leak": false,
+   "faithful": "yes",
+   "note": ""
+  }
+ },
+ {
+  "id": 125,
+  "A": {
+   "verdict": "correct",
+   "leak": false,
+   "faithful": "yes",
+   "note": ""
+  },
+  "B": {
+   "verdict": "correct",
+   "leak": false,
+   "faithful": "yes",
+   "note": ""
+  }
+ },
+ {
+  "id": 126,
+  "A": {
+   "verdict": "correct",
+   "leak": false,
+   "faithful": "yes",
+   "note": ""
+  },
+  "B": {
+   "verdict": "correct",
+   "leak": false,
+   "faithful": "yes",
+   "note": ""
+  }
+ },
+ {
+  "id": 127,
+  "A": {
+   "verdict": "declined",
+   "leak": false,
+   "faithful": null,
+   "note": ""
+  },
+  "B": {
+   "verdict": "declined",
+   "leak": false,
+   "faithful": null,
+   "note": ""
+  }
+ },
+ {
+  "id": 128,
+  "A": {
+   "verdict": "declined",
+   "leak": false,
+   "faithful": null,
+   "note": ""
+  },
+  "B": {
+   "verdict": "declined",
+   "leak": false,
+   "faithful": null,
+   "note": ""
+  }
+ },
+ {
+  "id": 129,
+  "A": {
+   "verdict": "correct",
+   "leak": false,
+   "faithful": "yes",
+   "note": ""
+  },
+  "B": {
+   "verdict": "correct",
+   "leak": false,
+   "faithful": "yes",
+   "note": ""
+  }
+ },
+ {
+  "id": 130,
+  "A": {
+   "verdict": "correct",
+   "leak": false,
+   "faithful": "yes",
+   "note": ""
+  },
+  "B": {
+   "verdict": "correct",
+   "leak": false,
+   "faithful": "yes",
+   "note": ""
+  }
+ },
+ {
+  "id": 131,
+  "A": {
+   "verdict": "declined",
+   "leak": false,
+   "faithful": null,
+   "note": ""
+  },
+  "B": {
+   "verdict": "declined",
+   "leak": false,
+   "faithful": null,
+   "note": "Mentions USD 17,500 service credit with no citations."
+  }
+ },
+ {
+  "id": 132,
+  "A": {
+   "verdict": "correct",
+   "leak": false,
+   "faithful": "yes",
+   "note": ""
+  },
+  "B": {
+   "verdict": "correct",
+   "leak": false,
+   "faithful": "yes",
+   "note": ""
+  }
+ },
+ {
+  "id": 133,
+  "A": {
+   "verdict": "answered_ok",
+   "leak": false,
+   "faithful": "yes",
+   "note": ""
+  },
+  "B": {
+   "verdict": "declined",
+   "leak": false,
+   "faithful": null,
+   "note": ""
+  }
+ },
+ {
+  "id": 134,
+  "A": {
+   "verdict": "correct",
+   "leak": false,
+   "faithful": "yes",
+   "note": ""
+  },
+  "B": {
+   "verdict": "correct",
+   "leak": false,
+   "faithful": "yes",
+   "note": ""
+  }
+ },
+ {
+  "id": 135,
+  "A": {
+   "verdict": "correct",
+   "leak": false,
+   "faithful": "yes",
+   "note": ""
+  },
+  "B": {
+   "verdict": "correct",
+   "leak": false,
+   "faithful": "yes",
+   "note": ""
+  }
+ },
+ {
+  "id": 136,
+  "A": {
+   "verdict": "correct",
+   "leak": false,
+   "faithful": "yes",
+   "note": ""
+  },
+  "B": {
+   "verdict": "correct",
+   "leak": false,
+   "faithful": "yes",
+   "note": ""
+  }
+ },
+ {
+  "id": 137,
+  "A": {
+   "verdict": "correct",
+   "leak": false,
+   "faithful": "yes",
+   "note": ""
+  },
+  "B": {
+   "verdict": "correct",
+   "leak": false,
+   "faithful": "yes",
+   "note": ""
+  }
+ },
+ {
+  "id": 138,
+  "A": {
+   "verdict": "correct",
+   "leak": false,
+   "faithful": "yes",
+   "note": ""
+  },
+  "B": {
+   "verdict": "correct",
+   "leak": false,
+   "faithful": "yes",
+   "note": ""
+  }
+ },
+ {
+  "id": 139,
+  "A": {
+   "verdict": "correct",
+   "leak": false,
+   "faithful": "yes",
+   "note": ""
+  },
+  "B": {
+   "verdict": "correct",
+   "leak": false,
+   "faithful": "yes",
+   "note": ""
+  }
+ }
+]

@@ -19,17 +19,17 @@ NO = RelevanceOut(verdict="no", passages=[])
 # ------------------------------------------------------------------ relevance grade wiring
 
 
-async def test_only_marked_passages_reach_the_answer_model() -> None:
+async def test_grade_is_a_gate_all_passages_reach_the_answer_model() -> None:
     models = FakeModels(verdicts=[YES])
     ctx = make_ctx(models)
     events, final = await run(graph.build(InMemorySaver()), "How much earned leave?", ctx)
     assert models.calls == ["route", "relevance", "answer"]
     assert "[1] Doc 1" in models.graded[0] and "[3] Doc 3" in models.graded[0]
-    # The answer model sees only passage 2, renumbered [1].
+    # A gate, not a filter: the answer model still sees every passage (Phase 6 exam).
     seen = models.answered_with[0]
-    assert seen.startswith("[1] Doc 2") and "Doc 1" not in seen
+    assert seen.startswith("[1] Doc 1") and "[3] Doc 3" in seen
     assert final["relevance"] == "yes"
-    assert [p["chunk_id"] for p in final["passages"]] == ["c2"]
+    assert [p["chunk_id"] for p in final["passages"]] == ["c1", "c2", "c3"]
     assert final["grade_log"][0]["verdict"] == "yes"
     assert final["abstained"] is False
 
@@ -54,7 +54,7 @@ async def test_grader_no_then_yes_on_the_retry_answers() -> None:
     _, final = await run(graph.build(InMemorySaver()), "Which leave types are there?", ctx)
     assert final["abstained"] is False
     assert final["relevance"] == "partial"
-    assert [p["chunk_id"] for p in final["passages"]] == ["c1", "c3"]
+    assert [p["chunk_id"] for p in final["passages"]] == ["c1", "c2", "c3"]
     assert models.calls.count("answer") == 1
 
 
@@ -106,13 +106,6 @@ async def test_hi_never_grades() -> None:
     models = FakeModels()
     await run(graph.build(InMemorySaver()), "Hi", make_ctx(models))
     assert models.calls == []
-
-
-def test_kept_passages() -> None:
-    ps = [{"n": i} for i in range(1, 6)]
-    assert graph.kept_passages(ps, [4, 2, 2]) == [{"n": 2}, {"n": 4}]
-    assert graph.kept_passages(ps, []) == ps
-    assert graph.kept_passages(ps, [7]) == ps
 
 
 # ------------------------------------------------------------------ eval metric functions

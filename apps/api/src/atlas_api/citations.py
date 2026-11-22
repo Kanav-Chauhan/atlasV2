@@ -8,8 +8,9 @@ import re
 
 log = logging.getLogger(__name__)
 
-_MARKER = re.compile(r"\[(\d{1,3}(?:\s*,\s*\d{1,3})*)\]")
-_PARTIAL = re.compile(r"\[[\d,\s]{0,16}$")  # a marker that may still be arriving
+# [1], [1, 2] and the gpt-oss style the fallback models write: 【1】, 【1†source】, 【1†L3-L5】
+_MARKER = re.compile(r"[\[【](\d{1,3}(?:\s*,\s*\d{1,3})*)(?:†[^\]】]{0,40})?[\]】]")
+_PARTIAL = re.compile(r"[\[【][\d,\s]{0,16}(?:†[^\]】]{0,40})?$")  # may still be arriving
 
 
 class Citations:

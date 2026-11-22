@@ -29,7 +29,7 @@ class Settings(BaseSettings):
     clerk_secret_key: str = ""
     grade_threshold: float = -1.1
     # LLM relevance grade after the score threshold (corrective RAG, Phase 6): the `fast` model
-    # checks the passages really answer; only the passages it marks go to the answer model.
+    # checks the passages really answer (a gate: yes/partial → all passages go to the answer).
     relevance_grade: bool = True
     # RedisVL semantic cache needs Redis with the query engine (redis:8 or Redis Stack).
     semantic_cache: bool = False

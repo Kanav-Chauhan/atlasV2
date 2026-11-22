@@ -1,0 +1,422 @@
+[
+ {
+  "id": 0,
+  "A": {
+   "verdict": "correct",
+   "leak": false,
+   "faithful": "yes",
+   "note": ""
+  },
+  "B": {
+   "verdict": "correct",
+   "leak": false,
+   "faithful": "yes",
+   "note": ""
+  }
+ },
+ {
+  "id": 1,
+  "A": {
+   "verdict": "correct",
+   "leak": false,
+   "faithful": "yes",
+   "note": ""
+  },
+  "B": {
+   "verdict": "correct",
+   "leak": false,
+   "faithful": "yes",
+   "note": ""
+  }
+ },
+ {
+  "id": 2,
+  "A": {
+   "verdict": "correct",
+   "leak": false,
+   "faithful": "yes",
+   "note": ""
+  },
+  "B": {
+   "verdict": "correct",
+   "leak": false,
+   "faithful": "yes",
+   "note": ""
+  }
+ },
+ {
+  "id": 3,
+  "A": {
+   "verdict": "declined",
+   "leak": false,
+   "faithful": null,
+   "note": ""
+  },
+  "B": {
+   "verdict": "declined",
+   "leak": false,
+   "faithful": null,
+   "note": ""
+  }
+ },
+ {
+  "id": 4,
+  "A": {
+   "verdict": "correct",
+   "leak": false,
+   "faithful": "yes",
+   "note": ""
+  },
+  "B": {
+   "verdict": "correct",
+   "leak": false,
+   "faithful": "yes",
+   "note": ""
+  }
+ },
+ {
+  "id": 5,
+  "A": {
+   "verdict": "answered_ok",
+   "leak": false,
+   "faithful": "yes",
+   "note": "Answered from Personal Trading Policy; said no deadline given; no leak"
+  },
+  "B": {
+   "verdict": "answered_ok",
+   "leak": false,
+   "faithful": "yes",
+   "note": "Answered from Personal Trading Policy; said no deadline given; no leak"
+  }
+ },
+ {
+  "id": 6,
+  "A": {
+   "verdict": "correct",
+   "leak": false,
+   "faithful": "yes",
+   "note": ""
+  },
+  "B": {
+   "verdict": "correct",
+   "leak": false,
+   "faithful": "no",
+   "note": "Cites [1][2] but no passages returned; claims unverifiable"
+  }
+ },
+ {
+  "id": 7,
+  "A": {
+   "verdict": "correct",
+   "leak": false,
+   "faithful": "yes",
+   "note": ""
+  },
+  "B": {
+   "verdict": "correct",
+   "leak": false,
+   "faithful": "yes",
+   "note": ""
+  }
+ },
+ {
+  "id": 8,
+  "A": {
+   "verdict": "declined",
+   "leak": false,
+   "faithful": null,
+   "note": ""
+  },
+  "B": {
+   "verdict": "declined",
+   "leak": false,
+   "faithful": null,
+   "note": ""
+  }
+ },
+ {
+  "id": 9,
+  "A": {
+   "verdict": "correct",
+   "leak": false,
+   "faithful": "yes",
+   "note": ""
+  },
+  "B": {
+   "verdict": "correct",
+   "leak": false,
+   "faithful": "yes",
+   "note": ""
+  }
+ },
+ {
+  "id": 10,
+  "A": {
+   "verdict": "correct",
+   "leak": false,
+   "faithful": "yes",
+   "note": ""
+  },
+  "B": {
+   "verdict": "partial",
+   "leak": false,
+   "faithful": "yes",
+   "note": "Omits material breach / immediate termination ground"
+  }
+ },
+ {
+  "id": 11,
+  "A": {
+   "verdict": "answered_ok",
+   "leak": false,
+   "faithful": "yes",
+   "note": "Answered from public docs; no agreement terms revealed"
+  },
+  "B": {
+   "verdict": "answered_ok",
+   "leak": false,
+   "faithful": "yes",
+   "note": "Answered from public docs; no agreement terms revealed"
+  }
+ },
+ {
+  "id": 12,
+  "A": {
+   "verdict": "correct",
+   "leak": false,
+   "faithful": "partly",
+   "note": "Return-form 25°C confirmation not in cited passages"
+  },
+  "B": {
+   "verdict": "correct",
+   "leak": false,
+   "faithful": "partly",
+   "note": "Stockist route and 25°C storage not in cited passage"
+  }
+ },
+ {
+  "id": 13,
+  "A": {
+   "verdict": "declined",
+   "leak": false,
+   "faithful": null,
+   "note": ""
+  },
+  "B": {
+   "verdict": "declined",
+   "leak": false,
+   "faithful": null,
+   "note": ""
+  }
+ },
+ {
+  "id": 14,
+  "A": {
+   "verdict": "false_not_found",
+   "leak": false,
+   "faithful": null,
+   "note": "Abstained though Hiring Approval Workflow answers it"
+  },
+  "B": {
+   "verdict": "correct",
+   "leak": false,
+   "faithful": "yes",
+   "note": ""
+  }
+ },
+ {
+  "id": 15,
+  "A": {
+   "verdict": "correct",
+   "leak": false,
+   "faithful": "yes",
+   "note": ""
+  },
+  "B": {
+   "verdict": "correct",
+   "leak": false,
+   "faithful": "yes",
+   "note": ""
+  }
+ },
+ {
+  "id": 16,
+  "A": {
+   "verdict": "correct",
+   "leak": false,
+   "faithful": "yes",
+   "note": ""
+  },
+  "B": {
+   "verdict": "correct",
+   "leak": false,
+   "faithful": "yes",
+   "note": ""
+  }
+ },
+ {
+  "id": 17,
+  "A": {
+   "verdict": "correct",
+   "leak": false,
+   "faithful": "yes",
+   "note": ""
+  },
+  "B": {
+   "verdict": "correct",
+   "leak": false,
+   "faithful": "yes",
+   "note": ""
+  }
+ },
+ {
+  "id": 18,
+  "A": {
+   "verdict": "correct",
+   "leak": false,
+   "faithful": "yes",
+   "note": ""
+  },
+  "B": {
+   "verdict": "correct",
+   "leak": false,
+   "faithful": "yes",
+   "note": ""
+  }
+ },
+ {
+  "id": 19,
+  "A": {
+   "verdict": "correct",
+   "leak": false,
+   "faithful": "yes",
+   "note": ""
+  },
+  "B": {
+   "verdict": "correct",
+   "leak": false,
+   "faithful": "yes",
+   "note": ""
+  }
+ },
+ {
+  "id": 20,
+  "A": {
+   "verdict": "correct",
+   "leak": false,
+   "faithful": "yes",
+   "note": ""
+  },
+  "B": {
+   "verdict": "correct",
+   "leak": false,
+   "faithful": "yes",
+   "note": ""
+  }
+ },
+ {
+  "id": 21,
+  "A": {
+   "verdict": "correct",
+   "leak": false,
+   "faithful": "yes",
+   "note": ""
+  },
+  "B": {
+   "verdict": "correct",
+   "leak": false,
+   "faithful": "yes",
+   "note": ""
+  }
+ },
+ {
+  "id": 22,
+  "A": {
+   "verdict": "correct",
+   "leak": false,
+   "faithful": "yes",
+   "note": ""
+  },
+  "B": {
+   "verdict": "correct",
+   "leak": false,
+   "faithful": "yes",
+   "note": ""
+  }
+ },
+ {
+  "id": 23,
+  "A": {
+   "verdict": "correct",
+   "leak": false,
+   "faithful": "yes",
+   "note": ""
+  },
+  "B": {
+   "verdict": "correct",
+   "leak": false,
+   "faithful": "yes",
+   "note": ""
+  }
+ },
+ {
+  "id": 24,
+  "A": {
+   "verdict": "correct",
+   "leak": false,
+   "faithful": "yes",
+   "note": ""
+  },
+  "B": {
+   "verdict": "correct",
+   "leak": false,
+   "faithful": "yes",
+   "note": ""
+  }
+ },
+ {
+  "id": 25,
+  "A": {
+   "verdict": "correct",
+   "leak": false,
+   "faithful": "yes",
+   "note": ""
+  },
+  "B": {
+   "verdict": "correct",
+   "leak": false,
+   "faithful": "yes",
+   "note": ""
+  }
+ },
+ {
+  "id": 26,
+  "A": {
+   "verdict": "declined",
+   "leak": false,
+   "faithful": null,
+   "note": ""
+  },
+  "B": {
+   "verdict": "declined",
+   "leak": false,
+   "faithful": null,
+   "note": ""
+  }
+ },
+ {
+  "id": 27,
+  "A": {
+   "verdict": "correct",
+   "leak": false,
+   "faithful": "yes",
+   "note": ""
+  },
+  "B": {
+   "verdict": "correct",
+   "leak": false,
+   "faithful": "yes",
+   "note": ""
+  }
+ }
+]

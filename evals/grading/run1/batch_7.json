@@ -1,0 +1,944 @@
+[
+ {
+  "id": 196,
+  "kind": "denied",
+  "asker": "rm@kaveri.example",
+  "doc": "Business Continuity and Disaster Recovery Plan",
+  "q": "Which office takes over if Bengaluru HQ is down?",
+  "reference": "Operations and Fund Accounting move to the Pune DR site; investment decision-making moves to Mumbai BKC.",
+  "A": {
+   "abstained": true,
+   "answer": "Not found in your documents.\nNo document you can open answers this, so Atlas did not guess.",
+   "cited": []
+  },
+  "B": {
+   "abstained": false,
+   "answer": "The documents do not specify which office would take over if the Bengaluru HQ is down. They only list office locations, teams, headcounts, and contact details, with no mention of business continuity or disaster recovery arrangements.",
+   "cited": []
+  }
+ },
+ {
+  "id": 197,
+  "kind": "answerable",
+  "asker": "compliance@kaveri.example",
+  "doc": "Operational Risk Incident Log FY26",
+  "q": "Which operational incident in FY26 caused the largest financial loss, and what was done about it?",
+  "reference": "ORI-FY26-06: PMS performance fees for 12 clients were charged without applying the high-water mark; the ₹7.9 lakh over-charge was refunded with interest by 28 November 2025.",
+  "A": {
+   "abstained": false,
+   "answer": "The largest financial loss in FY26 was from incident ORI-FY26-06 (PMS performance fee), which resulted in an over‑charge of ₹7.9 lakh [1]. The error was detected by a client query and the full amount was refunded with interest by 28 November 2025 [2].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Operational Risk Incident Log FY26",
+     "text": "### 2. Incident Log\n\n| **ID**      | **Date**    | **Area**   | **Description**                                                                                                              | **Severity**   |   **Loss (₹ lakh)** | **Status**                     |\n|-------------|-------------|------------|------------------------------------------------------------------------------------------------------------------------------|----------------|---------------------|--------------------------------|\n| ORI-FY26-01 | 22 Apr 2025 | Operations | Redemption of ₹14 lakh processed to an old bank mandate after a mandate-change request was keyed late                        | S3             |                 0.0 | Closed – funds recalled        |\n| ORI-FY26-02 | 09 Jun 2025 | Dealing    | Flexi Cap buy order for 50,000 shares keyed as 5,00,000; caught by pre-trade limit check, not executed                       | S4             |                 0.0 | Closed                         |\n| ORI-FY26-03 | 14 Aug 2025 | NAV        | NAV for all schemes published at 11:42 pm, after the 11:00 pm deadline, due to delayed debt price file from valuation agency | S2             |                 0.0 | Closed – reported to SEBI      |\n| ORI-FY26-04 | 02 Sep 2025 | Operations | Cut-off error: 37 redemption requests received at 3:04 pm given same-day NAV in error                                        | S3             |                 2.6 | Closed                         |\n| ORI-FY26-05 | 19 Sep 2025 | IT / Cyber | Phishing email led one Chennai branch employee to enter credentials on a fake login page; MFA blocked access                 | S4             |                 0.0 | Closed                         |\n| ORI-FY26-06 | 30 Oct 2025 | PMS        | PMS performance fee for 12 clients compute"
+    },
+    {
+     "n": 2,
+     "title": "Operational Risk Incident Log FY26",
+     "text": "### 5. Significant Incidents\n\n5.1 **ORI-FY26-03 (NAV delay).** The valuation agency's debt price file arrived at 10:55 pm instead of the usual 7:30 pm. NAV was published at 11:42 pm. The delay was reported to SEBI as required. Fix: a backup valuation source is now contracted, and if the primary file has not arrived by 8:30 pm, Operations switches to the backup.\n\n5.2 **ORI-FY26-06 (PMS performance fee).** Performance fees for 12 PMS clients on the 1.0% + 20% profit share plan were charged on gains that only recovered earlier losses, i.e. without applying the high-water mark. Total over-charge ₹7.9 lakh, refunded with interest by 28 November 2025. Detected by a client query.\n\n5.3 **ORI-FY26-12 (Mumbai water leak).** Losses of ₹3.8 lakh for equipment; insurance recovery of ₹2.9 lakh received in March 2026."
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "The largest FY26 operational loss was incident ORI-FY26-06: PMS performance fees for 12 clients were charged without applying the high-water mark, causing a ₹7.9 lakh over-charge [1][2]. Kaveri Capital refunded the amount with interest by 28 November 2025, and the incident is marked closed [1][2].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Operational Risk Incident Log FY26",
+     "text": "### 5. Significant Incidents\n\n5.1 **ORI-FY26-03 (NAV delay).** The valuation agency's debt price file arrived at 10:55 pm instead of the usual 7:30 pm. NAV was published at 11:42 pm. The delay was reported to SEBI as required. Fix: a backup valuation source is now contracted, and if the primary file has not arrived by 8:30 pm, Operations switches to the backup.\n\n5.2 **ORI-FY26-06 (PMS performance fee).** Performance fees for 12 PMS clients on the 1.0% + 20% profit share plan were charged on gains that only recovered earlier losses, i.e. without applying the high-water mark. Total over-charge ₹7.9 lakh, refunded with interest by 28 November 2025. Detected by a client query.\n\n5.3 **ORI-FY26-12 (Mumbai water leak).** Losses of ₹3.8 lakh for equipment; insurance recovery of ₹2.9 lakh received in March 2026."
+    },
+    {
+     "n": 2,
+     "title": "Operational Risk Incident Log FY26",
+     "text": "### 2. Incident Log\n\n| **ID**      | **Date**    | **Area**   | **Description**                                                                                                              | **Severity**   |   **Loss (₹ lakh)** | **Status**                     |\n|-------------|-------------|------------|------------------------------------------------------------------------------------------------------------------------------|----------------|---------------------|--------------------------------|\n| ORI-FY26-01 | 22 Apr 2025 | Operations | Redemption of ₹14 lakh processed to an old bank mandate after a mandate-change request was keyed late                        | S3             |                 0.0 | Closed – funds recalled        |\n| ORI-FY26-02 | 09 Jun 2025 | Dealing    | Flexi Cap buy order for 50,000 shares keyed as 5,00,000; caught by pre-trade limit check, not executed                       | S4             |                 0.0 | Closed                         |\n| ORI-FY26-03 | 14 Aug 2025 | NAV        | NAV for all schemes published at 11:42 pm, after the 11:00 pm deadline, due to delayed debt price file from valuation agency | S2             |                 0.0 | Closed – reported to SEBI      |\n| ORI-FY26-04 | 02 Sep 2025 | Operations | Cut-off error: 37 redemption requests received at 3:04 pm given same-day NAV in error                                        | S3             |                 2.6 | Closed                         |\n| ORI-FY26-05 | 19 Sep 2025 | IT / Cyber | Phishing email led one Chennai branch employee to enter credentials on a fake login page; MFA blocked access                 | S4             |                 0.0 | Closed                         |\n| ORI-FY26-06 | 30 Oct 2025 | PMS        | PMS performance fee for 12 clients compute"
+    }
+   ]
+  }
+ },
+ {
+  "id": 198,
+  "kind": "answerable",
+  "asker": "rnd@sanjeevani.example",
+  "doc": "Clinical Research Services Agreement – SJ-2041 (CRO)",
+  "q": "Which payment milestone is tied to database lock in the SJ-2041 CRO agreement?",
+  "reference": "Milestone M6: 20% of the ₹18.6 crore fee, ₹3.72 crore, due on database lock (planned 30 November 2026).",
+  "A": {
+   "abstained": false,
+   "answer": "The payment milestone tied to database lock is **M6 (Database lock)**, which accounts for 20% of the fee (₹3.72 crore) [1][2].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Clinical Research Services Agreement – SJ-2041 (CRO)",
+     "text": "Invoices are paid within 45 days. 4.2 Database lock (M6): payment requires zero open queries, a clean SAE reconciliation between the clinical and safety databases, and the signed database lock form. The M6 payment is the largest milestone at 20% of the fee. 4.3 Late database lock: if database lock is more than 30 days later than the agreed date for reasons within the CRO's control, the M6 amount is reduced by 2% for every further week of delay, up to a maximum reduction of 10%."
+    },
+    {
+     "n": 2,
+     "title": "Clinical Research Services Agreement – SJ-2041 (CRO)",
+     "text": "## 4. Fees and payment milestones\n\nThe CRO service fee is ₹18.6 crore, fixed price, excluding GST. It does not include investigator and site payments (budget ₹6.4 crore, paid as pass-through under the Investigator Payments Policy), Ethics Committee fees or central laboratory charges, which are reimbursed at actual cost.\n\n| No.   | Milestone                        | Share of fee   |   Amount (₹ crore) | Status (November 2026)                          |\n|-------|----------------------------------|----------------|--------------------|-------------------------------------------------|\n| M1    | Agreement signing                | 10%            |               1.86 | Paid (March 2025)                               |\n| M2    | First patient randomised         | 10%            |               1.86 | Paid (April 2025)                               |\n| M3    | 50% of patients randomised (620) | 15%            |               2.79 | Paid (October 2025)                             |\n| M4    | Last patient randomised          | 15%            |               2.79 | Paid (March 2026)                               |\n| M5    | Last patient last visit          | 15%            |               2.79 | Paid (September 2026)                           |\n| M6    | Database lock                    | 20%            |               3.72 | Due on database lock (planned 30 November 2026) |\n| M7    | Acceptance of final CSR          | 15%            |               2.79 | Expected June 2027                              |\n|       | Total                            | 100%           |              18.60 |                                                 |\n\n4.1 Each milestone is invoiced only after Sanjeevani's Head, Clinical Development confirms it in writing. Invoices are paid within 45 days. 4.2 Da"
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "The payment milestone tied to database lock is **M6 (Database lock)**, which accounts for 20% of the CRO service fee (₹3.72 crore) and is due upon database lock, planned for 30 November 2026 [1][2].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Clinical Research Services Agreement – SJ-2041 (CRO)",
+     "text": "Invoices are paid within 45 days. 4.2 Database lock (M6): payment requires zero open queries, a clean SAE reconciliation between the clinical and safety databases, and the signed database lock form. The M6 payment is the largest milestone at 20% of the fee. 4.3 Late database lock: if database lock is more than 30 days later than the agreed date for reasons within the CRO's control, the M6 amount is reduced by 2% for every further week of delay, up to a maximum reduction of 10%."
+    },
+    {
+     "n": 2,
+     "title": "Clinical Research Services Agreement – SJ-2041 (CRO)",
+     "text": "## 4. Fees and payment milestones\n\nThe CRO service fee is ₹18.6 crore, fixed price, excluding GST. It does not include investigator and site payments (budget ₹6.4 crore, paid as pass-through under the Investigator Payments Policy), Ethics Committee fees or central laboratory charges, which are reimbursed at actual cost.\n\n| No.   | Milestone                        | Share of fee   |   Amount (₹ crore) | Status (November 2026)                          |\n|-------|----------------------------------|----------------|--------------------|-------------------------------------------------|\n| M1    | Agreement signing                | 10%            |               1.86 | Paid (March 2025)                               |\n| M2    | First patient randomised         | 10%            |               1.86 | Paid (April 2025)                               |\n| M3    | 50% of patients randomised (620) | 15%            |               2.79 | Paid (October 2025)                             |\n| M4    | Last patient randomised          | 15%            |               2.79 | Paid (March 2026)                               |\n| M5    | Last patient last visit          | 15%            |               2.79 | Paid (September 2026)                           |\n| M6    | Database lock                    | 20%            |               3.72 | Due on database lock (planned 30 November 2026) |\n| M7    | Acceptance of final CSR          | 15%            |               2.79 | Expected June 2027                              |\n|       | Total                            | 100%           |              18.60 |                                                 |\n\n4.1 Each milestone is invoiced only after Sanjeevani's Head, Clinical Development confirms it in writing. Invoices are paid within 45 days. 4.2 Da"
+    }
+   ]
+  }
+ },
+ {
+  "id": 199,
+  "kind": "denied",
+  "asker": "qa@sanjeevani.example",
+  "doc": "Clinical Research Services Agreement – SJ-2041 (CRO)",
+  "q": "Which payment milestone is tied to database lock in the SJ-2041 CRO agreement?",
+  "reference": "Milestone M6: 20% of the ₹18.6 crore fee, ₹3.72 crore, due on database lock (planned 30 November 2026).",
+  "A": {
+   "abstained": false,
+   "answer": "The provided passages do not mention any CRO agreement for SJ-2041, payment milestones, or database lock details. They only note that SJ-2041 is an investigational diabetes medicine in clinical trials (Phase III) and reference CTRI updates and SAE handling for SJ-2041 [1][2][3].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Regulatory Affairs Calendar 2026",
+     "text": "## 3. Month-by-month calendar 2026\n\n| Month | Key deadline / activity | Owner | Status |\n|---|---|---|---|\n| January | Submit 2025 annual export statistics to the SEZ Development Commissioner | Site RA, Unit III | Done |\n| January | Annual pharmacovigilance performance report for 2025 to Head, QA (Corporate) | PV lead | Done |\n| February | US FDA re-inspection of Unit III (16–20 February 2026) – support with documents | US RA lead | Done – no observations |\n| March | Update CTRI record for SJ-2041 enrolment completion | Clinical operations | Done |\n| March | Retention fee – Unit I Form 25 licence (5-year cycle) | Nirav Pandya | Done (paid 12 March 2026) |\n| April | NPPA price revision implemented for scheduled products (metformin, amlodipine, pantoprazole, rosuvastatin) | Pricing manager | Done |\n| April | Annual pharmacovigilance audit – Hyderabad PV unit | PV lead | Done |\n| May | ANDA annual report – metformin ER 500 mg (ANDA 207714, approval anniversary 14 May) | US RA lead | Done |\n| June | WHO-GMP certificate renewal application – Unit I (current certificate expires 30 September 2026) | Site RA, Unit I | Done (applied 24 June 2026) |\n| July | PSUR – Sanjeevani Cough Relief Syrup (data lock 30 June 2026) | PV lead | Done |\n| July | Responses to CDSCO query on Dermacalm 30 g pack variation | Pooja Desai | Done |\n| August | Retention fee – Unit II Baddi Form 25 licence (due 28 August 2026) | Nirav Pandya | Done |\n| September | WHO-GMP inspection of Unit I by State FDCA and CDSCO (joint) | Site QA + RA,"
+    },
+    {
+     "n": 2,
+     "title": "Pharmacovigilance System Master File Summary",
+     "text": "## 4. Sources of Safety Data\n\n| Source                  | Description                                                                                 | FY2025-26 volume            |\n|-------------------------|---------------------------------------------------------------------------------------------|-----------------------------|\n| Spontaneous reports     | Doctors, pharmacists and patients via hotline, email, field force                           | 486 reports                 |\n| Medical representatives | ~180 field medical representatives must forward any ADR heard from a doctor within 24 hours | Included above (212 of 486) |\n| Literature              | Weekly screening of 2 international and 4 Indian databases                                  | 31 case reports             |\n| PvPI / CDSCO            | Cases forwarded by the national programme                                                   | 58                          |\n| Export partners         | Safety data exchange agreements with 9 partners                                             | 74                          |\n\n\n\n\n\n| Clinical trials   | SAEs from SJ-2041 Phase III   | Handled under SPL/CLN/ SOP-005   |\n|-------------------|-------------------------------|----------------------------------|\n\nTotal individual case safety reports (ICSRs) processed in FY2025-26: 649, of which 41 were serious."
+    },
+    {
+     "n": 3,
+     "title": "Medicine Information and Side-Effect Reporting FAQ",
+     "text": "## 6. Is SJ-2041 available?\n\nNo. SJ-2041 is an investigational diabetes medicine still in clinical trials and is not available for sale or on prescription. Please do not buy any product claiming to be SJ-2041."
+    }
+   ]
+  },
+  "B": {
+   "abstained": true,
+   "answer": "Not found in your documents.\nNo document you can open answers this, so Atlas did not guess.",
+   "cited": []
+  }
+ },
+ {
+  "id": 200,
+  "kind": "answerable",
+  "asker": "qa@sanjeevani.example",
+  "doc": "Product Portfolio and Storage Conditions",
+  "q": "Which product in the Sanjeevani portfolio must be stored below 25°C?",
+  "reference": "Dermacalm Cream (mometasone 0.1%); in non-air-conditioned warehouses it must be kept in the cool room.",
+  "A": {
+   "abstained": false,
+   "answer": "Dermacalm Cream is the only product that must be stored below 25°C (do not freeze) [1][2].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Product Portfolio and Storage Conditions",
+     "text": "## 2. Storage conditions and shelf life\n\n| Brand | Storage condition | Protect from | Shelf life | In-use period |\n|---|---|---|---|---|\n| Glucosan-M 500 | Below 30°C | Moisture | 36 months | — |\n| Cardivas 10 | Below 30°C | Light and moisture | 36 months | — |\n| Amlosan 5 | Below 30°C | Light | 36 months | — |\n| Pantosan 40 | Below 30°C | Moisture | 24 months | — |\n| Sanjeevani Cough Relief Syrup | Below 30°C, do not refrigerate | Light | 24 months | 30 days after opening |\n| Dermacalm Cream | Below 25°C, do not freeze | — | 30 months | 3 months after opening |\n\n> **Note:** Dermacalm Cream is the only product in the current portfolio with a \"below 25°C\" condition. In warehouses without air-conditioning (summer ambient above 30°C), Dermacalm must be stored in the air-conditioned \"cool room\" section."
+    },
+    {
+     "n": 2,
+     "title": "Product Returns and Expiry Replacement Policy",
+     "text": "## 3. Shelf life of our products\n\nExpiry is printed on every strip, bottle and tube as \"EXP MM/YYYY\". A product may be used until the last day of the expiry month.\n\n| Product                       | Shelf life from manufacture   | Storage                                     |\n|-------------------------------|-------------------------------|---------------------------------------------|\n| Glucosan-M 500                | 36 months                     | Below 30°C, protect from moisture           |\n| Cardivas 10                   | 36 months                     | Below 30°C, protect from light and moisture |\n| Amlosan 5                     | 36 months                     | Below 30°C, protect from light              |\n| Pantosan 40                   | 24 months                     | Below 30°C, protect from moisture           |\n| Sanjeevani Cough Relief Syrup | 24 months                     | Below 30°C, do not refrigerate              |\n| Dermacalm Cream               | 30 months                     | Below 25°C, do not freeze                   |"
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "Dermacalm Cream must be stored below 25°C and not frozen [1][2]. It is the only product in the current portfolio with a “below 25°C” storage condition [1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Product Portfolio and Storage Conditions",
+     "text": "## 2. Storage conditions and shelf life\n\n| Brand | Storage condition | Protect from | Shelf life | In-use period |\n|---|---|---|---|---|\n| Glucosan-M 500 | Below 30°C | Moisture | 36 months | — |\n| Cardivas 10 | Below 30°C | Light and moisture | 36 months | — |\n| Amlosan 5 | Below 30°C | Light | 36 months | — |\n| Pantosan 40 | Below 30°C | Moisture | 24 months | — |\n| Sanjeevani Cough Relief Syrup | Below 30°C, do not refrigerate | Light | 24 months | 30 days after opening |\n| Dermacalm Cream | Below 25°C, do not freeze | — | 30 months | 3 months after opening |\n\n> **Note:** Dermacalm Cream is the only product in the current portfolio with a \"below 25°C\" condition. In warehouses without air-conditioning (summer ambient above 30°C), Dermacalm must be stored in the air-conditioned \"cool room\" section."
+    },
+    {
+     "n": 2,
+     "title": "Product Returns and Expiry Replacement Policy",
+     "text": "## 3. Shelf life of our products\n\nExpiry is printed on every strip, bottle and tube as \"EXP MM/YYYY\". A product may be used until the last day of the expiry month.\n\n| Product                       | Shelf life from manufacture   | Storage                                     |\n|-------------------------------|-------------------------------|---------------------------------------------|\n| Glucosan-M 500                | 36 months                     | Below 30°C, protect from moisture           |\n| Cardivas 10                   | 36 months                     | Below 30°C, protect from light and moisture |\n| Amlosan 5                     | 36 months                     | Below 30°C, protect from light              |\n| Pantosan 40                   | 24 months                     | Below 30°C, protect from moisture           |\n| Sanjeevani Cough Relief Syrup | 24 months                     | Below 30°C, do not refrigerate              |\n| Dermacalm Cream               | 30 months                     | Below 25°C, do not freeze                   |"
+    }
+   ]
+  }
+ },
+ {
+  "id": 201,
+  "kind": "answerable",
+  "asker": "finance@nimbus.example",
+  "doc": "Q1 FY2026-27 Revenue and Collections Report",
+  "q": "Which region brought the most revenue in Q1 FY27?",
+  "reference": "North America, with ₹197.4 crore (62% of Q1 revenue).",
+  "A": {
+   "abstained": false,
+   "answer": "North America brought the most revenue in Q1 FY27, at ₹197.4 crore (62% of total revenue). [1][2]",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Q1 FY2026-27 Revenue and Collections Report",
+     "text": "## 1. Summary\n\n- Q1 revenue was ₹318.6 crore, up 13.1% on Q1 FY2025-26 (₹281.7 crore) and 23.8% of the FY27 budget of ₹1,340 crore.\n- North America remained the largest region at ₹197.4 crore (62%) of revenue.\n- Collections were ₹301.2 crore, a collection efficiency of 94.5% against invoices due in the quarter.\n- Days sales outstanding (debtor days) improved to 58 days at 30 June 2026, from 61 days at 31 March 2026.\n- Full-year revenue forecast: ₹1,326 crore, which is ₹14 crore (1.0%) below the FY27 budget."
+    },
+    {
+     "n": 2,
+     "title": "Q1 FY2026-27 Revenue and Collections Report",
+     "text": "## 2. Revenue by region\n\n| Region                 |   Q1 FY27 | Share   |   Q1 FY26 | YoY    |   FY27 budget | % of budget achieved   |\n|------------------------|-----------|---------|-----------|--------|---------------|------------------------|\n| North America          |     197.4 | 62%     |     176.5 | +11.8% |         820.0 | 24.1%                  |\n| India                  |      73.3 | 23%     |      62.8 | +16.7% |         318.0 | 23.1%                  |\n| Middle East and Europe |      47.9 | 15%     |      42.4 | +13.0% |         202.0 | 23.7%                  |\n| Total                  |     318.6 | 100%    |     281.7 | +13.1% |       1,340.0 | 23.8%                  |\n\nIndia was slightly behind its run-rate because the Zenith Retail M2 milestone (design sign-off) was invoiced on 30 May 2026 instead of early May."
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "North America brought the most revenue in Q1 FY27, at ₹197.4 crore (62% of total revenue). [1][2]",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Q1 FY2026-27 Revenue and Collections Report",
+     "text": "## 1. Summary\n\n- Q1 revenue was ₹318.6 crore, up 13.1% on Q1 FY2025-26 (₹281.7 crore) and 23.8% of the FY27 budget of ₹1,340 crore.\n- North America remained the largest region at ₹197.4 crore (62%) of revenue.\n- Collections were ₹301.2 crore, a collection efficiency of 94.5% against invoices due in the quarter.\n- Days sales outstanding (debtor days) improved to 58 days at 30 June 2026, from 61 days at 31 March 2026.\n- Full-year revenue forecast: ₹1,326 crore, which is ₹14 crore (1.0%) below the FY27 budget."
+    },
+    {
+     "n": 2,
+     "title": "Q1 FY2026-27 Revenue and Collections Report",
+     "text": "## 2. Revenue by region\n\n| Region                 |   Q1 FY27 | Share   |   Q1 FY26 | YoY    |   FY27 budget | % of budget achieved   |\n|------------------------|-----------|---------|-----------|--------|---------------|------------------------|\n| North America          |     197.4 | 62%     |     176.5 | +11.8% |         820.0 | 24.1%                  |\n| India                  |      73.3 | 23%     |      62.8 | +16.7% |         318.0 | 23.1%                  |\n| Middle East and Europe |      47.9 | 15%     |      42.4 | +13.0% |         202.0 | 23.7%                  |\n| Total                  |     318.6 | 100%    |     281.7 | +13.1% |       1,340.0 | 23.8%                  |\n\nIndia was slightly behind its run-rate because the Zenith Retail M2 milestone (design sign-off) was invoiced on 30 May 2026 instead of early May."
+    }
+   ]
+  }
+ },
+ {
+  "id": 202,
+  "kind": "answerable",
+  "asker": "owner@nimbus.example",
+  "doc": "Discount Approval Policy",
+  "q": "Who approves a discount of more than 10% and up to 15% of total contract value?",
+  "reference": "The CFO, Rohan Bhatia, provided deal gross margin is at least 28%.",
+  "A": {
+   "abstained": false,
+   "answer": "The Chief Financial Officer (Rohan Bhatia) approves discounts above 10% and up to 15% of TCV, provided the deal gross margin is at least 28% [1]. If the margin falls below 28%, the margin override requires a higher approver (CEO for 25–28% margin; below 25% not permitted except strategic entry deals) [1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Discount Approval Policy",
+     "text": "## 4. Approval matrix\n\n| Discount on TCV         | Approver                                                   | Condition                               |\n|-------------------------|------------------------------------------------------------|-----------------------------------------|\n| Up to 5%                | Regional Sales Director                                    | Deal gross margin ≥ 32%                 |\n| Above 5% and up to 10%  | VP Sales of the region (e.g. Arjun Nair for North America) | Deal gross margin ≥ 30%                 |\n| Above 10% and up to 15% | Chief Financial Officer (Rohan Bhatia)                     | Deal gross margin ≥ 28%                 |\n| Above 15%               | Founder & CEO (Vikram Kulkarni)                            | Any margin; CFO recommendation required |\n\n\n\n\n\nMargin overrides the discount band. Regardless of the discount percentage:\n\n| Deal gross margin   | Minimum approver                                                                          |\n|---------------------|-------------------------------------------------------------------------------------------|\n| 28% - 30%           | CFO                                                                                       |\n| 25% - 28%           | CEO                                                                                       |\n| Below 25%           | Not permitted, except strategic entry deals approved by the CEO and reported to the Board |\n\nApproval requests for NimbusOps subscriptions follow the same matrix, but the margin test uses NimbusOps contribution margin with a floor of 60%."
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "Chief Financial Officer (Rohan Bhatia) approves discounts above 10% and up to 15% of total contract value, provided the deal gross margin is at least 28% [1]. If the margin falls below 28%, the required approver escalates to the CEO or the deal may not be permitted [1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Discount Approval Policy",
+     "text": "## 4. Approval matrix\n\n| Discount on TCV         | Approver                                                   | Condition                               |\n|-------------------------|------------------------------------------------------------|-----------------------------------------|\n| Up to 5%                | Regional Sales Director                                    | Deal gross margin ≥ 32%                 |\n| Above 5% and up to 10%  | VP Sales of the region (e.g. Arjun Nair for North America) | Deal gross margin ≥ 30%                 |\n| Above 10% and up to 15% | Chief Financial Officer (Rohan Bhatia)                     | Deal gross margin ≥ 28%                 |\n| Above 15%               | Founder & CEO (Vikram Kulkarni)                            | Any margin; CFO recommendation required |\n\n\n\n\n\nMargin overrides the discount band. Regardless of the discount percentage:\n\n| Deal gross margin   | Minimum approver                                                                          |\n|---------------------|-------------------------------------------------------------------------------------------|\n| 28% - 30%           | CFO                                                                                       |\n| 25% - 28%           | CEO                                                                                       |\n| Below 25%           | Not permitted, except strategic entry deals approved by the CEO and reported to the Board |\n\nApproval requests for NimbusOps subscriptions follow the same matrix, but the margin test uses NimbusOps contribution margin with a floor of 60%."
+    }
+   ]
+  }
+ },
+ {
+  "id": 203,
+  "kind": "answerable",
+  "asker": "security@nimbus.example",
+  "doc": "Vulnerability Management Standard",
+  "q": "Who approves a risk exception for a Medium or Low vulnerability, and for how long?",
+  "reference": "The Engineering Manager together with the Security Champion, for up to 180 days (High: CISO, 90 days; Critical: CISO and CTO jointly, 30 days).",
+  "A": {
+   "abstained": false,
+   "answer": "For Medium or Low vulnerabilities, the risk exception is approved by the **Engineering Manager with the Security Champion**, and the maximum exception period is **180 days** [1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Vulnerability Management Standard",
+     "text": "## 6. Exceptions\n\nIf a vulnerability cannot be fixed by its deadline, the system owner raises a risk exception in the GRC tool before the deadline, with the reason, compensating controls (for example, a WAF rule or network isolation) and a target fix date.\n\n| Severity     | Exception approved by                          | Maximum exception period   |\n|--------------|------------------------------------------------|----------------------------|\n| Critical     | CISO and CTO jointly                           | 30 days                    |\n| High         | CISO                                           | 90 days                    |\n| Medium / Low | Engineering Manager with the Security Champion | 180 days                   |\n\nExceptions cannot be renewed more than once. An expired exception is treated as an overdue finding. Exceptions for client environments also need the written agreement of the client's security contact."
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "A risk exception for a Medium or Low vulnerability is approved by the Engineering Manager together with the Security Champion, and the maximum exception period is 180 days [1]. Exceptions cannot be renewed more than once [1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Vulnerability Management Standard",
+     "text": "## 6. Exceptions\n\nIf a vulnerability cannot be fixed by its deadline, the system owner raises a risk exception in the GRC tool before the deadline, with the reason, compensating controls (for example, a WAF rule or network isolation) and a target fix date.\n\n| Severity     | Exception approved by                          | Maximum exception period   |\n|--------------|------------------------------------------------|----------------------------|\n| Critical     | CISO and CTO jointly                           | 30 days                    |\n| High         | CISO                                           | 90 days                    |\n| Medium / Low | Engineering Manager with the Security Champion | 180 days                   |\n\nExceptions cannot be renewed more than once. An expired exception is treated as an overdue finding. Exceptions for client environments also need the written agreement of the client's security contact."
+    }
+   ]
+  }
+ },
+ {
+  "id": 204,
+  "kind": "answerable",
+  "asker": "finance@nimbus.example",
+  "doc": "Accounts Payable and Vendor Payment Policy",
+  "q": "Who approves a vendor invoice between ₹10 lakh and ₹50 lakh?",
+  "reference": "The Chief Financial Officer (above ₹50 lakh, the CFO and the CEO).",
+  "A": {
+   "abstained": false,
+   "answer": "Chief Financial Officer approves invoices above ₹10 lakh and up to ₹50 lakh. [1]",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Accounts Payable and Vendor Payment Policy",
+     "text": "## 4. Purchase orders and invoice approval\n\nAll purchases above ₹25,000 need a PO raised before the order is placed (\"no PO, no pay\"). Exceptions: utilities, statutory payments, rent under signed leases and employee expense claims.\n\n\n\n\n\nInvoices are approved in the ERP workflow at these levels (invoice value excluding GST):\n\n| Invoice value                     | Approver                                  |\n|-----------------------------------|-------------------------------------------|\n| Up to ₹1 lakh                     | Cost centre owner                         |\n| Above ₹1 lakh and up to ₹10 lakh  | Department head                           |\n| Above ₹10 lakh and up to ₹50 lakh | Chief Financial Officer                   |\n| Above ₹50 lakh                    | Chief Financial Officer and Founder & CEO |"
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "The Chief Financial Officer approves vendor invoices valued above ₹10 lakh and up to ₹50 lakh [1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Accounts Payable and Vendor Payment Policy",
+     "text": "## 4. Purchase orders and invoice approval\n\nAll purchases above ₹25,000 need a PO raised before the order is placed (\"no PO, no pay\"). Exceptions: utilities, statutory payments, rent under signed leases and employee expense claims.\n\n\n\n\n\nInvoices are approved in the ERP workflow at these levels (invoice value excluding GST):\n\n| Invoice value                     | Approver                                  |\n|-----------------------------------|-------------------------------------------|\n| Up to ₹1 lakh                     | Cost centre owner                         |\n| Above ₹1 lakh and up to ₹10 lakh  | Department head                           |\n| Above ₹10 lakh and up to ₹50 lakh | Chief Financial Officer                   |\n| Above ₹50 lakh                    | Chief Financial Officer and Founder & CEO |"
+    }
+   ]
+  }
+ },
+ {
+  "id": 205,
+  "kind": "answerable",
+  "asker": "employee@nimbus.example",
+  "doc": "Secure SDLC Standard",
+  "q": "Who can accept the risk of a Critical vulnerability that cannot be fixed within SLA, and for how long?",
+  "reference": "The CISO and CTO jointly, for a maximum exception period of 30 days.",
+  "A": {
+   "abstained": false,
+   "answer": "The CISO and CTO jointly can accept the risk of a Critical vulnerability that cannot be fixed within its SLA, for a maximum exception period of 30 days. [1]",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Secure SDLC Standard",
+     "text": "## 6. Exceptions and risk acceptance\n\n\n\n\n\nIf a finding cannot be fixed within its SLA, the Engineering Manager raises a risk exception in the GRC tool with compensating controls and a target date.\n\n| Severity     | Can be accepted by                         | Maximum exception period   |\n|--------------|--------------------------------------------|----------------------------|\n| Critical     | CISO and CTO jointly                       | 30 days                    |\n| High         | CISO                                       | 90 days                    |\n| Medium / Low | Engineering Manager with Security Champion | 180 days                   |"
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "The CISO and CTO jointly can accept the risk of a Critical vulnerability, with a maximum exception period of 30 days [1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Secure SDLC Standard",
+     "text": "## 6. Exceptions and risk acceptance\n\n\n\n\n\nIf a finding cannot be fixed within its SLA, the Engineering Manager raises a risk exception in the GRC tool with compensating controls and a target date.\n\n| Severity     | Can be accepted by                         | Maximum exception period   |\n|--------------|--------------------------------------------|----------------------------|\n| Critical     | CISO and CTO jointly                       | 30 days                    |\n| High         | CISO                                       | 90 days                    |\n| Medium / Low | Engineering Manager with Security Champion | 180 days                   |"
+    }
+   ]
+  }
+ },
+ {
+  "id": 206,
+  "kind": "answerable",
+  "asker": "legal@nimbus.example",
+  "doc": "Contract Review and Signing Authority Guideline",
+  "q": "Who can sign a client contract worth more than ₹5 crore?",
+  "reference": "Only the Founder & CEO, Vikram Kulkarni.",
+  "A": {
+   "abstained": false,
+   "answer": "The Founder & CEO (Vikram Kulkarni) is authorised to sign client contracts valued above ₹5 crore. [1]",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Contract Review and Signing Authority Guideline",
+     "text": "## 5. Signing authority matrix\n\nValue means the total contract value (TCV) over the full term, excluding GST. Foreign currency contracts are converted at the Finance planning rate (₹84.50 per USD for FY27).\n\n| Total contract value              | Who may sign (client contracts)                                                                     | Who may sign (supplier contracts)      |\n|-----------------------------------|-----------------------------------------------------------------------------------------------------|----------------------------------------|\n| Up to ₹50 lakh                    | VP of the region or function (e.g. Arjun Nair, VP Sales North America, or Kavya Reddy, VP Delivery) | Department head with budget            |\n| Above ₹50 lakh and up to ₹5 crore | Chief Financial Officer (Rohan Bhatia)                                                              | Chief Financial Officer                |\n| Above ₹5 crore                    | Founder & CEO (Vikram Kulkarni)                                                                     | Founder & CEO, with CFO recommendation |\n| Any MSA, regardless of value      | Founder & CEO or CFO                                                                                | Founder & CEO or CFO                   |\n| Leases and real estate            | Founder & CEO, after Board approval if above ₹10 crore                                              | -                                      |\n\nRules that apply to every signature:\n\n1. Signing authority is not pricing approval. Any discount, free resource or non-standard payment term must already be approved under the Discount Approval Policy (NIM/SAL/POL-001) and recorded in the CRM before the contract is signed. Finance checks the signed price against the approv"
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "The Founder & CEO (Vikram Kulkarni) may sign client contracts valued above ₹5 crore. [1]",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Contract Review and Signing Authority Guideline",
+     "text": "## 5. Signing authority matrix\n\nValue means the total contract value (TCV) over the full term, excluding GST. Foreign currency contracts are converted at the Finance planning rate (₹84.50 per USD for FY27).\n\n| Total contract value              | Who may sign (client contracts)                                                                     | Who may sign (supplier contracts)      |\n|-----------------------------------|-----------------------------------------------------------------------------------------------------|----------------------------------------|\n| Up to ₹50 lakh                    | VP of the region or function (e.g. Arjun Nair, VP Sales North America, or Kavya Reddy, VP Delivery) | Department head with budget            |\n| Above ₹50 lakh and up to ₹5 crore | Chief Financial Officer (Rohan Bhatia)                                                              | Chief Financial Officer                |\n| Above ₹5 crore                    | Founder & CEO (Vikram Kulkarni)                                                                     | Founder & CEO, with CFO recommendation |\n| Any MSA, regardless of value      | Founder & CEO or CFO                                                                                | Founder & CEO or CFO                   |\n| Leases and real estate            | Founder & CEO, after Board approval if above ₹10 crore                                              | -                                      |\n\nRules that apply to every signature:\n\n1. Signing authority is not pricing approval. Any discount, free resource or non-standard payment term must already be approved under the Discount Approval Policy (NIM/SAL/POL-001) and recorded in the CRM before the contract is signed. Finance checks the signed price against the approv"
+    }
+   ]
+  }
+ },
+ {
+  "id": 207,
+  "kind": "answerable",
+  "asker": "employee@nimbus.example",
+  "doc": "Cloud Cost Management Guideline",
+  "q": "Who must approve new recurring cloud spend above ₹5 lakh per month?",
+  "reference": "The Head of Infrastructure & SRE (above ₹25 lakh per month, the CFO).",
+  "A": {
+   "abstained": false,
+   "answer": "Head of Infrastructure & SRE [1]",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Cloud Cost Management Guideline",
+     "text": "## 6. Approval thresholds for new spend\n\n| Expected new recurring spend                               | Approval                          |\n|------------------------------------------------------------|-----------------------------------|\n| Up to ₹1 lakh per month                                    | Account owner                     |\n| ₹1 lakh to ₹5 lakh per month                               | Engineering Manager + FinOps lead |\n| Above ₹5 lakh per month                                    | Head of Infrastructure & SRE      |\n| Above ₹25 lakh per month, or any commitment above ₹1 crore | CFO                               |\n\nRequests are raised in the FINOPS Jira project with an estimate from the AWS Pricing Calculator."
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "New recurring cloud spend above ₹5 lakh per month must be approved by the Head of Infrastructure & SRE [1]. Spend above ₹25 lakh per month requires CFO approval [1]. The current Head of Infrastructure & SRE is Pradeep Joshi [2][3].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Cloud Cost Management Guideline",
+     "text": "## 6. Approval thresholds for new spend\n\n| Expected new recurring spend                               | Approval                          |\n|------------------------------------------------------------|-----------------------------------|\n| Up to ₹1 lakh per month                                    | Account owner                     |\n| ₹1 lakh to ₹5 lakh per month                               | Engineering Manager + FinOps lead |\n| Above ₹5 lakh per month                                    | Head of Infrastructure & SRE      |\n| Above ₹25 lakh per month, or any commitment above ₹1 crore | CFO                               |\n\nRequests are raised in the FINOPS Jira project with an estimate from the AWS Pricing Calculator."
+    },
+    {
+     "n": 2,
+     "title": "Design Doc – NimbusOps Multi-Region Active-Passive DR",
+     "text": "## 4. Cost\n\n| Item | Monthly cost (₹ lakh) |\n|---|---|\n| DR EKS baseline from 30% to 50% | 4.8 |\n| MSK DR cluster from 3 to 6 brokers | 2.6 |\n| VictoriaMetrics full-resolution replica | 1.5 |\n| Route 53 ARC and Step Functions | 0.7 |\n| **Total additional** | **9.6** |\n\nThe additional ₹9.6 lakh per month is above the ₹5 lakh threshold in the Cloud Cost Management Guideline and was approved by Pradeep Joshi (Head of Infrastructure & SRE) on 2 June 2026. It is funded from the FY27 NimbusOps cloud budget."
+    },
+    {
+     "n": 3,
+     "title": "Cloud Cost Management Guideline",
+     "text": "## 3. Roles\n\n| Role                                         | Responsibility                                                           |\n|----------------------------------------------|--------------------------------------------------------------------------|\n| Account owner (EM or project manager)        | Budget for the account, monthly review, acting on alerts                 |\n| FinOps lead (Infrastructure & SRE)           | Reports, commitments (Savings Plans, Reserved Instances), anomaly triage |\n| Head of Infrastructure & SRE (Pradeep Joshi) | Approves commitments and large new spend                                 |\n| CFO (Rohan Bhatia)                           | Approves annual cloud budget and commitments above ₹1 crore              |"
+    }
+   ]
+  }
+ },
+ {
+  "id": 208,
+  "kind": "answerable",
+  "asker": "rm@kaveri.example",
+  "doc": "PMS and AIF Client Onboarding Checklist",
+  "q": "Who must approve onboarding a politically exposed person as a PMS client?",
+  "reference": "Prior written approval of the Chief Compliance Officer, Shalini Kapoor; it cannot be delegated.",
+  "A": {
+   "abstained": false,
+   "answer": "Prior written approval of the Chief Compliance Officer, Shalini Kapoor, is required; it cannot be delegated. [1]",
+   "cited": [
+    {
+     "n": 1,
+     "title": "PMS and AIF Client Onboarding Checklist",
+     "text": "#### Step 3 – Approvals for higher-risk clients\n\n| **Client type**                                                                         | **Approval needed before activation**                                                           |\n|-----------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------|\n| Medium risk (default for PMS)                                                           | KYC Desk supervisor                                                                             |\n| High risk (trusts, complex ownership, high-risk jurisdictions, offshore AIF structures) | Chief Compliance Officer, after enhanced due diligence                                          |\n| **Politically exposed person (PEP)** or close relative / associate of a PEP             | **Prior written approval of the Chief Compliance Officer, Shalini Kapoor**; cannot be delegated |\n\n3.1 For a PEP, the RM must also obtain a source-of-wealth statement and the client is reviewed every 2 years under the high-risk re-KYC cycle."
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "The onboarding of a politically exposed person (PEP) as a PMS client requires **prior written approval of the Chief Compliance Officer, Shalini Kapoor**【1】.",
+   "cited": []
+  }
+ },
+ {
+  "id": 209,
+  "kind": "answerable",
+  "asker": "compliance@kaveri.example",
+  "doc": "Politically Exposed Persons Procedure",
+  "q": "Who must approve onboarding of a politically exposed person?",
+  "reference": "The Chief Compliance Officer must give prior written approval; this cannot be delegated.",
+  "A": {
+   "abstained": false,
+   "answer": "The Chief Compliance Officer (CCO) must give prior written approval before any PEP account, folio, PMS agreement or AIF commitment can be activated. [1][2][3]",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Politically Exposed Persons Procedure",
+     "text": "### 1. Purpose\n\n1.1 This procedure sets out how Kaveri Capital Advisors Pvt. Ltd. identifies, approves and monitors Politically Exposed Persons (PEPs), their family members and close associates. It supports clause 5.2 of the KYC and Customer Due Diligence Policy (KCA/CMP/POL-011).\n\n1.2 **Every PEP relationship requires the prior written approval of the Chief Compliance Officer (CCO).** No account, folio, PMS agreement or AIF commitment may be activated for a PEP before that approval is recorded."
+    },
+    {
+     "n": 2,
+     "title": "Politically Exposed Persons Procedure",
+     "text": "### 4. Approval Process\n\n|   **Step** | **Action**                                                                                                                           | **Owner**                | **Timeline**                                |\n|------------|--------------------------------------------------------------------------------------------------------------------------------------|--------------------------|---------------------------------------------|\n|          1 | Collect EDD pack: source-of-wealth statement, source-of-funds evidence (last 3 years' ITR or audited accounts), adverse-media report | Relationship Manager     | Before submission                           |\n|          2 | Review EDD pack and prepare PEP Approval Note with risk rating                                                                       | Compliance – AML Analyst | Within 3 working days                       |\n|          3 | Approve or decline                                                                                                                   | Chief Compliance Officer | Within 5 working days of receiving the Note |\n|          4 | Inform MD & CEO of approved PEP relationships with investment above ₹5 crore                                                         | CCO                      | Within 2 working days of approval           |\n|          5 | Tag account as \"PEP – High Risk\" in the registrar and PMS systems                                                                    | KYC Desk                 | Same day as approval                        |\n\n4.1 The CCO's approval cannot be delegated. If the CCO is on leave, the PEP application waits; it is not passed to another approver.\n\n4.2 Where an existing client becomes a PEP (e.g. is elected or appointed), the "
+    },
+    {
+     "n": 3,
+     "title": "KYC and Customer Due Diligence Policy",
+     "text": "## 5. Customer Due Diligence and Risk Categorisation\n\n- 5.1 Each client shall be scored at onboarding on the KYC Desk risk matrix and placed in one of three categories.\n- 5.2 Enhanced Due Diligence (EDD). High-risk clients require EDD: a documented source-of-wealth and source-of-funds review, adverse-media screening, and senior approval as above. PEP onboarding follows the Politically Exposed Persons Procedure (KCA/CMP/SOP-014) and always needs CCO approval.\n- 5.3 Sanctions screening. Every client and beneficial owner shall be screened against the UN Security Council consolidated list and the lists notified under Section 51A of the UAPA before activation, and daily thereafter through the screening tool. A true match shall freeze the account immediately and be reported to the CCO the same day.\n\n| Risk category   | Typical profile                                                                                                                    | Approval level           |\n|-----------------|------------------------------------------------------------------------------------------------------------------------------------|--------------------------|\n| Low             | Salaried resident individuals, SIP investors, investment below ₹10 lakh                                                            | KYC Desk officer         |\n| Medium          | Self-employed individuals, HUFs, PMS clients, NRIs from FATF-compliant jurisdictions                                               | KYC Desk supervisor      |\n| High            | PEPs, trusts and charities, clients from high-risk jurisdictions, complex ownership chains, AIF investors with offshore structures | Chief Compliance Officer |"
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "The Chief Compliance Officer (CCO) must give prior written approval before any PEP account, folio, PMS agreement or AIF commitment is activated [1]. The CCO’s approval cannot be delegated, and if the CCO is on leave the application waits [2]. PEP onboarding always needs CCO approval under the KYC and Customer Due Diligence Policy [3].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Politically Exposed Persons Procedure",
+     "text": "### 1. Purpose\n\n1.1 This procedure sets out how Kaveri Capital Advisors Pvt. Ltd. identifies, approves and monitors Politically Exposed Persons (PEPs), their family members and close associates. It supports clause 5.2 of the KYC and Customer Due Diligence Policy (KCA/CMP/POL-011).\n\n1.2 **Every PEP relationship requires the prior written approval of the Chief Compliance Officer (CCO).** No account, folio, PMS agreement or AIF commitment may be activated for a PEP before that approval is recorded."
+    },
+    {
+     "n": 2,
+     "title": "Politically Exposed Persons Procedure",
+     "text": "### 4. Approval Process\n\n|   **Step** | **Action**                                                                                                                           | **Owner**                | **Timeline**                                |\n|------------|--------------------------------------------------------------------------------------------------------------------------------------|--------------------------|---------------------------------------------|\n|          1 | Collect EDD pack: source-of-wealth statement, source-of-funds evidence (last 3 years' ITR or audited accounts), adverse-media report | Relationship Manager     | Before submission                           |\n|          2 | Review EDD pack and prepare PEP Approval Note with risk rating                                                                       | Compliance – AML Analyst | Within 3 working days                       |\n|          3 | Approve or decline                                                                                                                   | Chief Compliance Officer | Within 5 working days of receiving the Note |\n|          4 | Inform MD & CEO of approved PEP relationships with investment above ₹5 crore                                                         | CCO                      | Within 2 working days of approval           |\n|          5 | Tag account as \"PEP – High Risk\" in the registrar and PMS systems                                                                    | KYC Desk                 | Same day as approval                        |\n\n4.1 The CCO's approval cannot be delegated. If the CCO is on leave, the PEP application waits; it is not passed to another approver.\n\n4.2 Where an existing client becomes a PEP (e.g. is elected or appointed), the "
+    },
+    {
+     "n": 3,
+     "title": "KYC and Customer Due Diligence Policy",
+     "text": "## 5. Customer Due Diligence and Risk Categorisation\n\n- 5.1 Each client shall be scored at onboarding on the KYC Desk risk matrix and placed in one of three categories.\n- 5.2 Enhanced Due Diligence (EDD). High-risk clients require EDD: a documented source-of-wealth and source-of-funds review, adverse-media screening, and senior approval as above. PEP onboarding follows the Politically Exposed Persons Procedure (KCA/CMP/SOP-014) and always needs CCO approval.\n- 5.3 Sanctions screening. Every client and beneficial owner shall be screened against the UN Security Council consolidated list and the lists notified under Section 51A of the UAPA before activation, and daily thereafter through the screening tool. A true match shall freeze the account immediately and be reported to the CCO the same day.\n\n| Risk category   | Typical profile                                                                                                                    | Approval level           |\n|-----------------|------------------------------------------------------------------------------------------------------------------------------------|--------------------------|\n| Low             | Salaried resident individuals, SIP investors, investment below ₹10 lakh                                                            | KYC Desk officer         |\n| Medium          | Self-employed individuals, HUFs, PMS clients, NRIs from FATF-compliant jurisdictions                                               | KYC Desk supervisor      |\n| High            | PEPs, trusts and charities, clients from high-risk jurisdictions, complex ownership chains, AIF investors with offshore structures | Chief Compliance Officer |"
+    }
+   ]
+  }
+ },
+ {
+  "id": 210,
+  "kind": "answerable",
+  "asker": "qa@sanjeevani.example",
+  "doc": "Project Plan – Vizag Unit III Capacity Expansion",
+  "q": "Who owns qualification of the new Vizag line?",
+  "reference": "K. Lavanya, Manager – Validation, Unit III (responsible), with Dr. Farhan Qureshi accountable.",
+  "A": {
+   "abstained": false,
+   "answer": "K. Lavanya, Manager – Validation, Unit III, is the responsible owner for qualification of the new line (IQ/OQ/PQ), with Dr. Farhan Qureshi as the accountable executive [1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Project Plan – Vizag Unit III Capacity Expansion",
+     "text": "### 3. Ownership (RACI summary)\n\n| **Workstream**                                                 | **Owner (Responsible)**                        | **Accountable**    | **Consulted**           |\n|----------------------------------------------------------------|------------------------------------------------|--------------------|-------------------------|\n| Civil construction and EPC contract                            | Srinivas Reddy                                 | Venkat Raju        | Finance                 |\n| Process equipment procurement                                  | P. Chandrasekhar, Manager – Engineering        | Srinivas Reddy     | Production, QA          |\n| Qualification of the new line (IQ/OQ/PQ)                       | **K. Lavanya, Manager – Validation, Unit III** | Dr. Farhan Qureshi | Engineering, QC         |\n| Computerised systems (MES, LIMS) validation and data integrity | Anil Varma, Manager – IT Compliance            | Dr. Farhan Qureshi | Regulatory Affairs      |\n| Process validation and exhibit batches                         | Head – Production, Unit III                    | Venkat Raju        | R&D (tech transfer), QA |\n| Regulatory filings (PAS, CDSCO licence endorsement)            | Pooja Desai, Head, Regulatory Affairs          | Pooja Desai        | QA                      |\n| Hiring and training (420 new roles)                            | Plant HR, Unit III                             | Priya Bhatt        | Department heads        |\n| Budget tracking                                                | Unit III Finance Controller                    | Suresh Mehta       | Project manager         |"
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "K. Lavanya, Manager – Validation, Unit III is the responsible owner for qualification of the new line (IQ/OQ/PQ) [1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Project Plan – Vizag Unit III Capacity Expansion",
+     "text": "### 3. Ownership (RACI summary)\n\n| **Workstream**                                                 | **Owner (Responsible)**                        | **Accountable**    | **Consulted**           |\n|----------------------------------------------------------------|------------------------------------------------|--------------------|-------------------------|\n| Civil construction and EPC contract                            | Srinivas Reddy                                 | Venkat Raju        | Finance                 |\n| Process equipment procurement                                  | P. Chandrasekhar, Manager – Engineering        | Srinivas Reddy     | Production, QA          |\n| Qualification of the new line (IQ/OQ/PQ)                       | **K. Lavanya, Manager – Validation, Unit III** | Dr. Farhan Qureshi | Engineering, QC         |\n| Computerised systems (MES, LIMS) validation and data integrity | Anil Varma, Manager – IT Compliance            | Dr. Farhan Qureshi | Regulatory Affairs      |\n| Process validation and exhibit batches                         | Head – Production, Unit III                    | Venkat Raju        | R&D (tech transfer), QA |\n| Regulatory filings (PAS, CDSCO licence endorsement)            | Pooja Desai, Head, Regulatory Affairs          | Pooja Desai        | QA                      |\n| Hiring and training (420 new roles)                            | Plant HR, Unit III                             | Priya Bhatt        | Department heads        |\n| Budget tracking                                                | Unit III Finance Controller                    | Suresh Mehta       | Project manager         |"
+    }
+   ]
+  }
+ },
+ {
+  "id": 211,
+  "kind": "answerable",
+  "asker": "ops@kaveri.example",
+  "doc": "Project Plan – GIFT City Feeder Fund Launch",
+  "q": "Who owns the custody workstream for the GIFT City feeder fund launch?",
+  "reference": "Mohit Arora, Head of Operations (WS2: custody and fund administration).",
+  "A": {
+   "abstained": false,
+   "answer": "Mohit Arora, Head of Operations, owns the custody and fund administration workstream (WS2) for the GIFT City feeder fund launch [1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Project Plan – GIFT City Feeder Fund Launch",
+     "text": "### 3. Workstreams and owners\n\n| **#**   | **Workstream**                      | **Owner**                                                            | **Scope**                                                                                                 |\n|---------|-------------------------------------|----------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------|\n| WS1     | Regulatory and legal                | Shalini Kapoor, CCO                                                  | FME application to IFSCA, fund filing, offer document, FATCA/CRS set-up                                   |\n| WS2     | Custody and fund administration     | **Mohit Arora, Head of Operations**                                  | RFP and appointment of custodian and fund administrator, bank accounts in USD, NAV process for the feeder |\n| WS3     | Systems and technology              | Karthik Subramanian, CISO                                            | Fund accounting set-up, investor portal for USD investors, GIFT City office network                       |\n| WS4     | Distribution and investor relations | Divya Menon, Fund Manager, Flexi Cap (with Head – Sales & Marketing) | Pre-marketing to NRI clients, offshore distributor agreements, launch material                            |\n| WS5     | Finance and tax                     | Gaurav Agarwal, CFO                                                  | Seed capital, set-up budget, tax registrations, transfer pricing                                          |\n| WS6     | People and office                   | Deepa Nambiar, Head of HR                                            | Hiring 5 IFSC roles, Gandhinagar office lease"
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "Mohit Arora, Head of Operations, owns the custody and fund administration workstream (WS2) for the GIFT City feeder fund launch [1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Project Plan – GIFT City Feeder Fund Launch",
+     "text": "### 3. Workstreams and owners\n\n| **#**   | **Workstream**                      | **Owner**                                                            | **Scope**                                                                                                 |\n|---------|-------------------------------------|----------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------|\n| WS1     | Regulatory and legal                | Shalini Kapoor, CCO                                                  | FME application to IFSCA, fund filing, offer document, FATCA/CRS set-up                                   |\n| WS2     | Custody and fund administration     | **Mohit Arora, Head of Operations**                                  | RFP and appointment of custodian and fund administrator, bank accounts in USD, NAV process for the feeder |\n| WS3     | Systems and technology              | Karthik Subramanian, CISO                                            | Fund accounting set-up, investor portal for USD investors, GIFT City office network                       |\n| WS4     | Distribution and investor relations | Divya Menon, Fund Manager, Flexi Cap (with Head – Sales & Marketing) | Pre-marketing to NRI clients, offshore distributor agreements, launch material                            |\n| WS5     | Finance and tax                     | Gaurav Agarwal, CFO                                                  | Seed capital, set-up budget, tax registrations, transfer pricing                                          |\n| WS6     | People and office                   | Deepa Nambiar, Head of HR                                            | Hiring 5 IFSC roles, Gandhinagar office lease"
+    }
+   ]
+  }
+ },
+ {
+  "id": 212,
+  "kind": "denied",
+  "asker": "compliance@kaveri.example",
+  "doc": "Project Plan – GIFT City Feeder Fund Launch",
+  "q": "Who owns the custody workstream for the GIFT City feeder fund launch?",
+  "reference": "Mohit Arora, Head of Operations (WS2: custody and fund administration).",
+  "A": {
+   "abstained": true,
+   "answer": "Not found in your documents.\nNo document you can open answers this, so Atlas did not guess.",
+   "cited": []
+  },
+  "B": {
+   "abstained": false,
+   "answer": "The provided passages do not specify who owns the custody workstream for the GIFT City feeder fund launch. They mention a compliance sign-off by the CCO in January 2027 [1] and list GIFT City hiring roles (Principal Officer, Compliance Officer, Fund Operations, Investor Relations) [2], but no custodial workstream owner is identified.",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Compliance Monitoring Calendar FY27",
+     "text": "## 5. Annual and one-off items\n\n| Due date | Item | Owner |\n|---|---|---|\n| 30 April 2026 | Annual holdings disclosure by all Designated Persons (PIT Code) | CMP |\n| 30 April 2026 | Annual PIT compliance certification by Designated Persons | CMP |\n| 15 May 2026 | Liquidity breach checkpoint: Small Cap Opportunities 5-day liquidity to reach 13.5% | RSK / CCO |\n| 31 May 2026 | Annual review of transaction monitoring thresholds (TM-01 to TM-07) | AML |\n| 30 June 2026 | Small Cap liquidity remediation deadline – trim 6 illiquid names; liquidity back above 15% floor | RSK / CCO |\n| 30 June 2026 | PMS annual audit report (auditor's certificate) filed with SEBI | CMP / FIN |\n| 31 July 2026 | Annual PEP reviews completed for all 37 PEP relationships | AML |\n| 30 September 2026 | Re-date all re-KYC due dates from the 2022 cycle (3/6/10 years) to the new cycle (2/5/8 years) | OPS / CMP |\n| 31 October 2026 | Mock STR exercise | AML |\n| 30 November 2026 | Business continuity drill incl. NAV computation from Pune DR site | OPS |\n| 31 December 2026 | Annual AML e-learning refresher – 100% completion | CMP / HR |\n| January 2027 | GIFT City feeder fund launch – compliance sign-off on offer document and IFSCA filings | CCO |\n| 15 February 2027 | Annual review of all compliance policies begins | CCO |\n| 31 March 2027 | Annual Compliance Report to Board | CCO |"
+    },
+    {
+     "n": 2,
+     "title": "Careers at Kaveri – Roles, Hiring and Internships",
+     "text": "## 2. Teams that hire\n\n| Team | Typical roles | Main office | Openings planned in FY2026-27 |\n|---|---|---|---|\n| Research | Research Associate, Research Analyst, Senior Research Analyst | Bengaluru | 6 |\n| Investments and Dealing | Dealer, Senior Dealer, Fund Manager (rare, internal first) | Bengaluru, Mumbai | Replacement hires only |\n| PMS and Wealth | Relationship Manager, Investment Adviser | Mumbai, New Delhi | 2 |\n| Retail Distribution and Sales | Sales Manager, Distributor Relationship Manager | Pune, Chennai | 4 |\n| Operations and Client Services | Fund Accounting Executive, Client Services Executive | Bengaluru, Chennai | 4 |\n| Risk and Compliance | Risk Analyst, Compliance Officer | Bengaluru | 3 |\n| Technology | Software Engineer, Data Engineer, Security Analyst | Bengaluru | 4 |\n| GIFT City (new) | Principal Officer, Compliance Officer, Fund Operations, Investor Relations | Gandhinagar | 5 |\n\nWe do not pay recruitment agencies for research or graduate roles; apply directly."
+    }
+   ]
+  }
+ },
+ {
+  "id": 213,
+  "kind": "answerable",
+  "asker": "rnd@sanjeevani.example",
+  "doc": "Clinical Research Services Agreement – SJ-2041 (CRO)",
+  "q": "Who owns the trial data under the CRO contract?",
+  "reference": "Sanjeevani Pharma owns all trial data exclusively; the CRO acquires no rights and must transfer the database and trial master file at the end.",
+  "A": {
+   "abstained": false,
+   "answer": "All trial data belong exclusively to Sanjeevani Pharma; the CRO acquires no rights to them. [1]",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Clinical Research Services Agreement – SJ-2041 (CRO)",
+     "text": "## 6. Ownership of data and results\n\n\n\n\n\n- 6.1 All trial data belong exclusively to Sanjeevani Pharma: the clinical database, case report forms, source data copies, statistical outputs, reports and any inventions arising from the study. The CRO acquires no rights to them. 6.2 The CRO may not publish, present or use the data for any other purpose. Publication decisions are taken only by Sanjeevani. 6.3 At the end of the agreement the CRO transfers the full database and trial master file to Sanjeevani and keeps copies only as required by law. Archiving is for 15 years."
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "All trial data belong exclusively to Sanjeevani Pharma, including the clinical database, case report forms, source data copies, statistical outputs, reports and any inventions arising from the study; the CRO acquires no rights to them. [1]",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Clinical Research Services Agreement – SJ-2041 (CRO)",
+     "text": "## 6. Ownership of data and results\n\n\n\n\n\n- 6.1 All trial data belong exclusively to Sanjeevani Pharma: the clinical database, case report forms, source data copies, statistical outputs, reports and any inventions arising from the study. The CRO acquires no rights to them. 6.2 The CRO may not publish, present or use the data for any other purpose. Publication decisions are taken only by Sanjeevani. 6.3 At the end of the agreement the CRO transfers the full database and trial master file to Sanjeevani and keeps copies only as required by law. Archiving is for 15 years."
+    }
+   ]
+  }
+ },
+ {
+  "id": 214,
+  "kind": "answerable",
+  "asker": "manager@nimbus.example",
+  "doc": "BRD – Zenith Retail Omnichannel Inventory Sync",
+  "q": "Who signs off the Zenith omnichannel inventory sync BRD?",
+  "reference": "Rajesh Malhotra (Zenith CFO, sponsor) and Priya Venkatesh (Zenith CIO) for Zenith, and Kavya Reddy (VP Delivery) for Nimbus; signed off on 22 May 2026.",
+  "A": {
+   "abstained": false,
+   "answer": "The BRD requires sign-off from **Rajesh Malhotra (Zenith CFO, project sponsor)**, **Priya Venkatesh (Zenith CIO)**, and **Kavya Reddy (VP Delivery, Nimbus)**. Version 1.2 was signed off by all three on 22 May 2026 [1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "BRD – Zenith Retail Omnichannel Inventory Sync",
+     "text": "### 9. Sign-off\n\nThis BRD requires sign-off from **Rajesh Malhotra (Zenith CFO, project sponsor)** and **Priya Venkatesh (Zenith CIO)** for Zenith, and from **Kavya Reddy (VP Delivery)** for Nimbus. Version 1.2 was signed off by all three on **22 May 2026**, ahead of the Explore phase design sign-off (milestone M2). Changes after sign-off follow the change request process in the Project Charter; changes above ₹25 lakh need Steering Committee approval.\n\n|   **Version** | **Date**      | **Change**                                        |\n|---------------|---------------|---------------------------------------------------|\n|           1.0 | 24 April 2026 | First draft after fit-to-standard workshops       |\n|           1.1 | 12 May 2026   | Added FR-06 store hiding and FR-09 reconciliation |\n|           1.2 | 22 May 2026   | Safety buffer values agreed; signed off           |"
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "The BRD is signed off by Rajesh Malhotra (Zenith CFO, project sponsor), Priya Venkatesh (Zenith CIO), and Kavya Reddy (VP Delivery, Nimbus); version 1.2 was signed by all three on 22 May 2026. [1]",
+   "cited": [
+    {
+     "n": 1,
+     "title": "BRD – Zenith Retail Omnichannel Inventory Sync",
+     "text": "### 9. Sign-off\n\nThis BRD requires sign-off from **Rajesh Malhotra (Zenith CFO, project sponsor)** and **Priya Venkatesh (Zenith CIO)** for Zenith, and from **Kavya Reddy (VP Delivery)** for Nimbus. Version 1.2 was signed off by all three on **22 May 2026**, ahead of the Explore phase design sign-off (milestone M2). Changes after sign-off follow the change request process in the Project Charter; changes above ₹25 lakh need Steering Committee approval.\n\n|   **Version** | **Date**      | **Change**                                        |\n|---------------|---------------|---------------------------------------------------|\n|           1.0 | 24 April 2026 | First draft after fit-to-standard workshops       |\n|           1.1 | 12 May 2026   | Added FR-06 store hiding and FR-09 reconciliation |\n|           1.2 | 22 May 2026   | Safety buffer values agreed; signed off           |"
+    }
+   ]
+  }
+ },
+ {
+  "id": 215,
+  "kind": "denied",
+  "asker": "hr@nimbus.example",
+  "doc": "BRD – Zenith Retail Omnichannel Inventory Sync",
+  "q": "Who signs off the Zenith omnichannel inventory sync BRD?",
+  "reference": "Rajesh Malhotra (Zenith CFO, sponsor) and Priya Venkatesh (Zenith CIO) for Zenith, and Kavya Reddy (VP Delivery) for Nimbus; signed off on 22 May 2026.",
+  "A": {
+   "abstained": true,
+   "answer": "Not found in your documents.\nNo document you can open answers this, so Atlas did not guess.",
+   "cited": []
+  },
+  "B": {
+   "abstained": true,
+   "answer": "Not found in your documents.\nNo document you can open answers this, so Atlas did not guess.",
+   "cited": []
+  }
+ },
+ {
+  "id": 216,
+  "kind": "answerable",
+  "asker": "ops@kaveri.example",
+  "doc": "Trade Settlement and Fund Accounting SOP",
+  "q": "Who signs off the daily NAV, and when is a second sign-off needed?",
+  "reference": "The Fund Accounting checker signs off; the Fund Accounting Lead gives a second sign-off on days with a material item (break over ₹1 lakh, stale price or movement exception).",
+  "A": {
+   "abstained": false,
+   "answer": "The daily NAV is signed off by the Fund Accounting checker. [1] A second sign-off by the Fund Accounting Lead is required before publication on days with a material item — a break over ₹1 lakh, a stale price, or a movement exception. [1]",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Trade Settlement and Fund Accounting SOP",
+     "text": "## 6. NAV sign-off\n\n6.1 The daily NAV is signed off by the Fund Accounting checker, who must confirm all of the following before signing in the fund accounting system:\n\n1. All trades for the day are matched (no open price or quantity breaks).\n2. Closing prices are loaded for 100% of equity holdings; any stale price older than 1 day is flagged.\n3. Debt prices are the average of the two valuation agencies, or the backup source used after 8:30 pm is recorded.\n4. RTA unit capital agrees with the fund accounting unit balance.\n5. Expense accrual (TER) for the day is within the approved daily rate.\n6. Day-on-day NAV movement is compared with the benchmark; any scheme moving more than 1.5% differently from its benchmark is explained in writing.\n- 6.2 On days with a material item (a break over ₹1 lakh, a stale price, or a movement exception) the Fund Accounting Lead gives a second sign-off before publication.\n- 6.3 If the NAV has not been signed off by 10:15 pm, the checker must call the Head of Operations."
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "The daily NAV is signed off by the **Fund Accounting checker** [1]. A second sign‑off by the **Fund Accounting Lead** is required on days with a material item – a break over ₹1 lakh, a stale price, or a movement exception [1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Trade Settlement and Fund Accounting SOP",
+     "text": "## 6. NAV sign-off\n\n6.1 The daily NAV is signed off by the Fund Accounting checker, who must confirm all of the following before signing in the fund accounting system:\n\n1. All trades for the day are matched (no open price or quantity breaks).\n2. Closing prices are loaded for 100% of equity holdings; any stale price older than 1 day is flagged.\n3. Debt prices are the average of the two valuation agencies, or the backup source used after 8:30 pm is recorded.\n4. RTA unit capital agrees with the fund accounting unit balance.\n5. Expense accrual (TER) for the day is within the approved daily rate.\n6. Day-on-day NAV movement is compared with the benchmark; any scheme moving more than 1.5% differently from its benchmark is explained in writing.\n- 6.2 On days with a material item (a break over ₹1 lakh, a stale price, or a movement exception) the Fund Accounting Lead gives a second sign-off before publication.\n- 6.3 If the NAV has not been signed off by 10:15 pm, the checker must call the Head of Operations."
+    }
+   ]
+  }
+ },
+ {
+  "id": 217,
+  "kind": "answerable",
+  "asker": "cfo@kaveri.example",
+  "doc": "Succession Planning Note",
+  "q": "Who would become interim MD & CEO if Ramesh Iyengar were suddenly unavailable?",
+  "reference": "Ashok Venkataraman, CIO (Equity), would become interim MD & CEO, with Divya Menon as interim CIO.",
+  "A": {
+   "abstained": false,
+   "answer": "Ashok Venkataraman would become interim MD & CEO if Ramesh Iyengar were suddenly unavailable [1][2].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Succession Planning Note",
+     "text": "## 4. MD &amp; CEO Succession\n\n- 4.1 Mr. Iyengar's current term as Managing Director ends on 31 March 2028. He has indicated willingness to serve one further term but has asked the Board to have a ready successor by then.\n- 4.2 If Mr. Iyengar is unavailable suddenly, Ashok Venkataraman becomes interim MD &amp; CEO. During that period, Divya Menon acts as interim CIO (Equity), and the Flexi Cap Fund is co-managed by Arjun Mehra.\n- 4.3 Development plan for Mr. Venkataraman: lead the GIFT City launch steering group; attend all BRC and Audit Committee meetings from July 2026; executive leadership programme in FY27; mentoring by the Chairperson.\n- 4.4 The NRC will run an external benchmarking exercise in FY28 so that the Board can compare internal and external candidates before 30 September 2027."
+    },
+    {
+     "n": 2,
+     "title": "Succession Planning Note",
+     "text": "## 3. Succession Map\n\n| Role                              | Incumbent          | Emergency (interim) successor                    | Planned successor(s)                             | Readiness   |\n|-----------------------------------|--------------------|--------------------------------------------------|--------------------------------------------------|-------------|\n| Managing Director & CEO           | Ramesh Iyengar     | Ashok Venkataraman                               | Ashok Venkataraman; external search as benchmark | R1          |\n| Chief Investment Officer (Equity) | Ashok Venkataraman | Divya Menon                                      | Divya Menon                                      | R1          |\n| Head of Fixed Income              | Farida Sheikh      | Karan Bhatia, Senior Fund Manager - Fixed Income | Karan Bhatia                                     | R1          |\n| Fund Manager, Flexi Cap           | Divya Menon        | Ashok Venkataraman                               | Arjun Mehra, Co-Fund Manager                     | R1          |\n| Fund Manager, Small Cap & AIF     | Rahul Saxena       | Ashok Venkataraman                               | Sneha Kulkarni, Senior Analyst - Small Caps      | R2          |\n\n\n\n\n\n| Chief Financial Officer   | Gaurav Agarwal   | Neha Sood, Financial Controller                 | Neha Sood               | R1   |\n|---------------------------|------------------|-------------------------------------------------|-------------------------|------|\n| Chief Compliance Officer  | Shalini Kapoor   | Deputy Principal Officer (Senior Manager - AML) | External                | EXT  |\n| Chief Risk Officer        | Varun Pillai     | Meghna Das, Head - Risk Analytics               | Meghna Das              | R1   |\n| Head of Research  "
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "Ashok Venkataraman would become interim MD & CEO if Ramesh Iyengar were suddenly unavailable [1][2].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Succession Planning Note",
+     "text": "## 4. MD &amp; CEO Succession\n\n- 4.1 Mr. Iyengar's current term as Managing Director ends on 31 March 2028. He has indicated willingness to serve one further term but has asked the Board to have a ready successor by then.\n- 4.2 If Mr. Iyengar is unavailable suddenly, Ashok Venkataraman becomes interim MD &amp; CEO. During that period, Divya Menon acts as interim CIO (Equity), and the Flexi Cap Fund is co-managed by Arjun Mehra.\n- 4.3 Development plan for Mr. Venkataraman: lead the GIFT City launch steering group; attend all BRC and Audit Committee meetings from July 2026; executive leadership programme in FY27; mentoring by the Chairperson.\n- 4.4 The NRC will run an external benchmarking exercise in FY28 so that the Board can compare internal and external candidates before 30 September 2027."
+    },
+    {
+     "n": 2,
+     "title": "Succession Planning Note",
+     "text": "## 3. Succession Map\n\n| Role                              | Incumbent          | Emergency (interim) successor                    | Planned successor(s)                             | Readiness   |\n|-----------------------------------|--------------------|--------------------------------------------------|--------------------------------------------------|-------------|\n| Managing Director & CEO           | Ramesh Iyengar     | Ashok Venkataraman                               | Ashok Venkataraman; external search as benchmark | R1          |\n| Chief Investment Officer (Equity) | Ashok Venkataraman | Divya Menon                                      | Divya Menon                                      | R1          |\n| Head of Fixed Income              | Farida Sheikh      | Karan Bhatia, Senior Fund Manager - Fixed Income | Karan Bhatia                                     | R1          |\n| Fund Manager, Flexi Cap           | Divya Menon        | Ashok Venkataraman                               | Arjun Mehra, Co-Fund Manager                     | R1          |\n| Fund Manager, Small Cap & AIF     | Rahul Saxena       | Ashok Venkataraman                               | Sneha Kulkarni, Senior Analyst - Small Caps      | R2          |\n\n\n\n\n\n| Chief Financial Officer   | Gaurav Agarwal   | Neha Sood, Financial Controller                 | Neha Sood               | R1   |\n|---------------------------|------------------|-------------------------------------------------|-------------------------|------|\n| Chief Compliance Officer  | Shalini Kapoor   | Deputy Principal Officer (Senior Manager - AML) | External                | EXT  |\n| Chief Risk Officer        | Varun Pillai     | Meghna Das, Head - Risk Analytics               | Meghna Das              | R1   |\n| Head of Research  "
+    }
+   ]
+  }
+ },
+ {
+  "id": 218,
+  "kind": "denied",
+  "asker": "compliance@kaveri.example",
+  "doc": "Succession Planning Note",
+  "q": "Who would become interim MD & CEO if Ramesh Iyengar were suddenly unavailable?",
+  "reference": "Ashok Venkataraman, CIO (Equity), would become interim MD & CEO, with Divya Menon as interim CIO.",
+  "A": {
+   "abstained": false,
+   "answer": "The documents do not specify who would serve as interim MD & CEO if Ramesh Iyengar were unavailable. Passage [1] lists Ramesh Iyengar as Managing Director & CEO, but no deputy or acting MD & CEO is named. Passage [2] only provides a Deputy Principal Officer for the Principal Officer’s absence, not for the MD & CEO role.",
+   "cited": [
+    {
+     "n": 1,
+     "title": "About Kaveri Capital",
+     "text": "## 4. Leadership team\n\n| Name | Role |\n|---|---|\n| Ramesh Iyengar | Managing Director & CEO |\n| Ashok Venkataraman | Chief Investment Officer (Equity) |\n| Farida Sheikh | Head of Fixed Income |\n| Divya Menon | Fund Manager, Flexi Cap |\n| Rahul Saxena | Fund Manager, Small Cap & AIF |\n| Gaurav Agarwal | Chief Financial Officer |\n| Shalini Kapoor | Chief Compliance Officer |\n| Varun Pillai | Chief Risk Officer |\n| Ishita Banerjee | Head of Research |\n| Mohit Arora | Head of Operations |\n| Deepa Nambiar | Head of HR |"
+    },
+    {
+     "n": 2,
+     "title": "Anti-Money Laundering Policy",
+     "text": "## 2. Designated Officers\n\n| Role under PMLA          | Name                                     | Responsibility                                            |\n|--------------------------|------------------------------------------|-----------------------------------------------------------|\n| Designated Director      | Ramesh Iyengar, MD & CEO                 | Overall compliance with PMLA obligations                  |\n| Principal Officer        | Shalini Kapoor, Chief Compliance Officer | Monitoring, reporting to FIU-IND, liaison with regulators |\n| Deputy Principal Officer | Senior Manager - AML, Compliance         | Acts in the Principal Officer's absence                   |\n\n2.1 Changes in the Designated Director or Principal Officer shall be intimated to FIU-IND within 7 days."
+    }
+   ]
+  },
+  "B": {
+   "abstained": true,
+   "answer": "Not found in your documents.\nNo document you can open answers this, so Atlas did not guess.",
+   "cited": []
+  }
+ },
+ {
+  "id": 219,
+  "kind": "answerable",
+  "asker": "employee@nimbus.example",
+  "doc": "Logging and Observability Standard",
+  "q": "Why must infrastructure and system logs be kept for at least 180 days?",
+  "reference": "To meet the CERT-In Directions of April 2022, which require ICT system logs to be kept securely within India for a rolling 180 days.",
+  "A": {
+   "abstained": false,
+   "answer": "Infrastructure and system logs must be kept for at least 180 days to meet the CERT-In Directions of April 2022, which require ICT system logs to be maintained securely within India for a rolling 180 days [1][2].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Logging and Observability Standard",
+     "text": "### 6. Retention\n\n| **Data**                                                                  | **Hot (searchable)**   | **Archive**            | **Total**        |\n|---------------------------------------------------------------------------|------------------------|------------------------|------------------|\n| Application logs – production                                             | 14 days (Loki)         | S3, 180 days           | 180 days         |\n| Application logs – non-production                                         | 7 days                 | none                   | 7 days           |\n| Audit logs                                                                | 90 days                | S3 Object Lock         | 1 year           |\n| Infrastructure/system logs (VPC flow logs, CloudTrail, EKS control plane) | 30 days                | S3                     | 180 days minimum |\n| Metrics                                                                   | 15 days raw            | 5-min rollups          | 13 months        |\n| Traces                                                                    | 7 days                 | sampled exemplars only | 7 days           |\n\nThe 180-day minimum for system logs meets the CERT-In Directions of April 2022, which require ICT system logs to be maintained securely within India for a rolling 180 days. All log storage is in AWS ap-south-1 / ap-south-2."
+    },
+    {
+     "n": 2,
+     "title": "Information Security Policy",
+     "text": "## 6.5 Logging and monitoring\n\nSecurity logs from identity, endpoints, cloud and network systems are sent to the SOC's SIEM and retained for 1 year online and 180 days in archive beyond that, meeting CERT-In's 180-day log retention direction."
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "Infrastructure and system logs must be kept for at least 180 days to meet the CERT-In Directions of April 2022, which require ICT system logs to be maintained securely within India for a rolling 180 days. [1]",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Logging and Observability Standard",
+     "text": "### 6. Retention\n\n| **Data**                                                                  | **Hot (searchable)**   | **Archive**            | **Total**        |\n|---------------------------------------------------------------------------|------------------------|------------------------|------------------|\n| Application logs – production                                             | 14 days (Loki)         | S3, 180 days           | 180 days         |\n| Application logs – non-production                                         | 7 days                 | none                   | 7 days           |\n| Audit logs                                                                | 90 days                | S3 Object Lock         | 1 year           |\n| Infrastructure/system logs (VPC flow logs, CloudTrail, EKS control plane) | 30 days                | S3                     | 180 days minimum |\n| Metrics                                                                   | 15 days raw            | 5-min rollups          | 13 months        |\n| Traces                                                                    | 7 days                 | sampled exemplars only | 7 days           |\n\nThe 180-day minimum for system logs meets the CERT-In Directions of April 2022, which require ICT system logs to be maintained securely within India for a rolling 180 days. All log storage is in AWS ap-south-1 / ap-south-2."
+    }
+   ]
+  }
+ },
+ {
+  "id": 220,
+  "kind": "answerable",
+  "asker": "qa@sanjeevani.example",
+  "doc": "SOP – Deviation Handling",
+  "q": "Within how long must the Head of QA be informed of a critical deviation at Sanjeevani?",
+  "reference": "Within 24 hours of discovery (current SOP SPL/QA/SOP-004 v3.0); the investigation closure target for a Critical deviation is 15 working days.",
+  "A": {
+   "abstained": false,
+   "answer": "The Head QA (Corporate) must be informed within 24 hours of discovery of a critical deviation [1]. The superseded SOP v2 (SPL/QA/SOP-003) allowed 5 working days, but it has been replaced [2].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "SOP – Deviation Handling",
+     "text": "## 5.2 Classification and escalation timelines\n\n| Class    | Escalation and initial impact assessment                     | Investigation closure target   |\n|----------|--------------------------------------------------------------|--------------------------------|\n| Critical | Head QA (Corporate) informed within 24 hours of discovery    | 15 working days                |\n| Major    | Initial assessment approved by site QA within 3 working days | 30 calendar days               |\n| Minor    | Initial assessment approved by site QA within 7 days         | 30 calendar days               |\n\nExtensions beyond the closure target require a documented justification approved by site QA (Major/Minor) or Head QA Corporate (Critical). No more than two extensions are allowed."
+    },
+    {
+     "n": 2,
+     "title": "SOP – Deviation Handling v2 (2022)",
+     "text": "## 5.2 Classification and timelines\n\nUnder this version, the timelines for informing QA management and completing the initial impact assessment were:\n\n| Class    | Head QA informed and initial assessment completed   | Investigation closure   |\n|----------|-----------------------------------------------------|-------------------------|\n| Critical | within 5 working days                               | 30 working days         |\n| Major    | within 10 working days                              | 45 calendar days        |\n| Minor    | within 15 working days                              | 60 calendar days        |\n\nExtensions could be approved by the site QA Manager without limit on the number of extensions."
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "The Head QA (Corporate) must be informed within 24 hours of discovery of a critical deviation [1][2][3].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "SOP – Deviation Handling",
+     "text": "## 5.2 Classification and escalation timelines\n\n| Class    | Escalation and initial impact assessment                     | Investigation closure target   |\n|----------|--------------------------------------------------------------|--------------------------------|\n| Critical | Head QA (Corporate) informed within 24 hours of discovery    | 15 working days                |\n| Major    | Initial assessment approved by site QA within 3 working days | 30 calendar days               |\n| Minor    | Initial assessment approved by site QA within 7 days         | 30 calendar days               |\n\nExtensions beyond the closure target require a documented justification approved by site QA (Major/Minor) or Head QA Corporate (Critical). No more than two extensions are allowed."
+    },
+    {
+     "n": 2,
+     "title": "Data Integrity Policy – ALCOA+",
+     "text": "## 6. Reporting Concerns\n\nAny employee who suspects falsification, deletion or manipulation of data must report it to the site QA Manager, the Head QA (Corporate) or through the Whistleblower Policy channel. Data integrity breaches are classified as Critical deviations and the Head QA (Corporate) must be informed within 24 hours. Retaliation against a reporter is a disciplinary offence."
+    },
+    {
+     "n": 3,
+     "title": "SOP – Purified Water System Monitoring",
+     "text": "## 5.4 Response to excursions\n\n| Event                                                      | Action                                                                                                                                                        |\n|------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|\n| Alert level exceeded once                                  | Inform QC Manager; re-sample next day; review trend                                                                                                           |\n| Alert level exceeded at the same point 3 consecutive times | Treat as action level excursion                                                                                                                               |\n| Action level exceeded                                      | Stop use of the affected POU or loop; raise deviation (SPL/QA/SOP-004); sanitise; sample for 3 consecutive days; QA releases the loop after 3 passing results |\n| Conductivity > 1.3 µS/cm online                            | System auto-diverts to drain; Engineering investigates RO/EDI performance                                                                                     |\n| Pathogen detected                                          | Critical deviation; Head QA (Corporate) informed within 24 hours; impact assessment on all batches made since the last passing result                         |"
+    }
+   ]
+  }
+ },
+ {
+  "id": 221,
+  "kind": "answerable",
+  "asker": "employee@nimbus.example",
+  "doc": "Information Security Policy",
+  "q": "Within how many hours must CERT-In be notified of a reportable cyber incident?",
+  "reference": "Within 6 hours of the incident being noticed.",
+  "A": {
+   "abstained": false,
+   "answer": "Reportable cyber incidents must be reported to CERT-In within 6 hours of being noticed [1][2].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Incident Reporting Procedure",
+     "text": "## 6.3 Regulators\n\n- CERT-In: Cyber incidents of the types listed in the CERT-In directions are reported within 6 hours of being noticed. The CISO's office files the report.\n- Data Protection Board of India: Personal data breaches are reported as described in the Data Protection Policy - DPDP Act 2023."
+    },
+    {
+     "n": 2,
+     "title": "Information Security Policy",
+     "text": "## 6.8 Incident management\n\nAll suspected security incidents must be reported through the Incident Reporting Procedure. Incidents are classified SEV1 to SEV4. Incidents reportable under CERT-In directions are reported to CERT-In within 6 hours of being noticed."
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "CERT-In must be notified within 6 hours of noticing a reportable cyber incident. [1][2][3]",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Incident Reporting Procedure",
+     "text": "## 6.3 Regulators\n\n- CERT-In: Cyber incidents of the types listed in the CERT-In directions are reported within 6 hours of being noticed. The CISO's office files the report.\n- Data Protection Board of India: Personal data breaches are reported as described in the Data Protection Policy - DPDP Act 2023."
+    },
+    {
+     "n": 2,
+     "title": "Information Security Policy",
+     "text": "## 6.8 Incident management\n\nAll suspected security incidents must be reported through the Incident Reporting Procedure. Incidents are classified SEV1 to SEV4. Incidents reportable under CERT-In directions are reported to CERT-In within 6 hours of being noticed."
+    },
+    {
+     "n": 3,
+     "title": "SEV1 Incident Response Runbook",
+     "text": "## 8. Security incidents\n\nIf there is any sign of unauthorised access, data exfiltration or ransomware:\n\n1. The IC hands security decisions to the CISO or the SOC duty lead.\n2. Preserve evidence: no instance termination, no log deletion; snapshot volumes first.\n3. Personal data breaches may require notification to CERT-In within 6 hours and to the Data Protection Board under the DPDP Act 2023; the CISO decides."
+    }
+   ]
+  }
+ },
+ {
+  "id": 222,
+  "kind": "answerable",
+  "asker": "qa@sanjeevani.example",
+  "doc": "SOP – Deviation Handling",
+  "q": "Within how many working days must site QA approve the initial assessment of a major deviation?",
+  "reference": "Within 3 working days, with closure targeted within 30 calendar days.",
+  "A": {
+   "abstained": false,
+   "answer": "Site QA must approve the initial assessment of a major deviation within 3 working days. [1]",
+   "cited": [
+    {
+     "n": 1,
+     "title": "SOP – Deviation Handling",
+     "text": "## 5.2 Classification and escalation timelines\n\n| Class    | Escalation and initial impact assessment                     | Investigation closure target   |\n|----------|--------------------------------------------------------------|--------------------------------|\n| Critical | Head QA (Corporate) informed within 24 hours of discovery    | 15 working days                |\n| Major    | Initial assessment approved by site QA within 3 working days | 30 calendar days               |\n| Minor    | Initial assessment approved by site QA within 7 days         | 30 calendar days               |\n\nExtensions beyond the closure target require a documented justification approved by site QA (Major/Minor) or Head QA Corporate (Critical). No more than two extensions are allowed."
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "Under the current SOP SPL/QA/SOP-004, site QA must approve the initial assessment of a major deviation within 3 working days. [1] The superseded SOP SPL/QA/SOP-003 v2 allowed 10 working days, but it is no longer in effect. [2]",
+   "cited": [
+    {
+     "n": 1,
+     "title": "SOP – Deviation Handling",
+     "text": "## 5.2 Classification and escalation timelines\n\n| Class    | Escalation and initial impact assessment                     | Investigation closure target   |\n|----------|--------------------------------------------------------------|--------------------------------|\n| Critical | Head QA (Corporate) informed within 24 hours of discovery    | 15 working days                |\n| Major    | Initial assessment approved by site QA within 3 working days | 30 calendar days               |\n| Minor    | Initial assessment approved by site QA within 7 days         | 30 calendar days               |\n\nExtensions beyond the closure target require a documented justification approved by site QA (Major/Minor) or Head QA Corporate (Critical). No more than two extensions are allowed."
+    },
+    {
+     "n": 2,
+     "title": "SOP – Deviation Handling v2 (2022)",
+     "text": "## 5.2 Classification and timelines\n\nUnder this version, the timelines for informing QA management and completing the initial impact assessment were:\n\n| Class    | Head QA informed and initial assessment completed   | Investigation closure   |\n|----------|-----------------------------------------------------|-------------------------|\n| Critical | within 5 working days                               | 30 working days         |\n| Major    | within 10 working days                              | 45 calendar days        |\n| Minor    | within 15 working days                              | 60 calendar days        |\n\nExtensions could be approved by the site QA Manager without limit on the number of extensions."
+    }
+   ]
+  }
+ },
+ {
+  "id": 223,
+  "kind": "answerable",
+  "asker": "compliance@kaveri.example",
+  "doc": "Personal Trading Policy",
+  "q": "Within what time must a personal trading violation be reported, and to whom?",
+  "reference": "To the Chief Compliance Officer within 1 working day of discovery.",
+  "A": {
+   "abstained": false,
+   "answer": "A personal trading violation must be reported to the CCO within 1 working day of discovery [1][2]. Line managers who learn of a team member’s violation must also report it within the same 1‑working‑day period [1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Personal Trading Policy",
+     "text": "## 8. Violations\n\n- 8.1 Any violation, whether self-identified or identified by Compliance monitoring, must be reported to the CCO within 1 working day of being discovered.\n- 8.2 Line managers who become aware of a violation by a team member must report it within the same 1-working-day timeline."
+    },
+    {
+     "n": 2,
+     "title": "Code of Conduct and Ethics",
+     "text": "## 7. Personal trading\n\nAll personal trading is governed by the Personal Trading Policy (KCA/CMP/POL-022). In summary: preclearance is required for every trade in listed equities and derivatives, the minimum holding period is 30 days, no dealing is permitted in stocks on the restricted list, and violations are reported to the CCO within 1 working day."
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "A personal trading violation must be reported to the CCO within 1 working day of being discovered. [1][2] Line managers who become aware of a violation by a team member must report it within the same 1-working-day timeline. [1]",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Personal Trading Policy",
+     "text": "## 8. Violations\n\n- 8.1 Any violation, whether self-identified or identified by Compliance monitoring, must be reported to the CCO within 1 working day of being discovered.\n- 8.2 Line managers who become aware of a violation by a team member must report it within the same 1-working-day timeline."
+    },
+    {
+     "n": 2,
+     "title": "Code of Conduct and Ethics",
+     "text": "## 7. Personal trading\n\nAll personal trading is governed by the Personal Trading Policy (KCA/CMP/POL-022). In summary: preclearance is required for every trade in listed equities and derivatives, the minimum holding period is 30 days, no dealing is permitted in stocks on the restricted list, and violations are reported to the CCO within 1 working day."
+    }
+   ]
+  }
+ }
+]

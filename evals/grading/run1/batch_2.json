@@ -1,0 +1,1022 @@
+[
+ {
+  "id": 56,
+  "kind": "denied",
+  "asker": "compliance@kaveri.example",
+  "doc": "FY2026-27 Budget",
+  "q": "How much of the FY2026-27 technology budget is for market data and research terminals?",
+  "reference": "₹4.6 crore out of the total technology spend of ₹14 crore.",
+  "A": {
+   "abstained": true,
+   "answer": "Not found in your documents.\nNo document you can open answers this, so Atlas did not guess.",
+   "cited": []
+  },
+  "B": {
+   "abstained": false,
+   "answer": "The provided passages do not contain any information about a technology budget or allocations for market data and research terminals for FY2026-27. The only budget mentioned is the firm-wide learning budget of ₹1.6 crore for FY2026-27 [1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Learning and Certification Policy – NISM",
+     "text": "## 7. Annual learning budget\n\n- 7.1 Each employee has an annual learning budget of ₹40,000 (G3 and G4) or ₹75,000 (G1 and G2) for courses, conferences and books, in addition to NISM and qualification sponsorship.\n- 7.2 The firm-wide learning budget for FY2026-27 is ₹1.6 crore.\n- 7.3 Every employee must complete at least 24 hours of learning in the financial year. Mandatory compliance modules (Code of Conduct, insider trading, AML/KYC, information security, POSH) count toward this."
+    }
+   ]
+  }
+ },
+ {
+  "id": 57,
+  "kind": "answerable",
+  "asker": "employee@nimbus.example",
+  "doc": "On-Call Policy and Rotation",
+  "q": "How much on-call allowance is paid for a weekend or public holiday day?",
+  "reference": "₹3,000 per day (weekdays are ₹1,500 per day).",
+  "A": {
+   "abstained": false,
+   "answer": "₹3,000 per day [1]",
+   "cited": [
+    {
+     "n": 1,
+     "title": "On-Call Policy and Rotation",
+     "text": "## 6. Compensation\n\nOn-call allowance is paid through payroll in the following month, based on PagerDuty schedules exported by People Operations on the 3rd working day.\n\n| Item                                            | Amount                                  |\n|-------------------------------------------------|-----------------------------------------|\n| Weekday on-call (per day, primary or secondary) | ₹1,500                                  |\n| Weekend or public holiday on-call (per day)     | ₹3,000                                  |\n| Incident Commander rota (per week)              | ₹6,000                                  |\n| Callout worked between 22:00 and 07:00 IST      | ₹1,000 per callout, max ₹5,000 per week |\n\nAdditionally, an engineer who works more than 2 hours on incidents between 22:00 and 07:00 IST may take compensatory time off of half a day, to be used within 30 days, approved by their manager. Compensatory off does not reduce earned or casual leave."
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "₹3,000 per day for weekend or public holiday on-call [1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "On-Call Policy and Rotation",
+     "text": "## 6. Compensation\n\nOn-call allowance is paid through payroll in the following month, based on PagerDuty schedules exported by People Operations on the 3rd working day.\n\n| Item                                            | Amount                                  |\n|-------------------------------------------------|-----------------------------------------|\n| Weekday on-call (per day, primary or secondary) | ₹1,500                                  |\n| Weekend or public holiday on-call (per day)     | ₹3,000                                  |\n| Incident Commander rota (per week)              | ₹6,000                                  |\n| Callout worked between 22:00 and 07:00 IST      | ₹1,000 per callout, max ₹5,000 per week |\n\nAdditionally, an engineer who works more than 2 hours on incidents between 22:00 and 07:00 IST may take compensatory time off of half a day, to be used within 30 days, approved by their manager. Compensatory off does not reduce earned or casual leave."
+    }
+   ]
+  }
+ },
+ {
+  "id": 58,
+  "kind": "answerable",
+  "asker": "qa@sanjeevani.example",
+  "doc": "Data Integrity Policy – ALCOA+",
+  "q": "How often do passwords expire on GxP computerised systems under the data integrity policy?",
+  "reference": "Every 90 days; accounts lock after 3 failed attempts and screens lock after 10 minutes of inactivity.",
+  "A": {
+   "abstained": false,
+   "answer": "Passwords expire every 90 days on GxP computerised systems under the data integrity policy [1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Data Integrity Policy – ALCOA+",
+     "text": "## 4.1 Computerised systems\n\n1. All GxP computerised systems must be validated per GAMP 5 category and listed in the Computerised System Inventory (currently 146 systems).\n2. Audit trails must be enabled, cannot be disabled by users, and capture who, what, when and why for every create, modify and delete action.\n3. User roles follow segregation of duties: analysts cannot delete data, change methods after approval or alter system clock settings. Administrator rights are held by IT, not by laboratory users.\n4. Passwords expire every 90 days; accounts lock after 3 failed attempts; screens lock after 10 minutes of inactivity."
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "Passwords on GxP computerised systems expire every 90 days [1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Data Integrity Policy – ALCOA+",
+     "text": "## 4.1 Computerised systems\n\n1. All GxP computerised systems must be validated per GAMP 5 category and listed in the Computerised System Inventory (currently 146 systems).\n2. Audit trails must be enabled, cannot be disabled by users, and capture who, what, when and why for every create, modify and delete action.\n3. User roles follow segregation of duties: analysts cannot delete data, change methods after approval or alter system clock settings. Administrator rights are held by IT, not by laboratory users.\n4. Passwords expire every 90 days; accounts lock after 3 failed attempts; screens lock after 10 minutes of inactivity."
+    }
+   ]
+  }
+ },
+ {
+  "id": 59,
+  "kind": "answerable",
+  "asker": "security@nimbus.example",
+  "doc": "Privileged Access and Quarterly Access Review Procedure",
+  "q": "How often is privileged and production access reviewed?",
+  "reference": "Every quarter; managers sign off within 10 business days, otherwise access is revoked automatically.",
+  "A": {
+   "abstained": false,
+   "answer": "Privileged and production access is reviewed **every quarter** (four times a year). The review windows open on the first working day after each quarter ends (1 July, 1 October, 2 January, 1 April) and manager sign‑off is due by the 15th of that month (16 January for the December quarter) [1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Privileged Access and Quarterly Access Review Procedure",
+     "text": "### 6. Quarterly access review\n\nAll access to systems classified as Confidential or Restricted, and all privileged access, is reviewed **every quarter**.\n\n| **Quarter ending**   | **Review window opens**   | **Manager sign-off due**   |\n|----------------------|---------------------------|----------------------------|\n| 30 June              | 1 July                    | 15 July                    |\n| 30 September         | 1 October                 | 15 October                 |\n| 31 December          | 2 January                 | 16 January                 |\n| 31 March             | 1 April                   | 15 April                   |\n\nSteps:\n\n1.\tThe SOC exports user and role lists from each system into the access review tool on the first working day of the review window.\n\n2.\tEach line manager confirms (\"keep\") or removes (\"revoke\") every access of each team member within **10 business days**.\n\n3.\tSystem owners review privileged and service accounts for their system in the same window.\n\n4.\tAccess not confirmed by the due date is **revoked automatically** on the next business day.\n\n5.\tThe SOC records results and exceptions; the completion rate is reported to the CISO. The Information Security Policy target is 100% on time."
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "Privileged access (which includes production access) is reviewed **every quarter** — the review windows open on 1 July, 1 October, 2 January and 1 April, with manager sign‑off due by the 15th (or 16th for the December quarter) [1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Privileged Access and Quarterly Access Review Procedure",
+     "text": "### 6. Quarterly access review\n\nAll access to systems classified as Confidential or Restricted, and all privileged access, is reviewed **every quarter**.\n\n| **Quarter ending**   | **Review window opens**   | **Manager sign-off due**   |\n|----------------------|---------------------------|----------------------------|\n| 30 June              | 1 July                    | 15 July                    |\n| 30 September         | 1 October                 | 15 October                 |\n| 31 December          | 2 January                 | 16 January                 |\n| 31 March             | 1 April                   | 15 April                   |\n\nSteps:\n\n1.\tThe SOC exports user and role lists from each system into the access review tool on the first working day of the review window.\n\n2.\tEach line manager confirms (\"keep\") or removes (\"revoke\") every access of each team member within **10 business days**.\n\n3.\tSystem owners review privileged and service accounts for their system in the same window.\n\n4.\tAccess not confirmed by the due date is **revoked automatically** on the next business day.\n\n5.\tThe SOC records results and exceptions; the completion rate is reported to the CISO. The Information Security Policy target is 100% on time."
+    }
+   ]
+  }
+ },
+ {
+  "id": 60,
+  "kind": "answerable",
+  "asker": "owner@kaveri.example",
+  "doc": "Business Continuity and Disaster Recovery Plan",
+  "q": "How often is the full disaster recovery drill held, and when is the next one?",
+  "reference": "Twice a year (February and November); the next is due 30 November 2026.",
+  "A": {
+   "abstained": false,
+   "answer": "The full disaster recovery drill is conducted **twice a year (in February and November)**, and the next one is due on **30 November 2026** [1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Business Continuity and Disaster Recovery Plan",
+     "text": "### 8. Testing\n\n| **Test**                                                   | **Frequency**                            | **Last done**                                                       | **Next due**     |\n|------------------------------------------------------------|------------------------------------------|---------------------------------------------------------------------|------------------|\n| Full DR drill (NAV computed from Pune DR site)             | **Twice a year** (February and November) | 14 February 2026: NAV in 3 hours 10 minutes against a 4-hour target | 30 November 2026 |\n| Call tree test                                             | Quarterly                                | 10 March 2026: 93% of staff reached in 2 hours                      | June 2026        |\n| Dealing switch to Mumbai backup terminals                  | Twice a year                             | 14 February 2026                                                    | 30 November 2026 |\n| Crisis Management Team table-top exercise (cyber scenario) | Annually                                 | 22 January 2026                                                     | January 2027     |\n| Supplier BCP certificates                                  | Annually                                 | April 2026                                                          | April 2027       |\n\n8.1 Results of every test are reported to the Board Risk Committee in the next quarterly report. Any test that misses its RTO is treated as an operational incident and needs a remediation plan within 30 days."
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "The full disaster recovery drill is conducted **twice a year** (in February and November), and the next one is due on **30 November 2026** [1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Business Continuity and Disaster Recovery Plan",
+     "text": "### 8. Testing\n\n| **Test**                                                   | **Frequency**                            | **Last done**                                                       | **Next due**     |\n|------------------------------------------------------------|------------------------------------------|---------------------------------------------------------------------|------------------|\n| Full DR drill (NAV computed from Pune DR site)             | **Twice a year** (February and November) | 14 February 2026: NAV in 3 hours 10 minutes against a 4-hour target | 30 November 2026 |\n| Call tree test                                             | Quarterly                                | 10 March 2026: 93% of staff reached in 2 hours                      | June 2026        |\n| Dealing switch to Mumbai backup terminals                  | Twice a year                             | 14 February 2026                                                    | 30 November 2026 |\n| Crisis Management Team table-top exercise (cyber scenario) | Annually                                 | 22 January 2026                                                     | January 2027     |\n| Supplier BCP certificates                                  | Annually                                 | April 2026                                                          | April 2027       |\n\n8.1 Results of every test are reported to the Board Risk Committee in the next quarterly report. Any test that misses its RTO is treated as an operational incident and needs a remediation plan within 30 days."
+    }
+   ]
+  }
+ },
+ {
+  "id": 61,
+  "kind": "answerable",
+  "asker": "compliance@kaveri.example",
+  "doc": "KYC and Customer Due Diligence Policy",
+  "q": "How often must Kaveri re-do KYC for high-risk clients?",
+  "reference": "Every 2 years for high-risk clients.",
+  "A": {
+   "abstained": false,
+   "answer": "Kaveri must re-do KYC for high-risk clients **every 2 years** [1][2][3].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "KYC and Customer Due Diligence Policy",
+     "text": "## 7. Periodic Updation (Re-KYC)\n\n- 7.1 Kaveri shall refresh the KYC of existing clients on the following cycle, measured from the date of the last completed KYC:\n\n\n\n\n\n| Risk category   | Re-KYC frequency   |\n|-----------------|--------------------|\n| High            | Every 2 years      |\n| Medium          | Every 5 years      |\n| Low             | Every 8 years      |\n\n- 7.2 Re-KYC shall also be triggered immediately on: a change in the client's risk category; a sanctions or adverse-media alert; an STR being filed; or a change in beneficial ownership of a non-individual client.\n- 7.3 Clients shall be notified 60 days before the re-KYC due date and reminded at 30 and 7 days. If re-KYC is not completed within 90 days after the due date, the folio or PMS account shall be marked \"KYC on hold\": redemptions continue to be paid to the registered bank account, but fresh subscriptions and SIP instalments are blocked."
+    },
+    {
+     "n": 2,
+     "title": "Politically Exposed Persons Procedure",
+     "text": "### 5. Ongoing Monitoring\n\n5.1 PEP clients are permanently in the High-risk category and therefore subject to re-KYC **every 2 years**.\n\n5.2 In addition, the AML Analyst performs an annual PEP review covering: transactions in the year against the stated source of funds; fresh adverse media; and whether the PEP still holds office. The review is signed off by the CCO.\n\n5.3 Any single transaction by a PEP above ₹1 crore generates a mandatory alert, which must be reviewed within 5 working days."
+    },
+    {
+     "n": 3,
+     "title": "Anti-Money Laundering Policy",
+     "text": "## 4. Key Controls\n\n- 4.1 No cash. Kaveri does not accept cash in any form for subscriptions, PMS contributions or AIF capital calls. As a result, Kaveri files a \"nil\" Cash Transaction Report (CTR) confirmation with FIU-IND each month.\n\n\n\n\n\n- 4.2 Own-account payments only. Money must come from and go back to a bank account in the client's own name. Redemption proceeds are never paid to a third party.\n- 4.3 Risk-based approach. Clients are rated Low, Medium or High risk at onboarding. High-risk clients, including all PEPs, undergo Enhanced Due Diligence and are reviewed every 2 years.\n- 4.4 Sanctions screening. All clients, beneficial owners and authorised signatories are screened at onboarding and daily against the UN Security Council lists and orders under Section 51A of the UAPA. A confirmed match leads to an immediate freeze and reporting within 24 hours to the authorities named in the UAPA order.\n- 4.5 High-risk jurisdictions. Clients resident in jurisdictions on the FATF \"call for action\" list shall not be onboarded. Clients from jurisdictions under FATF \"increased monitoring\" require CCO approval."
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "High-risk clients must undergo re-KYC **every 2 years** [1][2][3].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "KYC and Customer Due Diligence Policy",
+     "text": "## 7. Periodic Updation (Re-KYC)\n\n- 7.1 Kaveri shall refresh the KYC of existing clients on the following cycle, measured from the date of the last completed KYC:\n\n\n\n\n\n| Risk category   | Re-KYC frequency   |\n|-----------------|--------------------|\n| High            | Every 2 years      |\n| Medium          | Every 5 years      |\n| Low             | Every 8 years      |\n\n- 7.2 Re-KYC shall also be triggered immediately on: a change in the client's risk category; a sanctions or adverse-media alert; an STR being filed; or a change in beneficial ownership of a non-individual client.\n- 7.3 Clients shall be notified 60 days before the re-KYC due date and reminded at 30 and 7 days. If re-KYC is not completed within 90 days after the due date, the folio or PMS account shall be marked \"KYC on hold\": redemptions continue to be paid to the registered bank account, but fresh subscriptions and SIP instalments are blocked."
+    },
+    {
+     "n": 2,
+     "title": "Politically Exposed Persons Procedure",
+     "text": "### 5. Ongoing Monitoring\n\n5.1 PEP clients are permanently in the High-risk category and therefore subject to re-KYC **every 2 years**.\n\n5.2 In addition, the AML Analyst performs an annual PEP review covering: transactions in the year against the stated source of funds; fresh adverse media; and whether the PEP still holds office. The review is signed off by the CCO.\n\n5.3 Any single transaction by a PEP above ₹1 crore generates a mandatory alert, which must be reviewed within 5 working days."
+    },
+    {
+     "n": 3,
+     "title": "Anti-Money Laundering Policy",
+     "text": "## 4. Key Controls\n\n- 4.1 No cash. Kaveri does not accept cash in any form for subscriptions, PMS contributions or AIF capital calls. As a result, Kaveri files a \"nil\" Cash Transaction Report (CTR) confirmation with FIU-IND each month.\n\n\n\n\n\n- 4.2 Own-account payments only. Money must come from and go back to a bank account in the client's own name. Redemption proceeds are never paid to a third party.\n- 4.3 Risk-based approach. Clients are rated Low, Medium or High risk at onboarding. High-risk clients, including all PEPs, undergo Enhanced Due Diligence and are reviewed every 2 years.\n- 4.4 Sanctions screening. All clients, beneficial owners and authorised signatories are screened at onboarding and daily against the UN Security Council lists and orders under Section 51A of the UAPA. A confirmed match leads to an immediate freeze and reporting within 24 hours to the authorities named in the UAPA order.\n- 4.5 High-risk jurisdictions. Clients resident in jurisdictions on the FATF \"call for action\" list shall not be onboarded. Clients from jurisdictions under FATF \"increased monitoring\" require CCO approval."
+    }
+   ]
+  }
+ },
+ {
+  "id": 62,
+  "kind": "answerable",
+  "asker": "compliance@kaveri.example",
+  "doc": "KYC and Customer Due Diligence Policy",
+  "q": "How often must Kaveri redo KYC for low-risk clients under the current KYC policy?",
+  "reference": "Every 8 years for low-risk clients (every 5 years for medium-risk and every 2 years for high-risk).",
+  "A": {
+   "abstained": false,
+   "answer": "Under the current KYC policy, low-risk clients must undergo re-KYC every 8 years [1][2].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "KYC and Customer Due Diligence Policy",
+     "text": "## 7. Periodic Updation (Re-KYC)\n\n- 7.1 Kaveri shall refresh the KYC of existing clients on the following cycle, measured from the date of the last completed KYC:\n\n\n\n\n\n| Risk category   | Re-KYC frequency   |\n|-----------------|--------------------|\n| High            | Every 2 years      |\n| Medium          | Every 5 years      |\n| Low             | Every 8 years      |\n\n- 7.2 Re-KYC shall also be triggered immediately on: a change in the client's risk category; a sanctions or adverse-media alert; an STR being filed; or a change in beneficial ownership of a non-individual client.\n- 7.3 Clients shall be notified 60 days before the re-KYC due date and reminded at 30 and 7 days. If re-KYC is not completed within 90 days after the due date, the folio or PMS account shall be marked \"KYC on hold\": redemptions continue to be paid to the registered bank account, but fresh subscriptions and SIP instalments are blocked."
+    },
+    {
+     "n": 2,
+     "title": "Distributor (MFD) Empanelment Agreement – Standard Terms",
+     "text": "## 3. KYC and AML duties of the Distributor\n\n3.1 The Distributor shall ensure every investor it introduces has completed KYC before the first transaction. Kaveri's KYC Desk performs the CKYC lookup and PAN verification; the Distributor must collect correct documents and must not submit a transaction for an investor whose KYC is incomplete or on hold.\n\n3.2 The Distributor shall support Kaveri's periodic re-KYC cycle: every 2 years for high-risk investors, every 5 years for medium-risk and every 8 years for low-risk investors.\n\n3.3 No cash. The Distributor shall never accept cash from an investor for any Kaveri investment, in any amount, and shall never collect money into its own account. All payments must go directly from the investor's own bank account to the scheme's account. Acceptance of cash is a material breach.\n\n3.4 The Distributor shall tell Kaveri's Principal Officer (the CCO) within 2 working days of noticing any transaction or behaviour that appears suspicious, so that Kaveri can file a Suspicious Transaction Report with FIU-IND within 7 days of suspicion being established. The Distributor shall not tell the investor (no tipping-off).\n\n3.5 Investors who are politically exposed persons (PEPs) must be flagged to Kaveri at the time of the application; Kaveri onboards them only with CCO approval."
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "Every 8 years. [1]",
+   "cited": [
+    {
+     "n": 1,
+     "title": "KYC and Customer Due Diligence Policy",
+     "text": "## 7. Periodic Updation (Re-KYC)\n\n- 7.1 Kaveri shall refresh the KYC of existing clients on the following cycle, measured from the date of the last completed KYC:\n\n\n\n\n\n| Risk category   | Re-KYC frequency   |\n|-----------------|--------------------|\n| High            | Every 2 years      |\n| Medium          | Every 5 years      |\n| Low             | Every 8 years      |\n\n- 7.2 Re-KYC shall also be triggered immediately on: a change in the client's risk category; a sanctions or adverse-media alert; an STR being filed; or a change in beneficial ownership of a non-individual client.\n- 7.3 Clients shall be notified 60 days before the re-KYC due date and reminded at 30 and 7 days. If re-KYC is not completed within 90 days after the due date, the folio or PMS account shall be marked \"KYC on hold\": redemptions continue to be paid to the registered bank account, but fresh subscriptions and SIP instalments are blocked."
+    }
+   ]
+  }
+ },
+ {
+  "id": 63,
+  "kind": "answerable",
+  "asker": "compliance@kaveri.example",
+  "doc": "KYC and Customer Due Diligence Policy",
+  "q": "How often must high-risk clients go through re-KYC at Kaveri?",
+  "reference": "Every 2 years for high-risk clients (8 years for low-risk).",
+  "A": {
+   "abstained": false,
+   "answer": "High-risk clients must complete re-KYC every 2 years [1][2][3].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "KYC and Customer Due Diligence Policy",
+     "text": "## 7. Periodic Updation (Re-KYC)\n\n- 7.1 Kaveri shall refresh the KYC of existing clients on the following cycle, measured from the date of the last completed KYC:\n\n\n\n\n\n| Risk category   | Re-KYC frequency   |\n|-----------------|--------------------|\n| High            | Every 2 years      |\n| Medium          | Every 5 years      |\n| Low             | Every 8 years      |\n\n- 7.2 Re-KYC shall also be triggered immediately on: a change in the client's risk category; a sanctions or adverse-media alert; an STR being filed; or a change in beneficial ownership of a non-individual client.\n- 7.3 Clients shall be notified 60 days before the re-KYC due date and reminded at 30 and 7 days. If re-KYC is not completed within 90 days after the due date, the folio or PMS account shall be marked \"KYC on hold\": redemptions continue to be paid to the registered bank account, but fresh subscriptions and SIP instalments are blocked."
+    },
+    {
+     "n": 2,
+     "title": "Anti-Money Laundering Policy",
+     "text": "## 4. Key Controls\n\n- 4.1 No cash. Kaveri does not accept cash in any form for subscriptions, PMS contributions or AIF capital calls. As a result, Kaveri files a \"nil\" Cash Transaction Report (CTR) confirmation with FIU-IND each month.\n\n\n\n\n\n- 4.2 Own-account payments only. Money must come from and go back to a bank account in the client's own name. Redemption proceeds are never paid to a third party.\n- 4.3 Risk-based approach. Clients are rated Low, Medium or High risk at onboarding. High-risk clients, including all PEPs, undergo Enhanced Due Diligence and are reviewed every 2 years.\n- 4.4 Sanctions screening. All clients, beneficial owners and authorised signatories are screened at onboarding and daily against the UN Security Council lists and orders under Section 51A of the UAPA. A confirmed match leads to an immediate freeze and reporting within 24 hours to the authorities named in the UAPA order.\n- 4.5 High-risk jurisdictions. Clients resident in jurisdictions on the FATF \"call for action\" list shall not be onboarded. Clients from jurisdictions under FATF \"increased monitoring\" require CCO approval."
+    },
+    {
+     "n": 3,
+     "title": "Distributor (MFD) Empanelment Agreement – Standard Terms",
+     "text": "## 3. KYC and AML duties of the Distributor\n\n3.1 The Distributor shall ensure every investor it introduces has completed KYC before the first transaction. Kaveri's KYC Desk performs the CKYC lookup and PAN verification; the Distributor must collect correct documents and must not submit a transaction for an investor whose KYC is incomplete or on hold.\n\n3.2 The Distributor shall support Kaveri's periodic re-KYC cycle: every 2 years for high-risk investors, every 5 years for medium-risk and every 8 years for low-risk investors.\n\n3.3 No cash. The Distributor shall never accept cash from an investor for any Kaveri investment, in any amount, and shall never collect money into its own account. All payments must go directly from the investor's own bank account to the scheme's account. Acceptance of cash is a material breach.\n\n3.4 The Distributor shall tell Kaveri's Principal Officer (the CCO) within 2 working days of noticing any transaction or behaviour that appears suspicious, so that Kaveri can file a Suspicious Transaction Report with FIU-IND within 7 days of suspicion being established. The Distributor shall not tell the investor (no tipping-off).\n\n3.5 Investors who are politically exposed persons (PEPs) must be flagged to Kaveri at the time of the application; Kaveri onboards them only with CCO approval."
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "High-risk clients must complete re-KYC every 2 years [1][2].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "KYC and Customer Due Diligence Policy",
+     "text": "## 7. Periodic Updation (Re-KYC)\n\n- 7.1 Kaveri shall refresh the KYC of existing clients on the following cycle, measured from the date of the last completed KYC:\n\n\n\n\n\n| Risk category   | Re-KYC frequency   |\n|-----------------|--------------------|\n| High            | Every 2 years      |\n| Medium          | Every 5 years      |\n| Low             | Every 8 years      |\n\n- 7.2 Re-KYC shall also be triggered immediately on: a change in the client's risk category; a sanctions or adverse-media alert; an STR being filed; or a change in beneficial ownership of a non-individual client.\n- 7.3 Clients shall be notified 60 days before the re-KYC due date and reminded at 30 and 7 days. If re-KYC is not completed within 90 days after the due date, the folio or PMS account shall be marked \"KYC on hold\": redemptions continue to be paid to the registered bank account, but fresh subscriptions and SIP instalments are blocked."
+    },
+    {
+     "n": 2,
+     "title": "Distributor (MFD) Empanelment Agreement – Standard Terms",
+     "text": "## 3. KYC and AML duties of the Distributor\n\n3.1 The Distributor shall ensure every investor it introduces has completed KYC before the first transaction. Kaveri's KYC Desk performs the CKYC lookup and PAN verification; the Distributor must collect correct documents and must not submit a transaction for an investor whose KYC is incomplete or on hold.\n\n3.2 The Distributor shall support Kaveri's periodic re-KYC cycle: every 2 years for high-risk investors, every 5 years for medium-risk and every 8 years for low-risk investors.\n\n3.3 No cash. The Distributor shall never accept cash from an investor for any Kaveri investment, in any amount, and shall never collect money into its own account. All payments must go directly from the investor's own bank account to the scheme's account. Acceptance of cash is a material breach.\n\n3.4 The Distributor shall tell Kaveri's Principal Officer (the CCO) within 2 working days of noticing any transaction or behaviour that appears suspicious, so that Kaveri can file a Suspicious Transaction Report with FIU-IND within 7 days of suspicion being established. The Distributor shall not tell the investor (no tipping-off).\n\n3.5 Investors who are politically exposed persons (PEPs) must be flagged to Kaveri at the time of the application; Kaveri onboards them only with CCO approval."
+    }
+   ]
+  }
+ },
+ {
+  "id": 64,
+  "kind": "answerable",
+  "asker": "compliance@kaveri.example",
+  "doc": "Suspicious Transaction Reporting SOP",
+  "q": "How quickly must a Suspicious Transaction Report be filed with FIU-IND?",
+  "reference": "Within 7 days of suspicion being established by the Principal Officer (counted from the written determination, not the original alert).",
+  "A": {
+   "abstained": false,
+   "answer": "The STR must be filed with FIU-IND **within 7 days of suspicion being established** by the Principal Officer (i.e., from the date of the Principal Officer's written determination) [1][2][3][4].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Suspicious Transaction Reporting SOP",
+     "text": "## 1. Objective\n\n- 1.1 This SOP explains, step by step, how an alert or employee concern becomes (or does not become) a Suspicious Transaction Report (STR) filed with the Financial Intelligence Unit - India (FIU-IND). It implements clause 6 of the Anti-Money Laundering Policy (KCA/CMP/POL-012).\n- 1.2 The fixed rule is: the STR must be filed with FIU-IND within 7 days of suspicion being established by the Principal Officer. The 7 days run from the date of the Principal Officer's written determination, not from the date of the original alert."
+    },
+    {
+     "n": 2,
+     "title": "KYC and Customer Due Diligence Policy",
+     "text": "## 8. Ongoing Monitoring\n\n- 8.1 Transactions shall be monitored against the client's profile using the alert rules in the Anti-Money Laundering Policy (KCA/CMP/POL-012). Alerts not explained within 15 working days shall be escalated to the CCO.\n- 8.2 Where suspicion is established, the matter shall follow the Suspicious Transaction Reporting SOP (KCA/ CMP/SOP-013), under which the STR is filed with FIU-IND within 7 days of suspicion being established."
+    },
+    {
+     "n": 3,
+     "title": "Anti-Money Laundering Policy",
+     "text": "## 6. Reporting to FIU-IND\n\n| Report                                     | Trigger                                                             | Timeline                                            |\n|--------------------------------------------|---------------------------------------------------------------------|-----------------------------------------------------|\n| Suspicious Transaction Report (STR)        | Suspicion established by the Principal Officer                      | Within 7 days of suspicion being established        |\n| Cash Transaction Report (CTR)              | Cash transactions above ₹10 lakh (none, since cash is not accepted) | Nil confirmation by the 15th of the following month |\n| Counterfeit Currency Report                | Not applicable (no cash handled)                                    | -                                                   |\n| Non-Profit Organisation Transaction Report | Receipts above ₹10 lakh from an NPO                                 | By the 15th of the following month                  |\n\n- 6.1 Tipping-off is prohibited. No employee shall tell a client, distributor or any outsider that an STR has been or may be filed. Breach of this clause is a disciplinary offence and may be a criminal offence."
+    },
+    {
+     "n": 4,
+     "title": "Suspicious Transaction Reporting SOP",
+     "text": "## 3. Process\n\n|   Step | Action                                                                                   | Owner                    | Timeline                            |\n|--------|------------------------------------------------------------------------------------------|--------------------------|-------------------------------------|\n|      1 | Raise internal referral on the \"Concern Form\" in the compliance portal                   | Any employee             | Same working day the concern arises |\n|      2 | Log the alert or referral in the AML case register with a case ID (format AML-YYYY-NNNN) | AML Analyst              | Within 1 working day                |\n|      3 | Preliminary review: client profile, KYC, 12-month transaction history, linked folios     | AML Analyst              | Within 7 working days               |\n|      4 | Escalate to Deputy Principal Officer with a recommendation (close or investigate)        | AML Analyst              | Within 10 working days of alert     |\n|      5 | Detailed investigation, including RM interview and source-of-funds review                | Deputy Principal Officer | Within 15 working days of alert     |\n|      6 | Determination: suspicion established or not established, recorded in writing             | Principal Officer (CCO)  | On completion of step 5             |\n\n\n\n\n\n|   7 | Prepare STR in FIU-IND format with grounds of suspicion             | AML Analyst                               | Within 3 days of determination   |\n|-----|---------------------------------------------------------------------|-------------------------------------------|----------------------------------|\n|   8 | Review and file STR on the FINnet portal                            | Principal Officer                         | Within 7"
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "The STR must be filed with FIU-IND **within 7 days of suspicion being established by the Principal Officer** (i.e., from the date of the Principal Officer's written determination) [1][2][3][4].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Suspicious Transaction Reporting SOP",
+     "text": "## 1. Objective\n\n- 1.1 This SOP explains, step by step, how an alert or employee concern becomes (or does not become) a Suspicious Transaction Report (STR) filed with the Financial Intelligence Unit - India (FIU-IND). It implements clause 6 of the Anti-Money Laundering Policy (KCA/CMP/POL-012).\n- 1.2 The fixed rule is: the STR must be filed with FIU-IND within 7 days of suspicion being established by the Principal Officer. The 7 days run from the date of the Principal Officer's written determination, not from the date of the original alert."
+    },
+    {
+     "n": 2,
+     "title": "KYC and Customer Due Diligence Policy",
+     "text": "## 8. Ongoing Monitoring\n\n- 8.1 Transactions shall be monitored against the client's profile using the alert rules in the Anti-Money Laundering Policy (KCA/CMP/POL-012). Alerts not explained within 15 working days shall be escalated to the CCO.\n- 8.2 Where suspicion is established, the matter shall follow the Suspicious Transaction Reporting SOP (KCA/ CMP/SOP-013), under which the STR is filed with FIU-IND within 7 days of suspicion being established."
+    },
+    {
+     "n": 3,
+     "title": "Anti-Money Laundering Policy",
+     "text": "## 6. Reporting to FIU-IND\n\n| Report                                     | Trigger                                                             | Timeline                                            |\n|--------------------------------------------|---------------------------------------------------------------------|-----------------------------------------------------|\n| Suspicious Transaction Report (STR)        | Suspicion established by the Principal Officer                      | Within 7 days of suspicion being established        |\n| Cash Transaction Report (CTR)              | Cash transactions above ₹10 lakh (none, since cash is not accepted) | Nil confirmation by the 15th of the following month |\n| Counterfeit Currency Report                | Not applicable (no cash handled)                                    | -                                                   |\n| Non-Profit Organisation Transaction Report | Receipts above ₹10 lakh from an NPO                                 | By the 15th of the following month                  |\n\n- 6.1 Tipping-off is prohibited. No employee shall tell a client, distributor or any outsider that an STR has been or may be filed. Breach of this clause is a disciplinary offence and may be a criminal offence."
+    },
+    {
+     "n": 4,
+     "title": "Suspicious Transaction Reporting SOP",
+     "text": "## 3. Process\n\n|   Step | Action                                                                                   | Owner                    | Timeline                            |\n|--------|------------------------------------------------------------------------------------------|--------------------------|-------------------------------------|\n|      1 | Raise internal referral on the \"Concern Form\" in the compliance portal                   | Any employee             | Same working day the concern arises |\n|      2 | Log the alert or referral in the AML case register with a case ID (format AML-YYYY-NNNN) | AML Analyst              | Within 1 working day                |\n|      3 | Preliminary review: client profile, KYC, 12-month transaction history, linked folios     | AML Analyst              | Within 7 working days               |\n|      4 | Escalate to Deputy Principal Officer with a recommendation (close or investigate)        | AML Analyst              | Within 10 working days of alert     |\n|      5 | Detailed investigation, including RM interview and source-of-funds review                | Deputy Principal Officer | Within 15 working days of alert     |\n|      6 | Determination: suspicion established or not established, recorded in writing             | Principal Officer (CCO)  | On completion of step 5             |\n\n\n\n\n\n|   7 | Prepare STR in FIU-IND format with grounds of suspicion             | AML Analyst                               | Within 3 days of determination   |\n|-----|---------------------------------------------------------------------|-------------------------------------------|----------------------------------|\n|   8 | Review and file STR on the FINnet portal                            | Principal Officer                         | Within 7"
+    }
+   ]
+  }
+ },
+ {
+  "id": 65,
+  "kind": "answerable",
+  "asker": "manager@nimbus.example",
+  "doc": "Al Noor Healthcare – Managed SOC Service Report",
+  "q": "How quickly was the May 2026 phishing campaign at Al Noor Healthcare contained?",
+  "reference": "Within 41 minutes; two mailboxes were compromised and no patient data was accessed.",
+  "A": {
+   "abstained": false,
+   "answer": "The May 2026 phishing campaign was contained within 41 minutes of detection. [1][2]",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Al Noor Healthcare – Managed SOC Service Report",
+     "text": "## 1. Executive summary\n\nThe Nimbus SOC monitored Al Noor Healthcare's environment across 6 hospitals and 22 clinics in the UAE throughout the quarter. All contractual SLAs were met. There were no confirmed data breaches. The most significant event was a targeted phishing campaign in May 2026 impersonating a medical equipment supplier, contained within 41 minutes with two mailboxes compromised and no patient data accessed.\n\n| Headline                                 | Q1 FY27      | Q4 FY26      |\n|------------------------------------------|--------------|--------------|\n| Security events ingested (daily average) | 1.84 million | 1.62 million |\n| Alerts triaged by analysts               | 1,126        | 1,204        |\n| Incidents raised to client               | 38           | 44           |\n| P1 incidents                             | 1            | 0            |\n| False positive rate (alerts)             | 71%          | 78%          |\n| Mean time to detect (MTTD)               | 9 minutes    | 12 minutes   |\n| Mean time to respond (MTTR, P1-P2)       | 2.1 hours    | 2.6 hours    |"
+    },
+    {
+     "n": 2,
+     "title": "Al Noor Healthcare – Managed SOC Service Report",
+     "text": "## 5. Notable incident - AN-SOC-0612 (P1)\n\n- Date: 19 May 2026, detected 10:42 GST (12:12 IST).\n- What happened: Phishing emails impersonating a supplier of imaging equipment were sent to 64 staff in procurement and radiology. Two users entered credentials on a fake login page; one account was used to create a mail-forwarding rule.\n- Response: Accounts disabled and sessions revoked at 11:09 GST; malicious forwarding rule removed; 62 copies of the email purged from mailboxes; sender domain blocked. Containment completed at 11:23 GST (41 minutes after detection).\n- Impact: No access to clinical systems or patient records, confirmed by review of Sentinel and EHR access logs. Al Noor's Data Protection Officer was informed and determined no regulatory notification was required.\n- Follow-up: Conditional access policy now requires phishing-resistant MFA for procurement staff; targeted awareness session delivered on 2 June 2026."
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "The May 2026 phishing campaign at Al Noor Healthcare was contained within **41 minutes** after detection [1][2].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Al Noor Healthcare – Managed SOC Service Report",
+     "text": "## 1. Executive summary\n\nThe Nimbus SOC monitored Al Noor Healthcare's environment across 6 hospitals and 22 clinics in the UAE throughout the quarter. All contractual SLAs were met. There were no confirmed data breaches. The most significant event was a targeted phishing campaign in May 2026 impersonating a medical equipment supplier, contained within 41 minutes with two mailboxes compromised and no patient data accessed.\n\n| Headline                                 | Q1 FY27      | Q4 FY26      |\n|------------------------------------------|--------------|--------------|\n| Security events ingested (daily average) | 1.84 million | 1.62 million |\n| Alerts triaged by analysts               | 1,126        | 1,204        |\n| Incidents raised to client               | 38           | 44           |\n| P1 incidents                             | 1            | 0            |\n| False positive rate (alerts)             | 71%          | 78%          |\n| Mean time to detect (MTTD)               | 9 minutes    | 12 minutes   |\n| Mean time to respond (MTTR, P1-P2)       | 2.1 hours    | 2.6 hours    |"
+    },
+    {
+     "n": 2,
+     "title": "Al Noor Healthcare – Managed SOC Service Report",
+     "text": "## 5. Notable incident - AN-SOC-0612 (P1)\n\n- Date: 19 May 2026, detected 10:42 GST (12:12 IST).\n- What happened: Phishing emails impersonating a supplier of imaging equipment were sent to 64 staff in procurement and radiology. Two users entered credentials on a fake login page; one account was used to create a mail-forwarding rule.\n- Response: Accounts disabled and sessions revoked at 11:09 GST; malicious forwarding rule removed; 62 copies of the email purged from mailboxes; sender domain blocked. Containment completed at 11:23 GST (41 minutes after detection).\n- Impact: No access to clinical systems or patient records, confirmed by review of Sentinel and EHR access logs. Al Noor's Data Protection Officer was informed and determined no regulatory notification was required.\n- Follow-up: Conditional access policy now requires phishing-resistant MFA for procurement staff; targeted awareness session delivered on 2 June 2026."
+    }
+   ]
+  }
+ },
+ {
+  "id": 66,
+  "kind": "answerable",
+  "asker": "sales@sanjeevani.example",
+  "doc": "Glucosan-M 500 Product Monograph",
+  "q": "How should Glucosan-M 500 be stored and what is its shelf life?",
+  "reference": "Store below 30°C and protect from moisture; shelf life is 36 months from the date of manufacture.",
+  "A": {
+   "abstained": false,
+   "answer": "Glucosan-M 500 must be stored below 30°C, protected from moisture, and kept in the original strip until use (out of reach of children). Its shelf life is 36 months from the date of manufacture. [1][2][3][4]",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Glucosan-M 500 Product Monograph",
+     "text": "## 11. Storage and shelf life\n\n| Parameter    | Detail                                                               |\n|--------------|----------------------------------------------------------------------|\n| Storage      | Store below 30°C. Protect from moisture.                             |\n| Shelf life   | 36 months from the date of manufacture                               |\n| Special note | Keep in the original strip until use. Keep out of reach of children. |"
+    },
+    {
+     "n": 2,
+     "title": "Product Portfolio and Storage Conditions",
+     "text": "## 2. Storage conditions and shelf life\n\n| Brand | Storage condition | Protect from | Shelf life | In-use period |\n|---|---|---|---|---|\n| Glucosan-M 500 | Below 30°C | Moisture | 36 months | — |\n| Cardivas 10 | Below 30°C | Light and moisture | 36 months | — |\n| Amlosan 5 | Below 30°C | Light | 36 months | — |\n| Pantosan 40 | Below 30°C | Moisture | 24 months | — |\n| Sanjeevani Cough Relief Syrup | Below 30°C, do not refrigerate | Light | 24 months | 30 days after opening |\n| Dermacalm Cream | Below 25°C, do not freeze | — | 30 months | 3 months after opening |\n\n> **Note:** Dermacalm Cream is the only product in the current portfolio with a \"below 25°C\" condition. In warehouses without air-conditioning (summer ambient above 30°C), Dermacalm must be stored in the air-conditioned \"cool room\" section."
+    },
+    {
+     "n": 3,
+     "title": "Medicine Information and Side-Effect Reporting FAQ",
+     "text": "## 3. How should I store my medicines at home?\n\n| Medicine | How to store | Shelf life (unopened) | After opening |\n|---|---|---|---|\n| Glucosan-M 500 | Below 30°C; protect from moisture – keep tablets in the strip until use; do not keep in the bathroom | 36 months | — |\n| Cardivas 10 | Below 30°C; protect from light and moisture | 36 months | — |\n| Amlosan 5 | Below 30°C; protect from light | 36 months | — |\n| Pantosan 40 | Below 30°C; protect from moisture; swallow whole, do not crush | 24 months | — |\n| Sanjeevani Cough Relief Syrup | Below 30°C; do not refrigerate; protect from light | 24 months | Use within 30 days after opening |\n| Dermacalm Cream | Below 25°C; do not freeze; close the cap tightly | 30 months | Use within 3 months after opening |\n\nGeneral tips:\n\n- Keep all medicines out of the sight and reach of children.\n- Do not use any medicine after the expiry date (\"EXP MM/YYYY\"); it may be used until the last day of that month.\n- Do not use tablets that are discoloured, broken or damp, or syrup that has changed colour.\n- Sanjeevani Cough Relief Syrup must not be given to children below four years of age.\n- Dermacalm Cream should not be used for more than 3 weeks without medical advice."
+    },
+    {
+     "n": 4,
+     "title": "Product Returns and Expiry Replacement Policy",
+     "text": "## 3. Shelf life of our products\n\nExpiry is printed on every strip, bottle and tube as \"EXP MM/YYYY\". A product may be used until the last day of the expiry month.\n\n| Product                       | Shelf life from manufacture   | Storage                                     |\n|-------------------------------|-------------------------------|---------------------------------------------|\n| Glucosan-M 500                | 36 months                     | Below 30°C, protect from moisture           |\n| Cardivas 10                   | 36 months                     | Below 30°C, protect from light and moisture |\n| Amlosan 5                     | 36 months                     | Below 30°C, protect from light              |\n| Pantosan 40                   | 24 months                     | Below 30°C, protect from moisture           |\n| Sanjeevani Cough Relief Syrup | 24 months                     | Below 30°C, do not refrigerate              |\n| Dermacalm Cream               | 30 months                     | Below 25°C, do not freeze                   |"
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "Store Glucosan-M 500 below 30°C, protect from moisture, keep tablets in the original strip until use, do not keep in the bathroom, and keep out of reach of children [1][2]. Its shelf life is 36 months from the date of manufacture [1][3][4].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Glucosan-M 500 Product Monograph",
+     "text": "## 11. Storage and shelf life\n\n| Parameter    | Detail                                                               |\n|--------------|----------------------------------------------------------------------|\n| Storage      | Store below 30°C. Protect from moisture.                             |\n| Shelf life   | 36 months from the date of manufacture                               |\n| Special note | Keep in the original strip until use. Keep out of reach of children. |"
+    },
+    {
+     "n": 2,
+     "title": "Medicine Information and Side-Effect Reporting FAQ",
+     "text": "## 3. How should I store my medicines at home?\n\n| Medicine | How to store | Shelf life (unopened) | After opening |\n|---|---|---|---|\n| Glucosan-M 500 | Below 30°C; protect from moisture – keep tablets in the strip until use; do not keep in the bathroom | 36 months | — |\n| Cardivas 10 | Below 30°C; protect from light and moisture | 36 months | — |\n| Amlosan 5 | Below 30°C; protect from light | 36 months | — |\n| Pantosan 40 | Below 30°C; protect from moisture; swallow whole, do not crush | 24 months | — |\n| Sanjeevani Cough Relief Syrup | Below 30°C; do not refrigerate; protect from light | 24 months | Use within 30 days after opening |\n| Dermacalm Cream | Below 25°C; do not freeze; close the cap tightly | 30 months | Use within 3 months after opening |\n\nGeneral tips:\n\n- Keep all medicines out of the sight and reach of children.\n- Do not use any medicine after the expiry date (\"EXP MM/YYYY\"); it may be used until the last day of that month.\n- Do not use tablets that are discoloured, broken or damp, or syrup that has changed colour.\n- Sanjeevani Cough Relief Syrup must not be given to children below four years of age.\n- Dermacalm Cream should not be used for more than 3 weeks without medical advice."
+    },
+    {
+     "n": 3,
+     "title": "Product Portfolio and Storage Conditions",
+     "text": "## 2. Storage conditions and shelf life\n\n| Brand | Storage condition | Protect from | Shelf life | In-use period |\n|---|---|---|---|---|\n| Glucosan-M 500 | Below 30°C | Moisture | 36 months | — |\n| Cardivas 10 | Below 30°C | Light and moisture | 36 months | — |\n| Amlosan 5 | Below 30°C | Light | 36 months | — |\n| Pantosan 40 | Below 30°C | Moisture | 24 months | — |\n| Sanjeevani Cough Relief Syrup | Below 30°C, do not refrigerate | Light | 24 months | 30 days after opening |\n| Dermacalm Cream | Below 25°C, do not freeze | — | 30 months | 3 months after opening |\n\n> **Note:** Dermacalm Cream is the only product in the current portfolio with a \"below 25°C\" condition. In warehouses without air-conditioning (summer ambient above 30°C), Dermacalm must be stored in the air-conditioned \"cool room\" section."
+    },
+    {
+     "n": 4,
+     "title": "Product Returns and Expiry Replacement Policy",
+     "text": "## 3. Shelf life of our products\n\nExpiry is printed on every strip, bottle and tube as \"EXP MM/YYYY\". A product may be used until the last day of the expiry month.\n\n| Product                       | Shelf life from manufacture   | Storage                                     |\n|-------------------------------|-------------------------------|---------------------------------------------|\n| Glucosan-M 500                | 36 months                     | Below 30°C, protect from moisture           |\n| Cardivas 10                   | 36 months                     | Below 30°C, protect from light and moisture |\n| Amlosan 5                     | 36 months                     | Below 30°C, protect from light              |\n| Pantosan 40                   | 24 months                     | Below 30°C, protect from moisture           |\n| Sanjeevani Cough Relief Syrup | 24 months                     | Below 30°C, do not refrigerate              |\n| Dermacalm Cream               | 30 months                     | Below 25°C, do not freeze                   |"
+    }
+   ]
+  }
+ },
+ {
+  "id": 67,
+  "kind": "answerable",
+  "asker": "owner@sanjeevani.example",
+  "doc": "Medicine Information and Side-Effect Reporting FAQ",
+  "q": "How should Glucosan-M be stored at home?",
+  "reference": "Below 30°C, protected from moisture: keep tablets in the strip until use and not in the bathroom; shelf life 36 months.",
+  "A": {
+   "abstained": false,
+   "answer": "Glucosan‑M 500 should be stored below 30 °C, protected from moisture, and kept in its original strip until use; it should not be stored in the bathroom and must be kept out of reach of children [1][2].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Medicine Information and Side-Effect Reporting FAQ",
+     "text": "## 3. How should I store my medicines at home?\n\n| Medicine | How to store | Shelf life (unopened) | After opening |\n|---|---|---|---|\n| Glucosan-M 500 | Below 30°C; protect from moisture – keep tablets in the strip until use; do not keep in the bathroom | 36 months | — |\n| Cardivas 10 | Below 30°C; protect from light and moisture | 36 months | — |\n| Amlosan 5 | Below 30°C; protect from light | 36 months | — |\n| Pantosan 40 | Below 30°C; protect from moisture; swallow whole, do not crush | 24 months | — |\n| Sanjeevani Cough Relief Syrup | Below 30°C; do not refrigerate; protect from light | 24 months | Use within 30 days after opening |\n| Dermacalm Cream | Below 25°C; do not freeze; close the cap tightly | 30 months | Use within 3 months after opening |\n\nGeneral tips:\n\n- Keep all medicines out of the sight and reach of children.\n- Do not use any medicine after the expiry date (\"EXP MM/YYYY\"); it may be used until the last day of that month.\n- Do not use tablets that are discoloured, broken or damp, or syrup that has changed colour.\n- Sanjeevani Cough Relief Syrup must not be given to children below four years of age.\n- Dermacalm Cream should not be used for more than 3 weeks without medical advice."
+    },
+    {
+     "n": 2,
+     "title": "Glucosan-M 500 Product Monograph",
+     "text": "## 11. Storage and shelf life\n\n| Parameter    | Detail                                                               |\n|--------------|----------------------------------------------------------------------|\n| Storage      | Store below 30°C. Protect from moisture.                             |\n| Shelf life   | 36 months from the date of manufacture                               |\n| Special note | Keep in the original strip until use. Keep out of reach of children. |"
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "Glucosan‑M 500 should be stored **below 30 °C**, protected from moisture, and kept in the original strip until use – do not store it in the bathroom. Keep it out of the sight and reach of children, and do not use tablets that are discoloured, broken or damp, or after the expiry date (last day of the month shown) [1][2].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Medicine Information and Side-Effect Reporting FAQ",
+     "text": "## 3. How should I store my medicines at home?\n\n| Medicine | How to store | Shelf life (unopened) | After opening |\n|---|---|---|---|\n| Glucosan-M 500 | Below 30°C; protect from moisture – keep tablets in the strip until use; do not keep in the bathroom | 36 months | — |\n| Cardivas 10 | Below 30°C; protect from light and moisture | 36 months | — |\n| Amlosan 5 | Below 30°C; protect from light | 36 months | — |\n| Pantosan 40 | Below 30°C; protect from moisture; swallow whole, do not crush | 24 months | — |\n| Sanjeevani Cough Relief Syrup | Below 30°C; do not refrigerate; protect from light | 24 months | Use within 30 days after opening |\n| Dermacalm Cream | Below 25°C; do not freeze; close the cap tightly | 30 months | Use within 3 months after opening |\n\nGeneral tips:\n\n- Keep all medicines out of the sight and reach of children.\n- Do not use any medicine after the expiry date (\"EXP MM/YYYY\"); it may be used until the last day of that month.\n- Do not use tablets that are discoloured, broken or damp, or syrup that has changed colour.\n- Sanjeevani Cough Relief Syrup must not be given to children below four years of age.\n- Dermacalm Cream should not be used for more than 3 weeks without medical advice."
+    },
+    {
+     "n": 2,
+     "title": "Glucosan-M 500 Product Monograph",
+     "text": "## 11. Storage and shelf life\n\n| Parameter    | Detail                                                               |\n|--------------|----------------------------------------------------------------------|\n| Storage      | Store below 30°C. Protect from moisture.                             |\n| Shelf life   | 36 months from the date of manufacture                               |\n| Special note | Keep in the original strip until use. Keep out of reach of children. |"
+    }
+   ]
+  }
+ },
+ {
+  "id": 68,
+  "kind": "answerable",
+  "asker": "security@nimbus.example",
+  "doc": "Privileged Access and Quarterly Access Review Procedure",
+  "q": "How soon is all access removed after someone leaves?",
+  "reference": "SSO and email are disabled by 6:00 pm on the last working day; all remaining access is removed within 24 hours of the last working day.",
+  "A": {
+   "abstained": false,
+   "answer": "All remaining access, including client, SaaS, third‑party and admin accounts, is removed within 24 hours of the last working day. [1]",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Privileged Access and Quarterly Access Review Procedure",
+     "text": "### 7. Movers and leavers\n\n| **Event**                        | **Action**                                                                                                                                                  | **Deadline**                                |\n|----------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------|\n| Role change (mover)              | Manager reviews and removes access not needed in the new role                                                                                               | Within 5 business days of the change        |\n| Resignation accepted             | Privileged and production access reviewed; no **new** privileged access granted during the notice period (60 days, or 90 days for Senior Manager and above) | On acceptance                               |\n| Garden leave or involuntary exit | All access disabled before the employee is informed                                                                                                         | Immediately                                 |\n| Last working day                 | SSO and email disabled                                                                                                                                      | **By 6:00 pm on the last working day**      |\n| After exit                       | All remaining access removed, including client, SaaS and third-party accounts; admin (adm-) account deleted                                                 | **Within 24 hours** of the last working day |\n| Contractor end date              | Same as last working day                         "
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "All remaining access (including client, SaaS, third‑party and admin accounts) is removed **within 24 hours of the last working day** [1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Privileged Access and Quarterly Access Review Procedure",
+     "text": "### 7. Movers and leavers\n\n| **Event**                        | **Action**                                                                                                                                                  | **Deadline**                                |\n|----------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------|\n| Role change (mover)              | Manager reviews and removes access not needed in the new role                                                                                               | Within 5 business days of the change        |\n| Resignation accepted             | Privileged and production access reviewed; no **new** privileged access granted during the notice period (60 days, or 90 days for Senior Manager and above) | On acceptance                               |\n| Garden leave or involuntary exit | All access disabled before the employee is informed                                                                                                         | Immediately                                 |\n| Last working day                 | SSO and email disabled                                                                                                                                      | **By 6:00 pm on the last working day**      |\n| After exit                       | All remaining access removed, including client, SaaS and third-party accounts; admin (adm-) account deleted                                                 | **Within 24 hours** of the last working day |\n| Contractor end date              | Same as last working day                         "
+    }
+   ]
+  }
+ },
+ {
+  "id": 69,
+  "kind": "answerable",
+  "asker": "hr@nimbus.example",
+  "doc": "Notice Period and Exit Process",
+  "q": "If a Principal (L6) resigns, how long is the notice period and when is the full and final settlement paid?",
+  "reference": "L6 and above serve 90 days' notice; the full and final settlement is paid within 45 days of the last working day, after clearance.",
+  "A": {
+   "abstained": false,
+   "answer": "For a Principal (L6) who resigns, the notice period is **90 calendar days**, counted from the day after the resignation is submitted in the HRMS [1]. The full and final settlement is paid **within 45 days of the last working day (LWD)**, once all clearances are complete [2].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Notice Period and Exit Process",
+     "text": "## 3. Notice periods\n\n| Grade                                            | Notice period (employee resignation)   | Notice period (company-initiated, other than for misconduct)   |\n|--------------------------------------------------|----------------------------------------|----------------------------------------------------------------|\n| L1 Trainee to L5 Engineering Manager / Architect | 60 days                                | 60 days or pay in lieu                                         |\n| L6 Senior Manager / Principal and L7 Director    | 90 days                                | 90 days or pay in lieu                                         |\n\nThe notice period is counted in calendar days from the day after the resignation is submitted in the HRMS."
+    },
+    {
+     "n": 2,
+     "title": "Notice Period and Exit Process",
+     "text": "## 10. Full and final settlement\n\n1. Full and final (F&amp;F) settlement is paid within 45 days of the LWD, after clearance is complete.\n2. F&amp;F includes salary up to LWD, encashment of earned leave (up to 30 days, on basic pay), gratuity if 5 years of service are complete, reimbursements due, and any pro-rata variable pay that the Variable Pay Plan allows; less notice shortfall recovery, unrecovered advances and dues.\n\n\n\n\n\n3. The relieving letter and experience letter are issued within 7 days of F&amp;F, by email from hrhelp@nimbus.example.\n4. PF transfer or withdrawal is initiated by the employee through the EPFO portal; HR approves within 7 working days."
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "The notice period for a Principal (L6) who resigns is 90 calendar days, counted from the day after resignation is submitted in the HRMS [1]. Full and final settlement is paid within 45 days of the Last Working Day, after clearance is complete [2].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Notice Period and Exit Process",
+     "text": "## 3. Notice periods\n\n| Grade                                            | Notice period (employee resignation)   | Notice period (company-initiated, other than for misconduct)   |\n|--------------------------------------------------|----------------------------------------|----------------------------------------------------------------|\n| L1 Trainee to L5 Engineering Manager / Architect | 60 days                                | 60 days or pay in lieu                                         |\n| L6 Senior Manager / Principal and L7 Director    | 90 days                                | 90 days or pay in lieu                                         |\n\nThe notice period is counted in calendar days from the day after the resignation is submitted in the HRMS."
+    },
+    {
+     "n": 2,
+     "title": "Notice Period and Exit Process",
+     "text": "## 10. Full and final settlement\n\n1. Full and final (F&amp;F) settlement is paid within 45 days of the LWD, after clearance is complete.\n2. F&amp;F includes salary up to LWD, encashment of earned leave (up to 30 days, on basic pay), gratuity if 5 years of service are complete, reimbursements due, and any pro-rata variable pay that the Variable Pay Plan allows; less notice shortfall recovery, unrecovered advances and dues.\n\n\n\n\n\n3. The relieving letter and experience letter are issued within 7 days of F&amp;F, by email from hrhelp@nimbus.example.\n4. PF transfer or withdrawal is initiated by the employee through the EPFO portal; HR approves within 7 working days."
+    }
+   ]
+  }
+ },
+ {
+  "id": 70,
+  "kind": "answerable",
+  "asker": "analyst@kaveri.example",
+  "doc": "Personal Trading Policy",
+  "q": "If an employee sells shares 20 days after buying them without a hardship exception, what happens to the profit, and what is the penalty if it happens again within 24 months?",
+  "reference": "The profit is disgorged to the Company's CSR fund; a repeat within 24 months leads to a 6-month personal trading suspension.",
+  "A": {
+   "abstained": false,
+   "answer": "The profit is disgorged to the Company’s CSR fund because the sale was within 30 days without a hardship exception [1]. For a first instance, the consequence is disgorgement of profit; if repeated within 24 months, the penalty is trading suspension for 6 months [2].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Personal Trading Policy",
+     "text": "## 5. Minimum holding period\n\n- 5.1 Securities bought must be held for a 30-day minimum holding period, counted from the trade date.\n- 5.2 The CCO may grant a hardship exception (for example, medical emergency, home purchase) in writing. Exceptions are logged and reported to the Board Risk Committee quarterly.\n- 5.3 Any profit from a sale within 30 days without an exception is disgorged to the Company's CSR fund."
+    },
+    {
+     "n": 2,
+     "title": "Personal Trading Policy",
+     "text": "## 8.3 Consequences:\n\n| Violation                                          | First instance                                             | Repeat within 24 months                                       |\n|----------------------------------------------------|------------------------------------------------------------|---------------------------------------------------------------|\n| Trade without pre-clearance (stock not restricted) | Written warning; disgorgement                              | Bonus reduction of up to 25%; trading suspension for 6 months |\n| Sale within 30-day holding period                  | Disgorgement of profit                                     | Trading suspension for 6 months                               |\n| Trade in a restricted-list stock                   | Final warning; disgorgement; Board Risk Committee informed | Termination                                                   |\n| Late disclosure                                    | Written caution                                            | Written warning                                               |\n| Front-running or misuse of UPSI                    | Termination and reporting to SEBI                          | -                                                             |\n\n8.4 Compliance reports a summary of violations to the Board Risk Committee every quarter. In FY2025-26 there were 9 violations, all minor (7 late disclosures, 2 trades without pre-clearance)."
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "The profit from a sale within 30 days without a hardship exception is disgorged to the company’s CSR fund [1]. If the same violation recurs within 24 months, the employee receives a trading suspension for 6 months [2].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Personal Trading Policy",
+     "text": "## 5. Minimum holding period\n\n- 5.1 Securities bought must be held for a 30-day minimum holding period, counted from the trade date.\n- 5.2 The CCO may grant a hardship exception (for example, medical emergency, home purchase) in writing. Exceptions are logged and reported to the Board Risk Committee quarterly.\n- 5.3 Any profit from a sale within 30 days without an exception is disgorged to the Company's CSR fund."
+    },
+    {
+     "n": 2,
+     "title": "Personal Trading Policy",
+     "text": "## 8.3 Consequences:\n\n| Violation                                          | First instance                                             | Repeat within 24 months                                       |\n|----------------------------------------------------|------------------------------------------------------------|---------------------------------------------------------------|\n| Trade without pre-clearance (stock not restricted) | Written warning; disgorgement                              | Bonus reduction of up to 25%; trading suspension for 6 months |\n| Sale within 30-day holding period                  | Disgorgement of profit                                     | Trading suspension for 6 months                               |\n| Trade in a restricted-list stock                   | Final warning; disgorgement; Board Risk Committee informed | Termination                                                   |\n| Late disclosure                                    | Written caution                                            | Written warning                                               |\n| Front-running or misuse of UPSI                    | Termination and reporting to SEBI                          | -                                                             |\n\n8.4 Compliance reports a summary of violations to the Board Risk Committee every quarter. In FY2025-26 there were 9 violations, all minor (7 late disclosures, 2 trades without pre-clearance)."
+    }
+   ]
+  }
+ },
+ {
+  "id": 71,
+  "kind": "answerable",
+  "asker": "compliance@kaveri.example",
+  "doc": "Stress Test Results March 2026",
+  "q": "In the March 2026 stress test, what funding shortfall would the Small Cap fund face if 25% of AUM were redeemed in 10 trading days?",
+  "reference": "A funding shortfall of ₹30.0 crore (1.3% of AUM), which would need to be met by borrowing.",
+  "A": {
+   "abstained": false,
+   "answer": "The Small Cap fund would face a funding shortfall of ₹30.0 crore (1.3% of AUM) if 25% of AUM were redeemed in 10 trading days. [1][2]",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Stress Test Results March 2026",
+     "text": "## 1. Key Findings\n\n1. Under the severe equity scenario (Nifty 50 -20% instantaneous), Kaveri Small Cap Opportunities would lose an estimated 27.9% of NAV, the largest loss of any product.\n2. Under the redemption stress (25% of Small Cap AUM redeemed in 10 trading days), the scheme would face a funding shortfall of ₹30.0 crore, which would have to be met by borrowing. This is consistent with the open liquidity breach (11.8% vs 15% floor).\n3. Kaveri Short Duration Fund would lose 3.9% under a +150 bp parallel rate shock; no redemption shortfall arises.\n4. The AIF long-short book loses least in equity scenarios because of its 38% net long exposure.\n5. No scheme would breach the 2.5% VaR limit in the base case; under the stressed-volatility scenario, Bluechip VaR would rise from 1.9% to 3.1%."
+    },
+    {
+     "n": 2,
+     "title": "Stress Test Results March 2026",
+     "text": "## 4. Redemption Stress - Small Cap (S5)\n\n| Item                                                |   ₹ crore | % of AUM   |\n|-----------------------------------------------------|-----------|------------|\n| Scheme AUM                                          |   2,310.0 | 100.0%     |\n| Assumed redemptions over 10 trading days            |     577.5 | 25.0%      |\n| Cash and equivalents available                      |     164.0 | 7.1%       |\n| Equity liquidatable in 10 days at 30% participation |     383.5 | 16.6%      |\n| Total available                                     |     547.5 | 23.7%      |\n| Shortfall                                           |      30.0 | 1.3%       |\n\n- 4.1 The shortfall could legally be met by temporary borrowing (SEBI permits borrowing for redemptions up to 20% of net assets, for up to 6 months), but borrowing would increase cost to remaining unit-holders.\n- 4.2 Selling faster than 30% participation would cover the shortfall but is estimated to cost 2.5% to 4.0% in market impact on the six illiquid names.\n- 4.3 Once the remediation plan is complete (target liquidity of 16.1% at 5 days), S5 shows a surplus of about ₹41 crore instead of a shortfall.\n- 4.4 The same test on Flexi Cap and Bluechip shows no shortfall; both could meet 25% redemptions within 3 trading days."
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "The Small Cap fund would face a funding shortfall of **₹30.0 crore** (1.3% of AUM) if 25% of AUM were redeemed over 10 trading days [1][2].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Stress Test Results March 2026",
+     "text": "## 1. Key Findings\n\n1. Under the severe equity scenario (Nifty 50 -20% instantaneous), Kaveri Small Cap Opportunities would lose an estimated 27.9% of NAV, the largest loss of any product.\n2. Under the redemption stress (25% of Small Cap AUM redeemed in 10 trading days), the scheme would face a funding shortfall of ₹30.0 crore, which would have to be met by borrowing. This is consistent with the open liquidity breach (11.8% vs 15% floor).\n3. Kaveri Short Duration Fund would lose 3.9% under a +150 bp parallel rate shock; no redemption shortfall arises.\n4. The AIF long-short book loses least in equity scenarios because of its 38% net long exposure.\n5. No scheme would breach the 2.5% VaR limit in the base case; under the stressed-volatility scenario, Bluechip VaR would rise from 1.9% to 3.1%."
+    },
+    {
+     "n": 2,
+     "title": "Stress Test Results March 2026",
+     "text": "## 4. Redemption Stress - Small Cap (S5)\n\n| Item                                                |   ₹ crore | % of AUM   |\n|-----------------------------------------------------|-----------|------------|\n| Scheme AUM                                          |   2,310.0 | 100.0%     |\n| Assumed redemptions over 10 trading days            |     577.5 | 25.0%      |\n| Cash and equivalents available                      |     164.0 | 7.1%       |\n| Equity liquidatable in 10 days at 30% participation |     383.5 | 16.6%      |\n| Total available                                     |     547.5 | 23.7%      |\n| Shortfall                                           |      30.0 | 1.3%       |\n\n- 4.1 The shortfall could legally be met by temporary borrowing (SEBI permits borrowing for redemptions up to 20% of net assets, for up to 6 months), but borrowing would increase cost to remaining unit-holders.\n- 4.2 Selling faster than 30% participation would cover the shortfall but is estimated to cost 2.5% to 4.0% in market impact on the six illiquid names.\n- 4.3 Once the remediation plan is complete (target liquidity of 16.1% at 5 days), S5 shows a surplus of about ₹41 crore instead of a shortfall.\n- 4.4 The same test on Flexi Cap and Bluechip shows no shortfall; both could meet 25% redemptions within 3 trading days."
+    }
+   ]
+  }
+ },
+ {
+  "id": 72,
+  "kind": "denied",
+  "asker": "analyst@kaveri.example",
+  "doc": "Stress Test Results March 2026",
+  "q": "In the March 2026 stress test, what funding shortfall would the Small Cap fund face if 25% of AUM were redeemed in 10 trading days?",
+  "reference": "A funding shortfall of ₹30.0 crore (1.3% of AUM), which would need to be met by borrowing.",
+  "A": {
+   "abstained": true,
+   "answer": "Not found in your documents.\nNo document you can open answers this, so Atlas did not guess.",
+   "cited": []
+  },
+  "B": {
+   "abstained": false,
+   "answer": "The provided passages do not mention any March 2026 stress test or liquidity analysis for the Small Cap fund, so the funding shortfall for a 25% redemption in 10 trading days is not covered in these documents.",
+   "cited": []
+  }
+ },
+ {
+  "id": 73,
+  "kind": "answerable",
+  "asker": "employee@nimbus.example",
+  "doc": "Holiday Calendar FY2026-27",
+  "q": "Independence Day 2026 falls on a Saturday. Is there still a flag-hoisting at the office?",
+  "reference": "Yes, a flag-hoisting ceremony is held at each office at 8:30 am on Saturday, 15 August 2026; attendance is voluntary and the day is not counted in the 12 holidays.",
+  "A": {
+   "abstained": false,
+   "answer": "Yes. The national flag-hoisting ceremony on Independence Day will still be held at each office at 8:30 am on Saturday, 15 August 2026; attendance is voluntary. [1]",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Holiday Calendar FY2026-27",
+     "text": "### 6. Weekend holidays (not counted)\n\n| **Date**        | **Day**   | **Holiday**           | **Offices**   |\n|-----------------|-----------|-----------------------|---------------|\n| 15 August 2026  | Saturday  | Independence Day      | All           |\n| 1 November 2026 | Sunday    | Kannada Rajyotsava    | Bengaluru     |\n| 8 November 2026 | Sunday    | Diwali (Lakshmi Puja) | All           |\n\nThe national flag-hoisting ceremony on Independence Day will still be held at each office at 8:30 am on Saturday, 15 August 2026; attendance is voluntary."
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "Yes, the national flag-hoisting ceremony will still be held at each office at 8:30 am on Saturday, 15 August 2026, though attendance is voluntary. [1]",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Holiday Calendar FY2026-27",
+     "text": "### 6. Weekend holidays (not counted)\n\n| **Date**        | **Day**   | **Holiday**           | **Offices**   |\n|-----------------|-----------|-----------------------|---------------|\n| 15 August 2026  | Saturday  | Independence Day      | All           |\n| 1 November 2026 | Sunday    | Kannada Rajyotsava    | Bengaluru     |\n| 8 November 2026 | Sunday    | Diwali (Lakshmi Puja) | All           |\n\nThe national flag-hoisting ceremony on Independence Day will still be held at each office at 8:30 am on Saturday, 15 August 2026; attendance is voluntary."
+    }
+   ]
+  }
+ },
+ {
+  "id": 74,
+  "kind": "answerable",
+  "asker": "rm@kaveri.example",
+  "doc": "Investor Service FAQ – Redemptions, Exit Loads and Statements",
+  "q": "Is there an exit load if I redeem the Flexi Cap fund after 8 months?",
+  "reference": "Yes, 1%, because 8 months is within 365 days of allotment.",
+  "A": {
+   "abstained": false,
+   "answer": "Yes. Eight months is within 365 days of allotment, so an exit load of 1% applies to those Flexi Cap units. [1]",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Investor Service FAQ – Redemptions, Exit Loads and Statements",
+     "text": "## 2. Exit loads\n\n**What exit load applies to the equity funds?**\n\n| Scheme | Exit load |\n|---|---|\n| Kaveri Bluechip Fund | 1% if redeemed within 365 days of allotment |\n| Kaveri Flexi Cap Fund | 1% if redeemed within 365 days of allotment |\n| Kaveri Small Cap Opportunities | 1% if redeemed within 365 days of allotment |\n| Kaveri Short Duration Fund | Nil |\n| Kaveri Arbitrage Fund | 0.25% if redeemed within 15 days of allotment |\n\n**Is there an exit load if I redeem my Flexi Cap units after 8 months?**\nYes. Eight months is within 365 days of allotment, so an exit load of 1% applies to those units. Units held for more than 365 days carry no exit load.\n\n**How is the exit load worked out if I invested through a SIP?**\nEach SIP instalment is treated separately on a first-in, first-out basis. When you redeem, the oldest units are redeemed first, and only units still within 365 days of their own allotment date carry the 1% load.\n\n**Does a switch between Kaveri funds attract exit load?**\nYes. A switch is treated as a redemption from the first scheme for exit load purposes.\n\n**Are dividend reinvestment units charged exit load?**\nNo.\n\n**What is the exit load on the PMS?**\n\n| Withdrawal within (from date of each contribution) | Exit load |\n|---|---|\n| Year 1 | 3% |\n| Year 2 | 2% |\n| Year 3 | 1% |\n| After 3 years | Nil |\n\n**And on the AIF?**\nThe Kaveri Long-Short AIF III has a 12-month lock-in from each contribution. After the lock-in, an exit load of 1% applies in months 13–24 and nil after that. Redemptions are monthly with 30 days' notice."
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "Yes, a 1% exit load applies because 8 months is within 365 days of allotment for the Kaveri Flexi Cap Fund [1][2][3][4].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Investor Service FAQ – Redemptions, Exit Loads and Statements",
+     "text": "## 2. Exit loads\n\n**What exit load applies to the equity funds?**\n\n| Scheme | Exit load |\n|---|---|\n| Kaveri Bluechip Fund | 1% if redeemed within 365 days of allotment |\n| Kaveri Flexi Cap Fund | 1% if redeemed within 365 days of allotment |\n| Kaveri Small Cap Opportunities | 1% if redeemed within 365 days of allotment |\n| Kaveri Short Duration Fund | Nil |\n| Kaveri Arbitrage Fund | 0.25% if redeemed within 15 days of allotment |\n\n**Is there an exit load if I redeem my Flexi Cap units after 8 months?**\nYes. Eight months is within 365 days of allotment, so an exit load of 1% applies to those units. Units held for more than 365 days carry no exit load.\n\n**How is the exit load worked out if I invested through a SIP?**\nEach SIP instalment is treated separately on a first-in, first-out basis. When you redeem, the oldest units are redeemed first, and only units still within 365 days of their own allotment date carry the 1% load.\n\n**Does a switch between Kaveri funds attract exit load?**\nYes. A switch is treated as a redemption from the first scheme for exit load purposes.\n\n**Are dividend reinvestment units charged exit load?**\nNo.\n\n**What is the exit load on the PMS?**\n\n| Withdrawal within (from date of each contribution) | Exit load |\n|---|---|\n| Year 1 | 3% |\n| Year 2 | 2% |\n| Year 3 | 1% |\n| After 3 years | Nil |\n\n**And on the AIF?**\nThe Kaveri Long-Short AIF III has a 12-month lock-in from each contribution. After the lock-in, an exit load of 1% applies in months 13–24 and nil after that. Redemptions are monthly with 30 days' notice."
+    },
+    {
+     "n": 2,
+     "title": "NAV Computation and Cut-off Timings",
+     "text": "## 3. Exit loads (reminder)\n\n- Equity schemes (Bluechip, Flexi Cap, Small Cap Opportunities): **1% if redeemed within 365 days** of allotment.\n- Short Duration: nil. Arbitrage: 0.25% if redeemed within 15 days.\n- Exit load is deducted from the NAV, so the investor receives \"NAV minus load\"."
+    },
+    {
+     "n": 3,
+     "title": "Fee Schedule and Exit Loads",
+     "text": "## 1. Mutual-Fund-Style Schemes\n\n- 1.1 Total Expense Ratio (TER) of the direct plan as of 1 April 2026. Regular-plan TER includes distributor commission and is higher.\n- 1.2 Exit load on equity schemes is calculated on a first-in, first-out basis, unit by unit. Switches between Kaveri schemes are treated as redemptions for exit load purposes. Units allotted on dividend reinvestment carry no exit load.\n- 1.3 No entry load is charged on any scheme.\n\n| Scheme                         | TER - Direct   | TER - Regular   | Exit load                        |\n|--------------------------------|----------------|-----------------|----------------------------------|\n| Kaveri Bluechip Fund           | 0.82%          | 1.74%           | 1% if redeemed within 365 days   |\n| Kaveri Flexi Cap Fund          | 0.91%          | 1.86%           | 1% if redeemed within 365 days   |\n| Kaveri Small Cap Opportunities | 1.12%          | 1.84%           | 1% if redeemed within 365 days   |\n| Kaveri Short Duration Fund     | 0.38%          | 0.92%           | Nil                              |\n| Kaveri Arbitrage Fund          | 0.35%          | 1.02%           | 0.25% if redeemed within 15 days |"
+    },
+    {
+     "n": 4,
+     "title": "Kaveri Flexi Cap Fund Factsheet March 2026",
+     "text": "## 1. Fund at a glance\n\n| Item                             | Detail                                                         |\n|----------------------------------|----------------------------------------------------------------|\n| Category                         | Flexi cap fund                                                 |\n| Inception date                   | 15 July 2019                                                   |\n| Fund manager                     | Divya Menon (managing since inception; 16 years of experience) |\n| Benchmark                        | Nifty 500 TRI                                                  |\n| AUM (31 March 2026)              | ₹4,980 crore                                                   |\n| Monthly average AUM (March 2026) | ₹4,912 crore                                                   |\n| NAV - Direct Plan, Growth        | ₹30.65                                                         |\n| NAV - Regular Plan, Growth       | ₹28.21                                                         |\n| Total expense ratio              | Direct 0.91%; Regular 1.86%                                    |\n| Minimum investment               | ₹1,000 lump sum; ₹500 per month SIP                            |\n| Exit load                        | 1% if redeemed within 365 days from allotment; nil thereafter  |\n| Plans and options                | Direct and Regular; Growth and IDCW                            |"
+    }
+   ]
+  }
+ },
+ {
+  "id": 75,
+  "kind": "answerable",
+  "asker": "compliance@kaveri.example",
+  "doc": "KYC Policy 2022",
+  "q": "Under the old KYC Policy 2022, how often was re-KYC required for high-risk clients?",
+  "reference": "Every 3 years under the superseded 2022 policy; the current policy (v4.0, from 1 April 2026) requires every 2 years.",
+  "A": {
+   "abstained": false,
+   "answer": "Under the old KYC Policy 2022, re-KYC for high-risk clients was required every 3 years. [1]",
+   "cited": [
+    {
+     "n": 1,
+     "title": "KYC Policy 2022",
+     "text": "## 5. Periodic Updation\n\n- 5.1 Investor KYC shall be updated on the following cycle:\n- 5.2 Reminders shall be sent 30 days before the due date. Accounts not updated within 180 days after the due date shall be blocked for fresh purchases.\n\n| Risk category   | Re-KYC frequency   |\n|-----------------|--------------------|\n| High            | Every 3 years      |\n| Medium          | Every 6 years      |\n| Low             | Every 10 years     |"
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "Under the old KYC Policy 2022, high-risk clients were required to complete re-KYC every 3 years [1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "KYC Policy 2022",
+     "text": "## 5. Periodic Updation\n\n- 5.1 Investor KYC shall be updated on the following cycle:\n- 5.2 Reminders shall be sent 30 days before the due date. Accounts not updated within 180 days after the due date shall be blocked for fresh purchases.\n\n| Risk category   | Re-KYC frequency   |\n|-----------------|--------------------|\n| High            | Every 3 years      |\n| Medium          | Every 6 years      |\n| Low             | Every 10 years     |"
+    }
+   ]
+  }
+ },
+ {
+  "id": 76,
+  "kind": "answerable",
+  "asker": "rnd@sanjeevani.example",
+  "doc": "SJ-2041 Interim Analysis Report",
+  "q": "What HbA1c reduction did SJ-2041 show at the Phase III interim analysis?",
+  "reference": "−1.1% with SJ-2041 versus −0.6% with the comparator (difference −0.5%), with a dropout rate of 7.4% and 2 serious adverse events judged unrelated.",
+  "A": {
+   "abstained": false,
+   "answer": "SJ-2041 showed an HbA1c reduction of **‑1.1 %** from baseline at the Phase III interim analysis [1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "SJ-2041 Interim Analysis Report",
+     "text": "## 4. Efficacy Results at Week 24\n\n\n\n\n\n| Endpoint                             | SJ-2041   | Comparator (metformin SR 1,000 mg)   | Difference (95% CI)    | p- value   |\n|--------------------------------------|-----------|--------------------------------------|------------------------|------------|\n| HbA1c change from baseline (primary) | -1.1%     | -0.6%                                | -0.5% (-0.68 to -0.32) | < 0.001    |\n| Patients reaching HbA1c < 7.0%       | 41.7%     | 22.3%                                | 19.4 percentage points | < 0.001    |\n| FPG change (mg/dL)                   | -31       | -14                                  | -17 (-23 to -11)       | < 0.001    |\n| 2-h PPG change (mg/dL)               | -52       | -24                                  | -28 (-36 to -20)       | < 0.001    |\n| Body weight change (kg)              | -0.4      | -0.3                                 | -0.1 (-0.6 to 0.4)     | 0.71       |\n| Rescue therapy required              | 3.9%      | 9.2%                                 | -                      | -          |\n\nThe primary endpoint result at interim: HbA1c change from baseline of -1.1% with SJ-2041 versus -0.6% with comparator. The interim p-value is below the Haybittle-Peto boundary of 0.001, but per protocol the trial does not stop for efficacy; the final analysis will be performed at full sample size."
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "SJ-2041 showed an HbA1c reduction of −1.1% from baseline at week 24 in the interim analysis, versus −0.6% with metformin SR (difference −0.5%, p < 0.001). [1]",
+   "cited": [
+    {
+     "n": 1,
+     "title": "SJ-2041 Interim Analysis Report",
+     "text": "## 4. Efficacy Results at Week 24\n\n\n\n\n\n| Endpoint                             | SJ-2041   | Comparator (metformin SR 1,000 mg)   | Difference (95% CI)    | p- value   |\n|--------------------------------------|-----------|--------------------------------------|------------------------|------------|\n| HbA1c change from baseline (primary) | -1.1%     | -0.6%                                | -0.5% (-0.68 to -0.32) | < 0.001    |\n| Patients reaching HbA1c < 7.0%       | 41.7%     | 22.3%                                | 19.4 percentage points | < 0.001    |\n| FPG change (mg/dL)                   | -31       | -14                                  | -17 (-23 to -11)       | < 0.001    |\n| 2-h PPG change (mg/dL)               | -52       | -24                                  | -28 (-36 to -20)       | < 0.001    |\n| Body weight change (kg)              | -0.4      | -0.3                                 | -0.1 (-0.6 to 0.4)     | 0.71       |\n| Rescue therapy required              | 3.9%      | 9.2%                                 | -                      | -          |\n\nThe primary endpoint result at interim: HbA1c change from baseline of -1.1% with SJ-2041 versus -0.6% with comparator. The interim p-value is below the Haybittle-Peto boundary of 0.001, but per protocol the trial does not stop for efficacy; the final analysis will be performed at full sample size."
+    }
+   ]
+  }
+ },
+ {
+  "id": 77,
+  "kind": "denied",
+  "asker": "sales@sanjeevani.example",
+  "doc": "SJ-2041 Interim Analysis Report",
+  "q": "What HbA1c reduction did SJ-2041 show at the Phase III interim analysis?",
+  "reference": "−1.1% with SJ-2041 versus −0.6% with the comparator (difference −0.5%), with a dropout rate of 7.4% and 2 serious adverse events judged unrelated.",
+  "A": {
+   "abstained": true,
+   "answer": "Not found in your documents.\nNo document you can open answers this, so Atlas did not guess.",
+   "cited": []
+  },
+  "B": {
+   "abstained": false,
+   "answer": "The documents state that SJ-2041 is a DPP-4 inhibitor/metformin fixed-dose combination in Phase III [1][2], but they do not report any HbA1c reduction or Phase III interim analysis results. Passage [1] notes that detailed trial information is restricted to the Clinical team.",
+   "cited": [
+    {
+     "n": 1,
+     "title": "About Sanjeevani",
+     "text": "## 3. Our products\n\n| Brand | Molecule / strength | Therapy area | Made at |\n|---|---|---|---|\n| Glucosan-M 500 | Metformin 500 mg SR tablet | Diabetes | Unit I |\n| Cardivas 10 | Rosuvastatin 10 mg tablet | Cardiac | Unit I |\n| Amlosan 5 | Amlodipine 5 mg tablet | Hypertension | Unit I |\n| Pantosan 40 | Pantoprazole 40 mg tablet | Gastro | Unit I |\n| Sanjeevani Cough Relief Syrup | Dextromethorphan + chlorpheniramine | Respiratory | Unit II |\n| Dermacalm Cream | Mometasone 0.1% | Dermatology | Unit II |\n\nOur most important pipeline programme is **SJ-2041**, a novel DPP-4 inhibitor / metformin fixed-dose combination for type 2 diabetes, currently in Phase III. Detailed trial information is restricted to the Clinical team."
+    },
+    {
+     "n": 2,
+     "title": "Product Portfolio and Storage Conditions",
+     "text": "## 1. Portfolio at a glance\n\n| Brand | Molecule / strength | Dosage form | Therapy | Schedule | Made at |\n|---|---|---|---|---|---|\n| Glucosan-M 500 | Metformin 500 mg SR | Sustained-release tablet | Diabetes | H | Unit I – Changodar |\n| Cardivas 10 | Rosuvastatin 10 mg | Film-coated tablet | Cardiac | H | Unit I – Changodar |\n| Amlosan 5 | Amlodipine 5 mg | Uncoated tablet | Hypertension | H | Unit I – Changodar |\n| Pantosan 40 | Pantoprazole 40 mg | Gastro-resistant tablet | Gastro | H | Unit I – Changodar |\n| Sanjeevani Cough Relief Syrup | Dextromethorphan 10 mg + chlorpheniramine 2 mg per 5 mL | Oral syrup | Respiratory | H | Unit II – Baddi |\n| Dermacalm Cream | Mometasone furoate 0.1% w/w | Topical cream | Dermatology | H | Unit II – Baddi |\n\nPipeline (not for sale): SJ-2041, a DPP-4 inhibitor / metformin fixed-dose combination in Phase III."
+    }
+   ]
+  }
+ },
+ {
+  "id": 78,
+  "kind": "answerable",
+  "asker": "employee@nimbus.example",
+  "doc": "Design Doc – NimbusOps Multi-Region Active-Passive DR",
+  "q": "What RPO and RTO does the new NimbusOps DR design target?",
+  "reference": "RPO 5 minutes and RTO 30 minutes, inside the contractual 15 minutes / 1 hour.",
+  "A": {
+   "abstained": false,
+   "answer": "The new NimbusOps DR design targets an **RPO of 5 minutes** and an **RTO of 30 minutes** [1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Design Doc – NimbusOps Multi-Region Active-Passive DR",
+     "text": "## 2. Goals\n\n1. Keep the contractual RPO of 15 minutes and RTO of 1 hour with a wide margin. **Design targets: RPO of 5 minutes and RTO of 30 minutes.**\n2. Reduce manual steps from 14 to 3 or fewer (decide, approve, verify).\n3. Make the drill and a real failover use exactly the same automation."
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "The new NimbusOps DR design targets an **RPO of 5 minutes** and an **RTO of 30 minutes** [1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Design Doc – NimbusOps Multi-Region Active-Passive DR",
+     "text": "## 2. Goals\n\n1. Keep the contractual RPO of 15 minutes and RTO of 1 hour with a wide margin. **Design targets: RPO of 5 minutes and RTO of 30 minutes.**\n2. Reduce manual steps from 14 to 3 or fewer (decide, approve, verify).\n3. Make the drill and a real failover use exactly the same automation."
+    }
+   ]
+  }
+ },
+ {
+  "id": 79,
+  "kind": "denied",
+  "asker": "product@nimbus.example",
+  "doc": "Design Doc – NimbusOps Multi-Region Active-Passive DR",
+  "q": "What RPO and RTO does the new NimbusOps DR design target?",
+  "reference": "RPO 5 minutes and RTO 30 minutes, inside the contractual 15 minutes / 1 hour.",
+  "A": {
+   "abstained": false,
+   "answer": "The NimbusOps DR design targets an **RPO of 15 minutes** and an **RTO of 1 hour** [1][2].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Information Security Policy",
+     "text": "## 6.6 Business continuity\n\nCritical services have documented recovery objectives. For NimbusOps, the targets are RPO 15 minutes and RTO 1 hour, tested by a DR drill at least twice a year."
+    },
+    {
+     "n": 2,
+     "title": "NimbusOps Product FAQ",
+     "text": "### What happens if a whole data centre region fails?\n\nNimbusOps runs a warm standby in a second region. Our recovery objectives are a **recovery point objective (RPO) of 15 minutes** and a **recovery time objective (RTO) of 1 hour**. We test full regional failover twice a year, in April and October."
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "The NimbusOps DR design targets an **RPO of 15 minutes** and an **RTO of 1 hour** [1][2].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Information Security Policy",
+     "text": "## 6.6 Business continuity\n\nCritical services have documented recovery objectives. For NimbusOps, the targets are RPO 15 minutes and RTO 1 hour, tested by a DR drill at least twice a year."
+    },
+    {
+     "n": 2,
+     "title": "NimbusOps Product FAQ",
+     "text": "### What happens if a whole data centre region fails?\n\nNimbusOps runs a warm standby in a second region. Our recovery objectives are a **recovery point objective (RPO) of 15 minutes** and a **recovery time objective (RTO) of 1 hour**. We test full regional failover twice a year, in April and October."
+    }
+   ]
+  }
+ },
+ {
+  "id": 80,
+  "kind": "answerable",
+  "asker": "employee@nimbus.example",
+  "doc": "Disaster Recovery Drill Procedure",
+  "q": "What RPO and RTO were measured in the April 2026 full DR drill, and did it pass?",
+  "reference": "The 18 April 2026 full drill measured RPO 6 minutes and RTO 47 minutes and passed.",
+  "A": {
+   "abstained": false,
+   "answer": "Measured RPO was 6 minutes and measured RTO was 47 minutes; the drill passed. [1][2]",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Disaster Recovery Drill Procedure",
+     "text": "## 10. Results history\n\n| Drill date      | Type      | Measured RPO   | Measured RTO   | Result     | Main finding                       |\n|-----------------|-----------|----------------|----------------|------------|------------------------------------|\n| 19 October 2025 | Full      | 9 min          | 71 min         | Fail (RTO) | DNS script needed manual IAM fix   |\n| 17 January 2026 | Component | 4 min          | n/a            | Pass       | -                                  |\n| 18 April 2026   | Full      | 6 min          | 47 min         | Pass       | MSK offset translation took 11 min |\n| 18 July 2026    | Component | 3 min          | n/a            | Pass       | -                                  |\n\nThe next full regional drill is scheduled for 24 October 2026."
+    },
+    {
+     "n": 2,
+     "title": "Design Doc – NimbusOps Multi-Region Active-Passive DR",
+     "text": "## 1. Context\n\nNimbusOps commits to 99.9% monthly availability, an RPO of 15 minutes and an RTO of 1 hour. The primary region is AWS **ap-south-1 (Mumbai)** and the DR region is AWS **ap-south-2 (Hyderabad)**. All customer data must stay in India.\n\nToday the DR region is a warm standby at about 30% capacity. Failover is a manual sequence of runbook steps (NIM/ENG/RB-001 Section 6), coordinated on a SEV1 bridge. Recent full drills:\n\n| Drill | Measured RPO | Measured RTO | Result |\n|---|---|---|---|\n| 19 October 2025 | 9 min | 71 min | Fail (RTO) – DNS script needed a manual IAM fix |\n| 18 April 2026 | 6 min | 47 min | Pass – MSK offset translation took 11 min |\n\nWe pass, but with little margin. The April drill needed 14 manual commands from 4 people, and the RTO depends on Karpenter being able to scale the DR cluster from 30% to full capacity during a regional event, when other AWS customers will be doing the same."
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "In the 18 April 2026 full DR drill, the measured RPO was 6 minutes and the measured RTO was 47 minutes; the drill passed [1][2].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Disaster Recovery Drill Procedure",
+     "text": "## 10. Results history\n\n| Drill date      | Type      | Measured RPO   | Measured RTO   | Result     | Main finding                       |\n|-----------------|-----------|----------------|----------------|------------|------------------------------------|\n| 19 October 2025 | Full      | 9 min          | 71 min         | Fail (RTO) | DNS script needed manual IAM fix   |\n| 17 January 2026 | Component | 4 min          | n/a            | Pass       | -                                  |\n| 18 April 2026   | Full      | 6 min          | 47 min         | Pass       | MSK offset translation took 11 min |\n| 18 July 2026    | Component | 3 min          | n/a            | Pass       | -                                  |\n\nThe next full regional drill is scheduled for 24 October 2026."
+    },
+    {
+     "n": 2,
+     "title": "Design Doc – NimbusOps Multi-Region Active-Passive DR",
+     "text": "## 1. Context\n\nNimbusOps commits to 99.9% monthly availability, an RPO of 15 minutes and an RTO of 1 hour. The primary region is AWS **ap-south-1 (Mumbai)** and the DR region is AWS **ap-south-2 (Hyderabad)**. All customer data must stay in India.\n\nToday the DR region is a warm standby at about 30% capacity. Failover is a manual sequence of runbook steps (NIM/ENG/RB-001 Section 6), coordinated on a SEV1 bridge. Recent full drills:\n\n| Drill | Measured RPO | Measured RTO | Result |\n|---|---|---|---|\n| 19 October 2025 | 9 min | 71 min | Fail (RTO) – DNS script needed a manual IAM fix |\n| 18 April 2026 | 6 min | 47 min | Pass – MSK offset translation took 11 min |\n\nWe pass, but with little margin. The April drill needed 14 manual commands from 4 people, and the RTO depends on Karpenter being able to scale the DR cluster from 30% to full capacity during a regional event, when other AWS customers will be doing the same."
+    }
+   ]
+  }
+ },
+ {
+  "id": 81,
+  "kind": "denied",
+  "asker": "hr@nimbus.example",
+  "doc": "Disaster Recovery Drill Procedure",
+  "q": "What RPO and RTO were measured in the April 2026 full DR drill, and did it pass?",
+  "reference": "The 18 April 2026 full drill measured RPO 6 minutes and RTO 47 minutes and passed.",
+  "A": {
+   "abstained": false,
+   "answer": "The documents state the target RPO is 15 minutes and RTO is 1 hour, and that full regional failover tests occur twice a year in April and October [1][2]. However, they do not provide the actual measured RPO/RTO from the April 2026 drill or whether it passed.",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Information Security Policy",
+     "text": "## 6.6 Business continuity\n\nCritical services have documented recovery objectives. For NimbusOps, the targets are RPO 15 minutes and RTO 1 hour, tested by a DR drill at least twice a year."
+    },
+    {
+     "n": 2,
+     "title": "NimbusOps Product FAQ",
+     "text": "### What happens if a whole data centre region fails?\n\nNimbusOps runs a warm standby in a second region. Our recovery objectives are a **recovery point objective (RPO) of 15 minutes** and a **recovery time objective (RTO) of 1 hour**. We test full regional failover twice a year, in April and October."
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "The documents state that NimbusOps targets are **RPO 15 minutes** and **RTO 1 hour**, and that full regional failover drills are conducted twice a year in April and October [1][2]. However, they do not provide the measured RPO/RTO results or pass/fail status for the specific April 2026 drill.",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Information Security Policy",
+     "text": "## 6.6 Business continuity\n\nCritical services have documented recovery objectives. For NimbusOps, the targets are RPO 15 minutes and RTO 1 hour, tested by a DR drill at least twice a year."
+    },
+    {
+     "n": 2,
+     "title": "NimbusOps Product FAQ",
+     "text": "### What happens if a whole data centre region fails?\n\nNimbusOps runs a warm standby in a second region. Our recovery objectives are a **recovery point objective (RPO) of 15 minutes** and a **recovery time objective (RTO) of 1 hour**. We test full regional failover twice a year, in April and October."
+    }
+   ]
+  }
+ },
+ {
+  "id": 82,
+  "kind": "answerable",
+  "asker": "product@nimbus.example",
+  "doc": "BRD – NimbusOps AI Alert Summaries",
+  "q": "What alert-noise reduction is the AI alert summaries feature targeting?",
+  "reference": "Cut median notifications per incident by 60%, from 23 to 9 or fewer, within 6 months of GA.",
+  "A": {
+   "abstained": false,
+   "answer": "The AI alert summaries feature targets a **60% reduction in alert noise**, measured by reducing the median notifications sent per incident from 23 to 9 or fewer within 6 months after GA [1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "BRD – NimbusOps AI Alert Summaries",
+     "text": "### 2. Goals and success metrics\n\n| **#**   | **Goal**             | **Metric**                                           | **Baseline**         | **Target (6 months after GA)**    |\n|---------|----------------------|------------------------------------------------------|----------------------|-----------------------------------|\n| G1      | Cut alert noise      | Notifications sent per incident (median)             | 23                   | **Reduce by 60%** (to 9 or fewer) |\n| G2      | Faster understanding | Mean time to acknowledge (MTTA)                      | 11 min               | Reduce by 30%                     |\n| G3      | Useful summaries     | Summaries rated \"helpful\" by users                   | n/a                  | 75% or more                       |\n| G4      | Correct grouping     | Alerts wrongly grouped (sampled monthly)             | n/a                  | Below 5%                          |\n| G5      | Retention            | Net revenue retention of customers using the feature | 116% (all NimbusOps) | 120%                              |"
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "The AI alert‑summaries feature aims to cut alert noise by **reducing notifications per incident by 60 % – from a median of 23 down to 9 or fewer**【1】.",
+   "cited": []
+  }
+ },
+ {
+  "id": 83,
+  "kind": "answerable",
+  "asker": "analyst@kaveri.example",
+  "doc": "IC Meeting 47 Minutes – 12 March 2026",
+  "q": "What allocation range did IC 47 approve for the railways capex theme in the Flexi Cap fund?",
+  "reference": "4% to 6% of NAV, with a single-stock cap of 3.0% within the theme.",
+  "A": {
+   "abstained": false,
+   "answer": "IC 47 approved a **4%–6% of NAV** allocation range for the railways capex theme in the Kaveri Flexi Cap Fund [1][2].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Capital Goods and Railways Capex Theme",
+     "text": "## 7. Allocation approved at IC 47\n\n| Portfolio             | Theme allocation range         | Single-stock cap within theme   | Implementation timeline   |\n|-----------------------|--------------------------------|---------------------------------|---------------------------|\n| Kaveri Flexi Cap Fund | 4%-6% of NAV                   | 3.0%                            | By 30 April 2026          |\n| Kaveri Bluechip Fund  | 2%-4% of NAV (large caps only) | Per scheme limit                | By 31 May 2026            |\n\n\n\n\n\n| Kaveri Small Cap Opportunities   | Up to 5% of NAV             | 1.5%   | Opportunistic; subject to liquidity   |\n|----------------------------------|-----------------------------|--------|---------------------------------------|\n| Kaveri Focused Equity PMS        | Up to 8% of model portfolio | 5%     | By 30 April 2026                      |\n\nTotal portfolio exposure to the theme at implementation is expected to be about ₹950 crore across all schemes."
+    },
+    {
+     "n": 2,
+     "title": "IC Meeting 47 Minutes – 12 March 2026",
+     "text": "## 5. Theme proposal: Indian Railways capex\n\nTanvi Joshi presented the theme paper Capital Goods and Railways Capex Theme. Key points:\n\n- Railway capex budget estimate of ₹2.65 lakh crore for FY27, with the mix moving towards signalling, automatic train protection and rolling stock.\n- Six theme companies with a combined order book of ₹38,600 crore (3.9x trailing revenue).\n- Valuation is the main risk; the sector trades at 34x one-year forward earnings against a 10-year average of 26x.\n\nDiscussion: The MD &amp; CEO asked how the theme interacts with the Small Cap liquidity rule. The CRO confirmed that any small-cap theme position must keep the fund within its liquidity floor (at least 15% of the portfolio liquidatable in 5 days at 30% participation) and that new positions would be assessed for liquidity before purchase. Divya Menon proposed that Flexi Cap take the lead. The CCO reminded members that theme stocks under research initiation would be added to the research watch list.\n\nResolution 47/1: RESOLVED that the Committee approves the adoption of Indian Railways capex as an investment theme across Kaveri equity portfolios, with the following allocation ranges:\n\nVoting: 6 for, 0 against. Carried unanimously.\n\n| Portfolio                      | Allocation range               | Single-stock cap within theme   |\n|--------------------------------|--------------------------------|---------------------------------|\n| Kaveri Flexi Cap Fund          | 4%-6% of NAV                   | 3.0%                            |\n| Kaveri Bluechip Fund           | 2%-4% of NAV (large caps only) | Per scheme limit                |\n| Kaveri Small Cap Opportunities | Up to 5% of NAV                | 1.5%                            |\n| Kaveri Focused Equity PMS      | Up to 8% of model portfol"
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "IC 47 approved a **4%–6% of NAV** allocation range for the railways capex theme in the Kaveri Flexi Cap Fund [1][2].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Capital Goods and Railways Capex Theme",
+     "text": "## 7. Allocation approved at IC 47\n\n| Portfolio             | Theme allocation range         | Single-stock cap within theme   | Implementation timeline   |\n|-----------------------|--------------------------------|---------------------------------|---------------------------|\n| Kaveri Flexi Cap Fund | 4%-6% of NAV                   | 3.0%                            | By 30 April 2026          |\n| Kaveri Bluechip Fund  | 2%-4% of NAV (large caps only) | Per scheme limit                | By 31 May 2026            |\n\n\n\n\n\n| Kaveri Small Cap Opportunities   | Up to 5% of NAV             | 1.5%   | Opportunistic; subject to liquidity   |\n|----------------------------------|-----------------------------|--------|---------------------------------------|\n| Kaveri Focused Equity PMS        | Up to 8% of model portfolio | 5%     | By 30 April 2026                      |\n\nTotal portfolio exposure to the theme at implementation is expected to be about ₹950 crore across all schemes."
+    },
+    {
+     "n": 2,
+     "title": "IC Meeting 47 Minutes – 12 March 2026",
+     "text": "## 5. Theme proposal: Indian Railways capex\n\nTanvi Joshi presented the theme paper Capital Goods and Railways Capex Theme. Key points:\n\n- Railway capex budget estimate of ₹2.65 lakh crore for FY27, with the mix moving towards signalling, automatic train protection and rolling stock.\n- Six theme companies with a combined order book of ₹38,600 crore (3.9x trailing revenue).\n- Valuation is the main risk; the sector trades at 34x one-year forward earnings against a 10-year average of 26x.\n\nDiscussion: The MD &amp; CEO asked how the theme interacts with the Small Cap liquidity rule. The CRO confirmed that any small-cap theme position must keep the fund within its liquidity floor (at least 15% of the portfolio liquidatable in 5 days at 30% participation) and that new positions would be assessed for liquidity before purchase. Divya Menon proposed that Flexi Cap take the lead. The CCO reminded members that theme stocks under research initiation would be added to the research watch list.\n\nResolution 47/1: RESOLVED that the Committee approves the adoption of Indian Railways capex as an investment theme across Kaveri equity portfolios, with the following allocation ranges:\n\nVoting: 6 for, 0 against. Carried unanimously.\n\n| Portfolio                      | Allocation range               | Single-stock cap within theme   |\n|--------------------------------|--------------------------------|---------------------------------|\n| Kaveri Flexi Cap Fund          | 4%-6% of NAV                   | 3.0%                            |\n| Kaveri Bluechip Fund           | 2%-4% of NAV (large caps only) | Per scheme limit                |\n| Kaveri Small Cap Opportunities | Up to 5% of NAV                | 1.5%                            |\n| Kaveri Focused Equity PMS      | Up to 8% of model portfol"
+    }
+   ]
+  }
+ }
+]

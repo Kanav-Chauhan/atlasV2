@@ -1,0 +1,1020 @@
+[
+ {
+  "id": 84,
+  "kind": "answerable",
+  "asker": "finance@nimbus.example",
+  "doc": "Accounts Payable and Vendor Payment Policy",
+  "q": "What are Nimbus's standard vendor payment terms?",
+  "reference": "45 days from receipt of a valid invoice; MSME vendors are always paid within 45 days.",
+  "A": {
+   "abstained": false,
+   "answer": "Nimbus's standard vendor payment terms are **45 days from receipt of a valid invoice** for standard vendors [1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Accounts Payable and Vendor Payment Policy",
+     "text": "## 6. Payment terms and payment runs\n\n| Vendor type                                   | Standard payment terms                                                               |\n|-----------------------------------------------|--------------------------------------------------------------------------------------|\n| Standard vendors                              | 45 days from receipt of a valid invoice                                              |\n| Micro and small enterprises (MSME registered) | Within 45 days, as required by the MSMED Act; never later                            |\n| Utilities, statutory dues, rent               | By the due date                                                                      |\n| Subcontractors on client projects             | 45 days, or back-to-back with client payment only if agreed in writing at onboarding |\n| Overseas vendors                              | 45 days, paid in the invoice currency via the bank's foreign remittance desk         |\n\n- Vendor payment runs happen every Tuesday and Friday. An invoice is paid in the last run on or before its due date.\n- Early payment is allowed only for a discount of at least 1.5% and with Financial Controller approval.\n- Advance payments need CFO approval and are limited to 20% of the PO value, except for software subscriptions and event bookings, which may be paid fully in advance."
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "Standard vendors are paid 45 days from receipt of a valid invoice, in the Tuesday or Friday payment run on or before the due date. [1]",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Accounts Payable and Vendor Payment Policy",
+     "text": "## 6. Payment terms and payment runs\n\n| Vendor type                                   | Standard payment terms                                                               |\n|-----------------------------------------------|--------------------------------------------------------------------------------------|\n| Standard vendors                              | 45 days from receipt of a valid invoice                                              |\n| Micro and small enterprises (MSME registered) | Within 45 days, as required by the MSMED Act; never later                            |\n| Utilities, statutory dues, rent               | By the due date                                                                      |\n| Subcontractors on client projects             | 45 days, or back-to-back with client payment only if agreed in writing at onboarding |\n| Overseas vendors                              | 45 days, paid in the invoice currency via the bank's foreign remittance desk         |\n\n- Vendor payment runs happen every Tuesday and Friday. An invoice is paid in the last run on or before its due date.\n- Early payment is allowed only for a discount of at least 1.5% and with Financial Controller approval.\n- Advance payments need CFO approval and are limited to 20% of the PO value, except for software subscriptions and event bookings, which may be paid fully in advance."
+    }
+   ]
+  }
+ },
+ {
+  "id": 85,
+  "kind": "answerable",
+  "asker": "employee@nimbus.example",
+  "doc": "Hybrid Work Policy",
+  "q": "What are the default anchor days for office attendance?",
+  "reference": "Tuesday and Wednesday, as part of the 3 office days a week requirement.",
+  "A": {
+   "abstained": false,
+   "answer": "The default anchor days are Tuesday and Wednesday. [1]",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Hybrid Work Policy",
+     "text": "## 4.2 Anchor days\n\nEach business unit sets two anchor days on which the whole team is expected in the office. The default anchor days are Tuesday and Wednesday. A unit head may choose different anchor days by informing People Operations at least 30 days in advance."
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "The default anchor days are Tuesday and Wednesday. [1]",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Hybrid Work Policy",
+     "text": "## 4.2 Anchor days\n\nEach business unit sets two anchor days on which the whole team is expected in the office. The default anchor days are Tuesday and Wednesday. A unit head may choose different anchor days by informing People Operations at least 30 days in advance."
+    }
+   ]
+  }
+ },
+ {
+  "id": 86,
+  "kind": "answerable",
+  "asker": "rm@kaveri.example",
+  "doc": "Fee Schedule and Exit Loads",
+  "q": "What are the terms of the hybrid fee option for Kaveri's PMS?",
+  "reference": "1.0% p.a. management fee plus 20% of returns above a 10% p.a. hurdle, with a high-water mark.",
+  "A": {
+   "abstained": false,
+   "answer": "The hybrid option (Option B) charges a 1.0% p.a. management fee plus a 20% performance fee on returns above a 10% p.a. hurdle, subject to a high-water mark [1][2][3]. Management fees are charged quarterly on daily average AUM, while the performance fee is charged annually on the account anniversary or on full withdrawal [4][3]. GST applies at the prevailing rate, operating expenses (custody, fund accounting, demat, audit) are capped at 0.25% p.a., brokerage is at actuals, and exit loads are 3% in year 1, 2% in year 2, and 1% in year 3 [1][4][3]. Clients may switch between Option A and Option B once a year, effective from the next anniversary date [1][3].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Sales Sheet – Kaveri Focused Equity PMS (for Relationship Managers)",
+     "text": "## 4. Fee options you can offer\n\n| Option            | Management fee   | Performance fee                                              | Best for                                                    |\n|-------------------|------------------|--------------------------------------------------------------|-------------------------------------------------------------|\n| Option A - Fixed  | 2.0% p.a.        | None                                                         | Clients who want predictable costs                          |\n| Option B - Hybrid | 1.0% p.a.        | 20% of returns above a 10% p.a. hurdle, with high-water mark | Clients who prefer to pay more only when returns are strong |\n\n- These are the only two fee options. RMs may not offer discounts, rebates or a custom fee. Any nonstandard fee needs CFO and MD &amp; CEO approval and is normally offered only to institutional mandates.\n- The client may switch option once a year, on the account anniversary.\n- Other charges: custody, fund accounting, demat and audit capped at 0.25% p.a.; brokerage at actuals; no onboarding fee. GST extra.\n- Exit load: 3% in year 1, 2% in year 2, 1% in year 3, nil after 3 years (from the date of each contribution)."
+    },
+    {
+     "n": 2,
+     "title": "Fee Schedule and Exit Loads",
+     "text": "## 2. Kaveri Focused Equity PMS\n\n- 2.1 Minimum investment: ₹50 lakh. The Client chooses one fee option at onboarding.\n\n| Fee option        | Management fee   | Performance fee             | Hurdle   | High-water mark   |\n|-------------------|------------------|-----------------------------|----------|-------------------|\n| Option A - Fixed  | 2.0% p.a.        | None                        | -        | -                 |\n| Option B - Hybrid | 1.0% p.a.        | 20% of returns above hurdle | 10% p.a. | Yes               |"
+    },
+    {
+     "n": 3,
+     "title": "PMS Client Agreement – Standard Terms",
+     "text": "## 5. Fees and Charges\n\n- 5.1 The Client shall choose one of the following fee structures in the Client Schedule. The fees are detailed in the Fee Schedule and Exit Loads (KCA/PRD/AGR-002).\n- 5.2 Management fees are charged quarterly in arrears. Performance fees are charged only once a year, on the anniversary of the Portfolio's activation, or on full withdrawal.\n- 5.3 Goods and Services Tax at the prevailing rate is charged in addition to all fees.\n- 5.4 Operating expenses (custody, fund accounting, demat and audit charges) are capped at 0.25% p.a. of average Portfolio value. Brokerage is charged at actuals and disclosed in the quarterly report.\n- 5.5 The Client may switch between Option A and Option B once a year, effective from the next anniversary date.\n\n| Option     | Management fee                             | Performance fee                                                    |\n|------------|--------------------------------------------|--------------------------------------------------------------------|\n| A - Fixed  | 2.0% p.a. of average daily Portfolio value | None                                                               |\n| B - Hybrid | 1.0% p.a. of average daily Portfolio value | 20% of returns above a 10% p.a. hurdle, subject to High-Water Mark |"
+    },
+    {
+     "n": 4,
+     "title": "Kaveri Focused Equity PMS Presentation Summary",
+     "text": "### 6. Fee options\n\nClients choose one fee structure at onboarding. The structure may be changed once a year, on the account anniversary.\n\n| **Option**        | **Management fee**   | **Performance fee**                                             |\n|-------------------|----------------------|-----------------------------------------------------------------|\n| Option A – Fixed  | 2.0% per annum       | None                                                            |\n| Option B – Hybrid | 1.0% per annum       | 20% of returns above a 10% hurdle, subject to a high-water mark |\n\n- Fees are charged quarterly on daily average AUM; the performance fee under Option B is charged annually on the account anniversary.\n- GST applies at the prevailing rate.\n- Exit loads and other charges are as set out in the PMS Client Agreement and the Disclosure Document.\n\n**Illustration (Option B):** A client invests ₹1 crore. In year 1 the portfolio grows to ₹1.18 crore before performance fees (an 18% return). The return above the 10% hurdle is 8%, i.e. ₹8 lakh, so the performance fee is 20% of ₹8 lakh = ₹1.6 lakh, plus GST. The high-water mark is reset to the post-fee value."
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "The hybrid fee option (Option B) for Kaveri Focused Equity PMS has a **1.0% p.a. management fee** charged quarterly on daily average AUM, plus a **20% performance fee on returns above a 10% p.a. hurdle**, subject to a **high-water mark**. The performance fee is charged annually on the account anniversary (or on full withdrawal). GST applies at the prevailing rate. Clients may switch between Option A and Option B once a year, effective from the next anniversary date. [1][2][3][4]",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Sales Sheet – Kaveri Focused Equity PMS (for Relationship Managers)",
+     "text": "## 4. Fee options you can offer\n\n| Option            | Management fee   | Performance fee                                              | Best for                                                    |\n|-------------------|------------------|--------------------------------------------------------------|-------------------------------------------------------------|\n| Option A - Fixed  | 2.0% p.a.        | None                                                         | Clients who want predictable costs                          |\n| Option B - Hybrid | 1.0% p.a.        | 20% of returns above a 10% p.a. hurdle, with high-water mark | Clients who prefer to pay more only when returns are strong |\n\n- These are the only two fee options. RMs may not offer discounts, rebates or a custom fee. Any nonstandard fee needs CFO and MD &amp; CEO approval and is normally offered only to institutional mandates.\n- The client may switch option once a year, on the account anniversary.\n- Other charges: custody, fund accounting, demat and audit capped at 0.25% p.a.; brokerage at actuals; no onboarding fee. GST extra.\n- Exit load: 3% in year 1, 2% in year 2, 1% in year 3, nil after 3 years (from the date of each contribution)."
+    },
+    {
+     "n": 2,
+     "title": "Kaveri Focused Equity PMS Presentation Summary",
+     "text": "### 6. Fee options\n\nClients choose one fee structure at onboarding. The structure may be changed once a year, on the account anniversary.\n\n| **Option**        | **Management fee**   | **Performance fee**                                             |\n|-------------------|----------------------|-----------------------------------------------------------------|\n| Option A – Fixed  | 2.0% per annum       | None                                                            |\n| Option B – Hybrid | 1.0% per annum       | 20% of returns above a 10% hurdle, subject to a high-water mark |\n\n- Fees are charged quarterly on daily average AUM; the performance fee under Option B is charged annually on the account anniversary.\n- GST applies at the prevailing rate.\n- Exit loads and other charges are as set out in the PMS Client Agreement and the Disclosure Document.\n\n**Illustration (Option B):** A client invests ₹1 crore. In year 1 the portfolio grows to ₹1.18 crore before performance fees (an 18% return). The return above the 10% hurdle is 8%, i.e. ₹8 lakh, so the performance fee is 20% of ₹8 lakh = ₹1.6 lakh, plus GST. The high-water mark is reset to the post-fee value."
+    },
+    {
+     "n": 3,
+     "title": "Fee Schedule and Exit Loads",
+     "text": "## 2. Kaveri Focused Equity PMS\n\n- 2.1 Minimum investment: ₹50 lakh. The Client chooses one fee option at onboarding.\n\n| Fee option        | Management fee   | Performance fee             | Hurdle   | High-water mark   |\n|-------------------|------------------|-----------------------------|----------|-------------------|\n| Option A - Fixed  | 2.0% p.a.        | None                        | -        | -                 |\n| Option B - Hybrid | 1.0% p.a.        | 20% of returns above hurdle | 10% p.a. | Yes               |"
+    },
+    {
+     "n": 4,
+     "title": "PMS Client Agreement – Standard Terms",
+     "text": "## 5. Fees and Charges\n\n- 5.1 The Client shall choose one of the following fee structures in the Client Schedule. The fees are detailed in the Fee Schedule and Exit Loads (KCA/PRD/AGR-002).\n- 5.2 Management fees are charged quarterly in arrears. Performance fees are charged only once a year, on the anniversary of the Portfolio's activation, or on full withdrawal.\n- 5.3 Goods and Services Tax at the prevailing rate is charged in addition to all fees.\n- 5.4 Operating expenses (custody, fund accounting, demat and audit charges) are capped at 0.25% p.a. of average Portfolio value. Brokerage is charged at actuals and disclosed in the quarterly report.\n- 5.5 The Client may switch between Option A and Option B once a year, effective from the next anniversary date.\n\n| Option     | Management fee                             | Performance fee                                                    |\n|------------|--------------------------------------------|--------------------------------------------------------------------|\n| A - Fixed  | 2.0% p.a. of average daily Portfolio value | None                                                               |\n| B - Hybrid | 1.0% p.a. of average daily Portfolio value | 20% of returns above a 10% p.a. hurdle, subject to High-Water Mark |"
+    }
+   ]
+  }
+ },
+ {
+  "id": 87,
+  "kind": "not_found",
+  "asker": "cfo@kaveri.example",
+  "doc": null,
+  "q": "What brokerage rate per trade does Kaveri pay its equity brokers?",
+  "reference": "not found",
+  "A": {
+   "abstained": false,
+   "answer": "The provided documents do not mention the brokerage rate Kaveri pays its equity brokers.",
+   "cited": []
+  },
+  "B": {
+   "abstained": true,
+   "answer": "Not found in your documents.\nNo document you can open answers this, so Atlas did not guess.",
+   "cited": []
+  }
+ },
+ {
+  "id": 88,
+  "kind": "answerable",
+  "asker": "employee@nimbus.example",
+  "doc": "SEV1 Incident Response Runbook",
+  "q": "What counts as a SEV1 incident and how fast must on-call respond?",
+  "reference": "A customer-wide outage or suspected data breach; response within 15 minutes, with the CISO and CTO paged.",
+  "A": {
+   "abstained": false,
+   "answer": "SEV1 covers a customer-wide outage, or a suspected data breach [1]; the Incident Reporting Procedure defines it as a customer-wide outage or a confirmed breach of Confidential/Restricted data [2]. On-call must acknowledge and start working within 15 minutes, 24x7 [1][2].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "SEV1 Incident Response Runbook",
+     "text": "## 2. Severity levels\n\n| Severity | Definition | Response time | Who is paged |\n|---|---|---|---|\n| SEV1 | Customer-wide outage, or data breach suspected | 15 min | Primary + secondary on-call, Incident Commander rota, CISO and CTO |\n| SEV2 | Service degraded for many customers (slow, partial features down) | 30 min | Primary on-call, Engineering Manager |\n| SEV3 | Single customer impacted | 4 h | Primary on-call (business hours escalation) |\n| SEV4 | Minor issue, no customer impact | Next business day | Ticket only |\n\nWhen in doubt, declare the higher severity. Downgrading later is free; a late SEV1 is not."
+    },
+    {
+     "n": 2,
+     "title": "Incident Reporting Procedure",
+     "text": "## 5. Severity classification\n\nThe SOC or on-call incident commander assigns the severity. Severity can be raised or lowered as more is learnt.\n\n| Severity   | Definition                                                                           | Response time     | Who is engaged                                                       |\n|------------|--------------------------------------------------------------------------------------|-------------------|----------------------------------------------------------------------|\n| SEV1       | Customer-wide outage, or confirmed breach of Confidential/Restricted data            | 15 minutes        | Incident commander; CISO and CTO paged; Head of Infrastructure & SRE |\n| SEV2       | Significant degradation affecting many customers, or a contained security compromise | 30 minutes        | Incident commander, service owner, SOC lead                          |\n| SEV3       | Issue affecting a single customer or user, or a policy violation without data loss   | 4 hours           | Service team or SOC analyst                                          |\n| SEV4       | Minor issue, no customer impact                                                      | Next business day | Owning team via ticket                                               |\n\nResponse time means the time within which a responder acknowledges and starts working, 24x7 for SEV1 and SEV2, and during business hours for SEV3 and SEV4."
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "A SEV1 incident is defined as a **customer-wide outage** or a **data breach** (the runbook says “suspected” [1]; the reporting procedure says “confirmed breach of Confidential/Restricted data” [2]). On-call responders must acknowledge and start working within **15 minutes**, 24×7 [1][2].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "SEV1 Incident Response Runbook",
+     "text": "## 2. Severity levels\n\n| Severity | Definition | Response time | Who is paged |\n|---|---|---|---|\n| SEV1 | Customer-wide outage, or data breach suspected | 15 min | Primary + secondary on-call, Incident Commander rota, CISO and CTO |\n| SEV2 | Service degraded for many customers (slow, partial features down) | 30 min | Primary on-call, Engineering Manager |\n| SEV3 | Single customer impacted | 4 h | Primary on-call (business hours escalation) |\n| SEV4 | Minor issue, no customer impact | Next business day | Ticket only |\n\nWhen in doubt, declare the higher severity. Downgrading later is free; a late SEV1 is not."
+    },
+    {
+     "n": 2,
+     "title": "Incident Reporting Procedure",
+     "text": "## 5. Severity classification\n\nThe SOC or on-call incident commander assigns the severity. Severity can be raised or lowered as more is learnt.\n\n| Severity   | Definition                                                                           | Response time     | Who is engaged                                                       |\n|------------|--------------------------------------------------------------------------------------|-------------------|----------------------------------------------------------------------|\n| SEV1       | Customer-wide outage, or confirmed breach of Confidential/Restricted data            | 15 minutes        | Incident commander; CISO and CTO paged; Head of Infrastructure & SRE |\n| SEV2       | Significant degradation affecting many customers, or a contained security compromise | 30 minutes        | Incident commander, service owner, SOC lead                          |\n| SEV3       | Issue affecting a single customer or user, or a policy violation without data loss   | 4 hours           | Service team or SOC analyst                                          |\n| SEV4       | Minor issue, no customer impact                                                      | Next business day | Owning team via ticket                                               |\n\nResponse time means the time within which a responder acknowledges and starts working, 24x7 for SEV1 and SEV2, and during business hours for SEV3 and SEV4."
+    }
+   ]
+  }
+ },
+ {
+  "id": 89,
+  "kind": "answerable",
+  "asker": "owner@kaveri.example",
+  "doc": "IC Meeting 48 Minutes – 9 April 2026",
+  "q": "What did IC 48 decide about Vindhyagiri Cementworks and why?",
+  "reference": "The Small Cap fund was to exit its entire Vindhyagiri Cementworks position due to governance concerns, in an orderly way by 15 May 2026, and the stock was put on the do-not-buy list for at least 24 months.",
+  "A": {
+   "abstained": false,
+   "answer": "IC 48 resolved to exit the Kaveri Small Cap Opportunities fund’s entire position in Vindhyagiri Cementworks Ltd by 15 May 2026 in an orderly manner (selling no more than 30 % of daily traded volume) and to place the stock on the “do not buy” list for all schemes for at least 24 months [1][2][3]. The decision was driven by governance concerns: the statutory auditor resigned in February 2026 citing inadequate information on related‑party transactions, ₹186 crore of advances to a promoter‑group entity lacked shareholder approval, and promoter pledges rose from 18 % to 46 % in nine months [4]. The committee concluded the investment thesis (regional cement consolidation) no longer outweighed these risks [1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "IC Meeting 48 Minutes – 9 April 2026",
+     "text": "## 4. a 21-day delay in filing Q3 FY26 results.\n\nMembers agreed that the investment thesis (regional cement consolidation) no longer outweighed the governance risk. The CCO confirmed that no member of the Committee held Vindhyagiri Cementworks shares personally.\n\nResolution 48/3: RESOLVED that the Kaveri Small Cap Opportunities fund exit its entire position in Vindhyagiri Cementworks Ltd due to governance concerns, in an orderly manner by 15 May 2026, selling no more than 30% of the stock's daily traded volume, and that Vindhyagiri Cementworks be placed on the internal \"do not buy\" list for all schemes for a minimum of 24 months.\n\nVoting: 5 for, 0 against; Rahul Saxena did not vote. Carried."
+    },
+    {
+     "n": 2,
+     "title": "Vindhyagiri Cementworks Exit Note",
+     "text": "## 1. Recommendation\n\nExit the entire holding in Vindhyagiri Cementworks Ltd from Kaveri Small Cap Opportunities due to governance concerns, in an orderly manner by 15 May 2026, and place the stock on the \"do not buy\" list for all schemes for at least 24 months.\n\nOutcome: approved at IC 48 on 9 April 2026 as Resolution 48/3 (5 for, 0 against; the fund manager did not vote)."
+    },
+    {
+     "n": 3,
+     "title": "Small Cap Liquidity Breach Remediation Plan",
+     "text": "Vindhyagiri Cementworks will be sold in full by 15 May 2026, as decided by Investment Committee 48 for governance reasons (see the Vindhyagiri Cementworks Exit Note); its sale is part of this plan.\n\n3.2 Proceeds will be redeployed into existing holdings that can be exited within 5 days, chiefly in the capital goods and financials buckets, subject to the 25% sector limit."
+    },
+    {
+     "n": 4,
+     "title": "IC Meeting 48 Minutes – 9 April 2026",
+     "text": "## 6. Exit from Vindhyagiri Cementworks Ltd (Small Cap)\n\nRahul Saxena presented the Vindhyagiri Cementworks Exit Note. The fund held 1.1% of NAV (about ₹25 crore) in Vindhyagiri Cementworks Ltd at 31 March 2026. The governance concerns are:\n\n1. resignation of the statutory auditor in February 2026, citing inadequate information on related-party transactions;\n2. ₹186 crore of advances to a promoter-group entity, not approved by shareholders;\n3. promoter pledge rising from 18% to 46% of their holding in nine months;"
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "IC 48 resolved that the Kaveri Small Cap Opportunities fund exit its entire position in Vindhyagiri Cementworks Ltd by 15 May 2026 in an orderly manner, selling no more than 30 % of daily traded volume, and place the stock on the internal “do not buy” list for all schemes for at least 24 months [1][2]. The decision was driven by governance concerns: the statutory auditor’s resignation citing inadequate information on related‑party transactions, ₹186 crore of advances to a promoter‑group entity without shareholder approval, and promoter pledge rising from 18 % to 46 % in nine months, which led members to conclude the investment thesis no longer outweighed the governance risk [1][3].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "IC Meeting 48 Minutes – 9 April 2026",
+     "text": "## 4. a 21-day delay in filing Q3 FY26 results.\n\nMembers agreed that the investment thesis (regional cement consolidation) no longer outweighed the governance risk. The CCO confirmed that no member of the Committee held Vindhyagiri Cementworks shares personally.\n\nResolution 48/3: RESOLVED that the Kaveri Small Cap Opportunities fund exit its entire position in Vindhyagiri Cementworks Ltd due to governance concerns, in an orderly manner by 15 May 2026, selling no more than 30% of the stock's daily traded volume, and that Vindhyagiri Cementworks be placed on the internal \"do not buy\" list for all schemes for a minimum of 24 months.\n\nVoting: 5 for, 0 against; Rahul Saxena did not vote. Carried."
+    },
+    {
+     "n": 2,
+     "title": "Vindhyagiri Cementworks Exit Note",
+     "text": "## 1. Recommendation\n\nExit the entire holding in Vindhyagiri Cementworks Ltd from Kaveri Small Cap Opportunities due to governance concerns, in an orderly manner by 15 May 2026, and place the stock on the \"do not buy\" list for all schemes for at least 24 months.\n\nOutcome: approved at IC 48 on 9 April 2026 as Resolution 48/3 (5 for, 0 against; the fund manager did not vote)."
+    },
+    {
+     "n": 3,
+     "title": "IC Meeting 48 Minutes – 9 April 2026",
+     "text": "## 6. Exit from Vindhyagiri Cementworks Ltd (Small Cap)\n\nRahul Saxena presented the Vindhyagiri Cementworks Exit Note. The fund held 1.1% of NAV (about ₹25 crore) in Vindhyagiri Cementworks Ltd at 31 March 2026. The governance concerns are:\n\n1. resignation of the statutory auditor in February 2026, citing inadequate information on related-party transactions;\n2. ₹186 crore of advances to a promoter-group entity, not approved by shareholders;\n3. promoter pledge rising from 18% to 46% of their holding in nine months;"
+    }
+   ]
+  }
+ },
+ {
+  "id": 90,
+  "kind": "answerable",
+  "asker": "owner@sanjeevani.example",
+  "doc": "Board Meeting Minutes – 22 April 2026",
+  "q": "What dividend did the Board recommend for FY2025-26?",
+  "reference": "A final dividend of ₹4.50 per equity share (45% on ₹10 face value), about ₹55.8 crore in total, subject to AGM approval.",
+  "A": {
+   "abstained": false,
+   "answer": "The Board recommended a final dividend of **₹4.50 per equity share** (face value ₹10 each, 45%) for FY2025-26, subject to shareholder approval at the 32nd AGM [1][2][3][4].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Board Meeting Minutes – 22 April 2026",
+     "text": "## 4.2 Dividend\n\nResolution 4.2: RESOLVED THAT a final dividend of ₹4.50 per equity share of face value ₹10 each (45%) for FY2025-26 be and is hereby recommended for the approval of the shareholders at the 32nd Annual General Meeting. The total outflow will be approximately ₹55.8 crore on 12.4 crore equity shares. The record date will be fixed by the Company Secretary."
+    },
+    {
+     "n": 2,
+     "title": "FY2025-26 Annual Results Summary",
+     "text": "## 1. Highlights\n\n- Revenue from operations of ₹2,460 crore, up 11.1% from ₹2,215 crore in FY2024-25.\n- Domestic business 58% of revenue (₹1,426.8 crore); exports 42% (₹1,033.2 crore).\n- EBITDA of ₹548.6 crore, margin 22.3% (FY25: 21.0%).\n- Profit after tax of ₹333.6 crore, up 18.5%.\n- R&amp;D spend of ₹167.3 crore, 6.8% of revenue.\n- Board recommended a final dividend of ₹4.50 per share (FY25: ₹4.00).\n- Unit III Vizag: US FDA re-inspection in February 2026 closed with no observations."
+    },
+    {
+     "n": 3,
+     "title": "FY2025-26 Annual Results Summary",
+     "text": "## 9. Dividend\n\n| Item               | FY2025-26   | FY2024-25   |\n|--------------------|-------------|-------------|\n| Dividend per share | ₹4.50       | ₹4.00       |\n| Total outflow      | ₹55.8 crore | ₹49.6 crore |\n| Payout ratio       | 16.7%       | 17.6%       |\n\nDividend subject to approval at the 32nd AGM."
+    },
+    {
+     "n": 4,
+     "title": "Board Meeting Minutes – 22 April 2026",
+     "text": "## 13. Summary of decisions\n\n|   Item | Decision                                                  |\n|--------|-----------------------------------------------------------|\n|    4.1 | FY2025-26 audited results approved                        |\n|    4.2 | Final dividend ₹4.50 per share recommended                |\n|    5.1 | ₹310 crore Vizag capacity expansion approved              |\n|    8.1 | In-licensing talks for BIO-INS-7 authorised (non-binding) |\n|      9 | Related-party warehousing lease approved                  |\n|   11.1 | CSR budget ₹6.9 crore approved                            |"
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "The Board recommended a final dividend of **₹4.50 per equity share** for FY2025-26 [1][2][3][4].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Board Meeting Minutes – 22 April 2026",
+     "text": "## 4.2 Dividend\n\nResolution 4.2: RESOLVED THAT a final dividend of ₹4.50 per equity share of face value ₹10 each (45%) for FY2025-26 be and is hereby recommended for the approval of the shareholders at the 32nd Annual General Meeting. The total outflow will be approximately ₹55.8 crore on 12.4 crore equity shares. The record date will be fixed by the Company Secretary."
+    },
+    {
+     "n": 2,
+     "title": "FY2025-26 Annual Results Summary",
+     "text": "## 1. Highlights\n\n- Revenue from operations of ₹2,460 crore, up 11.1% from ₹2,215 crore in FY2024-25.\n- Domestic business 58% of revenue (₹1,426.8 crore); exports 42% (₹1,033.2 crore).\n- EBITDA of ₹548.6 crore, margin 22.3% (FY25: 21.0%).\n- Profit after tax of ₹333.6 crore, up 18.5%.\n- R&amp;D spend of ₹167.3 crore, 6.8% of revenue.\n- Board recommended a final dividend of ₹4.50 per share (FY25: ₹4.00).\n- Unit III Vizag: US FDA re-inspection in February 2026 closed with no observations."
+    },
+    {
+     "n": 3,
+     "title": "FY2025-26 Annual Results Summary",
+     "text": "## 9. Dividend\n\n| Item               | FY2025-26   | FY2024-25   |\n|--------------------|-------------|-------------|\n| Dividend per share | ₹4.50       | ₹4.00       |\n| Total outflow      | ₹55.8 crore | ₹49.6 crore |\n| Payout ratio       | 16.7%       | 17.6%       |\n\nDividend subject to approval at the 32nd AGM."
+    },
+    {
+     "n": 4,
+     "title": "Board Meeting Minutes – 22 April 2026",
+     "text": "## 13. Summary of decisions\n\n|   Item | Decision                                                  |\n|--------|-----------------------------------------------------------|\n|    4.1 | FY2025-26 audited results approved                        |\n|    4.2 | Final dividend ₹4.50 per share recommended                |\n|    5.1 | ₹310 crore Vizag capacity expansion approved              |\n|    8.1 | In-licensing talks for BIO-INS-7 authorised (non-binding) |\n|      9 | Related-party warehousing lease approved                  |\n|   11.1 | CSR budget ₹6.9 crore approved                            |"
+    }
+   ]
+  }
+ },
+ {
+  "id": 91,
+  "kind": "denied",
+  "asker": "sales@sanjeevani.example",
+  "doc": "Board Meeting Minutes – 22 April 2026",
+  "q": "What dividend did the Board recommend for FY2025-26?",
+  "reference": "A final dividend of ₹4.50 per equity share (45% on ₹10 face value), about ₹55.8 crore in total, subject to AGM approval.",
+  "A": {
+   "abstained": true,
+   "answer": "Not found in your documents.\nNo document you can open answers this, so Atlas did not guess.",
+   "cited": []
+  },
+  "B": {
+   "abstained": false,
+   "answer": "The provided documents do not contain any information about the Board's dividend recommendation for FY2025-26.",
+   "cited": []
+  }
+ },
+ {
+  "id": 92,
+  "kind": "answerable",
+  "asker": "compliance@kaveri.example",
+  "doc": "Kaveri Focused Equity PMS Presentation Summary",
+  "q": "What does the hybrid fee option of the Kaveri Focused Equity PMS charge?",
+  "reference": "1.0% per annum management fee plus 20% of returns above a 10% hurdle, subject to a high-water mark (the alternative is a 2.0% fixed fee).",
+  "A": {
+   "abstained": false,
+   "answer": "The hybrid option (Option B) charges a 1.0% per annum management fee plus a 20% performance fee on returns above a 10% hurdle, subject to a high-water mark. The management fee is charged quarterly on daily average AUM, while the performance fee is charged annually on the account anniversary, and GST applies at the prevailing rate. [1][2]",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Kaveri Focused Equity PMS Presentation Summary",
+     "text": "### 6. Fee options\n\nClients choose one fee structure at onboarding. The structure may be changed once a year, on the account anniversary.\n\n| **Option**        | **Management fee**   | **Performance fee**                                             |\n|-------------------|----------------------|-----------------------------------------------------------------|\n| Option A – Fixed  | 2.0% per annum       | None                                                            |\n| Option B – Hybrid | 1.0% per annum       | 20% of returns above a 10% hurdle, subject to a high-water mark |\n\n- Fees are charged quarterly on daily average AUM; the performance fee under Option B is charged annually on the account anniversary.\n- GST applies at the prevailing rate.\n- Exit loads and other charges are as set out in the PMS Client Agreement and the Disclosure Document.\n\n**Illustration (Option B):** A client invests ₹1 crore. In year 1 the portfolio grows to ₹1.18 crore before performance fees (an 18% return). The return above the 10% hurdle is 8%, i.e. ₹8 lakh, so the performance fee is 20% of ₹8 lakh = ₹1.6 lakh, plus GST. The high-water mark is reset to the post-fee value."
+    },
+    {
+     "n": 2,
+     "title": "Product Guide – Which Kaveri Fund Fits Which Investor",
+     "text": "### \"I am an HNI and want a concentrated, personally held portfolio\"\n- **Kaveri Focused Equity PMS** (minimum ₹50 lakh). Fee choice: 2.0% fixed, or 1.0% plus 20% of returns above a 10% hurdle with a high-water mark."
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "The hybrid fee option (Option B) charges a **1.0% per annum management fee** plus a **20% performance fee on returns above a 10% hurdle**, subject to a high-water mark. The management fee is charged quarterly on daily average AUM, while the performance fee is charged annually on the account anniversary; GST applies at the prevailing rate. [1][2]",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Kaveri Focused Equity PMS Presentation Summary",
+     "text": "### 6. Fee options\n\nClients choose one fee structure at onboarding. The structure may be changed once a year, on the account anniversary.\n\n| **Option**        | **Management fee**   | **Performance fee**                                             |\n|-------------------|----------------------|-----------------------------------------------------------------|\n| Option A – Fixed  | 2.0% per annum       | None                                                            |\n| Option B – Hybrid | 1.0% per annum       | 20% of returns above a 10% hurdle, subject to a high-water mark |\n\n- Fees are charged quarterly on daily average AUM; the performance fee under Option B is charged annually on the account anniversary.\n- GST applies at the prevailing rate.\n- Exit loads and other charges are as set out in the PMS Client Agreement and the Disclosure Document.\n\n**Illustration (Option B):** A client invests ₹1 crore. In year 1 the portfolio grows to ₹1.18 crore before performance fees (an 18% return). The return above the 10% hurdle is 8%, i.e. ₹8 lakh, so the performance fee is 20% of ₹8 lakh = ₹1.6 lakh, plus GST. The high-water mark is reset to the post-fee value."
+    },
+    {
+     "n": 2,
+     "title": "Product Guide – Which Kaveri Fund Fits Which Investor",
+     "text": "### \"I am an HNI and want a concentrated, personally held portfolio\"\n- **Kaveri Focused Equity PMS** (minimum ₹50 lakh). Fee choice: 2.0% fixed, or 1.0% plus 20% of returns above a 10% hurdle with a high-water mark."
+    }
+   ]
+  }
+ },
+ {
+  "id": 93,
+  "kind": "answerable",
+  "asker": "qa@sanjeevani.example",
+  "doc": "Recall Report – Cough Syrup Batch CR-2309",
+  "q": "What exactly was wrong with the label on cough syrup batch CR-2309?",
+  "reference": "The bottle label carried the manufacturing licence number of Unit I (Ahmedabad) instead of Unit II (Baddi); all other label information was correct, so there was no safety impact.",
+  "A": {
+   "abstained": false,
+   "answer": "The bottle label on batch CR‑2309 displayed the manufacturing licence number of Unit I (Ahmedabad) instead of the correct Unit II (Baddi) licence number; the carton label was correct. [1]",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Recall Report – Cough Syrup Batch CR-2309",
+     "text": "## 3. Nature of the Defect\n\nThe bottle label of batch CR-2309 carried the manufacturing licence number of Unit I (Ahmedabad) instead of Unit II (Baddi). The carton was correct. The error arose when an outdated label artwork file was loaded on the label printing machine of line L-2 after a software restore. Product name, composition, dose, batch number, dates, storage and warnings were all correct, so the defect could not lead to misuse."
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "The bottle label on batch CR-2309 showed the manufacturing licence number for Unit I (Ahmedabad) instead of the correct Unit II (Baddi) licence number; the carton label was correct and all other label details (product name, composition, dose, batch number, dates, storage, warnings) were accurate [1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Recall Report – Cough Syrup Batch CR-2309",
+     "text": "## 3. Nature of the Defect\n\nThe bottle label of batch CR-2309 carried the manufacturing licence number of Unit I (Ahmedabad) instead of Unit II (Baddi). The carton was correct. The error arose when an outdated label artwork file was loaded on the label printing machine of line L-2 after a software restore. Product name, composition, dose, batch number, dates, storage and warnings were all correct, so the defect could not lead to misuse."
+    }
+   ]
+  }
+ },
+ {
+  "id": 94,
+  "kind": "answerable",
+  "asker": "rm@kaveri.example",
+  "doc": "Sales Sheet – Kaveri Focused Equity PMS (for Relationship Managers)",
+  "q": "What fee options can an RM offer a PMS client?",
+  "reference": "Option A: 2.0% p.a. fixed; Option B: 1.0% p.a. plus 20% of returns above a 10% hurdle with high-water mark. No discounts or custom fees.",
+  "A": {
+   "abstained": false,
+   "answer": "An RM can offer only two fee options for the Kaveri Focused Equity PMS: **Option A – Fixed** (2.0% p.a. management fee, no performance fee) and **Option B – Hybrid** (1.0% p.a. management fee plus 20% of returns above a 10% p.a. hurdle with a high-water mark). RMs may not offer discounts, rebates, or custom fees; any non‑standard fee requires CFO and MD & CEO approval [1][2].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Sales Sheet – Kaveri Focused Equity PMS (for Relationship Managers)",
+     "text": "## 4. Fee options you can offer\n\n| Option            | Management fee   | Performance fee                                              | Best for                                                    |\n|-------------------|------------------|--------------------------------------------------------------|-------------------------------------------------------------|\n| Option A - Fixed  | 2.0% p.a.        | None                                                         | Clients who want predictable costs                          |\n| Option B - Hybrid | 1.0% p.a.        | 20% of returns above a 10% p.a. hurdle, with high-water mark | Clients who prefer to pay more only when returns are strong |\n\n- These are the only two fee options. RMs may not offer discounts, rebates or a custom fee. Any nonstandard fee needs CFO and MD &amp; CEO approval and is normally offered only to institutional mandates.\n- The client may switch option once a year, on the account anniversary.\n- Other charges: custody, fund accounting, demat and audit capped at 0.25% p.a.; brokerage at actuals; no onboarding fee. GST extra.\n- Exit load: 3% in year 1, 2% in year 2, 1% in year 3, nil after 3 years (from the date of each contribution)."
+    },
+    {
+     "n": 2,
+     "title": "PMS and AIF Client Onboarding Checklist",
+     "text": "#### Step 4 – Agreement and fee choice (RM and Client Services)\n\n|   **#** | **Item**                                                                                                    | **Mandatory**   |\n|---------|-------------------------------------------------------------------------------------------------------------|-----------------|\n|     4.1 | PMS Client Agreement – Standard Terms signed by all holders (or AIF contribution agreement)                 | Yes             |\n|     4.2 | Fee option chosen and initialled on the fee annexure                                                        | Yes (PMS)       |\n|     4.3 | Nomination form (or opt-out declaration)                                                                    | Yes             |\n|     4.4 | Power of attorney for the PMS demat account (operational only; no power to withdraw money to third parties) | Yes (PMS)       |\n\n4.5 PMS fee options the client may choose:\n\n| **Option**        | **Management fee**   | **Performance fee**                                          |\n|-------------------|----------------------|--------------------------------------------------------------|\n| Option A – Fixed  | 2.0% p.a.            | None                                                         |\n| Option B – Hybrid | 1.0% p.a.            | 20% of returns above a 10% p.a. hurdle, with high-water mark |\n\nThe client may switch option once a year on the account anniversary. PMS exit load is 3% in year 1, 2% in year 2, 1% in year 3, nil after 3 years. AIF fees are 1.5% p.a. plus 15% over an 8% hurdle."
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "An RM can offer only two fee options for the Kaveri Focused Equity PMS:\n\n- **Option A – Fixed**: 2.0% p.a. management fee, no performance fee.  \n- **Option B – Hybrid**: 1.0% p.a. management fee plus 20% of returns above a 10% p.a. hurdle, subject to a high-water mark.  \n\nRMs may not offer discounts, rebates, or custom fees; any non‑standard fee requires CFO and MD & CEO approval [1][2][3][4][5].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Sales Sheet – Kaveri Focused Equity PMS (for Relationship Managers)",
+     "text": "## 4. Fee options you can offer\n\n| Option            | Management fee   | Performance fee                                              | Best for                                                    |\n|-------------------|------------------|--------------------------------------------------------------|-------------------------------------------------------------|\n| Option A - Fixed  | 2.0% p.a.        | None                                                         | Clients who want predictable costs                          |\n| Option B - Hybrid | 1.0% p.a.        | 20% of returns above a 10% p.a. hurdle, with high-water mark | Clients who prefer to pay more only when returns are strong |\n\n- These are the only two fee options. RMs may not offer discounts, rebates or a custom fee. Any nonstandard fee needs CFO and MD &amp; CEO approval and is normally offered only to institutional mandates.\n- The client may switch option once a year, on the account anniversary.\n- Other charges: custody, fund accounting, demat and audit capped at 0.25% p.a.; brokerage at actuals; no onboarding fee. GST extra.\n- Exit load: 3% in year 1, 2% in year 2, 1% in year 3, nil after 3 years (from the date of each contribution)."
+    },
+    {
+     "n": 2,
+     "title": "PMS and AIF Client Onboarding Checklist",
+     "text": "#### Step 4 – Agreement and fee choice (RM and Client Services)\n\n|   **#** | **Item**                                                                                                    | **Mandatory**   |\n|---------|-------------------------------------------------------------------------------------------------------------|-----------------|\n|     4.1 | PMS Client Agreement – Standard Terms signed by all holders (or AIF contribution agreement)                 | Yes             |\n|     4.2 | Fee option chosen and initialled on the fee annexure                                                        | Yes (PMS)       |\n|     4.3 | Nomination form (or opt-out declaration)                                                                    | Yes             |\n|     4.4 | Power of attorney for the PMS demat account (operational only; no power to withdraw money to third parties) | Yes (PMS)       |\n\n4.5 PMS fee options the client may choose:\n\n| **Option**        | **Management fee**   | **Performance fee**                                          |\n|-------------------|----------------------|--------------------------------------------------------------|\n| Option A – Fixed  | 2.0% p.a.            | None                                                         |\n| Option B – Hybrid | 1.0% p.a.            | 20% of returns above a 10% p.a. hurdle, with high-water mark |\n\nThe client may switch option once a year on the account anniversary. PMS exit load is 3% in year 1, 2% in year 2, 1% in year 3, nil after 3 years. AIF fees are 1.5% p.a. plus 15% over an 8% hurdle."
+    },
+    {
+     "n": 3,
+     "title": "PMS Client Agreement – Standard Terms",
+     "text": "## 5. Fees and Charges\n\n- 5.1 The Client shall choose one of the following fee structures in the Client Schedule. The fees are detailed in the Fee Schedule and Exit Loads (KCA/PRD/AGR-002).\n- 5.2 Management fees are charged quarterly in arrears. Performance fees are charged only once a year, on the anniversary of the Portfolio's activation, or on full withdrawal.\n- 5.3 Goods and Services Tax at the prevailing rate is charged in addition to all fees.\n- 5.4 Operating expenses (custody, fund accounting, demat and audit charges) are capped at 0.25% p.a. of average Portfolio value. Brokerage is charged at actuals and disclosed in the quarterly report.\n- 5.5 The Client may switch between Option A and Option B once a year, effective from the next anniversary date.\n\n| Option     | Management fee                             | Performance fee                                                    |\n|------------|--------------------------------------------|--------------------------------------------------------------------|\n| A - Fixed  | 2.0% p.a. of average daily Portfolio value | None                                                               |\n| B - Hybrid | 1.0% p.a. of average daily Portfolio value | 20% of returns above a 10% p.a. hurdle, subject to High-Water Mark |"
+    },
+    {
+     "n": 4,
+     "title": "Kaveri Focused Equity PMS Presentation Summary",
+     "text": "### 6. Fee options\n\nClients choose one fee structure at onboarding. The structure may be changed once a year, on the account anniversary.\n\n| **Option**        | **Management fee**   | **Performance fee**                                             |\n|-------------------|----------------------|-----------------------------------------------------------------|\n| Option A – Fixed  | 2.0% per annum       | None                                                            |\n| Option B – Hybrid | 1.0% per annum       | 20% of returns above a 10% hurdle, subject to a high-water mark |\n\n- Fees are charged quarterly on daily average AUM; the performance fee under Option B is charged annually on the account anniversary.\n- GST applies at the prevailing rate.\n- Exit loads and other charges are as set out in the PMS Client Agreement and the Disclosure Document.\n\n**Illustration (Option B):** A client invests ₹1 crore. In year 1 the portfolio grows to ₹1.18 crore before performance fees (an 18% return). The return above the 10% hurdle is 8%, i.e. ₹8 lakh, so the performance fee is 20% of ₹8 lakh = ₹1.6 lakh, plus GST. The high-water mark is reset to the post-fee value."
+    },
+    {
+     "n": 5,
+     "title": "Fee Schedule and Exit Loads",
+     "text": "## 2. Kaveri Focused Equity PMS\n\n- 2.1 Minimum investment: ₹50 lakh. The Client chooses one fee option at onboarding.\n\n| Fee option        | Management fee   | Performance fee             | Hurdle   | High-water mark   |\n|-------------------|------------------|-----------------------------|----------|-------------------|\n| Option A - Fixed  | 2.0% p.a.        | None                        | -        | -                 |\n| Option B - Hybrid | 1.0% p.a.        | 20% of returns above hurdle | 10% p.a. | Yes               |"
+    }
+   ]
+  }
+ },
+ {
+  "id": 95,
+  "kind": "denied",
+  "asker": "guest@kaveri.example",
+  "doc": "Sales Sheet – Kaveri Focused Equity PMS (for Relationship Managers)",
+  "q": "What fee options can an RM offer a PMS client?",
+  "reference": "Option A: 2.0% p.a. fixed; Option B: 1.0% p.a. plus 20% of returns above a 10% hurdle with high-water mark. No discounts or custom fees.",
+  "A": {
+   "abstained": false,
+   "answer": "An RM can offer two fee structures: Option A – Fixed (2.0% per annum management fee, no performance fee) and Option B – Hybrid (1.0% per annum management fee plus 20% of returns above a 10% hurdle, subject to a high-water mark). Clients choose one at onboarding and may change it once a year on the account anniversary. [1]",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Kaveri Focused Equity PMS Presentation Summary",
+     "text": "### 6. Fee options\n\nClients choose one fee structure at onboarding. The structure may be changed once a year, on the account anniversary.\n\n| **Option**        | **Management fee**   | **Performance fee**                                             |\n|-------------------|----------------------|-----------------------------------------------------------------|\n| Option A – Fixed  | 2.0% per annum       | None                                                            |\n| Option B – Hybrid | 1.0% per annum       | 20% of returns above a 10% hurdle, subject to a high-water mark |\n\n- Fees are charged quarterly on daily average AUM; the performance fee under Option B is charged annually on the account anniversary.\n- GST applies at the prevailing rate.\n- Exit loads and other charges are as set out in the PMS Client Agreement and the Disclosure Document.\n\n**Illustration (Option B):** A client invests ₹1 crore. In year 1 the portfolio grows to ₹1.18 crore before performance fees (an 18% return). The return above the 10% hurdle is 8%, i.e. ₹8 lakh, so the performance fee is 20% of ₹8 lakh = ₹1.6 lakh, plus GST. The high-water mark is reset to the post-fee value."
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "An RM can offer two fee structures for the Kaveri Focused Equity PMS:\n\n- **Option A – Fixed**: 2.0% p.a. management fee, no performance fee.\n- **Option B – Hybrid**: 1.0% p.a. management fee plus 20% of returns above a 10% hurdle, subject to a high-water mark.\n\nClients pick one at onboarding and may switch once a year on the account anniversary. Management fees are charged quarterly on daily average AUM; the performance fee (Option B) is charged annually on the anniversary. GST applies at the prevailing rate. [1]",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Kaveri Focused Equity PMS Presentation Summary",
+     "text": "### 6. Fee options\n\nClients choose one fee structure at onboarding. The structure may be changed once a year, on the account anniversary.\n\n| **Option**        | **Management fee**   | **Performance fee**                                             |\n|-------------------|----------------------|-----------------------------------------------------------------|\n| Option A – Fixed  | 2.0% per annum       | None                                                            |\n| Option B – Hybrid | 1.0% per annum       | 20% of returns above a 10% hurdle, subject to a high-water mark |\n\n- Fees are charged quarterly on daily average AUM; the performance fee under Option B is charged annually on the account anniversary.\n- GST applies at the prevailing rate.\n- Exit loads and other charges are as set out in the PMS Client Agreement and the Disclosure Document.\n\n**Illustration (Option B):** A client invests ₹1 crore. In year 1 the portfolio grows to ₹1.18 crore before performance fees (an 18% return). The return above the 10% hurdle is 8%, i.e. ₹8 lakh, so the performance fee is 20% of ₹8 lakh = ₹1.6 lakh, plus GST. The high-water mark is reset to the post-fee value."
+    }
+   ]
+  }
+ },
+ {
+  "id": 96,
+  "kind": "answerable",
+  "asker": "hr@nimbus.example",
+  "doc": "Leave Policy FY2026-27",
+  "q": "What happens to earned leave above the carry-forward limit at year end?",
+  "reference": "Up to 30 days of EL carry forward; anything beyond 30 days lapses on 31 March.",
+  "A": {
+   "abstained": false,
+   "answer": "Earned leave beyond the 30-day carry-forward cap lapses on 31 March at year end. [1]",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Leave Policy FY2026-27",
+     "text": "## 4.3 Carry forward and lapse\n\nAt the end of the financial year, up to 30 days of unused earned leave are carried forward into the next year. EL beyond 30 days lapses on 31 March. There is no encashment of earned leave while in service. On exit, accumulated EL up to 30 days is encashed on basic pay as part of full and final settlement."
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "Earned leave beyond the 30‑day carry‑forward limit lapses on 31 March. [1]",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Leave Policy FY2026-27",
+     "text": "## 4.3 Carry forward and lapse\n\nAt the end of the financial year, up to 30 days of unused earned leave are carried forward into the next year. EL beyond 30 days lapses on 31 March. There is no encashment of earned leave while in service. On exit, accumulated EL up to 30 days is encashed on basic pay as part of full and final settlement."
+    }
+   ]
+  }
+ },
+ {
+  "id": 97,
+  "kind": "answerable",
+  "asker": "owner@kaveri.example",
+  "doc": "Board Meeting Minutes – 25 April 2026",
+  "q": "What interim dividend did the Board declare on 25 April 2026?",
+  "reference": "₹3.00 per equity share, aggregating ₹12 crore, for FY2026-27, payable by 25 May 2026.",
+  "A": {
+   "abstained": false,
+   "answer": "The Board declared an interim dividend of **₹3.00 per equity share** (aggregating **₹12 crore**) for FY2026‑27, payable out of accumulated profits to shareholders on the register as on 8 May 2026, with payment on or before 25 May 2026 [1][2].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Board Meeting Minutes – 25 April 2026",
+     "text": "## 7. Interim Dividend\n\n7.1 The CFO confirmed that, after the dividend, the liquidity buffer under the Treasury Policy (6 months of operating expenses, about ₹75 crore) and all regulatory net worth requirements would be met with large headroom.\n\nResolution 58.4: \"RESOLVED THAT an interim dividend of ₹3.00 per equity share of ₹10 each, aggregating ₹12 crore, be and is hereby declared for FY2026-27 out of accumulated profits, to shareholders on the register as on 8 May 2026, payable on or before 25 May 2026.\""
+    },
+    {
+     "n": 2,
+     "title": "FY2025-26 Financial Statements Summary",
+     "text": "## 7. Appropriations Approved After Year-End\n\n7.1 On 25 April 2026 the Board declared an interim dividend of ₹12 crore (₹3.00 per equity share) for FY2026-27, payable out of accumulated profits, to be paid by 25 May 2026."
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "The Board declared an interim dividend of **₹3.00 per equity share** (face value ₹10), aggregating **₹12 crore**, for FY2026‑27 out of accumulated profits, payable to shareholders on the register as on 8 May 2026 on or before 25 May 2026 [1][2].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Board Meeting Minutes – 25 April 2026",
+     "text": "## 7. Interim Dividend\n\n7.1 The CFO confirmed that, after the dividend, the liquidity buffer under the Treasury Policy (6 months of operating expenses, about ₹75 crore) and all regulatory net worth requirements would be met with large headroom.\n\nResolution 58.4: \"RESOLVED THAT an interim dividend of ₹3.00 per equity share of ₹10 each, aggregating ₹12 crore, be and is hereby declared for FY2026-27 out of accumulated profits, to shareholders on the register as on 8 May 2026, payable on or before 25 May 2026.\""
+    },
+    {
+     "n": 2,
+     "title": "FY2025-26 Financial Statements Summary",
+     "text": "## 7. Appropriations Approved After Year-End\n\n7.1 On 25 April 2026 the Board declared an interim dividend of ₹12 crore (₹3.00 per equity share) for FY2026-27, payable out of accumulated profits, to be paid by 25 May 2026."
+    }
+   ]
+  }
+ },
+ {
+  "id": 98,
+  "kind": "answerable",
+  "asker": "rnd@sanjeevani.example",
+  "doc": "R&D Pipeline Review FY27",
+  "q": "What is Sanjeevani's FY27 R&D budget and how much of it goes to the SJ-2041 programme?",
+  "reference": "₹185 crore in total, of which ₹62 crore (33.5%) is for the SJ-2041 clinical programme.",
+  "A": {
+   "abstained": false,
+   "answer": "Sanjeevani's FY27 R&D budget is **₹185 crore**, of which **₹62 crore (33.5%)** is allocated to the SJ-2041 clinical programme (Phase III completion and NDA preparation) [1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "R&D Pipeline Review FY27",
+     "text": "### 3. FY27 R&amp;D Budget\n\n| **Category**                                                       | **FY27 budget (₹ crore)**   | **Share**   |\n|--------------------------------------------------------------------|-----------------------------|-------------|\n| SJ-2041 clinical programme (Phase III completion, NDA preparation) | 62                          | 33.5%       |\n| Generic formulations (domestic)                                    | 38                          | 20.5%       |\n| ANDA / export generics                                             | 44                          | 23.8%       |\n| Biosimilars (BIO-INS-7 evaluation and tech-transfer readiness)     | 18                          | 9.7%        |\n| Analytical, stability and regulatory support                       | 15                          | 8.1%        |\n| Capital equipment (Hyderabad labs)                                 | 8                           | 4.3%        |\n| **Total**                                                          | **185**                     | **100%**    |\n\nThe FY27 budget of ₹185 crore is approved at about 6.9% of planned revenue."
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "Sanjeevani's FY27 R&D budget is **₹185 crore**, of which **₹62 crore (33.5%)** is allocated to the SJ-2041 clinical programme [1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "R&D Pipeline Review FY27",
+     "text": "### 3. FY27 R&amp;D Budget\n\n| **Category**                                                       | **FY27 budget (₹ crore)**   | **Share**   |\n|--------------------------------------------------------------------|-----------------------------|-------------|\n| SJ-2041 clinical programme (Phase III completion, NDA preparation) | 62                          | 33.5%       |\n| Generic formulations (domestic)                                    | 38                          | 20.5%       |\n| ANDA / export generics                                             | 44                          | 23.8%       |\n| Biosimilars (BIO-INS-7 evaluation and tech-transfer readiness)     | 18                          | 9.7%        |\n| Analytical, stability and regulatory support                       | 15                          | 8.1%        |\n| Capital equipment (Hyderabad labs)                                 | 8                           | 4.3%        |\n| **Total**                                                          | **185**                     | **100%**    |\n\nThe FY27 budget of ₹185 crore is approved at about 6.9% of planned revenue."
+    }
+   ]
+  }
+ },
+ {
+  "id": 99,
+  "kind": "not_found",
+  "asker": "analyst@kaveri.example",
+  "doc": null,
+  "q": "What is on the Kaveri office cafeteria menu on Fridays?",
+  "reference": "not found",
+  "A": {
+   "abstained": false,
+   "answer": "The provided documents do not contain any information about the Kaveri office cafeteria menu or Friday food offerings. [1][2][3][4][5]",
+   "cited": [
+    {
+     "n": 1,
+     "title": "About Kaveri Capital",
+     "text": "## 6. Offices\n\n| Office | Address | Teams based there | Approx. headcount |\n|---|---|---|---|\n| Bengaluru (HQ) | 12th Floor, Prestige Meridian II, MG Road | Investments, Research, Risk, Compliance, Operations, Finance, HR, Technology | 196 |\n| Mumbai | Bandra Kurla Complex | Dealing desk, institutional sales, PMS relationship managers | 62 |\n| New Delhi | Connaught Place | North India distribution and PMS sales | 24 |\n| Chennai | Anna Salai | South India distribution, investor service centre | 16 |\n| Pune | Baner | Retail distribution | 12 |\n\nOffice hours are 9:00 am to 6:00 pm, Monday to Friday. The dealing desk in Mumbai works from 8:30 am until market close plus settlement."
+    },
+    {
+     "n": 2,
+     "title": "Careers at Kaveri – Roles, Hiring and Internships",
+     "text": "## 3. Where we work\n\n| Office | Address | What happens there |\n|---|---|---|\n| Bengaluru (head office) | 12th Floor, Prestige Meridian II, MG Road, Bengaluru 560001 | Investments, Research, Risk, Compliance, Operations, Finance, HR, Technology |\n| Mumbai | Bandra Kurla Complex (BKC) | Dealing desk, institutional sales, PMS relationship managers |\n| New Delhi | Connaught Place | North India distribution and PMS sales |\n| Chennai | Anna Salai | South India distribution, investor service centre |\n| Pune | Baner | Retail distribution |\n| GIFT City (from October 2026) | Gandhinagar | Kaveri's IFSC fund management team |\n\nOffice hours are 9:00 am to 6:00 pm, Monday to Friday. Dealing desk roles in Mumbai start at 8:30 am. We work from the office; up to 2 days a month of remote work is allowed for most non-dealing roles with manager approval."
+    },
+    {
+     "n": 3,
+     "title": "About Kaveri Capital",
+     "text": "## 9. Your first week\n\n| Day | What happens | Owner |\n|---|---|---|\n| Day 1 | Laptop, ID card, Atlas and email access; sign Code of Conduct | IT and HR |\n| Day 2 | Personal Trading Policy briefing and holdings declaration | Compliance |\n| Day 3 | Information security training (must pass the quiz, 80% minimum) | Technology |\n| Day 4 | Meet your function head; review of role KRAs | Line manager |\n| Day 5 | Investment process overview session with the CIO's office | Investments |"
+    },
+    {
+     "n": 4,
+     "title": "IC Meeting 48 Minutes – 9 April 2026",
+     "text": "## Kaveri Capital Advisors Pvt. Ltd.\n\nRegd. Office: 12th Floor, Prestige Meridian II, MG Road, Bengaluru 560001, Karnataka CIN: U67190KA2012PTC065309 SEBI PMS Reg. No. INP000006120\n\nMINUTES OF MEETING"
+    },
+    {
+     "n": 5,
+     "title": "IC Meeting 47 Minutes – 12 March 2026",
+     "text": "## Kaveri Capital Advisors Pvt. Ltd.\n\nRegd. Office: 12th Floor, Prestige Meridian II, MG Road, Bengaluru 560001, Karnataka CIN: U67190KA2012PTC065309 SEBI PMS Reg. No. INP000006120\n\nMINUTES OF MEETING"
+    }
+   ]
+  },
+  "B": {
+   "abstained": true,
+   "answer": "Not found in your documents.\nNo document you can open answers this, so Atlas did not guess.",
+   "cited": []
+  }
+ },
+ {
+  "id": 100,
+  "kind": "not_found",
+  "asker": "compliance@kaveri.example",
+  "doc": null,
+  "q": "What is the 10-year return of the Kaveri Bluechip Fund?",
+  "reference": "not found",
+  "A": {
+   "abstained": false,
+   "answer": "The documents do not provide a 10-year return for the Kaveri Bluechip Fund. The fund's inception date is 2 January 2017, so as of March 2026 it has not yet completed 10 years. The factsheet shows performance for 1 year, 3 years, 5 years, and since inception only [1][2].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Kaveri Bluechip Fund Factsheet March 2026",
+     "text": "## 3. Performance (Direct Plan, Growth)\n\n| Period          | Fund (CAGR)   | Nifty 100 TRI   | Value of ₹10,000 - Fund   | Value of ₹10,000 - Benchmark   |\n|-----------------|---------------|-----------------|---------------------------|--------------------------------|\n| 1 year          | 14.2%         | 12.9%           | ₹11,420                   | ₹11,290                        |\n| 3 years         | 15.8%         | 14.1%           | ₹15,529                   | ₹14,803                        |\n| 5 years         | 17.9%         | 17.2%           | ₹22,762                   | ₹22,123                        |\n| Since inception | 15.0%         | 13.6%           | ₹36,420                   | ₹32,494                        |\n\n\n\n\n\nRegular Plan 1-year return: 13.2%. Past performance may or may not be sustained in future. Returns above 1 year are compounded annualised (CAGR)."
+    },
+    {
+     "n": 2,
+     "title": "Kaveri Bluechip Fund Factsheet March 2026",
+     "text": "## 1. Fund at a glance\n\n| Item                             | Detail                                                                |\n|----------------------------------|-----------------------------------------------------------------------|\n| Category                         | Large cap fund                                                        |\n| Inception date                   | 2 January 2017                                                        |\n| Fund manager                     | Ashok Venkataraman (managing since inception; 24 years of experience) |\n| Benchmark                        | Nifty 100 TRI                                                         |\n| AUM (31 March 2026)              | ₹6,420 crore                                                          |\n| Monthly average AUM (March 2026) | ₹6,355 crore                                                          |\n| NAV - Direct Plan, Growth        | ₹36.42                                                                |\n| NAV - Regular Plan, Growth       | ₹33.18                                                                |\n| Total expense ratio              | Direct 0.82%; Regular 1.74%                                           |\n| Minimum investment               | ₹1,000 lump sum; ₹500 per month SIP                                   |\n| Exit load                        | 1% if redeemed within 365 days from allotment; nil thereafter         |\n| Plans and options                | Direct and Regular; Growth and IDCW                                   |"
+    }
+   ]
+  },
+  "B": {
+   "abstained": true,
+   "answer": "Not found in your documents.\nNo document you can open answers this, so Atlas did not guess.",
+   "cited": []
+  }
+ },
+ {
+  "id": 101,
+  "kind": "answerable",
+  "asker": "employee@nimbus.example",
+  "doc": "API Design Standard",
+  "q": "What is the API rate limit per key for Enterprise-plan customers?",
+  "reference": "600 requests per minute per API key, with a burst of 100.",
+  "A": {
+   "abstained": false,
+   "answer": "Enterprise-plan customers have a rate limit of **600 requests per minute per API key** [1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "API Design Standard",
+     "text": "## 8. Rate limiting\n\n| Plan                        |   Requests per minute per API key |   Burst |\n|-----------------------------|-----------------------------------|---------|\n| Starter                     |                               120 |      20 |\n| Standard                    |                               300 |      50 |\n| Enterprise                  |                               600 |     100 |\n| Internal service-to-service |                             3,000 |     500 |\n\nResponses include RateLimit-Limit, RateLimit-Remaining and RateLimit-Reset headers."
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "Enterprise-plan customers have a rate limit of **600 requests per minute per API key** (with a burst of 100) [1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "API Design Standard",
+     "text": "## 8. Rate limiting\n\n| Plan                        |   Requests per minute per API key |   Burst |\n|-----------------------------|-----------------------------------|---------|\n| Starter                     |                               120 |      20 |\n| Standard                    |                               300 |      50 |\n| Enterprise                  |                               600 |     100 |\n| Internal service-to-service |                             3,000 |     500 |\n\nResponses include RateLimit-Limit, RateLimit-Remaining and RateLimit-Reset headers."
+    }
+   ]
+  }
+ },
+ {
+  "id": 102,
+  "kind": "answerable",
+  "asker": "owner@sanjeevani.example",
+  "doc": "FY2026-27 Budget and Capex Plan",
+  "q": "What is the FY27 R&D budget and how is it split between expenses and capital equipment?",
+  "reference": "₹185 crore (6.9% of budgeted revenue): ₹177 crore of revenue expenses and ₹8 crore of capital equipment for the Hyderabad labs; ₹62 crore is for SJ-2041.",
+  "A": {
+   "abstained": false,
+   "answer": "The FY27 R&D budget is **₹185 crore**, comprising **₹177 crore of revenue expenses** and **₹8 crore of capital equipment** for the Hyderabad labs [1][2].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "FY2026-27 Budget and Capex Plan",
+     "text": "## 5. R&amp;D budget\n\nThe total FY27 R&amp;D budget is ₹185 crore (6.9% of budgeted revenue), made up of ₹177 crore of revenue expenses and ₹8 crore of capital equipment for the Hyderabad labs (part of the ₹33 crore Hyderabad capex line in Section 6). ₹62 crore of the total is for the SJ-2041 clinical programme (Phase III completion and NDA preparation). The programme split is in the R&amp;D Pipeline Review FY27."
+    },
+    {
+     "n": 2,
+     "title": "R&D Pipeline Review FY27",
+     "text": "### 3. FY27 R&amp;D Budget\n\n| **Category**                                                       | **FY27 budget (₹ crore)**   | **Share**   |\n|--------------------------------------------------------------------|-----------------------------|-------------|\n| SJ-2041 clinical programme (Phase III completion, NDA preparation) | 62                          | 33.5%       |\n| Generic formulations (domestic)                                    | 38                          | 20.5%       |\n| ANDA / export generics                                             | 44                          | 23.8%       |\n| Biosimilars (BIO-INS-7 evaluation and tech-transfer readiness)     | 18                          | 9.7%        |\n| Analytical, stability and regulatory support                       | 15                          | 8.1%        |\n| Capital equipment (Hyderabad labs)                                 | 8                           | 4.3%        |\n| **Total**                                                          | **185**                     | **100%**    |\n\nThe FY27 budget of ₹185 crore is approved at about 6.9% of planned revenue."
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "The FY27 R&D budget is ₹185 crore (about 6.9% of budgeted revenue), split into ₹177 crore of revenue expenses and ₹8 crore of capital equipment for the Hyderabad labs. [1][2]",
+   "cited": [
+    {
+     "n": 1,
+     "title": "FY2026-27 Budget and Capex Plan",
+     "text": "## 5. R&amp;D budget\n\nThe total FY27 R&amp;D budget is ₹185 crore (6.9% of budgeted revenue), made up of ₹177 crore of revenue expenses and ₹8 crore of capital equipment for the Hyderabad labs (part of the ₹33 crore Hyderabad capex line in Section 6). ₹62 crore of the total is for the SJ-2041 clinical programme (Phase III completion and NDA preparation). The programme split is in the R&amp;D Pipeline Review FY27."
+    },
+    {
+     "n": 2,
+     "title": "R&D Pipeline Review FY27",
+     "text": "### 3. FY27 R&amp;D Budget\n\n| **Category**                                                       | **FY27 budget (₹ crore)**   | **Share**   |\n|--------------------------------------------------------------------|-----------------------------|-------------|\n| SJ-2041 clinical programme (Phase III completion, NDA preparation) | 62                          | 33.5%       |\n| Generic formulations (domestic)                                    | 38                          | 20.5%       |\n| ANDA / export generics                                             | 44                          | 23.8%       |\n| Biosimilars (BIO-INS-7 evaluation and tech-transfer readiness)     | 18                          | 9.7%        |\n| Analytical, stability and regulatory support                       | 15                          | 8.1%        |\n| Capital equipment (Hyderabad labs)                                 | 8                           | 4.3%        |\n| **Total**                                                          | **185**                     | **100%**    |\n\nThe FY27 budget of ₹185 crore is approved at about 6.9% of planned revenue."
+    }
+   ]
+  }
+ },
+ {
+  "id": 103,
+  "kind": "answerable",
+  "asker": "owner@sanjeevani.example",
+  "doc": "Salary Grades and Allowances FY2026-27",
+  "q": "What is the FY27 average increment budget?",
+  "reference": "₹28.5 crore, an average increase of 9.5% of fixed pay, effective 01 April 2026 and paid with the June 2026 salary.",
+  "A": {
+   "abstained": false,
+   "answer": "The FY27 increment budget totals **₹28.5 crore**, representing an **average increase of 9.5% of fixed pay** [1][2].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Salary Grades and Allowances FY2026-27",
+     "text": "## 7. FY2026-27 increment budget\n\nThe FY27 increment budget is ₹28.5 crore, an average increase of 9.5% of fixed pay, approved by the Nomination and Remuneration Committee on 18 April 2026. Increments are effective 01 April 2026 and are paid with the June 2026 salary, with arrears for April and May."
+    },
+    {
+     "n": 2,
+     "title": "Salary Grades and Allowances FY2026-27",
+     "text": "## 7.4 Budget split by job family\n\n| Job family                |   Headcount (1 April 2026) |   Increment budget (₹ crore) | Average increment   |\n|---------------------------|----------------------------|------------------------------|---------------------|\n| Plant (Units I, II, III)  |                      1,710 |                         11.9 | 9.0%                |\n| Field force               |                        236 |                          3.4 | 10.5%               |\n| R&D (Hyderabad)           |                        412 |                          6.1 | 10.0%               |\n| Corporate and head office |                        492 |                          7.1 | 9.5%                |\n| Total                     |                      2,850 |                         28.5 | 9.5%                |\n\nThe field force and R&amp;D receive higher averages because attrition in the field force was 21% in FY26 and scientist pay at Hyderabad lags the survey mid-point by about 6%."
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "The FY27 increment budget is ₹28.5 crore, representing an average increase of 9.5% of fixed pay [1][2].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Salary Grades and Allowances FY2026-27",
+     "text": "## 7. FY2026-27 increment budget\n\nThe FY27 increment budget is ₹28.5 crore, an average increase of 9.5% of fixed pay, approved by the Nomination and Remuneration Committee on 18 April 2026. Increments are effective 01 April 2026 and are paid with the June 2026 salary, with arrears for April and May."
+    },
+    {
+     "n": 2,
+     "title": "Salary Grades and Allowances FY2026-27",
+     "text": "## 7.4 Budget split by job family\n\n| Job family                |   Headcount (1 April 2026) |   Increment budget (₹ crore) | Average increment   |\n|---------------------------|----------------------------|------------------------------|---------------------|\n| Plant (Units I, II, III)  |                      1,710 |                         11.9 | 9.0%                |\n| Field force               |                        236 |                          3.4 | 10.5%               |\n| R&D (Hyderabad)           |                        412 |                          6.1 | 10.0%               |\n| Corporate and head office |                        492 |                          7.1 | 9.5%                |\n| Total                     |                      2,850 |                         28.5 | 9.5%                |\n\nThe field force and R&amp;D receive higher averages because attrition in the field force was 21% in FY26 and scientist pay at Hyderabad lags the survey mid-point by about 6%."
+    }
+   ]
+  }
+ },
+ {
+  "id": 104,
+  "kind": "denied",
+  "asker": "qa@sanjeevani.example",
+  "doc": "Salary Grades and Allowances FY2026-27",
+  "q": "What is the FY27 average increment budget?",
+  "reference": "₹28.5 crore, an average increase of 9.5% of fixed pay, effective 01 April 2026 and paid with the June 2026 salary.",
+  "A": {
+   "abstained": true,
+   "answer": "Not found in your documents.\nNo document you can open answers this, so Atlas did not guess.",
+   "cited": []
+  },
+  "B": {
+   "abstained": false,
+   "answer": "The provided documents do not contain any information about an FY27 average increment budget. They only mention the FY27 capex budget of ₹135 crore for the Vizag Unit III Capacity Expansion project [1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Project Plan – Vizag Unit III Capacity Expansion",
+     "text": "### 5. Budget tracking (₹ crore)\n\n| **Head**                                 | **Approved**   | **Committed (POs placed)**   | **Spent to 31 Oct 2026**   |\n|------------------------------------------|----------------|------------------------------|----------------------------|\n| Land development and civil works         | 78             | 78                           | 31                         |\n| Process equipment                        | 142            | 118                          | 21                         |\n| HVAC and cleanroom                       | 38             | 12                           | 2                          |\n| Utilities (water, air, power)            | 24             | 6                            | 1                          |\n| QC laboratory and IT systems (LIMS, MES) | 16             | 3                            | 0                          |\n| Contingency                              | 12             | 0                            | 0                          |\n| **Total**                                | **310**        | **217**                      | **55**                     |\n\n5.1 FY27 capex budget for the project is ₹135 crore; spend to 31 October 2026 is ₹55 crore, in line with the plan (₹40 crore in Q1–Q2 plus ₹15 crore in October). 5.2 The process equipment advance (₹21 crore) was paid in October 2026. Any overrun above 5% of the ₹310 crore must be reported to the Board."
+    }
+   ]
+  }
+ },
+ {
+  "id": 105,
+  "kind": "answerable",
+  "asker": "owner@sanjeevani.example",
+  "doc": "FY2026-27 Budget and Capex Plan",
+  "q": "What is the FY27 capex for the Vizag expansion this year?",
+  "reference": "₹135 crore in FY27, year 1 of the ₹310 crore project (₹150 crore in FY28 and ₹25 crore in FY29 follow).",
+  "A": {
+   "abstained": false,
+   "answer": "The FY27 capex for the Vizag expansion is **₹135 crore** [1][2][3][4].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "FY2026-27 Budget and Capex Plan",
+     "text": "## 6. Capex budget\n\nTotal FY27 capex is ₹420 crore.\n\n| Project / unit                     |   FY2026-27 capex | Comment                                                                 |\n|------------------------------------|-------------------|-------------------------------------------------------------------------|\n| Unit III - Vizag Block C expansion |             135.0 | Year 1 of the ₹310 crore project approved by the Board on 22 April 2026 |\n| Unit I - Changodar                 |              92.0 | Second coating line, MES roll-out, warehouse racking                    |\n\n\n\n\n\n| Unit II - Baddi               |   61.0 | Liquid filling line upgrade; label OCR verification on line L-2             |\n|-------------------------------|--------|-----------------------------------------------------------------------------|\n| R&D centre - Hyderabad        |   33.0 | Pilot plant isolator and building works; includes ₹8 crore of lab equipment |\n| Maintenance capex (all units) |   58.0 | Routine replacement of equipment and utilities                              |\n| IT and corporate              |   23.0 | ERP upgrade, cybersecurity, LIMS licences                                   |\n| Contingency                   |   18.0 | Released only with CFO approval                                             |\n| Total                         |  420.0 |                                                                             |"
+    },
+    {
+     "n": 2,
+     "title": "Vizag Expansion Investment Note",
+     "text": "### 6. Spending phasing\n\n| **Year**   | **Capex (₹ crore)**   |\n|------------|-----------------------|\n| FY27       | 135                   |\n| FY28       | 150                   |\n| FY29       | 25                    |\n| **Total**  | **310**               |"
+    },
+    {
+     "n": 3,
+     "title": "FY2026-27 Budget and Capex Plan",
+     "text": "## 6.1 Vizag phasing within FY27\n\n| Quarter           |   Vizag capex | Main spend                                            |\n|-------------------|---------------|-------------------------------------------------------|\n| Q1 (Apr-Jun 2026) |           8.0 | Design, approvals, site preparation                   |\n| Q2 (Jul-Sep 2026) |          32.0 | Ground-breaking (August 2026), piling and foundations |\n| Q3 (Oct-Dec 2026) |          45.0 | Civil structure; advance for process equipment        |\n| Q4 (Jan-Mar 2027) |          50.0 | Civil structure; HVAC order                           |\n| Total             |         135.0 |                                                       |\n\nThe remaining ₹175 crore of the Vizag project is phased as ₹150 crore in FY28 and ₹25 crore in FY29."
+    },
+    {
+     "n": 4,
+     "title": "Project Plan – Vizag Unit III Capacity Expansion",
+     "text": "### 5. Budget tracking (₹ crore)\n\n| **Head**                                 | **Approved**   | **Committed (POs placed)**   | **Spent to 31 Oct 2026**   |\n|------------------------------------------|----------------|------------------------------|----------------------------|\n| Land development and civil works         | 78             | 78                           | 31                         |\n| Process equipment                        | 142            | 118                          | 21                         |\n| HVAC and cleanroom                       | 38             | 12                           | 2                          |\n| Utilities (water, air, power)            | 24             | 6                            | 1                          |\n| QC laboratory and IT systems (LIMS, MES) | 16             | 3                            | 0                          |\n| Contingency                              | 12             | 0                            | 0                          |\n| **Total**                                | **310**        | **217**                      | **55**                     |\n\n5.1 FY27 capex budget for the project is ₹135 crore; spend to 31 October 2026 is ₹55 crore, in line with the plan (₹40 crore in Q1–Q2 plus ₹15 crore in October). 5.2 The process equipment advance (₹21 crore) was paid in October 2026. Any overrun above 5% of the ₹310 crore must be reported to the Board."
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "The FY27 capex for the Vizag expansion is **₹135 crore** [1][2][3][4].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "FY2026-27 Budget and Capex Plan",
+     "text": "## 6. Capex budget\n\nTotal FY27 capex is ₹420 crore.\n\n| Project / unit                     |   FY2026-27 capex | Comment                                                                 |\n|------------------------------------|-------------------|-------------------------------------------------------------------------|\n| Unit III - Vizag Block C expansion |             135.0 | Year 1 of the ₹310 crore project approved by the Board on 22 April 2026 |\n| Unit I - Changodar                 |              92.0 | Second coating line, MES roll-out, warehouse racking                    |\n\n\n\n\n\n| Unit II - Baddi               |   61.0 | Liquid filling line upgrade; label OCR verification on line L-2             |\n|-------------------------------|--------|-----------------------------------------------------------------------------|\n| R&D centre - Hyderabad        |   33.0 | Pilot plant isolator and building works; includes ₹8 crore of lab equipment |\n| Maintenance capex (all units) |   58.0 | Routine replacement of equipment and utilities                              |\n| IT and corporate              |   23.0 | ERP upgrade, cybersecurity, LIMS licences                                   |\n| Contingency                   |   18.0 | Released only with CFO approval                                             |\n| Total                         |  420.0 |                                                                             |"
+    },
+    {
+     "n": 2,
+     "title": "Vizag Expansion Investment Note",
+     "text": "### 6. Spending phasing\n\n| **Year**   | **Capex (₹ crore)**   |\n|------------|-----------------------|\n| FY27       | 135                   |\n| FY28       | 150                   |\n| FY29       | 25                    |\n| **Total**  | **310**               |"
+    },
+    {
+     "n": 3,
+     "title": "FY2026-27 Budget and Capex Plan",
+     "text": "## 6.1 Vizag phasing within FY27\n\n| Quarter           |   Vizag capex | Main spend                                            |\n|-------------------|---------------|-------------------------------------------------------|\n| Q1 (Apr-Jun 2026) |           8.0 | Design, approvals, site preparation                   |\n| Q2 (Jul-Sep 2026) |          32.0 | Ground-breaking (August 2026), piling and foundations |\n| Q3 (Oct-Dec 2026) |          45.0 | Civil structure; advance for process equipment        |\n| Q4 (Jan-Mar 2027) |          50.0 | Civil structure; HVAC order                           |\n| Total             |         135.0 |                                                       |\n\nThe remaining ₹175 crore of the Vizag project is phased as ₹150 crore in FY28 and ₹25 crore in FY29."
+    },
+    {
+     "n": 4,
+     "title": "Project Plan – Vizag Unit III Capacity Expansion",
+     "text": "### 5. Budget tracking (₹ crore)\n\n| **Head**                                 | **Approved**   | **Committed (POs placed)**   | **Spent to 31 Oct 2026**   |\n|------------------------------------------|----------------|------------------------------|----------------------------|\n| Land development and civil works         | 78             | 78                           | 31                         |\n| Process equipment                        | 142            | 118                          | 21                         |\n| HVAC and cleanroom                       | 38             | 12                           | 2                          |\n| Utilities (water, air, power)            | 24             | 6                            | 1                          |\n| QC laboratory and IT systems (LIMS, MES) | 16             | 3                            | 0                          |\n| Contingency                              | 12             | 0                            | 0                          |\n| **Total**                                | **310**        | **217**                      | **55**                     |\n\n5.1 FY27 capex budget for the project is ₹135 crore; spend to 31 October 2026 is ₹55 crore, in line with the plan (₹40 crore in Q1–Q2 plus ₹15 crore in October). 5.2 The process equipment advance (₹21 crore) was paid in October 2026. Any overrun above 5% of the ₹310 crore must be reported to the Board."
+    }
+   ]
+  }
+ },
+ {
+  "id": 106,
+  "kind": "denied",
+  "asker": "sales@sanjeevani.example",
+  "doc": "FY2026-27 Budget and Capex Plan",
+  "q": "What is the FY27 capex for the Vizag expansion this year?",
+  "reference": "₹135 crore in FY27, year 1 of the ₹310 crore project (₹150 crore in FY28 and ₹25 crore in FY29 follow).",
+  "A": {
+   "abstained": false,
+   "answer": "The provided documents only cover FY27 domestic sales targets by zone, brand, and quarter. They do not contain any information about capital expenditure (capex) or the Vizag expansion project.",
+   "cited": []
+  },
+  "B": {
+   "abstained": true,
+   "answer": "Not found in your documents.\nNo document you can open answers this, so Atlas did not guess.",
+   "cited": []
+  }
+ },
+ {
+  "id": 107,
+  "kind": "answerable",
+  "asker": "sales@sanjeevani.example",
+  "doc": "FY27 Sales Targets by Zone",
+  "q": "What is the FY27 sales target for the West zone?",
+  "reference": "₹425.6 crore, 28% of the ₹1,520 crore national domestic target.",
+  "A": {
+   "abstained": false,
+   "answer": "The FY27 sales target for the West zone is **₹425.6 crore** [1][2].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "FY27 Sales Targets by Zone",
+     "text": "## 3. Target by zone\n\n| Zone   | States / regions covered                                                                 | Zonal Sales Manager   | Share   |   FY27 target (₹ crore) |   MRs |\n|--------|------------------------------------------------------------------------------------------|-----------------------|---------|-------------------------|-------|\n| West   | Gujarat, Maharashtra, Goa, Madhya Pradesh, Chhattisgarh                                  | Hemant Desai          | 28%     |                   425.6 |    50 |\n| South  | Andhra Pradesh, Telangana, Karnataka, Tamil Nadu, Kerala                                 | S. Ramesh Kumar       | 26%     |                   395.2 |    47 |\n| North  | Delhi NCR, Punjab, Haryana, Himachal Pradesh, J&K, Uttar Pradesh, Rajasthan, Uttarakhand | Gurpreet Sandhu       | 24%     |                   364.8 |    44 |\n| East   | West Bengal, Odisha, Bihar, Jharkhand, Assam and North- East                             | Arindam Ghosh         | 22%     |                   334.4 |    39 |\n| Total  |                                                                                          |                       | 100%    |                 1,520.0 |   180 |\n\nWest remains the largest zone because of the strong home-state franchise in Gujarat and the Mumbai metro market."
+    },
+    {
+     "n": 2,
+     "title": "FY27 Sales Targets by Zone",
+     "text": "## 6. Zone × quarter matrix (₹ crore)\n\n| Zone   |    Q1 |    Q2 |    Q3 |    Q4 |    FY27 |\n|--------|-------|-------|-------|-------|---------|\n| West   |  97.9 | 106.4 | 114.9 | 106.4 |   425.6 |\n| South  |  90.9 |  98.8 | 106.7 |  98.8 |   395.2 |\n| North  |  83.9 |  91.2 |  98.5 |  91.2 |   364.8 |\n| East   |  76.9 |  83.6 |  90.3 |  83.6 |   334.4 |\n| Total  | 349.6 | 380.0 | 410.4 | 380.0 | 1,520.0 |"
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "The FY27 sales target for the West zone is **₹425.6 crore** [1][2].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "FY27 Sales Targets by Zone",
+     "text": "## 3. Target by zone\n\n| Zone   | States / regions covered                                                                 | Zonal Sales Manager   | Share   |   FY27 target (₹ crore) |   MRs |\n|--------|------------------------------------------------------------------------------------------|-----------------------|---------|-------------------------|-------|\n| West   | Gujarat, Maharashtra, Goa, Madhya Pradesh, Chhattisgarh                                  | Hemant Desai          | 28%     |                   425.6 |    50 |\n| South  | Andhra Pradesh, Telangana, Karnataka, Tamil Nadu, Kerala                                 | S. Ramesh Kumar       | 26%     |                   395.2 |    47 |\n| North  | Delhi NCR, Punjab, Haryana, Himachal Pradesh, J&K, Uttar Pradesh, Rajasthan, Uttarakhand | Gurpreet Sandhu       | 24%     |                   364.8 |    44 |\n| East   | West Bengal, Odisha, Bihar, Jharkhand, Assam and North- East                             | Arindam Ghosh         | 22%     |                   334.4 |    39 |\n| Total  |                                                                                          |                       | 100%    |                 1,520.0 |   180 |\n\nWest remains the largest zone because of the strong home-state franchise in Gujarat and the Mumbai metro market."
+    },
+    {
+     "n": 2,
+     "title": "FY27 Sales Targets by Zone",
+     "text": "## 6. Zone × quarter matrix (₹ crore)\n\n| Zone   |    Q1 |    Q2 |    Q3 |    Q4 |    FY27 |\n|--------|-------|-------|-------|-------|---------|\n| West   |  97.9 | 106.4 | 114.9 | 106.4 |   425.6 |\n| South  |  90.9 |  98.8 | 106.7 |  98.8 |   395.2 |\n| North  |  83.9 |  91.2 |  98.5 |  91.2 |   364.8 |\n| East   |  76.9 |  83.6 |  90.3 |  83.6 |   334.4 |\n| Total  | 349.6 | 380.0 | 410.4 | 380.0 | 1,520.0 |"
+    }
+   ]
+  }
+ },
+ {
+  "id": 108,
+  "kind": "denied",
+  "asker": "rnd@sanjeevani.example",
+  "doc": "FY27 Sales Targets by Zone",
+  "q": "What is the FY27 sales target for the West zone?",
+  "reference": "₹425.6 crore, 28% of the ₹1,520 crore national domestic target.",
+  "A": {
+   "abstained": false,
+   "answer": "The provided documents do not contain any information about FY27 sales targets for the West zone or any other sales zone. The only sales-related figure mentioned is a peak domestic sales potential estimate of ₹350 crore by FY31 for the SJ-2041 project, which is explicitly noted as not a forecast [1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "R&D Pipeline Review FY27",
+     "text": "### 5. SJ-2041 Programme Highlights\n\n- Phase III trial (protocol SPL/CLN/PRT-017) is a 24-week study in 1,240 patients at 38 sites in India; primary endpoint is HbA1c change from baseline.\n- Enrolment of 1,240 patients was completed in March 2026; the last patients finish 24-week treatment in August 2026 and database lock is planned for November 2026.\n- Commercial scale-up: dedicated bilayer press for Unit I to be requested via change control in Q3 FY27, contingent on topline results.\n- Peak domestic sales potential estimated at ₹350 crore by FY31 (Strategy team estimate; not a forecast)."
+    }
+   ]
+  },
+  "B": {
+   "abstained": true,
+   "answer": "Not found in your documents.\nNo document you can open answers this, so Atlas did not guess.",
+   "cited": []
+  }
+ },
+ {
+  "id": 109,
+  "kind": "answerable",
+  "asker": "rnd@sanjeevani.example",
+  "doc": "Employee Medical Insurance Guide",
+  "q": "What is the Group Mediclaim sum insured for a Band C employee?",
+  "reference": "₹5,00,000 family floater (employee, spouse and up to two children).",
+  "A": {
+   "abstained": false,
+   "answer": "The Group Mediclaim family floater sum insured for a Band C employee (grades M1-M2) is ₹5,00,000. [1]",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Employee Medical Insurance Guide",
+     "text": "## 3. Sum insured - Group Mediclaim\n\n| Band   | Grades           | Family floater sum insured   |\n|--------|------------------|------------------------------|\n| Band A | M5 and above     | ₹10,00,000                   |\n| Band B | M3-M4            | ₹7,00,000                    |\n| Band C | M1-M2            | ₹5,00,000                    |\n| Band D | W1-W4 (non-ESIC) | ₹3,00,000                    |\n\n3.1 A corporate buffer of ₹50,00,000 is available for the whole company for critical illnesses (cancer, organ transplant, major cardiac surgery, stroke) after the family sum insured is exhausted. Use of the buffer requires approval from Head HR; maximum ₹5,00,000 per family per year."
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "For a Band C employee (grades M1‑M2), the Group Mediclaim family floater sum insured is **₹5,00,000** [1].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Employee Medical Insurance Guide",
+     "text": "## 3. Sum insured - Group Mediclaim\n\n| Band   | Grades           | Family floater sum insured   |\n|--------|------------------|------------------------------|\n| Band A | M5 and above     | ₹10,00,000                   |\n| Band B | M3-M4            | ₹7,00,000                    |\n| Band C | M1-M2            | ₹5,00,000                    |\n| Band D | W1-W4 (non-ESIC) | ₹3,00,000                    |\n\n3.1 A corporate buffer of ₹50,00,000 is available for the whole company for critical illnesses (cancer, organ transplant, major cardiac surgery, stroke) after the family sum insured is exhausted. Use of the buffer requires approval from Head HR; maximum ₹5,00,000 per family per year."
+    }
+   ]
+  }
+ },
+ {
+  "id": 110,
+  "kind": "not_found",
+  "asker": "ops@kaveri.example",
+  "doc": null,
+  "q": "What is the USD management fee of the GIFT City feeder fund?",
+  "reference": "not found",
+  "A": {
+   "abstained": false,
+   "answer": "The provided passages do not mention the USD management fee for the GIFT City feeder fund.",
+   "cited": []
+  },
+  "B": {
+   "abstained": true,
+   "answer": "Not found in your documents.\nNo document you can open answers this, so Atlas did not guess.",
+   "cited": []
+  }
+ },
+ {
+  "id": 111,
+  "kind": "answerable",
+  "asker": "compliance@kaveri.example",
+  "doc": "Investment Risk Limits Policy",
+  "q": "What is the VaR limit for Kaveri's equity schemes?",
+  "reference": "1-day VaR at 95% confidence must not exceed 2.5% of NAV for any equity scheme.",
+  "A": {
+   "abstained": false,
+   "answer": "The VaR limit for Kaveri's equity schemes is 2.5% (95%, 1-day). [1][2][3][4]",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Q4 FY26 Risk Dashboard",
+     "text": "## 1. Summary\n\n- One limit in breach: Kaveri Small Cap Opportunities 5-day liquidity at 11.8% against the 15% floor (RED). Remediation plan approved: trim 6 illiquid names by 30 June 2026.\n- VaR within limits for all equity schemes. Kaveri Bluechip Fund VaR (95%, 1-day) at 1.9% against the 2.5% limit. Small Cap VaR at 2.4% is AMBER.\n- Flexi Cap banks exposure at 23.9% against the 25% sector limit (AMBER).\n- One passive breach in the quarter, closed: Flexi Cap single-stock weight rose to 10.4% on 18 February 2026 after a sharp rally; restored to 9.6% on 20 February 2026 (2 working days).\n- Total AUM ₹18,650 crore (Q3: ₹17,980 crore)."
+    },
+    {
+     "n": 2,
+     "title": "Q4 FY26 Risk Dashboard",
+     "text": "## 2. Equity Scheme Limits\n\n| Scheme                         |   AUM (₹ cr) | Largest stock (limit 10%)   | Largest sector (limit)    | VaR 95% 1-day (limit 2.5%)   | Status                       |\n|--------------------------------|--------------|-----------------------------|---------------------------|------------------------------|------------------------------|\n| Kaveri Bluechip Fund           |        6,420 | 8.9%                        | Banks 31.8% (35%)         | 1.9%                         | GREEN                        |\n| Kaveri Flexi Cap Fund          |        4,980 | 9.6%                        | Banks 23.9% (25%)         | 2.1%                         | AMBER (sector)               |\n| Kaveri Small Cap Opportunities |        2,310 | 4.2%                        | Capital goods 18.6% (25%) | 2.4%                         | RED (liquidity), AMBER (VaR) |\n| Kaveri Arbitrage Fund          |        1,100 | 6.1% gross                  | Banks 21.0% gross (25%)   | 0.2%                         | GREEN                        |"
+    },
+    {
+     "n": 3,
+     "title": "Stress Test Results March 2026",
+     "text": "## 1. Key Findings\n\n1. Under the severe equity scenario (Nifty 50 -20% instantaneous), Kaveri Small Cap Opportunities would lose an estimated 27.9% of NAV, the largest loss of any product.\n2. Under the redemption stress (25% of Small Cap AUM redeemed in 10 trading days), the scheme would face a funding shortfall of ₹30.0 crore, which would have to be met by borrowing. This is consistent with the open liquidity breach (11.8% vs 15% floor).\n3. Kaveri Short Duration Fund would lose 3.9% under a +150 bp parallel rate shock; no redemption shortfall arises.\n4. The AIF long-short book loses least in equity scenarios because of its 38% net long exposure.\n5. No scheme would breach the 2.5% VaR limit in the base case; under the stressed-volatility scenario, Bluechip VaR would rise from 1.9% to 3.1%."
+    },
+    {
+     "n": 4,
+     "title": "Stress Test Results March 2026",
+     "text": "## 6. Stressed Volatility (S7) - VaR\n\n| Scheme                         | VaR 95% 1-day (base)   | VaR 95% 1-day (stressed)   | Limit   |\n|--------------------------------|------------------------|----------------------------|---------|\n| Kaveri Bluechip Fund           | 1.9%                   | 3.1%                       | 2.5%    |\n| Kaveri Flexi Cap Fund          | 2.1%                   | 3.5%                       | 2.5%    |\n| Kaveri Small Cap Opportunities | 2.4%                   | 4.2%                       | 2.5%    |\n\n\n\n\n\n- 6.1 VaR limits apply to actual daily VaR, not stressed VaR. The stressed figures show that in a volatility shock all three equity schemes would move into breach together, and limit relief would need Board Risk Committee approval."
+    }
+   ]
+  },
+  "B": {
+   "abstained": false,
+   "answer": "The VaR limit for all Kaveri equity schemes is **2.5% (95%, 1-day)** [1][2][3].",
+   "cited": [
+    {
+     "n": 1,
+     "title": "Q4 FY26 Risk Dashboard",
+     "text": "## 1. Summary\n\n- One limit in breach: Kaveri Small Cap Opportunities 5-day liquidity at 11.8% against the 15% floor (RED). Remediation plan approved: trim 6 illiquid names by 30 June 2026.\n- VaR within limits for all equity schemes. Kaveri Bluechip Fund VaR (95%, 1-day) at 1.9% against the 2.5% limit. Small Cap VaR at 2.4% is AMBER.\n- Flexi Cap banks exposure at 23.9% against the 25% sector limit (AMBER).\n- One passive breach in the quarter, closed: Flexi Cap single-stock weight rose to 10.4% on 18 February 2026 after a sharp rally; restored to 9.6% on 20 February 2026 (2 working days).\n- Total AUM ₹18,650 crore (Q3: ₹17,980 crore)."
+    },
+    {
+     "n": 2,
+     "title": "Q4 FY26 Risk Dashboard",
+     "text": "## 2. Equity Scheme Limits\n\n| Scheme                         |   AUM (₹ cr) | Largest stock (limit 10%)   | Largest sector (limit)    | VaR 95% 1-day (limit 2.5%)   | Status                       |\n|--------------------------------|--------------|-----------------------------|---------------------------|------------------------------|------------------------------|\n| Kaveri Bluechip Fund           |        6,420 | 8.9%                        | Banks 31.8% (35%)         | 1.9%                         | GREEN                        |\n| Kaveri Flexi Cap Fund          |        4,980 | 9.6%                        | Banks 23.9% (25%)         | 2.1%                         | AMBER (sector)               |\n| Kaveri Small Cap Opportunities |        2,310 | 4.2%                        | Capital goods 18.6% (25%) | 2.4%                         | RED (liquidity), AMBER (VaR) |\n| Kaveri Arbitrage Fund          |        1,100 | 6.1% gross                  | Banks 21.0% gross (25%)   | 0.2%                         | GREEN                        |"
+    },
+    {
+     "n": 3,
+     "title": "Stress Test Results March 2026",
+     "text": "## 6. Stressed Volatility (S7) - VaR\n\n| Scheme                         | VaR 95% 1-day (base)   | VaR 95% 1-day (stressed)   | Limit   |\n|--------------------------------|------------------------|----------------------------|---------|\n| Kaveri Bluechip Fund           | 1.9%                   | 3.1%                       | 2.5%    |\n| Kaveri Flexi Cap Fund          | 2.1%                   | 3.5%                       | 2.5%    |\n| Kaveri Small Cap Opportunities | 2.4%                   | 4.2%                       | 2.5%    |\n\n\n\n\n\n- 6.1 VaR limits apply to actual daily VaR, not stressed VaR. The stressed figures show that in a volatility shock all three equity schemes would move into breach together, and limit relief would need Board Risk Committee approval."
+    }
+   ]
+  }
+ }
+]
