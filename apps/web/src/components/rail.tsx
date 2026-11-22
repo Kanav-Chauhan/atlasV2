@@ -15,6 +15,7 @@ const ICONS: Record<string, React.ReactNode> = {
   insights: <path d="M4 20V10M10 20V4M16 20v-7M22 20H2" />,
   "agent-access": <><circle cx="8" cy="15" r="4" /><path d="M11 12l9-9M17 6l3 3M15 8l2 2" /></>,
   settings: <><circle cx="12" cy="12" r="3" /><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1" /></>,
+  lab: <path d="M9 3h6M10 3v6l-5.6 9.6A1.6 1.6 0 0 0 5.8 21h12.4a1.6 1.6 0 0 0 1.4-2.4L14 9V3M7.5 15h9" />,
 };
 
 export function RailDests({ items }: { items: NavItem[] }) {

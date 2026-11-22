@@ -110,3 +110,12 @@ class Document(Base):
     updated_at: Mapped[datetime] = mapped_column(
         DateTime(timezone=True), server_default=func.now(), onupdate=func.now()
     )
+
+
+class EvalRun(Base):
+    __tablename__ = "eval_runs"
+    id: Mapped[int] = mapped_column(primary_key=True)
+    run_id: Mapped[str] = mapped_column(String(64), unique=True)
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
+    # {mode: {hit_at_1, hit_at_3, hit_at_5, mrr, context_recall, leaks, n}}
+    modes: Mapped[dict[str, Any]] = mapped_column(JSONB)

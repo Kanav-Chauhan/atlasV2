@@ -3,6 +3,8 @@
 import { QueryClient, QueryClientProvider, useQuery, useQueryClient } from "@tanstack/react-query";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useRef, useState } from "react";
+import { detail } from "@/lib/api";
+import { ChunkPanel } from "./chunks";
 
 export type Doc = {
   id: string;
@@ -23,12 +25,6 @@ type Props = { initial: Doc[] | null; canUpload: boolean; isAdmin: boolean; uplo
 const STATUS = { ready: "Ready", processing: "Processing", queued: "Queued", failed: "Failed" } as const;
 const MAX_BYTES = 10 * 1024 * 1024;
 const date = new Intl.DateTimeFormat("en-IN", { day: "numeric", month: "short", year: "numeric", timeZone: "Asia/Kolkata" });
-
-async function detail(res: Response) {
-  const body = await res.json().catch(() => null);
-  if (typeof body?.detail === "string") return body.detail;
-  return res.status >= 500 ? "The Atlas server isn't answering right now." : `The server answered ${res.status}.`;
-}
 
 async function fetchDocs(): Promise<Doc[]> {
   const res = await fetch("/api/documents", { cache: "no-store" });
@@ -52,6 +48,7 @@ function LibraryView({ initial, canUpload, isAdmin, uploadTo }: Props) {
   const q = params.get("q") ?? "";
   const dept = params.get("access") ?? "";
   const dialog = useRef<HTMLDialogElement>(null);
+  const [chunksOf, setChunksOf] = useState<Doc | null>(null);
 
   const { data, error, isPending, refetch, isRefetching } = useQuery({
     queryKey: ["documents"],
@@ -115,17 +112,18 @@ function LibraryView({ initial, canUpload, isAdmin, uploadTo }: Props) {
           {shown.length === 0 ? (
             <p className="text-sm text-muted">No documents match this search.</p>
           ) : (
-            <DocTable docs={shown} />
+            <DocTable docs={shown} onChunks={setChunksOf} />
           )}
         </>
       )}
 
+      {chunksOf && <ChunkPanel doc={chunksOf} onClose={() => setChunksOf(null)} />}
       {canUpload && <UploadDialog ref={dialog} isAdmin={isAdmin} uploadTo={uploadTo} />}
     </div>
   );
 }
 
-function DocTable({ docs }: { docs: Doc[] }) {
+function DocTable({ docs, onChunks }: { docs: Doc[]; onChunks: (d: Doc) => void }) {
   return (
     <table className="docs">
       <thead>
@@ -140,6 +138,9 @@ function DocTable({ docs }: { docs: Doc[] }) {
                 {d.doc_no && <span className="text-muted">{d.doc_no}</span>}
                 {d.is_public && <span className="tag">Public</span>}
                 {d.superseded_by && <span className="tag tag-warn">Superseded</span>}
+                {d.status === "ready" && (
+                  <button type="button" className="chunks-btn" onClick={() => onChunks(d)}>Chunks<span className="sr-only">: {d.title}</span></button>
+                )}
               </span>
             </div></td>
             <td data-label="Department">{d.access}</td>

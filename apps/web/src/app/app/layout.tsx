@@ -7,6 +7,7 @@ import { ThemeToggle } from "@/components/theme-toggle";
 import { initials } from "@/lib/demo-users";
 import { navFor } from "@/lib/nav";
 import { getUser } from "@/lib/session";
+import "./controls.css";
 import "./shell.css";
 
 export default async function AppLayout({ children }: { children: React.ReactNode }) {

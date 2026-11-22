@@ -1,5 +1,11 @@
 """The one access rule (docs/API.md). Every endpoint goes through here."""
 
+from llama_index.core.vector_stores import (
+    FilterCondition,
+    FilterOperator,
+    MetadataFilter,
+    MetadataFilters,
+)
 from sqlalchemy import ColumnElement, and_, or_, true
 
 from atlas_api.models import EVERYONE, Document, Role, User
@@ -18,6 +24,32 @@ def readable(user: User) -> ColumnElement[bool]:
         true()
         if user.role == Role.admin
         else or_(Document.access == EVERYONE, Document.access.in_(user.department_names)),
+    )
+
+
+def _sql(value: str) -> str:
+    # PGVectorStore pastes filter values into the SQL text, so quotes must be escaped here.
+    return value.replace("'", "''")
+
+
+def chunk_filters(user: User) -> MetadataFilters:
+    """can_read as LlamaIndex metadata filters on chunks (PGVectorStore turns them into SQL)."""
+    org = MetadataFilter(key="org_id", value=user.org_id)
+    if user.role == Role.admin:
+        return MetadataFilters(filters=[org])
+    sees: list[MetadataFilter | MetadataFilters] = [
+        MetadataFilter(key="access", value=_sql(EVERYONE))
+    ]
+    if user.department_names:  # "IN ()" is not valid SQL
+        sees.append(
+            MetadataFilter(
+                key="access",
+                operator=FilterOperator.IN,
+                value=sorted(_sql(d) for d in user.department_names),
+            )
+        )
+    return MetadataFilters(
+        filters=[org, MetadataFilters(filters=sees, condition=FilterCondition.OR)]
     )
 
 

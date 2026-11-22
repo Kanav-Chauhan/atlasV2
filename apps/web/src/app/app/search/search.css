@@ -1,0 +1,14 @@
+/* Search: a ranked list of passages, reader-quiet. Tokens only. */
+.search mark { background: var(--color-mark); color: var(--color-ink); border-radius: 2px; padding: 0 var(--space-3xs); }
+.result-skeleton { height: 120px; }
+.results { display: grid; gap: var(--space-sm); padding: 0; margin: 0; list-style: none; }
+.result {
+  display: grid; gap: var(--space-xs); padding: var(--space-md) var(--space-lg);
+  border: var(--rule-hair) solid var(--color-rule); border-radius: var(--radius-card); background: var(--color-paper);
+}
+.result-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--space-2xs) var(--space-sm); }
+.result-head h2 { min-width: 0; overflow-wrap: anywhere; }
+.result-meta { display: flex; flex-wrap: wrap; gap: var(--space-3xs) var(--space-md); font-size: var(--text-xs); color: var(--color-muted); }
+.passage { font-size: var(--text-sm); color: var(--color-ink-2); white-space: pre-line; overflow-wrap: anywhere; }
+.result .open { justify-self: start; font-size: var(--text-sm); font-weight: 600; color: var(--color-accent-deep); text-underline-offset: 3px; }
+.result .open:hover { color: var(--color-accent); }

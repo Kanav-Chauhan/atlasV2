@@ -12,6 +12,8 @@ class Settings(BaseSettings):
     corpus_dir: str = "/corpus"
     models_dir: str = "/models"
     max_upload_mb: int = 10
+    # bge-reranker-base needs ~1.9 GB RAM and ~12 s per query on this VPS; MiniLM ~0.4 GB, ~3 s.
+    reranker_model: str = "Xenova/ms-marco-MiniLM-L-6-v2"
 
     @property
     def sync_database_url(self) -> str:

@@ -4,14 +4,25 @@ from pathlib import Path
 from typing import Annotated
 
 from fastapi import APIRouter, Cookie, Depends, File, Form, HTTPException, Query, UploadFile
+from fastapi.concurrency import run_in_threadpool
 from fastapi.responses import FileResponse, Response
-from pydantic import BaseModel, ConfigDict
+from llama_index.core.schema import NodeWithScore
+from llama_index.core.utils import get_tokenizer
+from pydantic import BaseModel, ConfigDict, Field, StringConstraints
 from sqlalchemy import func, select, text
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from atlas_api import access, uploads
+from atlas_api import access, retrieve, uploads
 from atlas_api.db import CHUNKS_TABLE, Session
-from atlas_api.models import EVERYONE, Department, Document, Role, User, user_departments
+from atlas_api.models import (
+    EVERYONE,
+    Department,
+    Document,
+    EvalRun,
+    Role,
+    User,
+    user_departments,
+)
 from atlas_api.settings import settings
 
 router = APIRouter()
@@ -201,3 +212,154 @@ async def departments(user: CurrentUser, s: DB) -> list[DepartmentOut]:
         .order_by(Department.name)
     )
     return [DepartmentOut(name=n, description=d, members=m) for n, d, m in rows]
+
+
+Query_ = Annotated[str, StringConstraints(strip_whitespace=True, min_length=1, max_length=1000)]
+
+
+class SearchIn(BaseModel):
+    q: Query_
+    top_k: int = Field(retrieve.FINAL_K, ge=1, le=retrieve.TOP_K)
+
+
+class SearchHit(BaseModel):
+    chunk_id: str
+    document_id: int
+    title: str
+    doc_no: str
+    access: str
+    page: int | None
+    section: str
+    text: str
+    score: float
+    superseded: bool
+
+
+class SearchOut(BaseModel):
+    q: str
+    took_ms: int
+    results: list[SearchHit]
+
+
+def search_hit(n: NodeWithScore) -> SearchHit:
+    m = n.node.metadata
+    return SearchHit(
+        chunk_id=n.node.node_id,
+        document_id=int(n.node.ref_doc_id or 0),
+        title=m.get("title", ""),
+        doc_no=m.get("doc_no", ""),
+        access=m.get("access", ""),
+        page=m.get("page"),
+        section=m.get("header_path", "/"),
+        text=n.node.get_content(),
+        score=n.score or 0.0,
+        superseded=bool(m.get("superseded")),
+    )
+
+
+@router.post("/search")
+async def search(body: SearchIn, user: CurrentUser) -> SearchOut:
+    filters = access.chunk_filters(user)
+    res = await run_in_threadpool(retrieve.search, body.q, filters, "hybrid_rerank", body.top_k)
+    return SearchOut(
+        q=body.q,
+        took_ms=round(sum(res.ms.values())),
+        results=[search_hit(n) for n in res.final],
+    )
+
+
+class LabIn(BaseModel):
+    q: Query_
+    as_email: str | None = None
+
+
+class LabHit(BaseModel):
+    chunk_id: str
+    document_id: int
+    title: str
+    page: int | None
+    section: str
+    text: str
+    score: float
+    rank: int
+
+
+class LabOut(BaseModel):
+    q: str
+    as_email: str
+    took_ms: dict[str, int]
+    stages: dict[str, list[LabHit]]
+
+
+@router.post("/search/lab")
+async def search_lab(body: LabIn, user: CurrentUser, s: DB) -> LabOut:
+    if user.role != Role.admin:
+        raise HTTPException(403, "Only an admin can open the retrieval lab.")
+    who = user
+    if body.as_email and body.as_email != user.email:
+        found = await s.scalar(
+            select(User).where(User.email == body.as_email, User.org_id == user.org_id)
+        )
+        if found is None:
+            raise HTTPException(404, "There is no such person in your organization.")
+        who = found
+    filters = access.chunk_filters(who)
+    res = await run_in_threadpool(retrieve.search, body.q, filters, "hybrid_rerank")
+    return LabOut(
+        q=body.q,
+        as_email=who.email,
+        took_ms={k: round(v) for k, v in res.ms.items()},
+        stages={
+            stage: [
+                LabHit(
+                    **search_hit(n).model_dump(exclude={"doc_no", "access", "superseded"})
+                    | {"text": n.node.get_content()[:300], "rank": rank}
+                )
+                for rank, n in enumerate(hits, 1)
+            ]
+            for stage, hits in res.stages.items()
+        },
+    )
+
+
+class ChunkOut(BaseModel):
+    chunk_id: str
+    index: int
+    page: int | None
+    section: str
+    tokens: int
+    text: str
+
+
+@router.get("/documents/{doc_id}/chunks")
+async def document_chunks(doc_id: int, user: CurrentUser, s: DB) -> list[ChunkOut]:
+    await readable_doc(s, user, doc_id)
+    rows = await s.execute(
+        text(
+            f"SELECT node_id, text, metadata_ FROM {CHUNKS_TABLE}"
+            " WHERE metadata_->>'document_id' = :id ORDER BY id"
+        ),
+        {"id": str(doc_id)},
+    )
+    tokens = get_tokenizer()  # the tokenizer the splitter counted with
+    return [
+        ChunkOut(
+            chunk_id=node_id,
+            index=i,
+            page=meta.get("page"),
+            section=meta.get("header_path", "/"),
+            tokens=len(tokens(body)),
+            text=body,
+        )
+        for i, (node_id, body, meta) in enumerate(rows)
+    ]
+
+
+@router.get("/evals/latest")
+async def evals_latest(user: CurrentUser, s: DB) -> dict[str, object]:
+    if user.role != Role.admin:
+        raise HTTPException(403, "Only an admin can see eval results.")
+    run = await s.scalar(select(EvalRun).order_by(EvalRun.created_at.desc()).limit(1))
+    if run is None:
+        raise HTTPException(404, "No retrieval eval has run yet.")
+    return {"run_id": run.run_id, "created_at": run.created_at, "modes": run.modes}

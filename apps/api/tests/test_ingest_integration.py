@@ -96,3 +96,16 @@ async def test_documents_follow_access(hr_doc: int, email: str, sees: bool) -> N
 async def test_no_cookie_is_401() -> None:
     async with AsyncClient(transport=ASGITransport(app=app), base_url="http://t") as c:
         assert (await c.get("/documents")).status_code == 401
+
+
+@pytest.mark.parametrize(("email", "sees"), [("a@tiny.test", True), ("m@tiny.test", False)])
+async def test_search_and_chunks_follow_access(hr_doc: int, email: str, sees: bool) -> None:
+    async with AsyncClient(
+        transport=ASGITransport(app=app), base_url="http://t", cookies={"atlas_demo_user": email}
+    ) as c:
+        r = await c.post("/search", json={"q": "How many days of earned leave?"})
+        assert r.status_code == 200
+        assert (hr_doc in {h["document_id"] for h in r.json()["results"]}) is sees
+        chunks = await c.get(f"/documents/{hr_doc}/chunks")
+        assert chunks.status_code == (200 if sees else 404)
+        assert (await c.post("/search", json={"q": " "})).status_code == 422
