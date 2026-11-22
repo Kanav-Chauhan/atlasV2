@@ -25,3 +25,4 @@ Plan: [PLAN.md](PLAN.md). Updated after every step.
 | 2026-11-22 | Nimbus: added Rohan Bhatia (CFO, Finance), Farah Siddiqui (Head of Legal), Sameer Khan (CISO, IT Security) as managers; 12 eval questions moved to them; Docker build cache pruned after every build | ✅ |
 | 2026-11-22 | Phase 4 TODO (3): re-ingest deletes old chunks before writing new ones, so a failed re-ingest leaves the document with no chunks → write new chunks first, then delete old ones by id (or one transaction) | TODO |
 | 2026-11-22 | Owner decisions: address p10, Clerk Waitlist, nightly demo reset + button, super admin login on the login page (sa@kanav.space, argon2 hash in infra/.env) | ✅ |
+| 2026-11-22 | Owner: run all remaining phases back to back, ignore weekly limit. Phase 4 started (backend: 3 ingest fixes + LlamaIndex hybrid/RRF/cross-encoder retrieval + endpoints + eval script; web: Search, chunk viewer, Retrieval lab) | 🔄 |
