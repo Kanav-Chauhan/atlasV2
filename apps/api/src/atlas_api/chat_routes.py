@@ -16,7 +16,7 @@ from fastapi.responses import Response, StreamingResponse
 from pydantic import BaseModel, ConfigDict, StringConstraints
 from sqlalchemy import select
 
-from atlas_api import access, graph, tracing
+from atlas_api import access, graph, metrics, tracing
 from atlas_api.cache import AnswerCache, scope
 from atlas_api.db import Session
 from atlas_api.models import Chat, DocumentRequest, Message, User
@@ -158,12 +158,11 @@ async def turn_stream(question: str, ctx: graph.Ctx, tid: str, chat_id: str) -> 
     """Run one turn through the graph as an AI SDK UI message stream and store the answer.
     Shared by staff /chat and the website visitor's /public/{site_key}/chat."""
     message_id = uuid.uuid4().hex
+    who = "visitor" if ctx.visitor else "staff"
     elapsed = graph.timer()
     final: dict[str, Any] = {}
     # LangSmith (when on): this turn's root run id is the trace id sent in data-meta.
-    config: dict[str, Any] = {"configurable": {"thread_id": tid}} | tracing.run_config(
-        "visitor" if ctx.visitor else "staff", ctx.org
-    )
+    config: dict[str, Any] = {"configurable": {"thread_id": tid}} | tracing.run_config(who, ctx.org)
 
     async def events() -> AsyncIterator[dict[str, Any]]:
         g = await compiled()
@@ -206,6 +205,7 @@ async def turn_stream(question: str, ctx: graph.Ctx, tid: str, chat_id: str) -> 
         extra |= await tracing.trace_meta(config)
         yield sse({"type": "data-meta", "data": meta(row) | extra})
         yield sse({"type": "finish", "finishReason": "stop"})
+        metrics.answer(who, row.route or "rag", row.abstained, row.cached, row.latency_ms or 0)
         log.info(
             "chat route=%s abstained=%s cached=%s ms=%s",
             row.route,
@@ -214,6 +214,7 @@ async def turn_stream(question: str, ctx: graph.Ctx, tid: str, chat_id: str) -> 
             row.latency_ms,
         )
     except Exception:
+        metrics.ANSWER_ERRORS.labels(who).inc()
         log.exception("chat turn failed")
         yield sse(
             {

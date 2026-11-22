@@ -50,6 +50,7 @@ services:
       ATLAS_SUPERADMIN_EMAIL: ${ATLAS_SUPERADMIN_EMAIL:-}
       # Clerk Waitlist (Phase 10): api only. Test key now, sk_live_ at launch.
       ATLAS_CLERK_SECRET_KEY: ${CLERK_SECRET_KEY:-}
+      ATLAS_METRICS_PORT: "9464"  # Prometheus (metrics.py), internal network only
       ATLAS_SUPERADMIN_PASSWORD_HASH: ${ATLAS_SUPERADMIN_PASSWORD_HASH:-}
       ATLAS_SESSION_SECRET: ${ATLAS_SESSION_SECRET:-}
       # LangSmith tracing (Phase 6): off unless LANGSMITH_TRACING=true AND a key is set.
@@ -57,6 +58,7 @@ services:
       LANGSMITH_API_KEY: ${LANGSMITH_API_KEY:-}
       LANGSMITH_PROJECT: ${LANGSMITH_PROJECT:-atlas-v2}
       LANGSMITH_ENDPOINT: ${LANGSMITH_ENDPOINT:-https://api.smith.langchain.com}
+      LANGSMITH_WORKSPACE_ID: ${LANGSMITH_WORKSPACE_ID:-}  # needed by org-scoped service keys
       RAGAS_DO_NOT_TRACK: "true"  # the answer eval runs in this image; no usage stats sent
     volumes: *api-volumes
     ports:

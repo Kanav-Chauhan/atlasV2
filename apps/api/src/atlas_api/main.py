@@ -1,3 +1,6 @@
+from collections.abc import AsyncIterator
+from contextlib import asynccontextmanager
+
 from fastapi import FastAPI, Response
 from sqlalchemy import text
 
@@ -5,6 +8,7 @@ from atlas_api import (
     chat_routes,
     insights_routes,
     mcp_server,
+    metrics,
     routes,
     super_routes,
     team_routes,
@@ -13,8 +17,18 @@ from atlas_api import (
     website_routes,
 )
 from atlas_api.db import engine, redis
+from atlas_api.settings import settings
 
-app = FastAPI(title="Atlas v2 API", lifespan=mcp_server.lifespan)
+
+@asynccontextmanager
+async def lifespan(app: FastAPI) -> AsyncIterator[None]:
+    metrics.serve(settings.metrics_port)
+    async with mcp_server.lifespan(app):
+        yield
+
+
+app = FastAPI(title="Atlas v2 API", lifespan=lifespan)
+app.middleware("http")(metrics.middleware)
 
 
 @app.get("/health")
