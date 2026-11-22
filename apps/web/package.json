@@ -10,7 +10,9 @@
     "typecheck": "next typegen && tsc --noEmit"
   },
   "dependencies": {
+    "@ai-sdk/react": "4.0.169",
     "@tanstack/react-query": "5.108.2",
+    "ai": "7.0.165",
     "next": "16.4.6",
     "react": "19.3.0",
     "react-dom": "19.3.0"

@@ -6,6 +6,8 @@ const API_URL = process.env.API_URL || "http://localhost:8000";
 const nextConfig: NextConfig = {
   output: "standalone",
   poweredByHeader: false,
+  // Next's gzip buffers the /api/chat event stream until it ends; Caddy compresses in front instead.
+  compress: false,
   turbopack: {
     rules: {
       "*.css": {

@@ -17,5 +17,5 @@ export async function api<T>(path: string, body?: unknown): Promise<T> {
     throw new Error("The request didn't reach the server. Check your connection and try again.");
   }
   if (!res.ok) throw Object.assign(new Error(await detail(res)), { status: res.status });
-  return res.json();
+  return res.status === 204 ? (undefined as T) : res.json();
 }

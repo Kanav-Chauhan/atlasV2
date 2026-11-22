@@ -1,4 +1,3 @@
-import { Empty } from "@/components/empty";
 import { firstName } from "@/lib/demo-users";
 import { getUser } from "@/lib/session";
 
@@ -17,7 +16,11 @@ export default async function HomePage() {
           {person.title} · {person.departments.join(", ")}
         </p>
       </header>
-      <Empty title="Ask and Library open in the next phases" body="This is your own dashboard. Questions, documents and suggested questions for your role arrive here soon." />
+      <form action="/app/ask" className="flex gap-2">
+        <label className="sr-only" htmlFor="home-q">Ask about any company document</label>
+        <input id="home-q" name="q" required className="field min-w-0 flex-1" placeholder="Ask about any company document" autoComplete="off" />
+        <button type="submit" className="btn btn-primary">Ask</button>
+      </form>
     </div>
   );
 }
