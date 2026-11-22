@@ -54,15 +54,4 @@ The Ask page uses the Vercel AI SDK `useChat` with `DefaultChatTransport({ api: 
 | GET | `/me/suggested` | any user | `{questions: [str]}` — the user's suggested questions (from demo_corpus/orgs/<org>.json) |
 | POST | `/documents/request` | any user | `{question: str, note?: str}` → `204` ("Request a document" from a not-found answer; shown to admins/managers in Insights) |
 
-## Endpoints (Phase 5: answering)
-
-| Method | Path | Who | Returns |
-|---|---|---|---|
-| POST | `/chat` | any user | body `{message, conversation_id?}` → `text/event-stream`. Events, in order: `meta` `{conversation_id, message_id, route}` where route is `greeting`, `offtopic`, `blocked`, `cached` or `rag`; then many `token` `{text}`; then `citations` `{items: [{n, chunk_id, document_id, title, doc_no, page, section, text}]}` (only the citations used in the answer, numbered as in the text); then `done` `{message_id, abstained, took_ms}`. On failure: `error` `{detail}`. |
-| GET | `/conversations` | any user | the caller's conversations `[{id, title, updated_at}]`, newest first |
-| GET | `/conversations/{id}` | owner of the conversation | `{id, title, messages: [{id, role: user|assistant, text, route, abstained, citations, feedback, created_at}]}` |
-| DELETE | `/conversations/{id}` | owner | `204` |
-| POST | `/messages/{id}/feedback` | owner of the conversation | body `{value: 1 | -1, comment?}` → `204` |
-| GET | `/me/suggestions` | any user | `[str]` — the user's suggested questions (from the org file), max 6 |
-
 **Answer rules:** answer only from the cited passages; every claim has `[n]`; markers that don't map to a passage are removed and logged; when retrieval is too weak after one retry, the answer is exactly "Not found in your documents." plus a one-line reason, and no answer-model call is made. Answers are in the question's language (English, Hindi, Hinglish).
