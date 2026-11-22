@@ -15,4 +15,6 @@ Plan: [PLAN.md](PLAN.md). Updated after every step.
 |---|---|---|
 | 2026-11-22 | Design locked: C icon bar everywhere, Ask = C, Team & access = A's content in the C shell, no role switching (PLAN.md "Design decisions") | ✅ |
 | 2026-11-22 | Owner answered demo-data questions: Managers dept yes, Nimbus leave/notice/referral = Everyone, Admin sees all | ✅ |
+| 2026-11-22 | Phase 1 CI green (api, web, images) | ✅ |
 | 2026-11-22 | Phase 1: FastAPI + Postgres/pgvector + Redis + Celery + Next.js 16 (landing, login, role-based /app shell) live at p10 (password), previews at /previews/ | ✅ |
+| 2026-11-22 | Phase 2 started: corpus + renderer copied (tools/corpus), 3 writers: access mapping, 28 new docs, orgs/<slug>.json, eval candidates | 🔄 |
