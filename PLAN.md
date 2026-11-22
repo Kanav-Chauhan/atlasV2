@@ -174,7 +174,7 @@ Outside services allowed for Atlas: Clerk, PostHog, PayU, Anthropic API, LangSmi
 | 1 | **Skeleton**: repo, uv/ruff/mypy/pre-commit, Docker, Caddy at p10, CI, landing + login | p10 live |
 | 2 | **Demo data**: departments, new documents, demo users, suggested questions | Document list to review |
 | 3 | **Ingestion**: LlamaIndex + Docling + Celery | Library filled |
-| 4 | **Retrieval + permissions** + leak tests | Search works per role |
+| 4 | **Retrieval + permissions** + leak tests, **Retrieval lab** (super admin: vector / keyword / RRF / reranked lists side by side, mode switch with Hit@5 + MRR) and a **chunk viewer** in the Library | Search works per role; you can study each retrieval stage on real data |
 | 5 | **LangGraph flow**: guard, cache, router, memory, Hindi, citations | Ask works, "Hi" fixed |
 | 6 | **LangSmith + RAGAS** in CI | Super admin quality page |
 | 7 | **Full dashboard** (AI Elements chat) + Playwright tests | Complete app |
