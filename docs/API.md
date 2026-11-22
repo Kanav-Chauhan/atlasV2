@@ -90,3 +90,28 @@ Login is a separate option on the login page: email `sa@kanav.space` + password,
 | GET | `/super/usage?days=30` | `[{org (slug), model, questions, tokens_in, tokens_out, avg_latency_ms}]` per org and model; `model` is the gateway slot (`smart` for document answers, `none` otherwise) until Phase 6 logs it; tokens `null` until then |
 | GET | `/super/waitlist` | `[{email, created_at}]`; `[]` until Clerk (Phase 10) |
 | GET | `/super/orgs/{slug}/view` | read-only snapshot: `{org: {slug, name, industry, description}, team: [person as in /team], documents: [document as in /documents, newest first], insights: (as /insights?days=30, whole company)}`; `404` unknown slug |
+
+## Endpoints (Phase 8: website chat)
+
+A company marks documents **public** and pastes one line on its website:
+`<script src="https://p10.kanav.space/widget.js" data-atlas-key="<site_key>" async></script>`.
+The bubble opens an iframe `/embed/<site_key>` that talks to the public API. A website visitor is a built-in
+principal that can read **only `is_public` documents of that company** (filter built in `access.py`, same
+retrieval as staff). No staff document, chat history or name is ever reachable from public routes.
+
+### Admin (cookie auth, admin only)
+
+| Method | Path | Returns |
+|---|---|---|
+| GET | `/website-chat` | `{enabled, site_key, allowed_origins: [str], greeting, accent, position: "right"|"left", show_badge, public_documents}` |
+| PATCH | `/website-chat` | any of `{enabled, allowed_origins, greeting, accent, position}` (`show_badge` stays true until Pro) |
+| POST | `/website-chat/rotate-key` | new `site_key` (old one stops working) |
+| PATCH | `/documents/{id}` | `{is_public: bool}` (admin) → the document |
+| GET | `/website-chat/conversations?days=30` | `[{id, started_at, origin, messages, last_question, not_found}]`, and `GET /website-chat/conversations/{id}` → messages |
+
+### Public (no cookie; CORS/`frame-ancestors` limited to `allowed_origins` + p10 itself)
+
+| Method | Path | Returns |
+|---|---|---|
+| GET | `/public/{site_key}/config` | `{company, greeting, accent, position, show_badge}`; `404` if unknown/disabled |
+| POST | `/public/{site_key}/chat` | same body and **AI SDK UI message stream** as `/chat`, answered as the website visitor; `thread_id` comes from the client (random, kept in the iframe's sessionStorage); history kept 24 h. Guards: rate limit per IP (10/min, 100/day) and per site key (1,000/day), question ≤ 500 chars, honeypot field `website` must be empty, prompt-injection guard, answer token cap. |
