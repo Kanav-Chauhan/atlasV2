@@ -55,3 +55,34 @@ The Ask page uses the Vercel AI SDK `useChat` with `DefaultChatTransport({ api: 
 | POST | `/documents/request` | any user | `{question: str, note?: str}` → `204` ("Request a document" from a not-found answer; shown to admins/managers in Insights) |
 
 **Answer rules:** answer only from the cited passages; every claim has `[n]`; markers that don't map to a passage are removed and logged; when retrieval is too weak after one retry, the answer is exactly "Not found in your documents." plus a one-line reason, and no answer-model call is made. Answers are in the question's language (English, Hindi, Hinglish).
+
+## Endpoints (Phase 7: dashboard)
+
+Roles: **admin** = whole company; **manager** = own departments (can add/remove members and guests in them); members and guests see none of these.
+
+| Method | Path | Who | Returns |
+|---|---|---|---|
+| GET | `/team` | admin, manager | `[{id, name, email, title, role, departments, guest_until, last_active}]` (manager: people in their departments) |
+| POST | `/team` | admin; manager (role member/guest, only own departments) | `{name, email, title, role, departments, guest_until?}` → the person (`409` if the email exists) |
+| PATCH | `/team/{id}` | same rules | any of `{title, role, departments, guest_until}` → the person. Nobody can change their own role; the last admin can't be demoted. |
+| DELETE | `/team/{id}` | same rules | `204` (not yourself, not the last admin) |
+| POST | `/departments` | admin | `{name, description}` → department (`409` duplicate) |
+| PATCH / DELETE | `/departments/{name}` | admin | rename/describe; delete only when no documents and no people |
+| GET | `/access` | admin, manager | who can read what: `{departments: [str], people: [{id, name, role, can_read: {<department>: bool}, everyone: true}]}` |
+| GET | `/insights?days=30` | admin (company), manager (own departments) | `{questions, answered, not_found, blocked, smalltalk, answered_pct, avg_latency_ms, p95_latency_ms, feedback: {up, down}, top_unanswered: [{question, count}], document_requests: [{question, note, by, created_at}], top_documents: [{document_id, title, citations}], by_department: [{department, questions}], per_day: [{date, questions, not_found}]}` — computed from stored chat messages |
+| GET | `/documents/review` | admin, manager | documents needing review: past their `review` date or effective > 12 months ago, in scope: `[{id, title, access, effective, review, reason}]` |
+| GET / PATCH | `/org` | GET admin, PATCH admin | `{slug, name, industry, description}` |
+
+### Super admin (the Atlas owner, not a company)
+
+Login is a separate option on the login page: email `sa@kanav.space` + password, checked against `ATLAS_SUPERADMIN_EMAIL` / `ATLAS_SUPERADMIN_PASSWORD_HASH` (argon2) in env. Success sets an httpOnly, signed cookie `atlas_super` (8 h); rate-limit 5 attempts/min per IP.
+
+| Method | Path | Returns |
+|---|---|---|
+| POST | `/auth/super` | `{email, password}` → `204` + cookie, or `401` |
+| POST | `/auth/super/logout` | `204` |
+| GET | `/super/orgs` | `[{slug, name, people, documents, chunks, questions_30d, not_found_pct_30d, last_activity}]` |
+| GET | `/super/evals` | all retrieval eval runs (+ answer evals in Phase 6) |
+| GET | `/super/usage?days=30` | per org and model: questions, tokens in/out when known, avg latency |
+| GET | `/super/waitlist` | `[]` until Clerk (Phase 10) |
+| GET | `/super/orgs/{slug}/view` | read-only company snapshot (team, documents, insights) |
