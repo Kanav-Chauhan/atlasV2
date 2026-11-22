@@ -1,0 +1,511 @@
+{
+ "summary": {
+  "org": "nimbus",
+  "positives": 56,
+  "negatives": 18,
+  "threshold": -0.982,
+  "accuracy": 0.878,
+  "false_not_found": 0,
+  "false_answer": 9,
+  "pos_min": -0.9818466305732727,
+  "neg_max": 1.50911545753479
+ },
+ "questions": [
+  {
+   "q": "After how many minutes of inactivity must a Nimbus laptop screen lock?",
+   "kind": "answerable",
+   "score": 1.309354305267334
+  },
+  {
+   "q": "Where should I forward a suspicious email?",
+   "kind": "answerable",
+   "score": -0.32435300946235657
+  },
+  {
+   "q": "What is the response time for a SEV1 incident and who gets paged?",
+   "kind": "answerable",
+   "score": 1.4936230182647705
+  },
+  {
+   "q": "Which class can I fly on a 10-hour international flight for work?",
+   "kind": "answerable",
+   "score": -0.6513782739639282
+  },
+  {
+   "q": "What is the daily allowance for business travel to a metro city in India?",
+   "kind": "answerable",
+   "score": 1.6980180740356445
+  },
+  {
+   "q": "What are the default anchor days for office attendance?",
+   "kind": "answerable",
+   "score": 0.4989028573036194
+  },
+  {
+   "q": "Independence Day 2026 falls on a Saturday. Is there still a flag-hoisting at the office?",
+   "kind": "answerable",
+   "score": 1.561685562133789
+  },
+  {
+   "q": "What is the group term life insurance cover for employees?",
+   "kind": "answerable",
+   "score": 0.6947522163391113
+  },
+  {
+   "q": "Within how many hours must CERT-In be notified of a reportable cyber incident?",
+   "kind": "answerable",
+   "score": 0.8436460494995117
+  },
+  {
+   "q": "What happens to earned leave above the carry-forward limit at year end?",
+   "kind": "answerable",
+   "score": -0.06743306666612625
+  },
+  {
+   "q": "If a Principal (L6) resigns, how long is the notice period and when is the full and final settlement paid?",
+   "kind": "answerable",
+   "score": 0.9356703162193298
+  },
+  {
+   "q": "What referral bonus does an employee get for referring a Senior Software Engineer (L3)?",
+   "kind": "answerable",
+   "score": 1.7693305015563965
+  },
+  {
+   "q": "Can recruitment agencies be used for any role, and what fee is allowed?",
+   "kind": "answerable",
+   "score": -0.9818466305732727
+  },
+  {
+   "q": "What is the salary band for a Tech Lead (L4)?",
+   "kind": "answerable",
+   "score": 1.2660788297653198
+  },
+  {
+   "q": "What is the salary band for a Tech Lead (L4)?",
+   "kind": "denied",
+   "score": -1.2879678010940552,
+   "top": [
+    "Welcome to Nimbus",
+    "Referral Bonus Policy",
+    "Referral Bonus Policy",
+    "Data Classification and Handling Policy",
+    "Client Escalation Matrix"
+   ]
+  },
+  {
+   "q": "When is the FY2026-27 variable pay paid out?",
+   "kind": "answerable",
+   "score": 1.548570156097412
+  },
+  {
+   "q": "When is the FY2026-27 variable pay paid out?",
+   "kind": "denied",
+   "score": 0.09037543088197708,
+   "top": [
+    "Leave Policy FY2026-27",
+    "Leave Policy FY2026-27",
+    "Leave Policy FY2026-27",
+    "Notice Period and Exit Process",
+    "Handling Performance Issues \u2013 PIP Guide"
+   ]
+  },
+  {
+   "q": "How long does a formal Performance Improvement Plan (PIP) last?",
+   "kind": "answerable",
+   "score": 0.36519408226013184
+  },
+  {
+   "q": "How long does a formal Performance Improvement Plan (PIP) last?",
+   "kind": "denied",
+   "score": -1.8474977016448975,
+   "top": [
+    "Referral Bonus Policy",
+    "Notice Period and Exit Process",
+    "Notice Period and Exit Process",
+    "Harbor Logistics \u2013 Incident Post-Mortem INC-2291",
+    "POSH Policy \u2013 Prevention of Sexual Harassment"
+   ]
+  },
+  {
+   "q": "Can employees bring their pets to the Nimbus office?",
+   "kind": "not_found",
+   "score": -1.8009846210479736,
+   "top": [
+    "Welcome to Nimbus",
+    "POSH Policy \u2013 Prevention of Sexual Harassment",
+    "Employee Benefits Guide",
+    "Information Security Policy",
+    "Remote Access and VPN Guideline"
+   ]
+  },
+  {
+   "q": "How much is the Nimbus annual Diwali bonus?",
+   "kind": "not_found",
+   "score": -0.546667754650116,
+   "top": [
+    "Referral Bonus Policy",
+    "Welcome to Nimbus",
+    "Employee Benefits Guide",
+    "Salary Bands FY2026-27",
+    "Travel and Expense Policy"
+   ]
+  },
+  {
+   "q": "What is the monthly error budget for NimbusOps under its availability SLO?",
+   "kind": "answerable",
+   "score": 1.0089004039764404
+  },
+  {
+   "q": "How much on-call allowance is paid for a weekend or public holiday day?",
+   "kind": "answerable",
+   "score": 0.9781855940818787
+  },
+  {
+   "q": "What RPO and RTO were measured in the April 2026 full DR drill, and did it pass?",
+   "kind": "answerable",
+   "score": 0.9695868492126465
+  },
+  {
+   "q": "What RPO and RTO were measured in the April 2026 full DR drill, and did it pass?",
+   "kind": "denied",
+   "score": -0.4271118640899658,
+   "top": [
+    "Information Security Policy",
+    "NimbusOps Product FAQ",
+    "Notice Period and Exit Process",
+    "Holiday Calendar FY2026-27",
+    "Holiday Calendar FY2026-27"
+   ]
+  },
+  {
+   "q": "What is the API rate limit per key for Enterprise-plan customers?",
+   "kind": "answerable",
+   "score": 1.2174311876296997
+  },
+  {
+   "q": "Who can accept the risk of a Critical vulnerability that cannot be fixed within SLA, and for how long?",
+   "kind": "answerable",
+   "score": 0.7554510831832886
+  },
+  {
+   "q": "Why must infrastructure and system logs be kept for at least 180 days?",
+   "kind": "answerable",
+   "score": 0.1059294193983078
+  },
+  {
+   "q": "Who must approve new recurring cloud spend above \u20b95 lakh per month?",
+   "kind": "answerable",
+   "score": 1.214753270149231
+  },
+  {
+   "q": "How long was HarborTrack down during INC-2291 and what service credit did Harbor receive?",
+   "kind": "answerable",
+   "score": 1.5477218627929688
+  },
+  {
+   "q": "How many Harbor Logistics applications had been migrated to AWS by 30 June 2026?",
+   "kind": "answerable",
+   "score": 1.721733808517456
+  },
+  {
+   "q": "How much is the go-live milestone payment in the Zenith Retail S/4HANA project?",
+   "kind": "answerable",
+   "score": 1.90828537940979
+  },
+  {
+   "q": "How quickly was the May 2026 phishing campaign at Al Noor Healthcare contained?",
+   "kind": "answerable",
+   "score": 1.668294072151184
+  },
+  {
+   "q": "What is the list price of the NimbusOps Enterprise plan?",
+   "kind": "answerable",
+   "score": 1.1830573081970215
+  },
+  {
+   "q": "What is the list price of the NimbusOps Enterprise plan?",
+   "kind": "denied",
+   "score": 0.22804275155067444,
+   "top": [
+    "Design Doc \u2013 NimbusOps Multi-Region Active-Passive DR",
+    "NimbusOps Product FAQ",
+    "NimbusOps Platform Architecture",
+    "Zenith Retail \u2013 SAP S/4HANA Project Charter",
+    "Cloud Cost Management Guideline"
+   ]
+  },
+  {
+   "q": "Who approves a discount of more than 10% and up to 15% of total contract value?",
+   "kind": "answerable",
+   "score": 0.4382709860801697
+  },
+  {
+   "q": "By how much did the Board approve topping up the ESOP pool on 14 May 2026?",
+   "kind": "answerable",
+   "score": 2.066744089126587
+  },
+  {
+   "q": "By how much did the Board approve topping up the ESOP pool on 14 May 2026?",
+   "kind": "denied",
+   "score": -1.9847604036331177,
+   "top": [
+    "Travel and Expense Policy",
+    "Holiday Calendar FY2026-27",
+    "Holiday Calendar FY2026-27",
+    "Holiday Calendar FY2026-27",
+    "Design Doc \u2013 NimbusOps Multi-Region Active-Passive DR"
+   ]
+  },
+  {
+   "q": "What is the planned Hyderabad headcount at 31 March 2027?",
+   "kind": "answerable",
+   "score": 1.8421554565429688
+  },
+  {
+   "q": "What is the capital cost per seat of the Hyderabad campus expansion?",
+   "kind": "answerable",
+   "score": 2.5282325744628906
+  },
+  {
+   "q": "How many story points does the NimbusOps team deliver per sprint on average?",
+   "kind": "not_found",
+   "score": -1.6332489252090454,
+   "top": [
+    "NimbusOps Product FAQ",
+    "Welcome to Nimbus",
+    "NimbusOps Platform Architecture",
+    "NimbusOps Product FAQ",
+    "NimbusOps Database Failover Runbook"
+   ]
+  },
+  {
+   "q": "What is the parking reimbursement for engineers called in to the office during a SEV1?",
+   "kind": "not_found",
+   "score": -1.1022576093673706,
+   "top": [
+    "On-Call Policy and Rotation",
+    "SEV1 Incident Response Runbook",
+    "SEV1 Incident Response Runbook",
+    "SEV1 Incident Response Runbook",
+    "SEV1 Incident Response Runbook"
+   ]
+  },
+  {
+   "q": "How many days of earned leave do Nimbus employees get per financial year?",
+   "kind": "answerable",
+   "score": 1.4731247425079346
+  },
+  {
+   "q": "What is the fixed salary band for an L3 Senior Software Engineer at Nimbus?",
+   "kind": "answerable",
+   "score": 1.6247296333312988
+  },
+  {
+   "q": "What is the fixed salary band for an L3 Senior Software Engineer at Nimbus?",
+   "kind": "denied",
+   "score": -0.20083217322826385,
+   "top": [
+    "Welcome to Nimbus",
+    "Referral Bonus Policy",
+    "Data Classification and Handling Policy",
+    "Welcome to Nimbus",
+    "Welcome to Nimbus"
+   ]
+  },
+  {
+   "q": "What counts as a SEV1 incident and how fast must on-call respond?",
+   "kind": "answerable",
+   "score": 0.39750808477401733
+  },
+  {
+   "q": "Can I bring my dog to the Nimbus office in Pune?",
+   "kind": "not_found",
+   "score": -1.5606417655944824,
+   "top": [
+    "Welcome to Nimbus",
+    "POSH Policy \u2013 Prevention of Sexual Harassment",
+    "Welcome to Nimbus",
+    "Remote Access and VPN Guideline",
+    "POSH Policy \u2013 Prevention of Sexual Harassment"
+   ]
+  },
+  {
+   "q": "How many days of unused earned leave can a Nimbus employee carry forward into the next year?",
+   "kind": "answerable",
+   "score": 1.7949042320251465
+  },
+  {
+   "q": "What stock refresh time does the Zenith inventory sync BRD require?",
+   "kind": "answerable",
+   "score": 1.2512714862823486
+  },
+  {
+   "q": "Who signs off the Zenith omnichannel inventory sync BRD?",
+   "kind": "answerable",
+   "score": 2.652414321899414
+  },
+  {
+   "q": "Who signs off the Zenith omnichannel inventory sync BRD?",
+   "kind": "denied",
+   "score": -2.505729913711548,
+   "top": [
+    "Password and MFA Standard",
+    "Password and MFA Standard",
+    "Hiring Approval Workflow",
+    "Remote Access and VPN Guideline",
+    "Relocation Assistance Policy"
+   ]
+  },
+  {
+   "q": "Which NimbusOps plans get AI alert summaries?",
+   "kind": "answerable",
+   "score": 2.1779487133026123
+  },
+  {
+   "q": "Which NimbusOps plans get AI alert summaries?",
+   "kind": "denied",
+   "score": 1.50911545753479,
+   "top": [
+    "NimbusOps Product FAQ",
+    "NimbusOps Product FAQ",
+    "NimbusOps Platform Architecture",
+    "NimbusOps Product FAQ",
+    "NimbusOps Platform Architecture"
+   ]
+  },
+  {
+   "q": "What alert-noise reduction is the AI alert summaries feature targeting?",
+   "kind": "answerable",
+   "score": 1.055554747581482
+  },
+  {
+   "q": "Where is NimbusOps customer data stored?",
+   "kind": "answerable",
+   "score": 1.9363958835601807
+  },
+  {
+   "q": "How long is the NimbusOps free trial and how many hosts does it cover?",
+   "kind": "answerable",
+   "score": 0.3385169208049774
+  },
+  {
+   "q": "What is the liability cap in the Harbor Logistics MSA?",
+   "kind": "answerable",
+   "score": 1.933276653289795
+  },
+  {
+   "q": "What is the liability cap in the Harbor Logistics MSA?",
+   "kind": "denied",
+   "score": -0.9820868372917175,
+   "top": [
+    "Harbor Logistics \u2013 Account Overview",
+    "Harbor Logistics \u2013 Cloud Migration Status Report Q1 FY27",
+    "Harbor Logistics \u2013 Incident Post-Mortem INC-2291",
+    "Harbor Logistics \u2013 Account Overview",
+    "Harbor Logistics \u2013 Incident Post-Mortem INC-2291"
+   ]
+  },
+  {
+   "q": "How much notice is needed to not renew the Harbor Logistics MSA?",
+   "kind": "answerable",
+   "score": 1.486165165901184
+  },
+  {
+   "q": "Who can sign a client contract worth more than \u20b95 crore?",
+   "kind": "answerable",
+   "score": 0.579131543636322
+  },
+  {
+   "q": "How long does Legal take to review an NDA on third-party paper?",
+   "kind": "answerable",
+   "score": 0.39464128017425537
+  },
+  {
+   "q": "What are Nimbus's standard vendor payment terms?",
+   "kind": "answerable",
+   "score": 1.3485922813415527
+  },
+  {
+   "q": "Who approves a vendor invoice between \u20b910 lakh and \u20b950 lakh?",
+   "kind": "answerable",
+   "score": 0.9498320817947388
+  },
+  {
+   "q": "What were Nimbus's Q1 FY27 debtor days?",
+   "kind": "answerable",
+   "score": 1.0809192657470703
+  },
+  {
+   "q": "Which region brought the most revenue in Q1 FY27?",
+   "kind": "answerable",
+   "score": 0.9065648317337036
+  },
+  {
+   "q": "How fast must a critical vulnerability on an internet-facing system be fixed?",
+   "kind": "answerable",
+   "score": 0.5992138981819153
+  },
+  {
+   "q": "Who approves a risk exception for a Medium or Low vulnerability, and for how long?",
+   "kind": "answerable",
+   "score": 0.6476269364356995
+  },
+  {
+   "q": "How often is privileged and production access reviewed?",
+   "kind": "answerable",
+   "score": 0.582341194152832
+  },
+  {
+   "q": "How soon is all access removed after someone leaves?",
+   "kind": "answerable",
+   "score": -0.5779621601104736
+  },
+  {
+   "q": "What RPO and RTO does the new NimbusOps DR design target?",
+   "kind": "answerable",
+   "score": 1.755359172821045
+  },
+  {
+   "q": "What RPO and RTO does the new NimbusOps DR design target?",
+   "kind": "denied",
+   "score": 0.960584282875061,
+   "top": [
+    "Information Security Policy",
+    "NimbusOps Product FAQ",
+    "NimbusOps Product FAQ",
+    "BRD \u2013 NimbusOps AI Alert Summaries",
+    "BRD \u2013 NimbusOps AI Alert Summaries"
+   ]
+  },
+  {
+   "q": "How much extra per month does the active-passive DR design cost?",
+   "kind": "answerable",
+   "score": 1.2089298963546753
+  },
+  {
+   "q": "What is the price of the AI alert summaries add-on for the Starter plan?",
+   "kind": "not_found",
+   "score": 1.3834412097930908,
+   "top": [
+    "BRD \u2013 NimbusOps AI Alert Summaries",
+    "BRD \u2013 NimbusOps AI Alert Summaries",
+    "BRD \u2013 NimbusOps AI Alert Summaries",
+    "BRD \u2013 NimbusOps AI Alert Summaries",
+    "BRD \u2013 NimbusOps AI Alert Summaries"
+   ]
+  },
+  {
+   "q": "How many desks does the Nimbus Dubai sales office have?",
+   "kind": "not_found",
+   "score": -0.019023198634386063,
+   "top": [
+    "Welcome to Nimbus",
+    "Client Escalation Matrix",
+    "POSH Policy \u2013 Prevention of Sexual Harassment",
+    "Welcome to Nimbus",
+    "Accounts Payable and Vendor Payment Policy"
+   ]
+  }
+ ]
+}

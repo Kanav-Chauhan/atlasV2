@@ -20,10 +20,10 @@ QUERYING (every question)      Question → 5 Transform → 6 Retrieve → 7 Rer
 | 3 Embed | dense bi-encoder; sparse (BM25, SPLADE); multi-vector (ColBERT); multilingual (bge-m3) | **dense, `BAAI/bge-small-en-v1.5`, 384 dims, local via FastEmbed** | strong on MTEB for its size, fast on CPU, free, data stays on our server | ✅ Phase 3 |
 | 4 Store | vector DBs (Qdrant, Pinecone, Weaviate, Milvus); DB extensions (pgvector); search engines (Elasticsearch); libraries (FAISS, Chroma). Indexes: flat, IVF, HNSW, PQ. Metrics: cosine, dot, L2 | **Postgres + pgvector** via LlamaIndex `PGVectorStore` (table `data_chunks`), **HNSW index** (m=16, ef_construction=64), **cosine**, plus a Postgres full-text (tsvector) index for keyword search | vectors, keywords, metadata and permissions in one database, so the permission filter runs in the same SQL as the search; Qdrant only beyond ~10M chunks | ✅ Phase 3 |
 | 5 Transform | rewriting; multi-query; HyDE; decomposition; step-back; routing; self-query | **router** in two stages: instant rules (greetings, thanks, "who are you", empty: reply + the user's suggested questions, no search, no AI call), then the `fast` model with **structured output** `{route: rag/offtopic/blocked, language: en/hi}`; **rewrite** with chat memory from the **LangGraph Postgres checkpointer** (thread = user + chat): standalone English query, "you/our company" → the org name, **Hindi/Hinglish → English** for search; plain English first questions skip the model call | follow-ups need context; small talk must not search; bge-small is English-only | ✅ Phase 5 |
-| 6 Retrieve | sparse/keyword (BM25, full-text); dense/vector; hybrid. Fusion: RRF or weighted. Filters: pre vs post. MMR, parent-document, GraphRAG, agentic | **hybrid**: dense (pgvector) + Postgres full-text, top ~20 each, fused with **Reciprocal Rank Fusion** (score = Σ 1/(60 + rank)), **permission pre-filter** in both queries (`org_id`, `access` = Everyone or the user's departments, admin = all) | meaning + exact codes; RRF needs no score tuning; pre-filter cannot leak | ⏳ Phase 4 |
-| 7 Rerank | cross-encoder; LLM reranker; ColBERT; Cohere Rerank (cloud) | **cross-encoder (bge-reranker), local**, top 20 → top 5; **superseded documents demoted** unless named | retrieve wide, rerank narrow | ⏳ Phase 4 |
+| 6 Retrieve | sparse/keyword (BM25, full-text); dense/vector; hybrid. Fusion: RRF or weighted. Filters: pre vs post. MMR, parent-document, GraphRAG, agentic | **hybrid**: dense (pgvector) + Postgres full-text, top 20 each, fused with **Reciprocal Rank Fusion** (LlamaIndex `QueryFusionRetriever`, score = Σ 1/(60 + rank)), **permission pre-filter** in both queries (`org_id`, `access` = Everyone or the user's departments, admin = all) | meaning + exact codes: hybrid Hit@5 **0.988** vs vector 0.964 / keyword 0.952; RRF needs no score tuning; pre-filter cannot leak (0 leaks) | ✅ Phase 4 |
+| 7 Rerank | cross-encoder; LLM reranker; ColBERT; Cohere Rerank (cloud) | **cross-encoder `jinaai/jina-reranker-v1-turbo-en`** (FastEmbed ONNX, local) reranks the **fused top 10** → top 5; sees the same text the embedding saw (title, doc number, section path + chunk, 512-token cap); **superseded documents −1.0** (≈ 0.8 sd of its scores) unless the question names them | MRR 0.874 → **0.926**, context recall 0.928 → **0.982**, Hit@1 0.796 → 0.874, Hit@5 unchanged (0.988). Chosen over MiniLM-L-6 (lost questions hybrid had), MiniLM-L-12 (2× slower, no better), bge-reranker-v2-m3-int8 (1.3 GB RAM, ~12 s/query) | ✅ Phase 4 |
 | 8 Generate | grounding, citations, abstention, context ordering (lost in the middle), injection defence | `smart` (LangChain `ChatOpenAI` → LiteLLM gateway, `.with_fallbacks` to `smart-groq`, `smart-cf`), **numbered passages**, every claim cites `[n]`, same language as the question, streamed as the **AI SDK UI message stream**; **cite_check** runs on the token stream: unknown `[n]` removed, the rest renumbered 1, 2, 3 in order of use, `data-sources` lists only cited passages; **grade + one retry** (corrective RAG): top cross-encoder score < **1.3** → `fast` writes a different query → search again → still weak → exactly "Not found in your documents." + one-line reason, **no answer-model call**; **LLM Guard** (light scanners) + `fast` injection class; **semantic cache** (RedisVL) keyed by access scope | no guessing; verifiable answers; cache can't leak | ✅ Phase 5 (cache built, off until Redis 8) |
-| 9 Evaluate | retrieval: Hit@k, Recall@k, Precision@k, MRR, nDCG. Generation (RAGAS): faithfulness, answer relevancy, context precision, context recall. LLM-as-judge | **187 questions** (`evals/demo_v2.json`, 34 must be refused, 20 must say "not found"): Hit@5, MRR, context recall, RAGAS faithfulness, permission leaks = 0, in **CI**; traces in **LangSmith** | the score proves the design | ⏳ Phase 6 |
+| 9 Evaluate | retrieval: Hit@k, Recall@k, Precision@k, MRR, nDCG. Generation (RAGAS): faithfulness, answer relevancy, context precision, context recall. LLM-as-judge | **187 questions** (`evals/demo_v2.json`, 34 must be refused, 20 must say "not found"): retrieval part **built** (`python -m atlas_api.scripts.eval_retrieval`: Hit@1/3/5, MRR, context recall, leaks, per mode and per company → `evals/results/<ts>-retrieval.json` + `GET /evals/latest`). Still to come: RAGAS faithfulness, CI gate, traces in **LangSmith** | the score proves the design | 🔄 retrieval ✅ Phase 4, rest ⏳ Phase 6 |
 
 **Architecture level:** Advanced RAG + **Adaptive** (router) + **Corrective** (grade and retry), built as a LangGraph graph.
 
@@ -46,6 +46,29 @@ QUERYING (every question)      Question → 5 Transform → 6 Retrieve → 7 Rer
 - Nimbus access check: guest **20** documents, engineer **43**, owner **68**.
 - Old Atlas (v1) targets v2 must reach: Hit@5 **0.973**, MRR **0.789**, context recall **0.982**, faithfulness **0.995**, leaks **0**.
 
+## Phase 4 retrieval numbers (2026-11-22)
+
+Run `20261122T132819Z` (`evals/results/20261122T132819Z-retrieval.json`), all 3 companies, 199 documents, 167 answerable questions (+37 asked again as a user who must not see the document):
+
+| Mode | Hit@1 | Hit@5 | MRR | Context recall | Leaks | Search p50 |
+|---|---|---|---|---|---|---|
+| vector | 0.772 | 0.964 | 0.856 | 0.928 | 0 | 39 ms |
+| keyword | 0.719 | 0.952 | 0.815 | 0.886 | 0 | 20 ms |
+| hybrid | 0.796 | 0.988 | 0.874 | 0.928 | 0 | 65 ms |
+| **hybrid_rerank** | **0.874** | **0.988** | **0.926** | **0.982** | **0** | 1.7 s |
+
+hybrid_rerank per company (Hit@5 / MRR / context recall): Nimbus 0.982 / 0.939 / 0.982 (n 57), Sanjeevani 0.982 / 0.924 / 0.982 (n 57), Kaveri 1.000 / 0.915 / 0.981 (n 53). v1 targets (Hit@5 0.973, MRR 0.789, recall 0.982, leaks 0) are met.
+
+**What fixed what** (first Nimbus run: hybrid_rerank Hit@5 0.965, MRR 0.904, recall 0.877, ~7 s/query):
+- **Recall was partly a measuring bug.** Evidence `₹18–28` (en dash) vs chunk `₹18-28`, `&lt;` vs `<`, and PDF text `91.2- 106.1` never matched. The eval now unescapes HTML, maps all dashes to `-` and drops spaces around them (on top of NFKC for ligatures like "ﬁ", markdown marks, table pipes, whitespace).
+- **The reranker model.** Each candidate was scored offline on the same fused top 20 (all 167 questions): MiniLM-L-6 alone lost questions hybrid had (Nimbus Hit@5 0.965); fusing its rank with the hybrid rank only tied hybrid on Hit@5. Jina-reranker-v1-turbo alone beat hybrid everywhere. Truncating passages to 256 tokens for speed cut recall (Nimbus 0.982 → 0.947), so the full 512 stays.
+- **Speed.** Reranking the fused top 10 instead of 20 halves the cross-encoder work with equal or better numbers (hybrid ranks 11–20 rarely hold the answer); batch size 4 is faster than 10 on this CPU.
+- The superseded penalty made no difference on this set (0.75–3.0 identical; only 3 questions involve a superseded document). Duplicates: with MiniLM one miss (SEV1) was five chunks of the SEV1 runbook filling the top 5; jina ranks the right document there, so no per-document cap was added (a cap of 3 also cost recall elsewhere).
+
+**Cost:** jina-turbo ~0.4 GB RAM (MiniLM-L-6 the same, bge-reranker-v2-m3-int8 1.3 GB and ~12 s per query: too heavy for a ≤ 1.5 GB API). API process peak ~0.7 GB with embedder + reranker loaded.
+
+**Honest limits:** search p50 is **1.7 s** (p90 ~3 s), measured while the VPS was not idle (load average 5–10 from other apps); the < 1.5 s goal is met only on a quieter server (1.2–1.5 s seen). Three misses remain: "minimum password length" (the Password and MFA Standard is retrieved, the eval expects the Acceptable Use Policy, which also states it: arguably a label issue), SJ-2041 discontinuations (answer chunk is hybrid #14, outside the rerank pool), Kaveri VaR limit (right document at #3, but the chunk with the 2.5 % figure is ranked 9th of 10, behind the Risk Dashboard and Stress Test chunks). n = 53–57 per company, so one question moves a company score by ~0.018. Changing the reranker changes the score scale: recalibrated with jina (`evals/results/20261122T133013Z-grade.json`, Nimbus): best threshold **−0.98**, accuracy **0.878** (MiniLM had 0.904 at 1.3): 0 false "not found", 9 of 18 negatives answered. Jina ranks better but separates "has the answer" from "doesn't" less sharply.
+
 ## Phase 5 decisions and numbers
 
 - **Graph (LangGraph `StateGraph`)**: guard → route → (smalltalk | offtopic | blocked | rewrite) → cache_lookup → retrieve → grade → (answer | retry → rewrite → retrieve → grade → not_found) → cite_check → cache_store. The cache sits **after** rewrite because its key is the rewritten English question. Nodes stream `{"status"}` / `{"text"}` through the LangGraph stream writer; the API turns them into `data-status` / `text-delta` parts.
@@ -63,7 +86,7 @@ QUERYING (every question)      Question → 5 Transform → 6 Retrieve → 7 Rer
 6. **What is HNSW?** → a layered neighbour graph for approximate nearest-neighbour search: fast, high recall, more memory than IVF.
 7. **Dense vs sparse?** → meaning vs exact words; hybrid gets both.
 8. **What is RRF?** → merge ranked lists by Σ 1/(k + rank), k = 60; ranks, not incomparable scores.
-9. **Why rerank?** → a cross-encoder reads question and passage together, so it is more accurate; too slow for everything, so only the top 20.
+9. **Why rerank?** → a cross-encoder reads question and passage together, so it is more accurate; too slow for everything, so only the fused top 10 (measured: same quality as 20, half the time).
 10. **How do you prevent hallucination?** → grounding prompt, abstention threshold, verified citations, faithfulness metric.
 11. **How are permissions enforced?** → pre-filter inside the search SQL, never post-filter; leak tests in CI.
 12. **Pre- vs post-filtering?** → post-filtering can leak and returns fewer results than asked.
@@ -75,7 +98,7 @@ QUERYING (every question)      Question → 5 Transform → 6 Retrieve → 7 Rer
 
 ## The 30-second answer
 
-> Atlas is a hybrid RAG system. Indexing: Docling parses documents layout-aware; I chunk structure-aware at 512 tokens with overlap and contextual headers; bge-small makes dense embeddings stored in pgvector with an HNSW cosine index. Querying: a LangGraph router skips search for small talk and rewrites follow-ups, then dense and full-text search run together, fused with RRF, with a permission pre-filter in the same SQL. A cross-encoder reranks the top 20 to 5; weak results retry once or abstain. Answers are grounded with verified citations, evaluated with Hit@5, MRR and RAGAS faithfulness on 187 questions in CI, with zero permission leaks.
+> Atlas is a hybrid RAG system. Indexing: Docling parses documents layout-aware; I chunk structure-aware at 512 tokens with overlap and contextual headers; bge-small makes dense embeddings stored in pgvector with an HNSW cosine index. Querying: a LangGraph router skips search for small talk and rewrites follow-ups, then dense and full-text search run together, fused with RRF, with a permission pre-filter in the same SQL. A cross-encoder reranks the fused top 10 to 5; weak results retry once or abstain. Answers are grounded with verified citations, evaluated with Hit@5, MRR and RAGAS faithfulness on 187 questions in CI, with zero permission leaks.
 
 ## Learn it on Atlas
 

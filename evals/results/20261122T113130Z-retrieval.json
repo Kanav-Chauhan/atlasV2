@@ -1,0 +1,4107 @@
+{
+ "run_id": "20261122T113130Z",
+ "summary": {
+  "vector": {
+   "hit_at_1": 0.86,
+   "hit_at_3": 0.93,
+   "hit_at_5": 0.965,
+   "mrr": 0.899,
+   "context_recall": 0.86,
+   "leaks": 0,
+   "n": 57,
+   "seconds": 9
+  },
+  "keyword": {
+   "hit_at_1": 0.789,
+   "hit_at_3": 0.982,
+   "hit_at_5": 0.982,
+   "mrr": 0.874,
+   "context_recall": 0.86,
+   "leaks": 0,
+   "n": 57,
+   "seconds": 2
+  },
+  "hybrid": {
+   "hit_at_1": 0.86,
+   "hit_at_3": 0.947,
+   "hit_at_5": 0.982,
+   "mrr": 0.906,
+   "context_recall": 0.895,
+   "leaks": 0,
+   "n": 57,
+   "seconds": 8
+  },
+  "hybrid_rerank": {
+   "hit_at_1": 0.842,
+   "hit_at_3": 0.965,
+   "hit_at_5": 0.965,
+   "mrr": 0.904,
+   "context_recall": 0.877,
+   "leaks": 0,
+   "n": 57,
+   "seconds": 414
+  }
+ },
+ "questions": [
+  {
+   "mode": "vector",
+   "q": "What is the minimum password length at Nimbus?",
+   "doc": "Acceptable Use Policy",
+   "hit_at_1": 0.0,
+   "hit_at_3": 0.0,
+   "hit_at_5": 0.0,
+   "mrr": 0.0,
+   "context_recall": 0.0,
+   "top": [
+    "Password and MFA Standard",
+    "Password and MFA Standard",
+    "Password and MFA Standard",
+    "Password and MFA Standard",
+    "Welcome to Nimbus"
+   ]
+  },
+  {
+   "mode": "vector",
+   "q": "After how many minutes of inactivity must a Nimbus laptop screen lock?",
+   "doc": "Laptop and Device Security Standard",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Laptop and Device Security Standard",
+    "Laptop and Device Security Standard",
+    "Acceptable Use Policy",
+    "Laptop and Device Security Standard",
+    "Laptop and Device Security Standard"
+   ]
+  },
+  {
+   "mode": "vector",
+   "q": "Where should I forward a suspicious email?",
+   "doc": "Welcome to Nimbus",
+   "hit_at_1": 0.0,
+   "hit_at_3": 0.0,
+   "hit_at_5": 1.0,
+   "mrr": 0.2,
+   "context_recall": 1.0,
+   "top": [
+    "Incident Reporting Procedure",
+    "Acceptable Use Policy",
+    "Al Noor Healthcare \u2013 Managed SOC Service Report",
+    "Incident Reporting Procedure",
+    "Welcome to Nimbus"
+   ]
+  },
+  {
+   "mode": "vector",
+   "q": "What is the response time for a SEV1 incident and who gets paged?",
+   "doc": "Incident Reporting Procedure",
+   "hit_at_1": 0.0,
+   "hit_at_3": 0.0,
+   "hit_at_5": 0.0,
+   "mrr": 0.0,
+   "context_recall": 0.0,
+   "top": [
+    "SEV1 Incident Response Runbook",
+    "SEV1 Incident Response Runbook",
+    "SEV1 Incident Response Runbook",
+    "SEV1 Incident Response Runbook",
+    "SEV1 Incident Response Runbook"
+   ]
+  },
+  {
+   "mode": "vector",
+   "q": "Which class can I fly on a 10-hour international flight for work?",
+   "doc": "Travel and Expense Policy",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Travel and Expense Policy",
+    "On-Call Policy and Rotation",
+    "On-Call Policy and Rotation",
+    "Travel and Expense Policy",
+    "On-Call Policy and Rotation"
+   ]
+  },
+  {
+   "mode": "vector",
+   "q": "What is the daily allowance for business travel to a metro city in India?",
+   "doc": "Travel and Expense Policy",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Travel and Expense Policy",
+    "Travel and Expense Policy",
+    "Travel and Expense Policy",
+    "Travel and Expense Policy",
+    "Employee Benefits Guide"
+   ]
+  },
+  {
+   "mode": "vector",
+   "q": "What are the default anchor days for office attendance?",
+   "doc": "Hybrid Work Policy",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Hybrid Work Policy",
+    "Hybrid Work Policy",
+    "Leave Policy FY2024-25",
+    "Holiday Calendar FY2026-27",
+    "Hybrid Work Policy"
+   ]
+  },
+  {
+   "mode": "vector",
+   "q": "Independence Day 2026 falls on a Saturday. Is there still a flag-hoisting at the office?",
+   "doc": "Holiday Calendar FY2026-27",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Holiday Calendar FY2026-27",
+    "Holiday Calendar FY2026-27",
+    "Holiday Calendar FY2026-27",
+    "Holiday Calendar FY2026-27",
+    "Holiday Calendar FY2026-27"
+   ]
+  },
+  {
+   "mode": "vector",
+   "q": "What is the group term life insurance cover for employees?",
+   "doc": "Employee Benefits Guide",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Employee Benefits Guide",
+    "Employee Benefits Guide",
+    "Employee Benefits Guide",
+    "Employee Benefits Guide",
+    "Employee Benefits Guide"
+   ]
+  },
+  {
+   "mode": "vector",
+   "q": "Within how many hours must CERT-In be notified of a reportable cyber incident?",
+   "doc": "Information Security Policy",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Information Security Policy",
+    "Incident Reporting Procedure",
+    "SEV1 Incident Response Runbook",
+    "Incident Reporting Procedure",
+    "SEV1 Incident Response Runbook"
+   ]
+  },
+  {
+   "mode": "vector",
+   "q": "What happens to earned leave above the carry-forward limit at year end?",
+   "doc": "Leave Policy FY2026-27",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Leave Policy FY2026-27",
+    "Leave Policy FY2024-25",
+    "Leave Policy FY2026-27",
+    "Leave Policy FY2026-27",
+    "Leave Policy FY2024-25"
+   ]
+  },
+  {
+   "mode": "vector",
+   "q": "If a Principal (L6) resigns, how long is the notice period and when is the full and final settlement paid?",
+   "doc": "Notice Period and Exit Process",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 0.0,
+   "top": [
+    "Notice Period and Exit Process",
+    "Notice Period and Exit Process",
+    "Notice Period and Exit Process",
+    "Notice Period and Exit Process",
+    "Managing Attrition and Retention"
+   ]
+  },
+  {
+   "mode": "vector",
+   "q": "What referral bonus does an employee get for referring a Senior Software Engineer (L3)?",
+   "doc": "Referral Bonus Policy",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Referral Bonus Policy",
+    "Referral Bonus Policy",
+    "Referral Bonus Policy",
+    "Referral Bonus Policy",
+    "Referral Bonus Policy"
+   ]
+  },
+  {
+   "mode": "vector",
+   "q": "Can recruitment agencies be used for any role, and what fee is allowed?",
+   "doc": "Hiring Approval Workflow",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Hiring Approval Workflow",
+    "Referral Bonus Policy",
+    "Hiring Approval Workflow",
+    "Referral Bonus Policy",
+    "Referral Bonus Policy"
+   ]
+  },
+  {
+   "mode": "vector",
+   "q": "What is the salary band for a Tech Lead (L4)?",
+   "doc": "Salary Bands FY2026-27",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 0.0,
+   "top": [
+    "Salary Bands FY2026-27",
+    "Salary Bands FY2026-27",
+    "Salary Bands FY2026-27",
+    "Salary Bands FY2026-27",
+    "Variable Pay Plan"
+   ],
+   "leak": false
+  },
+  {
+   "mode": "vector",
+   "q": "When is the FY2026-27 variable pay paid out?",
+   "doc": "Variable Pay Plan",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Variable Pay Plan",
+    "Variable Pay Plan",
+    "Variable Pay Plan",
+    "Variable Pay Plan",
+    "Variable Pay Plan"
+   ],
+   "leak": false
+  },
+  {
+   "mode": "vector",
+   "q": "How long does a formal Performance Improvement Plan (PIP) last?",
+   "doc": "Handling Performance Issues \u2013 PIP Guide",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Handling Performance Issues \u2013 PIP Guide",
+    "Handling Performance Issues \u2013 PIP Guide",
+    "Handling Performance Issues \u2013 PIP Guide",
+    "Handling Performance Issues \u2013 PIP Guide",
+    "Handling Performance Issues \u2013 PIP Guide"
+   ],
+   "leak": false
+  },
+  {
+   "mode": "vector",
+   "q": "Can employees bring their pets to the Nimbus office?",
+   "doc": null
+  },
+  {
+   "mode": "vector",
+   "q": "How much is the Nimbus annual Diwali bonus?",
+   "doc": null
+  },
+  {
+   "mode": "vector",
+   "q": "What is the monthly error budget for NimbusOps under its availability SLO?",
+   "doc": "NimbusOps Database Failover Runbook",
+   "hit_at_1": 0.0,
+   "hit_at_3": 0.0,
+   "hit_at_5": 1.0,
+   "mrr": 0.2,
+   "context_recall": 1.0,
+   "top": [
+    "NimbusOps Product FAQ",
+    "Logging and Observability Standard",
+    "NimbusOps Platform Architecture",
+    "NimbusOps Product FAQ",
+    "NimbusOps Database Failover Runbook"
+   ]
+  },
+  {
+   "mode": "vector",
+   "q": "How much on-call allowance is paid for a weekend or public holiday day?",
+   "doc": "On-Call Policy and Rotation",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "On-Call Policy and Rotation",
+    "Leave Policy FY2026-27",
+    "Leave Policy FY2024-25",
+    "Travel and Expense Policy",
+    "Holiday Calendar FY2026-27"
+   ]
+  },
+  {
+   "mode": "vector",
+   "q": "What RPO and RTO were measured in the April 2026 full DR drill, and did it pass?",
+   "doc": "Disaster Recovery Drill Procedure",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Disaster Recovery Drill Procedure",
+    "Disaster Recovery Drill Procedure",
+    "Design Doc \u2013 NimbusOps Multi-Region Active-Passive DR",
+    "Disaster Recovery Drill Procedure",
+    "Design Doc \u2013 NimbusOps Multi-Region Active-Passive DR"
+   ],
+   "leak": false
+  },
+  {
+   "mode": "vector",
+   "q": "What is the API rate limit per key for Enterprise-plan customers?",
+   "doc": "API Design Standard",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "API Design Standard",
+    "API Design Standard",
+    "Cloud Cost Management Guideline",
+    "Cloud Cost Management Guideline",
+    "NimbusOps Platform Architecture"
+   ]
+  },
+  {
+   "mode": "vector",
+   "q": "Who can accept the risk of a Critical vulnerability that cannot be fixed within SLA, and for how long?",
+   "doc": "Secure SDLC Standard",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Secure SDLC Standard",
+    "Secure SDLC Standard",
+    "Al Noor Healthcare \u2013 Managed SOC Service Report",
+    "Secure SDLC Standard",
+    "NimbusOps Product FAQ"
+   ]
+  },
+  {
+   "mode": "vector",
+   "q": "Why must infrastructure and system logs be kept for at least 180 days?",
+   "doc": "Logging and Observability Standard",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Logging and Observability Standard",
+    "NimbusOps Platform Architecture",
+    "Information Security Policy",
+    "Data Classification and Handling Policy",
+    "Information Security Policy"
+   ]
+  },
+  {
+   "mode": "vector",
+   "q": "Who must approve new recurring cloud spend above \u20b95 lakh per month?",
+   "doc": "Cloud Cost Management Guideline",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Cloud Cost Management Guideline",
+    "Cloud Cost Management Guideline",
+    "Cloud Cost Management Guideline",
+    "Cloud Cost Management Guideline",
+    "Cloud Cost Management Guideline"
+   ]
+  },
+  {
+   "mode": "vector",
+   "q": "How long was HarborTrack down during INC-2291 and what service credit did Harbor receive?",
+   "doc": "Harbor Logistics \u2013 Incident Post-Mortem INC-2291",
+   "hit_at_1": 0.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 0.5,
+   "context_recall": 1.0,
+   "top": [
+    "Harbor Logistics \u2013 Cloud Migration Status Report Q1 FY27",
+    "Harbor Logistics \u2013 Incident Post-Mortem INC-2291",
+    "Harbor Logistics \u2013 Incident Post-Mortem INC-2291",
+    "Harbor Logistics \u2013 Incident Post-Mortem INC-2291",
+    "Harbor Logistics \u2013 Incident Post-Mortem INC-2291"
+   ]
+  },
+  {
+   "mode": "vector",
+   "q": "How many Harbor Logistics applications had been migrated to AWS by 30 June 2026?",
+   "doc": "Harbor Logistics \u2013 Account Overview",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 0.0,
+   "top": [
+    "Harbor Logistics \u2013 Account Overview",
+    "Harbor Logistics \u2013 Cloud Migration Status Report Q1 FY27",
+    "Harbor Logistics \u2013 Account Overview",
+    "Harbor Logistics \u2013 Cloud Migration Status Report Q1 FY27",
+    "Harbor Logistics \u2013 Cloud Migration Status Report Q1 FY27"
+   ]
+  },
+  {
+   "mode": "vector",
+   "q": "How much is the go-live milestone payment in the Zenith Retail S/4HANA project?",
+   "doc": "Zenith Retail \u2013 SAP S/4HANA Project Charter",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Zenith Retail \u2013 SAP S/4HANA Project Charter",
+    "Zenith Retail \u2013 SAP S/4HANA Project Charter",
+    "Zenith Retail \u2013 SAP S/4HANA Project Charter",
+    "Zenith Retail \u2013 SAP S/4HANA Project Charter",
+    "Zenith Retail \u2013 SAP S/4HANA Project Charter"
+   ]
+  },
+  {
+   "mode": "vector",
+   "q": "How quickly was the May 2026 phishing campaign at Al Noor Healthcare contained?",
+   "doc": "Al Noor Healthcare \u2013 Managed SOC Service Report",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Al Noor Healthcare \u2013 Managed SOC Service Report",
+    "Al Noor Healthcare \u2013 Managed SOC Service Report",
+    "Al Noor Healthcare \u2013 Managed SOC Service Report",
+    "Al Noor Healthcare \u2013 Managed SOC Service Report",
+    "Al Noor Healthcare \u2013 Managed SOC Service Report"
+   ]
+  },
+  {
+   "mode": "vector",
+   "q": "What is the list price of the NimbusOps Enterprise plan?",
+   "doc": "Rate Card FY2026-27",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Rate Card FY2026-27",
+    "Rate Card FY2026-27",
+    "Discount Approval Policy",
+    "NimbusOps Platform Architecture",
+    "NimbusOps Product FAQ"
+   ],
+   "leak": false
+  },
+  {
+   "mode": "vector",
+   "q": "Who approves a discount of more than 10% and up to 15% of total contract value?",
+   "doc": "Discount Approval Policy",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Discount Approval Policy",
+    "Discount Approval Policy",
+    "Discount Approval Policy",
+    "Discount Approval Policy",
+    "Discount Approval Policy"
+   ]
+  },
+  {
+   "mode": "vector",
+   "q": "By how much did the Board approve topping up the ESOP pool on 14 May 2026?",
+   "doc": "Board Meeting Minutes \u2013 14 May 2026",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Board Meeting Minutes \u2013 14 May 2026",
+    "FY2026-27 Budget and Headcount Plan",
+    "Board Meeting Minutes \u2013 14 May 2026",
+    "Board Meeting Minutes \u2013 14 May 2026",
+    "Board Meeting Minutes \u2013 14 May 2026"
+   ],
+   "leak": false
+  },
+  {
+   "mode": "vector",
+   "q": "What is the planned Hyderabad headcount at 31 March 2027?",
+   "doc": "FY2026-27 Budget and Headcount Plan",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "FY2026-27 Budget and Headcount Plan",
+    "Holiday Calendar FY2026-27",
+    "FY2026-27 Budget and Headcount Plan",
+    "Board Meeting Minutes \u2013 14 May 2026",
+    "FY2026-27 Budget and Headcount Plan"
+   ]
+  },
+  {
+   "mode": "vector",
+   "q": "What is the capital cost per seat of the Hyderabad campus expansion?",
+   "doc": "Hyderabad Campus Expansion Proposal",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Hyderabad Campus Expansion Proposal",
+    "Board Meeting Minutes \u2013 14 May 2026",
+    "Hyderabad Campus Expansion Proposal",
+    "Hyderabad Campus Expansion Proposal",
+    "Hyderabad Campus Expansion Proposal"
+   ]
+  },
+  {
+   "mode": "vector",
+   "q": "How many story points does the NimbusOps team deliver per sprint on average?",
+   "doc": null
+  },
+  {
+   "mode": "vector",
+   "q": "What is the parking reimbursement for engineers called in to the office during a SEV1?",
+   "doc": null
+  },
+  {
+   "mode": "vector",
+   "q": "How many days of earned leave do Nimbus employees get per financial year?",
+   "doc": "Leave Policy FY2026-27",
+   "hit_at_1": 0.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 0.3333333333333333,
+   "context_recall": 1.0,
+   "top": [
+    "Welcome to Nimbus",
+    "Leave Policy FY2024-25",
+    "Leave Policy FY2026-27",
+    "Leave Policy FY2024-25",
+    "Leave Policy FY2026-27"
+   ]
+  },
+  {
+   "mode": "vector",
+   "q": "What is the fixed salary band for an L3 Senior Software Engineer at Nimbus?",
+   "doc": "Salary Bands FY2026-27",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 0.0,
+   "top": [
+    "Salary Bands FY2026-27",
+    "Salary Bands FY2026-27",
+    "Welcome to Nimbus",
+    "Welcome to Nimbus",
+    "Salary Bands FY2026-27"
+   ],
+   "leak": false
+  },
+  {
+   "mode": "vector",
+   "q": "What counts as a SEV1 incident and how fast must on-call respond?",
+   "doc": "SEV1 Incident Response Runbook",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "SEV1 Incident Response Runbook",
+    "SEV1 Incident Response Runbook",
+    "SEV1 Incident Response Runbook",
+    "SEV1 Incident Response Runbook",
+    "SEV1 Incident Response Runbook"
+   ]
+  },
+  {
+   "mode": "vector",
+   "q": "Can I bring my dog to the Nimbus office in Pune?",
+   "doc": null
+  },
+  {
+   "mode": "vector",
+   "q": "How many days of unused earned leave can a Nimbus employee carry forward into the next year?",
+   "doc": "Leave Policy FY2026-27",
+   "hit_at_1": 0.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 0.5,
+   "context_recall": 1.0,
+   "top": [
+    "Leave Policy FY2024-25",
+    "Leave Policy FY2026-27",
+    "Welcome to Nimbus",
+    "Leave Policy FY2026-27",
+    "Travel and Expense Policy"
+   ]
+  },
+  {
+   "mode": "vector",
+   "q": "What stock refresh time does the Zenith inventory sync BRD require?",
+   "doc": "BRD \u2013 Zenith Retail Omnichannel Inventory Sync",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 0.0,
+   "top": [
+    "BRD \u2013 Zenith Retail Omnichannel Inventory Sync",
+    "BRD \u2013 Zenith Retail Omnichannel Inventory Sync",
+    "BRD \u2013 Zenith Retail Omnichannel Inventory Sync",
+    "BRD \u2013 Zenith Retail Omnichannel Inventory Sync",
+    "BRD \u2013 Zenith Retail Omnichannel Inventory Sync"
+   ]
+  },
+  {
+   "mode": "vector",
+   "q": "Who signs off the Zenith omnichannel inventory sync BRD?",
+   "doc": "BRD \u2013 Zenith Retail Omnichannel Inventory Sync",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "BRD \u2013 Zenith Retail Omnichannel Inventory Sync",
+    "BRD \u2013 Zenith Retail Omnichannel Inventory Sync",
+    "BRD \u2013 Zenith Retail Omnichannel Inventory Sync",
+    "BRD \u2013 Zenith Retail Omnichannel Inventory Sync",
+    "BRD \u2013 Zenith Retail Omnichannel Inventory Sync"
+   ],
+   "leak": false
+  },
+  {
+   "mode": "vector",
+   "q": "Which NimbusOps plans get AI alert summaries?",
+   "doc": "BRD \u2013 NimbusOps AI Alert Summaries",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "BRD \u2013 NimbusOps AI Alert Summaries",
+    "BRD \u2013 NimbusOps AI Alert Summaries",
+    "BRD \u2013 NimbusOps AI Alert Summaries",
+    "BRD \u2013 NimbusOps AI Alert Summaries",
+    "BRD \u2013 NimbusOps AI Alert Summaries"
+   ],
+   "leak": false
+  },
+  {
+   "mode": "vector",
+   "q": "What alert-noise reduction is the AI alert summaries feature targeting?",
+   "doc": "BRD \u2013 NimbusOps AI Alert Summaries",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "BRD \u2013 NimbusOps AI Alert Summaries",
+    "BRD \u2013 NimbusOps AI Alert Summaries",
+    "BRD \u2013 NimbusOps AI Alert Summaries",
+    "BRD \u2013 NimbusOps AI Alert Summaries",
+    "BRD \u2013 NimbusOps AI Alert Summaries"
+   ]
+  },
+  {
+   "mode": "vector",
+   "q": "Where is NimbusOps customer data stored?",
+   "doc": "NimbusOps Product FAQ",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "NimbusOps Product FAQ",
+    "NimbusOps Product FAQ",
+    "NimbusOps Product FAQ",
+    "NimbusOps Product FAQ",
+    "NimbusOps Product FAQ"
+   ]
+  },
+  {
+   "mode": "vector",
+   "q": "How long is the NimbusOps free trial and how many hosts does it cover?",
+   "doc": "NimbusOps Product FAQ",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "NimbusOps Product FAQ",
+    "NimbusOps Product FAQ",
+    "NimbusOps Product FAQ",
+    "NimbusOps Product FAQ",
+    "NimbusOps Product FAQ"
+   ]
+  },
+  {
+   "mode": "vector",
+   "q": "What is the liability cap in the Harbor Logistics MSA?",
+   "doc": "Master Services Agreement \u2013 Harbor Logistics Inc.",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Master Services Agreement \u2013 Harbor Logistics Inc.",
+    "Master Services Agreement \u2013 Harbor Logistics Inc.",
+    "Master Services Agreement \u2013 Harbor Logistics Inc.",
+    "Master Services Agreement \u2013 Harbor Logistics Inc.",
+    "Master Services Agreement \u2013 Harbor Logistics Inc."
+   ],
+   "leak": false
+  },
+  {
+   "mode": "vector",
+   "q": "How much notice is needed to not renew the Harbor Logistics MSA?",
+   "doc": "Master Services Agreement \u2013 Harbor Logistics Inc.",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Master Services Agreement \u2013 Harbor Logistics Inc.",
+    "Master Services Agreement \u2013 Harbor Logistics Inc.",
+    "Master Services Agreement \u2013 Harbor Logistics Inc.",
+    "Master Services Agreement \u2013 Harbor Logistics Inc.",
+    "Master Services Agreement \u2013 Harbor Logistics Inc."
+   ]
+  },
+  {
+   "mode": "vector",
+   "q": "Who can sign a client contract worth more than \u20b95 crore?",
+   "doc": "Contract Review and Signing Authority Guideline",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Contract Review and Signing Authority Guideline",
+    "Contract Review and Signing Authority Guideline",
+    "Contract Review and Signing Authority Guideline",
+    "Code of Conduct",
+    "Contract Review and Signing Authority Guideline"
+   ]
+  },
+  {
+   "mode": "vector",
+   "q": "How long does Legal take to review an NDA on third-party paper?",
+   "doc": "Contract Review and Signing Authority Guideline",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Contract Review and Signing Authority Guideline",
+    "Contract Review and Signing Authority Guideline",
+    "Contract Review and Signing Authority Guideline",
+    "Contract Review and Signing Authority Guideline",
+    "Contract Review and Signing Authority Guideline"
+   ]
+  },
+  {
+   "mode": "vector",
+   "q": "What are Nimbus's standard vendor payment terms?",
+   "doc": "Accounts Payable and Vendor Payment Policy",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Accounts Payable and Vendor Payment Policy",
+    "Accounts Payable and Vendor Payment Policy",
+    "Accounts Payable and Vendor Payment Policy",
+    "Travel and Expense Policy",
+    "Accounts Payable and Vendor Payment Policy"
+   ]
+  },
+  {
+   "mode": "vector",
+   "q": "Who approves a vendor invoice between \u20b910 lakh and \u20b950 lakh?",
+   "doc": "Accounts Payable and Vendor Payment Policy",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Accounts Payable and Vendor Payment Policy",
+    "Accounts Payable and Vendor Payment Policy",
+    "Accounts Payable and Vendor Payment Policy",
+    "Accounts Payable and Vendor Payment Policy",
+    "Accounts Payable and Vendor Payment Policy"
+   ]
+  },
+  {
+   "mode": "vector",
+   "q": "What were Nimbus's Q1 FY27 debtor days?",
+   "doc": "Q1 FY2026-27 Revenue and Collections Report",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Q1 FY2026-27 Revenue and Collections Report",
+    "Q1 FY2026-27 Revenue and Collections Report",
+    "Q1 FY2026-27 Revenue and Collections Report",
+    "Q1 FY2026-27 Revenue and Collections Report",
+    "Holiday Calendar FY2026-27"
+   ]
+  },
+  {
+   "mode": "vector",
+   "q": "Which region brought the most revenue in Q1 FY27?",
+   "doc": "Q1 FY2026-27 Revenue and Collections Report",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Q1 FY2026-27 Revenue and Collections Report",
+    "Q1 FY2026-27 Revenue and Collections Report",
+    "Q1 FY2026-27 Revenue and Collections Report",
+    "Q1 FY2026-27 Revenue and Collections Report",
+    "Q1 FY2026-27 Revenue and Collections Report"
+   ]
+  },
+  {
+   "mode": "vector",
+   "q": "How fast must a critical vulnerability on an internet-facing system be fixed?",
+   "doc": "Vulnerability Management Standard",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 0.0,
+   "top": [
+    "Vulnerability Management Standard",
+    "Vulnerability Management Standard",
+    "Information Security Policy",
+    "Laptop and Device Security Standard",
+    "Vulnerability Management Standard"
+   ]
+  },
+  {
+   "mode": "vector",
+   "q": "Who approves a risk exception for a Medium or Low vulnerability, and for how long?",
+   "doc": "Vulnerability Management Standard",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Vulnerability Management Standard",
+    "Information Security Policy",
+    "Laptop and Device Security Standard",
+    "Vulnerability Management Standard",
+    "Information Security Policy"
+   ]
+  },
+  {
+   "mode": "vector",
+   "q": "How often is privileged and production access reviewed?",
+   "doc": "Privileged Access and Quarterly Access Review Procedure",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Privileged Access and Quarterly Access Review Procedure",
+    "Privileged Access and Quarterly Access Review Procedure",
+    "Privileged Access and Quarterly Access Review Procedure",
+    "Privileged Access and Quarterly Access Review Procedure",
+    "Privileged Access and Quarterly Access Review Procedure"
+   ]
+  },
+  {
+   "mode": "vector",
+   "q": "How soon is all access removed after someone leaves?",
+   "doc": "Privileged Access and Quarterly Access Review Procedure",
+   "hit_at_1": 0.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 0.5,
+   "context_recall": 1.0,
+   "top": [
+    "Leave Policy FY2024-25",
+    "Privileged Access and Quarterly Access Review Procedure",
+    "Acceptable Use Policy",
+    "Notice Period and Exit Process",
+    "NimbusOps Product FAQ"
+   ]
+  },
+  {
+   "mode": "vector",
+   "q": "What RPO and RTO does the new NimbusOps DR design target?",
+   "doc": "Design Doc \u2013 NimbusOps Multi-Region Active-Passive DR",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Design Doc \u2013 NimbusOps Multi-Region Active-Passive DR",
+    "Design Doc \u2013 NimbusOps Multi-Region Active-Passive DR",
+    "Design Doc \u2013 NimbusOps Multi-Region Active-Passive DR",
+    "Design Doc \u2013 NimbusOps Multi-Region Active-Passive DR",
+    "Design Doc \u2013 NimbusOps Multi-Region Active-Passive DR"
+   ],
+   "leak": false
+  },
+  {
+   "mode": "vector",
+   "q": "How much extra per month does the active-passive DR design cost?",
+   "doc": "Design Doc \u2013 NimbusOps Multi-Region Active-Passive DR",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Design Doc \u2013 NimbusOps Multi-Region Active-Passive DR",
+    "Design Doc \u2013 NimbusOps Multi-Region Active-Passive DR",
+    "Design Doc \u2013 NimbusOps Multi-Region Active-Passive DR",
+    "Design Doc \u2013 NimbusOps Multi-Region Active-Passive DR",
+    "Design Doc \u2013 NimbusOps Multi-Region Active-Passive DR"
+   ]
+  },
+  {
+   "mode": "vector",
+   "q": "What is the price of the AI alert summaries add-on for the Starter plan?",
+   "doc": null
+  },
+  {
+   "mode": "vector",
+   "q": "How many desks does the Nimbus Dubai sales office have?",
+   "doc": null
+  },
+  {
+   "mode": "keyword",
+   "q": "What is the minimum password length at Nimbus?",
+   "doc": "Acceptable Use Policy",
+   "hit_at_1": 0.0,
+   "hit_at_3": 0.0,
+   "hit_at_5": 0.0,
+   "mrr": 0.0,
+   "context_recall": 0.0,
+   "top": [
+    "Password and MFA Standard",
+    "Password and MFA Standard",
+    "Welcome to Nimbus",
+    "Logging and Observability Standard",
+    "Password and MFA Standard"
+   ]
+  },
+  {
+   "mode": "keyword",
+   "q": "After how many minutes of inactivity must a Nimbus laptop screen lock?",
+   "doc": "Laptop and Device Security Standard",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Laptop and Device Security Standard",
+    "Laptop and Device Security Standard",
+    "Acceptable Use Policy",
+    "Laptop and Device Security Standard",
+    "Remote Access and VPN Guideline"
+   ]
+  },
+  {
+   "mode": "keyword",
+   "q": "Where should I forward a suspicious email?",
+   "doc": "Welcome to Nimbus",
+   "hit_at_1": 0.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 0.3333333333333333,
+   "context_recall": 1.0,
+   "top": [
+    "Acceptable Use Policy",
+    "Incident Reporting Procedure",
+    "Welcome to Nimbus",
+    "Al Noor Healthcare \u2013 Managed SOC Service Report",
+    "Incident Reporting Procedure"
+   ]
+  },
+  {
+   "mode": "keyword",
+   "q": "What is the response time for a SEV1 incident and who gets paged?",
+   "doc": "Incident Reporting Procedure",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Incident Reporting Procedure",
+    "NimbusOps Database Failover Runbook",
+    "SEV1 Incident Response Runbook",
+    "Remote Access and VPN Guideline",
+    "Disaster Recovery Drill Procedure"
+   ]
+  },
+  {
+   "mode": "keyword",
+   "q": "Which class can I fly on a 10-hour international flight for work?",
+   "doc": "Travel and Expense Policy",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Travel and Expense Policy",
+    "Hybrid Work Policy",
+    "Welcome to Nimbus",
+    "Certificate Renewal Runbook",
+    "Al Noor Healthcare \u2013 Managed SOC Service Report"
+   ]
+  },
+  {
+   "mode": "keyword",
+   "q": "What is the daily allowance for business travel to a metro city in India?",
+   "doc": "Travel and Expense Policy",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Travel and Expense Policy",
+    "Remote Access and VPN Guideline",
+    "Travel and Expense Policy",
+    "Travel and Expense Policy",
+    "Holiday Calendar FY2026-27"
+   ]
+  },
+  {
+   "mode": "keyword",
+   "q": "What are the default anchor days for office attendance?",
+   "doc": "Hybrid Work Policy",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Hybrid Work Policy",
+    "Hybrid Work Policy",
+    "Holiday Calendar FY2026-27",
+    "Welcome to Nimbus",
+    "Welcome to Nimbus"
+   ]
+  },
+  {
+   "mode": "keyword",
+   "q": "Independence Day 2026 falls on a Saturday. Is there still a flag-hoisting at the office?",
+   "doc": "Holiday Calendar FY2026-27",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Holiday Calendar FY2026-27",
+    "Holiday Calendar FY2026-27",
+    "Holiday Calendar FY2026-27",
+    "Code of Conduct",
+    "Holiday Calendar FY2026-27"
+   ]
+  },
+  {
+   "mode": "keyword",
+   "q": "What is the group term life insurance cover for employees?",
+   "doc": "Employee Benefits Guide",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Employee Benefits Guide",
+    "Employee Benefits Guide",
+    "Employee Benefits Guide",
+    "Crestline Insurance \u2013 Data Platform SOW Summary",
+    "Employee Benefits Guide"
+   ]
+  },
+  {
+   "mode": "keyword",
+   "q": "Within how many hours must CERT-In be notified of a reportable cyber incident?",
+   "doc": "Information Security Policy",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Information Security Policy",
+    "Data Protection Policy \u2013 DPDP Act 2023",
+    "Incident Reporting Procedure",
+    "Incident Reporting Procedure",
+    "Incident Reporting Procedure"
+   ]
+  },
+  {
+   "mode": "keyword",
+   "q": "What happens to earned leave above the carry-forward limit at year end?",
+   "doc": "Leave Policy FY2026-27",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Leave Policy FY2026-27",
+    "Leave Policy FY2026-27",
+    "Leave Policy FY2024-25",
+    "Leave Policy FY2026-27",
+    "Leave Policy FY2026-27"
+   ]
+  },
+  {
+   "mode": "keyword",
+   "q": "If a Principal (L6) resigns, how long is the notice period and when is the full and final settlement paid?",
+   "doc": "Notice Period and Exit Process",
+   "hit_at_1": 0.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 0.5,
+   "context_recall": 0.0,
+   "top": [
+    "Variable Pay Plan",
+    "Notice Period and Exit Process",
+    "Notice Period and Exit Process",
+    "Notice Period and Exit Process",
+    "Relocation Assistance Policy"
+   ]
+  },
+  {
+   "mode": "keyword",
+   "q": "What referral bonus does an employee get for referring a Senior Software Engineer (L3)?",
+   "doc": "Referral Bonus Policy",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Referral Bonus Policy",
+    "Referral Bonus Policy",
+    "Salary Bands FY2026-27",
+    "Variable Pay Plan",
+    "Welcome to Nimbus"
+   ]
+  },
+  {
+   "mode": "keyword",
+   "q": "Can recruitment agencies be used for any role, and what fee is allowed?",
+   "doc": "Hiring Approval Workflow",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Hiring Approval Workflow",
+    "Code of Conduct",
+    "Acceptable Use Policy",
+    "Crestline Insurance \u2013 Data Platform SOW Summary",
+    "API Design Standard"
+   ]
+  },
+  {
+   "mode": "keyword",
+   "q": "What is the salary band for a Tech Lead (L4)?",
+   "doc": "Salary Bands FY2026-27",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 0.0,
+   "top": [
+    "Salary Bands FY2026-27",
+    "Hiring Approval Workflow",
+    "Salary Bands FY2026-27",
+    "Salary Bands FY2026-27",
+    "Variable Pay Plan"
+   ],
+   "leak": false
+  },
+  {
+   "mode": "keyword",
+   "q": "When is the FY2026-27 variable pay paid out?",
+   "doc": "Variable Pay Plan",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 0.0,
+   "top": [
+    "Variable Pay Plan",
+    "Notice Period and Exit Process",
+    "Variable Pay Plan",
+    "Performance Review Process",
+    "Salary Bands FY2026-27"
+   ],
+   "leak": false
+  },
+  {
+   "mode": "keyword",
+   "q": "How long does a formal Performance Improvement Plan (PIP) last?",
+   "doc": "Handling Performance Issues \u2013 PIP Guide",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 0.0,
+   "top": [
+    "Handling Performance Issues \u2013 PIP Guide",
+    "Handling Performance Issues \u2013 PIP Guide",
+    "Notice Period and Exit Process",
+    "Handling Performance Issues \u2013 PIP Guide",
+    "Handling Performance Issues \u2013 PIP Guide"
+   ],
+   "leak": false
+  },
+  {
+   "mode": "keyword",
+   "q": "Can employees bring their pets to the Nimbus office?",
+   "doc": null
+  },
+  {
+   "mode": "keyword",
+   "q": "How much is the Nimbus annual Diwali bonus?",
+   "doc": null
+  },
+  {
+   "mode": "keyword",
+   "q": "What is the monthly error budget for NimbusOps under its availability SLO?",
+   "doc": "NimbusOps Database Failover Runbook",
+   "hit_at_1": 0.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 0.5,
+   "context_recall": 1.0,
+   "top": [
+    "Logging and Observability Standard",
+    "NimbusOps Database Failover Runbook",
+    "Disaster Recovery Drill Procedure",
+    "NimbusOps Product FAQ",
+    "Design Doc \u2013 NimbusOps Multi-Region Active-Passive DR"
+   ]
+  },
+  {
+   "mode": "keyword",
+   "q": "How much on-call allowance is paid for a weekend or public holiday day?",
+   "doc": "On-Call Policy and Rotation",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "On-Call Policy and Rotation",
+    "Holiday Calendar FY2026-27",
+    "Travel and Expense Policy",
+    "Release and Rollback Procedure",
+    "Leave Policy FY2024-25"
+   ]
+  },
+  {
+   "mode": "keyword",
+   "q": "What RPO and RTO were measured in the April 2026 full DR drill, and did it pass?",
+   "doc": "Disaster Recovery Drill Procedure",
+   "hit_at_1": 0.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 0.5,
+   "context_recall": 1.0,
+   "top": [
+    "Design Doc \u2013 NimbusOps Multi-Region Active-Passive DR",
+    "Disaster Recovery Drill Procedure",
+    "Disaster Recovery Drill Procedure",
+    "Design Doc \u2013 NimbusOps Multi-Region Active-Passive DR",
+    "Disaster Recovery Drill Procedure"
+   ],
+   "leak": false
+  },
+  {
+   "mode": "keyword",
+   "q": "What is the API rate limit per key for Enterprise-plan customers?",
+   "doc": "API Design Standard",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "API Design Standard",
+    "NimbusOps Platform Architecture",
+    "NimbusOps Product FAQ",
+    "Zenith Retail \u2013 SAP S/4HANA Project Charter",
+    "NimbusOps Platform Architecture"
+   ]
+  },
+  {
+   "mode": "keyword",
+   "q": "Who can accept the risk of a Critical vulnerability that cannot be fixed within SLA, and for how long?",
+   "doc": "Secure SDLC Standard",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Secure SDLC Standard",
+    "Al Noor Healthcare \u2013 Managed SOC Service Report",
+    "Information Security Policy",
+    "Al Noor Healthcare \u2013 Managed SOC Service Report",
+    "Design Doc \u2013 NimbusOps Multi-Region Active-Passive DR"
+   ]
+  },
+  {
+   "mode": "keyword",
+   "q": "Why must infrastructure and system logs be kept for at least 180 days?",
+   "doc": "Logging and Observability Standard",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Logging and Observability Standard",
+    "Information Security Policy",
+    "Data Classification and Handling Policy",
+    "Secure SDLC Standard",
+    "Certificate Renewal Runbook"
+   ]
+  },
+  {
+   "mode": "keyword",
+   "q": "Who must approve new recurring cloud spend above \u20b95 lakh per month?",
+   "doc": "Cloud Cost Management Guideline",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Cloud Cost Management Guideline",
+    "Design Doc \u2013 NimbusOps Multi-Region Active-Passive DR",
+    "Design Doc \u2013 NimbusOps Multi-Region Active-Passive DR",
+    "Employee Benefits Guide",
+    "Zenith Retail \u2013 SAP S/4HANA Project Charter"
+   ]
+  },
+  {
+   "mode": "keyword",
+   "q": "How long was HarborTrack down during INC-2291 and what service credit did Harbor receive?",
+   "doc": "Harbor Logistics \u2013 Incident Post-Mortem INC-2291",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Harbor Logistics \u2013 Incident Post-Mortem INC-2291",
+    "Harbor Logistics \u2013 Account Overview",
+    "Harbor Logistics \u2013 Cloud Migration Status Report Q1 FY27",
+    "Harbor Logistics \u2013 Incident Post-Mortem INC-2291",
+    "Harbor Logistics \u2013 Incident Post-Mortem INC-2291"
+   ]
+  },
+  {
+   "mode": "keyword",
+   "q": "How many Harbor Logistics applications had been migrated to AWS by 30 June 2026?",
+   "doc": "Harbor Logistics \u2013 Account Overview",
+   "hit_at_1": 0.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 0.3333333333333333,
+   "context_recall": 1.0,
+   "top": [
+    "Harbor Logistics \u2013 Cloud Migration Status Report Q1 FY27",
+    "Harbor Logistics \u2013 Incident Post-Mortem INC-2291",
+    "Harbor Logistics \u2013 Account Overview",
+    "Harbor Logistics \u2013 Cloud Migration Status Report Q1 FY27",
+    "Harbor Logistics \u2013 Account Overview"
+   ]
+  },
+  {
+   "mode": "keyword",
+   "q": "How much is the go-live milestone payment in the Zenith Retail S/4HANA project?",
+   "doc": "Zenith Retail \u2013 SAP S/4HANA Project Charter",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Zenith Retail \u2013 SAP S/4HANA Project Charter",
+    "Zenith Retail \u2013 SAP S/4HANA Project Charter",
+    "BRD \u2013 Zenith Retail Omnichannel Inventory Sync",
+    "Zenith Retail \u2013 SAP S/4HANA Project Charter",
+    "BRD \u2013 Zenith Retail Omnichannel Inventory Sync"
+   ]
+  },
+  {
+   "mode": "keyword",
+   "q": "How quickly was the May 2026 phishing campaign at Al Noor Healthcare contained?",
+   "doc": "Al Noor Healthcare \u2013 Managed SOC Service Report",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Al Noor Healthcare \u2013 Managed SOC Service Report",
+    "Al Noor Healthcare \u2013 Managed SOC Service Report",
+    "Al Noor Healthcare \u2013 Managed SOC Service Report",
+    "Harbor Logistics \u2013 Account Overview",
+    "Al Noor Healthcare \u2013 Managed SOC Service Report"
+   ]
+  },
+  {
+   "mode": "keyword",
+   "q": "What is the list price of the NimbusOps Enterprise plan?",
+   "doc": "Rate Card FY2026-27",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Rate Card FY2026-27",
+    "Harbor Logistics Renewal Negotiation Notes",
+    "Rate Card FY2026-27",
+    "Discount Approval Policy",
+    "BRD \u2013 NimbusOps AI Alert Summaries"
+   ],
+   "leak": false
+  },
+  {
+   "mode": "keyword",
+   "q": "Who approves a discount of more than 10% and up to 15% of total contract value?",
+   "doc": "Discount Approval Policy",
+   "hit_at_1": 0.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 0.3333333333333333,
+   "context_recall": 1.0,
+   "top": [
+    "Contract Review and Signing Authority Guideline",
+    "Harbor Logistics Renewal Negotiation Notes",
+    "Discount Approval Policy",
+    "Discount Approval Policy",
+    "Discount Approval Policy"
+   ]
+  },
+  {
+   "mode": "keyword",
+   "q": "By how much did the Board approve topping up the ESOP pool on 14 May 2026?",
+   "doc": "Board Meeting Minutes \u2013 14 May 2026",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Board Meeting Minutes \u2013 14 May 2026",
+    "Board Meeting Minutes \u2013 14 May 2026",
+    "FY2026-27 Budget and Headcount Plan",
+    "FY2025-26 Annual Financial Summary",
+    "Hyderabad Campus Expansion Proposal"
+   ],
+   "leak": false
+  },
+  {
+   "mode": "keyword",
+   "q": "What is the planned Hyderabad headcount at 31 March 2027?",
+   "doc": "FY2026-27 Budget and Headcount Plan",
+   "hit_at_1": 0.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 0.5,
+   "context_recall": 1.0,
+   "top": [
+    "Hyderabad Campus Expansion Proposal",
+    "FY2026-27 Budget and Headcount Plan",
+    "FY2026-27 Budget and Headcount Plan",
+    "Zenith Retail \u2013 SAP S/4HANA Project Charter",
+    "FY2026-27 Budget and Headcount Plan"
+   ]
+  },
+  {
+   "mode": "keyword",
+   "q": "What is the capital cost per seat of the Hyderabad campus expansion?",
+   "doc": "Hyderabad Campus Expansion Proposal",
+   "hit_at_1": 0.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 0.5,
+   "context_recall": 0.0,
+   "top": [
+    "Board Meeting Minutes \u2013 14 May 2026",
+    "Hyderabad Campus Expansion Proposal",
+    "Hyderabad Campus Expansion Proposal",
+    "FY2026-27 Budget and Headcount Plan",
+    "Board Meeting Minutes \u2013 14 May 2026"
+   ]
+  },
+  {
+   "mode": "keyword",
+   "q": "How many story points does the NimbusOps team deliver per sprint on average?",
+   "doc": null
+  },
+  {
+   "mode": "keyword",
+   "q": "What is the parking reimbursement for engineers called in to the office during a SEV1?",
+   "doc": null
+  },
+  {
+   "mode": "keyword",
+   "q": "How many days of earned leave do Nimbus employees get per financial year?",
+   "doc": "Leave Policy FY2026-27",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Leave Policy FY2026-27",
+    "Leave Policy FY2026-27",
+    "Leave Policy FY2024-25",
+    "Leave Policy FY2026-27",
+    "Leave Policy FY2024-25"
+   ]
+  },
+  {
+   "mode": "keyword",
+   "q": "What is the fixed salary band for an L3 Senior Software Engineer at Nimbus?",
+   "doc": "Salary Bands FY2026-27",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 0.0,
+   "top": [
+    "Salary Bands FY2026-27",
+    "Welcome to Nimbus",
+    "Referral Bonus Policy",
+    "Variable Pay Plan",
+    "Hiring Approval Workflow"
+   ],
+   "leak": false
+  },
+  {
+   "mode": "keyword",
+   "q": "What counts as a SEV1 incident and how fast must on-call respond?",
+   "doc": "SEV1 Incident Response Runbook",
+   "hit_at_1": 0.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 0.3333333333333333,
+   "context_recall": 1.0,
+   "top": [
+    "Incident Reporting Procedure",
+    "NimbusOps Database Failover Runbook",
+    "SEV1 Incident Response Runbook",
+    "Information Security Policy",
+    "Harbor Logistics \u2013 Incident Post-Mortem INC-2291"
+   ]
+  },
+  {
+   "mode": "keyword",
+   "q": "Can I bring my dog to the Nimbus office in Pune?",
+   "doc": null
+  },
+  {
+   "mode": "keyword",
+   "q": "How many days of unused earned leave can a Nimbus employee carry forward into the next year?",
+   "doc": "Leave Policy FY2026-27",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Leave Policy FY2026-27",
+    "Leave Policy FY2026-27",
+    "Leave Policy FY2024-25",
+    "Leave Policy FY2026-27",
+    "Leave Policy FY2026-27"
+   ]
+  },
+  {
+   "mode": "keyword",
+   "q": "What stock refresh time does the Zenith inventory sync BRD require?",
+   "doc": "BRD \u2013 Zenith Retail Omnichannel Inventory Sync",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "BRD \u2013 Zenith Retail Omnichannel Inventory Sync",
+    "Zenith Retail \u2013 SAP S/4HANA Project Charter",
+    "Zenith Retail \u2013 SAP S/4HANA Project Charter",
+    "BRD \u2013 Zenith Retail Omnichannel Inventory Sync",
+    "BRD \u2013 Zenith Retail Omnichannel Inventory Sync"
+   ]
+  },
+  {
+   "mode": "keyword",
+   "q": "Who signs off the Zenith omnichannel inventory sync BRD?",
+   "doc": "BRD \u2013 Zenith Retail Omnichannel Inventory Sync",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "BRD \u2013 Zenith Retail Omnichannel Inventory Sync",
+    "BRD \u2013 Zenith Retail Omnichannel Inventory Sync",
+    "BRD \u2013 Zenith Retail Omnichannel Inventory Sync",
+    "BRD \u2013 Zenith Retail Omnichannel Inventory Sync",
+    "Zenith Retail \u2013 SAP S/4HANA Project Charter"
+   ],
+   "leak": false
+  },
+  {
+   "mode": "keyword",
+   "q": "Which NimbusOps plans get AI alert summaries?",
+   "doc": "BRD \u2013 NimbusOps AI Alert Summaries",
+   "hit_at_1": 0.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 0.5,
+   "context_recall": 1.0,
+   "top": [
+    "NimbusOps Product FAQ",
+    "BRD \u2013 NimbusOps AI Alert Summaries",
+    "BRD \u2013 NimbusOps AI Alert Summaries",
+    "BRD \u2013 NimbusOps AI Alert Summaries",
+    "NimbusOps Product FAQ"
+   ],
+   "leak": false
+  },
+  {
+   "mode": "keyword",
+   "q": "What alert-noise reduction is the AI alert summaries feature targeting?",
+   "doc": "BRD \u2013 NimbusOps AI Alert Summaries",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "BRD \u2013 NimbusOps AI Alert Summaries",
+    "BRD \u2013 NimbusOps AI Alert Summaries",
+    "BRD \u2013 NimbusOps AI Alert Summaries",
+    "BRD \u2013 NimbusOps AI Alert Summaries",
+    "NimbusOps Product FAQ"
+   ]
+  },
+  {
+   "mode": "keyword",
+   "q": "Where is NimbusOps customer data stored?",
+   "doc": "NimbusOps Product FAQ",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "NimbusOps Product FAQ",
+    "BRD \u2013 NimbusOps AI Alert Summaries",
+    "Data Protection Policy \u2013 DPDP Act 2023",
+    "BRD \u2013 NimbusOps AI Alert Summaries",
+    "Welcome to Nimbus"
+   ]
+  },
+  {
+   "mode": "keyword",
+   "q": "How long is the NimbusOps free trial and how many hosts does it cover?",
+   "doc": "NimbusOps Product FAQ",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "NimbusOps Product FAQ",
+    "BRD \u2013 NimbusOps AI Alert Summaries",
+    "NimbusOps Product FAQ",
+    "BRD \u2013 NimbusOps AI Alert Summaries",
+    "BRD \u2013 NimbusOps AI Alert Summaries"
+   ]
+  },
+  {
+   "mode": "keyword",
+   "q": "What is the liability cap in the Harbor Logistics MSA?",
+   "doc": "Master Services Agreement \u2013 Harbor Logistics Inc.",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Master Services Agreement \u2013 Harbor Logistics Inc.",
+    "Master Services Agreement \u2013 Harbor Logistics Inc.",
+    "Master Services Agreement \u2013 Harbor Logistics Inc.",
+    "Master Services Agreement \u2013 Harbor Logistics Inc.",
+    "Master Services Agreement \u2013 Harbor Logistics Inc."
+   ],
+   "leak": false
+  },
+  {
+   "mode": "keyword",
+   "q": "How much notice is needed to not renew the Harbor Logistics MSA?",
+   "doc": "Master Services Agreement \u2013 Harbor Logistics Inc.",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Master Services Agreement \u2013 Harbor Logistics Inc.",
+    "Master Services Agreement \u2013 Harbor Logistics Inc.",
+    "Master Services Agreement \u2013 Harbor Logistics Inc.",
+    "Master Services Agreement \u2013 Harbor Logistics Inc.",
+    "Master Services Agreement \u2013 Harbor Logistics Inc."
+   ]
+  },
+  {
+   "mode": "keyword",
+   "q": "Who can sign a client contract worth more than \u20b95 crore?",
+   "doc": "Contract Review and Signing Authority Guideline",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Contract Review and Signing Authority Guideline",
+    "Contract Review and Signing Authority Guideline",
+    "Data Protection Policy \u2013 DPDP Act 2023",
+    "Contract Review and Signing Authority Guideline",
+    "Notice Period and Exit Process"
+   ]
+  },
+  {
+   "mode": "keyword",
+   "q": "How long does Legal take to review an NDA on third-party paper?",
+   "doc": "Contract Review and Signing Authority Guideline",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Contract Review and Signing Authority Guideline",
+    "Contract Review and Signing Authority Guideline",
+    "Contract Review and Signing Authority Guideline",
+    "Contract Review and Signing Authority Guideline",
+    "Master Services Agreement \u2013 Harbor Logistics Inc."
+   ]
+  },
+  {
+   "mode": "keyword",
+   "q": "What are Nimbus's standard vendor payment terms?",
+   "doc": "Accounts Payable and Vendor Payment Policy",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Accounts Payable and Vendor Payment Policy",
+    "Accounts Payable and Vendor Payment Policy",
+    "Accounts Payable and Vendor Payment Policy",
+    "Laptop and Device Security Standard",
+    "Accounts Payable and Vendor Payment Policy"
+   ]
+  },
+  {
+   "mode": "keyword",
+   "q": "Who approves a vendor invoice between \u20b910 lakh and \u20b950 lakh?",
+   "doc": "Accounts Payable and Vendor Payment Policy",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Accounts Payable and Vendor Payment Policy",
+    "Accounts Payable and Vendor Payment Policy",
+    "Accounts Payable and Vendor Payment Policy",
+    "Accounts Payable and Vendor Payment Policy",
+    "Hiring Approval Workflow"
+   ]
+  },
+  {
+   "mode": "keyword",
+   "q": "What were Nimbus's Q1 FY27 debtor days?",
+   "doc": "Q1 FY2026-27 Revenue and Collections Report",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Q1 FY2026-27 Revenue and Collections Report",
+    "New Joiner Onboarding Checklist",
+    "Travel and Expense Policy",
+    "Q1 FY2026-27 Revenue and Collections Report",
+    "Q1 FY2026-27 Revenue and Collections Report"
+   ]
+  },
+  {
+   "mode": "keyword",
+   "q": "Which region brought the most revenue in Q1 FY27?",
+   "doc": "Q1 FY2026-27 Revenue and Collections Report",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Q1 FY2026-27 Revenue and Collections Report",
+    "Q1 FY2026-27 Revenue and Collections Report",
+    "Q1 FY2026-27 Revenue and Collections Report",
+    "Q1 FY2026-27 Revenue and Collections Report",
+    "Q1 FY2026-27 Revenue and Collections Report"
+   ]
+  },
+  {
+   "mode": "keyword",
+   "q": "How fast must a critical vulnerability on an internet-facing system be fixed?",
+   "doc": "Vulnerability Management Standard",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 0.0,
+   "top": [
+    "Vulnerability Management Standard",
+    "Vulnerability Management Standard",
+    "Vulnerability Management Standard",
+    "Information Security Policy",
+    "Vulnerability Management Standard"
+   ]
+  },
+  {
+   "mode": "keyword",
+   "q": "Who approves a risk exception for a Medium or Low vulnerability, and for how long?",
+   "doc": "Vulnerability Management Standard",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Vulnerability Management Standard",
+    "Managing Attrition and Retention",
+    "Vulnerability Management Standard",
+    "Running Effective 1:1s",
+    "Information Security Policy"
+   ]
+  },
+  {
+   "mode": "keyword",
+   "q": "How often is privileged and production access reviewed?",
+   "doc": "Privileged Access and Quarterly Access Review Procedure",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Privileged Access and Quarterly Access Review Procedure",
+    "Privileged Access and Quarterly Access Review Procedure",
+    "Privileged Access and Quarterly Access Review Procedure",
+    "Privileged Access and Quarterly Access Review Procedure",
+    "Privileged Access and Quarterly Access Review Procedure"
+   ]
+  },
+  {
+   "mode": "keyword",
+   "q": "How soon is all access removed after someone leaves?",
+   "doc": "Privileged Access and Quarterly Access Review Procedure",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Privileged Access and Quarterly Access Review Procedure",
+    "Remote Access and VPN Guideline",
+    "Notice Period and Exit Process",
+    "Privileged Access and Quarterly Access Review Procedure",
+    "Privileged Access and Quarterly Access Review Procedure"
+   ]
+  },
+  {
+   "mode": "keyword",
+   "q": "What RPO and RTO does the new NimbusOps DR design target?",
+   "doc": "Design Doc \u2013 NimbusOps Multi-Region Active-Passive DR",
+   "hit_at_1": 0.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 0.5,
+   "context_recall": 1.0,
+   "top": [
+    "NimbusOps Database Failover Runbook",
+    "Design Doc \u2013 NimbusOps Multi-Region Active-Passive DR",
+    "Information Security Policy",
+    "Disaster Recovery Drill Procedure",
+    "Design Doc \u2013 NimbusOps Multi-Region Active-Passive DR"
+   ],
+   "leak": false
+  },
+  {
+   "mode": "keyword",
+   "q": "How much extra per month does the active-passive DR design cost?",
+   "doc": "Design Doc \u2013 NimbusOps Multi-Region Active-Passive DR",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Design Doc \u2013 NimbusOps Multi-Region Active-Passive DR",
+    "Design Doc \u2013 NimbusOps Multi-Region Active-Passive DR",
+    "Design Doc \u2013 NimbusOps Multi-Region Active-Passive DR",
+    "Design Doc \u2013 NimbusOps Multi-Region Active-Passive DR",
+    "Cloud Cost Management Guideline"
+   ]
+  },
+  {
+   "mode": "keyword",
+   "q": "What is the price of the AI alert summaries add-on for the Starter plan?",
+   "doc": null
+  },
+  {
+   "mode": "keyword",
+   "q": "How many desks does the Nimbus Dubai sales office have?",
+   "doc": null
+  },
+  {
+   "mode": "hybrid",
+   "q": "What is the minimum password length at Nimbus?",
+   "doc": "Acceptable Use Policy",
+   "hit_at_1": 0.0,
+   "hit_at_3": 0.0,
+   "hit_at_5": 0.0,
+   "mrr": 0.0,
+   "context_recall": 0.0,
+   "top": [
+    "Password and MFA Standard",
+    "Password and MFA Standard",
+    "Password and MFA Standard",
+    "Welcome to Nimbus",
+    "Password and MFA Standard"
+   ]
+  },
+  {
+   "mode": "hybrid",
+   "q": "After how many minutes of inactivity must a Nimbus laptop screen lock?",
+   "doc": "Laptop and Device Security Standard",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Laptop and Device Security Standard",
+    "Laptop and Device Security Standard",
+    "Laptop and Device Security Standard",
+    "On-Call Policy and Rotation",
+    "Acceptable Use Policy"
+   ]
+  },
+  {
+   "mode": "hybrid",
+   "q": "Where should I forward a suspicious email?",
+   "doc": "Welcome to Nimbus",
+   "hit_at_1": 0.0,
+   "hit_at_3": 0.0,
+   "hit_at_5": 1.0,
+   "mrr": 0.2,
+   "context_recall": 1.0,
+   "top": [
+    "Acceptable Use Policy",
+    "Incident Reporting Procedure",
+    "Incident Reporting Procedure",
+    "Al Noor Healthcare \u2013 Managed SOC Service Report",
+    "Welcome to Nimbus"
+   ]
+  },
+  {
+   "mode": "hybrid",
+   "q": "What is the response time for a SEV1 incident and who gets paged?",
+   "doc": "Incident Reporting Procedure",
+   "hit_at_1": 0.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 0.3333333333333333,
+   "context_recall": 1.0,
+   "top": [
+    "SEV1 Incident Response Runbook",
+    "SEV1 Incident Response Runbook",
+    "Incident Reporting Procedure",
+    "On-Call Policy and Rotation",
+    "Incident Reporting Procedure"
+   ]
+  },
+  {
+   "mode": "hybrid",
+   "q": "Which class can I fly on a 10-hour international flight for work?",
+   "doc": "Travel and Expense Policy",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Travel and Expense Policy",
+    "Laptop and Device Security Standard",
+    "On-Call Policy and Rotation",
+    "Hybrid Work Policy",
+    "On-Call Policy and Rotation"
+   ]
+  },
+  {
+   "mode": "hybrid",
+   "q": "What is the daily allowance for business travel to a metro city in India?",
+   "doc": "Travel and Expense Policy",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Travel and Expense Policy",
+    "Travel and Expense Policy",
+    "Travel and Expense Policy",
+    "Travel and Expense Policy",
+    "Holiday Calendar FY2026-27"
+   ]
+  },
+  {
+   "mode": "hybrid",
+   "q": "What are the default anchor days for office attendance?",
+   "doc": "Hybrid Work Policy",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Hybrid Work Policy",
+    "Hybrid Work Policy",
+    "Hybrid Work Policy",
+    "Holiday Calendar FY2026-27",
+    "Hybrid Work Policy"
+   ]
+  },
+  {
+   "mode": "hybrid",
+   "q": "Independence Day 2026 falls on a Saturday. Is there still a flag-hoisting at the office?",
+   "doc": "Holiday Calendar FY2026-27",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Holiday Calendar FY2026-27",
+    "Holiday Calendar FY2026-27",
+    "Holiday Calendar FY2026-27",
+    "Holiday Calendar FY2026-27",
+    "Holiday Calendar FY2026-27"
+   ]
+  },
+  {
+   "mode": "hybrid",
+   "q": "What is the group term life insurance cover for employees?",
+   "doc": "Employee Benefits Guide",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Employee Benefits Guide",
+    "Employee Benefits Guide",
+    "Employee Benefits Guide",
+    "Employee Benefits Guide",
+    "Crestline Insurance \u2013 Data Platform SOW Summary"
+   ]
+  },
+  {
+   "mode": "hybrid",
+   "q": "Within how many hours must CERT-In be notified of a reportable cyber incident?",
+   "doc": "Information Security Policy",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Information Security Policy",
+    "Incident Reporting Procedure",
+    "Incident Reporting Procedure",
+    "Incident Reporting Procedure",
+    "SEV1 Incident Response Runbook"
+   ]
+  },
+  {
+   "mode": "hybrid",
+   "q": "What happens to earned leave above the carry-forward limit at year end?",
+   "doc": "Leave Policy FY2026-27",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Leave Policy FY2026-27",
+    "Leave Policy FY2026-27",
+    "Leave Policy FY2024-25",
+    "Leave Policy FY2026-27",
+    "Employee Benefits Guide"
+   ]
+  },
+  {
+   "mode": "hybrid",
+   "q": "If a Principal (L6) resigns, how long is the notice period and when is the full and final settlement paid?",
+   "doc": "Notice Period and Exit Process",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 0.0,
+   "top": [
+    "Notice Period and Exit Process",
+    "Notice Period and Exit Process",
+    "Variable Pay Plan",
+    "Notice Period and Exit Process",
+    "Managing Attrition and Retention"
+   ]
+  },
+  {
+   "mode": "hybrid",
+   "q": "What referral bonus does an employee get for referring a Senior Software Engineer (L3)?",
+   "doc": "Referral Bonus Policy",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Referral Bonus Policy",
+    "Referral Bonus Policy",
+    "Referral Bonus Policy",
+    "Referral Bonus Policy",
+    "Referral Bonus Policy"
+   ]
+  },
+  {
+   "mode": "hybrid",
+   "q": "Can recruitment agencies be used for any role, and what fee is allowed?",
+   "doc": "Hiring Approval Workflow",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Hiring Approval Workflow",
+    "Referral Bonus Policy",
+    "Referral Bonus Policy",
+    "Referral Bonus Policy",
+    "Code of Conduct"
+   ]
+  },
+  {
+   "mode": "hybrid",
+   "q": "What is the salary band for a Tech Lead (L4)?",
+   "doc": "Salary Bands FY2026-27",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 0.0,
+   "top": [
+    "Salary Bands FY2026-27",
+    "Salary Bands FY2026-27",
+    "Variable Pay Plan",
+    "Salary Bands FY2026-27",
+    "Salary Bands FY2026-27"
+   ],
+   "leak": false
+  },
+  {
+   "mode": "hybrid",
+   "q": "When is the FY2026-27 variable pay paid out?",
+   "doc": "Variable Pay Plan",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Variable Pay Plan",
+    "Variable Pay Plan",
+    "Variable Pay Plan",
+    "Salary Bands FY2026-27",
+    "Variable Pay Plan"
+   ],
+   "leak": false
+  },
+  {
+   "mode": "hybrid",
+   "q": "How long does a formal Performance Improvement Plan (PIP) last?",
+   "doc": "Handling Performance Issues \u2013 PIP Guide",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Handling Performance Issues \u2013 PIP Guide",
+    "Handling Performance Issues \u2013 PIP Guide",
+    "Handling Performance Issues \u2013 PIP Guide",
+    "Handling Performance Issues \u2013 PIP Guide",
+    "Handling Performance Issues \u2013 PIP Guide"
+   ],
+   "leak": false
+  },
+  {
+   "mode": "hybrid",
+   "q": "Can employees bring their pets to the Nimbus office?",
+   "doc": null
+  },
+  {
+   "mode": "hybrid",
+   "q": "How much is the Nimbus annual Diwali bonus?",
+   "doc": null
+  },
+  {
+   "mode": "hybrid",
+   "q": "What is the monthly error budget for NimbusOps under its availability SLO?",
+   "doc": "NimbusOps Database Failover Runbook",
+   "hit_at_1": 0.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 0.5,
+   "context_recall": 1.0,
+   "top": [
+    "Logging and Observability Standard",
+    "NimbusOps Database Failover Runbook",
+    "NimbusOps Product FAQ",
+    "NimbusOps Product FAQ",
+    "NimbusOps Platform Architecture"
+   ]
+  },
+  {
+   "mode": "hybrid",
+   "q": "How much on-call allowance is paid for a weekend or public holiday day?",
+   "doc": "On-Call Policy and Rotation",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "On-Call Policy and Rotation",
+    "Holiday Calendar FY2026-27",
+    "Travel and Expense Policy",
+    "Holiday Calendar FY2026-27",
+    "Holiday Calendar FY2026-27"
+   ]
+  },
+  {
+   "mode": "hybrid",
+   "q": "What RPO and RTO were measured in the April 2026 full DR drill, and did it pass?",
+   "doc": "Disaster Recovery Drill Procedure",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Disaster Recovery Drill Procedure",
+    "Disaster Recovery Drill Procedure",
+    "Design Doc \u2013 NimbusOps Multi-Region Active-Passive DR",
+    "Design Doc \u2013 NimbusOps Multi-Region Active-Passive DR",
+    "Disaster Recovery Drill Procedure"
+   ],
+   "leak": false
+  },
+  {
+   "mode": "hybrid",
+   "q": "What is the API rate limit per key for Enterprise-plan customers?",
+   "doc": "API Design Standard",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "API Design Standard",
+    "NimbusOps Platform Architecture",
+    "NimbusOps Product FAQ",
+    "API Design Standard",
+    "NimbusOps Platform Architecture"
+   ]
+  },
+  {
+   "mode": "hybrid",
+   "q": "Who can accept the risk of a Critical vulnerability that cannot be fixed within SLA, and for how long?",
+   "doc": "Secure SDLC Standard",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Secure SDLC Standard",
+    "Al Noor Healthcare \u2013 Managed SOC Service Report",
+    "Secure SDLC Standard",
+    "Al Noor Healthcare \u2013 Managed SOC Service Report",
+    "Information Security Policy"
+   ]
+  },
+  {
+   "mode": "hybrid",
+   "q": "Why must infrastructure and system logs be kept for at least 180 days?",
+   "doc": "Logging and Observability Standard",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Logging and Observability Standard",
+    "Information Security Policy",
+    "Data Classification and Handling Policy",
+    "NimbusOps Platform Architecture",
+    "Secure SDLC Standard"
+   ]
+  },
+  {
+   "mode": "hybrid",
+   "q": "Who must approve new recurring cloud spend above \u20b95 lakh per month?",
+   "doc": "Cloud Cost Management Guideline",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Cloud Cost Management Guideline",
+    "Cloud Cost Management Guideline",
+    "Design Doc \u2013 NimbusOps Multi-Region Active-Passive DR",
+    "Design Doc \u2013 NimbusOps Multi-Region Active-Passive DR",
+    "Cloud Cost Management Guideline"
+   ]
+  },
+  {
+   "mode": "hybrid",
+   "q": "How long was HarborTrack down during INC-2291 and what service credit did Harbor receive?",
+   "doc": "Harbor Logistics \u2013 Incident Post-Mortem INC-2291",
+   "hit_at_1": 0.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 0.5,
+   "context_recall": 1.0,
+   "top": [
+    "Harbor Logistics \u2013 Cloud Migration Status Report Q1 FY27",
+    "Harbor Logistics \u2013 Incident Post-Mortem INC-2291",
+    "Harbor Logistics \u2013 Incident Post-Mortem INC-2291",
+    "Harbor Logistics \u2013 Incident Post-Mortem INC-2291",
+    "Harbor Logistics \u2013 Account Overview"
+   ]
+  },
+  {
+   "mode": "hybrid",
+   "q": "How many Harbor Logistics applications had been migrated to AWS by 30 June 2026?",
+   "doc": "Harbor Logistics \u2013 Account Overview",
+   "hit_at_1": 0.0,
+   "hit_at_3": 0.0,
+   "hit_at_5": 1.0,
+   "mrr": 0.25,
+   "context_recall": 1.0,
+   "top": [
+    "Harbor Logistics \u2013 Cloud Migration Status Report Q1 FY27",
+    "Harbor Logistics \u2013 Cloud Migration Status Report Q1 FY27",
+    "Harbor Logistics \u2013 Cloud Migration Status Report Q1 FY27",
+    "Harbor Logistics \u2013 Account Overview",
+    "Harbor Logistics \u2013 Cloud Migration Status Report Q1 FY27"
+   ]
+  },
+  {
+   "mode": "hybrid",
+   "q": "How much is the go-live milestone payment in the Zenith Retail S/4HANA project?",
+   "doc": "Zenith Retail \u2013 SAP S/4HANA Project Charter",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Zenith Retail \u2013 SAP S/4HANA Project Charter",
+    "Zenith Retail \u2013 SAP S/4HANA Project Charter",
+    "Zenith Retail \u2013 SAP S/4HANA Project Charter",
+    "Zenith Retail \u2013 SAP S/4HANA Project Charter",
+    "Zenith Retail \u2013 SAP S/4HANA Project Charter"
+   ]
+  },
+  {
+   "mode": "hybrid",
+   "q": "How quickly was the May 2026 phishing campaign at Al Noor Healthcare contained?",
+   "doc": "Al Noor Healthcare \u2013 Managed SOC Service Report",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Al Noor Healthcare \u2013 Managed SOC Service Report",
+    "Al Noor Healthcare \u2013 Managed SOC Service Report",
+    "Al Noor Healthcare \u2013 Managed SOC Service Report",
+    "Al Noor Healthcare \u2013 Managed SOC Service Report",
+    "Al Noor Healthcare \u2013 Managed SOC Service Report"
+   ]
+  },
+  {
+   "mode": "hybrid",
+   "q": "What is the list price of the NimbusOps Enterprise plan?",
+   "doc": "Rate Card FY2026-27",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Rate Card FY2026-27",
+    "Discount Approval Policy",
+    "Rate Card FY2026-27",
+    "Rate Card FY2026-27",
+    "NimbusOps Product FAQ"
+   ],
+   "leak": false
+  },
+  {
+   "mode": "hybrid",
+   "q": "Who approves a discount of more than 10% and up to 15% of total contract value?",
+   "doc": "Discount Approval Policy",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Discount Approval Policy",
+    "Discount Approval Policy",
+    "Discount Approval Policy",
+    "Discount Approval Policy",
+    "Harbor Logistics Renewal Negotiation Notes"
+   ]
+  },
+  {
+   "mode": "hybrid",
+   "q": "By how much did the Board approve topping up the ESOP pool on 14 May 2026?",
+   "doc": "Board Meeting Minutes \u2013 14 May 2026",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Board Meeting Minutes \u2013 14 May 2026",
+    "FY2026-27 Budget and Headcount Plan",
+    "Board Meeting Minutes \u2013 14 May 2026",
+    "Board Meeting Minutes \u2013 14 May 2026",
+    "Board Meeting Minutes \u2013 14 May 2026"
+   ],
+   "leak": false
+  },
+  {
+   "mode": "hybrid",
+   "q": "What is the planned Hyderabad headcount at 31 March 2027?",
+   "doc": "FY2026-27 Budget and Headcount Plan",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "FY2026-27 Budget and Headcount Plan",
+    "Hyderabad Campus Expansion Proposal",
+    "FY2026-27 Budget and Headcount Plan",
+    "Holiday Calendar FY2026-27",
+    "Relocation Assistance Policy"
+   ]
+  },
+  {
+   "mode": "hybrid",
+   "q": "What is the capital cost per seat of the Hyderabad campus expansion?",
+   "doc": "Hyderabad Campus Expansion Proposal",
+   "hit_at_1": 0.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 0.5,
+   "context_recall": 1.0,
+   "top": [
+    "Board Meeting Minutes \u2013 14 May 2026",
+    "Hyderabad Campus Expansion Proposal",
+    "Hyderabad Campus Expansion Proposal",
+    "Hyderabad Campus Expansion Proposal",
+    "FY2026-27 Budget and Headcount Plan"
+   ]
+  },
+  {
+   "mode": "hybrid",
+   "q": "How many story points does the NimbusOps team deliver per sprint on average?",
+   "doc": null
+  },
+  {
+   "mode": "hybrid",
+   "q": "What is the parking reimbursement for engineers called in to the office during a SEV1?",
+   "doc": null
+  },
+  {
+   "mode": "hybrid",
+   "q": "How many days of earned leave do Nimbus employees get per financial year?",
+   "doc": "Leave Policy FY2026-27",
+   "hit_at_1": 0.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 0.3333333333333333,
+   "context_recall": 1.0,
+   "top": [
+    "Welcome to Nimbus",
+    "Leave Policy FY2024-25",
+    "Leave Policy FY2026-27",
+    "Leave Policy FY2026-27",
+    "Leave Policy FY2026-27"
+   ]
+  },
+  {
+   "mode": "hybrid",
+   "q": "What is the fixed salary band for an L3 Senior Software Engineer at Nimbus?",
+   "doc": "Salary Bands FY2026-27",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 0.0,
+   "top": [
+    "Salary Bands FY2026-27",
+    "Welcome to Nimbus",
+    "Salary Bands FY2026-27",
+    "Salary Bands FY2026-27",
+    "Salary Bands FY2026-27"
+   ],
+   "leak": false
+  },
+  {
+   "mode": "hybrid",
+   "q": "What counts as a SEV1 incident and how fast must on-call respond?",
+   "doc": "SEV1 Incident Response Runbook",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "SEV1 Incident Response Runbook",
+    "SEV1 Incident Response Runbook",
+    "Incident Reporting Procedure",
+    "Information Security Policy",
+    "Incident Reporting Procedure"
+   ]
+  },
+  {
+   "mode": "hybrid",
+   "q": "Can I bring my dog to the Nimbus office in Pune?",
+   "doc": null
+  },
+  {
+   "mode": "hybrid",
+   "q": "How many days of unused earned leave can a Nimbus employee carry forward into the next year?",
+   "doc": "Leave Policy FY2026-27",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Leave Policy FY2026-27",
+    "Leave Policy FY2026-27",
+    "Leave Policy FY2024-25",
+    "Holiday Calendar FY2026-27",
+    "Leave Policy FY2024-25"
+   ]
+  },
+  {
+   "mode": "hybrid",
+   "q": "What stock refresh time does the Zenith inventory sync BRD require?",
+   "doc": "BRD \u2013 Zenith Retail Omnichannel Inventory Sync",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 0.0,
+   "top": [
+    "BRD \u2013 Zenith Retail Omnichannel Inventory Sync",
+    "BRD \u2013 Zenith Retail Omnichannel Inventory Sync",
+    "BRD \u2013 Zenith Retail Omnichannel Inventory Sync",
+    "BRD \u2013 Zenith Retail Omnichannel Inventory Sync",
+    "BRD \u2013 Zenith Retail Omnichannel Inventory Sync"
+   ]
+  },
+  {
+   "mode": "hybrid",
+   "q": "Who signs off the Zenith omnichannel inventory sync BRD?",
+   "doc": "BRD \u2013 Zenith Retail Omnichannel Inventory Sync",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "BRD \u2013 Zenith Retail Omnichannel Inventory Sync",
+    "BRD \u2013 Zenith Retail Omnichannel Inventory Sync",
+    "BRD \u2013 Zenith Retail Omnichannel Inventory Sync",
+    "BRD \u2013 Zenith Retail Omnichannel Inventory Sync",
+    "BRD \u2013 Zenith Retail Omnichannel Inventory Sync"
+   ],
+   "leak": false
+  },
+  {
+   "mode": "hybrid",
+   "q": "Which NimbusOps plans get AI alert summaries?",
+   "doc": "BRD \u2013 NimbusOps AI Alert Summaries",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "BRD \u2013 NimbusOps AI Alert Summaries",
+    "BRD \u2013 NimbusOps AI Alert Summaries",
+    "BRD \u2013 NimbusOps AI Alert Summaries",
+    "BRD \u2013 NimbusOps AI Alert Summaries",
+    "NimbusOps Product FAQ"
+   ],
+   "leak": false
+  },
+  {
+   "mode": "hybrid",
+   "q": "What alert-noise reduction is the AI alert summaries feature targeting?",
+   "doc": "BRD \u2013 NimbusOps AI Alert Summaries",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "BRD \u2013 NimbusOps AI Alert Summaries",
+    "BRD \u2013 NimbusOps AI Alert Summaries",
+    "BRD \u2013 NimbusOps AI Alert Summaries",
+    "BRD \u2013 NimbusOps AI Alert Summaries",
+    "BRD \u2013 NimbusOps AI Alert Summaries"
+   ]
+  },
+  {
+   "mode": "hybrid",
+   "q": "Where is NimbusOps customer data stored?",
+   "doc": "NimbusOps Product FAQ",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "NimbusOps Product FAQ",
+    "Data Protection Policy \u2013 DPDP Act 2023",
+    "BRD \u2013 NimbusOps AI Alert Summaries",
+    "NimbusOps Product FAQ",
+    "Welcome to Nimbus"
+   ]
+  },
+  {
+   "mode": "hybrid",
+   "q": "How long is the NimbusOps free trial and how many hosts does it cover?",
+   "doc": "NimbusOps Product FAQ",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "NimbusOps Product FAQ",
+    "NimbusOps Product FAQ",
+    "NimbusOps Product FAQ",
+    "NimbusOps Product FAQ",
+    "BRD \u2013 NimbusOps AI Alert Summaries"
+   ]
+  },
+  {
+   "mode": "hybrid",
+   "q": "What is the liability cap in the Harbor Logistics MSA?",
+   "doc": "Master Services Agreement \u2013 Harbor Logistics Inc.",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Master Services Agreement \u2013 Harbor Logistics Inc.",
+    "Master Services Agreement \u2013 Harbor Logistics Inc.",
+    "Master Services Agreement \u2013 Harbor Logistics Inc.",
+    "Master Services Agreement \u2013 Harbor Logistics Inc.",
+    "Master Services Agreement \u2013 Harbor Logistics Inc."
+   ],
+   "leak": false
+  },
+  {
+   "mode": "hybrid",
+   "q": "How much notice is needed to not renew the Harbor Logistics MSA?",
+   "doc": "Master Services Agreement \u2013 Harbor Logistics Inc.",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Master Services Agreement \u2013 Harbor Logistics Inc.",
+    "Master Services Agreement \u2013 Harbor Logistics Inc.",
+    "Master Services Agreement \u2013 Harbor Logistics Inc.",
+    "Master Services Agreement \u2013 Harbor Logistics Inc.",
+    "Master Services Agreement \u2013 Harbor Logistics Inc."
+   ]
+  },
+  {
+   "mode": "hybrid",
+   "q": "Who can sign a client contract worth more than \u20b95 crore?",
+   "doc": "Contract Review and Signing Authority Guideline",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Contract Review and Signing Authority Guideline",
+    "Contract Review and Signing Authority Guideline",
+    "Contract Review and Signing Authority Guideline",
+    "Code of Conduct",
+    "Contract Review and Signing Authority Guideline"
+   ]
+  },
+  {
+   "mode": "hybrid",
+   "q": "How long does Legal take to review an NDA on third-party paper?",
+   "doc": "Contract Review and Signing Authority Guideline",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Contract Review and Signing Authority Guideline",
+    "Contract Review and Signing Authority Guideline",
+    "Contract Review and Signing Authority Guideline",
+    "Contract Review and Signing Authority Guideline",
+    "Contract Review and Signing Authority Guideline"
+   ]
+  },
+  {
+   "mode": "hybrid",
+   "q": "What are Nimbus's standard vendor payment terms?",
+   "doc": "Accounts Payable and Vendor Payment Policy",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Accounts Payable and Vendor Payment Policy",
+    "Accounts Payable and Vendor Payment Policy",
+    "Accounts Payable and Vendor Payment Policy",
+    "Code of Conduct",
+    "Accounts Payable and Vendor Payment Policy"
+   ]
+  },
+  {
+   "mode": "hybrid",
+   "q": "Who approves a vendor invoice between \u20b910 lakh and \u20b950 lakh?",
+   "doc": "Accounts Payable and Vendor Payment Policy",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Accounts Payable and Vendor Payment Policy",
+    "Accounts Payable and Vendor Payment Policy",
+    "Accounts Payable and Vendor Payment Policy",
+    "Accounts Payable and Vendor Payment Policy",
+    "Accounts Payable and Vendor Payment Policy"
+   ]
+  },
+  {
+   "mode": "hybrid",
+   "q": "What were Nimbus's Q1 FY27 debtor days?",
+   "doc": "Q1 FY2026-27 Revenue and Collections Report",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Q1 FY2026-27 Revenue and Collections Report",
+    "New Joiner Onboarding Checklist",
+    "Q1 FY2026-27 Revenue and Collections Report",
+    "Travel and Expense Policy",
+    "Q1 FY2026-27 Revenue and Collections Report"
+   ]
+  },
+  {
+   "mode": "hybrid",
+   "q": "Which region brought the most revenue in Q1 FY27?",
+   "doc": "Q1 FY2026-27 Revenue and Collections Report",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Q1 FY2026-27 Revenue and Collections Report",
+    "Q1 FY2026-27 Revenue and Collections Report",
+    "Q1 FY2026-27 Revenue and Collections Report",
+    "Q1 FY2026-27 Revenue and Collections Report",
+    "Q1 FY2026-27 Revenue and Collections Report"
+   ]
+  },
+  {
+   "mode": "hybrid",
+   "q": "How fast must a critical vulnerability on an internet-facing system be fixed?",
+   "doc": "Vulnerability Management Standard",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 0.0,
+   "top": [
+    "Vulnerability Management Standard",
+    "Vulnerability Management Standard",
+    "Information Security Policy",
+    "Vulnerability Management Standard",
+    "Vulnerability Management Standard"
+   ]
+  },
+  {
+   "mode": "hybrid",
+   "q": "Who approves a risk exception for a Medium or Low vulnerability, and for how long?",
+   "doc": "Vulnerability Management Standard",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Vulnerability Management Standard",
+    "Vulnerability Management Standard",
+    "Laptop and Device Security Standard",
+    "Information Security Policy",
+    "Information Security Policy"
+   ]
+  },
+  {
+   "mode": "hybrid",
+   "q": "How often is privileged and production access reviewed?",
+   "doc": "Privileged Access and Quarterly Access Review Procedure",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Privileged Access and Quarterly Access Review Procedure",
+    "Privileged Access and Quarterly Access Review Procedure",
+    "Privileged Access and Quarterly Access Review Procedure",
+    "Privileged Access and Quarterly Access Review Procedure",
+    "Privileged Access and Quarterly Access Review Procedure"
+   ]
+  },
+  {
+   "mode": "hybrid",
+   "q": "How soon is all access removed after someone leaves?",
+   "doc": "Privileged Access and Quarterly Access Review Procedure",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Privileged Access and Quarterly Access Review Procedure",
+    "Notice Period and Exit Process",
+    "Privileged Access and Quarterly Access Review Procedure",
+    "Leave Policy FY2026-27",
+    "Leave Policy FY2024-25"
+   ]
+  },
+  {
+   "mode": "hybrid",
+   "q": "What RPO and RTO does the new NimbusOps DR design target?",
+   "doc": "Design Doc \u2013 NimbusOps Multi-Region Active-Passive DR",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Design Doc \u2013 NimbusOps Multi-Region Active-Passive DR",
+    "Design Doc \u2013 NimbusOps Multi-Region Active-Passive DR",
+    "Information Security Policy",
+    "Design Doc \u2013 NimbusOps Multi-Region Active-Passive DR",
+    "Disaster Recovery Drill Procedure"
+   ],
+   "leak": false
+  },
+  {
+   "mode": "hybrid",
+   "q": "How much extra per month does the active-passive DR design cost?",
+   "doc": "Design Doc \u2013 NimbusOps Multi-Region Active-Passive DR",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Design Doc \u2013 NimbusOps Multi-Region Active-Passive DR",
+    "Design Doc \u2013 NimbusOps Multi-Region Active-Passive DR",
+    "Design Doc \u2013 NimbusOps Multi-Region Active-Passive DR",
+    "Design Doc \u2013 NimbusOps Multi-Region Active-Passive DR",
+    "Cloud Cost Management Guideline"
+   ]
+  },
+  {
+   "mode": "hybrid",
+   "q": "What is the price of the AI alert summaries add-on for the Starter plan?",
+   "doc": null
+  },
+  {
+   "mode": "hybrid",
+   "q": "How many desks does the Nimbus Dubai sales office have?",
+   "doc": null
+  },
+  {
+   "mode": "hybrid_rerank",
+   "q": "What is the minimum password length at Nimbus?",
+   "doc": "Acceptable Use Policy",
+   "hit_at_1": 0.0,
+   "hit_at_3": 0.0,
+   "hit_at_5": 0.0,
+   "mrr": 0.0,
+   "context_recall": 0.0,
+   "top": [
+    "Password and MFA Standard",
+    "Password and MFA Standard",
+    "Password and MFA Standard",
+    "Welcome to Nimbus",
+    "Password and MFA Standard"
+   ]
+  },
+  {
+   "mode": "hybrid_rerank",
+   "q": "After how many minutes of inactivity must a Nimbus laptop screen lock?",
+   "doc": "Laptop and Device Security Standard",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Laptop and Device Security Standard",
+    "Laptop and Device Security Standard",
+    "Acceptable Use Policy",
+    "Password and MFA Standard",
+    "Acceptable Use Policy"
+   ]
+  },
+  {
+   "mode": "hybrid_rerank",
+   "q": "Where should I forward a suspicious email?",
+   "doc": "Welcome to Nimbus",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Welcome to Nimbus",
+    "Incident Reporting Procedure",
+    "Incident Reporting Procedure",
+    "Acceptable Use Policy",
+    "Al Noor Healthcare \u2013 Managed SOC Service Report"
+   ]
+  },
+  {
+   "mode": "hybrid_rerank",
+   "q": "What is the response time for a SEV1 incident and who gets paged?",
+   "doc": "Incident Reporting Procedure",
+   "hit_at_1": 0.0,
+   "hit_at_3": 0.0,
+   "hit_at_5": 0.0,
+   "mrr": 0.0,
+   "context_recall": 0.0,
+   "top": [
+    "SEV1 Incident Response Runbook",
+    "SEV1 Incident Response Runbook",
+    "SEV1 Incident Response Runbook",
+    "SEV1 Incident Response Runbook",
+    "SEV1 Incident Response Runbook"
+   ]
+  },
+  {
+   "mode": "hybrid_rerank",
+   "q": "Which class can I fly on a 10-hour international flight for work?",
+   "doc": "Travel and Expense Policy",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Travel and Expense Policy",
+    "Travel and Expense Policy",
+    "Hybrid Work Policy",
+    "On-Call Policy and Rotation",
+    "Welcome to Nimbus"
+   ]
+  },
+  {
+   "mode": "hybrid_rerank",
+   "q": "What is the daily allowance for business travel to a metro city in India?",
+   "doc": "Travel and Expense Policy",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Travel and Expense Policy",
+    "Travel and Expense Policy",
+    "Travel and Expense Policy",
+    "Hybrid Work Policy",
+    "Travel and Expense Policy"
+   ]
+  },
+  {
+   "mode": "hybrid_rerank",
+   "q": "What are the default anchor days for office attendance?",
+   "doc": "Hybrid Work Policy",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Hybrid Work Policy",
+    "Hybrid Work Policy",
+    "Welcome to Nimbus",
+    "Hybrid Work Policy",
+    "Hybrid Work Policy"
+   ]
+  },
+  {
+   "mode": "hybrid_rerank",
+   "q": "Independence Day 2026 falls on a Saturday. Is there still a flag-hoisting at the office?",
+   "doc": "Holiday Calendar FY2026-27",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Holiday Calendar FY2026-27",
+    "Holiday Calendar FY2026-27",
+    "Holiday Calendar FY2026-27",
+    "Holiday Calendar FY2026-27",
+    "Holiday Calendar FY2026-27"
+   ]
+  },
+  {
+   "mode": "hybrid_rerank",
+   "q": "What is the group term life insurance cover for employees?",
+   "doc": "Employee Benefits Guide",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Employee Benefits Guide",
+    "Employee Benefits Guide",
+    "Employee Benefits Guide",
+    "Employee Benefits Guide",
+    "Employee Benefits Guide"
+   ]
+  },
+  {
+   "mode": "hybrid_rerank",
+   "q": "Within how many hours must CERT-In be notified of a reportable cyber incident?",
+   "doc": "Information Security Policy",
+   "hit_at_1": 0.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 0.5,
+   "context_recall": 1.0,
+   "top": [
+    "Incident Reporting Procedure",
+    "Information Security Policy",
+    "SEV1 Incident Response Runbook",
+    "Data Protection Policy \u2013 DPDP Act 2023",
+    "Incident Reporting Procedure"
+   ]
+  },
+  {
+   "mode": "hybrid_rerank",
+   "q": "What happens to earned leave above the carry-forward limit at year end?",
+   "doc": "Leave Policy FY2026-27",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Leave Policy FY2026-27",
+    "Leave Policy FY2026-27",
+    "Leave Policy FY2026-27",
+    "Leave Policy FY2026-27",
+    "Leave Policy FY2024-25"
+   ]
+  },
+  {
+   "mode": "hybrid_rerank",
+   "q": "If a Principal (L6) resigns, how long is the notice period and when is the full and final settlement paid?",
+   "doc": "Notice Period and Exit Process",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 0.0,
+   "top": [
+    "Notice Period and Exit Process",
+    "Notice Period and Exit Process",
+    "Notice Period and Exit Process",
+    "Notice Period and Exit Process",
+    "Relocation Assistance Policy"
+   ]
+  },
+  {
+   "mode": "hybrid_rerank",
+   "q": "What referral bonus does an employee get for referring a Senior Software Engineer (L3)?",
+   "doc": "Referral Bonus Policy",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Referral Bonus Policy",
+    "Referral Bonus Policy",
+    "Referral Bonus Policy",
+    "Referral Bonus Policy",
+    "Referral Bonus Policy"
+   ]
+  },
+  {
+   "mode": "hybrid_rerank",
+   "q": "Can recruitment agencies be used for any role, and what fee is allowed?",
+   "doc": "Hiring Approval Workflow",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Hiring Approval Workflow",
+    "Referral Bonus Policy",
+    "Code of Conduct",
+    "Referral Bonus Policy",
+    "Acceptable Use Policy"
+   ]
+  },
+  {
+   "mode": "hybrid_rerank",
+   "q": "What is the salary band for a Tech Lead (L4)?",
+   "doc": "Salary Bands FY2026-27",
+   "hit_at_1": 0.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 0.5,
+   "context_recall": 0.0,
+   "top": [
+    "Variable Pay Plan",
+    "Salary Bands FY2026-27",
+    "Salary Bands FY2026-27",
+    "Salary Bands FY2026-27",
+    "Salary Bands FY2026-27"
+   ],
+   "leak": false
+  },
+  {
+   "mode": "hybrid_rerank",
+   "q": "When is the FY2026-27 variable pay paid out?",
+   "doc": "Variable Pay Plan",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Variable Pay Plan",
+    "Variable Pay Plan",
+    "Variable Pay Plan",
+    "Salary Bands FY2026-27",
+    "Variable Pay Plan"
+   ],
+   "leak": false
+  },
+  {
+   "mode": "hybrid_rerank",
+   "q": "How long does a formal Performance Improvement Plan (PIP) last?",
+   "doc": "Handling Performance Issues \u2013 PIP Guide",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Handling Performance Issues \u2013 PIP Guide",
+    "Handling Performance Issues \u2013 PIP Guide",
+    "Handling Performance Issues \u2013 PIP Guide",
+    "Handling Performance Issues \u2013 PIP Guide",
+    "Handling Performance Issues \u2013 PIP Guide"
+   ],
+   "leak": false
+  },
+  {
+   "mode": "hybrid_rerank",
+   "q": "Can employees bring their pets to the Nimbus office?",
+   "doc": null
+  },
+  {
+   "mode": "hybrid_rerank",
+   "q": "How much is the Nimbus annual Diwali bonus?",
+   "doc": null
+  },
+  {
+   "mode": "hybrid_rerank",
+   "q": "What is the monthly error budget for NimbusOps under its availability SLO?",
+   "doc": "NimbusOps Database Failover Runbook",
+   "hit_at_1": 0.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 0.5,
+   "context_recall": 1.0,
+   "top": [
+    "Logging and Observability Standard",
+    "NimbusOps Database Failover Runbook",
+    "NimbusOps Product FAQ",
+    "Design Doc \u2013 NimbusOps Multi-Region Active-Passive DR",
+    "Disaster Recovery Drill Procedure"
+   ]
+  },
+  {
+   "mode": "hybrid_rerank",
+   "q": "How much on-call allowance is paid for a weekend or public holiday day?",
+   "doc": "On-Call Policy and Rotation",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "On-Call Policy and Rotation",
+    "Travel and Expense Policy",
+    "Leave Policy FY2026-27",
+    "Holiday Calendar FY2026-27",
+    "Employee Benefits Guide"
+   ]
+  },
+  {
+   "mode": "hybrid_rerank",
+   "q": "What RPO and RTO were measured in the April 2026 full DR drill, and did it pass?",
+   "doc": "Disaster Recovery Drill Procedure",
+   "hit_at_1": 0.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 0.5,
+   "context_recall": 1.0,
+   "top": [
+    "Design Doc \u2013 NimbusOps Multi-Region Active-Passive DR",
+    "Disaster Recovery Drill Procedure",
+    "Design Doc \u2013 NimbusOps Multi-Region Active-Passive DR",
+    "Disaster Recovery Drill Procedure",
+    "Information Security Policy"
+   ],
+   "leak": false
+  },
+  {
+   "mode": "hybrid_rerank",
+   "q": "What is the API rate limit per key for Enterprise-plan customers?",
+   "doc": "API Design Standard",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "API Design Standard",
+    "NimbusOps Platform Architecture",
+    "NimbusOps Platform Architecture",
+    "Zenith Retail \u2013 SAP S/4HANA Project Charter",
+    "API Design Standard"
+   ]
+  },
+  {
+   "mode": "hybrid_rerank",
+   "q": "Who can accept the risk of a Critical vulnerability that cannot be fixed within SLA, and for how long?",
+   "doc": "Secure SDLC Standard",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Secure SDLC Standard",
+    "Secure SDLC Standard",
+    "Al Noor Healthcare \u2013 Managed SOC Service Report",
+    "Al Noor Healthcare \u2013 Managed SOC Service Report",
+    "Secure SDLC Standard"
+   ]
+  },
+  {
+   "mode": "hybrid_rerank",
+   "q": "Why must infrastructure and system logs be kept for at least 180 days?",
+   "doc": "Logging and Observability Standard",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Logging and Observability Standard",
+    "Information Security Policy",
+    "Cloud Cost Management Guideline",
+    "Data Classification and Handling Policy",
+    "Certificate Renewal Runbook"
+   ]
+  },
+  {
+   "mode": "hybrid_rerank",
+   "q": "Who must approve new recurring cloud spend above \u20b95 lakh per month?",
+   "doc": "Cloud Cost Management Guideline",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Cloud Cost Management Guideline",
+    "Cloud Cost Management Guideline",
+    "Design Doc \u2013 NimbusOps Multi-Region Active-Passive DR",
+    "Design Doc \u2013 NimbusOps Multi-Region Active-Passive DR",
+    "Employee Benefits Guide"
+   ]
+  },
+  {
+   "mode": "hybrid_rerank",
+   "q": "How long was HarborTrack down during INC-2291 and what service credit did Harbor receive?",
+   "doc": "Harbor Logistics \u2013 Incident Post-Mortem INC-2291",
+   "hit_at_1": 0.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 0.5,
+   "context_recall": 1.0,
+   "top": [
+    "Harbor Logistics \u2013 Cloud Migration Status Report Q1 FY27",
+    "Harbor Logistics \u2013 Incident Post-Mortem INC-2291",
+    "Harbor Logistics \u2013 Incident Post-Mortem INC-2291",
+    "Harbor Logistics \u2013 Incident Post-Mortem INC-2291",
+    "Harbor Logistics \u2013 Incident Post-Mortem INC-2291"
+   ]
+  },
+  {
+   "mode": "hybrid_rerank",
+   "q": "How many Harbor Logistics applications had been migrated to AWS by 30 June 2026?",
+   "doc": "Harbor Logistics \u2013 Account Overview",
+   "hit_at_1": 0.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 0.5,
+   "context_recall": 1.0,
+   "top": [
+    "Harbor Logistics \u2013 Cloud Migration Status Report Q1 FY27",
+    "Harbor Logistics \u2013 Account Overview",
+    "Harbor Logistics \u2013 Cloud Migration Status Report Q1 FY27",
+    "Harbor Logistics \u2013 Cloud Migration Status Report Q1 FY27",
+    "Harbor Logistics \u2013 Cloud Migration Status Report Q1 FY27"
+   ]
+  },
+  {
+   "mode": "hybrid_rerank",
+   "q": "How much is the go-live milestone payment in the Zenith Retail S/4HANA project?",
+   "doc": "Zenith Retail \u2013 SAP S/4HANA Project Charter",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Zenith Retail \u2013 SAP S/4HANA Project Charter",
+    "Zenith Retail \u2013 SAP S/4HANA Project Charter",
+    "Zenith Retail \u2013 SAP S/4HANA Project Charter",
+    "Zenith Retail \u2013 SAP S/4HANA Project Charter",
+    "BRD \u2013 Zenith Retail Omnichannel Inventory Sync"
+   ]
+  },
+  {
+   "mode": "hybrid_rerank",
+   "q": "How quickly was the May 2026 phishing campaign at Al Noor Healthcare contained?",
+   "doc": "Al Noor Healthcare \u2013 Managed SOC Service Report",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Al Noor Healthcare \u2013 Managed SOC Service Report",
+    "Al Noor Healthcare \u2013 Managed SOC Service Report",
+    "Al Noor Healthcare \u2013 Managed SOC Service Report",
+    "Al Noor Healthcare \u2013 Managed SOC Service Report",
+    "Al Noor Healthcare \u2013 Managed SOC Service Report"
+   ]
+  },
+  {
+   "mode": "hybrid_rerank",
+   "q": "What is the list price of the NimbusOps Enterprise plan?",
+   "doc": "Rate Card FY2026-27",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Rate Card FY2026-27",
+    "Rate Card FY2026-27",
+    "Rate Card FY2026-27",
+    "Discount Approval Policy",
+    "FY2026-27 Budget and Headcount Plan"
+   ],
+   "leak": false
+  },
+  {
+   "mode": "hybrid_rerank",
+   "q": "Who approves a discount of more than 10% and up to 15% of total contract value?",
+   "doc": "Discount Approval Policy",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Discount Approval Policy",
+    "Discount Approval Policy",
+    "Discount Approval Policy",
+    "Contract Review and Signing Authority Guideline",
+    "Discount Approval Policy"
+   ]
+  },
+  {
+   "mode": "hybrid_rerank",
+   "q": "By how much did the Board approve topping up the ESOP pool on 14 May 2026?",
+   "doc": "Board Meeting Minutes \u2013 14 May 2026",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Board Meeting Minutes \u2013 14 May 2026",
+    "FY2026-27 Budget and Headcount Plan",
+    "Hyderabad Campus Expansion Proposal",
+    "Board Meeting Minutes \u2013 14 May 2026",
+    "Board Meeting Minutes \u2013 14 May 2026"
+   ],
+   "leak": false
+  },
+  {
+   "mode": "hybrid_rerank",
+   "q": "What is the planned Hyderabad headcount at 31 March 2027?",
+   "doc": "FY2026-27 Budget and Headcount Plan",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "FY2026-27 Budget and Headcount Plan",
+    "Hyderabad Campus Expansion Proposal",
+    "FY2026-27 Budget and Headcount Plan",
+    "Board Meeting Minutes \u2013 14 May 2026",
+    "Hyderabad Campus Expansion Proposal"
+   ]
+  },
+  {
+   "mode": "hybrid_rerank",
+   "q": "What is the capital cost per seat of the Hyderabad campus expansion?",
+   "doc": "Hyderabad Campus Expansion Proposal",
+   "hit_at_1": 0.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 0.5,
+   "context_recall": 1.0,
+   "top": [
+    "Board Meeting Minutes \u2013 14 May 2026",
+    "Hyderabad Campus Expansion Proposal",
+    "Hyderabad Campus Expansion Proposal",
+    "Hyderabad Campus Expansion Proposal",
+    "Hyderabad Campus Expansion Proposal"
+   ]
+  },
+  {
+   "mode": "hybrid_rerank",
+   "q": "How many story points does the NimbusOps team deliver per sprint on average?",
+   "doc": null
+  },
+  {
+   "mode": "hybrid_rerank",
+   "q": "What is the parking reimbursement for engineers called in to the office during a SEV1?",
+   "doc": null
+  },
+  {
+   "mode": "hybrid_rerank",
+   "q": "How many days of earned leave do Nimbus employees get per financial year?",
+   "doc": "Leave Policy FY2026-27",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Leave Policy FY2026-27",
+    "Welcome to Nimbus",
+    "Employee Benefits Guide",
+    "Leave Policy FY2026-27",
+    "Leave Policy FY2024-25"
+   ]
+  },
+  {
+   "mode": "hybrid_rerank",
+   "q": "What is the fixed salary band for an L3 Senior Software Engineer at Nimbus?",
+   "doc": "Salary Bands FY2026-27",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 0.0,
+   "top": [
+    "Salary Bands FY2026-27",
+    "Salary Bands FY2026-27",
+    "Welcome to Nimbus",
+    "Referral Bonus Policy",
+    "Variable Pay Plan"
+   ],
+   "leak": false
+  },
+  {
+   "mode": "hybrid_rerank",
+   "q": "What counts as a SEV1 incident and how fast must on-call respond?",
+   "doc": "SEV1 Incident Response Runbook",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "SEV1 Incident Response Runbook",
+    "SEV1 Incident Response Runbook",
+    "SEV1 Incident Response Runbook",
+    "SEV1 Incident Response Runbook",
+    "SEV1 Incident Response Runbook"
+   ]
+  },
+  {
+   "mode": "hybrid_rerank",
+   "q": "Can I bring my dog to the Nimbus office in Pune?",
+   "doc": null
+  },
+  {
+   "mode": "hybrid_rerank",
+   "q": "How many days of unused earned leave can a Nimbus employee carry forward into the next year?",
+   "doc": "Leave Policy FY2026-27",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Leave Policy FY2026-27",
+    "Leave Policy FY2026-27",
+    "Welcome to Nimbus",
+    "Referral Bonus Policy",
+    "Travel and Expense Policy"
+   ]
+  },
+  {
+   "mode": "hybrid_rerank",
+   "q": "What stock refresh time does the Zenith inventory sync BRD require?",
+   "doc": "BRD \u2013 Zenith Retail Omnichannel Inventory Sync",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 0.0,
+   "top": [
+    "BRD \u2013 Zenith Retail Omnichannel Inventory Sync",
+    "BRD \u2013 Zenith Retail Omnichannel Inventory Sync",
+    "BRD \u2013 Zenith Retail Omnichannel Inventory Sync",
+    "BRD \u2013 Zenith Retail Omnichannel Inventory Sync",
+    "BRD \u2013 Zenith Retail Omnichannel Inventory Sync"
+   ]
+  },
+  {
+   "mode": "hybrid_rerank",
+   "q": "Who signs off the Zenith omnichannel inventory sync BRD?",
+   "doc": "BRD \u2013 Zenith Retail Omnichannel Inventory Sync",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "BRD \u2013 Zenith Retail Omnichannel Inventory Sync",
+    "BRD \u2013 Zenith Retail Omnichannel Inventory Sync",
+    "BRD \u2013 Zenith Retail Omnichannel Inventory Sync",
+    "BRD \u2013 Zenith Retail Omnichannel Inventory Sync",
+    "BRD \u2013 Zenith Retail Omnichannel Inventory Sync"
+   ],
+   "leak": false
+  },
+  {
+   "mode": "hybrid_rerank",
+   "q": "Which NimbusOps plans get AI alert summaries?",
+   "doc": "BRD \u2013 NimbusOps AI Alert Summaries",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "BRD \u2013 NimbusOps AI Alert Summaries",
+    "BRD \u2013 NimbusOps AI Alert Summaries",
+    "BRD \u2013 NimbusOps AI Alert Summaries",
+    "BRD \u2013 NimbusOps AI Alert Summaries",
+    "BRD \u2013 NimbusOps AI Alert Summaries"
+   ],
+   "leak": false
+  },
+  {
+   "mode": "hybrid_rerank",
+   "q": "What alert-noise reduction is the AI alert summaries feature targeting?",
+   "doc": "BRD \u2013 NimbusOps AI Alert Summaries",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "BRD \u2013 NimbusOps AI Alert Summaries",
+    "BRD \u2013 NimbusOps AI Alert Summaries",
+    "BRD \u2013 NimbusOps AI Alert Summaries",
+    "BRD \u2013 NimbusOps AI Alert Summaries",
+    "BRD \u2013 NimbusOps AI Alert Summaries"
+   ]
+  },
+  {
+   "mode": "hybrid_rerank",
+   "q": "Where is NimbusOps customer data stored?",
+   "doc": "NimbusOps Product FAQ",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "NimbusOps Product FAQ",
+    "Data Protection Policy \u2013 DPDP Act 2023",
+    "BRD \u2013 NimbusOps AI Alert Summaries",
+    "NimbusOps Product FAQ",
+    "BRD \u2013 NimbusOps AI Alert Summaries"
+   ]
+  },
+  {
+   "mode": "hybrid_rerank",
+   "q": "How long is the NimbusOps free trial and how many hosts does it cover?",
+   "doc": "NimbusOps Product FAQ",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "NimbusOps Product FAQ",
+    "NimbusOps Product FAQ",
+    "BRD \u2013 NimbusOps AI Alert Summaries",
+    "Information Security Policy",
+    "NimbusOps Product FAQ"
+   ]
+  },
+  {
+   "mode": "hybrid_rerank",
+   "q": "What is the liability cap in the Harbor Logistics MSA?",
+   "doc": "Master Services Agreement \u2013 Harbor Logistics Inc.",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Master Services Agreement \u2013 Harbor Logistics Inc.",
+    "Master Services Agreement \u2013 Harbor Logistics Inc.",
+    "Master Services Agreement \u2013 Harbor Logistics Inc.",
+    "Master Services Agreement \u2013 Harbor Logistics Inc.",
+    "Master Services Agreement \u2013 Harbor Logistics Inc."
+   ],
+   "leak": false
+  },
+  {
+   "mode": "hybrid_rerank",
+   "q": "How much notice is needed to not renew the Harbor Logistics MSA?",
+   "doc": "Master Services Agreement \u2013 Harbor Logistics Inc.",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Master Services Agreement \u2013 Harbor Logistics Inc.",
+    "Master Services Agreement \u2013 Harbor Logistics Inc.",
+    "Master Services Agreement \u2013 Harbor Logistics Inc.",
+    "Master Services Agreement \u2013 Harbor Logistics Inc.",
+    "Master Services Agreement \u2013 Harbor Logistics Inc."
+   ]
+  },
+  {
+   "mode": "hybrid_rerank",
+   "q": "Who can sign a client contract worth more than \u20b95 crore?",
+   "doc": "Contract Review and Signing Authority Guideline",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Contract Review and Signing Authority Guideline",
+    "Code of Conduct",
+    "Contract Review and Signing Authority Guideline",
+    "Contract Review and Signing Authority Guideline",
+    "Code of Conduct"
+   ]
+  },
+  {
+   "mode": "hybrid_rerank",
+   "q": "How long does Legal take to review an NDA on third-party paper?",
+   "doc": "Contract Review and Signing Authority Guideline",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Contract Review and Signing Authority Guideline",
+    "Contract Review and Signing Authority Guideline",
+    "Contract Review and Signing Authority Guideline",
+    "Contract Review and Signing Authority Guideline",
+    "Contract Review and Signing Authority Guideline"
+   ]
+  },
+  {
+   "mode": "hybrid_rerank",
+   "q": "What are Nimbus's standard vendor payment terms?",
+   "doc": "Accounts Payable and Vendor Payment Policy",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Accounts Payable and Vendor Payment Policy",
+    "Accounts Payable and Vendor Payment Policy",
+    "Accounts Payable and Vendor Payment Policy",
+    "Accounts Payable and Vendor Payment Policy",
+    "Laptop and Device Security Standard"
+   ]
+  },
+  {
+   "mode": "hybrid_rerank",
+   "q": "Who approves a vendor invoice between \u20b910 lakh and \u20b950 lakh?",
+   "doc": "Accounts Payable and Vendor Payment Policy",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Accounts Payable and Vendor Payment Policy",
+    "Accounts Payable and Vendor Payment Policy",
+    "Accounts Payable and Vendor Payment Policy",
+    "Accounts Payable and Vendor Payment Policy",
+    "Code of Conduct"
+   ]
+  },
+  {
+   "mode": "hybrid_rerank",
+   "q": "What were Nimbus's Q1 FY27 debtor days?",
+   "doc": "Q1 FY2026-27 Revenue and Collections Report",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Q1 FY2026-27 Revenue and Collections Report",
+    "Q1 FY2026-27 Revenue and Collections Report",
+    "Q1 FY2026-27 Revenue and Collections Report",
+    "Q1 FY2026-27 Revenue and Collections Report",
+    "Q1 FY2026-27 Revenue and Collections Report"
+   ]
+  },
+  {
+   "mode": "hybrid_rerank",
+   "q": "Which region brought the most revenue in Q1 FY27?",
+   "doc": "Q1 FY2026-27 Revenue and Collections Report",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Q1 FY2026-27 Revenue and Collections Report",
+    "Q1 FY2026-27 Revenue and Collections Report",
+    "Q1 FY2026-27 Revenue and Collections Report",
+    "Q1 FY2026-27 Revenue and Collections Report",
+    "Q1 FY2026-27 Revenue and Collections Report"
+   ]
+  },
+  {
+   "mode": "hybrid_rerank",
+   "q": "How fast must a critical vulnerability on an internet-facing system be fixed?",
+   "doc": "Vulnerability Management Standard",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 0.0,
+   "top": [
+    "Vulnerability Management Standard",
+    "Information Security Policy",
+    "Vulnerability Management Standard",
+    "Vulnerability Management Standard",
+    "Vulnerability Management Standard"
+   ]
+  },
+  {
+   "mode": "hybrid_rerank",
+   "q": "Who approves a risk exception for a Medium or Low vulnerability, and for how long?",
+   "doc": "Vulnerability Management Standard",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Vulnerability Management Standard",
+    "Information Security Policy",
+    "Information Security Policy",
+    "Information Security Policy",
+    "Vulnerability Management Standard"
+   ]
+  },
+  {
+   "mode": "hybrid_rerank",
+   "q": "How often is privileged and production access reviewed?",
+   "doc": "Privileged Access and Quarterly Access Review Procedure",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Privileged Access and Quarterly Access Review Procedure",
+    "Privileged Access and Quarterly Access Review Procedure",
+    "Privileged Access and Quarterly Access Review Procedure",
+    "Privileged Access and Quarterly Access Review Procedure",
+    "Privileged Access and Quarterly Access Review Procedure"
+   ]
+  },
+  {
+   "mode": "hybrid_rerank",
+   "q": "How soon is all access removed after someone leaves?",
+   "doc": "Privileged Access and Quarterly Access Review Procedure",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Privileged Access and Quarterly Access Review Procedure",
+    "Privileged Access and Quarterly Access Review Procedure",
+    "NimbusOps Product FAQ",
+    "Notice Period and Exit Process",
+    "Remote Access and VPN Guideline"
+   ]
+  },
+  {
+   "mode": "hybrid_rerank",
+   "q": "What RPO and RTO does the new NimbusOps DR design target?",
+   "doc": "Design Doc \u2013 NimbusOps Multi-Region Active-Passive DR",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Design Doc \u2013 NimbusOps Multi-Region Active-Passive DR",
+    "Information Security Policy",
+    "Design Doc \u2013 NimbusOps Multi-Region Active-Passive DR",
+    "Design Doc \u2013 NimbusOps Multi-Region Active-Passive DR",
+    "Design Doc \u2013 NimbusOps Multi-Region Active-Passive DR"
+   ],
+   "leak": false
+  },
+  {
+   "mode": "hybrid_rerank",
+   "q": "How much extra per month does the active-passive DR design cost?",
+   "doc": "Design Doc \u2013 NimbusOps Multi-Region Active-Passive DR",
+   "hit_at_1": 1.0,
+   "hit_at_3": 1.0,
+   "hit_at_5": 1.0,
+   "mrr": 1.0,
+   "context_recall": 1.0,
+   "top": [
+    "Design Doc \u2013 NimbusOps Multi-Region Active-Passive DR",
+    "Design Doc \u2013 NimbusOps Multi-Region Active-Passive DR",
+    "Design Doc \u2013 NimbusOps Multi-Region Active-Passive DR",
+    "Design Doc \u2013 NimbusOps Multi-Region Active-Passive DR",
+    "Design Doc \u2013 NimbusOps Multi-Region Active-Passive DR"
+   ]
+  },
+  {
+   "mode": "hybrid_rerank",
+   "q": "What is the price of the AI alert summaries add-on for the Starter plan?",
+   "doc": null
+  },
+  {
+   "mode": "hybrid_rerank",
+   "q": "How many desks does the Nimbus Dubai sales office have?",
+   "doc": null
+  }
+ ]
+}

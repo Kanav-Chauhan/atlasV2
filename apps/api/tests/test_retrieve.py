@@ -80,7 +80,7 @@ class FakeEncoder:
     """Scores by a fixed table; 'old' would win without the superseded penalty."""
 
     def rerank(self, q: str, texts: list[str], **_: Any) -> list[float]:
-        table = {"a": 1.0, "b": 2.0, "c": 0.2, "old": 3.5}
+        table = {"a": 1.0, "b": 2.0, "c": 3.0, "old": 2.5}
         return [table[t.rsplit("\n", 1)[-1]] for t in texts]
 
 
@@ -102,16 +102,41 @@ def test_rrf_fuses_both_lists() -> None:
 
 def test_rerank_orders_by_cross_encoder_with_penalty(monkeypatch: pytest.MonkeyPatch) -> None:
     monkeypatch.setattr(retrieve, "cross_encoder", FakeEncoder)
+    monkeypatch.setattr(retrieve, "SUPERSEDED_PENALTY", 1.0)
     res = retrieve.search(
         "q",
         None,  # type: ignore[arg-type]
         "hybrid_rerank",
         top_k=3,
-        parts=parts(["a", "b", "old"], ["c"]),
+        parts=parts(["a", "b", "old"], ["a", "b"]),
     )
-    assert [n.node.node_id for n in res.final] == ["b", "a", "old"]
-    assert res.final[2].score == pytest.approx(3.5 - retrieve.SUPERSEDED_PENALTY)
+    assert [n.node.node_id for n in res.final] == ["b", "old", "a"]
+    assert res.final[1].score == pytest.approx(2.5 - 1.0)  # scores are cross-encoder logits
     assert "rerank" in res.ms
+
+
+def test_rerank_only_the_pool(monkeypatch: pytest.MonkeyPatch) -> None:
+    monkeypatch.setattr(retrieve, "cross_encoder", FakeEncoder)
+    monkeypatch.setattr(retrieve, "RERANK_POOL", 2)
+    res = retrieve.search(
+        "q",
+        None,  # type: ignore[arg-type]
+        "hybrid_rerank",
+        top_k=1,
+        parts=parts(["a", "b", "c"], ["a", "b"]),
+    )
+    # c scores highest but is hybrid #3, outside the pool of 2.
+    assert [n.node.node_id for n in res.stages["fused"]] == ["a", "b", "c"]
+    assert [n.node.node_id for n in res.final] == ["b"]
+    # top_k above the pool reranks top_k nodes.
+    res = retrieve.search(
+        "q",
+        None,  # type: ignore[arg-type]
+        "hybrid_rerank",
+        top_k=3,
+        parts=parts(["a", "b", "c"], ["a", "b"]),
+    )
+    assert [n.node.node_id for n in res.final] == ["c", "b", "a"]
 
 
 def test_single_modes_skip_fusion() -> None:

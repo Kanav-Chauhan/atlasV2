@@ -1,5 +1,5 @@
 """Querying: vector + keyword search (each top 20, permission pre-filter inside the SQL),
-Reciprocal Rank Fusion, then a local cross-encoder reranks the fused top 20 down to 5."""
+Reciprocal Rank Fusion, then a local cross-encoder reranks the fused top 10 down to 5."""
 
 import os
 import time
@@ -20,8 +20,15 @@ from atlas_api.settings import settings
 
 TOP_K = 20
 FINAL_K = 5
-# Cross-encoder logits; the old Atlas used the same value with the same model family.
-SUPERSEDED_PENALTY = 3.0
+# Picked on the 167 answerable eval questions (docs/RAG_GUIDE.md, step 7): beats hybrid on
+# MRR and context recall; MiniLM-L-6 alone lost questions hybrid had, L-12 was 2x slower.
+RERANKER_MODEL = "jinaai/jina-reranker-v1-turbo-en"
+# Only the fused top 10 are reranked: half the time of 20, and on the eval set the same or
+# better numbers (what hybrid ranks 11-20 rarely holds the answer).
+RERANK_POOL = 10
+# Subtracted from the cross-encoder logit. Jina-turbo scores span about -4..+3 (sd ~1.2);
+# 0.75, 1.0, 1.5 and 3.0 gave identical eval numbers.
+SUPERSEDED_PENALTY = 1.0
 MODES = ("vector", "keyword", "hybrid", "hybrid_rerank")
 
 
@@ -33,7 +40,7 @@ def index() -> VectorStoreIndex:
 @cache
 def cross_encoder() -> TextCrossEncoder:
     return TextCrossEncoder(
-        settings.reranker_model, cache_dir=os.path.join(settings.models_dir, "fastembed")
+        RERANKER_MODEL, cache_dir=os.path.join(settings.models_dir, "fastembed")
     )
 
 
@@ -48,7 +55,9 @@ def penalty(q: str, meta: dict[str, Any]) -> float:
 
 
 class CrossEncoderRerank(BaseNodePostprocessor):
-    """FastEmbed (ONNX) cross-encoder as a LlamaIndex node postprocessor."""
+    """FastEmbed (ONNX) cross-encoder as a LlamaIndex node postprocessor.
+
+    Reranks the first max(RERANK_POOL, top_n) nodes (they come in hybrid order)."""
 
     top_n: int = FINAL_K
 
@@ -58,12 +67,13 @@ class CrossEncoderRerank(BaseNodePostprocessor):
         if not nodes or query_bundle is None:
             return nodes[: self.top_n]
         q = query_bundle.query_str
+        pool = nodes[: max(RERANK_POOL, self.top_n)]
         # Title, doc number and section path go in too: the same text the embedding saw.
-        texts = [n.node.get_content(metadata_mode=MetadataMode.EMBED) for n in nodes]
+        texts = [n.node.get_content(metadata_mode=MetadataMode.EMBED) for n in pool]
         scores = cross_encoder().rerank(q, texts, batch_size=4)  # small batches keep RAM flat
         out = [
             NodeWithScore(node=n.node, score=float(s) - penalty(q, n.node.metadata))
-            for n, s in zip(nodes, scores, strict=True)
+            for n, s in zip(pool, scores, strict=True)
         ]
         return sorted(out, key=lambda n: n.score or 0.0, reverse=True)[: self.top_n]
 
