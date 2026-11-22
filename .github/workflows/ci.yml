@@ -68,9 +68,37 @@ jobs:
       - run: npm run typecheck
       - run: npm run build
 
-  images:
+  # Builds both images, then installs the Helm chart on a throwaway kind cluster and waits
+  # until api (migrations + models), worker, web, Postgres and Redis are all ready.
+  images-and-helm:
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v5
-      - run: docker build -t atlasv2-api apps/api
-      - run: docker build -t atlasv2-web apps/web
+      - run: docker build -t atlasv2-api:ci apps/api
+      - run: docker build -t atlasv2-web:ci --build-arg API_URL=http://api:8000 apps/web
+      - uses: azure/setup-helm@v4
+        with:
+          version: v3.19.0
+      - run: helm lint infra/helm/atlas
+      - uses: helm/kind-action@v1
+        with:
+          cluster_name: atlas
+      - run: kind load docker-image atlasv2-api:ci atlasv2-web:ci --name atlas
+      - name: helm install
+        run: >-
+          helm install demo infra/helm/atlas --wait --timeout 15m
+          --set images.api.repository=atlasv2-api --set images.api.tag=ci
+          --set images.web.repository=atlasv2-web --set images.web.tag=ci
+          --set ingress.enabled=false
+          --set secrets.ATLAS_SESSION_SECRET=ci-only-secret-not-used-for-anything-real
+      - name: health from inside the cluster
+        run: |
+          kubectl get pods -o wide
+          kubectl run probe --rm -i --restart=Never --image=curlimages/curl:8.11.1 -- \
+            sh -c 'curl -fsS http://api:8000/health/ready && curl -fsS -o /dev/null -w "web %{http_code}\n" http://demo-web:3000/login'
+      - name: logs on failure
+        if: failure()
+        run: |
+          kubectl get pods -o wide; kubectl describe pods | tail -n 80
+          for c in api worker web; do kubectl logs deploy/demo-$c --all-containers --tail=60 || true; done

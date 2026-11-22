@@ -1,0 +1,82 @@
+# Atlas v2 on Kubernetes. The live site runs on Docker Compose (infra/docker-compose.yml);
+# this chart is the same system for a cluster. Images: build apps/api and apps/web and push
+# them to your registry (the web image must be built with --build-arg API_URL=http://api:8000).
+
+images:
+  api: { repository: ghcr.io/kanav-chauhan/atlasv2-api, tag: latest, pullPolicy: IfNotPresent }
+  web: { repository: ghcr.io/kanav-chauhan/atlasv2-web, tag: latest, pullPolicy: IfNotPresent }
+
+# Secrets: either let the chart create one from `secrets`, or name an existing Secret with the
+# same keys (recommended: sealed-secrets / external-secrets).
+existingSecret: ""
+secrets:
+  POSTGRES_PASSWORD: change-me
+  ATLAS_LLM_API_KEY: ""
+  ATLAS_SESSION_SECRET: ""          # openssl rand -hex 32
+  ATLAS_SUPERADMIN_PASSWORD_HASH: "" # argon2 hash
+  ATLAS_CLERK_SECRET_KEY: ""
+  LANGSMITH_API_KEY: ""
+
+config:
+  ATLAS_LLM_BASE_URL: http://ai-gateway:4000/v1  # any OpenAI-compatible gateway (LiteLLM)
+  ATLAS_APP_ORIGIN: https://atlas.example.com
+  ATLAS_SUPERADMIN_EMAIL: ""
+  LANGSMITH_TRACING: "false"
+  LANGSMITH_PROJECT: atlas-v2
+  LANGSMITH_ENDPOINT: https://api.smith.langchain.com
+  LANGSMITH_WORKSPACE_ID: ""
+  POSTHOG_KEY: ""
+  POSTHOG_HOST: https://us.i.posthog.com
+
+api:
+  replicas: 1
+  # The web image's rewrites point at http://api:8000, so the Service is named `api`.
+  serviceName: api
+  resources:
+    requests: { cpu: 250m, memory: 900Mi }
+    limits: { memory: 1536Mi }  # embedder + reranker + LangGraph
+
+worker:
+  # Exactly one: it also runs Celery beat (the 03:00 IST demo reset).
+  resources:
+    requests: { cpu: 250m, memory: 1Gi }
+    limits: { memory: 3Gi }  # Docling PDF parsing
+
+web:
+  replicas: 1
+  resources:
+    requests: { cpu: 100m, memory: 192Mi }
+    limits: { memory: 384Mi }
+
+postgres:
+  enabled: true  # false = use an external Postgres with pgvector: set externalDatabaseUrl
+  image: pgvector/pgvector:pg17
+  user: atlas
+  database: atlas
+  storage: 10Gi
+  resources:
+    requests: { cpu: 100m, memory: 256Mi }
+    limits: { memory: 512Mi }
+externalDatabaseUrl: ""  # postgresql+asyncpg://user:pass@host:5432/db
+
+redis:
+  enabled: true
+  image: redis:7-alpine
+  resources:
+    requests: { cpu: 50m, memory: 64Mi }
+    limits: { memory: 128Mi }
+externalRedisUrl: ""
+
+storage:
+  # Uploaded files are shared by api and worker: ReadWriteMany on multi-node clusters.
+  files: { size: 5Gi, accessMode: ReadWriteOnce, storageClass: "" }
+  models: { size: 3Gi, accessMode: ReadWriteOnce, storageClass: "" }
+
+ingress:
+  enabled: true
+  className: nginx
+  host: atlas.example.com
+  tls: { enabled: false, secretName: atlas-tls }
+  annotations:
+    nginx.ingress.kubernetes.io/proxy-buffering: "off"  # chat answers stream
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "120"
