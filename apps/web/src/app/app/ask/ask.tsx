@@ -95,6 +95,7 @@ function Thread({ id, q, company }: { id: string; q: string | null; company: str
     if (!text.trim() || busy) return;
     setStage(null);
     sendMessage({ text: text.trim() });
+    window.atlasTrack?.("question_asked", { from: "ask" });
     setInput("");
   };
 
@@ -104,6 +105,7 @@ function Thread({ id, q, company }: { id: string; q: string | null; company: str
     if (!q || sentQ.current) return;
     sentQ.current = true;
     sendMessage({ text: q });
+    window.atlasTrack?.("question_asked", { from: "link" });
     router.replace(`/app/ask?c=${id}`);
   }, [q, id, router, sendMessage]);
 

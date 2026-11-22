@@ -126,6 +126,8 @@ function PersonPicker({ company }: { company: DemoCompany }) {
                   type="submit"
                   name="email"
                   value={p.email}
+                  data-track="demo_login"
+                  data-track-props={JSON.stringify({ company: company.slug, role: p.role })}
                   className="group flex w-full cursor-pointer items-start gap-3 px-4 py-3 text-left hover:bg-paper-2"
                 >
                   <span className="min-w-0 flex-1">

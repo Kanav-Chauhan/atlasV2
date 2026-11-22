@@ -551,6 +551,7 @@ fieldset { margin: 0; padding: 0; border: 0; min-width: 0; }
   .fader__thumb, .readout, .shelf, .people__thumb { transition: none !important; }
 }
 </style>
+  <script src="/analytics.js" defer></script>
 </head>
 <body>
 <main id="top">
@@ -568,7 +569,7 @@ fieldset { margin: 0; padding: 0; border: 0; min-width: 0; }
         <h1 id="top-title">Answers from <span class="mark">your own documents.</span></h1>
         <p class="intro__lede"><b class="hl">Staff and website visitors</b> ask in plain words, and Atlas answers from your files <b class="hl">with the source</b>, showing each person <b class="hl">only what they may see</b>.</p>
         <div class="intro__actions">
-          <a class="btn btn--on-slab" href="/login">Try the live demo</a>
+          <a class="btn btn--on-slab" href="/login" data-track="try_demo" data-track-props='{"from":"hero"}'>Try the live demo</a>
           <a class="btn btn--quiet" href="#waitlist">Join the waitlist</a>
         </div>
       </div>
@@ -968,7 +969,7 @@ fieldset { margin: 0; padding: 0; border: 0; min-width: 0; }
       if (!ok) { input.setAttribute('aria-describedby', help.id); help.textContent = 'That address looks incomplete. Write it as name@example.com.'; input.focus(); return; }
       if (!form.dataset.endpoint) { help.textContent = 'Nothing was sent: the waitlist is not connected yet. Email kanavchauhan08@gmail.com meanwhile.'; return; }
       fetch(form.dataset.endpoint, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email: input.value.trim() }) })
-        .then(async (r) => { const b = r.ok ? null : await r.json().catch(() => null); help.textContent = r.ok ? 'Thanks. We will write to ' + input.value.trim() + ' when Pro opens.' : (typeof b?.detail === 'string' ? b.detail : 'That did not go through. Try again in a minute.'); })
+        .then(async (r) => { const b = r.ok ? null : await r.json().catch(() => null); if (r.ok) window.atlasTrack?.('waitlist_joined', { plan: 'pro' }); help.textContent = r.ok ? 'Thanks. We will write to ' + input.value.trim() + ' when Pro opens.' : (typeof b?.detail === 'string' ? b.detail : 'That did not go through. Try again in a minute.'); })
         .catch(() => { help.textContent = 'That did not go through. Try again in a minute.'; });
     });
   });
