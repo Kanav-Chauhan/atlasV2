@@ -54,6 +54,7 @@ class Organization(Base):
     slug: Mapped[str] = mapped_column(String(64), unique=True)
     name: Mapped[str] = mapped_column(String(200))
     industry: Mapped[str] = mapped_column(String(200), default="")
+    description: Mapped[str] = mapped_column(Text, default="")
 
 
 class Department(Base):
@@ -74,6 +75,7 @@ class User(Base):
     title: Mapped[str] = mapped_column(String(200), default="")
     role: Mapped[Role] = mapped_column(Enum(Role, name="role"))
     guest_until: Mapped[date | None] = mapped_column(Date)
+    last_active: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
     org: Mapped[Organization] = relationship(lazy="joined")
     departments: Mapped[list[Department]] = relationship(
         secondary=user_departments, lazy="selectin"

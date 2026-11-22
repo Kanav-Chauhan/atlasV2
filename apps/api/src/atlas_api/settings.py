@@ -24,6 +24,10 @@ class Settings(BaseSettings):
     semantic_cache: bool = False
     cache_similarity: float = 0.95
     cache_ttl_s: int = 24 * 3600
+    # Super admin login (docs/API.md). Empty = super login disabled.
+    superadmin_email: str = ""
+    superadmin_password_hash: str = ""
+    session_secret: str = ""
 
     @property
     def sync_database_url(self) -> str:

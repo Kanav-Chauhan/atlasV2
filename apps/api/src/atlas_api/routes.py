@@ -1,5 +1,5 @@
 from collections.abc import AsyncIterator
-from datetime import date, datetime
+from datetime import UTC, date, datetime, timedelta
 from pathlib import Path
 from typing import Annotated
 
@@ -44,6 +44,10 @@ async def current_user(s: DB, atlas_demo_user: Annotated[str | None, Cookie()] =
         raise HTTPException(401, "Please log in.")
     if user.role == Role.guest and user.guest_until and user.guest_until < date.today():
         raise HTTPException(403, "Your guest access has ended.")
+    now = datetime.now(UTC)
+    if user.last_active is None or now - user.last_active > timedelta(minutes=1):
+        user.last_active = now  # at most one write per user per minute
+        await s.commit()
     return user
 
 

@@ -44,7 +44,12 @@ services:
     restart: unless-stopped
     mem_limit: 1536m  # embedder + reranker (Phase 4) + LangGraph/LangChain + light LLM Guard (Phase 5)
     command: sh -c "alembic upgrade head && exec uvicorn atlas_api.main:app --host 0.0.0.0 --port 8000"
-    environment: *api-env
+    environment:
+      <<: *api-env
+      # Super admin login: only the api needs these (not the worker).
+      ATLAS_SUPERADMIN_EMAIL: ${ATLAS_SUPERADMIN_EMAIL:-}
+      ATLAS_SUPERADMIN_PASSWORD_HASH: ${ATLAS_SUPERADMIN_PASSWORD_HASH:-}
+      ATLAS_SESSION_SECRET: ${ATLAS_SESSION_SECRET:-}
     volumes: *api-volumes
     ports:
       - "127.0.0.1:8111:8000"

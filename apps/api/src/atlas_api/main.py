@@ -1,7 +1,7 @@
 from fastapi import FastAPI, Response
 from sqlalchemy import text
 
-from atlas_api import chat_routes, routes
+from atlas_api import chat_routes, insights_routes, routes, super_routes, team_routes
 from atlas_api.db import engine, redis
 
 app = FastAPI(title="Atlas v2 API")
@@ -33,3 +33,6 @@ async def ready(response: Response) -> dict[str, str]:
 
 app.include_router(routes.router)
 app.include_router(chat_routes.router)
+app.include_router(team_routes.router)
+app.include_router(insights_routes.router)
+app.include_router(super_routes.router)

@@ -58,3 +58,44 @@ def can_manage(user: User, access: str) -> bool:
     return user.role == Role.admin or (
         user.role == Role.manager and access in user.department_names
     )
+
+
+# ------------------------------------------------------------------ Phase 7: team rules
+# admin = whole company; manager = people in own departments, and may add/change/remove only
+# members and guests whose departments are all their own. Members and guests: nothing.
+
+LEADS = (Role.admin, Role.manager)
+
+
+def sees_person(actor: User, depts: set[str]) -> bool:
+    return actor.role == Role.admin or (
+        actor.role == Role.manager and bool(depts & actor.department_names)
+    )
+
+
+def can_manage_person(actor: User, role: Role, depts: set[str]) -> bool:
+    """May `actor` create, or hold under their control, a person with this role and departments."""
+    return actor.role == Role.admin or (
+        actor.role == Role.manager
+        and role in (Role.member, Role.guest)
+        and bool(depts)
+        and depts <= actor.department_names
+    )
+
+
+def role_change_error(actor: User, target: User, new_role: Role, admins: int) -> str | None:
+    if new_role == target.role:
+        return None
+    if target.id == actor.id:
+        return "You can't change your own role."
+    if target.role == Role.admin and admins <= 1:
+        return "This is the last admin; make someone else admin first."
+    return None
+
+
+def delete_error(actor: User, target: User, admins: int) -> str | None:
+    if target.id == actor.id:
+        return "You can't remove yourself."
+    if target.role == Role.admin and admins <= 1:
+        return "This is the last admin; make someone else admin first."
+    return None
