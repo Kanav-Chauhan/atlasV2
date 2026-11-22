@@ -14,24 +14,21 @@
       <span class="brand-mark"><svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M8 2 L14 14 H2 Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></span>
       Atlas
     </a>
-    <div class="company"><strong>Nimbus Infotech</strong><span>Demo company</span></div>
+    <div class="company"><strong>Nimbus Infotech</strong></div>
     <nav>
       <ul class="nav">
         <li><a href="#">Home</a></li>
         <li><a href="index.html" aria-current="page">Ask</a></li>
         <li><a href="#">Search</a></li>
         <li><a href="#">Library</a></li>
-        <li class="nav-group">Admin</li>
-        <li><a href="team.html">Team and access</a></li>
-        <li><a href="#">Website chat</a></li>
+        <li class="nav-group">Your department</li>
+        <li><a href="team.html">Team</a></li>
         <li><a href="#">Insights</a></li>
-        <li><a href="#">Agent access</a></li>
-        <li><a href="#">Settings</a></li>
       </ul>
     </nav>
     <div class="sidebar-foot">
       <button class="btn btn-quiet" type="button" data-theme-toggle>Switch light or dark</button>
-      <div class="me"><span class="avatar">PR</span><div><strong>Priya Raman</strong><span>HR manager</span></div></div>
+      <div class="me"><span class="avatar">RM</span><div><strong>Ritika Menon</strong><span>Manager, HR Operations</span></div></div>
     </div>
   </aside>
 
@@ -46,12 +43,9 @@
             <li><a href="index.html" aria-current="page">Ask</a></li>
             <li><a href="#">Search</a></li>
             <li><a href="#">Library</a></li>
-            <li class="nav-group">Admin</li>
-            <li><a href="team.html">Team and access</a></li>
-            <li><a href="#">Website chat</a></li>
+            <li class="nav-group">Your department</li>
+            <li><a href="team.html">Team</a></li>
             <li><a href="#">Insights</a></li>
-            <li><a href="#">Agent access</a></li>
-            <li><a href="#">Settings</a></li>
           </ul>
         </div>
       </details>
@@ -63,18 +57,18 @@
         <p>Answers come only from documents you can open.</p>
       </div>
       <div class="head-actions">
-        <button class="btn" type="button">Try as another role</button>
+        <button class="btn" type="button" aria-label="History"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 8 A5.5 5.5 0 1 0 4.2 4 M2.5 2 V4.5 H5 M8 5 V8 L10 9.5" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="btn-label">History</span></button>
         <button class="btn btn-quiet" type="button">New chat</button>
       </div>
     </div>
 
-    <div class="ask">
+    <div class="ask" data-source="small">
       <div class="ask-col">
       <section class="thread" aria-label="Conversation">
         <div class="thread-inner">
 
           <article class="turn">
-            <div class="q"><span class="who">Priya asked</span>How many days of earned leave do I get, and can I carry them over?</div>
+            <div class="q"><span class="who">You asked</span>How many days of earned leave do I get, and can I carry them over?</div>
             <div class="a">
               <span class="who">Atlas</span>
               <p>You get 18 days of earned leave a year, added at 1.5 days each month <a class="cite" href="#src-1" aria-current="true" aria-label="Source 1">1</a>. Unused earned leave carries over to the next year, up to 30 days in total; anything above 30 lapses on 31 March <a class="cite" href="#src-1" aria-label="Source 1">1</a>.</p>
@@ -90,13 +84,13 @@
           </article>
 
           <article class="turn">
-            <div class="viewing">Viewing as Arjun Mehta, software engineer. <a href="#">Back to my view</a></div>
-            <div class="q"><span class="who">Asked as Arjun</span>What is the salary band for an L4 tech lead?</div>
+            <div class="q"><span class="who">You asked</span>Can employees work from abroad for a month?</div>
             <div class="a">
               <span class="who">Atlas</span>
               <div class="notfound">
                 <p class="nf-title"><strong>Not found in your documents</strong></p>
-                <p>None of the documents Arjun can open answer this. No answer was guessed and no AI call was made.</p>
+                <p>None of the documents you can open cover working from another country. Atlas did not guess an answer.</p>
+                <div><button class="btn" type="button">Request a document</button></div>
               </div>
             </div>
           </article>
@@ -112,7 +106,7 @@
 
         </div>
       </section>
-    <div class="composer">
+      <div class="composer">
         <form action="#" onsubmit="return false">
           <label class="visually-hidden" for="ask-input">Your question</label>
           <textarea id="ask-input" name="question" rows="1" placeholder="Ask about any Nimbus document you can open" autocomplete="off"></textarea>
@@ -120,13 +114,21 @@
         </form>
         <p class="hint">Atlas answers in the language you ask in, Hindi included.</p>
       </div>
-
       </div>
+      <div class="source-handle" role="separator" aria-orientation="vertical" aria-label="Resize source panel" tabindex="0" data-handle></div>
       <aside class="source" aria-label="Sources">
-        <h2>Source for citation 1</h2>
+        <div class="source-head">
+          <h2>Sources</h2>
+          <div class="source-tools">
+            <button class="btn btn-quiet btn-sm" type="button" data-size="small" aria-pressed="true">Small</button>
+            <button class="btn btn-quiet btn-sm" type="button" data-size="half" aria-pressed="false">Half</button>
+            <button class="btn btn-quiet btn-icon btn-sm" type="button" data-size="closed" aria-label="Close sources"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 4 L12 12 M12 4 L4 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
+          </div>
+        </div>
+        <div class="source-body">
         <article class="doc" id="src-1">
           <div class="doc-head">
-            <strong>Leave Policy FY2026-27</strong>
+            <strong><span class="cite cite-static" aria-label="Citation 1">1</span>Leave Policy FY2026-27</strong>
             <div class="doc-meta"><span>HR policy</span><span>Version 3.1</span><span>Effective 1 April 2026</span></div>
           </div>
           <div class="doc-body">
@@ -139,10 +141,9 @@
           <div class="doc-foot"><span>Page 3 of 9</span><a href="#">Open document</a></div>
         </article>
 
-        <h2>Source for citation 2</h2>
         <article class="doc doc-loading" id="src-2" aria-busy="true">
           <div class="doc-head">
-            <strong>Loading the passage</strong>
+            <strong><span class="cite cite-static" aria-label="Citation 2">2</span>Loading the passage</strong>
             <div class="doc-meta"><span>Leave approval matrix</span></div>
           </div>
           <div class="doc-body" aria-hidden="true">
@@ -151,9 +152,9 @@
             <span class="skel w60"></span>
           </div>
         </article>
+        </div>
       </aside>
-
-</div>
+    </div>
   </div>
 </div>
 <script>
@@ -164,6 +165,43 @@
       r.dataset.theme = dark ? 'light' : 'dark';
     });
   });
+
+  (function () {
+    var ask = document.querySelector('.ask');
+    if (!ask) return;
+    function set(size) {
+      ask.dataset.source = size;
+      ask.style.removeProperty('--source');
+      document.querySelectorAll('[data-size]').forEach(function (b) {
+        if (b.hasAttribute('aria-pressed')) b.setAttribute('aria-pressed', String(b.dataset.size === size));
+      });
+    }
+    document.querySelectorAll('[data-size]').forEach(function (b) {
+      b.addEventListener('click', function () { set(b.dataset.size); });
+    });
+    document.querySelectorAll('.cite').forEach(function (c) {
+      c.addEventListener('click', function () { if (ask.dataset.source === 'closed') set('small'); });
+    });
+    var h = document.querySelector('[data-handle]');
+    function widthTo(px) {
+      var max = ask.clientWidth * 0.6;
+      px = Math.max(320, Math.min(max, px));
+      ask.dataset.source = 'custom';
+      ask.style.setProperty('--source', px + 'px');
+    }
+    h.addEventListener('pointerdown', function (e) {
+      h.setPointerCapture(e.pointerId);
+      function move(ev) { widthTo(ask.getBoundingClientRect().right - ev.clientX); }
+      function up() { h.removeEventListener('pointermove', move); h.removeEventListener('pointerup', up); }
+      h.addEventListener('pointermove', move);
+      h.addEventListener('pointerup', up);
+    });
+    h.addEventListener('keydown', function (e) {
+      var w = document.querySelector('.source').getBoundingClientRect().width;
+      if (e.key === 'ArrowLeft') { widthTo(w + 32); e.preventDefault(); }
+      if (e.key === 'ArrowRight') { widthTo(w - 32); e.preventDefault(); }
+    });
+  })();
 </script>
 </body>
 </html>
