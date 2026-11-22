@@ -29,3 +29,12 @@ The same rule becomes a SQL `WHERE` filter on chunks (`org_id`, `access`) in Pha
 | GET | `/departments` | any user | the org's departments `[{name, description, members}]` |
 
 Errors are `{"detail": "<plain English>"}`.
+
+## Endpoints (Phase 4: retrieval)
+
+| Method | Path | Who | Returns |
+|---|---|---|---|
+| POST | `/search` | any user | body `{q, top_k?: 5}` → `{q, took_ms, results: [{chunk_id, document_id, title, doc_no, access, page, section, text, score, superseded}]}`. Mode is always `hybrid_rerank`. Only documents the user can read (pre-filter). Empty `q` → 422. |
+| POST | `/search/lab` | admin (super admin later) | body `{q, as_email?: str}` (a user of the same org; default = caller) → `{q, as_email, took_ms: {vector, keyword, fusion, rerank}, stages: {vector: [Hit], keyword: [Hit], fused: [Hit], reranked: [Hit]}}`, each `Hit = {chunk_id, document_id, title, page, section, text (first 300 chars), score, rank}`, top 20 per stage (reranked top 5). |
+| GET | `/documents/{id}/chunks` | users who can read it | `[{chunk_id, index, page, section, tokens, text}]` in document order |
+| GET | `/evals/latest` | admin | the latest retrieval eval run summary `{run_id, created_at, modes: {vector|hybrid|hybrid_rerank: {hit_at_1, hit_at_3, hit_at_5, mrr, context_recall, leaks, n}}}` or 404 |
