@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ask · Atlas</title>
+<meta name="description" content="Design option B for the Atlas v2 Ask screen: a command bar and one reading column with the answer and its sources together.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="bar">
+  <div class="bar-inner">
+    <a class="brand" href="index.html" aria-label="Atlas home">
+      <svg class="brand-mark" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 6l4 11h-2.4l-.8-2.4H11.2L10.4 17H8z"/></svg>
+      Atlas
+    </a>
+    <span class="company">Nimbus Infotech</span>
+    <nav aria-label="Main">
+      <ul class="tabs">
+        <li><a href="#">Home</a></li>
+        <li><a href="index.html" aria-current="page">Ask</a></li>
+        <li><a href="#">Search</a></li>
+        <li><a href="#">Library</a></li>
+      </ul>
+    </nav>
+    <div class="command">
+      <label class="visually-hidden" for="cmd">Search documents or jump to a page</label>
+      <input id="cmd" name="cmd" type="search" autocomplete="off" placeholder="Search or jump to">
+      <kbd>Ctrl K</kbd>
+    </div>
+    <details class="admin">
+      <summary>Admin <svg class="chev" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 4.5l3 3 3-3"/></svg></summary>
+      <ul>
+        <li><a href="team.html">Team and access</a></li>
+        <li><a href="#">Website chat</a></li>
+        <li><a href="#">Insights</a></li>
+        <li><a href="#">Agent access</a></li>
+        <li><a href="#">Settings</a></li>
+      </ul>
+    </details>
+    <button class="icon-btn" type="button" data-theme-toggle aria-label="Switch light or dark">
+      <svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="3.2"/><path d="M8 1.5v1.6M8 12.9v1.6M1.5 8h1.6M12.9 8h1.6M3.4 3.4l1.1 1.1M11.5 11.5l1.1 1.1M3.4 12.6l1.1-1.1M11.5 4.5l1.1-1.1"/></svg>
+    </button>
+    <span class="user"><span class="avatar" aria-hidden="true">PR</span><span class="user-name">Priya Rao, HR Manager</span></span>
+  </div>
+</header>
+
+<main class="page">
+  <p class="crumb">Ask, searching HR, Everyone</p>
+  <h1 class="question">What is the salary band for an L4 Tech Lead?</h1>
+  <p class="asker">Asked by Priya Rao, HR Manager, a moment ago</p>
+
+  <article class="memo" aria-label="Answer">
+    <p>The salary band for an <strong>L4 Tech Lead is ₹18 to 28 lakh per annum</strong> <a class="cite" href="#s1" aria-label="Source 1">1</a>. Where an offer falls inside the band depends on the appraisal rating and the market review done each April <a class="cite" href="#s2" aria-label="Source 2">2</a>.</p>
+    <p>Offers above the top of the band need approval from the Head of HR and the CFO <a class="cite" href="#s1" aria-label="Source 1">1</a>.</p>
+  </article>
+
+  <section class="proof" aria-label="Sources">
+    <p class="proof-title">Where this comes from</p>
+    <details class="source" id="s1" open>
+      <summary>
+        <span class="source-n">1</span>
+        <span class="source-name">Salary Bands FY2026-27</span>
+        <span class="source-meta">HR, page 2</span>
+      </summary>
+      <blockquote class="passage">Band L4 (Tech Lead, Engineering Manager I): <mark>₹18,00,000 to ₹28,00,000 per annum</mark>, fixed pay. Any offer above the band maximum requires written approval from the Head of HR and the CFO.</blockquote>
+      <div class="passage-foot"><span>Current version, effective 1 April 2026</span><a href="#">Open document</a></div>
+    </details>
+    <details class="source" id="s2" open>
+      <summary>
+        <span class="source-n">2</span>
+        <span class="source-name">Compensation Review Process</span>
+        <span class="source-meta">HR, page 4</span>
+      </summary>
+      <div class="skeleton" role="status" aria-label="Loading the passage"><span></span><span></span><span></span></div>
+    </details>
+  </section>
+
+  <div class="actions">
+    <button class="btn" type="button" aria-pressed="false" aria-label="Helpful">
+      <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5 7l2.5-5c1 0 1.8.8 1.8 1.8V6h3.4a1.3 1.3 0 0 1 1.3 1.5l-.9 5.2A1.5 1.5 0 0 1 11.6 14H5zM2 7h3v7H2z"/></svg>
+      Helpful
+    </button>
+    <button class="btn" type="button" aria-pressed="false" aria-label="Not helpful">
+      <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M11 9l-2.5 5c-1 0-1.8-.8-1.8-1.8V10H3.3A1.3 1.3 0 0 1 2 8.5l.9-5.2A1.5 1.5 0 0 1 4.4 2H11zM14 9h-3V2h3z"/></svg>
+      Not helpful
+    </button>
+    <span class="spacer"></span>
+    <button class="btn" type="button">Copy answer</button>
+  </div>
+
+  <details class="compare" open>
+    <summary>Try as another role <span class="compare-note">Same question, asked as a Software Engineer</span></summary>
+    <div class="compare-grid">
+      <div class="compare-col">
+        <span class="compare-who">Priya Rao, HR Manager</span>
+        <span class="compare-dept">Sees HR, Leadership, Everyone</span>
+        <span class="result result-yes"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 6.5l2.2 2.2 4.8-5"/></svg>Answered</span>
+        <p>₹18 to 28 lakh per annum, from Salary Bands FY2026-27.</p>
+      </div>
+      <div class="compare-col">
+        <span class="compare-who">Arjun Mehta, Software Engineer</span>
+        <span class="compare-dept">Sees Engineering, Everyone</span>
+        <span class="result result-no"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M3 3l6 6M9 3l-6 6"/></svg>Not found</span>
+        <p>Not found in your documents. Salary bands are in HR, which this role cannot see.</p>
+      </div>
+    </div>
+  </details>
+
+  <section class="suggest" aria-labelledby="suggest-h">
+    <h2 id="suggest-h">You could also ask</h2>
+    <ul class="chips">
+      <li><button class="chip" type="button">How many sick days does a new joiner get?</button></li>
+      <li><button class="chip" type="button">What is the notice period for an L4?</button></li>
+      <li><button class="chip" type="button">Who approves a relocation allowance?</button></li>
+    </ul>
+  </section>
+
+  <div class="composer">
+    <form action="#" onsubmit="return false">
+      <label class="visually-hidden" for="ask">Ask a question about your documents</label>
+      <textarea id="ask" name="question" rows="1" placeholder="Ask a follow-up, in English or Hindi"></textarea>
+      <button class="btn btn-primary" type="submit">Ask</button>
+    </form>
+    <p class="composer-help">Answers only use documents your role can see.</p>
+  </div>
+</main>
+
+<script>
+  (function () {
+    var root = document.documentElement;
+    var btn = document.querySelector("[data-theme-toggle]");
+    btn.addEventListener("click", function () {
+      var dark = root.dataset.theme ? root.dataset.theme === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
+      root.dataset.theme = dark ? "light" : "dark";
+    });
+    document.querySelectorAll(".actions [aria-pressed]").forEach(function (b) {
+      b.addEventListener("click", function () { b.setAttribute("aria-pressed", b.getAttribute("aria-pressed") === "true" ? "false" : "true"); });
+    });
+  })();
+</script>
+</body>
+</html>

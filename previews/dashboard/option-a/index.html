@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ask Atlas, Nimbus Infotech</title>
+<meta name="description" content="Atlas v2 design option A: the Ask screen, with each citation opening the exact passage in the source document.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="shell">
+  <aside class="sidebar" aria-label="Main">
+    <a class="brand" href="index.html" aria-label="Atlas home">
+      <span class="brand-mark"><svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M8 2 L14 14 H2 Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></span>
+      Atlas
+    </a>
+    <div class="company"><strong>Nimbus Infotech</strong><span>Demo company</span></div>
+    <nav>
+      <ul class="nav">
+        <li><a href="#">Home</a></li>
+        <li><a href="index.html" aria-current="page">Ask</a></li>
+        <li><a href="#">Search</a></li>
+        <li><a href="#">Library</a></li>
+        <li class="nav-group">Admin</li>
+        <li><a href="team.html">Team and access</a></li>
+        <li><a href="#">Website chat</a></li>
+        <li><a href="#">Insights</a></li>
+        <li><a href="#">Agent access</a></li>
+        <li><a href="#">Settings</a></li>
+      </ul>
+    </nav>
+    <div class="sidebar-foot">
+      <button class="btn btn-quiet" type="button" data-theme-toggle>Switch light or dark</button>
+      <div class="me"><span class="avatar">PR</span><div><strong>Priya Raman</strong><span>HR manager</span></div></div>
+    </div>
+  </aside>
+
+  <div class="main is-ask">
+    <header class="topbar">
+      <a class="brand" href="index.html" aria-label="Atlas home"><span class="brand-mark"><svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M8 2 L14 14 H2 Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></span>Atlas</a>
+      <details>
+        <summary class="btn">Menu</summary>
+        <div class="menu">
+          <ul class="nav">
+            <li><a href="#">Home</a></li>
+            <li><a href="index.html" aria-current="page">Ask</a></li>
+            <li><a href="#">Search</a></li>
+            <li><a href="#">Library</a></li>
+            <li class="nav-group">Admin</li>
+            <li><a href="team.html">Team and access</a></li>
+            <li><a href="#">Website chat</a></li>
+            <li><a href="#">Insights</a></li>
+            <li><a href="#">Agent access</a></li>
+            <li><a href="#">Settings</a></li>
+          </ul>
+        </div>
+      </details>
+    </header>
+
+    <div class="page-head">
+      <div>
+        <h1>Ask</h1>
+        <p>Answers come only from documents you can open.</p>
+      </div>
+      <div class="head-actions">
+        <button class="btn" type="button">Try as another role</button>
+        <button class="btn btn-quiet" type="button">New chat</button>
+      </div>
+    </div>
+
+    <div class="ask">
+      <div class="ask-col">
+      <section class="thread" aria-label="Conversation">
+        <div class="thread-inner">
+
+          <article class="turn">
+            <div class="q"><span class="who">Priya asked</span>How many days of earned leave do I get, and can I carry them over?</div>
+            <div class="a">
+              <span class="who">Atlas</span>
+              <p>You get 18 days of earned leave a year, added at 1.5 days each month <a class="cite" href="#src-1" aria-current="true" aria-label="Source 1">1</a>. Unused earned leave carries over to the next year, up to 30 days in total; anything above 30 lapses on 31 March <a class="cite" href="#src-1" aria-label="Source 1">1</a>.</p>
+              <p>Managers approve leave of up to 5 days. Longer leave also needs HR sign-off <a class="cite" href="#src-2" aria-label="Source 2">2</a>.</p>
+              <div class="answer-foot">
+                <span class="sources-line">2 sources, both current</span>
+                <span class="spacer"></span>
+                <button class="btn btn-quiet btn-icon" type="button" aria-label="Helpful"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5 7 L7.5 2 C8.6 2 9.3 2.8 9 4 L8.5 6 H13 C13.8 6 14.3 6.8 14 7.5 L12.2 13 C12 13.6 11.5 14 10.9 14 H5 Z M2 7 H5 V14 H2 Z" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg></button>
+                <button class="btn btn-quiet btn-icon" type="button" aria-label="Not helpful"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M11 9 L8.5 14 C7.4 14 6.7 13.2 7 12 L7.5 10 H3 C2.2 10 1.7 9.2 2 8.5 L3.8 3 C4 2.4 4.5 2 5.1 2 H11 Z M14 9 H11 V2 H14 Z" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg></button>
+                <button class="btn btn-quiet" type="button">Copy</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="turn">
+            <div class="viewing">Viewing as Arjun Mehta, software engineer. <a href="#">Back to my view</a></div>
+            <div class="q"><span class="who">Asked as Arjun</span>What is the salary band for an L4 tech lead?</div>
+            <div class="a">
+              <span class="who">Atlas</span>
+              <div class="notfound">
+                <p class="nf-title"><strong>Not found in your documents</strong></p>
+                <p>None of the documents Arjun can open answer this. No answer was guessed and no AI call was made.</p>
+              </div>
+            </div>
+          </article>
+
+          <div class="suggest">
+            <h2>Suggested for HR managers</h2>
+            <div class="chips">
+              <button class="chip" type="button">What is the notice period for L3 engineers?</button>
+              <button class="chip" type="button">How is the annual appraisal scored?</button>
+              <button class="chip" type="button">Which holidays are fixed in 2027?</button>
+            </div>
+          </div>
+
+        </div>
+      </section>
+    <div class="composer">
+        <form action="#" onsubmit="return false">
+          <label class="visually-hidden" for="ask-input">Your question</label>
+          <textarea id="ask-input" name="question" rows="1" placeholder="Ask about any Nimbus document you can open" autocomplete="off"></textarea>
+          <button class="btn btn-primary" type="submit">Send</button>
+        </form>
+        <p class="hint">Atlas answers in the language you ask in, Hindi included.</p>
+      </div>
+
+      </div>
+      <aside class="source" aria-label="Sources">
+        <h2>Source for citation 1</h2>
+        <article class="doc" id="src-1">
+          <div class="doc-head">
+            <strong>Leave Policy FY2026-27</strong>
+            <div class="doc-meta"><span>HR policy</span><span>Version 3.1</span><span>Effective 1 April 2026</span></div>
+          </div>
+          <div class="doc-body">
+            <h3>4. Earned leave</h3>
+            <p class="faded">4.1 Earned leave applies to all permanent employees from their date of joining.</p>
+            <p><mark class="hit">4.2 Employees earn 18 days of earned leave a year, credited at 1.5 days on the first working day of each month.</mark></p>
+            <p><mark class="hit">4.3 Unused earned leave carries forward, up to a maximum balance of 30 days. Any balance above 30 days lapses on 31 March.</mark></p>
+            <p class="faded">4.4 Earned leave cannot be encashed while in service, except as set out in section 9.</p>
+          </div>
+          <div class="doc-foot"><span>Page 3 of 9</span><a href="#">Open document</a></div>
+        </article>
+
+        <h2>Source for citation 2</h2>
+        <article class="doc doc-loading" id="src-2" aria-busy="true">
+          <div class="doc-head">
+            <strong>Loading the passage</strong>
+            <div class="doc-meta"><span>Leave approval matrix</span></div>
+          </div>
+          <div class="doc-body" aria-hidden="true">
+            <span class="skel w90"></span>
+            <span class="skel w80"></span>
+            <span class="skel w60"></span>
+          </div>
+        </article>
+      </aside>
+
+</div>
+  </div>
+</div>
+<script>
+  document.querySelectorAll('[data-theme-toggle]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var r = document.documentElement;
+      var dark = r.dataset.theme ? r.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+      r.dataset.theme = dark ? 'light' : 'dark';
+    });
+  });
+</script>
+</body>
+</html>

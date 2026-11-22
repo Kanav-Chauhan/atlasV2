@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Team and access, Nimbus Infotech</title>
+<meta name="description" content="Atlas v2 design option A: who is in the company, their roles, and which departments can open which collections.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="shell">
+  <aside class="sidebar" aria-label="Main">
+    <a class="brand" href="index.html" aria-label="Atlas home">
+      <span class="brand-mark"><svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M8 2 L14 14 H2 Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></span>
+      Atlas
+    </a>
+    <div class="company"><strong>Nimbus Infotech</strong><span>Demo company</span></div>
+    <nav>
+      <ul class="nav">
+        <li><a href="#">Home</a></li>
+        <li><a href="index.html">Ask</a></li>
+        <li><a href="#">Search</a></li>
+        <li><a href="#">Library</a></li>
+        <li class="nav-group">Admin</li>
+        <li><a href="team.html" aria-current="page">Team and access</a></li>
+        <li><a href="#">Website chat</a></li>
+        <li><a href="#">Insights</a></li>
+        <li><a href="#">Agent access</a></li>
+        <li><a href="#">Settings</a></li>
+      </ul>
+    </nav>
+    <div class="sidebar-foot">
+      <button class="btn btn-quiet" type="button" data-theme-toggle>Switch light or dark</button>
+      <div class="me"><span class="avatar">KN</span><div><strong>Kavya Nair</strong><span>Admin</span></div></div>
+    </div>
+  </aside>
+
+  <div class="main">
+    <header class="topbar">
+      <a class="brand" href="index.html" aria-label="Atlas home"><span class="brand-mark"><svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M8 2 L14 14 H2 Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></span>Atlas</a>
+      <details>
+        <summary class="btn">Menu</summary>
+        <div class="menu">
+          <ul class="nav">
+            <li><a href="#">Home</a></li>
+            <li><a href="index.html">Ask</a></li>
+            <li><a href="#">Search</a></li>
+            <li><a href="#">Library</a></li>
+            <li class="nav-group">Admin</li>
+            <li><a href="team.html" aria-current="page">Team and access</a></li>
+            <li><a href="#">Website chat</a></li>
+            <li><a href="#">Insights</a></li>
+            <li><a href="#">Agent access</a></li>
+            <li><a href="#">Settings</a></li>
+          </ul>
+        </div>
+      </details>
+    </header>
+
+    <div class="page-head">
+      <div>
+        <h1>Team and access</h1>
+        <p>A role sets what someone can do. Departments set what they can read.</p>
+      </div>
+      <div class="head-actions">
+        <button class="btn btn-primary" type="button">Invite people</button>
+      </div>
+    </div>
+
+    <div class="content">
+      <section class="block" aria-labelledby="members-h">
+        <div class="block-head">
+          <div>
+            <h2 id="members-h">People</h2>
+            <p>Managers can add people to their own department.</p>
+          </div>
+          <div class="filters">
+            <label class="visually-hidden" for="f-search">Search people</label>
+            <input class="field" id="f-search" name="q" type="search" placeholder="Search people" autocomplete="off">
+            <label class="visually-hidden" for="f-role">Role</label>
+            <select class="field" id="f-role" name="role"><option>All roles</option><option>Admin</option><option>Manager</option><option>Member</option><option>Guest</option></select>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table class="members">
+            <thead><tr><th scope="col">Name</th><th scope="col">Role</th><th scope="col">Departments</th><th scope="col" class="hide-sm">Last active</th></tr></thead>
+            <tbody>
+              <tr><td><div class="person"><span class="avatar">KN</span><div><strong>Kavya Nair</strong><span>Chief operating officer</span></div></div></td><td><span class="role admin">Admin</span></td><td class="depts">All departments</td><td class="hide-sm">Today</td></tr>
+              <tr><td><div class="person"><span class="avatar">PR</span><div><strong>Priya Raman</strong><span>HR manager</span></div></div></td><td><span class="role">Manager</span></td><td class="depts">HR</td><td class="hide-sm">Today</td></tr>
+              <tr><td><div class="person"><span class="avatar">RS</span><div><strong>Rohan Shetty</strong><span>Engineering manager</span></div></div></td><td><span class="role">Manager</span></td><td class="depts">Engineering, Product</td><td class="hide-sm">Yesterday</td></tr>
+              <tr><td><div class="person"><span class="avatar">AM</span><div><strong>Arjun Mehta</strong><span>Software engineer</span></div></div></td><td><span class="role">Member</span></td><td class="depts">Engineering</td><td class="hide-sm">Today</td></tr>
+              <tr><td><div class="person"><span class="avatar">SD</span><div><strong>Sneha Das</strong><span>Sales executive</span></div></div></td><td><span class="role">Member</span></td><td class="depts">Sales</td><td class="hide-sm">3 days ago</td></tr>
+              <tr><td><div class="person"><span class="avatar">VK</span><div><strong>Vikram Kapoor</strong><span>Contractor</span></div></div></td><td><span class="role">Guest</span></td><td class="depts">Everyone only, until 31 Dec</td><td class="hide-sm">Last week</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="block" aria-labelledby="grid-h">
+        <div class="block-head">
+          <div>
+            <h2 id="grid-h">Who can read what</h2>
+            <p>Each row is a department. A tick means its people can open that collection.</p>
+          </div>
+          <button class="btn" type="button">Edit access</button>
+        </div>
+        <div class="table-wrap">
+          <table class="grid-table">
+            <thead><tr><th scope="col">Department</th><th scope="col">HR</th><th scope="col">Engineering</th><th scope="col">Finance</th><th scope="col">Legal</th><th scope="col">Sales</th><th scope="col">Leadership</th><th scope="col">Everyone</th><th scope="col">Public</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">HR</th><td><span class="yes"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5 L6.5 12 L13 4.5" fill="none" stroke="currentColor" stroke-width="2"/></svg>Yes</span></td><td><span class="no">No</span></td><td><span class="no">No</span></td><td><span class="no">No</span></td><td><span class="no">No</span></td><td><span class="no">No</span></td><td><span class="yes"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5 L6.5 12 L13 4.5" fill="none" stroke="currentColor" stroke-width="2"/></svg>Yes</span></td><td><span class="yes"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5 L6.5 12 L13 4.5" fill="none" stroke="currentColor" stroke-width="2"/></svg>Yes</span></td></tr>
+              <tr><th scope="row">Engineering</th><td><span class="no">No</span></td><td><span class="yes"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5 L6.5 12 L13 4.5" fill="none" stroke="currentColor" stroke-width="2"/></svg>Yes</span></td><td><span class="no">No</span></td><td><span class="no">No</span></td><td><span class="no">No</span></td><td><span class="no">No</span></td><td><span class="yes"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5 L6.5 12 L13 4.5" fill="none" stroke="currentColor" stroke-width="2"/></svg>Yes</span></td><td><span class="yes"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5 L6.5 12 L13 4.5" fill="none" stroke="currentColor" stroke-width="2"/></svg>Yes</span></td></tr>
+              <tr><th scope="row">Finance</th><td><span class="no">No</span></td><td><span class="no">No</span></td><td><span class="yes"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5 L6.5 12 L13 4.5" fill="none" stroke="currentColor" stroke-width="2"/></svg>Yes</span></td><td><span class="no">No</span></td><td><span class="no">No</span></td><td><span class="no">No</span></td><td><span class="yes"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5 L6.5 12 L13 4.5" fill="none" stroke="currentColor" stroke-width="2"/></svg>Yes</span></td><td><span class="yes"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5 L6.5 12 L13 4.5" fill="none" stroke="currentColor" stroke-width="2"/></svg>Yes</span></td></tr>
+              <tr><th scope="row">Sales</th><td><span class="no">No</span></td><td><span class="no">No</span></td><td><span class="no">No</span></td><td><span class="no">No</span></td><td><span class="yes"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5 L6.5 12 L13 4.5" fill="none" stroke="currentColor" stroke-width="2"/></svg>Yes</span></td><td><span class="no">No</span></td><td><span class="yes"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5 L6.5 12 L13 4.5" fill="none" stroke="currentColor" stroke-width="2"/></svg>Yes</span></td><td><span class="yes"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5 L6.5 12 L13 4.5" fill="none" stroke="currentColor" stroke-width="2"/></svg>Yes</span></td></tr>
+              <tr><th scope="row">Leadership</th><td><span class="yes"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5 L6.5 12 L13 4.5" fill="none" stroke="currentColor" stroke-width="2"/></svg>Yes</span></td><td><span class="yes"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5 L6.5 12 L13 4.5" fill="none" stroke="currentColor" stroke-width="2"/></svg>Yes</span></td><td><span class="yes"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5 L6.5 12 L13 4.5" fill="none" stroke="currentColor" stroke-width="2"/></svg>Yes</span></td><td><span class="yes"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5 L6.5 12 L13 4.5" fill="none" stroke="currentColor" stroke-width="2"/></svg>Yes</span></td><td><span class="yes"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5 L6.5 12 L13 4.5" fill="none" stroke="currentColor" stroke-width="2"/></svg>Yes</span></td><td><span class="yes"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5 L6.5 12 L13 4.5" fill="none" stroke="currentColor" stroke-width="2"/></svg>Yes</span></td><td><span class="yes"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5 L6.5 12 L13 4.5" fill="none" stroke="currentColor" stroke-width="2"/></svg>Yes</span></td><td><span class="yes"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5 L6.5 12 L13 4.5" fill="none" stroke="currentColor" stroke-width="2"/></svg>Yes</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="block" aria-labelledby="legal-h">
+        <div class="block-head">
+          <div>
+            <h2 id="legal-h">Legal department</h2>
+            <p>Collections: Legal, Everyone, Public.</p>
+          </div>
+        </div>
+        <div class="empty">
+          <h3>No one is in Legal yet</h3>
+          <p>Legal has 6 documents, but nobody can read them until someone joins this department.</p>
+          <button class="btn" type="button">Add people</button>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+<script>
+  document.querySelectorAll('[data-theme-toggle]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var r = document.documentElement;
+      var dark = r.dataset.theme ? r.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+      r.dataset.theme = dark ? 'light' : 'dark';
+    });
+  });
+</script>
+</body>
+</html>

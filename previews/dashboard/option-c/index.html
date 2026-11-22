@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ask Atlas, Nimbus Infotech</title>
+<meta name="description" content="Atlas v2 design option C: ask a question and read the cited passage on the real document page.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <nav class="rail" aria-label="Main">
+    <a class="rail-logo" href="index.html" aria-label="Atlas home">
+      <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><circle cx="16" cy="16" r="12"/><path d="M4 16h24M16 4c4 4 4 20 0 24M16 4c-4 4-4 20 0 24"/></svg>
+    </a>
+    <a class="dest" href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>Home</a>
+    <a class="dest" href="index.html" aria-current="page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/></svg>Ask</a>
+    <a class="dest" href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="11" cy="11" r="6"/><path d="M20 20l-4.5-4.5"/></svg>Search</a>
+    <a class="dest" href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 4h4v16H5zM10 4h4v16h-4zM15.5 5l3.8-1 3.2 15.5-3.8.8z"/></svg>Library</a>
+    <a class="dest" href="team.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.8-3.6 3.4-5.5 6.5-5.5s5.7 1.9 6.5 5.5M16 4.8a3.5 3.5 0 0 1 0 6.4M18 14.8c1.8.7 3 2.4 3.5 5.2"/></svg>Team</a>
+    <a class="dest" href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 8h18M14 13h4"/></svg>Website</a>
+    <a class="dest" href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>Insights</a>
+    <a class="dest" href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1"/></svg>Settings</a>
+    <span class="spacer"></span>
+    <button class="theme-toggle" type="button" aria-label="Switch light or dark mode" data-theme-toggle>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>
+    </button>
+  </nav>
+
+  <aside class="list" aria-label="Conversations">
+    <div class="identity">
+      <div>
+        <div class="identity-name">Ananya Rao</div>
+        <div class="identity-meta">HR Manager, Nimbus Infotech</div>
+        <div class="identity-meta">Sees: HR, Everyone</div>
+      </div>
+      <label class="field">View as
+        <select name="view-as" aria-describedby="view-as-help">
+          <option>Admin</option>
+          <option selected>HR Manager</option>
+          <option>Software Engineer</option>
+          <option>Contractor (guest)</option>
+        </select>
+      </label>
+      <span id="view-as-help" class="identity-meta">Ask the same question as another role to see what they can read.</span>
+    </div>
+    <button class="new-chat" type="button">New chat</button>
+    <div class="list-section">
+      <h2>Suggested for HR</h2>
+      <ul>
+        <li><button class="suggest" type="button">What is the notice period for a resignation?</button></li>
+        <li><button class="suggest" type="button">How do I approve a work-from-home request?</button></li>
+        <li><button class="suggest" type="button">Which holidays are fixed for 2026?</button></li>
+      </ul>
+    </div>
+    <div class="list-section">
+      <h2>Today</h2>
+      <ul>
+        <li><a href="#" aria-current="true">Earned leave and carry forward<small>2 answers, 1 not found</small></a></li>
+        <li><a href="#">Maternity leave for contract staff<small>1 answer</small></a></li>
+      </ul>
+    </div>
+    <div class="list-section">
+      <h2>Earlier</h2>
+      <ul>
+        <li><a href="#">Laptop return on exit<small>1 answer</small></a></li>
+        <li><a href="#">Referral bonus timing<small>1 answer</small></a></li>
+        <li><a href="#">Probation review form<small>1 answer</small></a></li>
+      </ul>
+    </div>
+  </aside>
+
+  <main class="main">
+    <section class="chat" aria-labelledby="chat-title">
+      <header class="pane-head">
+        <div>
+          <h1 id="chat-title">Earned leave and carry forward</h1>
+          <p>Answers only from documents you can read</p>
+        </div>
+      </header>
+
+      <div class="thread">
+        <article class="turn">
+          <div class="q-who">You, as HR Manager</div>
+          <p class="q">How many days of earned leave do employees get, and can unused days be carried forward?</p>
+          <div class="a">
+            <p>Full-time employees earn 18 days of earned leave a year, credited at 1.5 days a month <a class="cite" href="#cite-1" aria-current="true" aria-label="Source 1">1</a>.</p>
+            <ul>
+              <li>Up to 30 unused days can be carried into the next year; anything above 30 lapses on 31 March <a class="cite" href="#cite-1" aria-label="Source 1">1</a>.</li>
+              <li>Carried days can be cashed out only at exit, at the basic salary rate <a class="cite" href="#cite-2" aria-label="Source 2">2</a>.</li>
+            </ul>
+            <div class="sources" aria-label="Sources">
+              <a href="#cite-1"><b>1</b> Leave Policy FY2026-27, page 3</a>
+              <a href="#cite-2"><b>2</b> Full and Final Settlement SOP, page 2</a>
+            </div>
+            <div class="actions">
+              <button class="icon-btn" type="button" aria-label="Helpful" aria-pressed="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M7 10v10H4V10zM7 10l4-7c1.5 0 2.5 1 2.2 2.6L12.6 9H19a2 2 0 0 1 2 2.3l-1.2 7A2 2 0 0 1 17.8 20H7"/></svg></button>
+              <button class="icon-btn" type="button" aria-label="Not helpful" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M17 14V4h3v10zM17 14l-4 7c-1.5 0-2.5-1-2.2-2.6l.6-3.4H5a2 2 0 0 1-2-2.3l1.2-7A2 2 0 0 1 6.2 4H17"/></svg></button>
+              <button class="icon-btn" type="button" aria-label="Copy answer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3"/></svg></button>
+            </div>
+          </div>
+        </article>
+
+        <article class="turn">
+          <div class="q-who">Viewed as Software Engineer</div>
+          <p class="q">What is the salary band for an L4 Tech Lead?</p>
+          <div class="notfound" role="status">
+            <strong>Not found in your documents</strong>
+            <p>A Software Engineer can read Engineering and Everyone documents. Nothing there answers this, so Atlas did not guess.</p>
+            <div><button class="btn-secondary" type="button">Ask again as HR Manager</button></div>
+          </div>
+        </article>
+      </div>
+
+      <form class="composer" action="#" method="post">
+        <label class="visually-hidden" for="question">Your question</label>
+        <div class="composer-row">
+          <textarea id="question" name="question" rows="1" placeholder="Ask about any HR or company document" autocomplete="off"></textarea>
+          <button class="btn-primary" type="submit">Ask</button>
+        </div>
+        <p class="composer-hint">Answers cite the page they came from. Press Enter to send.</p>
+      </form>
+    </section>
+
+    <section class="reader" aria-labelledby="reader-title">
+      <header class="pane-head">
+        <div>
+          <h2 id="reader-title">Leave Policy FY2026-27</h2>
+          <p>Source 1, page 3 of 9</p>
+        </div>
+        <div class="reader-nav">
+          <button class="icon-btn" type="button" aria-label="Previous source" disabled><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+          <span>1 of 2</span>
+          <button class="icon-btn" type="button" aria-label="Next source"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+          <a class="btn-secondary" href="#">Open file</a>
+        </div>
+      </header>
+
+      <div class="reader-body">
+        <article class="page" id="cite-1">
+          <div class="letterhead">
+            <div class="letterhead-co">
+              <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M6 24c0-6 4-8 8-8 0-5 3-8 7-8 3.5 0 5 2.5 5 5 2 .5 3 2 3 4 0 3-2 5-5 5H8"/></svg>
+              <div><strong>Nimbus Infotech</strong><span>Human Resources</span></div>
+            </div>
+            <dl class="doc-control">
+              <dt>Doc no.</dt><dd>NIM-HR-POL-004</dd>
+              <dt>Version</dt><dd>3.0</dd>
+              <dt>Effective</dt><dd>1 Apr 2026</dd>
+            </dl>
+          </div>
+          <h3>4. Earned leave</h3>
+          <h4>4.1 Entitlement</h4>
+          <p><mark><span class="mark-tag">1</span>Every full-time employee earns 18 working days of earned leave in each leave year, credited at the rate of 1.5 days at the start of each calendar month.</mark> Employees on probation earn leave at the same rate but may use it only after confirmation.</p>
+          <h4>4.2 Carry forward</h4>
+          <p><mark>Unused earned leave of up to 30 days may be carried forward to the next leave year. Any balance above 30 days lapses on 31 March.</mark></p>
+          <p>Earned leave cannot be combined with casual leave in the same spell, except with the written approval of the reporting manager and HR.</p>
+          <div class="page-foot"><span>Internal, all employees</span><span>Page 3 of 9</span></div>
+        </article>
+
+        <p class="reader-caption">Next source, while it opens:</p>
+        <div class="state-card" aria-busy="true" aria-label="Loading Full and Final Settlement SOP">
+          <span class="state-label">Opening Full and Final Settlement SOP, page 2</span>
+          <div class="skeleton" aria-hidden="true">
+            <div class="skeleton-line head"></div>
+            <div class="skeleton-line"></div>
+            <div class="skeleton-line w80"></div>
+            <div class="skeleton-line w60"></div>
+            <div class="skeleton-line"></div>
+            <div class="skeleton-line w40"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+<script>
+  (function () {
+    var root = document.documentElement;
+    try { var saved = localStorage.getItem("atlas-theme"); if (saved) root.setAttribute("data-theme", saved); } catch (e) {}
+    var btn = document.querySelector("[data-theme-toggle]");
+    if (!btn) return;
+    btn.addEventListener("click", function () {
+      var dark = root.getAttribute("data-theme") === "dark" ||
+        (!root.getAttribute("data-theme") && matchMedia("(prefers-color-scheme: dark)").matches);
+      var next = dark ? "light" : "dark";
+      root.setAttribute("data-theme", next);
+      try { localStorage.setItem("atlas-theme", next); } catch (e) {}
+    });
+  })();
+</script>
+</body>
+</html>

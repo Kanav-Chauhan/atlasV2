@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Team and access · Atlas</title>
+<meta name="description" content="Design option B for the Atlas v2 Team and access screen: members, roles and which department sees which collection.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="bar">
+  <div class="bar-inner">
+    <a class="brand" href="index.html" aria-label="Atlas home">
+      <svg class="brand-mark" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 6l4 11h-2.4l-.8-2.4H11.2L10.4 17H8z"/></svg>
+      Atlas
+    </a>
+    <span class="company">Nimbus Infotech</span>
+    <nav aria-label="Main">
+      <ul class="tabs">
+        <li><a href="#">Home</a></li>
+        <li><a href="index.html">Ask</a></li>
+        <li><a href="#">Search</a></li>
+        <li><a href="#">Library</a></li>
+      </ul>
+    </nav>
+    <div class="command">
+      <label class="visually-hidden" for="cmd">Search documents or jump to a page</label>
+      <input id="cmd" name="cmd" type="search" autocomplete="off" placeholder="Search or jump to">
+      <kbd>Ctrl K</kbd>
+    </div>
+    <details class="admin" data-current>
+      <summary>Admin <svg class="chev" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 4.5l3 3 3-3"/></svg></summary>
+      <ul>
+        <li><a href="team.html" aria-current="page">Team and access</a></li>
+        <li><a href="#">Website chat</a></li>
+        <li><a href="#">Insights</a></li>
+        <li><a href="#">Agent access</a></li>
+        <li><a href="#">Settings</a></li>
+      </ul>
+    </details>
+    <button class="icon-btn" type="button" data-theme-toggle aria-label="Switch light or dark">
+      <svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="3.2"/><path d="M8 1.5v1.6M8 12.9v1.6M1.5 8h1.6M12.9 8h1.6M3.4 3.4l1.1 1.1M11.5 11.5l1.1 1.1M3.4 12.6l1.1-1.1M11.5 4.5l1.1-1.1"/></svg>
+    </button>
+    <span class="user"><span class="avatar" aria-hidden="true">NK</span><span class="user-name">Neha Kapoor, Admin</span></span>
+  </div>
+</header>
+
+<main class="page page-wide">
+  <div class="head-row">
+    <div>
+      <h1 class="title">Team and access</h1>
+      <p class="sub">Roles decide what people can do. Departments decide what they can see.</p>
+    </div>
+    <button class="btn btn-primary" type="button">Invite people</button>
+  </div>
+
+  <nav class="subtabs" aria-label="Team and access sections">
+    <a href="#members" aria-current="true">Members</a>
+    <a href="#access">Who sees what</a>
+    <a href="#departments">Departments</a>
+  </nav>
+
+  <section class="section" id="members" aria-labelledby="members-h">
+    <h2 id="members-h">Members</h2>
+    <div class="filter">
+      <label class="visually-hidden" for="find">Find a person</label>
+      <input id="find" name="find" type="search" autocomplete="off" placeholder="Find a person">
+      <label class="visually-hidden" for="role">Filter by role</label>
+      <select id="role" name="role">
+        <option>All roles</option><option>Admin</option><option>Manager</option><option>Member</option><option>Guest</option>
+      </select>
+    </div>
+    <div class="table-wrap">
+      <table class="members">
+        <thead><tr><th scope="col">Name</th><th scope="col">Role</th><th scope="col">Departments</th><th scope="col">Last active</th><th scope="col"><span class="visually-hidden">Actions</span></th></tr></thead>
+        <tbody>
+          <tr>
+            <td><div class="person"><span class="avatar" aria-hidden="true">NK</span><span><b>Neha Kapoor</b><small>Founder</small></span></div></td>
+            <td data-label="Role"><span class="role role-admin">Admin</span></td>
+            <td class="depts" data-label="Departments">All departments</td>
+            <td class="when" data-label="Last active">Now</td>
+            <td><button class="row-action" type="button">Edit</button></td>
+          </tr>
+          <tr>
+            <td><div class="person"><span class="avatar" aria-hidden="true">PR</span><span><b>Priya Rao</b><small>HR Manager</small></span></div></td>
+            <td data-label="Role"><span class="role">Manager</span></td>
+            <td class="depts" data-label="Departments">HR, Leadership</td>
+            <td class="when" data-label="Last active">2 hours ago</td>
+            <td><button class="row-action" type="button">Edit</button></td>
+          </tr>
+          <tr>
+            <td><div class="person"><span class="avatar" aria-hidden="true">VS</span><span><b>Vikram Singh</b><small>Engineering Manager</small></span></div></td>
+            <td data-label="Role"><span class="role">Manager</span></td>
+            <td class="depts" data-label="Departments">Engineering, Product</td>
+            <td class="when" data-label="Last active">Yesterday</td>
+            <td><button class="row-action" type="button">Edit</button></td>
+          </tr>
+          <tr>
+            <td><div class="person"><span class="avatar" aria-hidden="true">AM</span><span><b>Arjun Mehta</b><small>Software Engineer</small></span></div></td>
+            <td data-label="Role"><span class="role">Member</span></td>
+            <td class="depts" data-label="Departments">Engineering</td>
+            <td class="when" data-label="Last active">3 days ago</td>
+            <td><button class="row-action" type="button">Edit</button></td>
+          </tr>
+          <tr>
+            <td><div class="person"><span class="avatar" aria-hidden="true">RD</span><span><b>Rohan Das</b><small>Contractor</small></span></div></td>
+            <td data-label="Role"><span class="role">Guest</span></td>
+            <td class="depts" data-label="Departments">Everyone only, until 31 Dec 2026</td>
+            <td class="when" data-label="Last active">Never</td>
+            <td><button class="row-action" type="button">Edit</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="section" id="access" aria-labelledby="access-h">
+    <h2 id="access-h">Who sees what</h2>
+    <p>Each row is a department. A tick means its people can read that collection.</p>
+    <div class="table-wrap">
+      <table class="grid-table">
+        <thead>
+          <tr><th scope="col">Department</th><th scope="col">HR</th><th scope="col">Engineering</th><th scope="col">Finance</th><th scope="col">Legal</th><th scope="col">Sales</th><th scope="col">Leadership</th><th scope="col">Everyone</th><th scope="col">Public</th></tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">HR</th>
+            <td><span class="mark mark-yes" role="img" aria-label="Can read"><svg viewBox="0 0 12 12"><path d="M2.5 6.5l2.2 2.2 4.8-5"/></svg></span></td>
+            <td><span class="mark mark-no" role="img" aria-label="Cannot read"><svg viewBox="0 0 12 12"><path d="M3 6h6"/></svg></span></td>
+            <td><span class="mark mark-no" role="img" aria-label="Cannot read"><svg viewBox="0 0 12 12"><path d="M3 6h6"/></svg></span></td>
+            <td><span class="mark mark-no" role="img" aria-label="Cannot read"><svg viewBox="0 0 12 12"><path d="M3 6h6"/></svg></span></td>
+            <td><span class="mark mark-no" role="img" aria-label="Cannot read"><svg viewBox="0 0 12 12"><path d="M3 6h6"/></svg></span></td>
+            <td><span class="mark mark-no" role="img" aria-label="Cannot read"><svg viewBox="0 0 12 12"><path d="M3 6h6"/></svg></span></td>
+            <td><span class="mark mark-yes" role="img" aria-label="Can read"><svg viewBox="0 0 12 12"><path d="M2.5 6.5l2.2 2.2 4.8-5"/></svg></span></td>
+            <td><span class="mark mark-yes" role="img" aria-label="Can read"><svg viewBox="0 0 12 12"><path d="M2.5 6.5l2.2 2.2 4.8-5"/></svg></span></td>
+          </tr>
+          <tr><th scope="row">Engineering</th>
+            <td><span class="mark mark-no" role="img" aria-label="Cannot read"><svg viewBox="0 0 12 12"><path d="M3 6h6"/></svg></span></td>
+            <td><span class="mark mark-yes" role="img" aria-label="Can read"><svg viewBox="0 0 12 12"><path d="M2.5 6.5l2.2 2.2 4.8-5"/></svg></span></td>
+            <td><span class="mark mark-no" role="img" aria-label="Cannot read"><svg viewBox="0 0 12 12"><path d="M3 6h6"/></svg></span></td>
+            <td><span class="mark mark-no" role="img" aria-label="Cannot read"><svg viewBox="0 0 12 12"><path d="M3 6h6"/></svg></span></td>
+            <td><span class="mark mark-no" role="img" aria-label="Cannot read"><svg viewBox="0 0 12 12"><path d="M3 6h6"/></svg></span></td>
+            <td><span class="mark mark-no" role="img" aria-label="Cannot read"><svg viewBox="0 0 12 12"><path d="M3 6h6"/></svg></span></td>
+            <td><span class="mark mark-yes" role="img" aria-label="Can read"><svg viewBox="0 0 12 12"><path d="M2.5 6.5l2.2 2.2 4.8-5"/></svg></span></td>
+            <td><span class="mark mark-yes" role="img" aria-label="Can read"><svg viewBox="0 0 12 12"><path d="M2.5 6.5l2.2 2.2 4.8-5"/></svg></span></td>
+          </tr>
+          <tr><th scope="row">Finance</th>
+            <td><span class="mark mark-no" role="img" aria-label="Cannot read"><svg viewBox="0 0 12 12"><path d="M3 6h6"/></svg></span></td>
+            <td><span class="mark mark-no" role="img" aria-label="Cannot read"><svg viewBox="0 0 12 12"><path d="M3 6h6"/></svg></span></td>
+            <td><span class="mark mark-yes" role="img" aria-label="Can read"><svg viewBox="0 0 12 12"><path d="M2.5 6.5l2.2 2.2 4.8-5"/></svg></span></td>
+            <td><span class="mark mark-yes" role="img" aria-label="Can read"><svg viewBox="0 0 12 12"><path d="M2.5 6.5l2.2 2.2 4.8-5"/></svg></span></td>
+            <td><span class="mark mark-no" role="img" aria-label="Cannot read"><svg viewBox="0 0 12 12"><path d="M3 6h6"/></svg></span></td>
+            <td><span class="mark mark-no" role="img" aria-label="Cannot read"><svg viewBox="0 0 12 12"><path d="M3 6h6"/></svg></span></td>
+            <td><span class="mark mark-yes" role="img" aria-label="Can read"><svg viewBox="0 0 12 12"><path d="M2.5 6.5l2.2 2.2 4.8-5"/></svg></span></td>
+            <td><span class="mark mark-yes" role="img" aria-label="Can read"><svg viewBox="0 0 12 12"><path d="M2.5 6.5l2.2 2.2 4.8-5"/></svg></span></td>
+          </tr>
+          <tr><th scope="row">Leadership</th>
+            <td><span class="mark mark-yes" role="img" aria-label="Can read"><svg viewBox="0 0 12 12"><path d="M2.5 6.5l2.2 2.2 4.8-5"/></svg></span></td>
+            <td><span class="mark mark-yes" role="img" aria-label="Can read"><svg viewBox="0 0 12 12"><path d="M2.5 6.5l2.2 2.2 4.8-5"/></svg></span></td>
+            <td><span class="mark mark-yes" role="img" aria-label="Can read"><svg viewBox="0 0 12 12"><path d="M2.5 6.5l2.2 2.2 4.8-5"/></svg></span></td>
+            <td><span class="mark mark-yes" role="img" aria-label="Can read"><svg viewBox="0 0 12 12"><path d="M2.5 6.5l2.2 2.2 4.8-5"/></svg></span></td>
+            <td><span class="mark mark-yes" role="img" aria-label="Can read"><svg viewBox="0 0 12 12"><path d="M2.5 6.5l2.2 2.2 4.8-5"/></svg></span></td>
+            <td><span class="mark mark-yes" role="img" aria-label="Can read"><svg viewBox="0 0 12 12"><path d="M2.5 6.5l2.2 2.2 4.8-5"/></svg></span></td>
+            <td><span class="mark mark-yes" role="img" aria-label="Can read"><svg viewBox="0 0 12 12"><path d="M2.5 6.5l2.2 2.2 4.8-5"/></svg></span></td>
+            <td><span class="mark mark-yes" role="img" aria-label="Can read"><svg viewBox="0 0 12 12"><path d="M2.5 6.5l2.2 2.2 4.8-5"/></svg></span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="legend">
+      <span><span class="mark mark-yes" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M2.5 6.5l2.2 2.2 4.8-5"/></svg></span>Can read</span>
+      <span><span class="mark mark-no" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M3 6h6"/></svg></span>Cannot read</span>
+    </div>
+  </section>
+
+  <section class="section" id="departments" aria-labelledby="dept-h">
+    <h2 id="dept-h">Legal</h2>
+    <p>A department with no people and no documents yet.</p>
+    <div class="empty">
+      <h3>Nobody is in Legal yet</h3>
+      <p>Add the first person, then they can upload Legal documents for their team.</p>
+      <button class="btn" type="button">Add a person to Legal</button>
+    </div>
+  </section>
+</main>
+
+<script>
+  (function () {
+    var root = document.documentElement;
+    document.querySelector("[data-theme-toggle]").addEventListener("click", function () {
+      var dark = root.dataset.theme ? root.dataset.theme === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
+      root.dataset.theme = dark ? "light" : "dark";
+    });
+  })();
+</script>
+</body>
+</html>
