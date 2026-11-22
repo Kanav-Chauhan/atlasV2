@@ -68,7 +68,8 @@ services:
     image: atlasv2-api
     restart: unless-stopped
     mem_limit: 3g
-    command: celery -A atlas_api.worker worker --concurrency 1 --max-tasks-per-child 20 --loglevel info
+    # --beat: the nightly demo reset (worker.py beat_schedule); only ever run ONE worker with it.
+    command: celery -A atlas_api.worker worker --beat --schedule /tmp/celerybeat-schedule --concurrency 1 --max-tasks-per-child 20 --loglevel info
     environment: *api-env
     volumes: *api-volumes
     depends_on:

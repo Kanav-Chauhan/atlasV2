@@ -320,3 +320,36 @@ async def test_super_disabled_without_secret(monkeypatch: pytest.MonkeyPatch) ->
     async with plain_client() as c:
         r = await c.post("/auth/super", json={"email": "a", "password": "b"})
     assert r.status_code == 401
+
+
+# ------------------------------------------------------------------ demo reset button
+
+
+async def test_demo_reset_queues_once_for_demo_admins(monkeypatch: pytest.MonkeyPatch) -> None:
+    from atlas_api import db as db_module
+    from atlas_api import worker
+
+    locks: set[str] = set()
+
+    async def fake_set(key: str, value: str, nx: bool, ex: int) -> bool:
+        if key in locks:
+            return False
+        locks.add(key)
+        return True
+
+    queued: list[str] = []
+    monkeypatch.setattr(db_module.redis, "set", fake_set)
+    monkeypatch.setattr(worker.reset_demo, "delay", lambda slug: queued.append(slug))
+
+    admin = user(Role.admin)
+    admin.org = Organization(id=1, slug="nimbus", name="N", industry="", description="")
+    async with client(admin) as c:
+        assert (await c.post("/demo/reset")).status_code == 202
+        assert (await c.post("/demo/reset")).status_code == 429
+    assert queued == ["nimbus"]
+
+    async with client(user(Role.admin)) as c:  # org "x": a real customer
+        assert (await c.post("/demo/reset")).status_code == 403
+    async with client(user(Role.member)) as c:
+        assert (await c.post("/demo/reset")).status_code == 403
+    assert queued == ["nimbus"]

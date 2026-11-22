@@ -36,9 +36,14 @@ def new_key() -> str:
     return secrets.token_urlsafe(16)
 
 
-def demo_config() -> dict[str, Any]:
-    """What seed.py gives a demo company that has no site key yet."""
-    return {"enabled": True, "site_key": new_key(), "allowed_origins": [settings.app_origin]}
+def demo_config(site_key: str | None = None) -> dict[str, Any]:
+    """A demo company's website chat: on for p10, with its fixed key from demo_corpus/orgs/*.json
+    (the web app's demo sites carry the same key, src/lib/demo-site-keys.ts)."""
+    return {
+        "enabled": True,
+        "site_key": site_key or new_key(),
+        "allowed_origins": [settings.app_origin],
+    }
 
 
 def normalize_origin(value: str) -> str | None:

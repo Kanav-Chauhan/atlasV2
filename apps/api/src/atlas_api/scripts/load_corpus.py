@@ -2,6 +2,7 @@
 
 import argparse
 from pathlib import Path
+from typing import Any
 
 from sqlalchemy import select
 
@@ -22,35 +23,46 @@ def front_matter(path: Path) -> dict[str, str]:
     return meta
 
 
+def corpus_docs(slug: str) -> list[dict[str, Any]]:
+    """The clean demo documents of one company: Document column values, keyed by sha256."""
+    corpus = Path(settings.corpus_dir)
+    out = []
+    for f in sorted((corpus / "build" / slug).iterdir()):
+        fm = front_matter(corpus / "source" / slug / f"{f.stem}.md")
+        public = fm.get("public") == "yes"
+        out.append(
+            {
+                "title": fm.get("title", f.stem),
+                "doc_no": fm.get("doc_no"),
+                "access": EVERYONE if public else fm.get("access", EVERYONE),
+                "is_public": public,
+                "format": f.suffix.lstrip("."),
+                "file_path": str(f),
+                "sha256": uploads.sha256(f.read_bytes()),
+                "version": fm.get("version"),
+                "effective": fm.get("effective"),
+                "superseded_by": fm.get("superseded_by"),
+                "meta": {k: fm[k] for k in ("classification", "department", "review") if k in fm},
+            }
+        )
+    return out
+
+
 def load(org: Organization) -> list[int]:
+    """Register the corpus documents this company does not have yet and queue their ingestion."""
     from atlas_api.worker import ingest_document
 
-    corpus = Path(settings.corpus_dir)
     queued = []
     with SyncSession() as s:
-        for f in sorted((corpus / "build" / org.slug).iterdir()):
-            fm = front_matter(corpus / "source" / org.slug / f"{f.stem}.md")
-            digest = uploads.sha256(f.read_bytes())
+        for values in corpus_docs(org.slug):
             exists = s.scalar(
-                select(Document.id).where(Document.org_id == org.id, Document.sha256 == digest)
+                select(Document.id).where(
+                    Document.org_id == org.id, Document.sha256 == values["sha256"]
+                )
             )
             if exists:
                 continue
-            public = fm.get("public") == "yes"
-            doc = Document(
-                org_id=org.id,
-                title=fm.get("title", f.stem),
-                doc_no=fm.get("doc_no"),
-                access=EVERYONE if public else fm.get("access", EVERYONE),
-                is_public=public,
-                format=f.suffix.lstrip("."),
-                file_path=str(f),
-                sha256=digest,
-                version=fm.get("version"),
-                effective=fm.get("effective"),
-                superseded_by=fm.get("superseded_by"),
-                meta={k: fm[k] for k in ("classification", "department", "review") if k in fm},
-            )
+            doc = Document(org_id=org.id, **values)
             s.add(doc)
             s.commit()
             ingest_document.delay(doc.id)

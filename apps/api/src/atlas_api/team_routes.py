@@ -385,3 +385,25 @@ async def change_org(body: OrgPatch, user: Admin, s: DB) -> OrgOut:
         setattr(o, field, value)
     await s.commit()
     return org_out(o)
+
+
+# ------------------------------------------------------------------ demo reset (Phase 10)
+
+RESET_LOCK_SECONDS = 300
+
+
+@router.post("/demo/reset", status_code=202)
+async def reset_demo(user: Admin) -> dict[str, str]:
+    """Queue a reset of this demo company (demo_reset.py). Admins of the 3 demo companies only;
+    one reset per company per 5 minutes."""
+    from atlas_api import website
+    from atlas_api.db import redis
+    from atlas_api.worker import reset_demo as task
+
+    slug = user.org.slug
+    if slug not in website.DEMO_SLUGS:
+        raise HTTPException(403, "Only the demo companies can be reset.")
+    if not await redis.set(f"demo:reset:{slug}", "1", nx=True, ex=RESET_LOCK_SECONDS):
+        raise HTTPException(429, "The demo was reset a moment ago. Try again in a few minutes.")
+    task.delay(slug)
+    return {"status": "queued"}

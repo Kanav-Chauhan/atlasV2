@@ -3,19 +3,43 @@ import time
 from typing import Any
 
 from celery import Celery
+from celery.schedules import crontab
 
 from atlas_api.db import SyncSession
 from atlas_api.models import Document, Status
 from atlas_api.settings import settings
 
 app = Celery("atlas", broker=settings.redis_url, backend=settings.redis_url)
-app.conf.update(task_acks_late=True, worker_prefetch_multiplier=1)
+app.conf.update(
+    task_acks_late=True,
+    worker_prefetch_multiplier=1,
+    timezone="Asia/Kolkata",
+    # The worker runs with --beat (one worker): the demo companies reset at 03:00 IST.
+    beat_schedule={
+        "demo-reset-nightly": {
+            "task": "atlas_api.worker.reset_demo",
+            "schedule": crontab(minute=0, hour=3),
+        }
+    },
+)
 log = logging.getLogger(__name__)
 
 
 @app.task
 def ping() -> str:
     return "pong"
+
+
+@app.task
+def reset_demo(slug: str | None = None) -> dict[str, dict[str, int]]:
+    """Reset one demo company (the Reset demo button) or all three (nightly)."""
+    from atlas_api import demo_reset, website
+
+    out = {}
+    for s in [slug] if slug else website.DEMO_SLUGS:
+        out[s] = demo_reset.reset_org(s)
+        log.info("demo reset %s: %s", s, out[s])
+    return out
 
 
 def set_status(doc_id: int, **values: object) -> Document | None:

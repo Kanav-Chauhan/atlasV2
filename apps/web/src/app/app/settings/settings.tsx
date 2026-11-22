@@ -1,6 +1,7 @@
 "use client";
 
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useState } from "react";
 import { Region } from "@/components/region";
 import { api } from "@/lib/api";
 import type { Org } from "@/lib/types";
@@ -45,6 +46,39 @@ export function Settings() {
           </form>
         )}
       </Region>
+      {org.data && DEMO_SLUGS.includes(org.data.slug) && <DemoReset />}
     </div>
+  );
+}
+
+const DEMO_SLUGS = ["nimbus", "sanjeevani", "kaveri"];
+
+// Demo companies only: the same reset that runs every night at 03:00 IST (POST /demo/reset).
+function DemoReset() {
+  const [sure, setSure] = useState(false);
+  const reset = useMutation({ mutationFn: () => api<{ status: string }>("/demo/reset", {}) });
+  return (
+    <section className="grid gap-3 rounded-card border border-rule p-5">
+      <h2 className="text-lg font-semibold">Reset demo</h2>
+      <p className="text-sm text-muted">
+        Puts this demo company back to how it started: the original documents, people, departments and settings.
+        Uploaded documents, chats and agent tokens are deleted. This also happens every night at 3 am (IST).
+      </p>
+      <div className="flex flex-wrap items-center gap-3">
+        {!sure ? (
+          <button type="button" className="btn" onClick={() => setSure(true)} disabled={reset.isPending || reset.isSuccess}>
+            Reset demo
+          </button>
+        ) : (
+          <>
+            <button type="button" className="btn btn-primary" onClick={() => { setSure(false); reset.mutate(); }}>Yes, reset it</button>
+            <button type="button" className="btn" onClick={() => setSure(false)}>Cancel</button>
+          </>
+        )}
+        <p role="status" className={`text-sm ${reset.isError ? "text-error" : "text-muted"}`}>
+          {reset.isError ? reset.error.message : reset.isSuccess ? "Resetting. It takes a minute or two; reload the page after that." : ""}
+        </p>
+      </div>
+    </section>
   );
 }
