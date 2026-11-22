@@ -115,3 +115,29 @@ retrieval as staff). No staff document, chat history or name is ever reachable f
 |---|---|---|
 | GET | `/public/{site_key}/config` | `{company, greeting, accent, position, show_badge}`; `404` if unknown/disabled |
 | POST | `/public/{site_key}/chat` | same body and **AI SDK UI message stream** as `/chat`, answered as the website visitor; `thread_id` comes from the client (random, kept in the iframe's sessionStorage); history kept 24 h. Guards: rate limit per IP (10/min, 100/day) and per site key (1,000/day), question ≤ 500 chars, honeypot field `website` must be empty, prompt-injection guard, answer token cap. |
+
+## Endpoints (Phase 9: MCP server)
+
+Atlas is an **MCP server** (Model Context Protocol, Streamable HTTP) mounted in FastAPI at `/mcp`. An AI agent
+(Claude Desktop, Claude Code, Cursor…) connects with a **service token** that is bound to one person: the agent
+sees exactly what that person can see (same `access.py` filters). Every tool call is audit-logged.
+
+### Tokens (admin; cookie auth)
+
+| Method | Path | Returns |
+|---|---|---|
+| GET | `/tokens` | `[{id, name, user: {id, name, email}, created_at, last_used_at, revoked}]` (never the secret) |
+| POST | `/tokens` | `{name, user_id}` → `{id, name, token}` — the secret `atl_…` is shown **once**; only a hash is stored |
+| DELETE | `/tokens/{id}` | revoke → `204` |
+| GET | `/tokens/audit?days=7` | `[{at, token_name, user_email, tool, args_summary, ok, latency_ms}]` |
+
+### MCP tools (`Authorization: Bearer atl_…`)
+
+| Tool | Input | Output |
+|---|---|---|
+| `search_knowledge` | `{query, top_k?: 5}` | passages `[{title, doc_no, department, page, section, text, document_id, score}]`; `abstained: true` when nothing is good enough |
+| `ask_question` | `{question}` | `{answer, citations: [...], abstained}` — the full LangGraph answer flow as that person (added after Phase 8 if not ready) |
+| `get_document` | `{document_id}` | `{title, doc_no, department, text}` (Markdown, truncated to a safe length) or a not-found error |
+| `list_departments` | `{}` | departments the bound person can read, with document counts |
+
+Unknown tool → JSON-RPC error; invalid/revoked token → `401`; per-token rate limit.
