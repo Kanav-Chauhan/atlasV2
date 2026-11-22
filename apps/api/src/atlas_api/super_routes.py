@@ -8,6 +8,7 @@ import time
 from datetime import UTC, datetime, timedelta
 from typing import Annotated, Any
 
+import httpx
 from argon2 import PasswordHasher
 from argon2.exceptions import Argon2Error, InvalidHashError
 from fastapi import APIRouter, Cookie, Depends, HTTPException, Query, Request
@@ -213,7 +214,12 @@ async def super_usage(s: DB, days: Days = 30) -> list[dict[str, Any]]:
 
 @router.get("/super/waitlist", dependencies=[Super])
 async def super_waitlist() -> list[dict[str, Any]]:
-    return []  # Clerk Waitlist arrives in Phase 10
+    from atlas_api import waitlist
+
+    try:
+        return await waitlist.entries()
+    except httpx.HTTPError as e:
+        raise HTTPException(502, "Clerk did not answer. Try again in a minute.") from e
 
 
 @router.get("/super/orgs/{slug}/view", dependencies=[Super])

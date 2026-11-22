@@ -48,6 +48,8 @@ services:
       <<: *api-env
       # Super admin login: only the api needs these (not the worker).
       ATLAS_SUPERADMIN_EMAIL: ${ATLAS_SUPERADMIN_EMAIL:-}
+      # Clerk Waitlist (Phase 10): api only. Test key now, sk_live_ at launch.
+      ATLAS_CLERK_SECRET_KEY: ${CLERK_SECRET_KEY:-}
       ATLAS_SUPERADMIN_PASSWORD_HASH: ${ATLAS_SUPERADMIN_PASSWORD_HASH:-}
       ATLAS_SESSION_SECRET: ${ATLAS_SESSION_SECRET:-}
       # LangSmith tracing (Phase 6): off unless LANGSMITH_TRACING=true AND a key is set.

@@ -23,6 +23,8 @@ class Settings(BaseSettings):
     # Top reranked score below which retrieval counts as weak (scripts/calibrate_grade.py).
     # jina-reranker-v1-turbo-en scale; -1.1 = middle of the best range with the relevance grade
     # (evals/results/20261122T142654Z-grade-relevance.json: accuracy 0.968). MiniLM used 1.3.
+    # Clerk Backend API (Phase 10 waitlist); empty = waitlist closed.
+    clerk_secret_key: str = ""
     grade_threshold: float = -1.1
     # LLM relevance grade after the score threshold (corrective RAG, Phase 6): the `fast` model
     # checks the passages really answer; only the passages it marks go to the answer model.

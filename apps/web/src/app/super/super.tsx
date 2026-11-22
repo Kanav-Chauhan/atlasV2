@@ -9,7 +9,7 @@ import { day } from "@/lib/types";
 
 type OrgRow = { slug: string; name: string; people: number; documents: number; chunks: number; questions_30d: number; not_found_pct_30d: number | null; last_activity: string | null };
 type Usage = { org: string; model: string; questions: number; tokens_in: number | null; tokens_out: number | null; avg_latency_ms: number | null };
-type Waiter = { email: string; created_at?: string };
+type Waiter = { email: string; status: string; created_at: number }; // Clerk Waitlist, newest first
 type Rate = number | null;
 type AnswerSummary = {
   runs: number; errors: number; answerable: number; negatives: number;
@@ -106,10 +106,10 @@ export function SuperHome() {
       <section id="waitlist" className="block" aria-labelledby="wl-h">
         <div className="block-head"><h2 id="wl-h">Waitlist</h2></div>
         <Region q={waitlist} what="waitlist" rows={1}
-          empty={<><p className="font-semibold">Opens with Clerk in Phase 10</p><p className="text-sm text-muted">Emails from &quot;Join the waitlist&quot; will be listed here.</p></>}>
+          empty={<><p className="font-semibold">No one yet</p><p className="text-sm text-muted">Emails from &quot;Join the Pro waitlist&quot; on the home page show here. Approve and invite people in the Clerk Dashboard.</p></>}>
           {(d) => (
             <ul className="list">
-              {d.map((w) => <li key={w.email}><span>{w.email}</span>{w.created_at && <span className="count">{day.format(new Date(w.created_at))}</span>}</li>)}
+              {d.map((w) => <li key={w.email}><span>{w.email}</span><span className="count">{w.status} · {day.format(new Date(w.created_at))}</span></li>)}
             </ul>
           )}
         </Region>

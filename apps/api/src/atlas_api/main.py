@@ -9,6 +9,7 @@ from atlas_api import (
     super_routes,
     team_routes,
     token_routes,
+    waitlist,
     website_routes,
 )
 from atlas_api.db import engine, redis
@@ -47,4 +48,5 @@ app.include_router(insights_routes.router)
 app.include_router(super_routes.router)
 app.include_router(website_routes.router)
 app.include_router(token_routes.router)
+app.include_router(waitlist.router)
 app.router.routes.append(mcp_server.route)  # MCP Streamable HTTP (Phase 9)
