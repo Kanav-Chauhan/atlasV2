@@ -145,6 +145,15 @@ Outside services allowed for Atlas: Clerk, PostHog, PayU, Anthropic API, LangSmi
 | **Settings & plan** | Admin |
 | **Super admin area**: all companies, evals, model comparison, traces, costs, cache hit rate, blocked attacks, waitlist | Owner of Atlas only |
 
+### Design decisions (owner, 2026-11-22)
+
+- **Shell:** option C's thin icon bar on every page (bottom tab bar on phones). Menu items follow the role (see §3).
+- **Ask:** option C: big chat, past chats behind a "History" button, suggested questions as chips above the composer, document reader opens when a citation is clicked (Small / Half / Full, drag handle, close).
+- **Team & access:** option A's content (people table, who-sees-what grid, empty state) inside the C shell.
+- **Other pages** (Home, Search, Library, Insights, Website chat, Settings, Super admin) are built in the same style.
+- **No role switching** in the app. Demo visitors pick a person on the login page; each login lands on that person's own dashboard. A "Log out" link goes back to the login page.
+- Previews: `previews/dashboard/option-c` (Ask) and `option-a/team.html` (Team content).
+
 ## 8. Login and plans
 
 - **Demo:** one-click role logins, no sign-up needed.
