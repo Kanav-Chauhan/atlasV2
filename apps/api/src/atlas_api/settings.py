@@ -14,10 +14,25 @@ class Settings(BaseSettings):
     max_upload_mb: int = 10
     # bge-reranker-base needs ~1.9 GB RAM and ~12 s per query on this VPS; MiniLM ~0.4 GB, ~3 s.
     reranker_model: str = "Xenova/ms-marco-MiniLM-L-6-v2"
+    # Gateway model names (~/deploy/ai-gateway/config.yaml).
+    llm_fast: str = "fast"
+    llm_smart: str = "smart"
+    llm_smart_fallbacks: str = "smart-groq,smart-cf"
+    # Top reranked score below which retrieval counts as weak (scripts/calibrate_grade.py).
+    grade_threshold: float = 1.3
+    # RedisVL semantic cache needs Redis with the query engine (redis:8 or Redis Stack).
+    semantic_cache: bool = False
+    cache_similarity: float = 0.95
+    cache_ttl_s: int = 24 * 3600
 
     @property
     def sync_database_url(self) -> str:
         return self.database_url.replace("+asyncpg", "+psycopg2")
+
+    @property
+    def psycopg_url(self) -> str:
+        """Plain libpq URL for psycopg 3 (the LangGraph checkpointer)."""
+        return self.database_url.replace("postgresql+asyncpg", "postgresql")
 
 
 settings = Settings()

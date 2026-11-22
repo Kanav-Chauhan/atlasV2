@@ -119,3 +119,47 @@ class EvalRun(Base):
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
     # {mode: {hit_at_1, hit_at_3, hit_at_5, mrr, context_recall, leaks, n}}
     modes: Mapped[dict[str, Any]] = mapped_column(JSONB)
+
+
+class Chat(Base):
+    """One conversation thread. The id comes from the browser (AI SDK `useChat` id)."""
+
+    __tablename__ = "chats"
+    id: Mapped[str] = mapped_column(String(64), primary_key=True)
+    user_id: Mapped[int] = mapped_column(ForeignKey("users.id", ondelete="CASCADE"), index=True)
+    org_id: Mapped[int] = mapped_column(ForeignKey("organizations.id", ondelete="CASCADE"))
+    title: Mapped[str] = mapped_column(String(200))
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
+    updated_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
+
+
+class Message(Base):
+    __tablename__ = "messages"
+    id: Mapped[str] = mapped_column(String(64), primary_key=True)
+    chat_id: Mapped[str] = mapped_column(ForeignKey("chats.id", ondelete="CASCADE"), index=True)
+    role: Mapped[str] = mapped_column(String(16))  # user | assistant
+    text: Mapped[str] = mapped_column(Text)
+    route: Mapped[str | None] = mapped_column(String(16))
+    abstained: Mapped[bool] = mapped_column(Boolean, default=False)
+    cached: Mapped[bool] = mapped_column(Boolean, default=False)
+    rewritten_query: Mapped[str | None] = mapped_column(Text)
+    sources: Mapped[list[dict[str, Any]]] = mapped_column(JSONB, default=list)
+    language: Mapped[str | None] = mapped_column(String(8))
+    latency_ms: Mapped[int | None] = mapped_column(Integer)
+    feedback: Mapped[str | None] = mapped_column(String(8))  # up | down
+    comment: Mapped[str | None] = mapped_column(Text)
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
+
+
+class DocumentRequest(Base):
+    """ "Request a document" from a not-found answer (shown in Insights)."""
+
+    __tablename__ = "document_requests"
+    id: Mapped[int] = mapped_column(primary_key=True)
+    org_id: Mapped[int] = mapped_column(
+        ForeignKey("organizations.id", ondelete="CASCADE"), index=True
+    )
+    user_id: Mapped[int] = mapped_column(ForeignKey("users.id", ondelete="CASCADE"))
+    question: Mapped[str] = mapped_column(Text)
+    note: Mapped[str | None] = mapped_column(Text)
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())

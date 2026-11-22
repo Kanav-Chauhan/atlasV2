@@ -42,7 +42,7 @@ services:
     build: ../apps/api
     image: atlasv2-api
     restart: unless-stopped
-    mem_limit: 1g  # embedder + reranker (Phase 4)
+    mem_limit: 1536m  # embedder + reranker (Phase 4) + LangGraph/LangChain + light LLM Guard (Phase 5)
     command: sh -c "alembic upgrade head && exec uvicorn atlas_api.main:app --host 0.0.0.0 --port 8000"
     environment: *api-env
     volumes: *api-volumes
