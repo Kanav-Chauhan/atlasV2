@@ -97,7 +97,58 @@ services:
       - "127.0.0.1:3011:3000"
     depends_on: [api]
 
+  # ---- Monitoring (Phase 11): Prometheus scrapes the api + the host, Grafana at /grafana ----
+  prometheus:
+    image: prom/prometheus:v3.16.0
+    restart: unless-stopped
+    mem_limit: 384m
+    command:
+      - --config.file=/etc/prometheus/prometheus.yml
+      - --storage.tsdb.path=/prometheus
+      - --storage.tsdb.retention.time=15d
+      - --storage.tsdb.retention.size=1GB
+    volumes:
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - ./monitoring/alerts.yml:/etc/prometheus/alerts.yml:ro
+      - atlasv2_prometheus:/prometheus
+
+  node-exporter:
+    image: prom/node-exporter:v1.9.1
+    restart: unless-stopped
+    mem_limit: 64m
+    pid: host
+    command: [--path.rootfs=/rootfs, --path.procfs=/host/proc, --path.sysfs=/host/sys]
+    volumes:
+      - /:/rootfs:ro,rslave
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+
+  grafana:
+    image: grafana/grafana:13.2.6
+    restart: unless-stopped
+    mem_limit: 384m  # 256m was too tight: restarts while loading the dashboard
+    environment:
+      GF_SERVER_ROOT_URL: https://p10.kanav.space/grafana/
+      GF_SERVER_SERVE_FROM_SUB_PATH: "true"
+      GF_SECURITY_ADMIN_USER: admin
+      GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_ADMIN_PASSWORD:?set GRAFANA_ADMIN_PASSWORD in infra/.env}
+      GF_USERS_ALLOW_SIGN_UP: "false"
+      GF_AUTH_ANONYMOUS_ENABLED: "false"
+      GF_ANALYTICS_REPORTING_ENABLED: "false"
+      GF_ANALYTICS_CHECK_FOR_UPDATES: "false"
+      GF_ANALYTICS_CHECK_FOR_PLUGIN_UPDATES: "false"
+      GF_NEWS_NEWS_FEED_ENABLED: "false"
+    volumes:
+      - ./monitoring/grafana/provisioning:/etc/grafana/provisioning:ro
+      - ./monitoring/grafana/dashboards:/var/lib/grafana/dashboards:ro
+      - atlasv2_grafana:/var/lib/grafana
+    ports:
+      - "127.0.0.1:3012:3000"
+    depends_on: [prometheus]
+
 volumes:
+  atlasv2_prometheus:
+  atlasv2_grafana:
   atlasv2_pgdata:
     name: atlasv2_pgdata
   atlasv2_files:

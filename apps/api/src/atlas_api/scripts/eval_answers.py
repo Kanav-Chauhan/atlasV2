@@ -2,7 +2,11 @@
 gateway models), scored with RAGAS and our own metrics.
 
 python -m atlas_api.scripts.eval_answers [--org slug] [--limit n] [--threshold x]
-    [--no-relevance] [--no-ragas] [--concurrency 2] [--judge json]
+    [--no-relevance] [--no-ragas] [--no-judge] [--concurrency 2] [--judge json]
+
+Every finished row is appended at once to evals/results/<run>-answers.jsonl (with the
+retrieved passages), so a stopped run loses nothing. `--no-judge --no-ragas` = Atlas answers
+only (no grading model calls): grade the .jsonl afterwards (e.g. by hand or with Claude).
 
 Each question runs as its `as` user; `restricted` questions also run as their `denied_as`
 user, who must get "not found". Metrics (docs/RAG_GUIDE.md step 9):
@@ -237,10 +241,17 @@ async def ask(
         "relevance": final.get("relevance", ""),
         "grade_log": final.get("grade_log", []),
         "sources": [s.get("title", "") for s in final.get("sources") or []],
+        # the cited passages themselves ([n] in the answer = n here), for grading faithfulness
+        "cited": [
+            {"n": s.get("n"), "title": s.get("title", ""), "text": (s.get("text") or "")[:1800]}
+            for s in final.get("sources") or []
+        ],
         "context_titles": [p.get("title", "") for p in passages],
         "contexts": [p.get("text", "") for p in passages],
     }
     row["leak"] = is_leak(row, q["doc"])
+    if args.no_judge:
+        return row
     if answered(row) and kind == "answerable":
         row["judge"] = await judge(q["q"], q["answer"], row["answer"], args.judge)
     elif answered(row):  # an answered negative: did it at least decline in words?
@@ -344,12 +355,17 @@ async def run(args: argparse.Namespace) -> None:
     plan = runs_for(questions)
     started = time.monotonic()
     done = 0
+    run_id = datetime.now(UTC).strftime("%Y%m%dT%H%M%SZ")
+    Path(args.out).mkdir(parents=True, exist_ok=True)
+    live = Path(args.out) / f"{run_id}-answers.jsonl"  # one row per line, written as it finishes
 
     async def one(q: dict[str, Any], kind: str, email: str) -> dict[str, Any]:
         nonlocal done
         async with sem:
             row = await ask(g, q, kind, users[email], args)
         row["reference"] = q["answer"]
+        with live.open("a") as f:
+            f.write(json.dumps(row, ensure_ascii=False) + "\n")
         done += 1
         print(
             f"[{done}/{len(plan)}] {kind:10} abst={row['abstained']!s:5} "
@@ -378,9 +394,7 @@ async def run(args: argparse.Namespace) -> None:
         "seconds": round(time.monotonic() - started),
     }
     print(json.dumps(summary, indent=1), flush=True)
-    run_id = datetime.now(UTC).strftime("%Y%m%dT%H%M%SZ")
     out = Path(args.out) / f"{run_id}-answers.json"
-    out.parent.mkdir(parents=True, exist_ok=True)
     for r in rows:  # passage texts are long; titles + the answer are enough to review
         r.pop("contexts", None)
     out.write_text(json.dumps({"run_id": run_id, "summary": summary, "questions": rows}, indent=1))
@@ -399,6 +413,7 @@ def main() -> None:
     p.add_argument("--threshold", type=float, default=settings.grade_threshold)
     p.add_argument("--no-relevance", action="store_true", help="score threshold only")
     p.add_argument("--no-ragas", action="store_true")
+    p.add_argument("--no-judge", action="store_true", help="no grading model: answers only")
     p.add_argument("--no-store", action="store_true", help="do not save the summary in the DB")
     p.add_argument("--concurrency", type=int, default=2)
     p.add_argument("--judge", default="json", help="gateway model that judges")
