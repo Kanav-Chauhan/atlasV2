@@ -154,6 +154,14 @@ Outside services allowed for Atlas: Clerk, PostHog, PayU, Anthropic API, LangSmi
 - **No role switching** in the app. Demo visitors pick a person on the login page; each login lands on that person's own dashboard. A "Log out" link goes back to the login page.
 - Previews: `previews/dashboard/option-c` (Ask) and `option-a/team.html` (Team content).
 
+### Launch and access decisions (owner, 2026-11-22)
+
+- **Address:** Atlas v2 stays at **p10.kanav.space**; the old Atlas at p1 redirects to p10 at launch.
+- **Waitlist:** **Clerk Waitlist**. The demo stays open without sign-up; "Join the waitlist" collects emails in Clerk, and the owner invites people later.
+- **Demo reset:** every night the 3 demo companies return to the clean 199 documents, plus a "Reset demo" button for demo admins.
+- **Super admin login:** shown on the login page as its own option with the email `sa@kanav.space` filled in; the password is typed, never shown. Only an argon2 hash is stored (`ATLAS_SUPERADMIN_PASSWORD_HASH` in `infra/.env`, never committed).
+- **Nimbus:** Finance, Legal and IT Security have people (CFO, Head of Legal, CISO), so every department has a demo login.
+
 ## 8. Login and plans
 
 - **Demo:** one-click role logins, no sign-up needed.
