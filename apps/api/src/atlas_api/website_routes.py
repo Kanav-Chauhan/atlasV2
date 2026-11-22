@@ -19,7 +19,7 @@ from fastapi.responses import Response, StreamingResponse
 from pydantic import BaseModel, ConfigDict, StringConstraints, field_validator
 from sqlalchemy import func, select, text
 
-from atlas_api import access, chat_routes, graph, website
+from atlas_api import access, chat_routes, graph, plans, website
 from atlas_api.cache import visitor_scope
 from atlas_api.db import CHUNKS_TABLE, Session, redis
 from atlas_api.llm import VisitorModels
@@ -376,6 +376,7 @@ async def public_chat(
     await rate_limit(
         website.client_ip(request.headers, request.client.host if request.client else None), org.id
     )
+    await plans.count_question(org)  # visitors count toward the company's monthly questions
 
     task = asyncio.create_task(prune_visitor_threads())
     _background.add(task)

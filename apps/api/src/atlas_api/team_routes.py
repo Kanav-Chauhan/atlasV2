@@ -10,7 +10,7 @@ from pydantic import BaseModel, StringConstraints
 from sqlalchemy import func, select, text, update
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from atlas_api import access
+from atlas_api import access, plans
 from atlas_api.db import CHUNKS_TABLE
 from atlas_api.models import EVERYONE, Department, Document, Organization, Role, User
 from atlas_api.routes import DB, CurrentUser
@@ -126,6 +126,7 @@ async def add_person(body: PersonIn, user: Lead, s: DB) -> Person:
     email = body.email
     if await s.scalar(select(User.id).where(func.lower(User.email) == email)):
         raise HTTPException(409, "Someone with this email already exists.")
+    await plans.check_people(s, user.org)
     u = User(
         org_id=user.org_id,
         name=body.name,
@@ -407,3 +408,36 @@ async def reset_demo(user: Admin) -> dict[str, str]:
         raise HTTPException(429, "The demo was reset a moment ago. Try again in a few minutes.")
     task.delay(slug)
     return {"status": "queued"}
+
+
+# ------------------------------------------------------------------ plan (Phase 10)
+
+
+class PlanOut(BaseModel):
+    plan: str
+    questions_month: int | None
+    questions_used: int
+    documents: int | None
+    documents_used: int
+    people: int | None
+    people_used: int
+
+
+@router.get("/org/plan")
+async def org_plan(user: Admin, s: DB) -> PlanOut:
+    lim = plans.limits(user.org)
+    docs = await s.scalar(
+        select(func.count()).select_from(Document).where(Document.org_id == user.org_id)
+    )
+    people = await s.scalar(
+        select(func.count()).select_from(User).where(User.org_id == user.org_id)
+    )
+    return PlanOut(
+        plan=user.org.plan,
+        questions_month=lim.questions_month,
+        questions_used=await plans.questions_used(user.org_id),
+        documents=lim.documents,
+        documents_used=docs or 0,
+        people=lim.people,
+        people_used=people or 0,
+    )

@@ -11,12 +11,12 @@ from functools import cache
 from pathlib import Path
 from typing import Annotated, Any, Literal
 
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Request
 from fastapi.responses import Response, StreamingResponse
 from pydantic import BaseModel, ConfigDict, StringConstraints
 from sqlalchemy import select
 
-from atlas_api import access, graph, metrics, tracing
+from atlas_api import access, graph, metrics, plans, tracing, website
 from atlas_api.cache import AnswerCache, scope
 from atlas_api.db import Session
 from atlas_api.models import Chat, DocumentRequest, Message, User
@@ -133,12 +133,14 @@ async def owned_chat(s: Any, user: User, chat_id: str) -> Chat:
 
 
 @router.post("/chat")
-async def chat(body: ChatIn, user: CurrentUser, s: DB) -> StreamingResponse:
+async def chat(body: ChatIn, user: CurrentUser, s: DB, request: Request) -> StreamingResponse:
     question = last_user_text(body.messages)
     if not question:
         raise HTTPException(400, "Type a question first.")
     if len(question) > 1000:
         raise HTTPException(400, "Please keep the question under 1,000 characters.")
+    peer = request.client.host if request.client else None
+    await plans.count_question(user.org, website.client_ip(request.headers, peer))
     found: Chat | None = await s.get(Chat, body.id)
     if found is not None and found.user_id != user.id:
         raise HTTPException(404, "Chat not found.")

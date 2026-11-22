@@ -46,12 +46,48 @@ export function Settings() {
           </form>
         )}
       </Region>
+      <PlanUsage />
       {org.data && DEMO_SLUGS.includes(org.data.slug) && <DemoReset />}
     </div>
   );
 }
 
 const DEMO_SLUGS = ["nimbus", "sanjeevani", "kaveri"];
+
+type Plan = {
+  plan: string;
+  questions_month: number | null; questions_used: number;
+  documents: number | null; documents_used: number;
+  people: number | null; people_used: number;
+};
+const PLAN_NAMES: Record<string, string> = { demo: "Demo", pro: "Pro", enterprise: "Enterprise" };
+const num = new Intl.NumberFormat("en-IN");
+
+// Plan and what is used of it (GET /org/plan, plans.py on the API).
+function PlanUsage() {
+  const plan = useQuery({ queryKey: ["org-plan"], queryFn: () => api<Plan>("/org/plan") });
+  const row = (label: string, used: number, cap: number | null) => (
+    <div className="grid gap-1">
+      <div className="flex justify-between text-sm"><span>{label}</span><span className="text-muted">{num.format(used)}{cap != null ? ` of ${num.format(cap)}` : ""}</span></div>
+      {cap != null && (
+        <div className="h-1.5 overflow-hidden rounded-full bg-paper-3" role="presentation">
+          <div className="h-full bg-accent" style={{ width: `${Math.min(100, (used / Math.max(cap, 1)) * 100)}%` }} />
+        </div>
+      )}
+    </div>
+  );
+  if (!plan.data) return null;
+  const p = plan.data;
+  return (
+    <section className="grid gap-3 rounded-card border border-rule p-5">
+      <h2 className="text-lg font-semibold">Plan: {PLAN_NAMES[p.plan] ?? p.plan}</h2>
+      {p.plan === "demo" && <p className="text-sm text-muted">A shared demo company: each visitor can ask 40 questions a day.</p>}
+      {row("Questions this month", p.questions_used, p.questions_month)}
+      {row("Documents", p.documents_used, p.documents)}
+      {row("People", p.people_used, p.people)}
+    </section>
+  );
+}
 
 // Demo companies only: the same reset that runs every night at 03:00 IST (POST /demo/reset).
 function DemoReset() {

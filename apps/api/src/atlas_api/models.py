@@ -55,6 +55,7 @@ class Organization(Base):
     name: Mapped[str] = mapped_column(String(200))
     industry: Mapped[str] = mapped_column(String(200), default="")
     description: Mapped[str] = mapped_column(Text, default="")
+    plan: Mapped[str] = mapped_column(String(20), default="pro")  # plans.PLANS (Phase 10)
     # Phase 8: {enabled, site_key, allowed_origins, greeting, accent, position, show_badge};
     # read through atlas_api.website.config(), which fills in the defaults.
     website_chat: Mapped[dict[str, Any]] = mapped_column(JSONB, default=dict)

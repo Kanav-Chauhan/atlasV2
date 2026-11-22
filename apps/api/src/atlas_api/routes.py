@@ -12,7 +12,7 @@ from pydantic import BaseModel, ConfigDict, Field, StringConstraints
 from sqlalchemy import func, select, text
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from atlas_api import access, retrieve, uploads
+from atlas_api import access, plans, retrieve, uploads
 from atlas_api.db import CHUNKS_TABLE, Session
 from atlas_api.models import (
     EVERYONE,
@@ -153,6 +153,7 @@ async def upload_document(
         select(Department.id).where(Department.org_id == user.org_id, Department.name == access_)
     ):
         raise HTTPException(400, f"There is no department called {access_}.")
+    await plans.check_documents(s, user.org)
     data = await file.read(settings.max_upload_mb * 1024 * 1024 + 1)
     try:
         fmt = uploads.check_upload(file.filename or "", data)

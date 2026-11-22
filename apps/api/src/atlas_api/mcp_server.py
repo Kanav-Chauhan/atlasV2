@@ -12,7 +12,7 @@ from collections.abc import AsyncIterator, Awaitable, Callable
 from contextlib import asynccontextmanager
 from typing import Any
 
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from mcp.server.mcpserver import Context, MCPServer
 from mcp.server.mcpserver.exceptions import ToolError
 from mcp.server.streamable_http_manager import StreamableHTTPASGIApp
@@ -24,7 +24,7 @@ from starlette.responses import JSONResponse
 from starlette.routing import Route
 from starlette.types import Receive, Scope, Send
 
-from atlas_api import access, tokens
+from atlas_api import access, plans, tokens
 from atlas_api.db import CHUNKS_TABLE, Session
 from atlas_api.models import EVERYONE, Department, Document, Role, Status, User
 from atlas_api.settings import settings
@@ -225,6 +225,10 @@ async def ask_question(question: str, ctx: Context) -> Answer:
         raise ToolError("question is empty.")
 
     async def go(user: User) -> Answer:
+        try:
+            await plans.count_question(user.org)
+        except HTTPException as e:
+            raise ToolError(str(e.detail)) from e
         return await run_ask(q, user)
 
     return await audited(ctx, "ask_question", {"question": q}, go)

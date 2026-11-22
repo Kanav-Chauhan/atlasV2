@@ -76,6 +76,8 @@ Ids are integers. Dates are ISO strings (`guest_until` `YYYY-MM-DD`, timestamps 
 | GET | `/insights?days=30` | admin (company), manager (people in their scope) | `{questions, answered, not_found, blocked, smalltalk, answered_pct, avg_latency_ms, p95_latency_ms, feedback: {up, down}, top_unanswered: [{question, count}], document_requests: [{question, note, by, created_at}], top_documents: [{document_id, title, citations}], by_department: [{department, questions}], per_day: [{date, questions, not_found}]}` — computed from stored chat messages. `days` 1–365. `questions` counts every assistant turn; `answered_pct` = answered / document questions (route `rag`), 0–100 or `null`; latencies (ms) over `rag` turns, `null` when none; `per_day` has exactly `days` entries, oldest first, `date` = `YYYY-MM-DD` (UTC), zero-filled; top lists ≤ 10, `document_requests` ≤ 50 newest first, `note` may be `null` |
 | GET | `/documents/review` | admin, manager | documents needing review: past their `review` date or effective > 12 months ago, in scope: `[{id, title, access, effective, review, reason}]` |
 | GET / PATCH | `/org` | GET admin, PATCH admin | `{slug, name, industry, description}` |
+| GET | `/org/plan` | admin | `{plan, questions_month, questions_used, documents, documents_used, people, people_used}` (limits `null` = none) |
+| POST | `/demo/reset` | admin of a demo company | `202 {status: "queued"}`; 403 other companies; 429 within 5 min of the last reset |
 
 ### Super admin (the Atlas owner, not a company)
 
@@ -142,3 +144,13 @@ sees exactly what that person can see (same `access.py` filters). Every tool cal
 | `list_departments` | `{}` | departments the bound person can read, with document counts |
 
 Unknown tool → JSON-RPC error; invalid/revoked token → `401`; per-token rate limit.
+
+## Plans and limits (Phase 10, `plans.py`)
+
+| Plan | Questions | Documents | People |
+|---|---|---|---|
+| `demo` (the 3 demo companies) | 40 a day per visitor (IP) on Ask | 230 | 40 |
+| `pro` | 5,000 a month per company (Ask + website chat + MCP `ask_question`) | 200 | 25 |
+| `enterprise` | no limit | no limit | no limit |
+
+Over a question limit → `429 {detail}` with a plain reason (MCP: a tool error with the same text). Over the document or people cap → `403 {detail}`. Monthly counts are in Redis (`plan:q:<org_id>:<YYYYMM>`) and start again on the 1st (UTC).
