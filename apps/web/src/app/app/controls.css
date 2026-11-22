@@ -12,7 +12,7 @@
 
 .field {
   min-height: 36px; padding: var(--space-2xs) var(--space-sm); border: var(--rule-hair) solid var(--color-rule);
-  border-radius: var(--radius-input); background: var(--color-paper); color: var(--color-ink); font: inherit; font-size: var(--text-sm);
+  border-radius: var(--radius-input); background: var(--color-paper); color: var(--color-ink); font: inherit; font-size: var(--text-sm); font-weight: 400;
 }
 .chip {
   min-height: 32px; padding: 0 var(--space-sm); border: var(--rule-hair) solid var(--color-rule); border-radius: var(--radius-pill);
@@ -51,3 +51,11 @@
 }
 .seg button:hover { background: var(--color-paper-2); color: var(--color-ink); }
 .seg button[aria-pressed="true"] { background: var(--color-paper-3); color: var(--color-ink); font-weight: 600; box-shadow: inset 0 0 0 1px var(--color-rule); }
+
+/* Modal dialog (Library upload, Team people and departments). */
+.dialog {
+  width: min(440px, calc(100% - 2 * var(--gutter))); margin: auto; padding: var(--space-lg);
+  border: var(--rule-hair) solid var(--color-rule); border-radius: var(--radius-card); background: var(--color-paper); color: var(--color-ink);
+  box-shadow: var(--shadow-card);
+}
+.dialog::backdrop { background: var(--color-shadow); }

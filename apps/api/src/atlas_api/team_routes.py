@@ -282,7 +282,7 @@ async def who_sees_what(user: Lead, s: DB) -> AccessOut:
         )
     )
     if user.role == Role.manager:
-        names = [n for n in names if n in user.department_names]
+        names = [n for n in names if n in access.team_scope(user)]
     return AccessOut(
         departments=names,
         people=[

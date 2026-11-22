@@ -12,7 +12,7 @@ type LabResponse = {
   stages: Record<Stage, Hit[]>;
 };
 type Metrics = { hit_at_1: number; hit_at_3: number; hit_at_5: number; mrr: number; context_recall: number; leaks: number; n: number };
-type Eval = { run_id: string; created_at: string; modes: Partial<Record<"vector" | "hybrid" | "hybrid_rerank", Metrics>> };
+export type Eval = { run_id: string; created_at: string; modes: Partial<Record<"vector" | "hybrid" | "hybrid_rerank", Metrics>> };
 type Person = { name: string; title: string; email: string };
 
 // What each stage does, in one line (docs/RAG_GUIDE.md steps 6 and 7).
@@ -134,7 +134,6 @@ function LatestEval() {
     retry: (n, e) => (e as { status?: number }).status !== 404 && n < 1,
   });
   const missing = (error as { status?: number } | null)?.status === 404;
-  const fmt = (v: number) => v.toFixed(3);
 
   return (
     <section className="eval grid gap-3" aria-labelledby="eval-title">
@@ -149,32 +148,40 @@ function LatestEval() {
       ) : error ? (
         <p className="text-sm text-error" role="alert">{error.message}</p>
       ) : (
-        <div className="overflow-x-auto">
-          <table className="eval-table">
-            <thead>
-              <tr><th scope="col">Mode</th><th scope="col">Hit@1</th><th scope="col">Hit@3</th><th scope="col">Hit@5</th><th scope="col">MRR</th><th scope="col">Context recall</th><th scope="col">Leaks</th><th scope="col">Questions</th></tr>
-            </thead>
-            <tbody>
-              {MODES.map(([key, label]) => {
-                const m = data.modes[key];
-                return (
-                  <tr key={key}>
-                    <th scope="row">{label}</th>
-                    {m ? (
-                      <>
-                        <td>{fmt(m.hit_at_1)}</td><td>{fmt(m.hit_at_3)}</td><td>{fmt(m.hit_at_5)}</td><td>{fmt(m.mrr)}</td><td>{fmt(m.context_recall)}</td>
-                        <td className={m.leaks ? "text-error font-semibold" : undefined}>{m.leaks}</td><td>{m.n}</td>
-                      </>
-                    ) : (
-                      <td colSpan={7} className="text-muted">Not in this run</td>
-                    )}
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
-        </div>
+        <EvalTable data={data} />
       )}
     </section>
+  );
+}
+
+/** Hit@k per retrieval mode for one eval run (also used by the super admin area). */
+export function EvalTable({ data }: { data: Eval }) {
+  const fmt = (v: number) => v.toFixed(3);
+  return (
+    <div className="overflow-x-auto">
+      <table className="eval-table">
+        <thead>
+          <tr><th scope="col">Mode</th><th scope="col">Hit@1</th><th scope="col">Hit@3</th><th scope="col">Hit@5</th><th scope="col">MRR</th><th scope="col">Context recall</th><th scope="col">Leaks</th><th scope="col">Questions</th></tr>
+        </thead>
+        <tbody>
+          {MODES.map(([key, label]) => {
+            const m = data.modes[key];
+            return (
+              <tr key={key}>
+                <th scope="row">{label}</th>
+                {m ? (
+                  <>
+                    <td>{fmt(m.hit_at_1)}</td><td>{fmt(m.hit_at_3)}</td><td>{fmt(m.hit_at_5)}</td><td>{fmt(m.mrr)}</td><td>{fmt(m.context_recall)}</td>
+                    <td className={m.leaks ? "text-error font-semibold" : undefined}>{m.leaks}</td><td>{m.n}</td>
+                  </>
+                ) : (
+                  <td colSpan={7} className="text-muted">Not in this run</td>
+                )}
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    </div>
   );
 }

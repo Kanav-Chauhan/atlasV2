@@ -3,14 +3,15 @@ import Link from "next/link";
 import { loginAs } from "@/app/actions";
 import { Logo } from "@/components/logo";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { OwnerForm } from "./owner-form";
 import { DEMO_COMPANIES, type DemoCompany } from "@/lib/demo-users";
 
 export const metadata: Metadata = { title: "Log in" };
 
 // Demo login: pick a company, then a person (one click). Step lives in ?company= so no client state is needed.
 // TODO(Phase 4/10): real auth (email login, then Clerk) replaces this picker for non-demo users.
-export default async function LoginPage({ searchParams }: { searchParams: Promise<{ company?: string }> }) {
-  const { company: slug } = await searchParams;
+export default async function LoginPage({ searchParams }: { searchParams: Promise<{ company?: string; owner?: string }> }) {
+  const { company: slug, owner } = await searchParams;
   const company = DEMO_COMPANIES.find((c) => c.slug === slug);
 
   return (
@@ -27,7 +28,18 @@ export default async function LoginPage({ searchParams }: { searchParams: Promis
               <p className="text-sm text-muted">Try the demo as someone at a fictional company</p>
             </div>
           </div>
-          <section aria-labelledby="demo-heading">{company ? <PersonPicker company={company} /> : <CompanyPicker />}</section>
+          {owner ? (
+            <section aria-labelledby="owner-heading">
+              <div className="mb-2 flex items-center justify-between gap-2">
+                <h2 id="owner-heading" className="font-body text-xs font-medium text-muted">Atlas owner</h2>
+                <Link href="/login" className="rounded-md px-1.5 py-0.5 text-xs text-muted hover:bg-paper-3 hover:text-ink">Back to demo</Link>
+              </div>
+              <OwnerForm />
+              <p className="mt-2 text-xs text-muted">For the person who runs Atlas: every company, evaluations and usage.</p>
+            </section>
+          ) : (
+            <section aria-labelledby="demo-heading">{company ? <PersonPicker company={company} /> : <CompanyPicker />}</section>
+          )}
         </div>
       </main>
     </div>
@@ -77,6 +89,14 @@ function CompanyPicker() {
         ))}
       </ul>
       <p className="mt-2 text-xs text-muted">Fictional companies with their own documents. Each person sees different departments.</p>
+      <Link href="/login?owner=1" className="group mt-6 flex items-center gap-3 rounded-card border border-rule bg-paper px-4 py-3 hover:bg-paper-2">
+        <Logo className="size-7 shrink-0 text-muted" />
+        <span className="min-w-0 flex-1">
+          <span className="block text-sm font-medium">Atlas owner</span>
+          <span className="block text-xs text-muted">Log in with the owner email and password</span>
+        </span>
+        <Arrow />
+      </Link>
     </>
   );
 }

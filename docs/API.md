@@ -60,6 +60,10 @@ The Ask page uses the Vercel AI SDK `useChat` with `DefaultChatTransport({ api: 
 
 Roles: **admin** = whole company; **manager** = own departments (can add/remove members and guests in them); members and guests see none of these.
 
+**Manager scope** (`access.team_scope`): a manager's departments **minus the shared `Managers` department**. Every manager is in `Managers` (for manager-only documents), so counting it would let the HR manager manage every manager; the `Managers` department and its people are admin-managed. This scope drives `/team`, `/access` columns, `/insights` and who a manager may add/change/remove.
+
+Ids are integers. Dates are ISO strings (`guest_until` `YYYY-MM-DD`, timestamps ISO 8601 with offset). Percentages are **0–100** with one decimal, or `null` when there is nothing to divide by.
+
 | Method | Path | Who | Returns |
 |---|---|---|---|
 | GET | `/team` | admin, manager | `[{id, name, email, title, role, departments, guest_until, last_active}]` (manager: people in their departments) |
@@ -68,8 +72,8 @@ Roles: **admin** = whole company; **manager** = own departments (can add/remove 
 | DELETE | `/team/{id}` | same rules | `204` (not yourself, not the last admin) |
 | POST | `/departments` | admin | `{name, description}` → department (`409` duplicate) |
 | PATCH / DELETE | `/departments/{name}` | admin | rename/describe; delete only when no documents and no people |
-| GET | `/access` | admin, manager | who can read what: `{departments: [str], people: [{id, name, role, can_read: {<department>: bool}, everyone: true}]}` |
-| GET | `/insights?days=30` | admin (company), manager (own departments) | `{questions, answered, not_found, blocked, smalltalk, answered_pct, avg_latency_ms, p95_latency_ms, feedback: {up, down}, top_unanswered: [{question, count}], document_requests: [{question, note, by, created_at}], top_documents: [{document_id, title, citations}], by_department: [{department, questions}], per_day: [{date, questions, not_found}]}` — computed from stored chat messages |
+| GET | `/access` | admin, manager | who can read what: `{departments: [str], people: [{id, name, role, can_read: {<department>: bool}, everyone: true}]}` (manager: only departments in their scope as columns; admin rows are all `true`) |
+| GET | `/insights?days=30` | admin (company), manager (people in their scope) | `{questions, answered, not_found, blocked, smalltalk, answered_pct, avg_latency_ms, p95_latency_ms, feedback: {up, down}, top_unanswered: [{question, count}], document_requests: [{question, note, by, created_at}], top_documents: [{document_id, title, citations}], by_department: [{department, questions}], per_day: [{date, questions, not_found}]}` — computed from stored chat messages. `days` 1–365. `questions` counts every assistant turn; `answered_pct` = answered / document questions (route `rag`), 0–100 or `null`; latencies (ms) over `rag` turns, `null` when none; `per_day` has exactly `days` entries, oldest first, `date` = `YYYY-MM-DD` (UTC), zero-filled; top lists ≤ 10, `document_requests` ≤ 50 newest first, `note` may be `null` |
 | GET | `/documents/review` | admin, manager | documents needing review: past their `review` date or effective > 12 months ago, in scope: `[{id, title, access, effective, review, reason}]` |
 | GET / PATCH | `/org` | GET admin, PATCH admin | `{slug, name, industry, description}` |
 
@@ -81,8 +85,8 @@ Login is a separate option on the login page: email `sa@kanav.space` + password,
 |---|---|---|
 | POST | `/auth/super` | `{email, password}` → `204` + cookie, or `401` |
 | POST | `/auth/super/logout` | `204` |
-| GET | `/super/orgs` | `[{slug, name, people, documents, chunks, questions_30d, not_found_pct_30d, last_activity}]` |
-| GET | `/super/evals` | all retrieval eval runs (+ answer evals in Phase 6) |
-| GET | `/super/usage?days=30` | per org and model: questions, tokens in/out when known, avg latency |
-| GET | `/super/waitlist` | `[]` until Clerk (Phase 10) |
-| GET | `/super/orgs/{slug}/view` | read-only company snapshot (team, documents, insights) |
+| GET | `/super/orgs` | `[{slug, name, people, documents, chunks, questions_30d, not_found_pct_30d, last_activity}]` (`not_found_pct_30d` 0–100 or `null`; `last_activity` timestamp or `null`) |
+| GET | `/super/evals` | all retrieval eval runs, newest first: `[{run_id, created_at, modes: {<mode>: {hit_at_1, hit_at_3, hit_at_5, mrr, context_recall, leaks, n}}}]` (same item shape as `/evals/latest`) |
+| GET | `/super/usage?days=30` | `[{org (slug), model, questions, tokens_in, tokens_out, avg_latency_ms}]` per org and model; `model` is the gateway slot (`smart` for document answers, `none` otherwise) until Phase 6 logs it; tokens `null` until then |
+| GET | `/super/waitlist` | `[{email, created_at}]`; `[]` until Clerk (Phase 10) |
+| GET | `/super/orgs/{slug}/view` | read-only snapshot: `{org: {slug, name, industry, description}, team: [person as in /team], documents: [document as in /documents, newest first], insights: (as /insights?days=30, whole company)}`; `404` unknown slug |

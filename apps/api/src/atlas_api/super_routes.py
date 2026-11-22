@@ -208,7 +208,12 @@ async def super_org_view(slug: str, s: DB) -> dict[str, Any]:
         select(Document).where(Document.org_id == org.id).order_by(Document.updated_at.desc())
     )
     return {
-        "org": {"slug": org.slug, "name": org.name, "industry": org.industry},
+        "org": {
+            "slug": org.slug,
+            "name": org.name,
+            "industry": org.industry,
+            "description": org.description,
+        },
         "team": [person(u) for u in await org_people(s, viewer)],
         "documents": [DocumentOut.model_validate(d) for d in docs],
         "insights": await insights_for(s, viewer, 30),

@@ -65,12 +65,19 @@ def can_manage(user: User, access: str) -> bool:
 # members and guests whose departments are all their own. Members and guests: nothing.
 
 LEADS = (Role.admin, Role.manager)
+# Every manager is in this shared department (for manager-only documents). It must not widen
+# their team scope: the HR manager manages HR people, not every manager. Admins manage it.
+MANAGERS = "Managers"
+
+
+def team_scope(actor: User) -> set[str]:
+    """Departments whose people `actor` manages: admin all (call sites check), manager own
+    departments except the shared Managers one."""
+    return actor.department_names - {MANAGERS} if actor.role == Role.manager else set()
 
 
 def sees_person(actor: User, depts: set[str]) -> bool:
-    return actor.role == Role.admin or (
-        actor.role == Role.manager and bool(depts & actor.department_names)
-    )
+    return actor.role == Role.admin or bool(depts & team_scope(actor))
 
 
 def can_manage_person(actor: User, role: Role, depts: set[str]) -> bool:
@@ -79,7 +86,7 @@ def can_manage_person(actor: User, role: Role, depts: set[str]) -> bool:
         actor.role == Role.manager
         and role in (Role.member, Role.guest)
         and bool(depts)
-        and depts <= actor.department_names
+        and depts <= team_scope(actor)
     )
 
 

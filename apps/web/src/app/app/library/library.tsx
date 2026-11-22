@@ -4,6 +4,7 @@ import { QueryClient, QueryClientProvider, useQuery, useQueryClient } from "@tan
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useRef, useState } from "react";
 import { detail } from "@/lib/api";
+import type { Review } from "@/lib/types";
 import { ChunkPanel } from "./chunks";
 
 export type Doc = {
@@ -20,7 +21,7 @@ export type Doc = {
   superseded_by: string | null;
 };
 
-type Props = { initial: Doc[] | null; canUpload: boolean; isAdmin: boolean; uploadTo: string[] };
+type Props = { initial: Doc[] | null; canUpload: boolean; isAdmin: boolean; uploadTo: string[]; review: Review[] };
 
 const STATUS = { ready: "Ready", processing: "Processing", queued: "Queued", failed: "Failed" } as const;
 const MAX_BYTES = 10 * 1024 * 1024;
@@ -41,7 +42,7 @@ export function Library(props: Props) {
   );
 }
 
-function LibraryView({ initial, canUpload, isAdmin, uploadTo }: Props) {
+function LibraryView({ initial, canUpload, isAdmin, uploadTo, review }: Props) {
   const params = useSearchParams();
   const router = useRouter();
   const path = usePathname();
@@ -112,7 +113,7 @@ function LibraryView({ initial, canUpload, isAdmin, uploadTo }: Props) {
           {shown.length === 0 ? (
             <p className="text-sm text-muted">No documents match this search.</p>
           ) : (
-            <DocTable docs={shown} onChunks={setChunksOf} />
+            <DocTable docs={shown} onChunks={setChunksOf} review={new Map(review.map((r) => [String(r.id), r.reason]))} />
           )}
         </>
       )}
@@ -123,7 +124,7 @@ function LibraryView({ initial, canUpload, isAdmin, uploadTo }: Props) {
   );
 }
 
-function DocTable({ docs, onChunks }: { docs: Doc[]; onChunks: (d: Doc) => void }) {
+function DocTable({ docs, onChunks, review }: { docs: Doc[]; onChunks: (d: Doc) => void; review: Map<string, string> }) {
   return (
     <table className="docs">
       <thead>
@@ -138,6 +139,7 @@ function DocTable({ docs, onChunks }: { docs: Doc[]; onChunks: (d: Doc) => void 
                 {d.doc_no && <span className="text-muted">{d.doc_no}</span>}
                 {d.is_public && <span className="tag">Public</span>}
                 {d.superseded_by && <span className="tag tag-warn">Superseded</span>}
+                {review.has(String(d.id)) && <span className="tag tag-warn" title={review.get(String(d.id))}>Needs review<span className="sr-only">: {review.get(String(d.id))}</span></span>}
                 {d.status === "ready" && (
                   <button type="button" className="chunks-btn" onClick={() => onChunks(d)}>Chunks<span className="sr-only">: {d.title}</span></button>
                 )}
@@ -197,7 +199,7 @@ function UploadDialog({ ref, isAdmin, uploadTo }: { ref: React.RefObject<HTMLDia
   }
 
   return (
-    <dialog ref={ref} className="upload" aria-labelledby="up-title" onClose={() => setErr("")}>
+    <dialog ref={ref} className="dialog" aria-labelledby="up-title" onClose={() => setErr("")}>
       <form className="grid gap-4" onSubmit={submit}>
         <h2 id="up-title" className="text-xl font-semibold">Upload a document</h2>
         <label className="grid gap-1 text-sm font-medium">

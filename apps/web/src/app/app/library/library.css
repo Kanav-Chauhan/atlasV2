@@ -16,12 +16,6 @@
 .status-queued { background: var(--color-paper-3); color: var(--color-ink-2); }
 .status-failed { background: var(--color-error-soft); color: var(--color-error); cursor: help; }
 
-.upload {
-  width: min(440px, calc(100% - 2 * var(--gutter))); margin: auto; padding: var(--space-lg);
-  border: var(--rule-hair) solid var(--color-rule); border-radius: var(--radius-card); background: var(--color-paper); color: var(--color-ink);
-  box-shadow: var(--shadow-card);
-}
-.upload::backdrop { background: var(--color-shadow); }
 
 /* Phone: each row becomes a labelled block; title and status stay on top. */
 @media (max-width: 40rem) {

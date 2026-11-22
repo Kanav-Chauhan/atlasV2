@@ -154,7 +154,7 @@ async def insights_for(s: AsyncSession, actor: User, days: int) -> dict[str, Any
         for r, name in reqs
         if in_scope(r.user_id)
     ][:50]
-    scope = None if actor.role == Role.admin else actor.department_names
+    scope = None if actor.role == Role.admin else access.team_scope(actor)
     return aggregate(turns, requests, days, datetime.now(UTC).date(), scope)
 
 

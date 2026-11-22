@@ -23,3 +23,9 @@ export async function logout() {
   (await cookies()).delete(COOKIE);
   redirect("/login");
 }
+
+// The API signs atlas_super; dropping it here is enough to log the Atlas owner out (it is stateless).
+export async function superLogout() {
+  (await cookies()).delete("atlas_super");
+  redirect("/login");
+}

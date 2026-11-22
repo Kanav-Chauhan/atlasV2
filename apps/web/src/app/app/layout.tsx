@@ -8,6 +8,7 @@ import { initials } from "@/lib/demo-users";
 import { navFor } from "@/lib/nav";
 import { getUser } from "@/lib/session";
 import "./controls.css";
+import "./dash.css";
 import "./shell.css";
 
 export default async function AppLayout({ children }: { children: React.ReactNode }) {

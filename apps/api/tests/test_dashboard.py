@@ -40,13 +40,21 @@ def test_sees_person() -> None:
     assert not access.sees_person(user(Role.manager, "HR"), {"Finance"})
     assert not access.sees_person(user(Role.member, "HR"), {"HR"})
     assert not access.sees_person(user(Role.guest), set())
+    # The shared Managers department doesn't widen a manager's scope to every manager.
+    hr = user(Role.manager, "HR", "Managers")
+    assert access.sees_person(hr, {"HR", "Managers"})
+    assert not access.sees_person(hr, {"Engineering", "Managers"})
+    assert access.team_scope(hr) == {"HR"}
+    assert access.team_scope(user(Role.member, "HR")) == set()
 
 
 def test_can_manage_person() -> None:
     hr = user(Role.manager, "HR", "Managers")
     assert access.can_manage_person(user(Role.admin), Role.admin, {"Finance"})
     assert access.can_manage_person(hr, Role.member, {"HR"})
-    assert access.can_manage_person(hr, Role.guest, {"HR", "Managers"})
+    assert access.can_manage_person(hr, Role.guest, {"HR"})
+    assert not access.can_manage_person(hr, Role.guest, {"HR", "Managers"})  # admin-managed
+    assert not access.can_manage_person(hr, Role.member, {"Managers"})
     assert not access.can_manage_person(hr, Role.manager, {"HR"})
     assert not access.can_manage_person(hr, Role.admin, {"HR"})
     assert not access.can_manage_person(hr, Role.member, {"HR", "Finance"})
