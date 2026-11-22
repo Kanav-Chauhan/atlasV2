@@ -506,7 +506,7 @@
    "doc": "Master Services Agreement – Harbor Logistics Inc.",
    "evidence": "in the 12 months before the event",
    "answer": "Fees paid or payable in the 12 months before the event, with a 2x super-cap for confidentiality and data protection breaches.",
-   "as": "owner@nimbus.example",
+   "as": "legal@nimbus.example",
    "tags": [
     "fact",
     "restricted"
@@ -518,7 +518,7 @@
    "doc": "Master Services Agreement – Harbor Logistics Inc.",
    "evidence": "that is, by 2 July 2026",
    "answer": "Written notice at least 90 days before the end of the term (by 2 July 2026); the MSA does not renew automatically.",
-   "as": "owner@nimbus.example",
+   "as": "legal@nimbus.example",
    "tags": [
     "fact"
    ]
@@ -528,7 +528,7 @@
    "doc": "Contract Review and Signing Authority Guideline",
    "evidence": "Founder & CEO (Vikram Kulkarni)",
    "answer": "Only the Founder & CEO, Vikram Kulkarni.",
-   "as": "owner@nimbus.example",
+   "as": "legal@nimbus.example",
    "tags": [
     "table"
    ]
@@ -538,7 +538,7 @@
    "doc": "Contract Review and Signing Authority Guideline",
    "evidence": "NDA on third-party paper",
    "answer": "2 business days (1 business day for the Nimbus template with changes).",
-   "as": "owner@nimbus.example",
+   "as": "legal@nimbus.example",
    "tags": [
     "table"
    ]
@@ -548,7 +548,7 @@
    "doc": "Accounts Payable and Vendor Payment Policy",
    "evidence": "from receipt of a valid invoice",
    "answer": "45 days from receipt of a valid invoice; MSME vendors are always paid within 45 days.",
-   "as": "owner@nimbus.example",
+   "as": "finance@nimbus.example",
    "tags": [
     "table"
    ]
@@ -558,7 +558,7 @@
    "doc": "Accounts Payable and Vendor Payment Policy",
    "evidence": "Above ₹10 lakh and up to ₹50 lakh",
    "answer": "The Chief Financial Officer (above ₹50 lakh, the CFO and the CEO).",
-   "as": "owner@nimbus.example",
+   "as": "finance@nimbus.example",
    "tags": [
     "table"
    ]
@@ -568,7 +568,7 @@
    "doc": "Q1 FY2026-27 Revenue and Collections Report",
    "evidence": "58 days",
    "answer": "58 days at 30 June 2026, down from 61 days at 31 March 2026.",
-   "as": "owner@nimbus.example",
+   "as": "finance@nimbus.example",
    "tags": [
     "fact"
    ]
@@ -578,7 +578,7 @@
    "doc": "Q1 FY2026-27 Revenue and Collections Report",
    "evidence": "197.4",
    "answer": "North America, with ₹197.4 crore (62% of Q1 revenue).",
-   "as": "owner@nimbus.example",
+   "as": "finance@nimbus.example",
    "tags": [
     "table"
    ]
@@ -588,7 +588,7 @@
    "doc": "Vulnerability Management Standard",
    "evidence": "Critical (9.0–10.0)",
    "answer": "Within 7 days on internet-facing systems (15 days on internal systems); actively exploited Criticals within 72 hours.",
-   "as": "owner@nimbus.example",
+   "as": "security@nimbus.example",
    "tags": [
     "table"
    ]
@@ -598,7 +598,7 @@
    "doc": "Vulnerability Management Standard",
    "evidence": "Engineering Manager with the Security Champion",
    "answer": "The Engineering Manager together with the Security Champion, for up to 180 days (High: CISO, 90 days; Critical: CISO and CTO jointly, 30 days).",
-   "as": "owner@nimbus.example",
+   "as": "security@nimbus.example",
    "tags": [
     "table"
    ]
@@ -608,7 +608,7 @@
    "doc": "Privileged Access and Quarterly Access Review Procedure",
    "evidence": "and all privileged access, is reviewed",
    "answer": "Every quarter; managers sign off within 10 business days, otherwise access is revoked automatically.",
-   "as": "owner@nimbus.example",
+   "as": "security@nimbus.example",
    "tags": [
     "fact"
    ]
@@ -618,7 +618,7 @@
    "doc": "Privileged Access and Quarterly Access Review Procedure",
    "evidence": "All remaining access removed, including client, SaaS and third-party accounts",
    "answer": "SSO and email are disabled by 6:00 pm on the last working day; all remaining access is removed within 24 hours of the last working day.",
-   "as": "owner@nimbus.example",
+   "as": "security@nimbus.example",
    "tags": [
     "table"
    ]

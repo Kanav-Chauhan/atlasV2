@@ -3,36 +3,209 @@
   "name": "Nimbus Infotech Pvt. Ltd.",
   "industry": "IT services",
   "departments": [
-    {"name": "HR", "description": "Performance review, salary bands, variable pay, merit, relocation"},
-    {"name": "Engineering", "description": "Runbooks, architecture and standards, client project delivery, BRDs, design docs"},
-    {"name": "Product", "description": "NimbusOps product documents"},
-    {"name": "Finance", "description": "Finance policies and reports"},
-    {"name": "Legal", "description": "Contracts and contract rules"},
-    {"name": "Sales", "description": "Proposals, rate card, discount rules, renewal notes"},
-    {"name": "IT Security", "description": "Security team's own procedures"},
-    {"name": "Leadership", "description": "Board minutes, budget, annual financials, campus expansion"},
-    {"name": "Managers", "description": "Manager playbooks for team leaders"}
+    {
+      "name": "HR",
+      "description": "Performance review, salary bands, variable pay, merit, relocation"
+    },
+    {
+      "name": "Engineering",
+      "description": "Runbooks, architecture and standards, client project delivery, BRDs, design docs"
+    },
+    {
+      "name": "Product",
+      "description": "NimbusOps product documents"
+    },
+    {
+      "name": "Finance",
+      "description": "Finance policies and reports"
+    },
+    {
+      "name": "Legal",
+      "description": "Contracts and contract rules"
+    },
+    {
+      "name": "Sales",
+      "description": "Proposals, rate card, discount rules, renewal notes"
+    },
+    {
+      "name": "IT Security",
+      "description": "Security team's own procedures"
+    },
+    {
+      "name": "Leadership",
+      "description": "Board minutes, budget, annual financials, campus expansion"
+    },
+    {
+      "name": "Managers",
+      "description": "Manager playbooks for team leaders"
+    }
   ],
   "users": [
-    {"name": "Vikram Kulkarni", "title": "Founder & CEO", "role": "admin", "departments": ["HR", "Engineering", "Product", "Finance", "Legal", "Sales", "IT Security", "Leadership", "Managers"], "email": "owner@nimbus.example"},
-    {"name": "Neha Gupta", "title": "Engineering Manager, NimbusOps", "role": "manager", "departments": ["Engineering", "Managers"], "email": "manager@nimbus.example"},
-    {"name": "Ritika Menon", "title": "Manager, HR Operations", "role": "manager", "departments": ["HR", "Managers"], "email": "hr@nimbus.example"},
-    {"name": "Arjun Nair", "title": "VP Sales, North America", "role": "manager", "departments": ["Sales"], "email": "sales@nimbus.example"},
-    {"name": "Aditya Sharma", "title": "Software Engineer", "role": "member", "departments": ["Engineering"], "email": "employee@nimbus.example"},
-    {"name": "Ishaan Verma", "title": "Product Analyst, NimbusOps", "role": "member", "departments": ["Product"], "email": "product@nimbus.example"},
-    {"name": "Riya Saxena", "title": "Design Intern", "role": "guest", "departments": [], "email": "guest@nimbus.example", "guest_until": "2027-05-31"}
+    {
+      "name": "Vikram Kulkarni",
+      "title": "Founder & CEO",
+      "role": "admin",
+      "departments": [
+        "HR",
+        "Engineering",
+        "Product",
+        "Finance",
+        "Legal",
+        "Sales",
+        "IT Security",
+        "Leadership",
+        "Managers"
+      ],
+      "email": "owner@nimbus.example"
+    },
+    {
+      "name": "Neha Gupta",
+      "title": "Engineering Manager, NimbusOps",
+      "role": "manager",
+      "departments": [
+        "Engineering",
+        "Managers"
+      ],
+      "email": "manager@nimbus.example"
+    },
+    {
+      "name": "Ritika Menon",
+      "title": "Manager, HR Operations",
+      "role": "manager",
+      "departments": [
+        "HR",
+        "Managers"
+      ],
+      "email": "hr@nimbus.example"
+    },
+    {
+      "name": "Arjun Nair",
+      "title": "VP Sales, North America",
+      "role": "manager",
+      "departments": [
+        "Sales"
+      ],
+      "email": "sales@nimbus.example"
+    },
+    {
+      "name": "Aditya Sharma",
+      "title": "Software Engineer",
+      "role": "member",
+      "departments": [
+        "Engineering"
+      ],
+      "email": "employee@nimbus.example"
+    },
+    {
+      "name": "Ishaan Verma",
+      "title": "Product Analyst, NimbusOps",
+      "role": "member",
+      "departments": [
+        "Product"
+      ],
+      "email": "product@nimbus.example"
+    },
+    {
+      "name": "Riya Saxena",
+      "title": "Design Intern",
+      "role": "guest",
+      "departments": [],
+      "email": "guest@nimbus.example",
+      "guest_until": "2027-05-31"
+    },
+    {
+      "name": "Rohan Bhatia",
+      "title": "Chief Financial Officer",
+      "role": "manager",
+      "departments": [
+        "Finance",
+        "Managers"
+      ],
+      "email": "finance@nimbus.example"
+    },
+    {
+      "name": "Farah Siddiqui",
+      "title": "Head of Legal",
+      "role": "manager",
+      "departments": [
+        "Legal",
+        "Managers"
+      ],
+      "email": "legal@nimbus.example"
+    },
+    {
+      "name": "Sameer Khan",
+      "title": "Chief Information Security Officer",
+      "role": "manager",
+      "departments": [
+        "IT Security",
+        "Managers"
+      ],
+      "email": "security@nimbus.example"
+    }
   ],
   "suggested_questions": {
-    "owner@nimbus.example": ["How much did the Board top up the ESOP pool on 14 May 2026?", "What is the FY27 revenue target?", "What does the Hyderabad campus expansion cost?"],
-    "manager@nimbus.example": ["When is the Harbor Logistics renewal due?", "What is the NimbusOps monthly availability SLO?", "How long does a formal PIP last?"],
-    "hr@nimbus.example": ["How many days of earned leave can be carried forward?", "What is the notice period for a Senior Manager?", "What is the salary band for an L4 Tech Lead?"],
-    "sales@nimbus.example": ["What is the list price of the NimbusOps Enterprise plan?", "What volume discount applies above 20,000 hosts?", "Who must approve a discount on a proposal?"],
-    "employee@nimbus.example": ["Who gets paged for a SEV1 and how fast must we respond?", "What are the RPO and RTO for NimbusOps?", "What are the password and MFA rules?"],
-    "product@nimbus.example": ["Which plans get AI alert summaries?", "Where is NimbusOps customer data stored?", "How many office days a week does hybrid work need?"],
-    "guest@nimbus.example": ["How many office days a week does hybrid work need?", "What is the daily allowance for a metro city trip?", "How many days of earned leave do I get a year?"]
+    "owner@nimbus.example": [
+      "How much did the Board top up the ESOP pool on 14 May 2026?",
+      "What is the FY27 revenue target?",
+      "What does the Hyderabad campus expansion cost?"
+    ],
+    "manager@nimbus.example": [
+      "When is the Harbor Logistics renewal due?",
+      "What is the NimbusOps monthly availability SLO?",
+      "How long does a formal PIP last?"
+    ],
+    "hr@nimbus.example": [
+      "How many days of earned leave can be carried forward?",
+      "What is the notice period for a Senior Manager?",
+      "What is the salary band for an L4 Tech Lead?"
+    ],
+    "sales@nimbus.example": [
+      "What is the list price of the NimbusOps Enterprise plan?",
+      "What volume discount applies above 20,000 hosts?",
+      "Who must approve a discount on a proposal?"
+    ],
+    "employee@nimbus.example": [
+      "Who gets paged for a SEV1 and how fast must we respond?",
+      "What are the RPO and RTO for NimbusOps?",
+      "What are the password and MFA rules?"
+    ],
+    "product@nimbus.example": [
+      "Which plans get AI alert summaries?",
+      "Where is NimbusOps customer data stored?",
+      "How many office days a week does hybrid work need?"
+    ],
+    "guest@nimbus.example": [
+      "How many office days a week does hybrid work need?",
+      "What is the daily allowance for a metro city trip?",
+      "How many days of earned leave do I get a year?"
+    ],
+    "finance@nimbus.example": [
+      "What are Nimbus's standard vendor payment terms?",
+      "Who approves a vendor invoice between ₹10 lakh and ₹50 lakh?",
+      "What were Nimbus's Q1 FY27 debtor days?"
+    ],
+    "legal@nimbus.example": [
+      "Who can sign a client contract worth more than ₹5 crore?",
+      "What is the liability cap in the Harbor Logistics MSA?",
+      "How long does Legal take to review an NDA on third-party paper?"
+    ],
+    "security@nimbus.example": [
+      "How fast must a critical vulnerability on an internet-facing system be fixed?",
+      "How often is privileged and production access reviewed?",
+      "How soon is all access removed after someone leaves?"
+    ]
   },
   "permission_pairs": [
-    {"q": "What is the salary band for an L4 Tech Lead?", "allowed_as": "hr@nimbus.example", "denied_as": "employee@nimbus.example"},
-    {"q": "What is the list price of the NimbusOps Enterprise plan?", "allowed_as": "sales@nimbus.example", "denied_as": "employee@nimbus.example"}
+    {
+      "q": "What is the salary band for an L4 Tech Lead?",
+      "allowed_as": "hr@nimbus.example",
+      "denied_as": "employee@nimbus.example"
+    },
+    {
+      "q": "What is the list price of the NimbusOps Enterprise plan?",
+      "allowed_as": "sales@nimbus.example",
+      "denied_as": "employee@nimbus.example"
+    }
   ]
 }
