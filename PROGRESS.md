@@ -17,4 +17,4 @@ Plan: [PLAN.md](PLAN.md). Updated after every step.
 | 2026-11-22 | Owner answered demo-data questions: Managers dept yes, Nimbus leave/notice/referral = Everyone, Admin sees all | ✅ |
 | 2026-11-22 | Phase 1 CI green (api, web, images) | ✅ |
 | 2026-11-22 | Phase 1: FastAPI + Postgres/pgvector + Redis + Celery + Next.js 16 (landing, login, role-based /app shell) live at p10 (password), previews at /previews/ | ✅ |
-| 2026-11-22 | Phase 2 started: corpus + renderer copied (tools/corpus), 3 writers: access mapping, 28 new docs, orgs/<slug>.json, eval candidates | 🔄 |
+| 2026-11-22 | Phase 2: 199 docs (171 remapped + 28 new, rendered), orgs/<slug>.json (21 users, departments incl. Managers, suggested questions), evals/demo_v2.json (187 q: 34 restricted, 20 not_found); public docs = Everyone | ✅ |

@@ -1,0 +1,1310 @@
+{
+ "name": "demo-v1",
+ "description": "125 questions over the three demo companies (Nimbus Infotech, Sanjeevani Pharma, Kaveri Capital), written alongside the documents (demo_corpus/eval_candidates) and checked against the sources. A question counts as retrieved when a chunk from doc containing evidence (case-insensitive) is among the top k. not_found questions must get 'not found'; a question with denied_as is also asked as that user, who must get 'not found' and never the document.",
+ "questions": [
+  {
+   "q": "How many days of privilege leave do Kaveri Capital employees get per calendar year?",
+   "doc": "Leave Policy 2026",
+   "evidence": "20 days of privilege leave",
+   "answer": "20 days of privilege leave per calendar year (plus 8 casual and 10 sick leave days).",
+   "as": "compliance@kaveri.example",
+   "tags": [
+    "fact"
+   ]
+  },
+  {
+   "q": "How long must the mandatory block leave be for dealers and fund managers, and why is it required?",
+   "doc": "Mandatory Block Leave Policy",
+   "evidence": "10 consecutive working days",
+   "answer": "10 consecutive working days every calendar year; it is a fraud-control measure so that someone else runs their book while they are away.",
+   "as": "analyst@kaveri.example",
+   "tags": [
+    "fact"
+   ]
+  },
+  {
+   "q": "What is the minimum holding period for personal trades by Kaveri employees?",
+   "doc": "Personal Trading Policy",
+   "evidence": "30-day minimum holding",
+   "answer": "30 days from the trade date, after pre-clearance.",
+   "as": "analyst@kaveri.example",
+   "tags": [
+    "fact"
+   ]
+  },
+  {
+   "q": "Within what time must a personal trading violation be reported, and to whom?",
+   "doc": "Personal Trading Policy",
+   "evidence": "reported to the CCO within 1 working day",
+   "answer": "To the Chief Compliance Officer within 1 working day of discovery.",
+   "as": "compliance@kaveri.example",
+   "tags": [
+    "fact"
+   ]
+  },
+  {
+   "q": "If an employee sells shares 20 days after buying them without a hardship exception, what happens to the profit, and what is the penalty if it happens again within 24 months?",
+   "doc": "Personal Trading Policy",
+   "evidence": "Any profit from a sale within 30 days without an exception is disgorged to the Company's CSR fund",
+   "answer": "The profit is disgorged to the Company's CSR fund; a repeat within 24 months leads to a 6-month personal trading suspension.",
+   "as": "analyst@kaveri.example",
+   "tags": [
+    "multi_hop",
+    "table"
+   ]
+  },
+  {
+   "q": "What is the hotel limit per night in Mumbai for a G3 employee?",
+   "doc": "Travel and Entertainment Policy",
+   "evidence": "₹8,500",
+   "answer": "₹8,500 per night, excluding taxes.",
+   "as": "analyst@kaveri.example",
+   "tags": [
+    "table"
+   ]
+  },
+  {
+   "q": "What is the largest holding of the Kaveri Bluechip Fund as of March 2026 and its weight?",
+   "doc": "Kaveri Bluechip Fund Factsheet March 2026",
+   "evidence": "Sahyadri Bank Ltd",
+   "answer": "Sahyadri Bank Ltd at 8.9% of net assets.",
+   "as": "compliance@kaveri.example",
+   "tags": [
+    "table"
+   ]
+  },
+  {
+   "q": "What was the 1-year return of Kaveri Small Cap Opportunities versus its benchmark to March 2026?",
+   "doc": "Kaveri Small Cap Opportunities Factsheet March 2026",
+   "evidence": "22.4%",
+   "answer": "22.4% (direct plan) against 24.8% for the Nifty Smallcap 250 TRI, an underperformance of 2.4 percentage points.",
+   "as": "analyst@kaveri.example",
+   "tags": [
+    "table"
+   ]
+  },
+  {
+   "q": "What is the portfolio YTM of the Kaveri Short Duration Fund?",
+   "doc": "Kaveri Short Duration Fund Factsheet March 2026",
+   "evidence": "6.94%",
+   "answer": "6.94% (annualised), as of 31 March 2026.",
+   "as": "cfo@kaveri.example",
+   "tags": [
+    "table"
+   ]
+  },
+  {
+   "q": "What is the exit load on the Kaveri Arbitrage Fund?",
+   "doc": "Kaveri Arbitrage Fund Factsheet March 2026",
+   "evidence": "0.25% if redeemed within 15 days from allotment",
+   "answer": "0.25% if redeemed within 15 days of allotment; nil thereafter.",
+   "as": "compliance@kaveri.example",
+   "tags": [
+    "fact"
+   ]
+  },
+  {
+   "q": "What does the hybrid fee option of the Kaveri Focused Equity PMS charge?",
+   "doc": "Kaveri Focused Equity PMS Presentation Summary",
+   "evidence": "20% of returns above a 10% hurdle, subject to a high-water mark",
+   "answer": "1.0% per annum management fee plus 20% of returns above a 10% hurdle, subject to a high-water mark (the alternative is a 2.0% fixed fee).",
+   "as": "compliance@kaveri.example",
+   "tags": [
+    "table"
+   ]
+  },
+  {
+   "q": "What is the house-view Nifty 50 year-end target and how was it derived?",
+   "doc": "India Strategy Outlook FY27",
+   "evidence": "18.5x forward earnings on September 2027E Nifty EPS of ₹1,450",
+   "answer": "26,800, based on 18.5x forward earnings on September 2027E Nifty EPS of ₹1,450.",
+   "as": "analyst@kaveri.example",
+   "denied_as": "compliance@kaveri.example",
+   "tags": [
+    "fact",
+    "restricted"
+   ]
+  },
+  {
+   "q": "What did IC 48 decide about Vindhyagiri Cementworks and why?",
+   "doc": "IC Meeting 48 Minutes – 9 April 2026",
+   "evidence": "exit its entire position in Vindhyagiri Cementworks Ltd due to governance concerns",
+   "answer": "The Small Cap fund was to exit its entire Vindhyagiri Cementworks position due to governance concerns, in an orderly way by 15 May 2026, and the stock was put on the do-not-buy list for at least 24 months.",
+   "as": "owner@kaveri.example",
+   "tags": [
+    "fact"
+   ]
+  },
+  {
+   "q": "What rating and target price did Research give Konkan Rail Systems at initiation?",
+   "doc": "Initiating Coverage – Konkan Rail Systems Ltd",
+   "evidence": "BUY rating and a 12-month target price of ₹820",
+   "answer": "BUY with a 12-month target price of ₹820 (26x FY28E EPS of ₹31.5), against a price of ₹612.",
+   "as": "cfo@kaveri.example",
+   "denied_as": "compliance@kaveri.example",
+   "tags": [
+    "fact",
+    "restricted"
+   ]
+  },
+  {
+   "q": "What allocation range did IC 47 approve for the railways capex theme in the Flexi Cap fund?",
+   "doc": "IC Meeting 47 Minutes – 12 March 2026",
+   "evidence": "4%–6% of NAV",
+   "answer": "4% to 6% of NAV, with a single-stock cap of 3.0% within the theme.",
+   "as": "analyst@kaveri.example",
+   "tags": [
+    "table"
+   ]
+  },
+  {
+   "q": "What is the quorum for an Investment Committee meeting?",
+   "doc": "Investment Process and IC Charter",
+   "evidence": "four voting members, which must include either the Chair or the MD & CEO",
+   "answer": "Four voting members, including either the Chair (CIO) or the MD & CEO.",
+   "as": "owner@kaveri.example",
+   "tags": [
+    "fact"
+   ]
+  },
+  {
+   "q": "How much is the employee referral bonus at Kaveri Capital?",
+   "doc": null,
+   "evidence": null,
+   "answer": "not found",
+   "as": "analyst@kaveri.example",
+   "tags": [
+    "not_found"
+   ]
+  },
+  {
+   "q": "What is the 10-year return of the Kaveri Bluechip Fund?",
+   "doc": null,
+   "evidence": null,
+   "answer": "not found",
+   "as": "compliance@kaveri.example",
+   "tags": [
+    "not_found"
+   ]
+  },
+  {
+   "q": "How often must Kaveri redo KYC for low-risk clients under the current KYC policy?",
+   "doc": "KYC and Customer Due Diligence Policy",
+   "evidence": "Every 8 years",
+   "answer": "Every 8 years for low-risk clients (every 5 years for medium-risk and every 2 years for high-risk).",
+   "as": "compliance@kaveri.example",
+   "tags": [
+    "fact",
+    "table"
+   ]
+  },
+  {
+   "q": "Under the old KYC Policy 2022, how often was re-KYC required for high-risk clients?",
+   "doc": "KYC Policy 2022",
+   "evidence": "Every 3 years",
+   "answer": "Every 3 years under the superseded 2022 policy; the current policy (v4.0, from 1 April 2026) requires every 2 years.",
+   "as": "compliance@kaveri.example",
+   "tags": [
+    "fact",
+    "table"
+   ]
+  },
+  {
+   "q": "How quickly must a Suspicious Transaction Report be filed with FIU-IND?",
+   "doc": "Suspicious Transaction Reporting SOP",
+   "evidence": "within 7 days of suspicion being established",
+   "answer": "Within 7 days of suspicion being established by the Principal Officer (counted from the written determination, not the original alert).",
+   "as": "compliance@kaveri.example",
+   "tags": [
+    "fact"
+   ]
+  },
+  {
+   "q": "Who must approve onboarding of a politically exposed person?",
+   "doc": "Politically Exposed Persons Procedure",
+   "evidence": "Every PEP relationship requires the prior written approval of the Chief Compliance Officer",
+   "answer": "The Chief Compliance Officer must give prior written approval; this cannot be delegated.",
+   "as": "compliance@kaveri.example",
+   "tags": [
+    "fact"
+   ]
+  },
+  {
+   "q": "What is the VaR limit for Kaveri's equity schemes?",
+   "doc": "Investment Risk Limits Policy",
+   "evidence": "must not exceed 2.5% of NAV for any equity scheme",
+   "answer": "1-day VaR at 95% confidence must not exceed 2.5% of NAV for any equity scheme.",
+   "as": "compliance@kaveri.example",
+   "tags": [
+    "fact"
+   ]
+  },
+  {
+   "q": "In the March 2026 stress test, what funding shortfall would the Small Cap fund face if 25% of AUM were redeemed in 10 trading days?",
+   "doc": "Stress Test Results March 2026",
+   "evidence": "funding shortfall of ₹30.0 crore",
+   "answer": "A funding shortfall of ₹30.0 crore (1.3% of AUM), which would need to be met by borrowing.",
+   "as": "compliance@kaveri.example",
+   "denied_as": "analyst@kaveri.example",
+   "tags": [
+    "restricted",
+    "fact"
+   ]
+  },
+  {
+   "q": "How much of the FY2026-27 technology budget is for market data and research terminals?",
+   "doc": "FY2026-27 Budget",
+   "evidence": "4.6",
+   "answer": "₹4.6 crore out of the total technology spend of ₹14 crore.",
+   "as": "cfo@kaveri.example",
+   "denied_as": "compliance@kaveri.example",
+   "tags": [
+    "restricted",
+    "table"
+   ]
+  },
+  {
+   "q": "Who would become interim MD & CEO if Ramesh Iyengar were suddenly unavailable?",
+   "doc": "Succession Planning Note",
+   "evidence": "becomes interim MD & CEO",
+   "answer": "Ashok Venkataraman, CIO (Equity), would become interim MD & CEO, with Divya Menon as interim CIO.",
+   "as": "cfo@kaveri.example",
+   "denied_as": "compliance@kaveri.example",
+   "tags": [
+    "restricted",
+    "fact"
+   ]
+  },
+  {
+   "q": "What are the terms of the hybrid fee option for Kaveri's PMS?",
+   "doc": "Fee Schedule and Exit Loads",
+   "evidence": "1.0% p.a.",
+   "answer": "1.0% p.a. management fee plus 20% of returns above a 10% p.a. hurdle, with a high-water mark.",
+   "as": "cfo@kaveri.example",
+   "tags": [
+    "fact",
+    "table"
+   ]
+  },
+  {
+   "q": "What was Kaveri's employee benefits expense in FY2025-26?",
+   "doc": "FY2025-26 Financial Statements Summary",
+   "evidence": "84.6",
+   "answer": "₹84.6 crore in FY2025-26, up from ₹73.2 crore in FY2024-25.",
+   "as": "cfo@kaveri.example",
+   "tags": [
+    "fact",
+    "table"
+   ]
+  },
+  {
+   "q": "How many observations did the statutory auditors raise in the FY26 management letter, and how were they rated?",
+   "doc": "Statutory Audit Management Letter FY26",
+   "evidence": "Five observations are listed below: one High, three Medium and one Low.",
+   "answer": "Five observations: one High (PMS performance fee computation), three Medium and one Low.",
+   "as": "cfo@kaveri.example",
+   "tags": [
+    "fact"
+   ]
+  },
+  {
+   "q": "What interim dividend did the Board declare on 25 April 2026?",
+   "doc": "Board Meeting Minutes – 25 April 2026",
+   "evidence": "an interim dividend of ₹3.00 per equity share of ₹10 each, aggregating ₹12 crore",
+   "answer": "₹3.00 per equity share, aggregating ₹12 crore, for FY2026-27, payable by 25 May 2026.",
+   "as": "owner@kaveri.example",
+   "tags": [
+    "fact"
+   ]
+  },
+  {
+   "q": "What is the cut-off time for getting same-day NAV in Kaveri's mutual-fund schemes?",
+   "doc": "NAV Computation and Cut-off Timings",
+   "evidence": "Cut-off time is 3:00 pm",
+   "answer": "3:00 pm on business days; for purchases the funds must also be realised in the scheme's account before 3:00 pm.",
+   "as": "analyst@kaveri.example",
+   "tags": [
+    "fact"
+   ]
+  },
+  {
+   "q": "When is the GIFT City feeder fund expected to launch and how much seed capital will Kaveri put in?",
+   "doc": "GIFT City Feeder Fund Proposal",
+   "evidence": "seed capital of ₹25 crore from own funds",
+   "answer": "Target launch is January 2027, with seed capital of ₹25 crore from Kaveri's own funds.",
+   "as": "owner@kaveri.example",
+   "tags": [
+    "multi_hop"
+   ]
+  },
+  {
+   "q": "Which operational incident in FY26 caused the largest financial loss, and what was done about it?",
+   "doc": "Operational Risk Incident Log FY26",
+   "evidence": "Total over-charge ₹7.9 lakh, refunded with interest by 28 November 2025",
+   "answer": "ORI-FY26-06: PMS performance fees for 12 clients were charged without applying the high-water mark; the ₹7.9 lakh over-charge was refunded with interest by 28 November 2025.",
+   "as": "compliance@kaveri.example",
+   "tags": [
+    "multi_hop"
+   ]
+  },
+  {
+   "q": "What brokerage rate per trade does Kaveri pay its equity brokers?",
+   "doc": null,
+   "evidence": null,
+   "answer": "not found",
+   "as": "cfo@kaveri.example",
+   "tags": [
+    "not_found"
+   ]
+  },
+  {
+   "q": "Which insurer provides Kaveri's directors and officers (D&O) liability cover, and for what amount?",
+   "doc": null,
+   "evidence": null,
+   "answer": "not found",
+   "as": "owner@kaveri.example",
+   "tags": [
+    "not_found"
+   ]
+  },
+  {
+   "q": "What is the minimum password length at Nimbus?",
+   "doc": "Acceptable Use Policy",
+   "evidence": "passwords of at least 14 characters and MFA on every account",
+   "answer": "At least 14 characters, and MFA is mandatory on every account.",
+   "as": "employee@nimbus.example",
+   "tags": [
+    "fact"
+   ]
+  },
+  {
+   "q": "After how many minutes of inactivity must a Nimbus laptop screen lock?",
+   "doc": "Laptop and Device Security Standard",
+   "evidence": "auto-lock after 5 minutes",
+   "answer": "Screens auto-lock after 5 minutes of inactivity; the setting is enforced.",
+   "as": "employee@nimbus.example",
+   "tags": [
+    "fact"
+   ]
+  },
+  {
+   "q": "Where should I forward a suspicious email?",
+   "doc": "Welcome to Nimbus",
+   "evidence": "Forward to phish@nimbus.example",
+   "answer": "Forward it to phish@nimbus.example.",
+   "as": "employee@nimbus.example",
+   "tags": [
+    "fact"
+   ]
+  },
+  {
+   "q": "What is the response time for a SEV1 incident and who gets paged?",
+   "doc": "Incident Reporting Procedure",
+   "evidence": "Customer-wide outage, or confirmed breach of Confidential/Restricted data",
+   "answer": "SEV1 (customer-wide outage or confirmed breach of Confidential/Restricted data) needs a response within 15 minutes; the CISO and CTO are paged along with the incident commander.",
+   "as": "employee@nimbus.example",
+   "tags": [
+    "table"
+   ]
+  },
+  {
+   "q": "Which class can I fly on a 10-hour international flight for work?",
+   "doc": "Travel and Expense Policy",
+   "evidence": "premium economy when the flight time is above 8 hours",
+   "answer": "Premium economy, because the flight time is above 8 hours (economy applies under 8 hours).",
+   "as": "employee@nimbus.example",
+   "tags": [
+    "fact"
+   ]
+  },
+  {
+   "q": "What is the daily allowance for business travel to a metro city in India?",
+   "doc": "Travel and Expense Policy",
+   "evidence": "₹3,500 per day",
+   "answer": "₹3,500 per day (non-metro ₹2,500, international USD 75).",
+   "as": "employee@nimbus.example",
+   "tags": [
+    "table"
+   ]
+  },
+  {
+   "q": "What are the default anchor days for office attendance?",
+   "doc": "Hybrid Work Policy",
+   "evidence": "Tuesday and Wednesday",
+   "answer": "Tuesday and Wednesday, as part of the 3 office days a week requirement.",
+   "as": "employee@nimbus.example",
+   "tags": [
+    "fact"
+   ]
+  },
+  {
+   "q": "Independence Day 2026 falls on a Saturday. Is there still a flag-hoisting at the office?",
+   "doc": "Holiday Calendar FY2026-27",
+   "evidence": "8:30 am on Saturday, 15 August 2026",
+   "answer": "Yes, a flag-hoisting ceremony is held at each office at 8:30 am on Saturday, 15 August 2026; attendance is voluntary and the day is not counted in the 12 holidays.",
+   "as": "employee@nimbus.example",
+   "tags": [
+    "fact"
+   ]
+  },
+  {
+   "q": "What is the group term life insurance cover for employees?",
+   "doc": "Employee Benefits Guide",
+   "evidence": "3 times annual fixed pay",
+   "answer": "3 times annual fixed pay, with a minimum of ₹20 lakh, paid by Nimbus.",
+   "as": "employee@nimbus.example",
+   "tags": [
+    "fact"
+   ]
+  },
+  {
+   "q": "Within how many hours must CERT-In be notified of a reportable cyber incident?",
+   "doc": "Information Security Policy",
+   "evidence": "reported to CERT-In within 6 hours of being noticed",
+   "answer": "Within 6 hours of the incident being noticed.",
+   "as": "employee@nimbus.example",
+   "tags": [
+    "fact"
+   ]
+  },
+  {
+   "q": "What happens to earned leave above the carry-forward limit at year end?",
+   "doc": "Leave Policy FY2026-27",
+   "evidence": "EL beyond 30 days lapses on 31 March.",
+   "answer": "Up to 30 days of EL carry forward; anything beyond 30 days lapses on 31 March.",
+   "as": "hr@nimbus.example",
+   "tags": [
+    "fact"
+   ]
+  },
+  {
+   "q": "If a Principal (L6) resigns, how long is the notice period and when is the full and final settlement paid?",
+   "doc": "Notice Period and Exit Process",
+   "evidence": "Full and final (F&F) settlement is paid within",
+   "answer": "L6 and above serve 90 days' notice; the full and final settlement is paid within 45 days of the last working day, after clearance.",
+   "as": "hr@nimbus.example",
+   "tags": [
+    "multi_hop"
+   ]
+  },
+  {
+   "q": "What referral bonus does an employee get for referring a Senior Software Engineer (L3)?",
+   "doc": "Referral Bonus Policy",
+   "evidence": "₹60,000",
+   "answer": "₹60,000, paid after the hire completes 90 days of service (plus ₹25,000 if it is a hot-skill role).",
+   "as": "hr@nimbus.example",
+   "tags": [
+    "table"
+   ]
+  },
+  {
+   "q": "Can recruitment agencies be used for any role, and what fee is allowed?",
+   "doc": "Hiring Approval Workflow",
+   "evidence": "Agencies may only be used for L4 and above or hot-skill roles, with a fee capped at 8.33% of first-year fixed pay",
+   "answer": "Only for L4 and above or hot-skill roles, with the fee capped at 8.33% of first-year fixed pay.",
+   "as": "manager@nimbus.example",
+   "tags": [
+    "fact"
+   ]
+  },
+  {
+   "q": "What is the salary band for a Tech Lead (L4)?",
+   "doc": "Salary Bands FY2026-27",
+   "evidence": "L4 ₹18–28 lakh",
+   "answer": "₹18–28 lakh per annum fixed pay (midpoint ₹23 lakh).",
+   "as": "hr@nimbus.example",
+   "denied_as": "employee@nimbus.example",
+   "tags": [
+    "restricted",
+    "fact"
+   ]
+  },
+  {
+   "q": "When is the FY2026-27 variable pay paid out?",
+   "doc": "Variable Pay Plan",
+   "evidence": "July 2027 payroll, after audited results and ratings",
+   "answer": "In the July 2027 payroll, after audited results and ratings are final.",
+   "as": "hr@nimbus.example",
+   "denied_as": "manager@nimbus.example",
+   "tags": [
+    "restricted",
+    "fact"
+   ]
+  },
+  {
+   "q": "How long does a formal Performance Improvement Plan (PIP) last?",
+   "doc": "Handling Performance Issues – PIP Guide",
+   "evidence": "may be extended once by up to 30 days",
+   "answer": "60 days, which may be extended once by up to 30 days, with documented reviews every 2 weeks.",
+   "as": "manager@nimbus.example",
+   "denied_as": "employee@nimbus.example",
+   "tags": [
+    "restricted",
+    "fact"
+   ]
+  },
+  {
+   "q": "Can employees bring their pets to the Nimbus office?",
+   "doc": null,
+   "evidence": null,
+   "answer": "not found",
+   "as": "employee@nimbus.example",
+   "tags": [
+    "not_found"
+   ]
+  },
+  {
+   "q": "How much is the Nimbus annual Diwali bonus?",
+   "doc": null,
+   "evidence": null,
+   "answer": "not found",
+   "as": "hr@nimbus.example",
+   "tags": [
+    "not_found"
+   ]
+  },
+  {
+   "q": "What is the monthly error budget for NimbusOps under its availability SLO?",
+   "doc": "NimbusOps Database Failover Runbook",
+   "evidence": "43 min 12 s",
+   "answer": "43 minutes 12 seconds per 30-day month (99.9% monthly availability SLO).",
+   "as": "employee@nimbus.example",
+   "tags": [
+    "fact",
+    "table"
+   ]
+  },
+  {
+   "q": "How much on-call allowance is paid for a weekend or public holiday day?",
+   "doc": "On-Call Policy and Rotation",
+   "evidence": "₹3,000",
+   "answer": "₹3,000 per day (weekdays are ₹1,500 per day).",
+   "as": "employee@nimbus.example",
+   "tags": [
+    "table"
+   ]
+  },
+  {
+   "q": "What RPO and RTO were measured in the April 2026 full DR drill, and did it pass?",
+   "doc": "Disaster Recovery Drill Procedure",
+   "evidence": "47 min",
+   "answer": "The 18 April 2026 full drill measured RPO 6 minutes and RTO 47 minutes and passed.",
+   "as": "employee@nimbus.example",
+   "denied_as": "hr@nimbus.example",
+   "tags": [
+    "table",
+    "restricted"
+   ]
+  },
+  {
+   "q": "What is the API rate limit per key for Enterprise-plan customers?",
+   "doc": "API Design Standard",
+   "evidence": "600",
+   "answer": "600 requests per minute per API key, with a burst of 100.",
+   "as": "employee@nimbus.example",
+   "tags": [
+    "table"
+   ]
+  },
+  {
+   "q": "Who can accept the risk of a Critical vulnerability that cannot be fixed within SLA, and for how long?",
+   "doc": "Secure SDLC Standard",
+   "evidence": "CISO and CTO jointly",
+   "answer": "The CISO and CTO jointly, for a maximum exception period of 30 days.",
+   "as": "employee@nimbus.example",
+   "tags": [
+    "table"
+   ]
+  },
+  {
+   "q": "Why must infrastructure and system logs be kept for at least 180 days?",
+   "doc": "Logging and Observability Standard",
+   "evidence": "The 180-day minimum for system logs meets the CERT-In Directions of April 2022",
+   "answer": "To meet the CERT-In Directions of April 2022, which require ICT system logs to be kept securely within India for a rolling 180 days.",
+   "as": "employee@nimbus.example",
+   "tags": [
+    "fact"
+   ]
+  },
+  {
+   "q": "Who must approve new recurring cloud spend above ₹5 lakh per month?",
+   "doc": "Cloud Cost Management Guideline",
+   "evidence": "Head of Infrastructure & SRE",
+   "answer": "The Head of Infrastructure & SRE (above ₹25 lakh per month, the CFO).",
+   "as": "employee@nimbus.example",
+   "tags": [
+    "table"
+   ]
+  },
+  {
+   "q": "How long was HarborTrack down during INC-2291 and what service credit did Harbor receive?",
+   "doc": "Harbor Logistics – Incident Post-Mortem INC-2291",
+   "evidence": "5% of the monthly managed cloud operations fee (USD 112,500)",
+   "answer": "2 hours 47 minutes; a service credit of USD 17,500, i.e. 5% of the USD 112,500 monthly managed cloud operations fee.",
+   "as": "manager@nimbus.example",
+   "tags": [
+    "multi_hop"
+   ]
+  },
+  {
+   "q": "How many Harbor Logistics applications had been migrated to AWS by 30 June 2026?",
+   "doc": "Harbor Logistics – Account Overview",
+   "evidence": "287 of 412 (70%)",
+   "answer": "287 of 412 applications (70%).",
+   "as": "ops-agent@nimbus.example",
+   "tags": [
+    "table"
+   ]
+  },
+  {
+   "q": "How much is the go-live milestone payment in the Zenith Retail S/4HANA project?",
+   "doc": "Zenith Retail – SAP S/4HANA Project Charter",
+   "evidence": "9.50",
+   "answer": "₹9.50 crore (25% of the ₹38 crore fixed price), planned for April 2027.",
+   "as": "manager@nimbus.example",
+   "tags": [
+    "table"
+   ]
+  },
+  {
+   "q": "How quickly was the May 2026 phishing campaign at Al Noor Healthcare contained?",
+   "doc": "Al Noor Healthcare – Managed SOC Service Report",
+   "evidence": "contained within 41 minutes with two mailboxes compromised",
+   "answer": "Within 41 minutes; two mailboxes were compromised and no patient data was accessed.",
+   "as": "ops-agent@nimbus.example",
+   "tags": [
+    "fact"
+   ]
+  },
+  {
+   "q": "What is the list price of the NimbusOps Enterprise plan?",
+   "doc": "Rate Card FY2026-27",
+   "evidence": "5.00",
+   "answer": "USD 5.00 (₹390) per monitored host per month, billed annually.",
+   "as": "owner@nimbus.example",
+   "denied_as": "employee@nimbus.example",
+   "tags": [
+    "table",
+    "restricted"
+   ]
+  },
+  {
+   "q": "Who approves a discount of more than 10% and up to 15% of total contract value?",
+   "doc": "Discount Approval Policy",
+   "evidence": "Chief Financial Officer (Rohan Bhatia)",
+   "answer": "The CFO, Rohan Bhatia, provided deal gross margin is at least 28%.",
+   "as": "owner@nimbus.example",
+   "tags": [
+    "table"
+   ]
+  },
+  {
+   "q": "By how much did the Board approve topping up the ESOP pool on 14 May 2026?",
+   "doc": "Board Meeting Minutes – 14 May 2026",
+   "evidence": "the ESOP pool be increased by 1.5% of the fully diluted share capital",
+   "answer": "By 1.5% of the fully diluted share capital, subject to shareholder approval by special resolution.",
+   "as": "owner@nimbus.example",
+   "denied_as": "manager@nimbus.example",
+   "tags": [
+    "fact",
+    "restricted"
+   ]
+  },
+  {
+   "q": "What is the planned Hyderabad headcount at 31 March 2027?",
+   "doc": "FY2026-27 Budget and Headcount Plan",
+   "evidence": "1,360",
+   "answer": "1,360, up 310 from 1,050 at 31 March 2026.",
+   "as": "owner@nimbus.example",
+   "tags": [
+    "table"
+   ]
+  },
+  {
+   "q": "What is the capital cost per seat of the Hyderabad campus expansion?",
+   "doc": "Hyderabad Campus Expansion Proposal",
+   "evidence": "Cost per seat (capex): ₹2.25 lakh.",
+   "answer": "₹2.25 lakh per seat (₹45 crore for about 2,000 seats).",
+   "as": "owner@nimbus.example",
+   "tags": [
+    "fact"
+   ]
+  },
+  {
+   "q": "How many story points does the NimbusOps team deliver per sprint on average?",
+   "doc": null,
+   "evidence": null,
+   "answer": "not found",
+   "as": "employee@nimbus.example",
+   "tags": [
+    "not_found"
+   ]
+  },
+  {
+   "q": "What is the parking reimbursement for engineers called in to the office during a SEV1?",
+   "doc": null,
+   "evidence": null,
+   "answer": "not found",
+   "as": "employee@nimbus.example",
+   "tags": [
+    "not_found"
+   ]
+  },
+  {
+   "q": "How many days of privilege, casual and sick leave do Sanjeevani employees get each year?",
+   "doc": "Leave Policy 2026",
+   "evidence": "21 privilege leave, 7 casual leave and 7 sick leave per calendar year",
+   "answer": "21 days of privilege leave, 7 days of casual leave and 7 days of sick leave per calendar year.",
+   "as": "rnd@sanjeevani.example",
+   "tags": [
+    "fact"
+   ]
+  },
+  {
+   "q": "What is the night-shift allowance for plant employees?",
+   "doc": "Shift and Overtime Policy",
+   "evidence": "The night-shift allowance of ₹2,800 per month",
+   "answer": "₹2,800 per month for employees working at least 10 night shifts in the month; otherwise ₹280 per night shift pro-rata.",
+   "as": "qa@sanjeevani.example",
+   "tags": [
+    "fact"
+   ]
+  },
+  {
+   "q": "How should Glucosan-M 500 be stored and what is its shelf life?",
+   "doc": "Glucosan-M 500 Product Monograph",
+   "evidence": "Store below 30°C. Protect from moisture.",
+   "answer": "Store below 30°C and protect from moisture; shelf life is 36 months from the date of manufacture.",
+   "as": "sales@sanjeevani.example",
+   "tags": [
+    "table"
+   ]
+  },
+  {
+   "q": "What is the maximum daily dose of Glucosan-M 500 SR?",
+   "doc": "Glucosan-M 500 Product Monograph",
+   "evidence": "2,000 mg once daily",
+   "answer": "2,000 mg once daily, taken with the evening meal.",
+   "as": "sales@sanjeevani.example",
+   "tags": [
+    "table"
+   ]
+  },
+  {
+   "q": "Can Sanjeevani Cough Relief Syrup be given to a three-year-old child?",
+   "doc": "Sanjeevani Cough Relief Syrup Product Sheet",
+   "evidence": "This fixed-dose combination should not be used in children below four years of age.",
+   "answer": "No. The syrup must not be used in children below four years of age (mandatory CDSCO label warning).",
+   "as": "sales@sanjeevani.example",
+   "tags": [
+    "fact"
+   ]
+  },
+  {
+   "q": "Which product in the Sanjeevani portfolio must be stored below 25°C?",
+   "doc": "Product Portfolio and Storage Conditions",
+   "evidence": "Dermacalm Cream is the only product in the current portfolio with a \"below 25°C\" condition",
+   "answer": "Dermacalm Cream (mometasone 0.1%); in non-air-conditioned warehouses it must be kept in the cool room.",
+   "as": "qa@sanjeevani.example",
+   "tags": [
+    "fact"
+   ]
+  },
+  {
+   "q": "How many strips of Glucosan-M samples can a medical representative give a doctor per month?",
+   "doc": "Field Force Guidelines FY27",
+   "evidence": "for Glucosan-M, a maximum of 10 strips per doctor per month",
+   "answer": "A maximum of 10 strips per doctor per month.",
+   "as": "sales@sanjeevani.example",
+   "tags": [
+    "fact"
+   ]
+  },
+  {
+   "q": "What is the monthly doctor call target for a medical representative in FY27?",
+   "doc": "Field Force Guidelines FY27",
+   "evidence": "180 doctor visits",
+   "answer": "180 doctor visits per MR per month (about 8–9 calls per field day over at least 22 field days).",
+   "as": "sales@sanjeevani.example",
+   "tags": [
+    "table"
+   ]
+  },
+  {
+   "q": "What is the FY27 sales target for the West zone?",
+   "doc": "FY27 Sales Targets by Zone",
+   "evidence": "425.6",
+   "answer": "₹425.6 crore, 28% of the ₹1,520 crore national domestic target.",
+   "as": "sales@sanjeevani.example",
+   "denied_as": "rnd@sanjeevani.example",
+   "tags": [
+    "table",
+    "restricted"
+   ]
+  },
+  {
+   "q": "What dividend did the Board recommend for FY2025-26?",
+   "doc": "Board Meeting Minutes – 22 April 2026",
+   "evidence": "₹4.50 per equity share",
+   "answer": "A final dividend of ₹4.50 per equity share (45% on ₹10 face value), about ₹55.8 crore in total, subject to AGM approval.",
+   "as": "owner@sanjeevani.example",
+   "denied_as": "sales@sanjeevani.example",
+   "tags": [
+    "fact",
+    "restricted"
+   ]
+  },
+  {
+   "q": "How is the ₹310 crore Vizag capacity expansion being funded?",
+   "doc": "Board Meeting Minutes – 22 April 2026",
+   "evidence": "internal accruals of ₹190 crore and a term loan of up to ₹120 crore",
+   "answer": "₹190 crore from internal accruals and a term loan of up to ₹120 crore.",
+   "as": "owner@sanjeevani.example",
+   "tags": [
+    "fact"
+   ]
+  },
+  {
+   "q": "How many ANDA approvals did Sanjeevani receive in FY2025-26, and for which applications?",
+   "doc": "ANDA Submission Status Tracker",
+   "evidence": "Three approvals (215529, 216604 and 217248) were received in FY2025-26",
+   "answer": "Three: ANDAs 215529 (telmisartan), 216604 (glimepiride) and 217248 (atorvastatin).",
+   "as": "qa@sanjeevani.example",
+   "denied_as": "sales@sanjeevani.example",
+   "tags": [
+    "fact",
+    "restricted"
+   ]
+  },
+  {
+   "q": "By when must the Unit III Vizag manufacturing licence retention fee be paid?",
+   "doc": "CDSCO Product Licence Renewal Summary",
+   "evidence": "Fee to be paid by 06 November 2026",
+   "answer": "Internally by 06 November 2026; the statutory deadline is 20 November 2026.",
+   "as": "qa@sanjeevani.example",
+   "tags": [
+    "table"
+   ]
+  },
+  {
+   "q": "As a Band C employee staying at the Baddi plant guest house, what daily allowance do I get?",
+   "doc": "Travel Policy",
+   "evidence": "the daily allowance is reduced by 50%",
+   "answer": "₹500 per day: the Band C daily allowance is ₹1,000, reduced by 50% when a plant guest house is used.",
+   "as": "rnd@sanjeevani.example",
+   "tags": [
+    "multi_hop"
+   ]
+  },
+  {
+   "q": "How long does Sanjeevani take to complete a whistleblower investigation?",
+   "doc": "Whistleblower Policy",
+   "evidence": "Within 60 days of receipt",
+   "answer": "Within 60 days of receipt of the complaint; extensions need the Audit Committee Chairperson's approval.",
+   "as": "sales@sanjeevani.example",
+   "tags": [
+    "table"
+   ]
+  },
+  {
+   "q": "What is the Group Mediclaim sum insured for a Band C employee?",
+   "doc": "Employee Medical Insurance Guide",
+   "evidence": "₹5,00,000",
+   "answer": "₹5,00,000 family floater (employee, spouse and up to two children).",
+   "as": "rnd@sanjeevani.example",
+   "tags": [
+    "table"
+   ]
+  },
+  {
+   "q": "What is the work-from-home allowance for head office employees?",
+   "doc": null,
+   "evidence": null,
+   "answer": "not found",
+   "as": "rnd@sanjeevani.example",
+   "tags": [
+    "not_found"
+   ]
+  },
+  {
+   "q": "What is the cafeteria meal subsidy at the Hyderabad R&D centre?",
+   "doc": null,
+   "evidence": null,
+   "answer": "not found",
+   "as": "sales@sanjeevani.example",
+   "tags": [
+    "not_found"
+   ]
+  },
+  {
+   "q": "Within how long must the Head of QA be informed of a critical deviation at Sanjeevani?",
+   "doc": "SOP – Deviation Handling",
+   "evidence": "Head QA (Corporate) informed within 24 hours of discovery",
+   "answer": "Within 24 hours of discovery (current SOP SPL/QA/SOP-004 v3.0); the investigation closure target for a Critical deviation is 15 working days.",
+   "as": "qa@sanjeevani.example",
+   "tags": [
+    "fact",
+    "table"
+   ]
+  },
+  {
+   "q": "What is the dissolution acceptance criterion for Glucosan-M 500 SR tablets?",
+   "doc": "Specification – Glucosan-M 500 SR Tablets",
+   "evidence": "not less than 80% (Q) released in 10 hours",
+   "answer": "Not less than 80% (Q) released in 10 hours (with 20–40% at 1 hour and 45–65% at 3 hours).",
+   "as": "qa@sanjeevani.example",
+   "tags": [
+    "fact"
+   ]
+  },
+  {
+   "q": "What is the alert level for purified water conductivity?",
+   "doc": "SOP – Purified Water System Monitoring",
+   "evidence": "Alert level for conductivity set at 1.0",
+   "answer": "1.0 µS/cm; the action level and specification is 1.3 µS/cm at 25°C.",
+   "as": "qa@sanjeevani.example",
+   "tags": [
+    "fact",
+    "table"
+   ]
+  },
+  {
+   "q": "What is the finger-dab acceptance limit for Grade C gowning qualification?",
+   "doc": "SOP – Cleanroom Gowning",
+   "evidence": "finger dab ≤ 5 CFU/glove",
+   "answer": "Finger dab ≤ 5 CFU per glove, and gown contact plates ≤ 5 CFU per plate.",
+   "as": "qa@sanjeevani.example",
+   "tags": [
+    "fact"
+   ]
+  },
+  {
+   "q": "What is the target time to complete a Phase I OOS laboratory investigation?",
+   "doc": "SOP – Out of Specification Investigation",
+   "evidence": "complete checklist SPL/QC/F-021-01",
+   "answer": "5 working days.",
+   "as": "qa@sanjeevani.example",
+   "tags": [
+    "fact"
+   ]
+  },
+  {
+   "q": "When did Sanjeevani submit its response to the 2024 US FDA Form 483 for Unit III Vizag?",
+   "doc": "US FDA Inspection 2024 – Response and CAPA Summary",
+   "evidence": "05 April 2024 (within 15 business days)",
+   "answer": "On 05 April 2024, within 15 business days of the inspection that ended 19 March 2024.",
+   "as": "qa@sanjeevani.example",
+   "denied_as": "rnd@sanjeevani.example",
+   "tags": [
+    "restricted",
+    "table"
+   ]
+  },
+  {
+   "q": "During the February 2026 FDA re-inspection, how many OOS results from 2025 did the investigators review and how many were closed within 30 days?",
+   "doc": "FDA Re-inspection February 2026 Summary",
+   "evidence": "41 OOS, 40 closed within 30 days",
+   "answer": "41 OOS results; 40 were closed within 30 days and 1 was extended with Head QA approval (closed on day 37).",
+   "as": "owner@sanjeevani.example",
+   "tags": [
+    "fact",
+    "table"
+   ]
+  },
+  {
+   "q": "How many observations did the Q4 FY26 internal audit of Unit II Baddi raise, by classification?",
+   "doc": "Internal Audit Report – Unit II Baddi Q4 FY26",
+   "evidence": "0 Critical, 2 Major and 6 Minor",
+   "answer": "8 observations: 0 Critical, 2 Major and 6 Minor.",
+   "as": "owner@sanjeevani.example",
+   "tags": [
+    "fact"
+   ]
+  },
+  {
+   "q": "What exactly was wrong with the label on cough syrup batch CR-2309?",
+   "doc": "Recall Report – Cough Syrup Batch CR-2309",
+   "evidence": "manufacturing licence number of Unit I (Ahmedabad) instead of Unit II (Baddi)",
+   "answer": "The bottle label carried the manufacturing licence number of Unit I (Ahmedabad) instead of Unit II (Baddi); all other label information was correct, so there was no safety impact.",
+   "as": "qa@sanjeevani.example",
+   "tags": [
+    "fact"
+   ]
+  },
+  {
+   "q": "What was the overall CAPA on-time closure rate in Q1 FY27, and which unit was lowest?",
+   "doc": "CAPA Register Q1 FY27",
+   "evidence": "88%",
+   "answer": "88% overall against a 90% target; Unit II Baddi was lowest at 78% (Unit I 90%, Unit III 100%).",
+   "as": "owner@sanjeevani.example",
+   "tags": [
+    "table"
+   ]
+  },
+  {
+   "q": "How often do passwords expire on GxP computerised systems under the data integrity policy?",
+   "doc": "Data Integrity Policy – ALCOA+",
+   "evidence": "Passwords expire every 90 days; accounts lock after 3 failed attempts",
+   "answer": "Every 90 days; accounts lock after 3 failed attempts and screens lock after 10 minutes of inactivity.",
+   "as": "qa@sanjeevani.example",
+   "tags": [
+    "fact"
+   ]
+  },
+  {
+   "q": "How many expedited pharmacovigilance reports were submitted late in FY2025-26?",
+   "doc": "Pharmacovigilance System Master File Summary",
+   "evidence": "2 late reports out of 143 expedited reports",
+   "answer": "2 out of 143 expedited reports were late (both by one day), giving 98.6% compliance.",
+   "as": "qa@sanjeevani.example",
+   "tags": [
+    "fact"
+   ]
+  },
+  {
+   "q": "What long-term storage condition was used in the Glucosan-M 500 SR stability study?",
+   "doc": "Stability Study Report – Glucosan-M 500 SR",
+   "evidence": "30°C ± 2°C / 75% ± 5% RH (Climatic Zone IVb)",
+   "answer": "30°C ± 2°C / 75% ± 5% RH (Climatic Zone IVb), with 40°C/75% RH as the accelerated condition; the data supported a 36-month shelf life.",
+   "as": "rnd@sanjeevani.example",
+   "tags": [
+    "fact",
+    "table"
+   ]
+  },
+  {
+   "q": "What was the Cmax test/reference ratio and 90% confidence interval in the Cardivas 10 bioequivalence study?",
+   "doc": "Bioequivalence Study Summary – Cardivas 10",
+   "evidence": "98.4 91.2",
+   "answer": "Cmax ratio 98.4% with a 90% CI of 91.2–106.1%, within the 80.00–125.00% limits.",
+   "as": "rnd@sanjeevani.example",
+   "tags": [
+    "table"
+   ]
+  },
+  {
+   "q": "What is Sanjeevani's FY27 R&D budget and how much of it goes to the SJ-2041 programme?",
+   "doc": "R&D Pipeline Review FY27",
+   "evidence": "The FY27 budget of ₹185 crore",
+   "answer": "₹185 crore in total, of which ₹62 crore (33.5%) is for the SJ-2041 clinical programme.",
+   "as": "rnd@sanjeevani.example",
+   "tags": [
+    "multi_hop",
+    "table"
+   ]
+  },
+  {
+   "q": "What HbA1c reduction did SJ-2041 show at the Phase III interim analysis?",
+   "doc": "SJ-2041 Interim Analysis Report",
+   "evidence": "HbA1c change from baseline of −1.1% with SJ-2041 versus −0.6% with comparator",
+   "answer": "−1.1% with SJ-2041 versus −0.6% with the comparator (difference −0.5%), with a dropout rate of 7.4% and 2 serious adverse events judged unrelated.",
+   "as": "rnd@sanjeevani.example",
+   "denied_as": "sales@sanjeevani.example",
+   "tags": [
+    "restricted"
+   ]
+  },
+  {
+   "q": "How many patients discontinued the SJ-2041 Phase III trial?",
+   "doc": "Clinical Site List and Enrolment Status",
+   "evidence": "92 (7.4% of randomised)",
+   "answer": "92 patients, 7.4% of the 1,240 randomised (as of 30 September 2026).",
+   "as": "rnd@sanjeevani.example",
+   "tags": [
+    "fact",
+    "table"
+   ]
+  },
+  {
+   "q": "How much does Sanjeevani pay a site for each patient who completes the SJ-2041 trial?",
+   "doc": "Investigator Payments Policy",
+   "evidence": "₹42,000 per completed patient",
+   "answer": "₹42,000 per completed patient, paid visit by visit, with 10% held back until close-out.",
+   "as": "rnd@sanjeevani.example",
+   "denied_as": "qa@sanjeevani.example",
+   "tags": [
+    "restricted",
+    "multi_hop"
+   ]
+  },
+  {
+   "q": "What is the compensation insurance cover for the SJ-2041 trial?",
+   "doc": "Serious Adverse Event Reporting SOP",
+   "evidence": "covers up to ₹10 crore aggregate with ₹50 lakh per participant",
+   "answer": "Up to ₹10 crore in aggregate, with ₹50 lakh per participant.",
+   "as": "rnd@sanjeevani.example",
+   "tags": [
+    "fact"
+   ]
+  },
+  {
+   "q": "What is the planned launch price (MRP) of SJ-2041?",
+   "doc": null,
+   "evidence": null,
+   "answer": "not found",
+   "as": "owner@sanjeevani.example",
+   "tags": [
+    "not_found"
+   ]
+  },
+  {
+   "q": "What is the plasma half-life of SPL-DP41?",
+   "doc": null,
+   "evidence": null,
+   "answer": "not found",
+   "as": "rnd@sanjeevani.example",
+   "tags": [
+    "not_found"
+   ]
+  },
+  {
+   "q": "How many days of earned leave do Nimbus employees get per financial year?",
+   "doc": "Leave Policy FY2026-27",
+   "evidence": "accrued at 1.5 days at the end of each completed month of service",
+   "answer": "18 days of earned leave per financial year, accrued at 1.5 days per completed month.",
+   "as": "hr@nimbus.example",
+   "tags": [
+    "fact"
+   ]
+  },
+  {
+   "q": "What is the fixed salary band for an L3 Senior Software Engineer at Nimbus?",
+   "doc": "Salary Bands FY2026-27",
+   "evidence": "L3 ₹10–18 lakh",
+   "answer": "₹10–18 lakh per annum fixed.",
+   "as": "hr@nimbus.example",
+   "denied_as": "employee@nimbus.example",
+   "tags": [
+    "fact",
+    "restricted"
+   ]
+  },
+  {
+   "q": "What counts as a SEV1 incident and how fast must on-call respond?",
+   "doc": "SEV1 Incident Response Runbook",
+   "evidence": "Customer-wide outage, or data breach suspected",
+   "answer": "A customer-wide outage or suspected data breach; response within 15 minutes, with the CISO and CTO paged.",
+   "as": "employee@nimbus.example",
+   "tags": [
+    "fact",
+    "table"
+   ]
+  },
+  {
+   "q": "Can I bring my dog to the Nimbus office in Pune?",
+   "doc": null,
+   "evidence": null,
+   "answer": "not found",
+   "as": "employee@nimbus.example",
+   "tags": [
+    "not_found"
+   ]
+  },
+  {
+   "q": "What is the shelf life of Glucosan-M 500?",
+   "doc": "Glucosan-M 500 Product Monograph",
+   "evidence": "36 months from the date of manufacture",
+   "answer": "36 months from the date of manufacture; store below 30°C and protect from moisture.",
+   "as": "sales@sanjeevani.example",
+   "tags": [
+    "fact",
+    "table"
+   ]
+  },
+  {
+   "q": "What is the dissolution specification for Glucosan-M 500 SR tablets?",
+   "doc": "Specification – Glucosan-M 500 SR Tablets",
+   "evidence": "not less than 80% (Q) released in 10 hours",
+   "answer": "Not less than 80% (Q) released in 10 hours.",
+   "as": "qa@sanjeevani.example",
+   "tags": [
+    "fact"
+   ]
+  },
+  {
+   "q": "How many days of privilege, casual and sick leave do Sanjeevani employees get?",
+   "doc": "Leave Policy 2026",
+   "evidence": "21 privilege leave, 7 casual leave and 7 sick leave",
+   "answer": "21 privilege leave, 7 casual leave and 7 sick leave per calendar year.",
+   "as": "rnd@sanjeevani.example",
+   "tags": [
+    "fact"
+   ]
+  },
+  {
+   "q": "How often must high-risk clients go through re-KYC at Kaveri?",
+   "doc": "KYC and Customer Due Diligence Policy",
+   "evidence": "Every 2 years",
+   "answer": "Every 2 years for high-risk clients (8 years for low-risk).",
+   "as": "compliance@kaveri.example",
+   "tags": [
+    "fact",
+    "table"
+   ]
+  },
+  {
+   "q": "What was the Small Cap fund's 5-day liquidity at 31 March 2026?",
+   "doc": "Q4 FY26 Risk Dashboard",
+   "evidence": "The Small Cap measure fell from 14.1% at 31 December 2025 to 11.8% at 31 March 2026",
+   "answer": "11.8%, below the 15% floor (a breach), down from 14.1% at 31 December 2025.",
+   "as": "compliance@kaveri.example",
+   "tags": [
+    "fact"
+   ]
+  },
+  {
+   "q": "What is the profit share in the hybrid PMS fee option?",
+   "doc": "Fee Schedule and Exit Loads",
+   "evidence": "20% of returns above hurdle",
+   "answer": "1.0% p.a. fixed plus 20% of returns above a 10% hurdle, with a high-water mark.",
+   "as": "cfo@kaveri.example",
+   "tags": [
+    "fact",
+    "table"
+   ]
+  },
+  {
+   "q": "What is on the Kaveri office cafeteria menu on Fridays?",
+   "doc": null,
+   "evidence": null,
+   "answer": "not found",
+   "as": "analyst@kaveri.example",
+   "tags": [
+    "not_found"
+   ]
+  },
+  {
+   "q": "How many days of unused earned leave can a Nimbus employee carry forward into the next year?",
+   "doc": "Leave Policy FY2026-27",
+   "evidence": "up to 30 days of unused earned leave are carried forward",
+   "answer": "Up to 30 days; earned leave beyond 30 days lapses on 31 March.",
+   "as": "hr@nimbus.example",
+   "tags": [
+    "fact",
+    "superseded"
+   ]
+  },
+  {
+   "q": "How often must Kaveri re-do KYC for high-risk clients?",
+   "doc": "KYC and Customer Due Diligence Policy",
+   "evidence": "Every 2 years",
+   "answer": "Every 2 years for high-risk clients.",
+   "as": "compliance@kaveri.example",
+   "tags": [
+    "table",
+    "superseded"
+   ]
+  },
+  {
+   "q": "Within how many working days must site QA approve the initial assessment of a major deviation?",
+   "doc": "SOP – Deviation Handling",
+   "evidence": "Initial assessment approved by site QA within 3 working days",
+   "answer": "Within 3 working days, with closure targeted within 30 calendar days.",
+   "as": "qa@sanjeevani.example",
+   "tags": [
+    "table",
+    "superseded"
+   ]
+  }
+ ]
+}

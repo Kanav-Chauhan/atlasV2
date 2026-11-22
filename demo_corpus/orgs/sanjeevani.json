@@ -1,0 +1,74 @@
+{
+  "slug": "sanjeevani",
+  "name": "Sanjeevani Pharma Ltd.",
+  "industry": "Pharmaceuticals",
+  "departments": [
+    {"name": "HR", "description": "Pay grades, allowances, hiring and campus programme"},
+    {"name": "R&D", "description": "R&D reports and clinical trials, including the SJ-2041 Phase III programme"},
+    {"name": "Quality & Manufacturing", "description": "Quality SOPs, audits, CAPA and plant projects"},
+    {"name": "Regulatory", "description": "Filings, licences, data integrity and pharmacovigilance"},
+    {"name": "Finance", "description": "Budget, capex and stockist credit policy"},
+    {"name": "Sales", "description": "Field force rules, targets, brand plans, distributor terms and returns"},
+    {"name": "Leadership", "description": "Board minutes, annual results, expansion and in-licensing papers"}
+  ],
+  "users": [
+    {"name": "Dr. Harish Patel", "title": "Managing Director & CEO", "role": "admin",
+     "departments": ["HR", "R&D", "Quality & Manufacturing", "Regulatory", "Finance", "Sales", "Leadership"],
+     "email": "owner@sanjeevani.example"},
+    {"name": "Dr. Farhan Qureshi", "title": "Head, Quality Assurance", "role": "manager",
+     "departments": ["Quality & Manufacturing", "Regulatory"], "email": "qa@sanjeevani.example"},
+    {"name": "Nikhil Shah", "title": "National Sales Manager", "role": "manager",
+     "departments": ["Sales"], "email": "salesmanager@sanjeevani.example"},
+    {"name": "Priya Bhatt", "title": "Head, Human Resources", "role": "manager",
+     "departments": ["HR"], "email": "hr@sanjeevani.example"},
+    {"name": "Karan Malhotra", "title": "Medical Representative, Mumbai", "role": "member",
+     "departments": ["Sales"], "email": "sales@sanjeevani.example"},
+    {"name": "Dr. Sneha Rao", "title": "Research Scientist", "role": "member",
+     "departments": ["R&D"], "email": "rnd@sanjeevani.example"},
+    {"name": "Aman Trivedi", "title": "QC Trainee (contract)", "role": "guest",
+     "departments": [], "email": "guest@sanjeevani.example", "guest_until": "2027-03-31"}
+  ],
+  "suggested_questions": {
+    "owner@sanjeevani.example": [
+      "What dividend did the Board recommend for FY2025-26?",
+      "How much was approved for the Vizag expansion?",
+      "What is the code name of the biosimilar insulin we are in-licensing?"
+    ],
+    "qa@sanjeevani.example": [
+      "How fast must a critical deviation reach the QA head?",
+      "What did the 2024 US FDA Form 483 observe at Vizag?",
+      "What is the Grade D particle limit at rest?"
+    ],
+    "salesmanager@sanjeevani.example": [
+      "What is the FY27 sales target for the West zone?",
+      "How many doctor visits must a rep make each month?",
+      "How many Glucosan-M sample strips may a doctor get per month?"
+    ],
+    "hr@sanjeevani.example": [
+      "What is the night-shift allowance at the plants?",
+      "How many days of privilege leave do we get?",
+      "What is the pay range for a Grade M2 medical representative?"
+    ],
+    "sales@sanjeevani.example": [
+      "How should Glucosan-M 500 be stored and what is its shelf life?",
+      "Can I give a doctor a gift under the UCPMP code?",
+      "How many Glucosan-M sample strips may a doctor get per month?"
+    ],
+    "rnd@sanjeevani.example": [
+      "What HbA1c reduction did SJ-2041 show at the interim analysis?",
+      "How many patients and sites are in the SJ-2041 Phase III trial?",
+      "When is the SJ-2041 topline readout expected?"
+    ],
+    "guest@sanjeevani.example": [
+      "How many days of sick leave do I get?",
+      "What is the shelf life of Dermacalm Cream?",
+      "Is PPE mandatory on the plant floor?"
+    ]
+  },
+  "permission_pairs": [
+    {"q": "What is the FY27 sales target for the West zone?",
+     "allowed_as": "sales@sanjeevani.example", "denied_as": "rnd@sanjeevani.example"},
+    {"q": "What HbA1c reduction did SJ-2041 show at the Phase III interim analysis?",
+     "allowed_as": "rnd@sanjeevani.example", "denied_as": "sales@sanjeevani.example"}
+  ]
+}

@@ -1,0 +1,155 @@
+{
+  "slug": "kaveri",
+  "name": "Kaveri Capital",
+  "industry": "Asset management / finance",
+  "departments": [
+    {
+      "name": "HR",
+      "description": "Pay bands, hiring and internships"
+    },
+    {
+      "name": "Investments",
+      "description": "Market research and Investment Committee papers"
+    },
+    {
+      "name": "Compliance & Legal",
+      "description": "KYC/AML, insider trading, complaints, risk reports, distributor agreements"
+    },
+    {
+      "name": "Finance",
+      "description": "Financial statements, budget, audit letter, TER, treasury"
+    },
+    {
+      "name": "Client Services",
+      "description": "Client agreements, fee schedules, onboarding, investor FAQ"
+    },
+    {
+      "name": "Operations",
+      "description": "Settlement, fund accounting, business continuity, launch plans"
+    },
+    {
+      "name": "Leadership",
+      "description": "Board minutes, board risk committee, GIFT City proposal, succession"
+    }
+  ],
+  "users": [
+    {
+      "name": "Ramesh Iyengar",
+      "title": "Managing Director & CEO",
+      "role": "admin",
+      "departments": [
+        "HR",
+        "Investments",
+        "Compliance & Legal",
+        "Finance",
+        "Client Services",
+        "Operations",
+        "Leadership"
+      ],
+      "email": "owner@kaveri.example"
+    },
+    {
+      "name": "Shalini Kapoor",
+      "title": "Chief Compliance Officer",
+      "role": "manager",
+      "departments": [
+        "Compliance & Legal"
+      ],
+      "email": "compliance@kaveri.example"
+    },
+    {
+      "name": "Gaurav Agarwal",
+      "title": "Chief Financial Officer",
+      "role": "manager",
+      "departments": [
+        "Finance",
+        "Leadership"
+      ],
+      "email": "cfo@kaveri.example"
+    },
+    {
+      "name": "Mohit Arora",
+      "title": "Head of Operations",
+      "role": "manager",
+      "departments": [
+        "Operations"
+      ],
+      "email": "ops@kaveri.example"
+    },
+    {
+      "name": "Tanvi Joshi",
+      "title": "Equity Research Analyst",
+      "role": "member",
+      "departments": [
+        "Investments"
+      ],
+      "email": "analyst@kaveri.example"
+    },
+    {
+      "name": "Nandini Rao",
+      "title": "Relationship Manager, PMS",
+      "role": "member",
+      "departments": [
+        "Client Services"
+      ],
+      "email": "rm@kaveri.example"
+    },
+    {
+      "name": "Kabir Sethi",
+      "title": "Summer Intern, Research",
+      "role": "guest",
+      "departments": [],
+      "email": "guest@kaveri.example",
+      "guest_until": "2027-06-30"
+    }
+  ],
+  "suggested_questions": {
+    "owner@kaveri.example": [
+      "When is the GIFT City feeder fund due to launch?",
+      "How much interim dividend did the Board approve?",
+      "Who was appointed independent director?"
+    ],
+    "compliance@kaveri.example": [
+      "How often must a high-risk client be re-KYC'd?",
+      "How soon must an STR go to FIU-IND?",
+      "What was the Small Cap liquidity in Q4 FY26?"
+    ],
+    "cfo@kaveri.example": [
+      "What were FY26 revenue and PAT?",
+      "What is the FY27 technology budget?",
+      "Which firm audits us, and what was the opinion?"
+    ],
+    "ops@kaveri.example": [
+      "What is the NAV cut-off time?",
+      "Which office takes over if Bengaluru HQ is down?",
+      "When is the GIFT City feeder fund launching?"
+    ],
+    "analyst@kaveri.example": [
+      "What is the house-view Nifty 50 year-end target?",
+      "What did IC 48 decide about Vindhyagiri Cementworks?",
+      "How many stocks does Research cover?"
+    ],
+    "rm@kaveri.example": [
+      "What fee options does the PMS offer?",
+      "What is the PMS exit load?",
+      "What is the minimum PMS investment?"
+    ],
+    "guest@kaveri.example": [
+      "What was the Bluechip Fund's 1-year return?",
+      "How long must I hold a stock under the personal trading policy?",
+      "Who must take 10 days of block leave?"
+    ]
+  },
+  "permission_pairs": [
+    {
+      "q": "What is the house-view Nifty 50 year-end target?",
+      "allowed_as": "analyst@kaveri.example",
+      "denied_as": "compliance@kaveri.example"
+    },
+    {
+      "q": "What was the Small Cap fund's liquidity in the Q4 FY26 risk report?",
+      "allowed_as": "compliance@kaveri.example",
+      "denied_as": "analyst@kaveri.example"
+    }
+  ]
+}

@@ -1,0 +1,636 @@
+[
+  {
+    "q": "How many days of privilege leave do Kaveri Capital employees get per calendar year?",
+    "doc": "Leave Policy 2026",
+    "evidence": "20 days of privilege leave",
+    "answer": "20 days of privilege leave per calendar year (plus 8 casual and 10 sick leave days).",
+    "as": "compliance@kaveri.example",
+    "tags": [
+      "fact"
+    ]
+  },
+  {
+    "q": "How long must the mandatory block leave be for dealers and fund managers, and why is it required?",
+    "doc": "Mandatory Block Leave Policy",
+    "evidence": "10 consecutive working days",
+    "answer": "10 consecutive working days every calendar year; it is a fraud-control measure so that someone else runs their book while they are away.",
+    "as": "analyst@kaveri.example",
+    "tags": [
+      "fact"
+    ]
+  },
+  {
+    "q": "What is the minimum holding period for personal trades by Kaveri employees?",
+    "doc": "Personal Trading Policy",
+    "evidence": "30-day minimum holding",
+    "answer": "30 days from the trade date, after pre-clearance.",
+    "as": "analyst@kaveri.example",
+    "tags": [
+      "fact"
+    ]
+  },
+  {
+    "q": "Within what time must a personal trading violation be reported, and to whom?",
+    "doc": "Personal Trading Policy",
+    "evidence": "reported to the CCO within 1 working day",
+    "answer": "To the Chief Compliance Officer within 1 working day of discovery.",
+    "as": "compliance@kaveri.example",
+    "tags": [
+      "fact"
+    ]
+  },
+  {
+    "q": "If an employee sells shares 20 days after buying them without a hardship exception, what happens to the profit, and what is the penalty if it happens again within 24 months?",
+    "doc": "Personal Trading Policy",
+    "evidence": "Any profit from a sale within 30 days without an exception is disgorged to the Company's CSR fund",
+    "answer": "The profit is disgorged to the Company's CSR fund; a repeat within 24 months leads to a 6-month personal trading suspension.",
+    "as": "analyst@kaveri.example",
+    "tags": [
+      "multi_hop",
+      "table"
+    ]
+  },
+  {
+    "q": "What is the hotel limit per night in Mumbai for a G3 employee?",
+    "doc": "Travel and Entertainment Policy",
+    "evidence": "₹8,500",
+    "answer": "₹8,500 per night, excluding taxes.",
+    "as": "analyst@kaveri.example",
+    "tags": [
+      "table"
+    ]
+  },
+  {
+    "q": "What is the largest holding of the Kaveri Bluechip Fund as of March 2026 and its weight?",
+    "doc": "Kaveri Bluechip Fund Factsheet March 2026",
+    "evidence": "Sahyadri Bank Ltd",
+    "answer": "Sahyadri Bank Ltd at 8.9% of net assets.",
+    "as": "compliance@kaveri.example",
+    "tags": [
+      "table"
+    ]
+  },
+  {
+    "q": "What was the 1-year return of Kaveri Small Cap Opportunities versus its benchmark to March 2026?",
+    "doc": "Kaveri Small Cap Opportunities Factsheet March 2026",
+    "evidence": "22.4%",
+    "answer": "22.4% (direct plan) against 24.8% for the Nifty Smallcap 250 TRI, an underperformance of 2.4 percentage points.",
+    "as": "analyst@kaveri.example",
+    "tags": [
+      "table"
+    ]
+  },
+  {
+    "q": "What is the portfolio YTM of the Kaveri Short Duration Fund?",
+    "doc": "Kaveri Short Duration Fund Factsheet March 2026",
+    "evidence": "6.94%",
+    "answer": "6.94% (annualised), as of 31 March 2026.",
+    "as": "cfo@kaveri.example",
+    "tags": [
+      "table"
+    ]
+  },
+  {
+    "q": "What is the exit load on the Kaveri Arbitrage Fund?",
+    "doc": "Kaveri Arbitrage Fund Factsheet March 2026",
+    "evidence": "0.25% if redeemed within 15 days from allotment",
+    "answer": "0.25% if redeemed within 15 days of allotment; nil thereafter.",
+    "as": "compliance@kaveri.example",
+    "tags": [
+      "fact"
+    ]
+  },
+  {
+    "q": "What does the hybrid fee option of the Kaveri Focused Equity PMS charge?",
+    "doc": "Kaveri Focused Equity PMS Presentation Summary",
+    "evidence": "20% of returns above a 10% hurdle, subject to a high-water mark",
+    "answer": "1.0% per annum management fee plus 20% of returns above a 10% hurdle, subject to a high-water mark (the alternative is a 2.0% fixed fee).",
+    "as": "compliance@kaveri.example",
+    "tags": [
+      "table"
+    ]
+  },
+  {
+    "q": "What is the house-view Nifty 50 year-end target and how was it derived?",
+    "doc": "India Strategy Outlook FY27",
+    "evidence": "18.5x forward earnings on September 2027E Nifty EPS of ₹1,450",
+    "answer": "26,800, based on 18.5x forward earnings on September 2027E Nifty EPS of ₹1,450.",
+    "as": "analyst@kaveri.example",
+    "denied_as": "compliance@kaveri.example",
+    "tags": [
+      "fact",
+      "restricted"
+    ]
+  },
+  {
+    "q": "What did IC 48 decide about Vindhyagiri Cementworks and why?",
+    "doc": "IC Meeting 48 Minutes – 9 April 2026",
+    "evidence": "exit its entire position in Vindhyagiri Cementworks Ltd due to governance concerns",
+    "answer": "The Small Cap fund was to exit its entire Vindhyagiri Cementworks position due to governance concerns, in an orderly way by 15 May 2026, and the stock was put on the do-not-buy list for at least 24 months.",
+    "as": "owner@kaveri.example",
+    "tags": [
+      "fact"
+    ]
+  },
+  {
+    "q": "What rating and target price did Research give Konkan Rail Systems at initiation?",
+    "doc": "Initiating Coverage – Konkan Rail Systems Ltd",
+    "evidence": "BUY rating and a 12-month target price of ₹820",
+    "answer": "BUY with a 12-month target price of ₹820 (26x FY28E EPS of ₹31.5), against a price of ₹612.",
+    "as": "analyst@kaveri.example",
+    "denied_as": "compliance@kaveri.example",
+    "tags": [
+      "fact",
+      "restricted"
+    ]
+  },
+  {
+    "q": "What allocation range did IC 47 approve for the railways capex theme in the Flexi Cap fund?",
+    "doc": "IC Meeting 47 Minutes – 12 March 2026",
+    "evidence": "4%–6% of NAV",
+    "answer": "4% to 6% of NAV, with a single-stock cap of 3.0% within the theme.",
+    "as": "analyst@kaveri.example",
+    "tags": [
+      "table"
+    ]
+  },
+  {
+    "q": "What is the quorum for an Investment Committee meeting?",
+    "doc": "Investment Process and IC Charter",
+    "evidence": "four voting members, which must include either the Chair or the MD & CEO",
+    "answer": "Four voting members, including either the Chair (CIO) or the MD & CEO.",
+    "as": "owner@kaveri.example",
+    "tags": [
+      "fact"
+    ]
+  },
+  {
+    "q": "How much is the employee referral bonus at Kaveri Capital?",
+    "doc": null,
+    "evidence": null,
+    "answer": "not found",
+    "as": "analyst@kaveri.example",
+    "tags": [
+      "not_found"
+    ]
+  },
+  {
+    "q": "What is the 10-year return of the Kaveri Bluechip Fund?",
+    "doc": null,
+    "evidence": null,
+    "answer": "not found",
+    "as": "compliance@kaveri.example",
+    "tags": [
+      "not_found"
+    ]
+  },
+  {
+    "q": "How often must Kaveri redo KYC for low-risk clients under the current KYC policy?",
+    "doc": "KYC and Customer Due Diligence Policy",
+    "evidence": "Every 8 years",
+    "answer": "Every 8 years for low-risk clients (every 5 years for medium-risk and every 2 years for high-risk).",
+    "as": "compliance@kaveri.example",
+    "tags": [
+      "fact",
+      "table"
+    ]
+  },
+  {
+    "q": "Under the old KYC Policy 2022, how often was re-KYC required for high-risk clients?",
+    "doc": "KYC Policy 2022",
+    "evidence": "Every 3 years",
+    "answer": "Every 3 years under the superseded 2022 policy; the current policy (v4.0, from 1 April 2026) requires every 2 years.",
+    "as": "compliance@kaveri.example",
+    "tags": [
+      "fact",
+      "table"
+    ]
+  },
+  {
+    "q": "How quickly must a Suspicious Transaction Report be filed with FIU-IND?",
+    "doc": "Suspicious Transaction Reporting SOP",
+    "evidence": "within 7 days of suspicion being established",
+    "answer": "Within 7 days of suspicion being established by the Principal Officer (counted from the written determination, not the original alert).",
+    "as": "compliance@kaveri.example",
+    "tags": [
+      "fact"
+    ]
+  },
+  {
+    "q": "Who must approve onboarding of a politically exposed person?",
+    "doc": "Politically Exposed Persons Procedure",
+    "evidence": "Every PEP relationship requires the prior written approval of the Chief Compliance Officer",
+    "answer": "The Chief Compliance Officer must give prior written approval; this cannot be delegated.",
+    "as": "compliance@kaveri.example",
+    "tags": [
+      "fact"
+    ]
+  },
+  {
+    "q": "What is the VaR limit for Kaveri's equity schemes?",
+    "doc": "Investment Risk Limits Policy",
+    "evidence": "must not exceed 2.5% of NAV for any equity scheme",
+    "answer": "1-day VaR at 95% confidence must not exceed 2.5% of NAV for any equity scheme.",
+    "as": "compliance@kaveri.example",
+    "tags": [
+      "fact"
+    ]
+  },
+  {
+    "q": "In the March 2026 stress test, what funding shortfall would the Small Cap fund face if 25% of AUM were redeemed in 10 trading days?",
+    "doc": "Stress Test Results March 2026",
+    "evidence": "funding shortfall of ₹30.0 crore",
+    "answer": "A funding shortfall of ₹30.0 crore (1.3% of AUM), which would need to be met by borrowing.",
+    "as": "compliance@kaveri.example",
+    "denied_as": "analyst@kaveri.example",
+    "tags": [
+      "restricted",
+      "fact"
+    ]
+  },
+  {
+    "q": "How much of the FY2026-27 technology budget is for market data and research terminals?",
+    "doc": "FY2026-27 Budget",
+    "evidence": "4.6",
+    "answer": "₹4.6 crore out of the total technology spend of ₹14 crore.",
+    "as": "cfo@kaveri.example",
+    "denied_as": "compliance@kaveri.example",
+    "tags": [
+      "restricted",
+      "table"
+    ]
+  },
+  {
+    "q": "Who would become interim MD & CEO if Ramesh Iyengar were suddenly unavailable?",
+    "doc": "Succession Planning Note",
+    "evidence": "becomes interim MD & CEO",
+    "answer": "Ashok Venkataraman, CIO (Equity), would become interim MD & CEO, with Divya Menon as interim CIO.",
+    "as": "cfo@kaveri.example",
+    "denied_as": "compliance@kaveri.example",
+    "tags": [
+      "restricted",
+      "fact"
+    ]
+  },
+  {
+    "q": "What are the terms of the hybrid fee option for Kaveri's PMS?",
+    "doc": "Fee Schedule and Exit Loads",
+    "evidence": "1.0% p.a.",
+    "answer": "1.0% p.a. management fee plus 20% of returns above a 10% p.a. hurdle, with a high-water mark.",
+    "as": "rm@kaveri.example",
+    "tags": [
+      "fact",
+      "table"
+    ]
+  },
+  {
+    "q": "What was Kaveri's employee benefits expense in FY2025-26?",
+    "doc": "FY2025-26 Financial Statements Summary",
+    "evidence": "84.6",
+    "answer": "₹84.6 crore in FY2025-26, up from ₹73.2 crore in FY2024-25.",
+    "as": "cfo@kaveri.example",
+    "tags": [
+      "fact",
+      "table"
+    ]
+  },
+  {
+    "q": "How many observations did the statutory auditors raise in the FY26 management letter, and how were they rated?",
+    "doc": "Statutory Audit Management Letter FY26",
+    "evidence": "Five observations are listed below: one High, three Medium and one Low.",
+    "answer": "Five observations: one High (PMS performance fee computation), three Medium and one Low.",
+    "as": "cfo@kaveri.example",
+    "tags": [
+      "fact"
+    ]
+  },
+  {
+    "q": "What interim dividend did the Board declare on 25 April 2026?",
+    "doc": "Board Meeting Minutes – 25 April 2026",
+    "evidence": "an interim dividend of ₹3.00 per equity share of ₹10 each, aggregating ₹12 crore",
+    "answer": "₹3.00 per equity share, aggregating ₹12 crore, for FY2026-27, payable by 25 May 2026.",
+    "as": "owner@kaveri.example",
+    "tags": [
+      "fact"
+    ]
+  },
+  {
+    "q": "What is the cut-off time for getting same-day NAV in Kaveri's mutual-fund schemes?",
+    "doc": "NAV Computation and Cut-off Timings",
+    "evidence": "Cut-off time is 3:00 pm",
+    "answer": "3:00 pm on business days; for purchases the funds must also be realised in the scheme's account before 3:00 pm.",
+    "as": "analyst@kaveri.example",
+    "tags": [
+      "fact"
+    ]
+  },
+  {
+    "q": "When is the GIFT City feeder fund expected to launch and how much seed capital will Kaveri put in?",
+    "doc": "GIFT City Feeder Fund Proposal",
+    "evidence": "seed capital of ₹25 crore from own funds",
+    "answer": "Target launch is January 2027, with seed capital of ₹25 crore from Kaveri's own funds.",
+    "as": "owner@kaveri.example",
+    "tags": [
+      "multi_hop"
+    ]
+  },
+  {
+    "q": "Which operational incident in FY26 caused the largest financial loss, and what was done about it?",
+    "doc": "Operational Risk Incident Log FY26",
+    "evidence": "Total over-charge ₹7.9 lakh, refunded with interest by 28 November 2025",
+    "answer": "ORI-FY26-06: PMS performance fees for 12 clients were charged without applying the high-water mark; the ₹7.9 lakh over-charge was refunded with interest by 28 November 2025.",
+    "as": "compliance@kaveri.example",
+    "tags": [
+      "multi_hop"
+    ]
+  },
+  {
+    "q": "What brokerage rate per trade does Kaveri pay its equity brokers?",
+    "doc": null,
+    "evidence": null,
+    "answer": "not found",
+    "as": "cfo@kaveri.example",
+    "tags": [
+      "not_found"
+    ]
+  },
+  {
+    "q": "Which insurer provides Kaveri's directors and officers (D&O) liability cover, and for what amount?",
+    "doc": null,
+    "evidence": null,
+    "answer": "not found",
+    "as": "owner@kaveri.example",
+    "tags": [
+      "not_found"
+    ]
+  },
+  {
+    "q": "How often must high-risk clients go through re-KYC at Kaveri?",
+    "doc": "KYC and Customer Due Diligence Policy",
+    "evidence": "Every 2 years",
+    "answer": "Every 2 years for high-risk clients (8 years for low-risk).",
+    "as": "compliance@kaveri.example",
+    "tags": [
+      "fact",
+      "table"
+    ]
+  },
+  {
+    "q": "What was the Small Cap fund's 5-day liquidity at 31 March 2026?",
+    "doc": "Q4 FY26 Risk Dashboard",
+    "evidence": "The Small Cap measure fell from 14.1% at 31 December 2025 to 11.8% at 31 March 2026",
+    "answer": "11.8%, below the 15% floor (a breach), down from 14.1% at 31 December 2025.",
+    "as": "compliance@kaveri.example",
+    "tags": [
+      "fact"
+    ]
+  },
+  {
+    "q": "What is the profit share in the hybrid PMS fee option?",
+    "doc": "Fee Schedule and Exit Loads",
+    "evidence": "20% of returns above hurdle",
+    "answer": "1.0% p.a. fixed plus 20% of returns above a 10% hurdle, with a high-water mark.",
+    "as": "rm@kaveri.example",
+    "tags": [
+      "fact",
+      "table"
+    ]
+  },
+  {
+    "q": "What is on the Kaveri office cafeteria menu on Fridays?",
+    "doc": null,
+    "evidence": null,
+    "answer": "not found",
+    "as": "analyst@kaveri.example",
+    "tags": [
+      "not_found"
+    ]
+  },
+  {
+    "q": "How often must Kaveri re-do KYC for high-risk clients?",
+    "doc": "KYC and Customer Due Diligence Policy",
+    "evidence": "Every 2 years",
+    "answer": "Every 2 years for high-risk clients.",
+    "as": "compliance@kaveri.example",
+    "tags": [
+      "table",
+      "superseded"
+    ]
+  },
+  {
+    "q": "What is the pay band for a senior research analyst at Kaveri?",
+    "doc": "Compensation Bands and Bonus Pool FY2026-27",
+    "evidence": "| G3 | Senior Research Analyst | 24 | 31 | 38 |",
+    "answer": "₹24–38 lakh a year fixed pay (midpoint ₹31 lakh), grade G3.",
+    "as": "owner@kaveri.example",
+    "tags": [
+      "table",
+      "restricted"
+    ],
+    "denied_as": "cfo@kaveri.example"
+  },
+  {
+    "q": "What stipend does Kaveri pay MBA summer interns?",
+    "doc": "Compensation Bands and Bonus Pool FY2026-27",
+    "evidence": "₹75,000 per month",
+    "answer": "₹75,000 per month for MBA / CFA summer interns (₹40,000 for undergraduates).",
+    "as": "owner@kaveri.example",
+    "tags": [
+      "table",
+      "restricted"
+    ],
+    "denied_as": "guest@kaveri.example"
+  },
+  {
+    "q": "Does Kaveri offer summer internships, and when do applications close?",
+    "doc": "Careers at Kaveri – Roles, Hiring and Internships",
+    "evidence": "Applications open on 1 December and close on",
+    "answer": "Yes: an 8-week summer internship at Bengaluru (first Monday of May to end of June), 12 places; applications open 1 December and close 31 January.",
+    "as": "owner@kaveri.example",
+    "tags": [
+      "fact"
+    ]
+  },
+  {
+    "q": "Which NISM certification does a research analyst need after joining Kaveri, and by when?",
+    "doc": "Careers at Kaveri – Roles, Hiring and Internships",
+    "evidence": "| Research analyst | Series XV: Research Analyst | 90 days |",
+    "answer": "NISM Series XV: Research Analyst, within 90 days of joining.",
+    "as": "owner@kaveri.example",
+    "tags": [
+      "table"
+    ]
+  },
+  {
+    "q": "By what time must the day's trades be reconciled against contract notes?",
+    "doc": "Trade Settlement and Fund Accounting SOP",
+    "evidence": "The day's trades must be reconciled by",
+    "answer": "By 6:30 pm; unmatched trades are escalated to the Fund Accounting Lead and the dealer.",
+    "as": "ops@kaveri.example",
+    "tags": [
+      "fact",
+      "restricted"
+    ],
+    "denied_as": "analyst@kaveri.example"
+  },
+  {
+    "q": "Who signs off the daily NAV, and when is a second sign-off needed?",
+    "doc": "Trade Settlement and Fund Accounting SOP",
+    "evidence": "The daily NAV is signed off by the",
+    "answer": "The Fund Accounting checker signs off; the Fund Accounting Lead gives a second sign-off on days with a material item (break over ₹1 lakh, stale price or movement exception).",
+    "as": "ops@kaveri.example",
+    "tags": [
+      "multi_hop"
+    ]
+  },
+  {
+    "q": "Which office takes over if Bengaluru HQ is down?",
+    "doc": "Business Continuity and Disaster Recovery Plan",
+    "evidence": "Operations and Fund Accounting move to the Pune DR site",
+    "answer": "Operations and Fund Accounting move to the Pune DR site; investment decision-making moves to Mumbai BKC.",
+    "as": "ops@kaveri.example",
+    "tags": [
+      "fact",
+      "restricted"
+    ],
+    "denied_as": "rm@kaveri.example"
+  },
+  {
+    "q": "How often is the full disaster recovery drill held, and when is the next one?",
+    "doc": "Business Continuity and Disaster Recovery Plan",
+    "evidence": "Twice a year",
+    "answer": "Twice a year (February and November); the next is due 30 November 2026.",
+    "as": "owner@kaveri.example",
+    "tags": [
+      "table"
+    ]
+  },
+  {
+    "q": "Who owns the custody workstream for the GIFT City feeder fund launch?",
+    "doc": "Project Plan – GIFT City Feeder Fund Launch",
+    "evidence": "| WS2 | Custody and fund administration |",
+    "answer": "Mohit Arora, Head of Operations (WS2: custody and fund administration).",
+    "as": "ops@kaveri.example",
+    "tags": [
+      "table",
+      "restricted"
+    ],
+    "denied_as": "compliance@kaveri.example"
+  },
+  {
+    "q": "By when must the custodian and administrator for the GIFT City feeder fund be selected?",
+    "doc": "Project Plan – GIFT City Feeder Fund Launch",
+    "evidence": "| Custodian and administrator selected | 31 August 2026 |",
+    "answer": "By 31 August 2026 (RFP issued by 15 June 2026).",
+    "as": "owner@kaveri.example",
+    "tags": [
+      "table"
+    ]
+  },
+  {
+    "q": "Who must approve onboarding a politically exposed person as a PMS client?",
+    "doc": "PMS and AIF Client Onboarding Checklist",
+    "evidence": "Prior written approval of the Chief Compliance Officer, Shalini Kapoor",
+    "answer": "Prior written approval of the Chief Compliance Officer, Shalini Kapoor; it cannot be delegated.",
+    "as": "rm@kaveri.example",
+    "tags": [
+      "table"
+    ]
+  },
+  {
+    "q": "What is the overall target time from receiving complete documents to an active PMS account?",
+    "doc": "PMS and AIF Client Onboarding Checklist",
+    "evidence": "| Overall: documents received to account active | 10 working days |",
+    "answer": "10 working days.",
+    "as": "rm@kaveri.example",
+    "tags": [
+      "table",
+      "restricted"
+    ],
+    "denied_as": "analyst@kaveri.example"
+  },
+  {
+    "q": "Is there an exit load if I redeem the Flexi Cap fund after 8 months?",
+    "doc": "Investor Service FAQ – Redemptions, Exit Loads and Statements",
+    "evidence": "Eight months is within 365 days of allotment",
+    "answer": "Yes, 1%, because 8 months is within 365 days of allotment.",
+    "as": "rm@kaveri.example",
+    "tags": [
+      "fact"
+    ]
+  },
+  {
+    "q": "What is the toll-free number for investor complaints?",
+    "doc": "Investor Service FAQ – Redemptions, Exit Loads and Statements",
+    "evidence": "1800-425-0112",
+    "answer": "1800-425-0112, 9:00 am to 7:00 pm, Monday to Saturday.",
+    "as": "owner@kaveri.example",
+    "tags": [
+      "fact"
+    ]
+  },
+  {
+    "q": "What fee options can an RM offer a PMS client?",
+    "doc": "Sales Sheet – Kaveri Focused Equity PMS (for Relationship Managers)",
+    "evidence": "RMs may not offer discounts, rebates or a custom fee",
+    "answer": "Option A: 2.0% p.a. fixed; Option B: 1.0% p.a. plus 20% of returns above a 10% hurdle with high-water mark. No discounts or custom fees.",
+    "as": "rm@kaveri.example",
+    "tags": [
+      "table",
+      "restricted"
+    ],
+    "denied_as": "guest@kaveri.example"
+  },
+  {
+    "q": "What must a relationship manager never promise a PMS client?",
+    "doc": "Sales Sheet – Kaveri Focused Equity PMS (for Relationship Managers)",
+    "evidence": "Never promise or imply guaranteed returns",
+    "answer": "Never promise guaranteed or minimum returns, or that the strategy will beat the benchmark; never project past returns forward.",
+    "as": "rm@kaveri.example",
+    "tags": [
+      "fact"
+    ]
+  },
+  {
+    "q": "Can a mutual fund distributor accept cash from an investor?",
+    "doc": "Distributor (MFD) Empanelment Agreement – Standard Terms",
+    "evidence": "Acceptance of cash is a material breach",
+    "answer": "No; accepting cash is a material breach and grounds for immediate termination.",
+    "as": "compliance@kaveri.example",
+    "tags": [
+      "fact",
+      "restricted"
+    ],
+    "denied_as": "rm@kaveri.example"
+  },
+  {
+    "q": "What trail commission does Kaveri pay distributors on the Flexi Cap Fund?",
+    "doc": "Distributor (MFD) Empanelment Agreement – Standard Terms",
+    "evidence": "| Kaveri Flexi Cap Fund | 0.85% |",
+    "answer": "0.85% a year on regular plan AUM, trail only, no upfront commission.",
+    "as": "compliance@kaveri.example",
+    "tags": [
+      "table"
+    ]
+  },
+  {
+    "q": "What is the joining bonus offered to new fund managers at Kaveri?",
+    "doc": null,
+    "evidence": null,
+    "answer": "not found",
+    "as": "owner@kaveri.example",
+    "tags": [
+      "not_found"
+    ]
+  },
+  {
+    "q": "What is the USD management fee of the GIFT City feeder fund?",
+    "doc": null,
+    "evidence": null,
+    "answer": "not found",
+    "as": "ops@kaveri.example",
+    "tags": [
+      "not_found"
+    ]
+  }
+]
