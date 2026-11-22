@@ -6,6 +6,11 @@ x-api-env: &api-env
   ATLAS_LLM_BASE_URL: ${ATLAS_LLM_BASE_URL:-http://ai-gateway:4000/v1}
   ATLAS_LLM_API_KEY: ${ATLAS_LLM_API_KEY:-}
 
+x-api-volumes: &api-volumes
+  - ../demo_corpus:/corpus:ro
+  - atlasv2_files:/data/files
+  - atlasv2_models:/models
+
 services:
   postgres:
     image: pgvector/pgvector:pg17
@@ -40,6 +45,7 @@ services:
     mem_limit: 512m
     command: sh -c "alembic upgrade head && exec uvicorn atlas_api.main:app --host 0.0.0.0 --port 8000"
     environment: *api-env
+    volumes: *api-volumes
     ports:
       - "127.0.0.1:8111:8000"
     depends_on:
@@ -50,9 +56,10 @@ services:
   worker:
     image: atlasv2-api
     restart: unless-stopped
-    mem_limit: 768m
-    command: celery -A atlas_api.worker worker --concurrency 1 --loglevel info
+    mem_limit: 3g
+    command: celery -A atlas_api.worker worker --concurrency 1 --max-tasks-per-child 20 --loglevel info
     environment: *api-env
+    volumes: *api-volumes
     depends_on:
       api: { condition: service_started }
       redis: { condition: service_healthy }
@@ -74,6 +81,10 @@ services:
 volumes:
   atlasv2_pgdata:
     name: atlasv2_pgdata
+  atlasv2_files:
+    name: atlasv2_files
+  atlasv2_models:
+    name: atlasv2_models
 
 networks:
   ai-gateway:

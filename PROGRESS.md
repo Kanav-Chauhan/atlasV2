@@ -18,4 +18,5 @@ Plan: [PLAN.md](PLAN.md). Updated after every step.
 | 2026-11-22 | Phase 1 CI green (api, web, images) | ✅ |
 | 2026-11-22 | Phase 1: FastAPI + Postgres/pgvector + Redis + Celery + Next.js 16 (landing, login, role-based /app shell) live at p10 (password), previews at /previews/ | ✅ |
 | 2026-11-22 | Phase 2: 199 docs (171 remapped + 28 new, rendered), orgs/<slug>.json (21 users, departments incl. Managers, suggested questions), evals/demo_v2.json (187 q: 34 restricted, 20 not_found); public docs = Everyone | ✅ |
-| 2026-11-22 | Phase 3 started: API contract (docs/API.md); backend = schema, seed, LlamaIndex+Docling+FastEmbed+PGVectorStore ingestion via Celery; web = Library page | 🔄 |
+| 2026-11-22 | Phase 3: schema (0002), seed, load_corpus, LlamaIndex+Docling+FastEmbed(bge-small)+PGVectorStore hybrid ingestion via Celery, HNSW cosine index (0003), access.py + API per docs/API.md, Library page; all 199 docs queued | ✅ (ingesting) |
+| 2026-11-22 | Phase 3 backend: schema 0002, seed + load_corpus, Celery ingest (Docling → Markdown → MarkdownNodeParser + SentenceSplitter 512/64 → FastEmbed bge-small → PGVectorStore `data_chunks` hybrid), access.py, /me /documents /departments endpoints; nimbus ingesting (PDF ~26-52 s, docx/md ~3 s, worker peak ~1.9 GB) | ✅ |

@@ -8,12 +8,22 @@ authors = [
 requires-python = ">=3.12"
 dependencies = [
     "alembic>=1.20.1",
-    "asyncpg>=0.32.0",
+    "asyncpg>=0.30.0",
     "celery[redis]>=5.7.0",
     "fastapi>=0.165.0",
+    "fastembed>=0.9.1",
+    "llama-index-core>=0.14.26",
+    "llama-index-embeddings-fastembed>=0.8.0",
+    "llama-index-node-parser-docling>=0.6.0",
+    "llama-index-readers-docling>=0.6.0",
+    "llama-index-vector-stores-postgres>=0.10.0",
+    "psycopg2-binary>=2.9.13",
     "pydantic-settings>=2.16.3",
+    "python-multipart>=0.0.34",
     "redis>=8.1.0",
-    "sqlalchemy[asyncio]>=2.1.9",
+    "sqlalchemy[asyncio]>=2.0.40",
+    "torch>=2.15.0",
+    "torchvision>=0.29.2",
     "uvicorn[standard]>=0.54.0",
 ]
 
@@ -50,5 +60,15 @@ disallow_untyped_decorators = false
 
 [tool.pytest.ini_options]
 asyncio_mode = "auto"
-asyncio_default_fixture_loop_scope = "function"
+asyncio_default_fixture_loop_scope = "session"
+asyncio_default_test_loop_scope = "session"
 markers = ["integration: needs Postgres and Redis"]
+
+[tool.uv.sources]
+torch = [{ index = "pytorch-cpu" }]
+torchvision = [{ index = "pytorch-cpu" }]
+
+[[tool.uv.index]]
+name = "pytorch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
+explicit = true

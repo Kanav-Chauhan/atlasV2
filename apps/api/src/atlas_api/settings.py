@@ -8,6 +8,14 @@ class Settings(BaseSettings):
     redis_url: str = "redis://localhost:6379/0"
     llm_base_url: str = "http://ai-gateway:4000/v1"
     llm_api_key: str = ""
+    files_dir: str = "/data/files"
+    corpus_dir: str = "/corpus"
+    models_dir: str = "/models"
+    max_upload_mb: int = 10
+
+    @property
+    def sync_database_url(self) -> str:
+        return self.database_url.replace("+asyncpg", "+psycopg2")
 
 
 settings = Settings()
