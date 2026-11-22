@@ -536,3 +536,10 @@ Dropped: `admin@kaveri.example` "IT Admin".
   them in search, like the old loader.
 - A stale copy of the corpus and evals sits in the old repo under `.claude/worktrees/`; use
   the top-level `demo_corpus/` and `evals/` only.
+
+## Owner decisions (2026-11-22)
+
+- **Managers department: yes.** Nimbus gets a 9th department "Managers" for the manager playbooks (team leaders only).
+- **Nimbus leave, notice and referral policies: Everyone** (all Nimbus employees), like the other two companies.
+- **Admin sees all departments** of their own company.
+- Companies are fully separate: everyone reads only their own company's documents. No document is ever shared across companies.

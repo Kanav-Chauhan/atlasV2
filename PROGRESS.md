@@ -14,4 +14,5 @@ Plan: [PLAN.md](PLAN.md). Updated after every step.
 | Date (IST) | Step | Status |
 |---|---|---|
 | 2026-11-22 | Design locked: C icon bar everywhere, Ask = C, Team & access = A's content in the C shell, no role switching (PLAN.md "Design decisions") | ✅ |
+| 2026-11-22 | Owner answered demo-data questions: Managers dept yes, Nimbus leave/notice/referral = Everyone, Admin sees all | ✅ |
 | 2026-11-22 | Phase 1 started: backend/infra/CI skeleton + web (landing, login, /app shell) | 🔄 |
