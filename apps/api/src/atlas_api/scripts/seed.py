@@ -8,6 +8,7 @@ from typing import Any, cast
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 
+from atlas_api import website
 from atlas_api.db import SyncSession
 from atlas_api.models import Department, Organization, Role, User
 from atlas_api.settings import settings
@@ -32,6 +33,8 @@ def seed_org(s: Session, data: dict[str, Any]) -> Organization:
         name=data["name"],
         industry=data.get("industry", ""),
     )
+    if data["slug"] in website.DEMO_SLUGS and not (org.website_chat or {}).get("site_key"):
+        org.website_chat = website.demo_config()  # website chat on for p10 (Phase 8)
     depts = {
         d["name"]: upsert(
             s,

@@ -1,0 +1,18 @@
+{
+  "slug": "eval-smoke",
+  "name": "Smoke Test Co",
+  "departments": [{"name": "HR"}, {"name": "Finance"}, {"name": "Engineering"}],
+  "users": [
+    {"name": "Admin", "role": "admin", "departments": [], "email": "admin@smoke.test"},
+    {"name": "HR Lead", "role": "manager", "departments": ["HR"], "email": "hr@smoke.test"},
+    {"name": "Engineer", "role": "member", "departments": ["Engineering"], "email": "eng@smoke.test"},
+    {"name": "Guest", "role": "guest", "departments": [], "email": "guest@smoke.test"}
+  ],
+  "documents": [
+    {"file": "leave.md", "title": "Leave Policy", "access": "Everyone"},
+    {"file": "security.md", "title": "Password and Device Standard", "access": "Everyone"},
+    {"file": "salary.md", "title": "Salary Bands FY2026", "access": "HR"},
+    {"file": "expenses.md", "title": "Travel and Expense Policy", "access": "Finance"},
+    {"file": "runbook.md", "title": "SEV1 Incident Runbook", "access": "Engineering"}
+  ]
+}

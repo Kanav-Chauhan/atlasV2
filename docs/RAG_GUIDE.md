@@ -76,6 +76,17 @@ hybrid_rerank per company (Hit@5 / MRR / context recall): Nimbus 0.982 / 0.939 /
 - **LLM Guard: light scanners only.** Importing even one module under `llm_guard.input_scanners` runs the package `__init__`, which loads torch, transformers, presidio and spaCy: **+418 MB RAM, 18 s import**, before the PromptInjection model (DeBERTa-v3, ~700 MB more). The API runs the embedder and reranker in ≤ 1.5 GB, so Atlas loads only `InvisibleText` (strips hidden Unicode) and `BanSubstrings` (known injection phrases, English + Hindi) without the package `__init__`: **+16 MB, 0.3 s**. The ML half of injection defence is the router: the `fast` model returns `blocked` for attempts to change rules or extract the prompt. Passages are also marked as data in the answer prompt.
 - **Semantic cache (RedisVL `SemanticCache`)**: scope tag = sha256(org + role + sorted departments + answer language), admins = all departments; bge-small embedding of the rewritten English question; similarity ≥ 0.95 (cosine distance ≤ 0.05); TTL 24 h; never for questions that needed history, abstentions or answers without citations. Verified on a throwaway `redis:8-alpine`: same and paraphrased question hit, other question and other scope miss. **Off in production** (`ATLAS_SEMANTIC_CACHE=false`) because the stack runs `redis:7-alpine` (no query engine) and switching to `redis:8-alpine` waits until the re-ingest queue is empty.
 
+## How to turn on LangSmith
+
+Atlas uses LangChain's standard variables, so LangGraph, every model call and the relevance grade are traced with no extra code. Tracing is **off** unless both the switch and a key are set (`settings.langsmith_tracing()`; with no key the switch is forced to `false`, so nothing is sent and nothing breaks).
+
+1. Create an API key at smith.langchain.com (Settings → API keys).
+2. In `infra/.env` set `LANGSMITH_TRACING=true` and `LANGSMITH_API_KEY=lsv2_…` (optional: `LANGSMITH_PROJECT`, default `atlas-v2`; `LANGSMITH_ENDPOINT`, default `https://api.smith.langchain.com`, EU workspaces use `https://eu.api.smith.langchain.com`).
+3. `cd infra && docker compose up -d --no-deps api` (no rebuild needed).
+4. Ask a question. Each chat turn is one trace named `atlas-staff` or `atlas-visitor` (tags + org in metadata) with every graph node inside (guard → route → rewrite → retrieve → grade → answer). The chat's `data-meta` part then carries `trace_id` and `trace_url` (the URL appears once the project exists, i.e. after the first trace).
+
+Turn it off again with `LANGSMITH_TRACING=false`. Website visitor questions are traced too (LangSmith is on the allowed outside-services list).
+
 ## Interview questions (short answers)
 
 1. **Walk me through your RAG pipeline.** → the 30-second answer below.

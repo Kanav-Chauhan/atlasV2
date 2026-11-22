@@ -16,7 +16,7 @@ from fastapi.responses import Response, StreamingResponse
 from pydantic import BaseModel, ConfigDict, StringConstraints
 from sqlalchemy import select
 
-from atlas_api import access, graph
+from atlas_api import access, graph, tracing
 from atlas_api.cache import AnswerCache, scope
 from atlas_api.db import Session
 from atlas_api.models import Chat, DocumentRequest, Message, User
@@ -57,6 +57,11 @@ async def compiled() -> Any:
             await _saver.setup()
             _graph = graph.build(_saver)
     return _graph
+
+
+async def forget_thread(tid: str) -> None:
+    await compiled()
+    await _saver.adelete_thread(tid)
 
 
 def thread_id(user: User, chat_id: str) -> str:
@@ -145,72 +150,78 @@ async def chat(body: ChatIn, user: CurrentUser, s: DB) -> StreamingResponse:
     s.add(Message(id=uuid.uuid4().hex, chat_id=body.id, role="user", text=question, created_at=now))
     await s.commit()
 
-    ctx = context(user)
-    tid = thread_id(user, body.id)
+    stream = turn_stream(question, context(user), thread_id(user, body.id), body.id)
+    return StreamingResponse(stream, headers=HEADERS)
+
+
+async def turn_stream(question: str, ctx: graph.Ctx, tid: str, chat_id: str) -> AsyncIterator[str]:
+    """Run one turn through the graph as an AI SDK UI message stream and store the answer.
+    Shared by staff /chat and the website visitor's /public/{site_key}/chat."""
     message_id = uuid.uuid4().hex
-    chat_id = body.id
+    elapsed = graph.timer()
+    final: dict[str, Any] = {}
+    # LangSmith (when on): this turn's root run id is the trace id sent in data-meta.
+    config: dict[str, Any] = {"configurable": {"thread_id": tid}} | tracing.run_config(
+        "visitor" if ctx.visitor else "staff", ctx.org
+    )
 
-    async def run() -> AsyncIterator[str]:
-        elapsed = graph.timer()
-        final: dict[str, Any] = {}
+    async def events() -> AsyncIterator[dict[str, Any]]:
+        g = await compiled()
+        async for mode, chunk in g.astream(
+            graph.new_turn(question),
+            config=config,
+            context=ctx,
+            stream_mode=["custom", "values"],
+            durability="exit",
+        ):
+            if mode == "custom":
+                yield chunk
+            else:
+                final.clear()
+                final.update(chunk)
 
-        async def events() -> AsyncIterator[dict[str, Any]]:
-            g = await compiled()
-            async for mode, chunk in g.astream(
-                graph.new_turn(question),
-                config={"configurable": {"thread_id": tid}},
-                context=ctx,
-                stream_mode=["custom", "values"],
-                durability="exit",
-            ):
-                if mode == "custom":
-                    yield chunk
-                else:
-                    final.clear()
-                    final.update(chunk)
-
-        try:
-            async for part in ui_parts(events(), message_id):
-                yield sse(part)
-            query = final.get("query") or ""
-            row = Message(
-                id=message_id,
-                chat_id=chat_id,
-                role="assistant",
-                text=final.get("answer", ""),
-                route=final.get("route") or "rag",
-                abstained=bool(final.get("abstained")),
-                cached=bool(final.get("cached")),
-                rewritten_query=query if query and query != question else None,
-                sources=final.get("sources") or [],
-                language=final.get("language") or "en",
-                latency_ms=elapsed(),
-                created_at=datetime.now(UTC),
-            )
-            async with Session() as db:
-                db.add(row)
-                await db.commit()
-            yield sse({"type": "data-sources", "data": {"sources": row.sources}})
-            yield sse({"type": "data-meta", "data": meta(row)})
-            yield sse({"type": "finish", "finishReason": "stop"})
-            log.info(
-                "chat route=%s abstained=%s cached=%s ms=%s",
-                row.route,
-                row.abstained,
-                row.cached,
-                row.latency_ms,
-            )
-        except Exception:
-            log.exception("chat turn failed")
-            yield sse(
-                {
-                    "type": "error",
-                    "errorText": "Atlas couldn't finish this answer. Please try again.",
-                }
-            )
-        yield DONE
-
-    return StreamingResponse(run(), headers=HEADERS)
+    try:
+        async for part in ui_parts(events(), message_id):
+            yield sse(part)
+        query = final.get("query") or ""
+        row = Message(
+            id=message_id,
+            chat_id=chat_id,
+            role="assistant",
+            text=final.get("answer", ""),
+            route=final.get("route") or "rag",
+            abstained=bool(final.get("abstained")),
+            cached=bool(final.get("cached")),
+            rewritten_query=query if query and query != question else None,
+            sources=final.get("sources") or [],
+            language=final.get("language") or "en",
+            latency_ms=elapsed(),
+            created_at=datetime.now(UTC),
+        )
+        async with Session() as db:
+            db.add(row)
+            await db.commit()
+        yield sse({"type": "data-sources", "data": {"sources": row.sources}})
+        extra = {"relevance": final["relevance"]} if final.get("relevance") else {}
+        extra |= await tracing.trace_meta(config)
+        yield sse({"type": "data-meta", "data": meta(row) | extra})
+        yield sse({"type": "finish", "finishReason": "stop"})
+        log.info(
+            "chat route=%s abstained=%s cached=%s ms=%s",
+            row.route,
+            row.abstained,
+            row.cached,
+            row.latency_ms,
+        )
+    except Exception:
+        log.exception("chat turn failed")
+        yield sse(
+            {
+                "type": "error",
+                "errorText": "Atlas couldn't finish this answer. Please try again.",
+            }
+        )
+    yield DONE
 
 
 # ------------------------------------------------------------------ chats
@@ -264,8 +275,7 @@ async def delete_chat(chat_id: ChatId, user: CurrentUser, s: DB) -> Response:
     c = await owned_chat(s, user, chat_id)
     await s.delete(c)
     await s.commit()
-    await compiled()
-    await _saver.adelete_thread(thread_id(user, chat_id))
+    await forget_thread(thread_id(user, chat_id))
     return Response(status_code=204)
 
 

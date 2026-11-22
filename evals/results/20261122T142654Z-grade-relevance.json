@@ -1,0 +1,4487 @@
+{
+ "summary": {
+  "rule": "score >= threshold and verdict != no",
+  "positives": 165,
+  "negatives": 57,
+  "retrieval_misses": 2,
+  "verdicts_on_positives": {
+   "yes": 165,
+   "partial": 0,
+   "no": 0
+  },
+  "grader_no_on_negatives": 48,
+  "grader_no_on_positives": 0,
+  "best": {
+   "threshold": -1.253,
+   "accuracy": 0.968,
+   "false_not_found": 0,
+   "false_answer": 7
+  }
+ },
+ "curve": [
+  {
+   "threshold": -2.506,
+   "accuracy": 0.959,
+   "false_not_found": 0,
+   "false_answer": 9
+  },
+  {
+   "threshold": -2.334,
+   "accuracy": 0.959,
+   "false_not_found": 0,
+   "false_answer": 9
+  },
+  {
+   "threshold": -2.074,
+   "accuracy": 0.959,
+   "false_not_found": 0,
+   "false_answer": 9
+  },
+  {
+   "threshold": -1.934,
+   "accuracy": 0.959,
+   "false_not_found": 0,
+   "false_answer": 9
+  },
+  {
+   "threshold": -1.866,
+   "accuracy": 0.959,
+   "false_not_found": 0,
+   "false_answer": 9
+  },
+  {
+   "threshold": -1.824,
+   "accuracy": 0.959,
+   "false_not_found": 0,
+   "false_answer": 9
+  },
+  {
+   "threshold": -1.717,
+   "accuracy": 0.959,
+   "false_not_found": 0,
+   "false_answer": 9
+  },
+  {
+   "threshold": -1.633,
+   "accuracy": 0.959,
+   "false_not_found": 0,
+   "false_answer": 9
+  },
+  {
+   "threshold": -1.596,
+   "accuracy": 0.959,
+   "false_not_found": 0,
+   "false_answer": 9
+  },
+  {
+   "threshold": -1.505,
+   "accuracy": 0.959,
+   "false_not_found": 0,
+   "false_answer": 9
+  },
+  {
+   "threshold": -1.43,
+   "accuracy": 0.964,
+   "false_not_found": 0,
+   "false_answer": 8
+  },
+  {
+   "threshold": -1.355,
+   "accuracy": 0.964,
+   "false_not_found": 0,
+   "false_answer": 8
+  },
+  {
+   "threshold": -1.293,
+   "accuracy": 0.964,
+   "false_not_found": 0,
+   "false_answer": 8
+  },
+  {
+   "threshold": -1.253,
+   "accuracy": 0.968,
+   "false_not_found": 0,
+   "false_answer": 7
+  },
+  {
+   "threshold": -1.199,
+   "accuracy": 0.968,
+   "false_not_found": 0,
+   "false_answer": 7
+  },
+  {
+   "threshold": -1.141,
+   "accuracy": 0.968,
+   "false_not_found": 0,
+   "false_answer": 7
+  },
+  {
+   "threshold": -1.071,
+   "accuracy": 0.968,
+   "false_not_found": 0,
+   "false_answer": 7
+  },
+  {
+   "threshold": -1.011,
+   "accuracy": 0.968,
+   "false_not_found": 0,
+   "false_answer": 7
+  },
+  {
+   "threshold": -0.982,
+   "accuracy": 0.968,
+   "false_not_found": 0,
+   "false_answer": 7
+  },
+  {
+   "threshold": -0.933,
+   "accuracy": 0.964,
+   "false_not_found": 1,
+   "false_answer": 7
+  },
+  {
+   "threshold": -0.874,
+   "accuracy": 0.964,
+   "false_not_found": 1,
+   "false_answer": 7
+  },
+  {
+   "threshold": -0.856,
+   "accuracy": 0.968,
+   "false_not_found": 1,
+   "false_answer": 6
+  },
+  {
+   "threshold": -0.806,
+   "accuracy": 0.968,
+   "false_not_found": 1,
+   "false_answer": 6
+  },
+  {
+   "threshold": -0.751,
+   "accuracy": 0.968,
+   "false_not_found": 1,
+   "false_answer": 6
+  },
+  {
+   "threshold": -0.696,
+   "accuracy": 0.968,
+   "false_not_found": 1,
+   "false_answer": 6
+  },
+  {
+   "threshold": -0.641,
+   "accuracy": 0.964,
+   "false_not_found": 2,
+   "false_answer": 6
+  },
+  {
+   "threshold": -0.609,
+   "accuracy": 0.964,
+   "false_not_found": 2,
+   "false_answer": 6
+  },
+  {
+   "threshold": -0.587,
+   "accuracy": 0.964,
+   "false_not_found": 2,
+   "false_answer": 6
+  },
+  {
+   "threshold": -0.582,
+   "accuracy": 0.968,
+   "false_not_found": 2,
+   "false_answer": 5
+  },
+  {
+   "threshold": -0.562,
+   "accuracy": 0.964,
+   "false_not_found": 3,
+   "false_answer": 5
+  },
+  {
+   "threshold": -0.546,
+   "accuracy": 0.964,
+   "false_not_found": 3,
+   "false_answer": 5
+  },
+  {
+   "threshold": -0.532,
+   "accuracy": 0.964,
+   "false_not_found": 3,
+   "false_answer": 5
+  },
+  {
+   "threshold": -0.493,
+   "accuracy": 0.964,
+   "false_not_found": 3,
+   "false_answer": 5
+  },
+  {
+   "threshold": -0.455,
+   "accuracy": 0.968,
+   "false_not_found": 3,
+   "false_answer": 4
+  },
+  {
+   "threshold": -0.435,
+   "accuracy": 0.968,
+   "false_not_found": 3,
+   "false_answer": 4
+  },
+  {
+   "threshold": -0.416,
+   "accuracy": 0.968,
+   "false_not_found": 3,
+   "false_answer": 4
+  },
+  {
+   "threshold": -0.395,
+   "accuracy": 0.968,
+   "false_not_found": 3,
+   "false_answer": 4
+  },
+  {
+   "threshold": -0.371,
+   "accuracy": 0.964,
+   "false_not_found": 4,
+   "false_answer": 4
+  },
+  {
+   "threshold": -0.353,
+   "accuracy": 0.964,
+   "false_not_found": 4,
+   "false_answer": 4
+  },
+  {
+   "threshold": -0.337,
+   "accuracy": 0.964,
+   "false_not_found": 4,
+   "false_answer": 4
+  },
+  {
+   "threshold": -0.32,
+   "accuracy": 0.959,
+   "false_not_found": 5,
+   "false_answer": 4
+  },
+  {
+   "threshold": -0.31,
+   "accuracy": 0.959,
+   "false_not_found": 5,
+   "false_answer": 4
+  },
+  {
+   "threshold": -0.255,
+   "accuracy": 0.955,
+   "false_not_found": 6,
+   "false_answer": 4
+  },
+  {
+   "threshold": -0.203,
+   "accuracy": 0.95,
+   "false_not_found": 7,
+   "false_answer": 4
+  },
+  {
+   "threshold": -0.16,
+   "accuracy": 0.95,
+   "false_not_found": 7,
+   "false_answer": 4
+  },
+  {
+   "threshold": -0.118,
+   "accuracy": 0.95,
+   "false_not_found": 7,
+   "false_answer": 4
+  },
+  {
+   "threshold": -0.092,
+   "accuracy": 0.95,
+   "false_not_found": 7,
+   "false_answer": 4
+  },
+  {
+   "threshold": -0.057,
+   "accuracy": 0.946,
+   "false_not_found": 8,
+   "false_answer": 4
+  },
+  {
+   "threshold": -0.035,
+   "accuracy": 0.946,
+   "false_not_found": 8,
+   "false_answer": 4
+  },
+  {
+   "threshold": -0.021,
+   "accuracy": 0.941,
+   "false_not_found": 9,
+   "false_answer": 4
+  },
+  {
+   "threshold": 0.01,
+   "accuracy": 0.941,
+   "false_not_found": 9,
+   "false_answer": 4
+  },
+  {
+   "threshold": 0.058,
+   "accuracy": 0.941,
+   "false_not_found": 9,
+   "false_answer": 4
+  },
+  {
+   "threshold": 0.08,
+   "accuracy": 0.941,
+   "false_not_found": 9,
+   "false_answer": 4
+  },
+  {
+   "threshold": 0.087,
+   "accuracy": 0.941,
+   "false_not_found": 9,
+   "false_answer": 4
+  },
+  {
+   "threshold": 0.094,
+   "accuracy": 0.941,
+   "false_not_found": 9,
+   "false_answer": 4
+  },
+  {
+   "threshold": 0.102,
+   "accuracy": 0.941,
+   "false_not_found": 9,
+   "false_answer": 4
+  },
+  {
+   "threshold": 0.134,
+   "accuracy": 0.937,
+   "false_not_found": 10,
+   "false_answer": 4
+  },
+  {
+   "threshold": 0.176,
+   "accuracy": 0.932,
+   "false_not_found": 11,
+   "false_answer": 4
+  },
+  {
+   "threshold": 0.194,
+   "accuracy": 0.928,
+   "false_not_found": 12,
+   "false_answer": 4
+  },
+  {
+   "threshold": 0.207,
+   "accuracy": 0.923,
+   "false_not_found": 13,
+   "false_answer": 4
+  },
+  {
+   "threshold": 0.222,
+   "accuracy": 0.919,
+   "false_not_found": 14,
+   "false_answer": 4
+  },
+  {
+   "threshold": 0.24,
+   "accuracy": 0.919,
+   "false_not_found": 14,
+   "false_answer": 4
+  },
+  {
+   "threshold": 0.253,
+   "accuracy": 0.914,
+   "false_not_found": 15,
+   "false_answer": 4
+  },
+  {
+   "threshold": 0.258,
+   "accuracy": 0.91,
+   "false_not_found": 16,
+   "false_answer": 4
+  },
+  {
+   "threshold": 0.277,
+   "accuracy": 0.905,
+   "false_not_found": 17,
+   "false_answer": 4
+  },
+  {
+   "threshold": 0.307,
+   "accuracy": 0.905,
+   "false_not_found": 17,
+   "false_answer": 4
+  },
+  {
+   "threshold": 0.33,
+   "accuracy": 0.901,
+   "false_not_found": 18,
+   "false_answer": 4
+  },
+  {
+   "threshold": 0.339,
+   "accuracy": 0.896,
+   "false_not_found": 19,
+   "false_answer": 4
+  },
+  {
+   "threshold": 0.341,
+   "accuracy": 0.892,
+   "false_not_found": 20,
+   "false_answer": 4
+  },
+  {
+   "threshold": 0.354,
+   "accuracy": 0.887,
+   "false_not_found": 21,
+   "false_answer": 4
+  },
+  {
+   "threshold": 0.38,
+   "accuracy": 0.883,
+   "false_not_found": 22,
+   "false_answer": 4
+  },
+  {
+   "threshold": 0.396,
+   "accuracy": 0.878,
+   "false_not_found": 23,
+   "false_answer": 4
+  },
+  {
+   "threshold": 0.418,
+   "accuracy": 0.874,
+   "false_not_found": 24,
+   "false_answer": 4
+  },
+  {
+   "threshold": 0.447,
+   "accuracy": 0.869,
+   "false_not_found": 25,
+   "false_answer": 4
+  },
+  {
+   "threshold": 0.455,
+   "accuracy": 0.865,
+   "false_not_found": 26,
+   "false_answer": 4
+  },
+  {
+   "threshold": 0.458,
+   "accuracy": 0.86,
+   "false_not_found": 27,
+   "false_answer": 4
+  },
+  {
+   "threshold": 0.464,
+   "accuracy": 0.856,
+   "false_not_found": 28,
+   "false_answer": 4
+  },
+  {
+   "threshold": 0.483,
+   "accuracy": 0.851,
+   "false_not_found": 29,
+   "false_answer": 4
+  },
+  {
+   "threshold": 0.511,
+   "accuracy": 0.847,
+   "false_not_found": 30,
+   "false_answer": 4
+  },
+  {
+   "threshold": 0.545,
+   "accuracy": 0.847,
+   "false_not_found": 30,
+   "false_answer": 4
+  },
+  {
+   "threshold": 0.573,
+   "accuracy": 0.842,
+   "false_not_found": 31,
+   "false_answer": 4
+  },
+  {
+   "threshold": 0.58,
+   "accuracy": 0.838,
+   "false_not_found": 32,
+   "false_answer": 4
+  },
+  {
+   "threshold": 0.582,
+   "accuracy": 0.833,
+   "false_not_found": 33,
+   "false_answer": 4
+  },
+  {
+   "threshold": 0.582,
+   "accuracy": 0.829,
+   "false_not_found": 34,
+   "false_answer": 4
+  },
+  {
+   "threshold": 0.585,
+   "accuracy": 0.824,
+   "false_not_found": 35,
+   "false_answer": 4
+  },
+  {
+   "threshold": 0.594,
+   "accuracy": 0.82,
+   "false_not_found": 36,
+   "false_answer": 4
+  },
+  {
+   "threshold": 0.615,
+   "accuracy": 0.815,
+   "false_not_found": 37,
+   "false_answer": 4
+  },
+  {
+   "threshold": 0.631,
+   "accuracy": 0.811,
+   "false_not_found": 38,
+   "false_answer": 4
+  },
+  {
+   "threshold": 0.64,
+   "accuracy": 0.806,
+   "false_not_found": 39,
+   "false_answer": 4
+  },
+  {
+   "threshold": 0.651,
+   "accuracy": 0.802,
+   "false_not_found": 40,
+   "false_answer": 4
+  },
+  {
+   "threshold": 0.675,
+   "accuracy": 0.797,
+   "false_not_found": 41,
+   "false_answer": 4
+  },
+  {
+   "threshold": 0.697,
+   "accuracy": 0.793,
+   "false_not_found": 42,
+   "false_answer": 4
+  },
+  {
+   "threshold": 0.701,
+   "accuracy": 0.788,
+   "false_not_found": 43,
+   "false_answer": 4
+  },
+  {
+   "threshold": 0.709,
+   "accuracy": 0.784,
+   "false_not_found": 44,
+   "false_answer": 4
+  },
+  {
+   "threshold": 0.718,
+   "accuracy": 0.779,
+   "false_not_found": 45,
+   "false_answer": 4
+  },
+  {
+   "threshold": 0.723,
+   "accuracy": 0.775,
+   "false_not_found": 46,
+   "false_answer": 4
+  },
+  {
+   "threshold": 0.726,
+   "accuracy": 0.77,
+   "false_not_found": 47,
+   "false_answer": 4
+  },
+  {
+   "threshold": 0.728,
+   "accuracy": 0.775,
+   "false_not_found": 47,
+   "false_answer": 3
+  },
+  {
+   "threshold": 0.732,
+   "accuracy": 0.77,
+   "false_not_found": 48,
+   "false_answer": 3
+  },
+  {
+   "threshold": 0.74,
+   "accuracy": 0.775,
+   "false_not_found": 48,
+   "false_answer": 2
+  },
+  {
+   "threshold": 0.751,
+   "accuracy": 0.77,
+   "false_not_found": 49,
+   "false_answer": 2
+  },
+  {
+   "threshold": 0.756,
+   "accuracy": 0.766,
+   "false_not_found": 50,
+   "false_answer": 2
+  },
+  {
+   "threshold": 0.758,
+   "accuracy": 0.761,
+   "false_not_found": 51,
+   "false_answer": 2
+  },
+  {
+   "threshold": 0.779,
+   "accuracy": 0.761,
+   "false_not_found": 51,
+   "false_answer": 2
+  },
+  {
+   "threshold": 0.804,
+   "accuracy": 0.757,
+   "false_not_found": 52,
+   "false_answer": 2
+  },
+  {
+   "threshold": 0.827,
+   "accuracy": 0.752,
+   "false_not_found": 53,
+   "false_answer": 2
+  },
+  {
+   "threshold": 0.85,
+   "accuracy": 0.748,
+   "false_not_found": 54,
+   "false_answer": 2
+  },
+  {
+   "threshold": 0.872,
+   "accuracy": 0.743,
+   "false_not_found": 55,
+   "false_answer": 2
+  },
+  {
+   "threshold": 0.897,
+   "accuracy": 0.739,
+   "false_not_found": 56,
+   "false_answer": 2
+  },
+  {
+   "threshold": 0.921,
+   "accuracy": 0.734,
+   "false_not_found": 57,
+   "false_answer": 2
+  },
+  {
+   "threshold": 0.943,
+   "accuracy": 0.73,
+   "false_not_found": 58,
+   "false_answer": 2
+  },
+  {
+   "threshold": 0.955,
+   "accuracy": 0.725,
+   "false_not_found": 59,
+   "false_answer": 2
+  },
+  {
+   "threshold": 0.965,
+   "accuracy": 0.73,
+   "false_not_found": 59,
+   "false_answer": 1
+  },
+  {
+   "threshold": 0.974,
+   "accuracy": 0.725,
+   "false_not_found": 60,
+   "false_answer": 1
+  },
+  {
+   "threshold": 0.983,
+   "accuracy": 0.721,
+   "false_not_found": 61,
+   "false_answer": 1
+  },
+  {
+   "threshold": 0.998,
+   "accuracy": 0.716,
+   "false_not_found": 62,
+   "false_answer": 1
+  },
+  {
+   "threshold": 1.013,
+   "accuracy": 0.712,
+   "false_not_found": 63,
+   "false_answer": 1
+  },
+  {
+   "threshold": 1.028,
+   "accuracy": 0.707,
+   "false_not_found": 64,
+   "false_answer": 1
+  },
+  {
+   "threshold": 1.047,
+   "accuracy": 0.703,
+   "false_not_found": 65,
+   "false_answer": 1
+  },
+  {
+   "threshold": 1.057,
+   "accuracy": 0.698,
+   "false_not_found": 66,
+   "false_answer": 1
+  },
+  {
+   "threshold": 1.059,
+   "accuracy": 0.694,
+   "false_not_found": 67,
+   "false_answer": 1
+  },
+  {
+   "threshold": 1.065,
+   "accuracy": 0.689,
+   "false_not_found": 68,
+   "false_answer": 1
+  },
+  {
+   "threshold": 1.072,
+   "accuracy": 0.685,
+   "false_not_found": 69,
+   "false_answer": 1
+  },
+  {
+   "threshold": 1.077,
+   "accuracy": 0.68,
+   "false_not_found": 70,
+   "false_answer": 1
+  },
+  {
+   "threshold": 1.088,
+   "accuracy": 0.676,
+   "false_not_found": 71,
+   "false_answer": 1
+  },
+  {
+   "threshold": 1.112,
+   "accuracy": 0.671,
+   "false_not_found": 72,
+   "false_answer": 1
+  },
+  {
+   "threshold": 1.148,
+   "accuracy": 0.667,
+   "false_not_found": 73,
+   "false_answer": 1
+  },
+  {
+   "threshold": 1.172,
+   "accuracy": 0.662,
+   "false_not_found": 74,
+   "false_answer": 1
+  },
+  {
+   "threshold": 1.18,
+   "accuracy": 0.658,
+   "false_not_found": 75,
+   "false_answer": 1
+  },
+  {
+   "threshold": 1.186,
+   "accuracy": 0.653,
+   "false_not_found": 76,
+   "false_answer": 1
+  },
+  {
+   "threshold": 1.199,
+   "accuracy": 0.649,
+   "false_not_found": 77,
+   "false_answer": 1
+  },
+  {
+   "threshold": 1.211,
+   "accuracy": 0.644,
+   "false_not_found": 78,
+   "false_answer": 1
+  },
+  {
+   "threshold": 1.213,
+   "accuracy": 0.64,
+   "false_not_found": 79,
+   "false_answer": 1
+  },
+  {
+   "threshold": 1.214,
+   "accuracy": 0.635,
+   "false_not_found": 80,
+   "false_answer": 1
+  },
+  {
+   "threshold": 1.216,
+   "accuracy": 0.631,
+   "false_not_found": 81,
+   "false_answer": 1
+  },
+  {
+   "threshold": 1.231,
+   "accuracy": 0.626,
+   "false_not_found": 82,
+   "false_answer": 1
+  },
+  {
+   "threshold": 1.248,
+   "accuracy": 0.622,
+   "false_not_found": 83,
+   "false_answer": 1
+  },
+  {
+   "threshold": 1.259,
+   "accuracy": 0.617,
+   "false_not_found": 84,
+   "false_answer": 1
+  },
+  {
+   "threshold": 1.271,
+   "accuracy": 0.613,
+   "false_not_found": 85,
+   "false_answer": 1
+  },
+  {
+   "threshold": 1.284,
+   "accuracy": 0.608,
+   "false_not_found": 86,
+   "false_answer": 1
+  },
+  {
+   "threshold": 1.301,
+   "accuracy": 0.604,
+   "false_not_found": 87,
+   "false_answer": 1
+  },
+  {
+   "threshold": 1.309,
+   "accuracy": 0.599,
+   "false_not_found": 88,
+   "false_answer": 1
+  },
+  {
+   "threshold": 1.316,
+   "accuracy": 0.595,
+   "false_not_found": 89,
+   "false_answer": 1
+  },
+  {
+   "threshold": 1.326,
+   "accuracy": 0.59,
+   "false_not_found": 90,
+   "false_answer": 1
+  },
+  {
+   "threshold": 1.33,
+   "accuracy": 0.586,
+   "false_not_found": 91,
+   "false_answer": 1
+  },
+  {
+   "threshold": 1.339,
+   "accuracy": 0.581,
+   "false_not_found": 92,
+   "false_answer": 1
+  },
+  {
+   "threshold": 1.357,
+   "accuracy": 0.577,
+   "false_not_found": 93,
+   "false_answer": 1
+  },
+  {
+   "threshold": 1.374,
+   "accuracy": 0.572,
+   "false_not_found": 94,
+   "false_answer": 1
+  },
+  {
+   "threshold": 1.41,
+   "accuracy": 0.572,
+   "false_not_found": 94,
+   "false_answer": 1
+  },
+  {
+   "threshold": 1.443,
+   "accuracy": 0.572,
+   "false_not_found": 94,
+   "false_answer": 1
+  },
+  {
+   "threshold": 1.462,
+   "accuracy": 0.568,
+   "false_not_found": 95,
+   "false_answer": 1
+  },
+  {
+   "threshold": 1.48,
+   "accuracy": 0.563,
+   "false_not_found": 96,
+   "false_answer": 1
+  },
+  {
+   "threshold": 1.49,
+   "accuracy": 0.559,
+   "false_not_found": 97,
+   "false_answer": 1
+  },
+  {
+   "threshold": 1.493,
+   "accuracy": 0.554,
+   "false_not_found": 98,
+   "false_answer": 1
+  },
+  {
+   "threshold": 1.501,
+   "accuracy": 0.55,
+   "false_not_found": 99,
+   "false_answer": 1
+  },
+  {
+   "threshold": 1.513,
+   "accuracy": 0.554,
+   "false_not_found": 99,
+   "false_answer": 0
+  },
+  {
+   "threshold": 1.516,
+   "accuracy": 0.55,
+   "false_not_found": 100,
+   "false_answer": 0
+  },
+  {
+   "threshold": 1.519,
+   "accuracy": 0.545,
+   "false_not_found": 101,
+   "false_answer": 0
+  },
+  {
+   "threshold": 1.531,
+   "accuracy": 0.541,
+   "false_not_found": 102,
+   "false_answer": 0
+  },
+  {
+   "threshold": 1.544,
+   "accuracy": 0.536,
+   "false_not_found": 103,
+   "false_answer": 0
+  },
+  {
+   "threshold": 1.548,
+   "accuracy": 0.532,
+   "false_not_found": 104,
+   "false_answer": 0
+  },
+  {
+   "threshold": 1.555,
+   "accuracy": 0.527,
+   "false_not_found": 105,
+   "false_answer": 0
+  },
+  {
+   "threshold": 1.565,
+   "accuracy": 0.523,
+   "false_not_found": 106,
+   "false_answer": 0
+  },
+  {
+   "threshold": 1.571,
+   "accuracy": 0.518,
+   "false_not_found": 107,
+   "false_answer": 0
+  },
+  {
+   "threshold": 1.583,
+   "accuracy": 0.514,
+   "false_not_found": 108,
+   "false_answer": 0
+  },
+  {
+   "threshold": 1.597,
+   "accuracy": 0.509,
+   "false_not_found": 109,
+   "false_answer": 0
+  },
+  {
+   "threshold": 1.614,
+   "accuracy": 0.505,
+   "false_not_found": 110,
+   "false_answer": 0
+  },
+  {
+   "threshold": 1.633,
+   "accuracy": 0.5,
+   "false_not_found": 111,
+   "false_answer": 0
+  },
+  {
+   "threshold": 1.641,
+   "accuracy": 0.495,
+   "false_not_found": 112,
+   "false_answer": 0
+  },
+  {
+   "threshold": 1.654,
+   "accuracy": 0.491,
+   "false_not_found": 113,
+   "false_answer": 0
+  },
+  {
+   "threshold": 1.667,
+   "accuracy": 0.486,
+   "false_not_found": 114,
+   "false_answer": 0
+  },
+  {
+   "threshold": 1.669,
+   "accuracy": 0.482,
+   "false_not_found": 115,
+   "false_answer": 0
+  },
+  {
+   "threshold": 1.676,
+   "accuracy": 0.477,
+   "false_not_found": 116,
+   "false_answer": 0
+  },
+  {
+   "threshold": 1.685,
+   "accuracy": 0.473,
+   "false_not_found": 117,
+   "false_answer": 0
+  },
+  {
+   "threshold": 1.688,
+   "accuracy": 0.468,
+   "false_not_found": 118,
+   "false_answer": 0
+  },
+  {
+   "threshold": 1.694,
+   "accuracy": 0.464,
+   "false_not_found": 119,
+   "false_answer": 0
+  },
+  {
+   "threshold": 1.704,
+   "accuracy": 0.459,
+   "false_not_found": 120,
+   "false_answer": 0
+  },
+  {
+   "threshold": 1.714,
+   "accuracy": 0.455,
+   "false_not_found": 121,
+   "false_answer": 0
+  },
+  {
+   "threshold": 1.72,
+   "accuracy": 0.45,
+   "false_not_found": 122,
+   "false_answer": 0
+  },
+  {
+   "threshold": 1.728,
+   "accuracy": 0.446,
+   "false_not_found": 123,
+   "false_answer": 0
+  },
+  {
+   "threshold": 1.743,
+   "accuracy": 0.441,
+   "false_not_found": 124,
+   "false_answer": 0
+  },
+  {
+   "threshold": 1.754,
+   "accuracy": 0.437,
+   "false_not_found": 125,
+   "false_answer": 0
+  },
+  {
+   "threshold": 1.756,
+   "accuracy": 0.432,
+   "false_not_found": 126,
+   "false_answer": 0
+  },
+  {
+   "threshold": 1.763,
+   "accuracy": 0.428,
+   "false_not_found": 127,
+   "false_answer": 0
+  },
+  {
+   "threshold": 1.771,
+   "accuracy": 0.423,
+   "false_not_found": 128,
+   "false_answer": 0
+  },
+  {
+   "threshold": 1.783,
+   "accuracy": 0.419,
+   "false_not_found": 129,
+   "false_answer": 0
+  },
+  {
+   "threshold": 1.8,
+   "accuracy": 0.414,
+   "false_not_found": 130,
+   "false_answer": 0
+  },
+  {
+   "threshold": 1.824,
+   "accuracy": 0.41,
+   "false_not_found": 131,
+   "false_answer": 0
+  },
+  {
+   "threshold": 1.855,
+   "accuracy": 0.405,
+   "false_not_found": 132,
+   "false_answer": 0
+  },
+  {
+   "threshold": 1.884,
+   "accuracy": 0.401,
+   "false_not_found": 133,
+   "false_answer": 0
+  },
+  {
+   "threshold": 1.904,
+   "accuracy": 0.396,
+   "false_not_found": 134,
+   "false_answer": 0
+  },
+  {
+   "threshold": 1.908,
+   "accuracy": 0.392,
+   "false_not_found": 135,
+   "false_answer": 0
+  },
+  {
+   "threshold": 1.921,
+   "accuracy": 0.387,
+   "false_not_found": 136,
+   "false_answer": 0
+  },
+  {
+   "threshold": 1.935,
+   "accuracy": 0.383,
+   "false_not_found": 137,
+   "false_answer": 0
+  },
+  {
+   "threshold": 1.939,
+   "accuracy": 0.378,
+   "false_not_found": 138,
+   "false_answer": 0
+  },
+  {
+   "threshold": 1.947,
+   "accuracy": 0.374,
+   "false_not_found": 139,
+   "false_answer": 0
+  },
+  {
+   "threshold": 1.988,
+   "accuracy": 0.369,
+   "false_not_found": 140,
+   "false_answer": 0
+  },
+  {
+   "threshold": 2.025,
+   "accuracy": 0.365,
+   "false_not_found": 141,
+   "false_answer": 0
+  },
+  {
+   "threshold": 2.03,
+   "accuracy": 0.36,
+   "false_not_found": 142,
+   "false_answer": 0
+  },
+  {
+   "threshold": 2.051,
+   "accuracy": 0.356,
+   "false_not_found": 143,
+   "false_answer": 0
+  },
+  {
+   "threshold": 2.066,
+   "accuracy": 0.351,
+   "false_not_found": 144,
+   "false_answer": 0
+  },
+  {
+   "threshold": 2.077,
+   "accuracy": 0.347,
+   "false_not_found": 145,
+   "false_answer": 0
+  },
+  {
+   "threshold": 2.105,
+   "accuracy": 0.342,
+   "false_not_found": 146,
+   "false_answer": 0
+  },
+  {
+   "threshold": 2.137,
+   "accuracy": 0.338,
+   "false_not_found": 147,
+   "false_answer": 0
+  },
+  {
+   "threshold": 2.165,
+   "accuracy": 0.333,
+   "false_not_found": 148,
+   "false_answer": 0
+  },
+  {
+   "threshold": 2.182,
+   "accuracy": 0.329,
+   "false_not_found": 149,
+   "false_answer": 0
+  },
+  {
+   "threshold": 2.215,
+   "accuracy": 0.324,
+   "false_not_found": 150,
+   "false_answer": 0
+  },
+  {
+   "threshold": 2.251,
+   "accuracy": 0.32,
+   "false_not_found": 151,
+   "false_answer": 0
+  },
+  {
+   "threshold": 2.259,
+   "accuracy": 0.315,
+   "false_not_found": 152,
+   "false_answer": 0
+  },
+  {
+   "threshold": 2.262,
+   "accuracy": 0.311,
+   "false_not_found": 153,
+   "false_answer": 0
+  },
+  {
+   "threshold": 2.285,
+   "accuracy": 0.306,
+   "false_not_found": 154,
+   "false_answer": 0
+  },
+  {
+   "threshold": 2.353,
+   "accuracy": 0.302,
+   "false_not_found": 155,
+   "false_answer": 0
+  },
+  {
+   "threshold": 2.406,
+   "accuracy": 0.297,
+   "false_not_found": 156,
+   "false_answer": 0
+  },
+  {
+   "threshold": 2.439,
+   "accuracy": 0.293,
+   "false_not_found": 157,
+   "false_answer": 0
+  },
+  {
+   "threshold": 2.497,
+   "accuracy": 0.288,
+   "false_not_found": 158,
+   "false_answer": 0
+  },
+  {
+   "threshold": 2.531,
+   "accuracy": 0.284,
+   "false_not_found": 159,
+   "false_answer": 0
+  },
+  {
+   "threshold": 2.593,
+   "accuracy": 0.279,
+   "false_not_found": 160,
+   "false_answer": 0
+  },
+  {
+   "threshold": 2.673,
+   "accuracy": 0.275,
+   "false_not_found": 161,
+   "false_answer": 0
+  },
+  {
+   "threshold": 2.809,
+   "accuracy": 0.27,
+   "false_not_found": 162,
+   "false_answer": 0
+  },
+  {
+   "threshold": 3.08,
+   "accuracy": 0.266,
+   "false_not_found": 163,
+   "false_answer": 0
+  },
+  {
+   "threshold": 3.277,
+   "accuracy": 0.261,
+   "false_not_found": 164,
+   "false_answer": 0
+  }
+ ],
+ "questions": [
+  {
+   "q": "What is the minimum password length at Nimbus?",
+   "as": "employee@nimbus.example",
+   "positive": null,
+   "score": 1.0137532949447632,
+   "verdict": "yes",
+   "top": [
+    "Welcome to Nimbus",
+    "Password and MFA Standard",
+    "Password and MFA Standard",
+    "Password and MFA Standard",
+    "Password and MFA Standard"
+   ]
+  },
+  {
+   "q": "After how many minutes of inactivity must a Nimbus laptop screen lock?",
+   "as": "employee@nimbus.example",
+   "positive": true,
+   "score": 1.309354305267334,
+   "verdict": "yes",
+   "top": [
+    "Laptop and Device Security Standard",
+    "Laptop and Device Security Standard",
+    "Acceptable Use Policy",
+    "On-Call Policy and Rotation",
+    "Laptop and Device Security Standard"
+   ]
+  },
+  {
+   "q": "Where should I forward a suspicious email?",
+   "as": "employee@nimbus.example",
+   "positive": true,
+   "score": -0.32435300946235657,
+   "verdict": "yes",
+   "top": [
+    "Welcome to Nimbus",
+    "Incident Reporting Procedure",
+    "Acceptable Use Policy",
+    "Incident Reporting Procedure",
+    "Al Noor Healthcare \u2013 Managed SOC Service Report"
+   ]
+  },
+  {
+   "q": "What is the response time for a SEV1 incident and who gets paged?",
+   "as": "employee@nimbus.example",
+   "positive": true,
+   "score": 1.4936230182647705,
+   "verdict": "yes",
+   "top": [
+    "SEV1 Incident Response Runbook",
+    "Incident Reporting Procedure",
+    "SEV1 Incident Response Runbook",
+    "SEV1 Incident Response Runbook",
+    "SEV1 Incident Response Runbook"
+   ]
+  },
+  {
+   "q": "Which class can I fly on a 10-hour international flight for work?",
+   "as": "employee@nimbus.example",
+   "positive": true,
+   "score": -0.6513782739639282,
+   "verdict": "yes",
+   "top": [
+    "Travel and Expense Policy",
+    "On-Call Policy and Rotation",
+    "Travel and Expense Policy",
+    "Laptop and Device Security Standard",
+    "On-Call Policy and Rotation"
+   ]
+  },
+  {
+   "q": "What is the daily allowance for business travel to a metro city in India?",
+   "as": "employee@nimbus.example",
+   "positive": true,
+   "score": 1.6980180740356445,
+   "verdict": "yes",
+   "top": [
+    "Travel and Expense Policy",
+    "Travel and Expense Policy",
+    "Travel and Expense Policy",
+    "Holiday Calendar FY2026-27",
+    "Travel and Expense Policy"
+   ]
+  },
+  {
+   "q": "What are the default anchor days for office attendance?",
+   "as": "employee@nimbus.example",
+   "positive": true,
+   "score": 0.4989028573036194,
+   "verdict": "yes",
+   "top": [
+    "Hybrid Work Policy",
+    "Welcome to Nimbus",
+    "Hybrid Work Policy",
+    "Holiday Calendar FY2026-27",
+    "Welcome to Nimbus"
+   ]
+  },
+  {
+   "q": "Independence Day 2026 falls on a Saturday. Is there still a flag-hoisting at the office?",
+   "as": "employee@nimbus.example",
+   "positive": true,
+   "score": 1.561685562133789,
+   "verdict": "yes",
+   "top": [
+    "Holiday Calendar FY2026-27",
+    "Holiday Calendar FY2026-27",
+    "Leave Policy FY2026-27",
+    "Holiday Calendar FY2026-27",
+    "Holiday Calendar FY2026-27"
+   ]
+  },
+  {
+   "q": "What is the group term life insurance cover for employees?",
+   "as": "employee@nimbus.example",
+   "positive": true,
+   "score": 0.6947522163391113,
+   "verdict": "yes",
+   "top": [
+    "Employee Benefits Guide",
+    "Employee Benefits Guide",
+    "Employee Benefits Guide",
+    "Employee Benefits Guide",
+    "Employee Benefits Guide"
+   ]
+  },
+  {
+   "q": "Within how many hours must CERT-In be notified of a reportable cyber incident?",
+   "as": "employee@nimbus.example",
+   "positive": true,
+   "score": 0.8436460494995117,
+   "verdict": "yes",
+   "top": [
+    "Incident Reporting Procedure",
+    "Information Security Policy",
+    "SEV1 Incident Response Runbook",
+    "Incident Reporting Procedure",
+    "Incident Reporting Procedure"
+   ]
+  },
+  {
+   "q": "What happens to earned leave above the carry-forward limit at year end?",
+   "as": "hr@nimbus.example",
+   "positive": true,
+   "score": -0.06743306666612625,
+   "verdict": "yes",
+   "top": [
+    "Leave Policy FY2026-27",
+    "Leave Policy FY2026-27",
+    "Leave Policy FY2026-27",
+    "Leave Policy FY2026-27",
+    "Leave Policy FY2026-27"
+   ]
+  },
+  {
+   "q": "If a Principal (L6) resigns, how long is the notice period and when is the full and final settlement paid?",
+   "as": "hr@nimbus.example",
+   "positive": true,
+   "score": 0.9356703162193298,
+   "verdict": "yes",
+   "top": [
+    "Notice Period and Exit Process",
+    "Notice Period and Exit Process",
+    "Notice Period and Exit Process",
+    "Relocation Assistance Policy",
+    "Variable Pay Plan"
+   ]
+  },
+  {
+   "q": "What referral bonus does an employee get for referring a Senior Software Engineer (L3)?",
+   "as": "hr@nimbus.example",
+   "positive": true,
+   "score": 1.7693305015563965,
+   "verdict": "yes",
+   "top": [
+    "Referral Bonus Policy",
+    "Referral Bonus Policy",
+    "Referral Bonus Policy",
+    "Referral Bonus Policy",
+    "Referral Bonus Policy"
+   ]
+  },
+  {
+   "q": "Can recruitment agencies be used for any role, and what fee is allowed?",
+   "as": "manager@nimbus.example",
+   "positive": true,
+   "score": -0.9818466305732727,
+   "verdict": "yes",
+   "top": [
+    "Hiring Approval Workflow",
+    "Code of Conduct",
+    "Referral Bonus Policy",
+    "Referral Bonus Policy",
+    "Referral Bonus Policy"
+   ]
+  },
+  {
+   "q": "What is the salary band for a Tech Lead (L4)?",
+   "as": "hr@nimbus.example",
+   "positive": true,
+   "score": 1.2660788297653198,
+   "verdict": "yes",
+   "top": [
+    "Salary Bands FY2026-27",
+    "Salary Bands FY2026-27",
+    "Variable Pay Plan",
+    "Salary Bands FY2026-27",
+    "Salary Bands FY2026-27"
+   ]
+  },
+  {
+   "q": "What is the salary band for a Tech Lead (L4)?",
+   "as": "employee@nimbus.example",
+   "positive": false,
+   "score": -1.2879678010940552,
+   "verdict": "yes",
+   "top": [
+    "Welcome to Nimbus",
+    "Referral Bonus Policy",
+    "Referral Bonus Policy",
+    "Data Classification and Handling Policy",
+    "Client Escalation Matrix"
+   ]
+  },
+  {
+   "q": "When is the FY2026-27 variable pay paid out?",
+   "as": "hr@nimbus.example",
+   "positive": true,
+   "score": 1.548570156097412,
+   "verdict": "yes",
+   "top": [
+    "Variable Pay Plan",
+    "Variable Pay Plan",
+    "Variable Pay Plan",
+    "Salary Bands FY2026-27",
+    "Variable Pay Plan"
+   ]
+  },
+  {
+   "q": "When is the FY2026-27 variable pay paid out?",
+   "as": "manager@nimbus.example",
+   "positive": false,
+   "score": 0.09037543088197708,
+   "verdict": "no",
+   "top": [
+    "Leave Policy FY2026-27",
+    "Leave Policy FY2026-27",
+    "Leave Policy FY2026-27",
+    "Notice Period and Exit Process",
+    "Handling Performance Issues \u2013 PIP Guide"
+   ]
+  },
+  {
+   "q": "How long does a formal Performance Improvement Plan (PIP) last?",
+   "as": "manager@nimbus.example",
+   "positive": true,
+   "score": 0.36519408226013184,
+   "verdict": "yes",
+   "top": [
+    "Handling Performance Issues \u2013 PIP Guide",
+    "Handling Performance Issues \u2013 PIP Guide",
+    "Handling Performance Issues \u2013 PIP Guide",
+    "Handling Performance Issues \u2013 PIP Guide",
+    "Handling Performance Issues \u2013 PIP Guide"
+   ]
+  },
+  {
+   "q": "How long does a formal Performance Improvement Plan (PIP) last?",
+   "as": "employee@nimbus.example",
+   "positive": false,
+   "score": -1.8474977016448975,
+   "verdict": "no",
+   "top": [
+    "Referral Bonus Policy",
+    "Notice Period and Exit Process",
+    "Notice Period and Exit Process",
+    "Harbor Logistics \u2013 Incident Post-Mortem INC-2291",
+    "POSH Policy \u2013 Prevention of Sexual Harassment"
+   ]
+  },
+  {
+   "q": "Can employees bring their pets to the Nimbus office?",
+   "as": "employee@nimbus.example",
+   "positive": false,
+   "score": -1.8009846210479736,
+   "verdict": "no",
+   "top": [
+    "Welcome to Nimbus",
+    "POSH Policy \u2013 Prevention of Sexual Harassment",
+    "Employee Benefits Guide",
+    "Information Security Policy",
+    "Remote Access and VPN Guideline"
+   ]
+  },
+  {
+   "q": "How much is the Nimbus annual Diwali bonus?",
+   "as": "hr@nimbus.example",
+   "positive": false,
+   "score": -0.546667754650116,
+   "verdict": "no",
+   "top": [
+    "Referral Bonus Policy",
+    "Welcome to Nimbus",
+    "Employee Benefits Guide",
+    "Salary Bands FY2026-27",
+    "Travel and Expense Policy"
+   ]
+  },
+  {
+   "q": "What is the monthly error budget for NimbusOps under its availability SLO?",
+   "as": "employee@nimbus.example",
+   "positive": true,
+   "score": 1.0089004039764404,
+   "verdict": "yes",
+   "top": [
+    "Logging and Observability Standard",
+    "NimbusOps Database Failover Runbook",
+    "NimbusOps Product FAQ",
+    "NimbusOps Platform Architecture",
+    "Design Doc \u2013 NimbusOps Multi-Region Active-Passive DR"
+   ]
+  },
+  {
+   "q": "How much on-call allowance is paid for a weekend or public holiday day?",
+   "as": "employee@nimbus.example",
+   "positive": true,
+   "score": 0.9781855940818787,
+   "verdict": "yes",
+   "top": [
+    "On-Call Policy and Rotation",
+    "Travel and Expense Policy",
+    "Leave Policy FY2026-27",
+    "Holiday Calendar FY2026-27",
+    "Leave Policy FY2026-27"
+   ]
+  },
+  {
+   "q": "What RPO and RTO were measured in the April 2026 full DR drill, and did it pass?",
+   "as": "employee@nimbus.example",
+   "positive": true,
+   "score": 0.9695868492126465,
+   "verdict": "yes",
+   "top": [
+    "Disaster Recovery Drill Procedure",
+    "Design Doc \u2013 NimbusOps Multi-Region Active-Passive DR",
+    "Disaster Recovery Drill Procedure",
+    "Information Security Policy",
+    "Disaster Recovery Drill Procedure"
+   ]
+  },
+  {
+   "q": "What RPO and RTO were measured in the April 2026 full DR drill, and did it pass?",
+   "as": "hr@nimbus.example",
+   "positive": false,
+   "score": -0.4271118640899658,
+   "verdict": "no",
+   "top": [
+    "Information Security Policy",
+    "NimbusOps Product FAQ",
+    "Notice Period and Exit Process",
+    "Holiday Calendar FY2026-27",
+    "Holiday Calendar FY2026-27"
+   ]
+  },
+  {
+   "q": "What is the API rate limit per key for Enterprise-plan customers?",
+   "as": "employee@nimbus.example",
+   "positive": true,
+   "score": 1.2174311876296997,
+   "verdict": "yes",
+   "top": [
+    "API Design Standard",
+    "NimbusOps Platform Architecture",
+    "API Design Standard",
+    "NimbusOps Platform Architecture",
+    "NimbusOps Platform Architecture"
+   ]
+  },
+  {
+   "q": "Who can accept the risk of a Critical vulnerability that cannot be fixed within SLA, and for how long?",
+   "as": "employee@nimbus.example",
+   "positive": true,
+   "score": 0.7554510831832886,
+   "verdict": "yes",
+   "top": [
+    "Secure SDLC Standard",
+    "Al Noor Healthcare \u2013 Managed SOC Service Report",
+    "Al Noor Healthcare \u2013 Managed SOC Service Report",
+    "Information Security Policy",
+    "Secure SDLC Standard"
+   ]
+  },
+  {
+   "q": "Why must infrastructure and system logs be kept for at least 180 days?",
+   "as": "employee@nimbus.example",
+   "positive": true,
+   "score": 0.1059294193983078,
+   "verdict": "yes",
+   "top": [
+    "Logging and Observability Standard",
+    "Information Security Policy",
+    "Data Classification and Handling Policy",
+    "Secure SDLC Standard",
+    "Information Security Policy"
+   ]
+  },
+  {
+   "q": "Who must approve new recurring cloud spend above \u20b95 lakh per month?",
+   "as": "employee@nimbus.example",
+   "positive": true,
+   "score": 1.214753270149231,
+   "verdict": "yes",
+   "top": [
+    "Cloud Cost Management Guideline",
+    "Design Doc \u2013 NimbusOps Multi-Region Active-Passive DR",
+    "Cloud Cost Management Guideline",
+    "Design Doc \u2013 NimbusOps Multi-Region Active-Passive DR",
+    "Zenith Retail \u2013 SAP S/4HANA Project Charter"
+   ]
+  },
+  {
+   "q": "How long was HarborTrack down during INC-2291 and what service credit did Harbor receive?",
+   "as": "manager@nimbus.example",
+   "positive": true,
+   "score": 1.5477218627929688,
+   "verdict": "yes",
+   "top": [
+    "Harbor Logistics \u2013 Cloud Migration Status Report Q1 FY27",
+    "Harbor Logistics \u2013 Incident Post-Mortem INC-2291",
+    "Harbor Logistics \u2013 Incident Post-Mortem INC-2291",
+    "Harbor Logistics \u2013 Incident Post-Mortem INC-2291",
+    "Harbor Logistics \u2013 Incident Post-Mortem INC-2291"
+   ]
+  },
+  {
+   "q": "How many Harbor Logistics applications had been migrated to AWS by 30 June 2026?",
+   "as": "manager@nimbus.example",
+   "positive": true,
+   "score": 1.721733808517456,
+   "verdict": "yes",
+   "top": [
+    "Harbor Logistics \u2013 Cloud Migration Status Report Q1 FY27",
+    "Harbor Logistics \u2013 Account Overview",
+    "Harbor Logistics \u2013 Cloud Migration Status Report Q1 FY27",
+    "Harbor Logistics \u2013 Cloud Migration Status Report Q1 FY27",
+    "Harbor Logistics \u2013 Cloud Migration Status Report Q1 FY27"
+   ]
+  },
+  {
+   "q": "How much is the go-live milestone payment in the Zenith Retail S/4HANA project?",
+   "as": "manager@nimbus.example",
+   "positive": true,
+   "score": 1.90828537940979,
+   "verdict": "yes",
+   "top": [
+    "Zenith Retail \u2013 SAP S/4HANA Project Charter",
+    "Zenith Retail \u2013 SAP S/4HANA Project Charter",
+    "Zenith Retail \u2013 SAP S/4HANA Project Charter",
+    "Zenith Retail \u2013 SAP S/4HANA Project Charter",
+    "Zenith Retail \u2013 SAP S/4HANA Project Charter"
+   ]
+  },
+  {
+   "q": "How quickly was the May 2026 phishing campaign at Al Noor Healthcare contained?",
+   "as": "manager@nimbus.example",
+   "positive": true,
+   "score": 1.668294072151184,
+   "verdict": "yes",
+   "top": [
+    "Al Noor Healthcare \u2013 Managed SOC Service Report",
+    "Al Noor Healthcare \u2013 Managed SOC Service Report",
+    "Al Noor Healthcare \u2013 Managed SOC Service Report",
+    "Al Noor Healthcare \u2013 Managed SOC Service Report",
+    "Al Noor Healthcare \u2013 Managed SOC Service Report"
+   ]
+  },
+  {
+   "q": "What is the list price of the NimbusOps Enterprise plan?",
+   "as": "owner@nimbus.example",
+   "positive": true,
+   "score": 1.1830573081970215,
+   "verdict": "yes",
+   "top": [
+    "Rate Card FY2026-27",
+    "Rate Card FY2026-27",
+    "Rate Card FY2026-27",
+    "Discount Approval Policy",
+    "Rate Card FY2026-27"
+   ]
+  },
+  {
+   "q": "What is the list price of the NimbusOps Enterprise plan?",
+   "as": "employee@nimbus.example",
+   "positive": false,
+   "score": 0.22804275155067444,
+   "verdict": "no",
+   "top": [
+    "Design Doc \u2013 NimbusOps Multi-Region Active-Passive DR",
+    "NimbusOps Product FAQ",
+    "NimbusOps Platform Architecture",
+    "Zenith Retail \u2013 SAP S/4HANA Project Charter",
+    "Cloud Cost Management Guideline"
+   ]
+  },
+  {
+   "q": "Who approves a discount of more than 10% and up to 15% of total contract value?",
+   "as": "owner@nimbus.example",
+   "positive": true,
+   "score": 0.4382709860801697,
+   "verdict": "yes",
+   "top": [
+    "Discount Approval Policy",
+    "Harbor Logistics Renewal Negotiation Notes",
+    "Contract Review and Signing Authority Guideline",
+    "Discount Approval Policy",
+    "Discount Approval Policy"
+   ]
+  },
+  {
+   "q": "By how much did the Board approve topping up the ESOP pool on 14 May 2026?",
+   "as": "owner@nimbus.example",
+   "positive": true,
+   "score": 2.066744089126587,
+   "verdict": "yes",
+   "top": [
+    "Board Meeting Minutes \u2013 14 May 2026",
+    "FY2026-27 Budget and Headcount Plan",
+    "FY2026-27 Budget and Headcount Plan",
+    "Board Meeting Minutes \u2013 14 May 2026",
+    "FY2025-26 Annual Financial Summary"
+   ]
+  },
+  {
+   "q": "By how much did the Board approve topping up the ESOP pool on 14 May 2026?",
+   "as": "manager@nimbus.example",
+   "positive": false,
+   "score": -1.9847604036331177,
+   "verdict": "no",
+   "top": [
+    "Travel and Expense Policy",
+    "Holiday Calendar FY2026-27",
+    "Holiday Calendar FY2026-27",
+    "Holiday Calendar FY2026-27",
+    "Design Doc \u2013 NimbusOps Multi-Region Active-Passive DR"
+   ]
+  },
+  {
+   "q": "What is the planned Hyderabad headcount at 31 March 2027?",
+   "as": "owner@nimbus.example",
+   "positive": true,
+   "score": 1.8421554565429688,
+   "verdict": "yes",
+   "top": [
+    "FY2026-27 Budget and Headcount Plan",
+    "Hyderabad Campus Expansion Proposal",
+    "FY2026-27 Budget and Headcount Plan",
+    "FY2026-27 Budget and Headcount Plan",
+    "Board Meeting Minutes \u2013 14 May 2026"
+   ]
+  },
+  {
+   "q": "What is the capital cost per seat of the Hyderabad campus expansion?",
+   "as": "owner@nimbus.example",
+   "positive": true,
+   "score": 2.5282325744628906,
+   "verdict": "yes",
+   "top": [
+    "Hyderabad Campus Expansion Proposal",
+    "Board Meeting Minutes \u2013 14 May 2026",
+    "Hyderabad Campus Expansion Proposal",
+    "Hyderabad Campus Expansion Proposal",
+    "Hyderabad Campus Expansion Proposal"
+   ]
+  },
+  {
+   "q": "How many story points does the NimbusOps team deliver per sprint on average?",
+   "as": "employee@nimbus.example",
+   "positive": false,
+   "score": -1.6332489252090454,
+   "verdict": "no",
+   "top": [
+    "NimbusOps Product FAQ",
+    "Welcome to Nimbus",
+    "NimbusOps Platform Architecture",
+    "NimbusOps Product FAQ",
+    "NimbusOps Database Failover Runbook"
+   ]
+  },
+  {
+   "q": "What is the parking reimbursement for engineers called in to the office during a SEV1?",
+   "as": "employee@nimbus.example",
+   "positive": false,
+   "score": -1.1022576093673706,
+   "verdict": "no",
+   "top": [
+    "On-Call Policy and Rotation",
+    "SEV1 Incident Response Runbook",
+    "SEV1 Incident Response Runbook",
+    "SEV1 Incident Response Runbook",
+    "SEV1 Incident Response Runbook"
+   ]
+  },
+  {
+   "q": "How many days of earned leave do Nimbus employees get per financial year?",
+   "as": "hr@nimbus.example",
+   "positive": true,
+   "score": 1.4731247425079346,
+   "verdict": "yes",
+   "top": [
+    "Leave Policy FY2026-27",
+    "Welcome to Nimbus",
+    "Employee Benefits Guide",
+    "Leave Policy FY2026-27",
+    "Leave Policy FY2026-27"
+   ]
+  },
+  {
+   "q": "What is the fixed salary band for an L3 Senior Software Engineer at Nimbus?",
+   "as": "hr@nimbus.example",
+   "positive": true,
+   "score": 1.6247296333312988,
+   "verdict": "yes",
+   "top": [
+    "Salary Bands FY2026-27",
+    "Salary Bands FY2026-27",
+    "Welcome to Nimbus",
+    "Salary Bands FY2026-27",
+    "Variable Pay Plan"
+   ]
+  },
+  {
+   "q": "What is the fixed salary band for an L3 Senior Software Engineer at Nimbus?",
+   "as": "employee@nimbus.example",
+   "positive": false,
+   "score": -0.20083217322826385,
+   "verdict": "no",
+   "top": [
+    "Welcome to Nimbus",
+    "Referral Bonus Policy",
+    "Data Classification and Handling Policy",
+    "Welcome to Nimbus",
+    "Welcome to Nimbus"
+   ]
+  },
+  {
+   "q": "What counts as a SEV1 incident and how fast must on-call respond?",
+   "as": "employee@nimbus.example",
+   "positive": true,
+   "score": 0.39750808477401733,
+   "verdict": "yes",
+   "top": [
+    "SEV1 Incident Response Runbook",
+    "SEV1 Incident Response Runbook",
+    "Incident Reporting Procedure",
+    "SEV1 Incident Response Runbook",
+    "SEV1 Incident Response Runbook"
+   ]
+  },
+  {
+   "q": "Can I bring my dog to the Nimbus office in Pune?",
+   "as": "employee@nimbus.example",
+   "positive": false,
+   "score": -1.5606417655944824,
+   "verdict": "no",
+   "top": [
+    "Welcome to Nimbus",
+    "POSH Policy \u2013 Prevention of Sexual Harassment",
+    "Welcome to Nimbus",
+    "Remote Access and VPN Guideline",
+    "POSH Policy \u2013 Prevention of Sexual Harassment"
+   ]
+  },
+  {
+   "q": "How many days of unused earned leave can a Nimbus employee carry forward into the next year?",
+   "as": "hr@nimbus.example",
+   "positive": true,
+   "score": 1.7949042320251465,
+   "verdict": "yes",
+   "top": [
+    "Leave Policy FY2026-27",
+    "Travel and Expense Policy",
+    "Leave Policy FY2026-27",
+    "Leave Policy FY2026-27",
+    "Leave Policy FY2026-27"
+   ]
+  },
+  {
+   "q": "What stock refresh time does the Zenith inventory sync BRD require?",
+   "as": "employee@nimbus.example",
+   "positive": true,
+   "score": 1.2512714862823486,
+   "verdict": "yes",
+   "top": [
+    "BRD \u2013 Zenith Retail Omnichannel Inventory Sync",
+    "BRD \u2013 Zenith Retail Omnichannel Inventory Sync",
+    "BRD \u2013 Zenith Retail Omnichannel Inventory Sync",
+    "BRD \u2013 Zenith Retail Omnichannel Inventory Sync",
+    "BRD \u2013 Zenith Retail Omnichannel Inventory Sync"
+   ]
+  },
+  {
+   "q": "Who signs off the Zenith omnichannel inventory sync BRD?",
+   "as": "manager@nimbus.example",
+   "positive": true,
+   "score": 2.652414321899414,
+   "verdict": "yes",
+   "top": [
+    "BRD \u2013 Zenith Retail Omnichannel Inventory Sync",
+    "BRD \u2013 Zenith Retail Omnichannel Inventory Sync",
+    "BRD \u2013 Zenith Retail Omnichannel Inventory Sync",
+    "BRD \u2013 Zenith Retail Omnichannel Inventory Sync",
+    "BRD \u2013 Zenith Retail Omnichannel Inventory Sync"
+   ]
+  },
+  {
+   "q": "Who signs off the Zenith omnichannel inventory sync BRD?",
+   "as": "hr@nimbus.example",
+   "positive": false,
+   "score": -2.505729913711548,
+   "verdict": "no",
+   "top": [
+    "Password and MFA Standard",
+    "Password and MFA Standard",
+    "Hiring Approval Workflow",
+    "Remote Access and VPN Guideline",
+    "Relocation Assistance Policy"
+   ]
+  },
+  {
+   "q": "Which NimbusOps plans get AI alert summaries?",
+   "as": "product@nimbus.example",
+   "positive": true,
+   "score": 2.1779487133026123,
+   "verdict": "yes",
+   "top": [
+    "BRD \u2013 NimbusOps AI Alert Summaries",
+    "BRD \u2013 NimbusOps AI Alert Summaries",
+    "BRD \u2013 NimbusOps AI Alert Summaries",
+    "BRD \u2013 NimbusOps AI Alert Summaries",
+    "BRD \u2013 NimbusOps AI Alert Summaries"
+   ]
+  },
+  {
+   "q": "Which NimbusOps plans get AI alert summaries?",
+   "as": "employee@nimbus.example",
+   "positive": false,
+   "score": 1.50911545753479,
+   "verdict": "yes",
+   "top": [
+    "NimbusOps Product FAQ",
+    "NimbusOps Product FAQ",
+    "NimbusOps Platform Architecture",
+    "NimbusOps Product FAQ",
+    "NimbusOps Platform Architecture"
+   ]
+  },
+  {
+   "q": "What alert-noise reduction is the AI alert summaries feature targeting?",
+   "as": "product@nimbus.example",
+   "positive": true,
+   "score": 1.055554747581482,
+   "verdict": "yes",
+   "top": [
+    "BRD \u2013 NimbusOps AI Alert Summaries",
+    "BRD \u2013 NimbusOps AI Alert Summaries",
+    "BRD \u2013 NimbusOps AI Alert Summaries",
+    "BRD \u2013 NimbusOps AI Alert Summaries",
+    "BRD \u2013 NimbusOps AI Alert Summaries"
+   ]
+  },
+  {
+   "q": "Where is NimbusOps customer data stored?",
+   "as": "product@nimbus.example",
+   "positive": true,
+   "score": 1.9363958835601807,
+   "verdict": "yes",
+   "top": [
+    "NimbusOps Product FAQ",
+    "BRD \u2013 NimbusOps AI Alert Summaries",
+    "Data Protection Policy \u2013 DPDP Act 2023",
+    "Data Classification and Handling Policy",
+    "Welcome to Nimbus"
+   ]
+  },
+  {
+   "q": "How long is the NimbusOps free trial and how many hosts does it cover?",
+   "as": "product@nimbus.example",
+   "positive": true,
+   "score": 0.3385169208049774,
+   "verdict": "yes",
+   "top": [
+    "NimbusOps Product FAQ",
+    "NimbusOps Product FAQ",
+    "NimbusOps Product FAQ",
+    "BRD \u2013 NimbusOps AI Alert Summaries",
+    "NimbusOps Product FAQ"
+   ]
+  },
+  {
+   "q": "What is the liability cap in the Harbor Logistics MSA?",
+   "as": "legal@nimbus.example",
+   "positive": true,
+   "score": 1.933276653289795,
+   "verdict": "yes",
+   "top": [
+    "Master Services Agreement \u2013 Harbor Logistics Inc.",
+    "Master Services Agreement \u2013 Harbor Logistics Inc.",
+    "Master Services Agreement \u2013 Harbor Logistics Inc.",
+    "Master Services Agreement \u2013 Harbor Logistics Inc.",
+    "Master Services Agreement \u2013 Harbor Logistics Inc."
+   ]
+  },
+  {
+   "q": "What is the liability cap in the Harbor Logistics MSA?",
+   "as": "manager@nimbus.example",
+   "positive": false,
+   "score": -0.9820868372917175,
+   "verdict": "no",
+   "top": [
+    "Harbor Logistics \u2013 Account Overview",
+    "Harbor Logistics \u2013 Cloud Migration Status Report Q1 FY27",
+    "Harbor Logistics \u2013 Incident Post-Mortem INC-2291",
+    "Harbor Logistics \u2013 Account Overview",
+    "Harbor Logistics \u2013 Incident Post-Mortem INC-2291"
+   ]
+  },
+  {
+   "q": "How much notice is needed to not renew the Harbor Logistics MSA?",
+   "as": "legal@nimbus.example",
+   "positive": true,
+   "score": 1.486165165901184,
+   "verdict": "yes",
+   "top": [
+    "Master Services Agreement \u2013 Harbor Logistics Inc.",
+    "Master Services Agreement \u2013 Harbor Logistics Inc.",
+    "Master Services Agreement \u2013 Harbor Logistics Inc.",
+    "Master Services Agreement \u2013 Harbor Logistics Inc.",
+    "Master Services Agreement \u2013 Harbor Logistics Inc."
+   ]
+  },
+  {
+   "q": "Who can sign a client contract worth more than \u20b95 crore?",
+   "as": "legal@nimbus.example",
+   "positive": true,
+   "score": 0.579131543636322,
+   "verdict": "yes",
+   "top": [
+    "Contract Review and Signing Authority Guideline",
+    "Contract Review and Signing Authority Guideline",
+    "Contract Review and Signing Authority Guideline",
+    "Contract Review and Signing Authority Guideline",
+    "Contract Review and Signing Authority Guideline"
+   ]
+  },
+  {
+   "q": "How long does Legal take to review an NDA on third-party paper?",
+   "as": "legal@nimbus.example",
+   "positive": true,
+   "score": 0.39464128017425537,
+   "verdict": "yes",
+   "top": [
+    "Contract Review and Signing Authority Guideline",
+    "Contract Review and Signing Authority Guideline",
+    "Contract Review and Signing Authority Guideline",
+    "Contract Review and Signing Authority Guideline",
+    "Master Services Agreement \u2013 Harbor Logistics Inc."
+   ]
+  },
+  {
+   "q": "What are Nimbus's standard vendor payment terms?",
+   "as": "finance@nimbus.example",
+   "positive": true,
+   "score": 1.3485922813415527,
+   "verdict": "yes",
+   "top": [
+    "Accounts Payable and Vendor Payment Policy",
+    "Accounts Payable and Vendor Payment Policy",
+    "Accounts Payable and Vendor Payment Policy",
+    "Accounts Payable and Vendor Payment Policy",
+    "Accounts Payable and Vendor Payment Policy"
+   ]
+  },
+  {
+   "q": "Who approves a vendor invoice between \u20b910 lakh and \u20b950 lakh?",
+   "as": "finance@nimbus.example",
+   "positive": true,
+   "score": 0.9498320817947388,
+   "verdict": "yes",
+   "top": [
+    "Accounts Payable and Vendor Payment Policy",
+    "Accounts Payable and Vendor Payment Policy",
+    "Accounts Payable and Vendor Payment Policy",
+    "Accounts Payable and Vendor Payment Policy",
+    "Accounts Payable and Vendor Payment Policy"
+   ]
+  },
+  {
+   "q": "What were Nimbus's Q1 FY27 debtor days?",
+   "as": "finance@nimbus.example",
+   "positive": true,
+   "score": 1.0809192657470703,
+   "verdict": "yes",
+   "top": [
+    "Q1 FY2026-27 Revenue and Collections Report",
+    "Q1 FY2026-27 Revenue and Collections Report",
+    "Q1 FY2026-27 Revenue and Collections Report",
+    "Q1 FY2026-27 Revenue and Collections Report",
+    "Q1 FY2026-27 Revenue and Collections Report"
+   ]
+  },
+  {
+   "q": "Which region brought the most revenue in Q1 FY27?",
+   "as": "finance@nimbus.example",
+   "positive": true,
+   "score": 0.9065648317337036,
+   "verdict": "yes",
+   "top": [
+    "Q1 FY2026-27 Revenue and Collections Report",
+    "Q1 FY2026-27 Revenue and Collections Report",
+    "Q1 FY2026-27 Revenue and Collections Report",
+    "Q1 FY2026-27 Revenue and Collections Report",
+    "Q1 FY2026-27 Revenue and Collections Report"
+   ]
+  },
+  {
+   "q": "How fast must a critical vulnerability on an internet-facing system be fixed?",
+   "as": "security@nimbus.example",
+   "positive": true,
+   "score": 0.5992138981819153,
+   "verdict": "yes",
+   "top": [
+    "Vulnerability Management Standard",
+    "Vulnerability Management Standard",
+    "Information Security Policy",
+    "Vulnerability Management Standard",
+    "Vulnerability Management Standard"
+   ]
+  },
+  {
+   "q": "Who approves a risk exception for a Medium or Low vulnerability, and for how long?",
+   "as": "security@nimbus.example",
+   "positive": true,
+   "score": 0.6476269364356995,
+   "verdict": "yes",
+   "top": [
+    "Vulnerability Management Standard",
+    "Vulnerability Management Standard",
+    "Information Security Policy",
+    "Information Security Policy",
+    "Vulnerability Management Standard"
+   ]
+  },
+  {
+   "q": "How often is privileged and production access reviewed?",
+   "as": "security@nimbus.example",
+   "positive": true,
+   "score": 0.582341194152832,
+   "verdict": "yes",
+   "top": [
+    "Privileged Access and Quarterly Access Review Procedure",
+    "Privileged Access and Quarterly Access Review Procedure",
+    "Privileged Access and Quarterly Access Review Procedure",
+    "Privileged Access and Quarterly Access Review Procedure",
+    "Privileged Access and Quarterly Access Review Procedure"
+   ]
+  },
+  {
+   "q": "How soon is all access removed after someone leaves?",
+   "as": "security@nimbus.example",
+   "positive": true,
+   "score": -0.5779621601104736,
+   "verdict": "yes",
+   "top": [
+    "Privileged Access and Quarterly Access Review Procedure",
+    "NimbusOps Product FAQ",
+    "Acceptable Use Policy",
+    "Notice Period and Exit Process",
+    "Notice Period and Exit Process"
+   ]
+  },
+  {
+   "q": "What RPO and RTO does the new NimbusOps DR design target?",
+   "as": "employee@nimbus.example",
+   "positive": true,
+   "score": 1.755359172821045,
+   "verdict": "yes",
+   "top": [
+    "Design Doc \u2013 NimbusOps Multi-Region Active-Passive DR",
+    "Design Doc \u2013 NimbusOps Multi-Region Active-Passive DR",
+    "Information Security Policy",
+    "Design Doc \u2013 NimbusOps Multi-Region Active-Passive DR",
+    "Disaster Recovery Drill Procedure"
+   ]
+  },
+  {
+   "q": "What RPO and RTO does the new NimbusOps DR design target?",
+   "as": "product@nimbus.example",
+   "positive": false,
+   "score": 0.960584282875061,
+   "verdict": "yes",
+   "top": [
+    "Information Security Policy",
+    "NimbusOps Product FAQ",
+    "NimbusOps Product FAQ",
+    "BRD \u2013 NimbusOps AI Alert Summaries",
+    "BRD \u2013 NimbusOps AI Alert Summaries"
+   ]
+  },
+  {
+   "q": "How much extra per month does the active-passive DR design cost?",
+   "as": "employee@nimbus.example",
+   "positive": true,
+   "score": 1.2089298963546753,
+   "verdict": "yes",
+   "top": [
+    "Design Doc \u2013 NimbusOps Multi-Region Active-Passive DR",
+    "Design Doc \u2013 NimbusOps Multi-Region Active-Passive DR",
+    "Design Doc \u2013 NimbusOps Multi-Region Active-Passive DR",
+    "NimbusOps Platform Architecture",
+    "Cloud Cost Management Guideline"
+   ]
+  },
+  {
+   "q": "What is the price of the AI alert summaries add-on for the Starter plan?",
+   "as": "product@nimbus.example",
+   "positive": false,
+   "score": 1.3834412097930908,
+   "verdict": "no",
+   "top": [
+    "BRD \u2013 NimbusOps AI Alert Summaries",
+    "BRD \u2013 NimbusOps AI Alert Summaries",
+    "BRD \u2013 NimbusOps AI Alert Summaries",
+    "BRD \u2013 NimbusOps AI Alert Summaries",
+    "BRD \u2013 NimbusOps AI Alert Summaries"
+   ]
+  },
+  {
+   "q": "How many desks does the Nimbus Dubai sales office have?",
+   "as": "owner@nimbus.example",
+   "positive": false,
+   "score": -0.019023198634386063,
+   "verdict": "no",
+   "top": [
+    "Welcome to Nimbus",
+    "Client Escalation Matrix",
+    "POSH Policy \u2013 Prevention of Sexual Harassment",
+    "Welcome to Nimbus",
+    "Accounts Payable and Vendor Payment Policy"
+   ]
+  },
+  {
+   "q": "How many days of privilege, casual and sick leave do Sanjeevani employees get each year?",
+   "as": "rnd@sanjeevani.example",
+   "positive": true,
+   "score": 0.16209591925144196,
+   "verdict": "yes",
+   "top": [
+    "Leave Policy 2026",
+    "Leave Policy 2026",
+    "Leave Policy 2026",
+    "Leave Policy 2026",
+    "Leave Policy 2026"
+   ]
+  },
+  {
+   "q": "What is the night-shift allowance for plant employees?",
+   "as": "qa@sanjeevani.example",
+   "positive": true,
+   "score": 1.189683437347412,
+   "verdict": "yes",
+   "top": [
+    "Shift and Overtime Policy",
+    "Shift and Overtime Policy",
+    "Shift and Overtime Policy",
+    "Shift and Overtime Policy",
+    "Shift and Overtime Policy"
+   ]
+  },
+  {
+   "q": "How should Glucosan-M 500 be stored and what is its shelf life?",
+   "as": "sales@sanjeevani.example",
+   "positive": true,
+   "score": 0.8566538095474243,
+   "verdict": "yes",
+   "top": [
+    "Glucosan-M 500 Product Monograph",
+    "Product Portfolio and Storage Conditions",
+    "Product Portfolio and Storage Conditions",
+    "Medicine Information and Side-Effect Reporting FAQ",
+    "Product Returns and Expiry Replacement Policy"
+   ]
+  },
+  {
+   "q": "What is the maximum daily dose of Glucosan-M 500 SR?",
+   "as": "sales@sanjeevani.example",
+   "positive": true,
+   "score": 1.6900300979614258,
+   "verdict": "yes",
+   "top": [
+    "Glucosan-M 500 Product Monograph",
+    "Glucosan-M Brand Plan FY27",
+    "Glucosan-M Brand Plan FY27",
+    "Glucosan-M 500 Product Monograph",
+    "Field Force Guidelines FY27"
+   ]
+  },
+  {
+   "q": "Can Sanjeevani Cough Relief Syrup be given to a three-year-old child?",
+   "as": "sales@sanjeevani.example",
+   "positive": true,
+   "score": 0.9870572090148926,
+   "verdict": "yes",
+   "top": [
+    "Sanjeevani Cough Relief Syrup Product Sheet",
+    "Sanjeevani Cough Relief Syrup Product Sheet",
+    "Medicine Information and Side-Effect Reporting FAQ",
+    "Sanjeevani Cough Relief Syrup Product Sheet",
+    "Sanjeevani Cough Relief Syrup Product Sheet"
+   ]
+  },
+  {
+   "q": "Which product in the Sanjeevani portfolio must be stored below 25\u00b0C?",
+   "as": "qa@sanjeevani.example",
+   "positive": true,
+   "score": 1.7109075784683228,
+   "verdict": "yes",
+   "top": [
+    "Product Portfolio and Storage Conditions",
+    "Sanjeevani Cough Relief Syrup Product Sheet",
+    "Product Returns and Expiry Replacement Policy",
+    "Product Portfolio and Storage Conditions",
+    "Product Portfolio and Storage Conditions"
+   ]
+  },
+  {
+   "q": "How many strips of Glucosan-M samples can a medical representative give a doctor per month?",
+   "as": "sales@sanjeevani.example",
+   "positive": true,
+   "score": 1.308901309967041,
+   "verdict": "yes",
+   "top": [
+    "Glucosan-M Brand Plan FY27",
+    "Field Force Guidelines FY27",
+    "Sample Distribution Policy",
+    "UCPMP Compliance Guide for Field Staff",
+    "Sample Distribution Policy"
+   ]
+  },
+  {
+   "q": "What is the monthly doctor call target for a medical representative in FY27?",
+   "as": "sales@sanjeevani.example",
+   "positive": true,
+   "score": 1.168074607849121,
+   "verdict": "yes",
+   "top": [
+    "Glucosan-M Brand Plan FY27",
+    "Field Force Guidelines FY27",
+    "Field Force Guidelines FY27",
+    "Glucosan-M Brand Plan FY27",
+    "Field Force Guidelines FY27"
+   ]
+  },
+  {
+   "q": "What is the FY27 sales target for the West zone?",
+   "as": "sales@sanjeevani.example",
+   "positive": true,
+   "score": 2.151273012161255,
+   "verdict": "yes",
+   "top": [
+    "FY27 Sales Targets by Zone",
+    "FY27 Sales Targets by Zone",
+    "FY27 Sales Targets by Zone",
+    "FY27 Sales Targets by Zone",
+    "FY27 Sales Targets by Zone"
+   ]
+  },
+  {
+   "q": "What is the FY27 sales target for the West zone?",
+   "as": "rnd@sanjeevani.example",
+   "positive": false,
+   "score": -0.3147537112236023,
+   "verdict": "no",
+   "top": [
+    "Plant Safety and EHS Policy",
+    "R&D Pipeline Review FY27",
+    "R&D Pipeline Review FY27",
+    "R&D Pipeline Review FY27",
+    "R&D Pipeline Review FY27"
+   ]
+  },
+  {
+   "q": "What dividend did the Board recommend for FY2025-26?",
+   "as": "owner@sanjeevani.example",
+   "positive": true,
+   "score": 2.024366855621338,
+   "verdict": "yes",
+   "top": [
+    "Board Meeting Minutes \u2013 22 April 2026",
+    "FY2025-26 Annual Results Summary",
+    "FY2025-26 Annual Results Summary",
+    "Board Meeting Minutes \u2013 22 April 2026",
+    "Board Meeting Minutes \u2013 22 April 2026"
+   ]
+  },
+  {
+   "q": "What dividend did the Board recommend for FY2025-26?",
+   "as": "sales@sanjeevani.example",
+   "positive": false,
+   "score": -1.2173073291778564,
+   "verdict": "no",
+   "top": [
+    "Whistleblower Policy",
+    "FY27 Sales Targets by Zone",
+    "FY27 Sales Targets by Zone",
+    "FY27 Sales Targets by Zone",
+    "FY27 Sales Targets by Zone"
+   ]
+  },
+  {
+   "q": "How is the \u20b9310 crore Vizag capacity expansion being funded?",
+   "as": "owner@sanjeevani.example",
+   "positive": true,
+   "score": 1.6828639507293701,
+   "verdict": "yes",
+   "top": [
+    "Board Meeting Minutes \u2013 22 April 2026",
+    "Vizag Expansion Investment Note",
+    "Project Plan \u2013 Vizag Unit III Capacity Expansion",
+    "Vizag Expansion Investment Note",
+    "Vizag Expansion Investment Note"
+   ]
+  },
+  {
+   "q": "How many ANDA approvals did Sanjeevani receive in FY2025-26, and for which applications?",
+   "as": "qa@sanjeevani.example",
+   "positive": true,
+   "score": 1.450085163116455,
+   "verdict": "yes",
+   "top": [
+    "ANDA Submission Status Tracker",
+    "ANDA Submission Status Tracker",
+    "Regulatory Affairs Calendar 2026",
+    "ANDA Submission Status Tracker",
+    "ANDA Submission Status Tracker"
+   ]
+  },
+  {
+   "q": "How many ANDA approvals did Sanjeevani receive in FY2025-26, and for which applications?",
+   "as": "sales@sanjeevani.example",
+   "positive": false,
+   "score": -0.3565903902053833,
+   "verdict": "no",
+   "top": [
+    "Product Returns and Expiry Replacement Policy",
+    "About Sanjeevani",
+    "Sanjeevani Cough Relief Syrup Product Sheet",
+    "About Sanjeevani",
+    "Careers at Sanjeevani \u2013 Hiring and Campus Programme FAQ"
+   ]
+  },
+  {
+   "q": "By when must the Unit III Vizag manufacturing licence retention fee be paid?",
+   "as": "qa@sanjeevani.example",
+   "positive": true,
+   "score": 0.6998474597930908,
+   "verdict": "yes",
+   "top": [
+    "CDSCO Product Licence Renewal Summary",
+    "CDSCO Product Licence Renewal Summary",
+    "Regulatory Affairs Calendar 2026",
+    "CDSCO Product Licence Renewal Summary",
+    "CDSCO Product Licence Renewal Summary"
+   ]
+  },
+  {
+   "q": "As a Band C employee staying at the Baddi plant guest house, what daily allowance do I get?",
+   "as": "rnd@sanjeevani.example",
+   "positive": true,
+   "score": 0.6299039721488953,
+   "verdict": "yes",
+   "top": [
+    "Travel Policy",
+    "Shift and Overtime Policy",
+    "Leave Policy 2026",
+    "Travel Policy",
+    "Leave Policy 2026"
+   ]
+  },
+  {
+   "q": "How long does Sanjeevani take to complete a whistleblower investigation?",
+   "as": "sales@sanjeevani.example",
+   "positive": true,
+   "score": -0.20479023456573486,
+   "verdict": "yes",
+   "top": [
+    "Whistleblower Policy",
+    "Whistleblower Policy",
+    "UCPMP Compliance Guide for Field Staff",
+    "Product Returns and Expiry Replacement Policy",
+    "Employee Medical Insurance Guide"
+   ]
+  },
+  {
+   "q": "What is the Group Mediclaim sum insured for a Band C employee?",
+   "as": "rnd@sanjeevani.example",
+   "positive": true,
+   "score": 1.6691920757293701,
+   "verdict": "yes",
+   "top": [
+    "Employee Medical Insurance Guide",
+    "Employee Medical Insurance Guide",
+    "Employee Medical Insurance Guide",
+    "Employee Medical Insurance Guide",
+    "Employee Medical Insurance Guide"
+   ]
+  },
+  {
+   "q": "What is the work-from-home allowance for head office employees?",
+   "as": "rnd@sanjeevani.example",
+   "positive": false,
+   "score": -0.11923094093799591,
+   "verdict": "no",
+   "top": [
+    "Shift and Overtime Policy",
+    "Shift and Overtime Policy",
+    "Shift and Overtime Policy",
+    "Leave Policy 2026",
+    "Leave Policy 2026"
+   ]
+  },
+  {
+   "q": "What is the cafeteria meal subsidy at the Hyderabad R&D centre?",
+   "as": "sales@sanjeevani.example",
+   "positive": false,
+   "score": -1.4111515283584595,
+   "verdict": "no",
+   "top": [
+    "Plant Safety and EHS Policy",
+    "Travel Policy",
+    "Travel Policy",
+    "Leave Policy 2026",
+    "Leave Policy 2026"
+   ]
+  },
+  {
+   "q": "Within how long must the Head of QA be informed of a critical deviation at Sanjeevani?",
+   "as": "qa@sanjeevani.example",
+   "positive": true,
+   "score": 0.4550030529499054,
+   "verdict": "yes",
+   "top": [
+    "SOP \u2013 Deviation Handling",
+    "Data Integrity Policy \u2013 ALCOA+",
+    "SOP \u2013 Purified Water System Monitoring",
+    "CAPA Register Q1 FY27",
+    "SOP \u2013 Deviation Handling v2 (2022)"
+   ]
+  },
+  {
+   "q": "What is the dissolution acceptance criterion for Glucosan-M 500 SR tablets?",
+   "as": "qa@sanjeevani.example",
+   "positive": true,
+   "score": 2.2575573921203613,
+   "verdict": "yes",
+   "top": [
+    "Specification \u2013 Glucosan-M 500 SR Tablets",
+    "Glucosan-M 500 Product Monograph",
+    "Specification \u2013 Glucosan-M 500 SR Tablets",
+    "Specification \u2013 Glucosan-M 500 SR Tablets",
+    "Specification \u2013 Glucosan-M 500 SR Tablets"
+   ]
+  },
+  {
+   "q": "What is the alert level for purified water conductivity?",
+   "as": "qa@sanjeevani.example",
+   "positive": true,
+   "score": 1.0726205110549927,
+   "verdict": "yes",
+   "top": [
+    "SOP \u2013 Purified Water System Monitoring",
+    "SOP \u2013 Purified Water System Monitoring",
+    "SOP \u2013 Purified Water System Monitoring",
+    "SOP \u2013 Purified Water System Monitoring",
+    "SOP \u2013 Purified Water System Monitoring"
+   ]
+  },
+  {
+   "q": "What is the finger-dab acceptance limit for Grade C gowning qualification?",
+   "as": "qa@sanjeevani.example",
+   "positive": true,
+   "score": 1.0708988904953003,
+   "verdict": "yes",
+   "top": [
+    "SOP \u2013 Cleanroom Gowning",
+    "SOP \u2013 Cleanroom Gowning",
+    "Training and GMP Qualification Policy",
+    "SOP \u2013 Cleanroom Gowning",
+    "Internal Audit Report \u2013 Unit II Baddi Q4 FY26"
+   ]
+  },
+  {
+   "q": "What is the target time to complete a Phase I OOS laboratory investigation?",
+   "as": "qa@sanjeevani.example",
+   "positive": true,
+   "score": 0.8881516456604004,
+   "verdict": "yes",
+   "top": [
+    "SOP \u2013 Out of Specification Investigation",
+    "SOP \u2013 Out of Specification Investigation",
+    "SOP \u2013 Out of Specification Investigation",
+    "US FDA Inspection 2024 \u2013 Response and CAPA Summary",
+    "SOP \u2013 Out of Specification Investigation"
+   ]
+  },
+  {
+   "q": "When did Sanjeevani submit its response to the 2024 US FDA Form 483 for Unit III Vizag?",
+   "as": "qa@sanjeevani.example",
+   "positive": true,
+   "score": 1.2452764511108398,
+   "verdict": "yes",
+   "top": [
+    "Data Integrity Policy \u2013 ALCOA+",
+    "FDA Re-inspection February 2026 Summary",
+    "US FDA Inspection 2024 \u2013 Response and CAPA Summary",
+    "About Sanjeevani",
+    "US FDA Inspection 2024 \u2013 Response and CAPA Summary"
+   ]
+  },
+  {
+   "q": "When did Sanjeevani submit its response to the 2024 US FDA Form 483 for Unit III Vizag?",
+   "as": "rnd@sanjeevani.example",
+   "positive": false,
+   "score": 0.0980711355805397,
+   "verdict": "no",
+   "top": [
+    "About Sanjeevani",
+    "About Sanjeevani",
+    "Training and GMP Qualification Policy",
+    "Sanjeevani Cough Relief Syrup Product Sheet",
+    "Leave Policy 2026"
+   ]
+  },
+  {
+   "q": "During the February 2026 FDA re-inspection, how many OOS results from 2025 did the investigators review and how many were closed within 30 days?",
+   "as": "owner@sanjeevani.example",
+   "positive": true,
+   "score": 2.4123711585998535,
+   "verdict": "yes",
+   "top": [
+    "FDA Re-inspection February 2026 Summary",
+    "FDA Re-inspection February 2026 Summary",
+    "SOP \u2013 Out of Specification Investigation",
+    "US FDA Inspection 2024 \u2013 Response and CAPA Summary",
+    "SOP \u2013 Out of Specification Investigation"
+   ]
+  },
+  {
+   "q": "How many observations did the Q4 FY26 internal audit of Unit II Baddi raise, by classification?",
+   "as": "owner@sanjeevani.example",
+   "positive": true,
+   "score": 2.1863927841186523,
+   "verdict": "yes",
+   "top": [
+    "Internal Audit Report \u2013 Unit II Baddi Q4 FY26",
+    "Internal Audit Report \u2013 Unit II Baddi Q4 FY26",
+    "Internal Audit Report \u2013 Unit II Baddi Q4 FY26",
+    "Internal Audit Report \u2013 Unit II Baddi Q4 FY26",
+    "Internal Audit Report \u2013 Unit II Baddi Q4 FY26"
+   ]
+  },
+  {
+   "q": "What exactly was wrong with the label on cough syrup batch CR-2309?",
+   "as": "qa@sanjeevani.example",
+   "positive": true,
+   "score": 2.1236572265625,
+   "verdict": "yes",
+   "top": [
+    "Recall Report \u2013 Cough Syrup Batch CR-2309",
+    "Recall Report \u2013 Cough Syrup Batch CR-2309",
+    "Recall Report \u2013 Cough Syrup Batch CR-2309",
+    "Recall Report \u2013 Cough Syrup Batch CR-2309",
+    "Recall Report \u2013 Cough Syrup Batch CR-2309"
+   ]
+  },
+  {
+   "q": "What was the overall CAPA on-time closure rate in Q1 FY27, and which unit was lowest?",
+   "as": "owner@sanjeevani.example",
+   "positive": true,
+   "score": 0.2539772391319275,
+   "verdict": "yes",
+   "top": [
+    "CAPA Register Q1 FY27",
+    "CAPA Register Q1 FY27",
+    "CAPA Register Q1 FY27",
+    "CAPA Register Q1 FY27",
+    "CAPA Register Q1 FY27"
+   ]
+  },
+  {
+   "q": "How often do passwords expire on GxP computerised systems under the data integrity policy?",
+   "as": "qa@sanjeevani.example",
+   "positive": true,
+   "score": 1.51589834690094,
+   "verdict": "yes",
+   "top": [
+    "Data Integrity Policy \u2013 ALCOA+",
+    "Data Integrity Policy \u2013 ALCOA+",
+    "Data Integrity Policy \u2013 ALCOA+",
+    "Data Integrity Policy \u2013 ALCOA+",
+    "Data Integrity Policy \u2013 ALCOA+"
+   ]
+  },
+  {
+   "q": "How many expedited pharmacovigilance reports were submitted late in FY2025-26?",
+   "as": "qa@sanjeevani.example",
+   "positive": true,
+   "score": 1.540703535079956,
+   "verdict": "yes",
+   "top": [
+    "Pharmacovigilance System Master File Summary",
+    "Pharmacovigilance System Master File Summary",
+    "Pharmacovigilance System Master File Summary",
+    "Regulatory Affairs Calendar 2026",
+    "ANDA Submission Status Tracker"
+   ]
+  },
+  {
+   "q": "What long-term storage condition was used in the Glucosan-M 500 SR stability study?",
+   "as": "rnd@sanjeevani.example",
+   "positive": true,
+   "score": 2.263108968734741,
+   "verdict": "yes",
+   "top": [
+    "Stability Study Report \u2013 Glucosan-M 500 SR",
+    "Stability Study Report \u2013 Glucosan-M 500 SR",
+    "Stability Study Report \u2013 Glucosan-M 500 SR",
+    "Stability Study Report \u2013 Glucosan-M 500 SR",
+    "Stability Study Report \u2013 Glucosan-M 500 SR"
+   ]
+  },
+  {
+   "q": "What was the Cmax test/reference ratio and 90% confidence interval in the Cardivas 10 bioequivalence study?",
+   "as": "rnd@sanjeevani.example",
+   "positive": true,
+   "score": 2.035327911376953,
+   "verdict": "yes",
+   "top": [
+    "Bioequivalence Study Summary \u2013 Cardivas 10",
+    "Bioequivalence Study Summary \u2013 Cardivas 10",
+    "Bioequivalence Study Summary \u2013 Cardivas 10",
+    "Bioequivalence Study Summary \u2013 Cardivas 10",
+    "Bioequivalence Study Summary \u2013 Cardivas 10"
+   ]
+  },
+  {
+   "q": "What is Sanjeevani's FY27 R&D budget and how much of it goes to the SJ-2041 programme?",
+   "as": "rnd@sanjeevani.example",
+   "positive": true,
+   "score": 1.0595675706863403,
+   "verdict": "yes",
+   "top": [
+    "R&D Pipeline Review FY27",
+    "R&D Pipeline Review FY27",
+    "About Sanjeevani",
+    "SJ-2041 Interim Analysis Report",
+    "R&D Pipeline Review FY27"
+   ]
+  },
+  {
+   "q": "What HbA1c reduction did SJ-2041 show at the Phase III interim analysis?",
+   "as": "rnd@sanjeevani.example",
+   "positive": true,
+   "score": 1.805341362953186,
+   "verdict": "yes",
+   "top": [
+    "SJ-2041 Phase III Protocol Synopsis",
+    "SJ-2041 Interim Analysis Report",
+    "SJ-2041 Interim Analysis Report",
+    "SJ-2041 Phase III Protocol Synopsis",
+    "R&D Pipeline Review FY27"
+   ]
+  },
+  {
+   "q": "What HbA1c reduction did SJ-2041 show at the Phase III interim analysis?",
+   "as": "sales@sanjeevani.example",
+   "positive": false,
+   "score": -0.5882725119590759,
+   "verdict": "no",
+   "top": [
+    "About Sanjeevani",
+    "Product Portfolio and Storage Conditions",
+    "Medicine Information and Side-Effect Reporting FAQ",
+    "Glucosan-M Brand Plan FY27",
+    "Glucosan-M Brand Plan FY27"
+   ]
+  },
+  {
+   "q": "How many patients discontinued the SJ-2041 Phase III trial?",
+   "as": "rnd@sanjeevani.example",
+   "positive": null,
+   "score": 0.6969594955444336,
+   "verdict": "yes",
+   "top": [
+    "R&D Pipeline Review FY27",
+    "SJ-2041 Interim Analysis Report",
+    "SJ-2041 Interim Analysis Report",
+    "Serious Adverse Event Reporting SOP",
+    "SJ-2041 Phase III Protocol Synopsis"
+   ]
+  },
+  {
+   "q": "How much does Sanjeevani pay a site for each patient who completes the SJ-2041 trial?",
+   "as": "rnd@sanjeevani.example",
+   "positive": true,
+   "score": 1.9085626602172852,
+   "verdict": "yes",
+   "top": [
+    "Clinical Research Services Agreement \u2013 SJ-2041 (CRO)",
+    "Serious Adverse Event Reporting SOP",
+    "Investigator Payments Policy",
+    "Clinical Research Services Agreement \u2013 SJ-2041 (CRO)",
+    "Clinical Research Services Agreement \u2013 SJ-2041 (CRO)"
+   ]
+  },
+  {
+   "q": "How much does Sanjeevani pay a site for each patient who completes the SJ-2041 trial?",
+   "as": "qa@sanjeevani.example",
+   "positive": false,
+   "score": -0.3492251932621002,
+   "verdict": "no",
+   "top": [
+    "About Sanjeevani",
+    "Careers at Sanjeevani \u2013 Hiring and Campus Programme FAQ",
+    "Regulatory Affairs Calendar 2026",
+    "About Sanjeevani",
+    "Code of Business Conduct"
+   ]
+  },
+  {
+   "q": "What is the compensation insurance cover for the SJ-2041 trial?",
+   "as": "rnd@sanjeevani.example",
+   "positive": true,
+   "score": 1.176376223564148,
+   "verdict": "yes",
+   "top": [
+    "Serious Adverse Event Reporting SOP",
+    "Clinical Research Services Agreement \u2013 SJ-2041 (CRO)",
+    "Investigator Payments Policy",
+    "SJ-2041 Interim Analysis Report",
+    "Investigator Payments Policy"
+   ]
+  },
+  {
+   "q": "What is the planned launch price (MRP) of SJ-2041?",
+   "as": "owner@sanjeevani.example",
+   "positive": false,
+   "score": -0.04616865888237953,
+   "verdict": "no",
+   "top": [
+    "Glucosan-M Brand Plan FY27",
+    "FY2026-27 Budget and Capex Plan",
+    "Glucosan-M Brand Plan FY27",
+    "Board Meeting Minutes \u2013 22 April 2026",
+    "Regulatory Affairs Calendar 2026"
+   ]
+  },
+  {
+   "q": "What is the plasma half-life of SPL-DP41?",
+   "as": "rnd@sanjeevani.example",
+   "positive": false,
+   "score": 0.07618635147809982,
+   "verdict": "no",
+   "top": [
+    "SJ-2041 Formulation Development Report",
+    "SJ-2041 Formulation Development Report",
+    "SJ-2041 Formulation Development Report",
+    "Glucosan-M 500 Product Monograph",
+    "SJ-2041 Phase III Protocol Synopsis"
+   ]
+  },
+  {
+   "q": "What is the shelf life of Glucosan-M 500?",
+   "as": "sales@sanjeevani.example",
+   "positive": true,
+   "score": 1.5736379623413086,
+   "verdict": "yes",
+   "top": [
+    "Glucosan-M 500 Product Monograph",
+    "Product Portfolio and Storage Conditions",
+    "Product Returns and Expiry Replacement Policy",
+    "Product Portfolio and Storage Conditions",
+    "Glucosan-M 500 Product Monograph"
+   ]
+  },
+  {
+   "q": "What is the dissolution specification for Glucosan-M 500 SR tablets?",
+   "as": "qa@sanjeevani.example",
+   "positive": true,
+   "score": 2.924834966659546,
+   "verdict": "yes",
+   "top": [
+    "Specification \u2013 Glucosan-M 500 SR Tablets",
+    "Specification \u2013 Glucosan-M 500 SR Tablets",
+    "Specification \u2013 Glucosan-M 500 SR Tablets",
+    "Specification \u2013 Glucosan-M 500 SR Tablets",
+    "Specification \u2013 Glucosan-M 500 SR Tablets"
+   ]
+  },
+  {
+   "q": "How many days of privilege, casual and sick leave do Sanjeevani employees get?",
+   "as": "rnd@sanjeevani.example",
+   "positive": true,
+   "score": -0.02299325540661812,
+   "verdict": "yes",
+   "top": [
+    "Leave Policy 2026",
+    "Leave Policy 2026",
+    "Leave Policy 2026",
+    "Leave Policy 2026",
+    "Leave Policy 2026"
+   ]
+  },
+  {
+   "q": "Within how many working days must site QA approve the initial assessment of a major deviation?",
+   "as": "qa@sanjeevani.example",
+   "positive": true,
+   "score": 1.3654861450195312,
+   "verdict": "yes",
+   "top": [
+    "SOP \u2013 Deviation Handling",
+    "SOP \u2013 Deviation Handling v2 (2022)",
+    "SOP \u2013 Out of Specification Investigation",
+    "SOP \u2013 Change Control",
+    "SOP \u2013 Deviation Handling"
+   ]
+  },
+  {
+   "q": "What is the pay range for a Grade M2 medical representative?",
+   "as": "hr@sanjeevani.example",
+   "positive": true,
+   "score": 1.3230186700820923,
+   "verdict": "yes",
+   "top": [
+    "Salary Grades and Allowances FY2026-27",
+    "Salary Grades and Allowances FY2026-27",
+    "Salary Grades and Allowances FY2026-27",
+    "Salary Grades and Allowances FY2026-27",
+    "Salary Grades and Allowances FY2026-27"
+   ]
+  },
+  {
+   "q": "What is the pay range for a Grade M2 medical representative?",
+   "as": "sales@sanjeevani.example",
+   "positive": false,
+   "score": -1.0392743349075317,
+   "verdict": "no",
+   "top": [
+    "Shift and Overtime Policy",
+    "Employee Medical Insurance Guide",
+    "Travel Policy",
+    "Employee Medical Insurance Guide",
+    "Employee Medical Insurance Guide"
+   ]
+  },
+  {
+   "q": "What is the FY27 average increment budget?",
+   "as": "owner@sanjeevani.example",
+   "positive": true,
+   "score": 1.4929122924804688,
+   "verdict": "yes",
+   "top": [
+    "Salary Grades and Allowances FY2026-27",
+    "FY2026-27 Budget and Capex Plan",
+    "Salary Grades and Allowances FY2026-27",
+    "Salary Grades and Allowances FY2026-27",
+    "FY2026-27 Budget and Capex Plan"
+   ]
+  },
+  {
+   "q": "What is the FY27 average increment budget?",
+   "as": "qa@sanjeevani.example",
+   "positive": false,
+   "score": -0.630707323551178,
+   "verdict": "no",
+   "top": [
+    "Project Plan \u2013 Vizag Unit III Capacity Expansion",
+    "CAPA Register Q1 FY27",
+    "CAPA Register Q1 FY27",
+    "Plant Safety and EHS Policy",
+    "CAPA Register Q1 FY27"
+   ]
+  },
+  {
+   "q": "Does Sanjeevani hire freshers at the Vizag plant?",
+   "as": "hr@sanjeevani.example",
+   "positive": true,
+   "score": 2.2607717514038086,
+   "verdict": "yes",
+   "top": [
+    "Careers at Sanjeevani \u2013 Hiring and Campus Programme FAQ",
+    "About Sanjeevani",
+    "Careers at Sanjeevani \u2013 Hiring and Campus Programme FAQ",
+    "Careers at Sanjeevani \u2013 Hiring and Campus Programme FAQ",
+    "About Sanjeevani"
+   ]
+  },
+  {
+   "q": "Does Sanjeevani charge a fee for job applications?",
+   "as": "owner@sanjeevani.example",
+   "positive": true,
+   "score": 2.3076119422912598,
+   "verdict": "yes",
+   "top": [
+    "Careers at Sanjeevani \u2013 Hiring and Campus Programme FAQ",
+    "Clinical Research Services Agreement \u2013 SJ-2041 (CRO)",
+    "Careers at Sanjeevani \u2013 Hiring and Campus Programme FAQ",
+    "Careers at Sanjeevani \u2013 Hiring and Campus Programme FAQ",
+    "Clinical Research Services Agreement \u2013 SJ-2041 (CRO)"
+   ]
+  },
+  {
+   "q": "What stipend is paid to trainees in the Sanjeevani Graduate Trainee Programme?",
+   "as": "hr@sanjeevani.example",
+   "positive": false,
+   "score": 0.7598147392272949,
+   "verdict": "no",
+   "top": [
+    "Careers at Sanjeevani \u2013 Hiring and Campus Programme FAQ",
+    "Careers at Sanjeevani \u2013 Hiring and Campus Programme FAQ",
+    "Careers at Sanjeevani \u2013 Hiring and Campus Programme FAQ",
+    "Careers at Sanjeevani \u2013 Hiring and Campus Programme FAQ",
+    "Salary Grades and Allowances FY2026-27"
+   ]
+  },
+  {
+   "q": "What is the FY27 capex for the Vizag expansion this year?",
+   "as": "owner@sanjeevani.example",
+   "positive": true,
+   "score": 1.212599515914917,
+   "verdict": "yes",
+   "top": [
+    "FY2025-26 Annual Results Summary",
+    "FY2026-27 Budget and Capex Plan",
+    "Vizag Expansion Investment Note",
+    "FY2026-27 Budget and Capex Plan",
+    "Project Plan \u2013 Vizag Unit III Capacity Expansion"
+   ]
+  },
+  {
+   "q": "What is the FY27 capex for the Vizag expansion this year?",
+   "as": "sales@sanjeevani.example",
+   "positive": false,
+   "score": -0.5179798007011414,
+   "verdict": "no",
+   "top": [
+    "FY27 Sales Targets by Zone",
+    "FY27 Sales Targets by Zone",
+    "FY27 Sales Targets by Zone",
+    "FY27 Sales Targets by Zone",
+    "FY27 Sales Targets by Zone"
+   ]
+  },
+  {
+   "q": "What is the FY27 R&D budget and how is it split between expenses and capital equipment?",
+   "as": "owner@sanjeevani.example",
+   "positive": true,
+   "score": 1.7517035007476807,
+   "verdict": "yes",
+   "top": [
+    "FY2026-27 Budget and Capex Plan",
+    "R&D Pipeline Review FY27",
+    "Board Meeting Minutes \u2013 22 April 2026",
+    "FY2026-27 Budget and Capex Plan",
+    "FY2026-27 Budget and Capex Plan"
+   ]
+  },
+  {
+   "q": "How many credit days does a stockist get?",
+   "as": "owner@sanjeevani.example",
+   "positive": true,
+   "score": 0.1907617598772049,
+   "verdict": "yes",
+   "top": [
+    "Stockist Credit and Collections Policy",
+    "Stockist Credit and Collections Policy",
+    "Stockist Credit and Collections Policy",
+    "Stockist Credit and Collections Policy",
+    "Stockist Credit and Collections Policy"
+   ]
+  },
+  {
+   "q": "How many credit days does a stockist get?",
+   "as": "salesmanager@sanjeevani.example",
+   "positive": false,
+   "score": -0.5857555866241455,
+   "verdict": "yes",
+   "top": [
+    "Stockist and Distributor Agreement \u2013 Standard Terms",
+    "Stockist and Distributor Agreement \u2013 Standard Terms",
+    "Stockist and Distributor Agreement \u2013 Standard Terms",
+    "Product Returns and Expiry Replacement Policy",
+    "Product Returns and Expiry Replacement Policy"
+   ]
+  },
+  {
+   "q": "When are supplies stopped for overdue payments?",
+   "as": "owner@sanjeevani.example",
+   "positive": true,
+   "score": 0.720076322555542,
+   "verdict": "yes",
+   "top": [
+    "Stockist Credit and Collections Policy",
+    "Stockist Credit and Collections Policy",
+    "Stockist Credit and Collections Policy",
+    "Stockist and Distributor Agreement \u2013 Standard Terms",
+    "Stockist Credit and Collections Policy"
+   ]
+  },
+  {
+   "q": "What margin does a stockist get on Glucosan-M 500?",
+   "as": "sales@sanjeevani.example",
+   "positive": true,
+   "score": 0.7260529398918152,
+   "verdict": "yes",
+   "top": [
+    "Stockist and Distributor Agreement \u2013 Standard Terms",
+    "Stockist and Distributor Agreement \u2013 Standard Terms",
+    "Stockist and Distributor Agreement \u2013 Standard Terms",
+    "FY27 Sales Targets by Zone",
+    "Field Force Guidelines FY27"
+   ]
+  },
+  {
+   "q": "What margin does a stockist get on Glucosan-M 500?",
+   "as": "rnd@sanjeevani.example",
+   "positive": false,
+   "score": -1.2984817028045654,
+   "verdict": "no",
+   "top": [
+    "Stability Study Report \u2013 Glucosan-M 500 SR",
+    "Stability Study Report \u2013 Glucosan-M 500 SR",
+    "Product Returns and Expiry Replacement Policy",
+    "Glucosan-M 500 Product Monograph",
+    "Stability Study Report \u2013 Glucosan-M 500 SR"
+   ]
+  },
+  {
+   "q": "How much notice ends a stockist agreement?",
+   "as": "salesmanager@sanjeevani.example",
+   "positive": true,
+   "score": 0.2517036199569702,
+   "verdict": "yes",
+   "top": [
+    "Stockist and Distributor Agreement \u2013 Standard Terms",
+    "Stockist and Distributor Agreement \u2013 Standard Terms",
+    "Stockist and Distributor Agreement \u2013 Standard Terms",
+    "Stockist and Distributor Agreement \u2013 Standard Terms",
+    "Stockist and Distributor Agreement \u2013 Standard Terms"
+   ]
+  },
+  {
+   "q": "What is the stockist margin on SJ-2041?",
+   "as": "salesmanager@sanjeevani.example",
+   "positive": false,
+   "score": -0.44237861037254333,
+   "verdict": "no",
+   "top": [
+    "Stockist and Distributor Agreement \u2013 Standard Terms",
+    "Glucosan-M Brand Plan FY27",
+    "Stockist and Distributor Agreement \u2013 Standard Terms",
+    "Stockist and Distributor Agreement \u2013 Standard Terms",
+    "Stockist and Distributor Agreement \u2013 Standard Terms"
+   ]
+  },
+  {
+   "q": "Can a pharmacy return near-expiry Dermacalm Cream?",
+   "as": "sales@sanjeevani.example",
+   "positive": true,
+   "score": 0.8106374740600586,
+   "verdict": "yes",
+   "top": [
+    "Product Returns and Expiry Replacement Policy",
+    "Product Returns and Expiry Replacement Policy",
+    "Medicine Information and Side-Effect Reporting FAQ",
+    "Product Returns and Expiry Replacement Policy",
+    "Product Returns and Expiry Replacement Policy"
+   ]
+  },
+  {
+   "q": "How are recalled products refunded?",
+   "as": "sales@sanjeevani.example",
+   "positive": true,
+   "score": 0.6553540229797363,
+   "verdict": "yes",
+   "top": [
+    "Product Returns and Expiry Replacement Policy",
+    "Product Returns and Expiry Replacement Policy",
+    "Stockist and Distributor Agreement \u2013 Standard Terms",
+    "Product Returns and Expiry Replacement Policy",
+    "Medicine Information and Side-Effect Reporting FAQ"
+   ]
+  },
+  {
+   "q": "When does the new Vizag line start commercial batches?",
+   "as": "qa@sanjeevani.example",
+   "positive": true,
+   "score": 0.3396683931350708,
+   "verdict": "yes",
+   "top": [
+    "Project Plan \u2013 Vizag Unit III Capacity Expansion",
+    "Project Plan \u2013 Vizag Unit III Capacity Expansion",
+    "Recall Report \u2013 Cough Syrup Batch CR-2309",
+    "Regulatory Affairs Calendar 2026",
+    "CAPA Register Q1 FY27"
+   ]
+  },
+  {
+   "q": "When does the new Vizag line start commercial batches?",
+   "as": "sales@sanjeevani.example",
+   "positive": false,
+   "score": -1.88405179977417,
+   "verdict": "no",
+   "top": [
+    "Medicine Information and Side-Effect Reporting FAQ",
+    "Shift and Overtime Policy",
+    "Sample Distribution Policy",
+    "FY27 Sales Targets by Zone",
+    "Leave Policy 2026"
+   ]
+  },
+  {
+   "q": "Who owns qualification of the new Vizag line?",
+   "as": "qa@sanjeevani.example",
+   "positive": true,
+   "score": 0.5676358342170715,
+   "verdict": "yes",
+   "top": [
+    "Project Plan \u2013 Vizag Unit III Capacity Expansion",
+    "Project Plan \u2013 Vizag Unit III Capacity Expansion",
+    "Project Plan \u2013 Vizag Unit III Capacity Expansion",
+    "About Sanjeevani",
+    "Project Plan \u2013 Vizag Unit III Capacity Expansion"
+   ]
+  },
+  {
+   "q": "Which payment milestone is tied to database lock in the SJ-2041 CRO agreement?",
+   "as": "rnd@sanjeevani.example",
+   "positive": true,
+   "score": 2.3986923694610596,
+   "verdict": "yes",
+   "top": [
+    "Clinical Research Services Agreement \u2013 SJ-2041 (CRO)",
+    "Clinical Research Services Agreement \u2013 SJ-2041 (CRO)",
+    "Clinical Research Services Agreement \u2013 SJ-2041 (CRO)",
+    "Clinical Research Services Agreement \u2013 SJ-2041 (CRO)",
+    "Clinical Research Services Agreement \u2013 SJ-2041 (CRO)"
+   ]
+  },
+  {
+   "q": "Which payment milestone is tied to database lock in the SJ-2041 CRO agreement?",
+   "as": "qa@sanjeevani.example",
+   "positive": false,
+   "score": -0.8498494625091553,
+   "verdict": "no",
+   "top": [
+    "Regulatory Affairs Calendar 2026",
+    "Regulatory Affairs Calendar 2026",
+    "Pharmacovigilance System Master File Summary",
+    "Medicine Information and Side-Effect Reporting FAQ",
+    "ANDA Submission Status Tracker"
+   ]
+  },
+  {
+   "q": "Who owns the trial data under the CRO contract?",
+   "as": "rnd@sanjeevani.example",
+   "positive": true,
+   "score": 1.0954035520553589,
+   "verdict": "yes",
+   "top": [
+    "Clinical Research Services Agreement \u2013 SJ-2041 (CRO)",
+    "Clinical Research Services Agreement \u2013 SJ-2041 (CRO)",
+    "Clinical Research Services Agreement \u2013 SJ-2041 (CRO)",
+    "Clinical Research Services Agreement \u2013 SJ-2041 (CRO)",
+    "Clinical Research Services Agreement \u2013 SJ-2041 (CRO)"
+   ]
+  },
+  {
+   "q": "How do I report a side effect of Cardivas 10?",
+   "as": "qa@sanjeevani.example",
+   "positive": true,
+   "score": 1.7338281869888306,
+   "verdict": "yes",
+   "top": [
+    "Medicine Information and Side-Effect Reporting FAQ",
+    "Medicine Information and Side-Effect Reporting FAQ",
+    "Cardivas 10 Product Monograph",
+    "Cardivas 10 Product Monograph",
+    "Medicine Information and Side-Effect Reporting FAQ"
+   ]
+  },
+  {
+   "q": "How should Glucosan-M be stored at home?",
+   "as": "owner@sanjeevani.example",
+   "positive": true,
+   "score": 0.460727334022522,
+   "verdict": "yes",
+   "top": [
+    "Medicine Information and Side-Effect Reporting FAQ",
+    "Product Portfolio and Storage Conditions",
+    "Glucosan-M 500 Product Monograph",
+    "Stability Study Report \u2013 Glucosan-M 500 SR",
+    "Stockist and Distributor Agreement \u2013 Standard Terms"
+   ]
+  },
+  {
+   "q": "How many days of privilege leave do Kaveri Capital employees get per calendar year?",
+   "as": "compliance@kaveri.example",
+   "positive": true,
+   "score": 1.0162534713745117,
+   "verdict": "yes",
+   "top": [
+    "Leave Policy 2026",
+    "Careers at Kaveri \u2013 Roles, Hiring and Internships",
+    "Leave Policy 2026",
+    "Mandatory Block Leave Policy",
+    "Leave Policy 2026"
+   ]
+  },
+  {
+   "q": "How long must the mandatory block leave be for dealers and fund managers, and why is it required?",
+   "as": "analyst@kaveri.example",
+   "positive": true,
+   "score": 0.7018676996231079,
+   "verdict": "yes",
+   "top": [
+    "Mandatory Block Leave Policy",
+    "Leave Policy 2026",
+    "Mandatory Block Leave Policy",
+    "Mandatory Block Leave Policy",
+    "Mandatory Block Leave Policy"
+   ]
+  },
+  {
+   "q": "What is the minimum holding period for personal trades by Kaveri employees?",
+   "as": "analyst@kaveri.example",
+   "positive": true,
+   "score": 0.3432026505470276,
+   "verdict": "yes",
+   "top": [
+    "Personal Trading Policy",
+    "Personal Trading Policy",
+    "Code of Conduct and Ethics",
+    "Initiating Coverage \u2013 Konkan Rail Systems Ltd",
+    "About Kaveri Capital"
+   ]
+  },
+  {
+   "q": "Within what time must a personal trading violation be reported, and to whom?",
+   "as": "compliance@kaveri.example",
+   "positive": true,
+   "score": 0.7300007343292236,
+   "verdict": "yes",
+   "top": [
+    "Personal Trading Policy",
+    "Code of Conduct and Ethics",
+    "Personal Trading Policy",
+    "Insider Trading Prevention Code \u2013 SEBI PIT",
+    "Insider Trading Prevention Code \u2013 SEBI PIT"
+   ]
+  },
+  {
+   "q": "If an employee sells shares 20 days after buying them without a hardship exception, what happens to the profit, and what is the penalty if it happens again within 24 months?",
+   "as": "analyst@kaveri.example",
+   "positive": true,
+   "score": -0.3859429657459259,
+   "verdict": "yes",
+   "top": [
+    "Personal Trading Policy",
+    "Restricted List Procedure",
+    "Personal Trading Policy",
+    "Investment Process and IC Charter",
+    "IC Meeting 48 Minutes \u2013 9 April 2026"
+   ]
+  },
+  {
+   "q": "What is the hotel limit per night in Mumbai for a G3 employee?",
+   "as": "analyst@kaveri.example",
+   "positive": true,
+   "score": 1.2922086715698242,
+   "verdict": "yes",
+   "top": [
+    "Travel and Entertainment Policy",
+    "Travel and Entertainment Policy",
+    "Travel and Entertainment Policy",
+    "Code of Conduct and Ethics",
+    "Travel and Entertainment Policy"
+   ]
+  },
+  {
+   "q": "What is the largest holding of the Kaveri Bluechip Fund as of March 2026 and its weight?",
+   "as": "compliance@kaveri.example",
+   "positive": true,
+   "score": 0.7570568323135376,
+   "verdict": "yes",
+   "top": [
+    "Kaveri Bluechip Fund Factsheet March 2026",
+    "Kaveri Bluechip Fund Factsheet March 2026",
+    "Kaveri Bluechip Fund Factsheet March 2026",
+    "Kaveri Bluechip Fund Factsheet March 2026",
+    "Kaveri Flexi Cap Fund Factsheet March 2026"
+   ]
+  },
+  {
+   "q": "What was the 1-year return of Kaveri Small Cap Opportunities versus its benchmark to March 2026?",
+   "as": "analyst@kaveri.example",
+   "positive": true,
+   "score": 2.464996337890625,
+   "verdict": "yes",
+   "top": [
+    "Kaveri Small Cap Opportunities Factsheet March 2026",
+    "Kaveri Small Cap Opportunities Factsheet March 2026",
+    "IC Meeting 47 Minutes \u2013 12 March 2026",
+    "Kaveri Small Cap Opportunities Factsheet March 2026",
+    "Kaveri Small Cap Opportunities Factsheet March 2026"
+   ]
+  },
+  {
+   "q": "What is the portfolio YTM of the Kaveri Short Duration Fund?",
+   "as": "cfo@kaveri.example",
+   "positive": true,
+   "score": 2.533863067626953,
+   "verdict": "yes",
+   "top": [
+    "Kaveri Short Duration Fund Factsheet March 2026",
+    "Kaveri Short Duration Fund Factsheet March 2026",
+    "Kaveri Short Duration Fund Factsheet March 2026",
+    "Kaveri Short Duration Fund Factsheet March 2026",
+    "Kaveri Short Duration Fund Factsheet March 2026"
+   ]
+  },
+  {
+   "q": "What is the exit load on the Kaveri Arbitrage Fund?",
+   "as": "compliance@kaveri.example",
+   "positive": true,
+   "score": 1.6027042865753174,
+   "verdict": "yes",
+   "top": [
+    "Investor Service FAQ \u2013 Redemptions, Exit Loads and Statements",
+    "Kaveri Arbitrage Fund Factsheet March 2026",
+    "Investor Service FAQ \u2013 Redemptions, Exit Loads and Statements",
+    "Product Guide \u2013 Which Kaveri Fund Fits Which Investor",
+    "Distributor (MFD) Empanelment Agreement \u2013 Standard Terms"
+   ]
+  },
+  {
+   "q": "What does the hybrid fee option of the Kaveri Focused Equity PMS charge?",
+   "as": "compliance@kaveri.example",
+   "positive": true,
+   "score": 2.243950843811035,
+   "verdict": "yes",
+   "top": [
+    "Kaveri Focused Equity PMS Presentation Summary",
+    "Product Guide \u2013 Which Kaveri Fund Fits Which Investor",
+    "About Kaveri Capital",
+    "Product Guide \u2013 Which Kaveri Fund Fits Which Investor",
+    "Kaveri Focused Equity PMS Presentation Summary"
+   ]
+  },
+  {
+   "q": "What is the house-view Nifty 50 year-end target and how was it derived?",
+   "as": "analyst@kaveri.example",
+   "positive": true,
+   "score": 0.45479917526245117,
+   "verdict": "yes",
+   "top": [
+    "India Strategy Outlook FY27",
+    "IC Meeting 48 Minutes \u2013 9 April 2026",
+    "IC Meeting 47 Minutes \u2013 12 March 2026",
+    "Monthly Macro Dashboard April 2026",
+    "Earnings Season Review Q4 FY26"
+   ]
+  },
+  {
+   "q": "What is the house-view Nifty 50 year-end target and how was it derived?",
+   "as": "compliance@kaveri.example",
+   "positive": false,
+   "score": -1.6322087049484253,
+   "verdict": "no",
+   "top": [
+    "Kaveri Arbitrage Fund Factsheet March 2026",
+    "Kaveri Arbitrage Fund Factsheet March 2026",
+    "Kaveri Arbitrage Fund Factsheet March 2026",
+    "Q4 FY26 Risk Dashboard",
+    "Kaveri Bluechip Fund Factsheet March 2026"
+   ]
+  },
+  {
+   "q": "What did IC 48 decide about Vindhyagiri Cementworks and why?",
+   "as": "owner@kaveri.example",
+   "positive": true,
+   "score": 1.0394397974014282,
+   "verdict": "yes",
+   "top": [
+    "IC Meeting 48 Minutes \u2013 9 April 2026",
+    "Vindhyagiri Cementworks Exit Note",
+    "IC Meeting 48 Minutes \u2013 9 April 2026",
+    "Small Cap Liquidity Breach Remediation Plan",
+    "Vindhyagiri Cementworks Exit Note"
+   ]
+  },
+  {
+   "q": "What rating and target price did Research give Konkan Rail Systems at initiation?",
+   "as": "analyst@kaveri.example",
+   "positive": true,
+   "score": 1.7720824480056763,
+   "verdict": "yes",
+   "top": [
+    "Initiating Coverage \u2013 Konkan Rail Systems Ltd",
+    "Initiating Coverage \u2013 Konkan Rail Systems Ltd",
+    "Capital Goods and Railways Capex Theme",
+    "Restricted List Procedure",
+    "IC Meeting 48 Minutes \u2013 9 April 2026"
+   ]
+  },
+  {
+   "q": "What rating and target price did Research give Konkan Rail Systems at initiation?",
+   "as": "compliance@kaveri.example",
+   "positive": false,
+   "score": -2.162654399871826,
+   "verdict": "no",
+   "top": [
+    "Performance and Bonus Framework",
+    "Code of Conduct and Ethics",
+    "Performance and Bonus Framework",
+    "NAV Computation and Cut-off Timings",
+    "Kaveri Flexi Cap Fund Factsheet March 2026"
+   ]
+  },
+  {
+   "q": "What allocation range did IC 47 approve for the railways capex theme in the Flexi Cap fund?",
+   "as": "analyst@kaveri.example",
+   "positive": true,
+   "score": 2.6929662227630615,
+   "verdict": "yes",
+   "top": [
+    "Capital Goods and Railways Capex Theme",
+    "IC Meeting 47 Minutes \u2013 12 March 2026",
+    "Capital Goods and Railways Capex Theme",
+    "Initiating Coverage \u2013 Konkan Rail Systems Ltd",
+    "IC Meeting 48 Minutes \u2013 9 April 2026"
+   ]
+  },
+  {
+   "q": "What is the quorum for an Investment Committee meeting?",
+   "as": "owner@kaveri.example",
+   "positive": true,
+   "score": 0.21625643968582153,
+   "verdict": "yes",
+   "top": [
+    "Board Meeting Minutes \u2013 25 April 2026",
+    "Investment Process and IC Charter",
+    "IC Meeting 47 Minutes \u2013 12 March 2026",
+    "IC Meeting 47 Minutes \u2013 12 March 2026",
+    "IC Meeting 48 Minutes \u2013 9 April 2026"
+   ]
+  },
+  {
+   "q": "How much is the employee referral bonus at Kaveri Capital?",
+   "as": "analyst@kaveri.example",
+   "positive": false,
+   "score": -0.7625300884246826,
+   "verdict": "no",
+   "top": [
+    "Careers at Kaveri \u2013 Roles, Hiring and Internships",
+    "Careers at Kaveri \u2013 Roles, Hiring and Internships",
+    "Performance and Bonus Framework",
+    "About Kaveri Capital",
+    "About Kaveri Capital"
+   ]
+  },
+  {
+   "q": "What is the 10-year return of the Kaveri Bluechip Fund?",
+   "as": "compliance@kaveri.example",
+   "positive": false,
+   "score": 1.4358762502670288,
+   "verdict": "no",
+   "top": [
+    "Kaveri Bluechip Fund Factsheet March 2026",
+    "Kaveri Short Duration Fund Factsheet March 2026",
+    "Kaveri Arbitrage Fund Factsheet March 2026",
+    "Kaveri Flexi Cap Fund Factsheet March 2026",
+    "Kaveri Bluechip Fund Factsheet March 2026"
+   ]
+  },
+  {
+   "q": "How often must Kaveri redo KYC for low-risk clients under the current KYC policy?",
+   "as": "compliance@kaveri.example",
+   "positive": true,
+   "score": 1.5163604021072388,
+   "verdict": "yes",
+   "top": [
+    "KYC and Customer Due Diligence Policy",
+    "KYC and Customer Due Diligence Policy",
+    "Anti-Money Laundering Policy",
+    "Distributor (MFD) Empanelment Agreement \u2013 Standard Terms",
+    "KYC Policy 2022"
+   ]
+  },
+  {
+   "q": "Under the old KYC Policy 2022, how often was re-KYC required for high-risk clients?",
+   "as": "compliance@kaveri.example",
+   "positive": true,
+   "score": 1.6660196781158447,
+   "verdict": "yes",
+   "top": [
+    "KYC Policy 2022",
+    "KYC Policy 2022",
+    "KYC Policy 2022",
+    "KYC and Customer Due Diligence Policy",
+    "KYC and Customer Due Diligence Policy"
+   ]
+  },
+  {
+   "q": "How quickly must a Suspicious Transaction Report be filed with FIU-IND?",
+   "as": "compliance@kaveri.example",
+   "positive": true,
+   "score": 1.717538833618164,
+   "verdict": "yes",
+   "top": [
+    "Suspicious Transaction Reporting SOP",
+    "KYC and Customer Due Diligence Policy",
+    "Suspicious Transaction Reporting SOP",
+    "Anti-Money Laundering Policy",
+    "Suspicious Transaction Reporting SOP"
+   ]
+  },
+  {
+   "q": "Who must approve onboarding of a politically exposed person?",
+   "as": "compliance@kaveri.example",
+   "positive": true,
+   "score": 0.58791583776474,
+   "verdict": "yes",
+   "top": [
+    "Politically Exposed Persons Procedure",
+    "Politically Exposed Persons Procedure",
+    "Politically Exposed Persons Procedure",
+    "KYC and Customer Due Diligence Policy",
+    "Product Guide \u2013 Which Kaveri Fund Fits Which Investor"
+   ]
+  },
+  {
+   "q": "What is the VaR limit for Kaveri's equity schemes?",
+   "as": "compliance@kaveri.example",
+   "positive": true,
+   "score": 1.592146396636963,
+   "verdict": "yes",
+   "top": [
+    "Q4 FY26 Risk Dashboard",
+    "Q4 FY26 Risk Dashboard",
+    "Investment Risk Limits Policy",
+    "Stress Test Results March 2026",
+    "Stress Test Results March 2026"
+   ]
+  },
+  {
+   "q": "In the March 2026 stress test, what funding shortfall would the Small Cap fund face if 25% of AUM were redeemed in 10 trading days?",
+   "as": "compliance@kaveri.example",
+   "positive": true,
+   "score": 3.2358155250549316,
+   "verdict": "yes",
+   "top": [
+    "Stress Test Results March 2026",
+    "Stress Test Results March 2026",
+    "Stress Test Results March 2026",
+    "Stress Test Results March 2026",
+    "Kaveri Small Cap Opportunities Factsheet March 2026"
+   ]
+  },
+  {
+   "q": "In the March 2026 stress test, what funding shortfall would the Small Cap fund face if 25% of AUM were redeemed in 10 trading days?",
+   "as": "analyst@kaveri.example",
+   "positive": false,
+   "score": 0.7268341779708862,
+   "verdict": "yes",
+   "top": [
+    "Kaveri Small Cap Opportunities Factsheet March 2026",
+    "Kaveri Small Cap Opportunities Factsheet March 2026",
+    "Kaveri Flexi Cap Fund Factsheet March 2026",
+    "Kaveri Arbitrage Fund Factsheet March 2026",
+    "Kaveri Flexi Cap Fund Factsheet March 2026"
+   ]
+  },
+  {
+   "q": "How much of the FY2026-27 technology budget is for market data and research terminals?",
+   "as": "cfo@kaveri.example",
+   "positive": true,
+   "score": 2.025589942932129,
+   "verdict": "yes",
+   "top": [
+    "FY2026-27 Budget",
+    "FY2026-27 Budget",
+    "Board Meeting Minutes \u2013 25 April 2026",
+    "FY2026-27 Budget",
+    "FY2026-27 Budget"
+   ]
+  },
+  {
+   "q": "How much of the FY2026-27 technology budget is for market data and research terminals?",
+   "as": "compliance@kaveri.example",
+   "positive": false,
+   "score": -0.11718734353780746,
+   "verdict": "no",
+   "top": [
+    "Q4 FY26 Risk Dashboard",
+    "Q4 FY26 Risk Dashboard",
+    "Q4 FY26 Risk Dashboard",
+    "Learning and Certification Policy \u2013 NISM",
+    "Q4 FY26 Risk Dashboard"
+   ]
+  },
+  {
+   "q": "Who would become interim MD & CEO if Ramesh Iyengar were suddenly unavailable?",
+   "as": "cfo@kaveri.example",
+   "positive": true,
+   "score": 1.7558836936950684,
+   "verdict": "yes",
+   "top": [
+    "Succession Planning Note",
+    "Succession Planning Note",
+    "About Kaveri Capital",
+    "Board Risk Committee Report Q4 FY26",
+    "About Kaveri Capital"
+   ]
+  },
+  {
+   "q": "Who would become interim MD & CEO if Ramesh Iyengar were suddenly unavailable?",
+   "as": "compliance@kaveri.example",
+   "positive": false,
+   "score": -0.8848548531532288,
+   "verdict": "no",
+   "top": [
+    "Anti-Money Laundering Policy",
+    "About Kaveri Capital",
+    "Small Cap Liquidity Breach Remediation Plan",
+    "About Kaveri Capital",
+    "Code of Conduct and Ethics"
+   ]
+  },
+  {
+   "q": "What are the terms of the hybrid fee option for Kaveri's PMS?",
+   "as": "rm@kaveri.example",
+   "positive": true,
+   "score": 1.5208709239959717,
+   "verdict": "yes",
+   "top": [
+    "Sales Sheet \u2013 Kaveri Focused Equity PMS (for Relationship Managers)",
+    "Kaveri Focused Equity PMS Presentation Summary",
+    "Fee Schedule and Exit Loads",
+    "PMS Client Agreement \u2013 Standard Terms",
+    "Discretionary vs Non-Discretionary PMS Explainer"
+   ]
+  },
+  {
+   "q": "What was Kaveri's employee benefits expense in FY2025-26?",
+   "as": "cfo@kaveri.example",
+   "positive": true,
+   "score": 0.5819767713546753,
+   "verdict": "yes",
+   "top": [
+    "FY2025-26 Financial Statements Summary",
+    "FY2025-26 Financial Statements Summary",
+    "FY2026-27 Budget",
+    "FY2026-27 Budget",
+    "FY2025-26 Financial Statements Summary"
+   ]
+  },
+  {
+   "q": "How many observations did the statutory auditors raise in the FY26 management letter, and how were they rated?",
+   "as": "cfo@kaveri.example",
+   "positive": true,
+   "score": 1.6413750648498535,
+   "verdict": "yes",
+   "top": [
+    "Statutory Audit Management Letter FY26",
+    "Board Risk Committee Report Q4 FY26",
+    "Statutory Audit Management Letter FY26",
+    "Board Meeting Minutes \u2013 25 April 2026",
+    "FY2025-26 Financial Statements Summary"
+   ]
+  },
+  {
+   "q": "What interim dividend did the Board declare on 25 April 2026?",
+   "as": "owner@kaveri.example",
+   "positive": true,
+   "score": 3.3190102577209473,
+   "verdict": "yes",
+   "top": [
+    "Board Meeting Minutes \u2013 25 April 2026",
+    "FY2025-26 Financial Statements Summary",
+    "Board Meeting Minutes \u2013 25 April 2026",
+    "Board Meeting Minutes \u2013 25 April 2026",
+    "Board Meeting Minutes \u2013 25 April 2026"
+   ]
+  },
+  {
+   "q": "What is the cut-off time for getting same-day NAV in Kaveri's mutual-fund schemes?",
+   "as": "analyst@kaveri.example",
+   "positive": true,
+   "score": 1.9523061513900757,
+   "verdict": "yes",
+   "top": [
+    "NAV Computation and Cut-off Timings",
+    "Investor Service FAQ \u2013 Redemptions, Exit Loads and Statements",
+    "NAV Computation and Cut-off Timings",
+    "NAV Computation and Cut-off Timings",
+    "NAV Computation and Cut-off Timings"
+   ]
+  },
+  {
+   "q": "When is the GIFT City feeder fund expected to launch and how much seed capital will Kaveri put in?",
+   "as": "owner@kaveri.example",
+   "positive": true,
+   "score": 2.065842628479004,
+   "verdict": "yes",
+   "top": [
+    "Board Meeting Minutes \u2013 25 April 2026",
+    "GIFT City Feeder Fund Proposal",
+    "GIFT City Feeder Fund Proposal",
+    "GIFT City Feeder Fund Proposal",
+    "GIFT City Feeder Fund Proposal"
+   ]
+  },
+  {
+   "q": "Which operational incident in FY26 caused the largest financial loss, and what was done about it?",
+   "as": "compliance@kaveri.example",
+   "positive": true,
+   "score": 0.5816161632537842,
+   "verdict": "yes",
+   "top": [
+    "Operational Risk Incident Log FY26",
+    "Operational Risk Incident Log FY26",
+    "Operational Risk Incident Log FY26",
+    "Operational Risk Incident Log FY26",
+    "Operational Risk Incident Log FY26"
+   ]
+  },
+  {
+   "q": "What brokerage rate per trade does Kaveri pay its equity brokers?",
+   "as": "cfo@kaveri.example",
+   "positive": false,
+   "score": 0.293148398399353,
+   "verdict": "no",
+   "top": [
+    "Kaveri Focused Equity PMS Presentation Summary",
+    "Kaveri Arbitrage Fund Factsheet March 2026",
+    "About Kaveri Capital",
+    "Expense Ratio and TER Computation Note",
+    "About Kaveri Capital"
+   ]
+  },
+  {
+   "q": "Which insurer provides Kaveri's directors and officers (D&O) liability cover, and for what amount?",
+   "as": "owner@kaveri.example",
+   "positive": false,
+   "score": -0.5458489060401917,
+   "verdict": "no",
+   "top": [
+    "Anti-Money Laundering Policy",
+    "Travel and Entertainment Policy",
+    "Personal Trading Policy",
+    "KYC and Customer Due Diligence Policy",
+    "Distributor (MFD) Empanelment Agreement \u2013 Standard Terms"
+   ]
+  },
+  {
+   "q": "How often must high-risk clients go through re-KYC at Kaveri?",
+   "as": "compliance@kaveri.example",
+   "positive": true,
+   "score": 1.212449073791504,
+   "verdict": "yes",
+   "top": [
+    "KYC and Customer Due Diligence Policy",
+    "Anti-Money Laundering Policy",
+    "Distributor (MFD) Empanelment Agreement \u2013 Standard Terms",
+    "KYC and Customer Due Diligence Policy",
+    "KYC and Customer Due Diligence Policy"
+   ]
+  },
+  {
+   "q": "What was the Small Cap fund's 5-day liquidity at 31 March 2026?",
+   "as": "compliance@kaveri.example",
+   "positive": true,
+   "score": 1.2750515937805176,
+   "verdict": "yes",
+   "top": [
+    "Q4 FY26 Risk Dashboard",
+    "Small Cap Liquidity Breach Remediation Plan",
+    "Kaveri Small Cap Opportunities Factsheet March 2026",
+    "Small Cap Liquidity Breach Remediation Plan",
+    "Small Cap Liquidity Breach Remediation Plan"
+   ]
+  },
+  {
+   "q": "What is the profit share in the hybrid PMS fee option?",
+   "as": "rm@kaveri.example",
+   "positive": true,
+   "score": -0.3043704330921173,
+   "verdict": "yes",
+   "top": [
+    "Sales Sheet \u2013 Kaveri Focused Equity PMS (for Relationship Managers)",
+    "Kaveri Focused Equity PMS Presentation Summary",
+    "Fee Schedule and Exit Loads",
+    "PMS Client Agreement \u2013 Standard Terms",
+    "Discretionary vs Non-Discretionary PMS Explainer"
+   ]
+  },
+  {
+   "q": "What is on the Kaveri office cafeteria menu on Fridays?",
+   "as": "analyst@kaveri.example",
+   "positive": false,
+   "score": -0.7396841049194336,
+   "verdict": "no",
+   "top": [
+    "About Kaveri Capital",
+    "Careers at Kaveri \u2013 Roles, Hiring and Internships",
+    "About Kaveri Capital",
+    "IC Meeting 48 Minutes \u2013 9 April 2026",
+    "IC Meeting 47 Minutes \u2013 12 March 2026"
+   ]
+  },
+  {
+   "q": "How often must Kaveri re-do KYC for high-risk clients?",
+   "as": "compliance@kaveri.example",
+   "positive": true,
+   "score": 1.328870177268982,
+   "verdict": "yes",
+   "top": [
+    "KYC and Customer Due Diligence Policy",
+    "Politically Exposed Persons Procedure",
+    "Anti-Money Laundering Policy",
+    "KYC and Customer Due Diligence Policy",
+    "KYC and Customer Due Diligence Policy"
+   ]
+  },
+  {
+   "q": "What is the pay band for a senior research analyst at Kaveri?",
+   "as": "owner@kaveri.example",
+   "positive": true,
+   "score": 0.32127660512924194,
+   "verdict": "yes",
+   "top": [
+    "Compensation Bands and Bonus Pool FY2026-27",
+    "Compensation Bands and Bonus Pool FY2026-27",
+    "Careers at Kaveri \u2013 Roles, Hiring and Internships",
+    "Careers at Kaveri \u2013 Roles, Hiring and Internships",
+    "About Kaveri Capital"
+   ]
+  },
+  {
+   "q": "What is the pay band for a senior research analyst at Kaveri?",
+   "as": "cfo@kaveri.example",
+   "positive": false,
+   "score": 0.03941965103149414,
+   "verdict": "no",
+   "top": [
+    "Careers at Kaveri \u2013 Roles, Hiring and Internships",
+    "Careers at Kaveri \u2013 Roles, Hiring and Internships",
+    "About Kaveri Capital",
+    "Careers at Kaveri \u2013 Roles, Hiring and Internships",
+    "Careers at Kaveri \u2013 Roles, Hiring and Internships"
+   ]
+  },
+  {
+   "q": "What stipend does Kaveri pay MBA summer interns?",
+   "as": "owner@kaveri.example",
+   "positive": true,
+   "score": 1.567870855331421,
+   "verdict": "yes",
+   "top": [
+    "Careers at Kaveri \u2013 Roles, Hiring and Internships",
+    "Compensation Bands and Bonus Pool FY2026-27",
+    "Careers at Kaveri \u2013 Roles, Hiring and Internships",
+    "Careers at Kaveri \u2013 Roles, Hiring and Internships",
+    "Careers at Kaveri \u2013 Roles, Hiring and Internships"
+   ]
+  },
+  {
+   "q": "What stipend does Kaveri pay MBA summer interns?",
+   "as": "guest@kaveri.example",
+   "positive": false,
+   "score": 1.567870855331421,
+   "verdict": "no",
+   "top": [
+    "Careers at Kaveri \u2013 Roles, Hiring and Internships",
+    "Careers at Kaveri \u2013 Roles, Hiring and Internships",
+    "Careers at Kaveri \u2013 Roles, Hiring and Internships",
+    "Careers at Kaveri \u2013 Roles, Hiring and Internships",
+    "Careers at Kaveri \u2013 Roles, Hiring and Internships"
+   ]
+  },
+  {
+   "q": "Does Kaveri offer summer internships, and when do applications close?",
+   "as": "owner@kaveri.example",
+   "positive": true,
+   "score": 1.8677966594696045,
+   "verdict": "yes",
+   "top": [
+    "Careers at Kaveri \u2013 Roles, Hiring and Internships",
+    "Careers at Kaveri \u2013 Roles, Hiring and Internships",
+    "Careers at Kaveri \u2013 Roles, Hiring and Internships",
+    "Careers at Kaveri \u2013 Roles, Hiring and Internships",
+    "Careers at Kaveri \u2013 Roles, Hiring and Internships"
+   ]
+  },
+  {
+   "q": "Which NISM certification does a research analyst need after joining Kaveri, and by when?",
+   "as": "owner@kaveri.example",
+   "positive": true,
+   "score": 1.1285525560379028,
+   "verdict": "yes",
+   "top": [
+    "Careers at Kaveri \u2013 Roles, Hiring and Internships",
+    "Learning and Certification Policy \u2013 NISM",
+    "Learning and Certification Policy \u2013 NISM",
+    "Learning and Certification Policy \u2013 NISM",
+    "Careers at Kaveri \u2013 Roles, Hiring and Internships"
+   ]
+  },
+  {
+   "q": "By what time must the day's trades be reconciled against contract notes?",
+   "as": "ops@kaveri.example",
+   "positive": true,
+   "score": 0.4667152762413025,
+   "verdict": "yes",
+   "top": [
+    "Trade Settlement and Fund Accounting SOP",
+    "Trade Settlement and Fund Accounting SOP",
+    "Trade Settlement and Fund Accounting SOP",
+    "Personal Trading Policy",
+    "Trade Settlement and Fund Accounting SOP"
+   ]
+  },
+  {
+   "q": "By what time must the day's trades be reconciled against contract notes?",
+   "as": "analyst@kaveri.example",
+   "positive": false,
+   "score": -0.46824562549591064,
+   "verdict": "yes",
+   "top": [
+    "Personal Trading Policy",
+    "Personal Trading Policy",
+    "Personal Trading Policy",
+    "Investment Process and IC Charter",
+    "Code of Conduct and Ethics"
+   ]
+  },
+  {
+   "q": "Who signs off the daily NAV, and when is a second sign-off needed?",
+   "as": "ops@kaveri.example",
+   "positive": true,
+   "score": 0.7972546219825745,
+   "verdict": "yes",
+   "top": [
+    "Trade Settlement and Fund Accounting SOP",
+    "NAV Computation and Cut-off Timings",
+    "Trade Settlement and Fund Accounting SOP",
+    "Trade Settlement and Fund Accounting SOP",
+    "Investor Service FAQ \u2013 Redemptions, Exit Loads and Statements"
+   ]
+  },
+  {
+   "q": "Which office takes over if Bengaluru HQ is down?",
+   "as": "ops@kaveri.example",
+   "positive": true,
+   "score": 0.6314887404441833,
+   "verdict": "yes",
+   "top": [
+    "Business Continuity and Disaster Recovery Plan",
+    "About Kaveri Capital",
+    "Business Continuity and Disaster Recovery Plan",
+    "Investor Service FAQ \u2013 Redemptions, Exit Loads and Statements",
+    "Careers at Kaveri \u2013 Roles, Hiring and Internships"
+   ]
+  },
+  {
+   "q": "Which office takes over if Bengaluru HQ is down?",
+   "as": "rm@kaveri.example",
+   "positive": false,
+   "score": -0.4047100245952606,
+   "verdict": "no",
+   "top": [
+    "About Kaveri Capital",
+    "Investor Service FAQ \u2013 Redemptions, Exit Loads and Statements",
+    "Careers at Kaveri \u2013 Roles, Hiring and Internships",
+    "Leave Policy 2026",
+    "Mandatory Block Leave Policy"
+   ]
+  },
+  {
+   "q": "How often is the full disaster recovery drill held, and when is the next one?",
+   "as": "owner@kaveri.example",
+   "positive": true,
+   "score": 0.26181942224502563,
+   "verdict": "yes",
+   "top": [
+    "Business Continuity and Disaster Recovery Plan",
+    "Trade Settlement and Fund Accounting SOP",
+    "Business Continuity and Disaster Recovery Plan",
+    "NAV Computation and Cut-off Timings",
+    "Board Risk Committee Report Q4 FY26"
+   ]
+  },
+  {
+   "q": "Who owns the custody workstream for the GIFT City feeder fund launch?",
+   "as": "ops@kaveri.example",
+   "positive": true,
+   "score": 1.6869100332260132,
+   "verdict": "yes",
+   "top": [
+    "Project Plan \u2013 GIFT City Feeder Fund Launch",
+    "Project Plan \u2013 GIFT City Feeder Fund Launch",
+    "Project Plan \u2013 GIFT City Feeder Fund Launch",
+    "Project Plan \u2013 GIFT City Feeder Fund Launch",
+    "Project Plan \u2013 GIFT City Feeder Fund Launch"
+   ]
+  },
+  {
+   "q": "Who owns the custody workstream for the GIFT City feeder fund launch?",
+   "as": "compliance@kaveri.example",
+   "positive": false,
+   "score": -1.1803275346755981,
+   "verdict": "no",
+   "top": [
+    "Compliance Monitoring Calendar FY27",
+    "Compliance Monitoring Calendar FY27",
+    "Careers at Kaveri \u2013 Roles, Hiring and Internships",
+    "Careers at Kaveri \u2013 Roles, Hiring and Internships",
+    "Code of Conduct and Ethics"
+   ]
+  },
+  {
+   "q": "By when must the custodian and administrator for the GIFT City feeder fund be selected?",
+   "as": "owner@kaveri.example",
+   "positive": true,
+   "score": 1.8994829654693604,
+   "verdict": "yes",
+   "top": [
+    "Project Plan \u2013 GIFT City Feeder Fund Launch",
+    "GIFT City Feeder Fund Proposal",
+    "GIFT City Feeder Fund Proposal",
+    "Project Plan \u2013 GIFT City Feeder Fund Launch",
+    "GIFT City Feeder Fund Proposal"
+   ]
+  },
+  {
+   "q": "Who must approve onboarding a politically exposed person as a PMS client?",
+   "as": "rm@kaveri.example",
+   "positive": true,
+   "score": 1.0585505962371826,
+   "verdict": "yes",
+   "top": [
+    "PMS and AIF Client Onboarding Checklist",
+    "Product Guide \u2013 Which Kaveri Fund Fits Which Investor",
+    "PMS and AIF Client Onboarding Checklist",
+    "PMS and AIF Client Onboarding Checklist",
+    "PMS and AIF Client Onboarding Checklist"
+   ]
+  },
+  {
+   "q": "What is the overall target time from receiving complete documents to an active PMS account?",
+   "as": "rm@kaveri.example",
+   "positive": true,
+   "score": 0.7167249917984009,
+   "verdict": "yes",
+   "top": [
+    "PMS and AIF Client Onboarding Checklist",
+    "Investor Service FAQ \u2013 Redemptions, Exit Loads and Statements",
+    "PMS and AIF Client Onboarding Checklist",
+    "PMS and AIF Client Onboarding Checklist",
+    "NAV Computation and Cut-off Timings"
+   ]
+  },
+  {
+   "q": "What is the overall target time from receiving complete documents to an active PMS account?",
+   "as": "analyst@kaveri.example",
+   "positive": false,
+   "score": -1.448930025100708,
+   "verdict": "yes",
+   "top": [
+    "Investor Service FAQ \u2013 Redemptions, Exit Loads and Statements",
+    "Investor Service FAQ \u2013 Redemptions, Exit Loads and Statements",
+    "NAV Computation and Cut-off Timings",
+    "Personal Trading Policy",
+    "NAV Computation and Cut-off Timings"
+   ]
+  },
+  {
+   "q": "Is there an exit load if I redeem the Flexi Cap fund after 8 months?",
+   "as": "rm@kaveri.example",
+   "positive": true,
+   "score": 1.9407581090927124,
+   "verdict": "yes",
+   "top": [
+    "Investor Service FAQ \u2013 Redemptions, Exit Loads and Statements",
+    "NAV Computation and Cut-off Timings",
+    "Fee Schedule and Exit Loads",
+    "Kaveri Flexi Cap Fund Factsheet March 2026",
+    "Investor Service FAQ \u2013 Redemptions, Exit Loads and Statements"
+   ]
+  },
+  {
+   "q": "What is the toll-free number for investor complaints?",
+   "as": "owner@kaveri.example",
+   "positive": true,
+   "score": 0.7470197081565857,
+   "verdict": "yes",
+   "top": [
+    "Investor Service FAQ \u2013 Redemptions, Exit Loads and Statements",
+    "Complaint Handling and SCORES Procedure",
+    "Complaint Handling and SCORES Procedure",
+    "Investor Service FAQ \u2013 Redemptions, Exit Loads and Statements",
+    "Complaint Handling and SCORES Procedure"
+   ]
+  },
+  {
+   "q": "What fee options can an RM offer a PMS client?",
+   "as": "rm@kaveri.example",
+   "positive": true,
+   "score": 1.3303866386413574,
+   "verdict": "yes",
+   "top": [
+    "Sales Sheet \u2013 Kaveri Focused Equity PMS (for Relationship Managers)",
+    "PMS and AIF Client Onboarding Checklist",
+    "PMS Client Agreement \u2013 Standard Terms",
+    "Kaveri Focused Equity PMS Presentation Summary",
+    "Fee Schedule and Exit Loads"
+   ]
+  },
+  {
+   "q": "What fee options can an RM offer a PMS client?",
+   "as": "guest@kaveri.example",
+   "positive": false,
+   "score": 0.733444333076477,
+   "verdict": "yes",
+   "top": [
+    "Kaveri Focused Equity PMS Presentation Summary",
+    "Kaveri Focused Equity PMS Presentation Summary",
+    "Kaveri Focused Equity PMS Presentation Summary",
+    "Product Guide \u2013 Which Kaveri Fund Fits Which Investor",
+    "NAV Computation and Cut-off Timings"
+   ]
+  },
+  {
+   "q": "What must a relationship manager never promise a PMS client?",
+   "as": "rm@kaveri.example",
+   "positive": true,
+   "score": 1.641324758529663,
+   "verdict": "yes",
+   "top": [
+    "Sales Sheet \u2013 Kaveri Focused Equity PMS (for Relationship Managers)",
+    "Discretionary vs Non-Discretionary PMS Explainer",
+    "PMS and AIF Client Onboarding Checklist",
+    "Discretionary vs Non-Discretionary PMS Explainer",
+    "PMS Client Agreement \u2013 Standard Terms"
+   ]
+  },
+  {
+   "q": "Can a mutual fund distributor accept cash from an investor?",
+   "as": "compliance@kaveri.example",
+   "positive": true,
+   "score": 0.1969667375087738,
+   "verdict": "yes",
+   "top": [
+    "Distributor (MFD) Empanelment Agreement \u2013 Standard Terms",
+    "Distributor (MFD) Empanelment Agreement \u2013 Standard Terms",
+    "Distributor (MFD) Empanelment Agreement \u2013 Standard Terms",
+    "Distributor (MFD) Empanelment Agreement \u2013 Standard Terms",
+    "KYC and Customer Due Diligence Policy"
+   ]
+  },
+  {
+   "q": "Can a mutual fund distributor accept cash from an investor?",
+   "as": "rm@kaveri.example",
+   "positive": false,
+   "score": -0.8627331256866455,
+   "verdict": "yes",
+   "top": [
+    "Product Guide \u2013 Which Kaveri Fund Fits Which Investor",
+    "PMS and AIF Client Onboarding Checklist",
+    "Investor Service FAQ \u2013 Redemptions, Exit Loads and Statements",
+    "Kaveri Arbitrage Fund Factsheet March 2026",
+    "Investor Service FAQ \u2013 Redemptions, Exit Loads and Statements"
+   ]
+  },
+  {
+   "q": "What trail commission does Kaveri pay distributors on the Flexi Cap Fund?",
+   "as": "compliance@kaveri.example",
+   "positive": true,
+   "score": 2.0865726470947266,
+   "verdict": "yes",
+   "top": [
+    "Distributor (MFD) Empanelment Agreement \u2013 Standard Terms",
+    "About Kaveri Capital",
+    "Kaveri Flexi Cap Fund Factsheet March 2026",
+    "Distributor (MFD) Empanelment Agreement \u2013 Standard Terms",
+    "Kaveri Flexi Cap Fund Factsheet March 2026"
+   ]
+  },
+  {
+   "q": "What is the joining bonus offered to new fund managers at Kaveri?",
+   "as": "owner@kaveri.example",
+   "positive": false,
+   "score": 0.08443555235862732,
+   "verdict": "no",
+   "top": [
+    "Careers at Kaveri \u2013 Roles, Hiring and Internships",
+    "About Kaveri Capital",
+    "Careers at Kaveri \u2013 Roles, Hiring and Internships",
+    "GIFT City Feeder Fund Proposal",
+    "Careers at Kaveri \u2013 Roles, Hiring and Internships"
+   ]
+  },
+  {
+   "q": "What is the USD management fee of the GIFT City feeder fund?",
+   "as": "ops@kaveri.example",
+   "positive": false,
+   "score": 0.5225188732147217,
+   "verdict": "no",
+   "top": [
+    "Project Plan \u2013 GIFT City Feeder Fund Launch",
+    "Project Plan \u2013 GIFT City Feeder Fund Launch",
+    "Project Plan \u2013 GIFT City Feeder Fund Launch",
+    "Project Plan \u2013 GIFT City Feeder Fund Launch",
+    "Project Plan \u2013 GIFT City Feeder Fund Launch"
+   ]
+  }
+ ]
+}

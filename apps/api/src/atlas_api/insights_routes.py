@@ -123,7 +123,11 @@ async def insights_for(s: AsyncSession, actor: User, days: int) -> dict[str, Any
     rows = await s.execute(
         select(Message, Chat.user_id)
         .join(Chat, Chat.id == Message.chat_id)
-        .where(Chat.org_id == actor.org_id, Message.created_at >= since)
+        .where(
+            Chat.org_id == actor.org_id,
+            Chat.user_id.is_not(None),  # website visitors have their own list (Phase 8)
+            Message.created_at >= since,
+        )
         .order_by(Message.chat_id, Message.created_at, Message.id)
     )
     turns, last_question = [], ""

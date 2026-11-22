@@ -11,7 +11,7 @@ from llama_index.core.vector_stores import MetadataFilters
 
 from atlas_api import citations, graph, guard
 from atlas_api.cache import scope
-from atlas_api.llm import RewriteOut, RouteOut
+from atlas_api.llm import RelevanceOut, RewriteOut, RouteOut
 from atlas_api.models import Role
 from atlas_api.stream import DONE, sse, ui_parts
 
@@ -125,10 +125,19 @@ async def test_ui_parts_without_text_has_no_text_block() -> None:
 
 
 class FakeModels:
-    def __init__(self, route: str = "rag", language: str = "en") -> None:
+    def __init__(
+        self,
+        route: str = "rag",
+        language: str = "en",
+        verdicts: list[RelevanceOut] | None = None,
+    ) -> None:
         self.calls: list[str] = []
-        self._route = RouteOut(route=route, language=language)  # type: ignore[arg-type]
+        self._route = RouteOut(route=route, language=language)
         self.histories: list[str] = []
+        # Relevance grades to return in order (the last one repeats); default: all relevant.
+        self.verdicts = verdicts or [RelevanceOut(verdict="yes", passages=[])]
+        self.graded: list[str] = []  # passages text each grade saw
+        self.answered_with: list[str] = []  # passages text the answer model saw
 
     async def route(self, question: str, org: str, history: str) -> RouteOut:
         self.calls.append("route")
@@ -145,10 +154,18 @@ class FakeModels:
         self.calls.append("reformulate")
         return f"{query} (other words)"
 
+    async def relevance(
+        self, question: str, standalone: str, passages: str, org: str
+    ) -> RelevanceOut:
+        self.calls.append("relevance")
+        self.graded.append(passages)
+        return self.verdicts[min(len(self.graded), len(self.verdicts)) - 1]
+
     async def answer(
         self, question: str, standalone: str, passages: str, org: str
     ) -> AsyncIterator[str]:
         self.calls.append("answer")
+        self.answered_with.append(passages)
         for d in ["Earned leave is 18 days [", "2]. Carry forward up to 30 days [2][5]."]:
             yield d
 
@@ -238,7 +255,8 @@ async def test_answer_path_cites_only_valid_sources() -> None:
     assert [(s["n"], s["chunk_id"]) for s in final["sources"]] == [(1, "c2")]
     assert "score" not in final["sources"][0]
     assert final["abstained"] is False
-    assert models.calls == ["route", "answer"]  # plain English question: no rewrite call
+    # Plain English question: no rewrite call; the relevance grade runs before the answer.
+    assert models.calls == ["route", "relevance", "answer"]
 
 
 async def test_weak_retrieval_retries_once_then_not_found_without_answer_call() -> None:

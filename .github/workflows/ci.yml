@@ -38,13 +38,18 @@ jobs:
       - uses: actions/cache@v4
         with:
           path: .models
-          key: models-bge-small-en-v1.5-minilm-l6
+          key: models-bge-small-en-v1.5-jina-reranker-v1-turbo-en
       - run: uv sync --locked
       - run: uv run ruff check
       - run: uv run ruff format --check
       - run: uv run mypy src
       - run: uv run alembic upgrade head
-      - run: uv run pytest
+      - run: uv run pytest --ignore=tests/test_eval_smoke.py
+      # Retrieval eval gate (smoke): tiny fixture org, real ingest + hybrid_rerank, no corpus and
+      # no LLM. Fails on Hit@5 < 1.0 or any permission leak. The full evals are manual/nightly:
+      # docs/RAG_GUIDE.md step 9.
+      - name: Retrieval eval gate (smoke)
+        run: uv run pytest tests/test_eval_smoke.py -v
 
   web:
     runs-on: ubuntu-latest

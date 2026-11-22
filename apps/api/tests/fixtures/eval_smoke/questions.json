@@ -1,0 +1,14 @@
+{
+  "name": "eval-smoke",
+  "description": "CI retrieval gate: tiny fixture org, no corpus and no LLM needed.",
+  "questions": [
+    {"q": "How many days of earned leave can be carried forward?", "doc": "Leave Policy", "evidence": "Up to 30 days of earned leave can be carried forward", "as": "guest@smoke.test"},
+    {"q": "How long is paternity leave?", "doc": "Leave Policy", "evidence": "2 weeks of paid paternity leave", "as": "eng@smoke.test"},
+    {"q": "What is the minimum password length?", "doc": "Password and Device Standard", "evidence": "at least 14 characters", "as": "eng@smoke.test"},
+    {"q": "When must a lost laptop be reported?", "doc": "Password and Device Standard", "evidence": "within 2 hours", "as": "guest@smoke.test"},
+    {"q": "What is the salary band for a Tech Lead L4?", "doc": "Salary Bands FY2026", "evidence": "18 to 28", "as": "hr@smoke.test", "denied_as": "eng@smoke.test"},
+    {"q": "What is the hotel limit per night in metro cities?", "doc": "Travel and Expense Policy", "evidence": "7,000 rupees per night", "as": "admin@smoke.test", "denied_as": "guest@smoke.test"},
+    {"q": "How often are status updates posted during a SEV1?", "doc": "SEV1 Incident Runbook", "evidence": "every 30 minutes", "as": "eng@smoke.test", "denied_as": "hr@smoke.test"},
+    {"q": "Can I bring my dog to the office?", "doc": null, "evidence": null, "as": "eng@smoke.test"}
+  ]
+}

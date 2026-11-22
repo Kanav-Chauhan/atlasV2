@@ -1,10 +1,19 @@
 from fastapi import FastAPI, Response
 from sqlalchemy import text
 
-from atlas_api import chat_routes, insights_routes, routes, super_routes, team_routes
+from atlas_api import (
+    chat_routes,
+    insights_routes,
+    mcp_server,
+    routes,
+    super_routes,
+    team_routes,
+    token_routes,
+    website_routes,
+)
 from atlas_api.db import engine, redis
 
-app = FastAPI(title="Atlas v2 API")
+app = FastAPI(title="Atlas v2 API", lifespan=mcp_server.lifespan)
 
 
 @app.get("/health")
@@ -36,3 +45,6 @@ app.include_router(chat_routes.router)
 app.include_router(team_routes.router)
 app.include_router(insights_routes.router)
 app.include_router(super_routes.router)
+app.include_router(website_routes.router)
+app.include_router(token_routes.router)
+app.router.routes.append(mcp_server.route)  # MCP Streamable HTTP (Phase 9)

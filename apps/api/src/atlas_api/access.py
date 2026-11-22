@@ -1,5 +1,8 @@
 """The one access rule (docs/API.md). Every endpoint goes through here."""
 
+from dataclasses import dataclass
+from typing import Literal
+
 from llama_index.core.vector_stores import (
     FilterCondition,
     FilterOperator,
@@ -9,6 +12,18 @@ from llama_index.core.vector_stores import (
 from sqlalchemy import ColumnElement, and_, or_, true
 
 from atlas_api.models import EVERYONE, Document, Role, User
+
+
+@dataclass(frozen=True)
+class Visitor:
+    """A website visitor (Phase 8): a built-in principal that reads only the public documents
+    of one company. It has no departments, no chat history beyond its thread, no name."""
+
+    org_id: int
+    kind: Literal["visitor"] = "visitor"
+
+
+Principal = User | Visitor
 
 
 def can_read(user: User, doc: Document) -> bool:
@@ -32,8 +47,22 @@ def _sql(value: str) -> str:
     return value.replace("'", "''")
 
 
-def chunk_filters(user: User) -> MetadataFilters:
+def public_filters(org_id: int) -> MetadataFilters:
+    """What a website visitor may retrieve: org_id == X AND is_public == true.
+    is_public is a JSON boolean in chunk metadata; PGVectorStore compares `metadata_->>key` as
+    text, so the value is the string "true" (a Python True would become a float cast)."""
+    return MetadataFilters(
+        filters=[
+            MetadataFilter(key="org_id", value=org_id),
+            MetadataFilter(key="is_public", value="true"),
+        ]
+    )
+
+
+def chunk_filters(user: Principal) -> MetadataFilters:
     """can_read as LlamaIndex metadata filters on chunks (PGVectorStore turns them into SQL)."""
+    if isinstance(user, Visitor):
+        return public_filters(user.org_id)
     org = MetadataFilter(key="org_id", value=user.org_id)
     if user.role == Role.admin:
         return MetadataFilters(filters=[org])

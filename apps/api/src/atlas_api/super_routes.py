@@ -17,7 +17,16 @@ from sqlalchemy import case, func, select
 
 from atlas_api.db import redis
 from atlas_api.insights_routes import insights_for
-from atlas_api.models import Chat, Document, EvalRun, Message, Organization, Role, User
+from atlas_api.models import (
+    AnswerEvalRun,
+    Chat,
+    Document,
+    EvalRun,
+    Message,
+    Organization,
+    Role,
+    User,
+)
 from atlas_api.routes import DB, DocumentOut
 from atlas_api.settings import settings
 from atlas_api.team_routes import org_people, person
@@ -162,8 +171,17 @@ async def super_orgs(s: DB) -> list[dict[str, Any]]:
 
 @router.get("/super/evals", dependencies=[Super])
 async def super_evals(s: DB) -> list[dict[str, Any]]:
-    runs = await s.scalars(select(EvalRun).order_by(EvalRun.created_at.desc()))
-    return [{"run_id": r.run_id, "created_at": r.created_at, "modes": r.modes} for r in runs]
+    """Retrieval runs (kind "retrieval", per-mode `modes`) and answer runs (kind "answers",
+    `summary`), newest first."""
+    runs: list[dict[str, Any]] = [
+        {"kind": "retrieval", "run_id": r.run_id, "created_at": r.created_at, "modes": r.modes}
+        for r in await s.scalars(select(EvalRun))
+    ]
+    runs += [
+        {"kind": "answers", "run_id": r.run_id, "created_at": r.created_at, "summary": r.summary}
+        for r in await s.scalars(select(AnswerEvalRun))
+    ]
+    return sorted(runs, key=lambda r: r["created_at"], reverse=True)
 
 
 @router.get("/super/usage", dependencies=[Super])

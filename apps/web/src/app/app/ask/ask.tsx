@@ -14,15 +14,15 @@ export type Source = {
   n: number; chunk_id: string; document_id: string; title: string; doc_no: string | null;
   page: number | null; section: string | null; text: string; superseded: boolean;
 };
-type Meta = {
+export type Meta = {
   route: "smalltalk" | "offtopic" | "blocked" | "rag"; abstained: boolean; cached: boolean;
   rewritten_query?: string; language: "en" | "hi"; message_id: string; trace_id?: string;
 };
-type Stage = "guard" | "cache" | "route" | "rewrite" | "retrieve" | "rerank" | "grade" | "retry" | "answer";
-type AtlasMessage = UIMessage<unknown, { sources: { sources: Source[] }; meta: Meta; status: { stage: Stage } }>;
+export type Stage = "guard" | "cache" | "route" | "rewrite" | "retrieve" | "rerank" | "grade" | "retry" | "answer";
+export type AtlasMessage = UIMessage<unknown, { sources: { sources: Source[] }; meta: Meta; status: { stage: Stage } }>;
 type ChatSummary = { id: string; title: string; updated_at: string };
 
-const STAGE_TEXT: Record<Stage, string> = {
+export const STAGE_TEXT: Record<Stage, string> = {
   guard: "Reading your question…", cache: "Reading your question…", route: "Reading your question…",
   rewrite: "Searching your documents…", retrieve: "Searching your documents…", retry: "Searching a little wider…",
   rerank: "Checking sources…", grade: "Checking sources…", answer: "Writing the answer…",
@@ -37,12 +37,12 @@ const newChatUrl = (q?: string | null) => {
   return `/app/ask?c=${id}${q ? `&q=${encodeURIComponent(q)}` : ""}`;
 };
 
-const textOf = (m: AtlasMessage) => m.parts.map((p) => (p.type === "text" ? p.text : "")).join("");
-const sourcesOf = (m: AtlasMessage) => m.parts.find((p) => p.type === "data-sources")?.data.sources ?? [];
-const metaOf = (m: AtlasMessage) => m.parts.find((p) => p.type === "data-meta")?.data;
+export const textOf = (m: AtlasMessage) => m.parts.map((p) => (p.type === "text" ? p.text : "")).join("");
+export const sourcesOf = (m: AtlasMessage) => m.parts.find((p) => p.type === "data-sources")?.data.sources ?? [];
+export const metaOf = (m: AtlasMessage) => m.parts.find((p) => p.type === "data-meta")?.data;
 
 /** The API's {"detail"} if the error body carries one, otherwise a plain sentence. */
-function errorText(e: Error) {
+export function errorText(e: Error) {
   try { const d = JSON.parse(e.message).detail; if (typeof d === "string") return d; } catch {}
   return "Atlas couldn't finish this answer. Check your connection and try again.";
 }
@@ -286,8 +286,8 @@ function Actions({ id, text }: { id: string; text: string }) {
   );
 }
 
-/** Just enough markdown for answers: paragraphs, - / 1. lists, **bold**, and [n] citation chips. */
-function Markdown({ text, sources, live, current, onCite }: { text: string; sources: Source[]; live: boolean; current: number | null; onCite: (n: number) => void }) {
+/** Just enough markdown for answers: paragraphs, - / 1. lists, **bold**, and [n] citation chips (plain marks without onCite). */
+export function Markdown({ text, sources, live, current, onCite }: { text: string; sources: Source[]; live: boolean; current: number | null; onCite?: (n: number) => void }) {
   const blocks: { kind: "p" | "ul" | "ol"; items: string[] }[] = [];
   let gap = true;
   for (const line of text.split("\n")) {
@@ -303,6 +303,7 @@ function Markdown({ text, sources, live, current, onCite }: { text: string; sour
     if (n) {
       const src = sources.find((x) => x.n === +n);
       if (!src && !live) return null; // a marker with no cited passage behind it
+      if (!onCite) return <span key={i} className="cite" title={src?.title}>{n}</span>;
       return (
         <button key={i} type="button" className="cite" disabled={!src} onClick={() => onCite(+n)}
           aria-current={current === +n || undefined} aria-label={src ? `Source ${n}: ${src.title}` : `Source ${n}`}>{n}</button>

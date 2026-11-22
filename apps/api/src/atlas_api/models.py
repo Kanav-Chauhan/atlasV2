@@ -55,6 +55,9 @@ class Organization(Base):
     name: Mapped[str] = mapped_column(String(200))
     industry: Mapped[str] = mapped_column(String(200), default="")
     description: Mapped[str] = mapped_column(Text, default="")
+    # Phase 8: {enabled, site_key, allowed_origins, greeting, accent, position, show_badge};
+    # read through atlas_api.website.config(), which fills in the defaults.
+    website_chat: Mapped[dict[str, Any]] = mapped_column(JSONB, default=dict)
 
 
 class Department(Base):
@@ -123,14 +126,29 @@ class EvalRun(Base):
     modes: Mapped[dict[str, Any]] = mapped_column(JSONB)
 
 
+class AnswerEvalRun(Base):
+    """Answer eval summary (scripts/eval_answers.py): RAGAS + correct / not-found / leaks /
+    latency. Per-question detail stays in evals/results/<run_id>-answers.json."""
+
+    __tablename__ = "answer_eval_runs"
+    id: Mapped[int] = mapped_column(primary_key=True)
+    run_id: Mapped[str] = mapped_column(String(64), unique=True)
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
+    summary: Mapped[dict[str, Any]] = mapped_column(JSONB)
+
+
 class Chat(Base):
-    """One conversation thread. The id comes from the browser (AI SDK `useChat` id)."""
+    """One conversation thread. The id comes from the browser (AI SDK `useChat` id).
+    Website visitor threads (Phase 8) have no user and record the website's origin."""
 
     __tablename__ = "chats"
     id: Mapped[str] = mapped_column(String(64), primary_key=True)
-    user_id: Mapped[int] = mapped_column(ForeignKey("users.id", ondelete="CASCADE"), index=True)
+    user_id: Mapped[int | None] = mapped_column(
+        ForeignKey("users.id", ondelete="CASCADE"), index=True
+    )
     org_id: Mapped[int] = mapped_column(ForeignKey("organizations.id", ondelete="CASCADE"))
     title: Mapped[str] = mapped_column(String(200))
+    origin: Mapped[str | None] = mapped_column(String(300))
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
     updated_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
 

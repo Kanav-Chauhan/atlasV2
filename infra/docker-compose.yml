@@ -50,6 +50,12 @@ services:
       ATLAS_SUPERADMIN_EMAIL: ${ATLAS_SUPERADMIN_EMAIL:-}
       ATLAS_SUPERADMIN_PASSWORD_HASH: ${ATLAS_SUPERADMIN_PASSWORD_HASH:-}
       ATLAS_SESSION_SECRET: ${ATLAS_SESSION_SECRET:-}
+      # LangSmith tracing (Phase 6): off unless LANGSMITH_TRACING=true AND a key is set.
+      LANGSMITH_TRACING: ${LANGSMITH_TRACING:-false}
+      LANGSMITH_API_KEY: ${LANGSMITH_API_KEY:-}
+      LANGSMITH_PROJECT: ${LANGSMITH_PROJECT:-atlas-v2}
+      LANGSMITH_ENDPOINT: ${LANGSMITH_ENDPOINT:-https://api.smith.langchain.com}
+      RAGAS_DO_NOT_TRACK: "true"  # the answer eval runs in this image; no usage stats sent
     volumes: *api-volumes
     ports:
       - "127.0.0.1:8111:8000"

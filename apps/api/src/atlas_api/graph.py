@@ -4,6 +4,10 @@ guard → route → (smalltalk | offtopic | blocked | rewrite) → cache_lookup 
   grade weak → rewrite once with a different formulation → retrieve → grade
   → answer | not_found → cite_check → cache_store
 
+grade (corrective RAG, Phase 6) has two checks: the cross-encoder's top score against a
+calibrated threshold, then the `fast` model's relevance verdict (yes / partial / no + which
+passages). Only the passages it marks reach the answer model.
+
 The semantic cache sits after rewrite because its key is the rewritten English question.
 Nodes stream to the client through the runtime stream writer: {"status": stage} and
 {"text": delta}. The chat history lives in the LangGraph checkpointer (thread = user + chat).
@@ -28,6 +32,7 @@ from llama_index.core.vector_stores import MetadataFilters
 from atlas_api import citations, guard
 from atlas_api.cache import AnswerCache
 from atlas_api.llm import Models, history_text
+from atlas_api.settings import settings
 
 log = logging.getLogger(__name__)
 
@@ -36,6 +41,12 @@ NOT_FOUND_REASON = {
     "en": "No document you can open answers this, so Atlas did not guess.",
     "hi": "आप जिन दस्तावेज़ों को खोल सकते हैं, उनमें से किसी में इसका जवाब नहीं है, "
     "इसलिए Atlas ने अनुमान नहीं लगाया।",
+}
+# Website visitors (Phase 8): no "your documents"; point them to the company instead.
+VISITOR_NOT_FOUND = {
+    "en": "I couldn't find that in {org}'s public information. "
+    "Please contact {org} directly and they will help you.",
+    "hi": "मुझे यह {org} की सार्वजनिक जानकारी में नहीं मिला। कृपया सीधे {org} से संपर्क करें, वे आपकी मदद करेंगे।",
 }
 
 
@@ -52,6 +63,8 @@ class State(TypedDict, total=False):
     passages: list[dict[str, Any]]
     top_score: float
     grade: str  # answer | retry | not_found
+    relevance: str  # yes | partial | no | skipped (score too low) | off | error
+    grade_log: list[dict[str, Any]]  # one entry per grade: score, verdict, kept passage numbers
     cite_order: list[int]  # original passage numbers in the order the answer cites them
     answer: str
     sources: list[dict[str, Any]]
@@ -74,6 +87,8 @@ def new_turn(question: str) -> State:
         passages=[],
         top_score=0.0,
         grade="",
+        relevance="",
+        grade_log=[],
         cite_order=[],
         answer="",
         sources=[],
@@ -97,6 +112,11 @@ class Ctx:
     models: Models = field(default_factory=Models)
     search: SearchFn | None = None
     cache: AnswerCache | None = None
+    # Website visitor (Phase 8): public documents only, no suggestions, website wording.
+    visitor: bool = False
+    greeting: str = ""
+    # LLM relevance grade after the score threshold (ATLAS_RELEVANCE_GRADE).
+    relevance: bool = field(default_factory=lambda: settings.relevance_grade)
 
 
 # ---------------------------------------------------------------- instant rules (no AI call)
@@ -138,7 +158,24 @@ def suggestions(ctx: Ctx) -> str:
     return "\n".join(f"- {q}" for q in ctx.suggested[:3])
 
 
+def visitor_smalltalk(kind: str, language: str, ctx: Ctx) -> str:
+    if kind == "thanks":
+        return f"You're welcome. Ask me anything else about {ctx.org}."
+    if kind == "bye":
+        return "Bye! Thanks for visiting."
+    if kind == "who":
+        return (
+            f"I'm the assistant on {ctx.org}'s website. I answer from {ctx.org}'s public "
+            "information and show where each answer came from."
+        )
+    if language == "hi":
+        return f"नमस्ते! {ctx.org} के बारे में कुछ भी पूछिए।"
+    return ctx.greeting or f"Hi! Ask me anything about {ctx.org}."
+
+
 def smalltalk_reply(kind: str, language: str, ctx: Ctx) -> str:
+    if ctx.visitor:
+        return visitor_smalltalk(kind, language, ctx)
     try_these = f"\n\nTry one of these:\n{suggestions(ctx)}" if ctx.suggested else ""
     if kind == "thanks":
         return f"You're welcome. Ask me anything else about {ctx.org} documents."
@@ -211,16 +248,18 @@ async def smalltalk_node(state: State, runtime: Runtime[Ctx]) -> dict[str, Any]:
 
 async def offtopic_node(state: State, runtime: Runtime[Ctx]) -> dict[str, Any]:
     ctx = runtime.context
-    text = f"I only answer questions about {ctx.org} documents."
+    text = f"I only answer questions about {ctx.org}{'' if ctx.visitor else ' documents'}."
     if ctx.suggested:
         text += f" For example:\n{suggestions(ctx)}"
     return _reply(state, text, runtime) | {"route": "offtopic"}
 
 
 async def blocked_node(state: State, runtime: Runtime[Ctx]) -> dict[str, Any]:
+    org = runtime.context.org
     text = (
-        f"I can't help with that. I answer questions about {runtime.context.org} documents "
-        "you can open."
+        f"I can't help with that. I answer questions about {org}."
+        if runtime.context.visitor
+        else f"I can't help with that. I answer questions about {org} documents you can open."
     )
     return _reply(state, text, runtime) | {"route": "blocked"}
 
@@ -309,12 +348,48 @@ async def retrieve_node(state: State, runtime: Runtime[Ctx]) -> dict[str, Any]:
     return {"passages": passages, "top_score": passages[0]["score"] if passages else -99.0}
 
 
+def kept_passages(passages: list[dict[str, Any]], marked: list[int]) -> list[dict[str, Any]]:
+    """The passages the grader marked (1-based, original order); all of them if it marked
+    none that exist (a yes/partial verdict with a bad list must not lose the context)."""
+    keep = sorted({n for n in marked if 1 <= n <= len(passages)})
+    return [passages[n - 1] for n in keep] if keep else passages
+
+
 async def grade_node(state: State, runtime: Runtime[Ctx]) -> dict[str, Any]:
-    """Corrective RAG: the cross-encoder's top score against a calibrated threshold."""
+    """Corrective RAG in two checks. 1: the cross-encoder's top score against a calibrated
+    threshold (cheap, no AI call). 2: the `fast` model reads the passages and says whether
+    they answer the question (yes / partial / no + which passages). Weak or "no" → one retry
+    with a different query, then "not found"."""
     _status(runtime, "grade")
-    if state["passages"] and state["top_score"] >= runtime.context.threshold:
-        return {"grade": "answer"}
-    return {"grade": "retry" if state.get("attempt", 0) == 0 else "not_found"}
+    ctx = runtime.context
+    passages = state["passages"]
+    fail = {"grade": "retry" if state.get("attempt", 0) == 0 else "not_found"}
+    log_entry: dict[str, Any] = {"attempt": state.get("attempt", 0), "score": state["top_score"]}
+    grade_log = [*state.get("grade_log", []), log_entry]
+    if not passages or state["top_score"] < ctx.threshold:
+        log_entry["verdict"] = "skipped"
+        return fail | {"relevance": "skipped", "grade_log": grade_log}
+    if not ctx.relevance:
+        log_entry["verdict"] = "off"
+        return {"grade": "answer", "relevance": "off", "grade_log": grade_log}
+    try:
+        out = await ctx.models.relevance(
+            state["question"], state["query"], passages_text(passages), ctx.org
+        )
+    except Exception:
+        log.exception("relevance grade failed; answering on the score alone")
+        log_entry["verdict"] = "error"
+        return {"grade": "answer", "relevance": "error", "grade_log": grade_log}
+    log_entry |= {"verdict": out.verdict, "marked": out.passages}
+    if out.verdict == "no":
+        return fail | {"relevance": "no", "grade_log": grade_log}
+    kept = kept_passages(passages, out.passages)
+    return {
+        "grade": "answer",
+        "relevance": out.verdict,
+        "passages": kept,
+        "grade_log": grade_log,
+    }
 
 
 def after_grade(state: State) -> str:
@@ -360,7 +435,11 @@ async def answer_node(state: State, runtime: Runtime[Ctx]) -> dict[str, Any]:
 
 
 async def not_found_node(state: State, runtime: Runtime[Ctx]) -> dict[str, Any]:
-    text = f"{NOT_FOUND}\n{NOT_FOUND_REASON.get(state['language'], NOT_FOUND_REASON['en'])}"
+    lang = state["language"]
+    if runtime.context.visitor:
+        text = VISITOR_NOT_FOUND.get(lang, VISITOR_NOT_FOUND["en"]).format(org=runtime.context.org)
+    else:
+        text = f"{NOT_FOUND}\n{NOT_FOUND_REASON.get(lang, NOT_FOUND_REASON['en'])}"
     _say(runtime, text)
     return {"answer": text, "abstained": True, "passages": []}
 

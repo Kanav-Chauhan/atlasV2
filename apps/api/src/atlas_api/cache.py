@@ -25,6 +25,12 @@ def scope(org_id: int, role: Role | str, departments: set[str] | list[str], lang
     return hashlib.sha256(raw.encode()).hexdigest()[:24]
 
 
+def visitor_scope(org_id: int, language: str) -> str:
+    """Website visitors of one company share answers only with each other (Phase 8)."""
+    raw = f"visitor|{org_id}|{language}"
+    return hashlib.sha256(raw.encode()).hexdigest()[:24]
+
+
 def _embedder() -> BaseEmbedding:
     """The retrieval index's bge-small instance: one copy of the model in RAM."""
     from atlas_api import retrieve

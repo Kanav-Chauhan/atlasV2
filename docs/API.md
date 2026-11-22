@@ -46,7 +46,7 @@ The Ask page uses the Vercel AI SDK `useChat` with `DefaultChatTransport({ api: 
 
 | Method | Path | Who | Returns |
 |---|---|---|---|
-| POST | `/chat` | any user | body `{id: thread_id, messages: [UIMessage]}` (only the last user message is used; history comes from the LangGraph checkpointer keyed by `thread_id` + user). Streams parts: `start`; `data-status` `{stage: "guard"\|"cache"\|"route"\|"rewrite"\|"retrieve"\|"rerank"\|"grade"\|"retry"\|"answer"}` (transient); `text-start`/`text-delta`/`text-end` for the answer; `data-sources` `{sources: [{n, chunk_id, document_id, title, doc_no, page, section, text, superseded}]}` (only the sources actually cited); `data-meta` `{route: "smalltalk"\|"offtopic"\|"blocked"\|"rag", abstained: bool, cached: bool, rewritten_query?: str, language: "en"\|"hi", message_id, trace_id?}`; `finish`. |
+| POST | `/chat` | any user | body `{id: thread_id, messages: [UIMessage]}` (only the last user message is used; history comes from the LangGraph checkpointer keyed by `thread_id` + user). Streams parts: `start`; `data-status` `{stage: "guard"\|"cache"\|"route"\|"rewrite"\|"retrieve"\|"rerank"\|"grade"\|"retry"\|"answer"}` (transient); `text-start`/`text-delta`/`text-end` for the answer; `data-sources` `{sources: [{n, chunk_id, document_id, title, doc_no, page, section, text, superseded}]}` (only the sources actually cited); `data-meta` `{route: "smalltalk"\|"offtopic"\|"blocked"\|"rag", abstained: bool, cached: bool, rewritten_query?: str, language: "en"\|"hi", message_id, relevance?: "yes"\|"partial"\|"no"\|"skipped"\|"off"\|"error", trace_id?, trace_url?}` (`relevance` = the Phase 6 LLM relevance grade of the last search; `trace_id`/`trace_url` = the LangSmith trace, only when tracing is on); `finish`. |
 | GET | `/chats` | any user | the user's threads `[{id, title, updated_at}]`, newest first |
 | GET | `/chats/{id}` | owner of the thread | `{id, title, messages: [UIMessage]}` (with sources + meta as data parts) |
 | DELETE | `/chats/{id}` | owner | `204` |
@@ -86,7 +86,7 @@ Login is a separate option on the login page: email `sa@kanav.space` + password,
 | POST | `/auth/super` | `{email, password}` → `204` + cookie, or `401` |
 | POST | `/auth/super/logout` | `204` |
 | GET | `/super/orgs` | `[{slug, name, people, documents, chunks, questions_30d, not_found_pct_30d, last_activity}]` (`not_found_pct_30d` 0–100 or `null`; `last_activity` timestamp or `null`) |
-| GET | `/super/evals` | all retrieval eval runs, newest first: `[{run_id, created_at, modes: {<mode>: {hit_at_1, hit_at_3, hit_at_5, mrr, context_recall, leaks, n}}}]` (same item shape as `/evals/latest`) |
+| GET | `/super/evals` | all eval runs, newest first. Retrieval runs: `{kind: "retrieval", run_id, created_at, modes: {<mode>: {hit_at_1, hit_at_3, hit_at_5, mrr, context_recall, leaks, n}}}` (same item shape as `/evals/latest`). Answer runs (Phase 6, `scripts/eval_answers.py`): `{kind: "answers", run_id, created_at, summary: {runs, errors, answerable, negatives, correct_answer, correct_or_partial, false_not_found, correct_not_found, declined_in_words, leaks, latency_p50_ms, latency_p95_ms, relevance: {verdict: count}, ragas: {faithfulness, answer_relevancy, context_precision, context_recall, n}, by_org: {<slug>: {correct_answer, false_not_found, correct_not_found, leaks, n}}, config: {threshold, relevance_grade, judge, questions, org, ragas}, seconds}}`; rates are 0–1 or `null` |
 | GET | `/super/usage?days=30` | `[{org (slug), model, questions, tokens_in, tokens_out, avg_latency_ms}]` per org and model; `model` is the gateway slot (`smart` for document answers, `none` otherwise) until Phase 6 logs it; tokens `null` until then |
 | GET | `/super/waitlist` | `[{email, created_at}]`; `[]` until Clerk (Phase 10) |
 | GET | `/super/orgs/{slug}/view` | read-only snapshot: `{org: {slug, name, industry, description}, team: [person as in /team], documents: [document as in /documents, newest first], insights: (as /insights?days=30, whole company)}`; `404` unknown slug |
@@ -113,8 +113,8 @@ retrieval as staff). No staff document, chat history or name is ever reachable f
 
 | Method | Path | Returns |
 |---|---|---|
-| GET | `/public/{site_key}/config` | `{company, greeting, accent, position, show_badge}`; `404` if unknown/disabled |
-| POST | `/public/{site_key}/chat` | same body and **AI SDK UI message stream** as `/chat`, answered as the website visitor; `thread_id` comes from the client (random, kept in the iframe's sessionStorage); history kept 24 h. Guards: rate limit per IP (10/min, 100/day) and per site key (1,000/day), question ≤ 500 chars, honeypot field `website` must be empty, prompt-injection guard, answer token cap. |
+| GET | `/public/{site_key}/config` | `{company, greeting, accent, position, show_badge, allowed_origins: [str]}` (`allowed_origins` always includes p10; the web app turns it into `Content-Security-Policy: frame-ancestors` on `/embed/<key>`, cached 60 s); `404` if unknown/disabled, `403` if the caller's Origin/Referer is not allowed |
+| POST | `/public/{site_key}/chat` | same body and **AI SDK UI message stream** as `/chat`, answered as the website visitor; `thread_id` comes from the client (random, kept in the iframe's sessionStorage); history kept 24 h. Guards: rate limit per IP (10/min, 100/day; IP = the **last** `X-Forwarded-For` hop, the one Caddy wrote) and per site key (1,000/day), question ≤ 500 chars, honeypot field `website` must be empty, prompt-injection guard, answer token cap. |
 
 ## Endpoints (Phase 9: MCP server)
 
@@ -136,7 +136,7 @@ sees exactly what that person can see (same `access.py` filters). Every tool cal
 | Tool | Input | Output |
 |---|---|---|
 | `search_knowledge` | `{query, top_k?: 5}` | passages `[{title, doc_no, department, page, section, text, document_id, score}]`; `abstained: true` when nothing is good enough |
-| `ask_question` | `{question}` | `{answer, citations: [...], abstained}` — the full LangGraph answer flow as that person (added after Phase 8 if not ready) |
+| `ask_question` | `{question}` | `{answer, sources: [{n, title, doc_no, page, section, document_id}], abstained}` — the full LangGraph answer flow as that person, one fresh turn (no history, semantic cache on); `[n]` in the answer = `sources[].n` |
 | `get_document` | `{document_id}` | `{title, doc_no, department, text}` (Markdown, truncated to a safe length) or a not-found error |
 | `list_departments` | `{}` | departments the bound person can read, with document counts |
 
