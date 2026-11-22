@@ -1,0 +1,81 @@
+@import "tailwindcss";
+
+/* Atlas v2 tokens, ported from previews/dashboard/tokens.css (sapphire, light + dark).
+   Colours, fonts, radii and type sizes live in @theme so Tailwind makes utilities
+   (bg-paper, text-muted, font-display, rounded-card ...); dark mode only swaps the variables. */
+
+@font-face { font-family: "Funnel Display"; src: url("/fonts/display.woff2") format("woff2"); font-weight: 300 800; font-display: swap; }
+@font-face { font-family: "Funnel Sans"; src: url("/fonts/body.woff2") format("woff2"); font-weight: 300 800; font-display: swap; }
+@font-face { font-family: "Funnel Fallback"; src: local("Arial"); size-adjust: 98%; ascent-override: 96%; descent-override: 26%; line-gap-override: 0%; }
+
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+@theme static {
+  --text-xs: 0.75rem; --text-sm: 0.875rem; --text-md: 1rem; --text-lg: 1.2rem; --text-xl: 1.44rem; --text-2xl: 1.728rem; --text-3xl: 2.074rem;
+
+  --color-paper: oklch(98.5% 0.004 250); --color-paper-2: oklch(95.5% 0.008 240); --color-paper-3: oklch(91% 0.012 235);
+  --color-ink: oklch(21% 0.02 250); --color-ink-2: oklch(31% 0.022 250); --color-muted: oklch(45% 0.02 250);
+  --color-rule: oklch(87% 0.012 235);
+  --color-accent: oklch(50% 0.19 262); --color-accent-ink: oklch(98.5% 0.004 250); --color-accent-deep: oklch(42% 0.17 262);
+  --color-accent-soft: oklch(93% 0.035 262); --color-mark: oklch(88% 0.07 262);
+  --color-focus: oklch(45% 0.18 262);
+  --color-error: oklch(48% 0.18 27); --color-error-soft: oklch(95% 0.03 27);
+  --color-success: oklch(48% 0.12 150); --color-success-soft: oklch(95% 0.03 150);
+  --color-warn: oklch(55% 0.13 70); --color-warn-soft: oklch(95% 0.04 80);
+  --color-slab: oklch(23% 0.02 250); --color-slab-ink: oklch(95% 0.008 230); --color-slab-muted: oklch(76% 0.018 240); --color-slab-rule: oklch(38% 0.02 250);
+  --color-shadow: oklch(21% 0.02 250 / 0.12);
+
+  --font-display: "Funnel Display", "Funnel Fallback", ui-sans-serif, sans-serif;
+  --font-body: "Funnel Sans", "Funnel Fallback", ui-sans-serif, system-ui, sans-serif;
+  --radius-card: 12px; --radius-input: 8px; --radius-pill: 999px;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+:root {
+  --space-3xs: 2px; --space-2xs: 4px; --space-xs: 8px; --space-sm: 12px; --space-md: 16px; --space-lg: 24px; --space-xl: 40px; --space-2xl: 64px; --space-3xl: 96px; --space-4xl: 144px;
+  --dur-micro: 120ms; --dur-short: 220ms; --dur-long: 420ms;
+  --gutter: 32px; --rule-hair: 1px;
+  --shadow-card: 0 1px 0 var(--color-rule), 0 12px 24px -16px var(--color-shadow);
+  --tracking-display: -0.02em;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --color-paper: oklch(17% 0.02 255); --color-paper-2: oklch(21% 0.022 255); --color-paper-3: oklch(26% 0.024 255);
+    --color-ink: oklch(95% 0.008 230); --color-ink-2: oklch(86% 0.012 235); --color-muted: oklch(72% 0.018 240);
+    --color-rule: oklch(33% 0.022 252);
+    --color-accent: oklch(66% 0.16 262); --color-accent-ink: oklch(17% 0.02 255); --color-accent-deep: oklch(74% 0.12 262);
+    --color-accent-soft: oklch(30% 0.07 262); --color-mark: oklch(40% 0.1 262);
+    --color-focus: oklch(74% 0.12 262);
+    --color-error: oklch(70% 0.15 27); --color-error-soft: oklch(28% 0.06 27);
+    --color-success: oklch(72% 0.12 150); --color-success-soft: oklch(27% 0.05 150);
+    --color-warn: oklch(78% 0.12 80); --color-warn-soft: oklch(29% 0.05 80);
+    --color-shadow: oklch(5% 0.02 255 / 0.5);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --color-paper: oklch(17% 0.02 255); --color-paper-2: oklch(21% 0.022 255); --color-paper-3: oklch(26% 0.024 255);
+  --color-ink: oklch(95% 0.008 230); --color-ink-2: oklch(86% 0.012 235); --color-muted: oklch(72% 0.018 240);
+  --color-rule: oklch(33% 0.022 252);
+  --color-accent: oklch(66% 0.16 262); --color-accent-ink: oklch(17% 0.02 255); --color-accent-deep: oklch(74% 0.12 262);
+  --color-accent-soft: oklch(30% 0.07 262); --color-mark: oklch(40% 0.1 262);
+  --color-focus: oklch(74% 0.12 262);
+  --color-error: oklch(70% 0.15 27); --color-error-soft: oklch(28% 0.06 27);
+  --color-success: oklch(72% 0.12 150); --color-success-soft: oklch(27% 0.05 150);
+  --color-warn: oklch(78% 0.12 80); --color-warn-soft: oklch(29% 0.05 80);
+  --color-shadow: oklch(5% 0.02 255 / 0.5);
+  color-scheme: dark;
+}
+
+/* Base, from previews/dashboard/base.css */
+html, body { overflow-x: clip; }
+body { margin: 0; background: var(--color-paper); color: var(--color-ink); font-family: var(--font-body); font-size: var(--text-md); line-height: 1.55; -webkit-font-smoothing: antialiased; caret-color: var(--color-accent); }
+::selection { background: color-mix(in oklab, var(--color-accent) 22%, transparent); color: var(--color-ink); }
+:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 2px; }
+h1, h2, h3 { font-family: var(--font-display); font-synthesis: none; overflow-wrap: break-word; min-width: 0; text-wrap: balance; letter-spacing: var(--tracking-display); }
+p { text-wrap: pretty; }
+@media (max-width: 60rem) { :root { --gutter: 24px; } }
+@media (max-width: 40rem) { :root { --gutter: 16px; } }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } }

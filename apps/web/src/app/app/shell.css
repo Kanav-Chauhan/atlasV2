@@ -1,0 +1,50 @@
+/* App shell: option C's thin icon rail (previews/dashboard/option-c/style.css); bottom tab bar on phones. */
+.app { --rail-w: 76px; --bar-h: 64px; display: grid; grid-template-columns: var(--rail-w) minmax(0, 1fr); min-height: 100dvh; }
+.rail {
+  position: sticky; top: 0; height: 100dvh;
+  background: var(--color-paper-2); border-right: var(--rule-hair) solid var(--color-rule);
+  display: flex; flex-direction: column; align-items: stretch;
+  padding: var(--space-sm) var(--space-2xs); gap: var(--space-2xs); min-height: 0; overflow-y: auto;
+}
+.rail-logo { display: grid; place-items: center; height: 48px; flex: none; margin-bottom: var(--space-xs); color: var(--color-accent); border-radius: var(--radius-input); }
+.rail-logo svg { width: 28px; height: 28px; }
+.rail-dests { display: flex; flex-direction: column; gap: var(--space-2xs); }
+.rail a.dest {
+  display: flex; flex-direction: column; align-items: center; gap: var(--space-3xs);
+  padding: var(--space-xs) var(--space-3xs); min-height: 52px; border-radius: var(--radius-input);
+  color: var(--color-muted); text-decoration: none; text-align: center; font-size: var(--text-xs); line-height: 1.25;
+  transition: background-color var(--dur-micro) var(--ease-out), color var(--dur-micro) var(--ease-out);
+}
+.rail a.dest svg { width: 20px; height: 20px; flex: none; }
+.rail a.dest:hover { background: var(--color-paper-3); color: var(--color-ink); }
+.rail a.dest[aria-current="page"] { background: var(--color-accent-soft); color: var(--color-accent-deep); }
+.rail-foot { margin-top: auto; display: flex; flex-direction: column; align-items: center; gap: var(--space-xs); padding-top: var(--space-xs); }
+.rail-btn {
+  display: grid; place-items: center; min-height: 44px; width: 100%;
+  border: 0; background: transparent; color: var(--color-muted); border-radius: var(--radius-input); cursor: pointer; font-size: var(--text-xs);
+  transition: background-color var(--dur-micro) var(--ease-out), color var(--dur-micro) var(--ease-out);
+}
+.rail-btn:hover { background: var(--color-paper-3); color: var(--color-ink); }
+.avatar {
+  display: grid; place-items: center; width: 40px; height: 40px; flex: none; border-radius: var(--radius-pill);
+  background: var(--color-accent-soft); color: var(--color-accent-deep); font-size: var(--text-sm); font-weight: 600;
+  box-shadow: 0 0 0 2px var(--color-paper-2), 0 0 0 3px var(--color-rule);
+}
+.rail-foot form { width: 100%; }
+
+@media (max-width: 60rem) {
+  .app { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto minmax(0, 1fr); padding-bottom: var(--bar-h); }
+  .rail { position: static; height: auto; flex-direction: row; align-items: center; overflow: visible; border-right: 0; border-bottom: var(--rule-hair) solid var(--color-rule); padding: var(--space-2xs) var(--gutter); }
+  .rail-logo { margin: 0; width: 44px; height: 44px; }
+  .rail-dests {
+    position: fixed; z-index: 200; left: 0; right: 0; bottom: 0; height: var(--bar-h);
+    flex-direction: row; gap: 0; overflow-x: auto;
+    background: var(--color-paper-2); border-top: var(--rule-hair) solid var(--color-rule); padding: var(--space-2xs);
+  }
+  .rail a.dest { flex: 1 0 60px; min-height: 0; padding: var(--space-2xs) var(--space-xs); justify-content: center; white-space: nowrap; }
+  .rail a.dest:focus-visible { outline-offset: -2px; }
+  .rail-foot { margin: 0 0 0 auto; flex-direction: row; padding: 0; }
+  .rail-btn { width: auto; padding-inline: var(--space-sm); }
+  .rail-foot form { width: auto; }
+  .avatar { width: 36px; height: 36px; }
+}

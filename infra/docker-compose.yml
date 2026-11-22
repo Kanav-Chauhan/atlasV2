@@ -1,0 +1,80 @@
+name: atlasv2
+
+x-api-env: &api-env
+  ATLAS_DATABASE_URL: postgresql+asyncpg://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}
+  ATLAS_REDIS_URL: redis://redis:6379/0
+  ATLAS_LLM_BASE_URL: ${ATLAS_LLM_BASE_URL:-http://ai-gateway:4000/v1}
+  ATLAS_LLM_API_KEY: ${ATLAS_LLM_API_KEY:-}
+
+services:
+  postgres:
+    image: pgvector/pgvector:pg17
+    restart: unless-stopped
+    mem_limit: 512m
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    volumes:
+      - atlasv2_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+    mem_limit: 128m
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  api:
+    build: ../apps/api
+    image: atlasv2-api
+    restart: unless-stopped
+    mem_limit: 512m
+    command: sh -c "alembic upgrade head && exec uvicorn atlas_api.main:app --host 0.0.0.0 --port 8000"
+    environment: *api-env
+    ports:
+      - "127.0.0.1:8111:8000"
+    depends_on:
+      postgres: { condition: service_healthy }
+      redis: { condition: service_healthy }
+    networks: [default, ai-gateway]
+
+  worker:
+    image: atlasv2-api
+    restart: unless-stopped
+    mem_limit: 768m
+    command: celery -A atlas_api.worker worker --concurrency 1 --loglevel info
+    environment: *api-env
+    depends_on:
+      api: { condition: service_started }
+      redis: { condition: service_healthy }
+    networks: [default, ai-gateway]
+
+  web:
+    build:
+      context: ../apps/web
+      args:
+        API_URL: http://api:8000
+    restart: unless-stopped
+    mem_limit: 384m
+    environment:
+      API_URL: http://api:8000
+    ports:
+      - "127.0.0.1:3011:3000"
+    depends_on: [api]
+
+volumes:
+  atlasv2_pgdata:
+    name: atlasv2_pgdata
+
+networks:
+  ai-gateway:
+    external: true
