@@ -14,8 +14,6 @@
 .ds a:focus-visible, .ds .ds-btn:focus-visible { outline: 2px solid var(--ds-brand); outline-offset: 3px; }
 .ds h1, .ds h2, .ds h3 { font-family: var(--ds-display); letter-spacing: -0.01em; }
 
-.ds-notice { margin: 0; padding: var(--space-xs) var(--gutter); background: var(--ds-notice); color: var(--ds-notice-ink); font-size: var(--text-sm); text-align: center; }
-.ds-notice a { color: inherit; font-weight: 600; text-underline-offset: 3px; }
 
 .ds-nav { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-sm) var(--space-lg); padding-block: var(--space-md); }
 .ds-logo { display: inline-flex; align-items: center; gap: var(--space-xs); color: var(--ds-ink); font-weight: 700; font-size: var(--text-lg); text-decoration: none; }
