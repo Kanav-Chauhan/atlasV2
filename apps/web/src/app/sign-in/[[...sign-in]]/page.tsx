@@ -4,6 +4,7 @@ import { SignIn } from "@clerk/nextjs";
 import Link from "next/link";
 import { AuthFrame } from "@/components/auth-frame";
 import { MaybeClerk } from "@/components/clerk-provider";
+import { ClerkCardSkeleton } from "@/components/clerk-skeleton";
 import { CLERK_ON } from "@/lib/clerk";
 
 export const metadata: Metadata = { title: "Sign in" };
@@ -20,6 +21,7 @@ export default function SignInPage() {
           <a href="/waitlist" className="font-medium text-accent-deep underline underline-offset-2">Join the waitlist</a>, or <Link href="/login" className="font-medium text-accent-deep underline underline-offset-2">try the demo</Link> with no sign-up.</p>
       </div>
       <MaybeClerk>
+        <ClerkCardSkeleton title="Sign in to Atlas" sub="Welcome back! Please sign in to continue" fields={["Email address"]} button="Continue" footer="Want early access? Join waitlist" social />
         <SignIn path="/sign-in" routing="path" signUpUrl="/sign-up" fallbackRedirectUrl="/auth/owner" />
       </MaybeClerk>
     </AuthFrame>

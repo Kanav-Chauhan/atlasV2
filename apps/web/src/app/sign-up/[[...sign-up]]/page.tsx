@@ -4,6 +4,7 @@ import { SignUp } from "@clerk/nextjs";
 import Link from "next/link";
 import { AuthFrame } from "@/components/auth-frame";
 import { MaybeClerk } from "@/components/clerk-provider";
+import { ClerkCardSkeleton } from "@/components/clerk-skeleton";
 import { CLERK_ON } from "@/lib/clerk";
 
 export const metadata: Metadata = { title: "Create your account" };
@@ -21,6 +22,7 @@ export default function SignUpPage() {
           <a href="/waitlist" className="font-medium text-accent-deep underline underline-offset-2">Join the waitlist</a>, or <Link href="/login" className="font-medium text-accent-deep underline underline-offset-2">try the demo</Link> with no sign-up.</p>
       </div>
       <MaybeClerk>
+        <ClerkCardSkeleton title="Create your account" sub="Welcome! Please fill in the details to get started." fields={["Email address"]} button="Continue" footer="Already have an account? Sign in" social />
         <SignUp path="/sign-up" routing="path" signInUrl="/sign-in" fallbackRedirectUrl="/auth/owner" />
       </MaybeClerk>
     </AuthFrame>

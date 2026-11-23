@@ -230,6 +230,7 @@ Measured cause (LangSmith, last 100 questions): relevance check median 3.4 s but
 - **Problem:** two waitlist forms (ours and Clerk's) felt repetitive, and Clerk's "Join waitlist" link sent visitors off-site to `accounts.kanav.space/waitlist`, whose home link pointed at the portfolio.
 - **Decision:** a new page `/waitlist` renders Clerk's `<Waitlist />` component. `ClerkProvider waitlistUrl="/waitlist"` makes Clerk's own link go there. The login button and the landing page's "Join the Pro waitlist" both link to it. Our custom form component was deleted.
 - **Both paths land in the same Clerk waitlist** (Clerk dashboard + Owner area → Waitlist).
+- **Loading:** Clerk's card appears ~1–2 s after our page (its scripts, then settings, then the card's own files, one after another). A same-size placeholder card (`components/clerk-skeleton.tsx`, inside `<ClerkLoading>`) fills the gap on /waitlist, /sign-in and /sign-up. Not fixable to 0: it's Clerk's loading chain.
 - **Trade-off:** PostHog now sees the click (`waitlist_click`), not the join itself. `POST /api/public/waitlist` is left in the API but unused by the web.
 
 #### D-042 · Atlas logo = the owner's "A", traced to SVG
