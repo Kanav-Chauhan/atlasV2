@@ -224,6 +224,7 @@ Measured cause (LangSmith, last 100 questions): relevance check median 3.4 s but
 `2026-11-23 · active`
 - **Decision:** own SVG logos (cloud + code, leaf + cross, bars + river). Each demo website gets its own design file, with drawn illustrations and no photos (owner's choice).
 - **Rule:** facts on the sites come only from each company's **public** documents, so the site never contradicts the chat bubble.
+- **Built 2026-11-23:** layout ideas from real sites in each industry (Nimbus: Datadog, Thoughtworks, Better Stack · Sanjeevani: Lupin, Teva, Viatris · Kaveri: PPFAS, Mirae Asset, T. Rowe Price); no text, logos or graphics copied. Nimbus shows no prices, phone numbers or client names because its public docs have none.
 
 #### D-044 · Bubble colours follow each company's brand, with AA contrast
 `2026-11-23 · active`
