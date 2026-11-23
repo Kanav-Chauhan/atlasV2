@@ -244,6 +244,7 @@ Measured cause (LangSmith, last 100 questions): relevance check median 3.4 s but
   - **`/sign-in` and `/waitlist` pages deleted** (404).
   - **`/sign-up` kept:** Clerk invitation emails link to `<origin>/sign-up` (`clerk.py` invite `redirect_url`).
   - `/auth/owner` (the post-sign-in landing) now clears the demo cookie; the old "Sign in" server action is removed.
+- **After joining:** Clerk shows "Thanks… You will be redirected soon…" then goes to `afterJoinWaitlistUrl`. It used to point at the same URL, so nothing changed and people looked stuck. Now `/login?tab=waitlist&joined=1`, which swaps Clerk's box for our green "✓ You're on the waitlist" message (switching tabs clears it). Clerk's bot protection blocks headless browsers, so a real join can only be tested by a person.
 - **Cost:** Clerk's scripts load on /login (in the background; the demo works at once, and the placeholder card covers the box).
 - **Checked live:** both tabs, Clerk's links switching tabs, unknown email → "Couldn't find your account" on /login, demo company switch + demo login, phone 390 px, no sideways scroll at 1024/1440.
 

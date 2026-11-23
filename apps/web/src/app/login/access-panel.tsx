@@ -19,10 +19,13 @@ export function AccessPanel() {
   const router = useRouter();
   const path = usePathname();
   const tab: Tab = params.get("tab") === "signin" ? "signin" : "waitlist";
+  // Clerk sends people here after they join (afterJoinWaitlistUrl): show our own confirmation.
+  const joined = params.get("joined") === "1";
 
   function select(next: Tab) {
     const q = new URLSearchParams(params);
     q.set("tab", next);
+    q.delete("joined");
     router.replace(`${path}?${q}`, { scroll: false });
   }
 
@@ -53,10 +56,19 @@ export function AccessPanel() {
           : "For people who have been invited, and the Atlas owner."}
       </p>
       <div role="tabpanel" id={`panel-${tab}`} aria-labelledby={`tab-${tab}`}>
-        {tab === "waitlist" ? (
+        {tab === "waitlist" && joined ? (
+          <div role="status" className="rounded-card border border-[oklch(72%_0.13_150)] bg-[oklch(96%_0.04_150)] p-5 text-[oklch(32%_0.09_150)] dark:border-[oklch(45%_0.1_150)] dark:bg-[oklch(25%_0.05_150)] dark:text-[oklch(88%_0.08_150)]">
+            <p className="flex items-center gap-2.5 text-base font-semibold">
+              <span aria-hidden="true" className="grid size-7 shrink-0 place-items-center rounded-full bg-[oklch(55%_0.15_150)] text-sm text-white">✓</span>
+              You&apos;re on the waitlist
+            </p>
+            <p className="mt-2 text-sm">Thanks for joining. We&apos;ll email you an invite as soon as your spot is ready.</p>
+            <p className="mt-3 text-sm">Meanwhile, try the full demo: pick a company and a person.</p>
+          </div>
+        ) : tab === "waitlist" ? (
           <>
             <ClerkCardSkeleton title="Join the waitlist" sub="Enter your email address and we’ll let you know when your spot is ready" fields={["Email address"]} button="Join the waitlist" footer="Already have access? Sign in" />
-            <Waitlist signInUrl="/login?tab=signin" afterJoinWaitlistUrl="/login?tab=waitlist" />
+            <Waitlist signInUrl="/login?tab=signin" afterJoinWaitlistUrl="/login?tab=waitlist&joined=1" />
           </>
         ) : (
           <>
