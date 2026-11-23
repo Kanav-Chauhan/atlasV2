@@ -10,7 +10,11 @@ export type WebsiteChat = {
   accent: string; position: "right" | "left"; show_badge: boolean; public_documents: number;
 };
 
-export type VisitorChat = { id: string; started_at: string; origin: string | null; messages: number; last_question: string; not_found: boolean };
+export type VisitorChat = {
+  id: string; started_at: string; updated_at: string; origin: string | null; messages: number;
+  first_question: string; last_question: string; not_found: boolean;
+};
+export type Paged<T> = { items: T[]; total: number; page: number; per_page: number };
 
 export const HEX = /^#[0-9a-fA-F]{6}$/;
 

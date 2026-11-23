@@ -125,6 +125,7 @@ class FakeSession:
         self.added: list[Any] = []
         self.executed: list[str] = []
         self.commits = 0
+        self.refreshed: Any = None
 
     async def scalar(self, q: Any) -> Any:
         s = str(q)
@@ -152,6 +153,9 @@ class FakeSession:
 
     async def commit(self) -> None:
         self.commits += 1
+
+    async def refresh(self, obj: Any) -> None:
+        self.refreshed = obj
 
 
 class FakeRedis:
@@ -329,6 +333,9 @@ ADMIN_ENDPOINTS = [
     ("POST", "/website-chat/rotate-key", None),
     ("PATCH", "/documents/3", {"is_public": True}),
     ("GET", "/website-chat/conversations?days=7", None),
+    ("GET", "/website-chat/conversations?q=price&page=2", None),
+    ("GET", "/website-chat/documents", None),
+    ("GET", "/website-chat/documents?public=false&q=x", None),
     ("GET", "/website-chat/conversations/v-x", None),
 ]
 
@@ -401,11 +408,140 @@ async def test_patch_is_public_updates_chunks_and_needs_everyone() -> None:
     async with client(session, user(Role.admin)) as c:
         r = await c.patch("/documents/3", json={"is_public": True})
         assert r.status_code == 200 and r.json()["is_public"] is True
+        # Reloaded after commit: an expired object read in async code raises MissingGreenlet.
+        assert session.refreshed is doc
         assert any("jsonb_set" in q for q in session.executed)
         doc.access, doc.is_public = "HR", False
         assert (await c.patch("/documents/3", json={"is_public": True})).status_code == 400
         doc.org_id = 2
         assert (await c.patch("/documents/3", json={"is_public": False})).status_code == 404
+
+
+class ListSession(FakeSession):
+    """Records every query (compiled with its values) and answers counts and rows."""
+
+    def __init__(self, total: int, rows: list[Any], msgs: list[Any] | None = None) -> None:
+        super().__init__(org())
+        self.total, self.rows, self.msgs = total, rows, msgs or []
+        self.sql: list[str] = []
+
+    def _log(self, q: Any) -> str:
+        compiled = q.compile(dialect=postgresql.dialect(), compile_kwargs={"literal_binds": True})  # type: ignore[no-untyped-call]
+        sql = str(compiled)
+        self.sql.append(sql)
+        return sql
+
+    async def scalar(self, q: Any) -> Any:
+        self._log(q)
+        return self.total
+
+    async def scalars(self, q: Any) -> Result:
+        self._log(q)
+        return Result(self.rows)
+
+    async def execute(self, q: Any, *a: Any) -> Result:
+        self._log(q)
+        return Result(self.msgs)
+
+
+def visitor_chat(i: int) -> Chat:
+    return Chat(
+        id=f"v-{i}",
+        user_id=None,
+        org_id=1,
+        title=f"Q{i}",
+        origin=SHOP,
+        created_at=NOW,
+        updated_at=NOW,
+    )
+
+
+async def test_conversations_paginate_search_and_total() -> None:
+    session = ListSession(
+        total=45,
+        rows=[visitor_chat(1), visitor_chat(2)],
+        msgs=[
+            ("v-1", "user", "First?", False),
+            ("v-1", "assistant", "Not here.", True),
+            ("v-1", "user", "Second?", False),
+        ],
+    )
+    async with client(session, user(Role.admin)) as c:
+        r = await c.get("/website-chat/conversations?days=7&page=3&per_page=20&q=50%25_off")
+    assert r.status_code == 200, r.text
+    body = r.json()
+    assert (body["total"], body["page"], body["per_page"]) == (45, 3, 20)
+    one, two = body["items"]
+    assert (one["first_question"], one["last_question"], one["messages"]) == (
+        "First?",
+        "Second?",
+        3,
+    )
+    assert one["not_found"] is True and two["not_found"] is False
+    assert two["first_question"] == "Q2" and two["messages"] == 0  # no messages: chat title
+    count_sql, page_sql = session.sql[0], session.sql[1]
+    for sql in (count_sql, page_sql):
+        # Only this company's visitor chats (user_id IS NULL): staff chats are never listed.
+        assert "chats.org_id = 1" in sql and "chats.user_id IS NULL" in sql
+        assert "messages.text ILIKE" in sql and "chats.origin ILIKE" in sql and "ESCAPE" in sql
+    # % and _ in the search are literal characters, not wildcards.
+    assert website_routes.like("50%_off") == "%50\\%\\_off%"
+    assert "LIMIT 20 OFFSET 40" in page_sql
+    assert "count(chats.id)" in count_sql and "LIMIT" not in count_sql
+
+
+async def test_conversations_not_found_filter_and_limits() -> None:
+    session = ListSession(total=0, rows=[])
+    async with client(session, user(Role.admin)) as c:
+        r = await c.get("/website-chat/conversations?not_found=true")
+        assert r.status_code == 200 and r.json() == {
+            "items": [],
+            "total": 0,
+            "page": 1,
+            "per_page": 20,
+        }
+        assert "messages.abstained IS true" in session.sql[0]
+        assert (await c.get("/website-chat/conversations?per_page=101")).status_code == 422
+        assert (await c.get("/website-chat/conversations?page=0")).status_code == 422
+        assert (await c.get("/website-chat/conversations?q=" + "x" * 201)).status_code == 422
+
+
+def doc(i: int, access_: str = "Everyone", public: bool = True) -> Document:
+    return Document(
+        id=i,
+        org_id=1,
+        title=f"Doc {i}",
+        access=access_,
+        is_public=public,
+        format="md",
+        status="ready",
+        file_path="/x",
+        sha256=str(i),
+        updated_at=NOW,
+    )
+
+
+async def test_website_documents_public_and_picker() -> None:
+    session = ListSession(total=31, rows=[doc(1), doc(2)])
+    async with client(session, user(Role.admin)) as c:
+        r = await c.get("/website-chat/documents?page=2&q=faq")
+        assert r.status_code == 200, r.text
+        body = r.json()
+        assert (body["total"], body["public_total"], body["page"]) == (31, 31, 2)
+        assert [d["id"] for d in body["items"]] == [1, 2]
+        listed = session.sql[-1]
+        assert "documents.org_id = 1" in listed and "documents.is_public IS true" in listed
+        assert "faq" in listed and "LIMIT 20 OFFSET 20" in listed
+
+        session.sql.clear()
+        session.rows = [doc(3), doc(4, "HR", public=False)]
+        r = await c.get("/website-chat/documents?public=false")
+        assert r.status_code == 200
+        assert [d["access"] for d in r.json()["items"]] == ["Everyone", "HR"]
+        listed = session.sql[-1]
+        assert "documents.is_public IS false" in listed
+        # Everyone documents first (they can be made public), then department ones.
+        assert "ORDER BY documents.access != 'Everyone'" in listed
 
 
 @pytest.mark.integration

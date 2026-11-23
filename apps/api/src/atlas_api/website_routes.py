@@ -144,6 +144,7 @@ async def set_public(doc_id: int, body: PublicPatch, user: CurrentUser, s: DB) -
             {"v": body.is_public, "id": str(doc.id)},
         )
     await s.commit()
+    await s.refresh(doc)  # commit expired it; reading it lazily in async would fail
     await cache.invalidate(user.org_id)  # visitors' cached answers may cite it
     return DocumentOut.model_validate(doc)
 
@@ -151,27 +152,113 @@ async def set_public(doc_id: int, body: PublicPatch, user: CurrentUser, s: DB) -
 # ------------------------------------------------------------------ admin: visitor chats
 
 
+def like(q: str) -> str:
+    """A user's search text as an ILIKE pattern: % and _ match themselves (escape char \\)."""
+    return "%" + q.replace("\\", "\\\\").replace("%", "\\%").replace("_", "\\_") + "%"
+
+
+PerPage = Annotated[int, Query(ge=1, le=100)]
+PageNo = Annotated[int, Query(ge=1, le=10_000)]
+SearchText = Annotated[str, Query(max_length=200)]
+
+
+class WebsiteDocsOut(BaseModel):
+    items: list[DocumentOut]
+    total: int  # matching this query
+    public_total: int  # all public documents of the company (what the website bot reads)
+    page: int
+    per_page: int
+
+
+@router.get("/website-chat/documents")
+async def website_documents(
+    user: CurrentUser,
+    s: DB,
+    public: bool = True,
+    q: SearchText = "",
+    page: PageNo = 1,
+    per_page: PerPage = 20,
+) -> WebsiteDocsOut:
+    """public=true: what the website bot answers from. public=false: the rest of the library
+    (the "Pick from Library" list), Everyone documents first; department documents are listed
+    with their department so the admin sees why they can't be made public."""
+    admin_only(user)
+    where = [Document.org_id == user.org_id, Document.is_public.is_(public)]
+    if q.strip():
+        where.append(Document.title.ilike(like(q.strip()), escape="\\"))
+    order: list[Any] = [Document.title, Document.id]
+    if not public:
+        order.insert(0, Document.access != EVERYONE)
+    total = await s.scalar(select(func.count(Document.id)).where(*where)) or 0
+    public_total = await s.scalar(
+        select(func.count(Document.id)).where(Document.org_id == user.org_id, Document.is_public)
+    )
+    docs = await s.scalars(
+        select(Document)
+        .where(*where)
+        .order_by(*order)
+        .offset((page - 1) * per_page)
+        .limit(per_page)
+    )
+    return WebsiteDocsOut(
+        items=[DocumentOut.model_validate(d) for d in docs],
+        total=total,
+        public_total=public_total or 0,
+        page=page,
+        per_page=per_page,
+    )
+
+
 class ConversationOut(BaseModel):
     id: str
     started_at: datetime
+    updated_at: datetime
     origin: str | None
     messages: int
+    first_question: str
     last_question: str
     not_found: bool
 
 
+class ConversationsOut(BaseModel):
+    items: list[ConversationOut]
+    total: int
+    page: int
+    per_page: int
+
+
 @router.get("/website-chat/conversations")
 async def conversations(
-    user: CurrentUser, s: DB, days: Annotated[int, Query(ge=1, le=365)] = 30
-) -> list[ConversationOut]:
+    user: CurrentUser,
+    s: DB,
+    days: Annotated[int, Query(ge=1, le=365)] = 30,
+    q: SearchText = "",
+    not_found: bool = False,
+    page: PageNo = 1,
+    per_page: PerPage = 20,
+) -> ConversationsOut:
+    """Visitor chats, newest activity first, one page at a time. q matches any message text
+    (question or answer) or the website address; not_found=true keeps chats with a
+    "not found" answer."""
     admin_only(user)
     since = datetime.now(UTC) - timedelta(days=days)
+    where = [Chat.org_id == user.org_id, Chat.user_id.is_(None), Chat.updated_at >= since]
+    if q.strip():
+        pattern = like(q.strip())
+        where.append(
+            Chat.id.in_(select(Message.chat_id).where(Message.text.ilike(pattern, escape="\\")))
+            | Chat.origin.ilike(pattern, escape="\\")
+        )
+    if not_found:
+        where.append(Chat.id.in_(select(Message.chat_id).where(Message.abstained.is_(True))))
+    total = await s.scalar(select(func.count(Chat.id)).where(*where)) or 0
     chats = list(
         await s.scalars(
             select(Chat)
-            .where(Chat.org_id == user.org_id, Chat.user_id.is_(None), Chat.created_at >= since)
-            .order_by(Chat.updated_at.desc())
-            .limit(500)
+            .where(*where)
+            .order_by(Chat.updated_at.desc(), Chat.id)
+            .offset((page - 1) * per_page)
+            .limit(per_page)
         )
     )
     rows = await s.execute(
@@ -181,22 +268,31 @@ async def conversations(
     )
     stats: dict[str, dict[str, Any]] = {}
     for chat_id, role, body, abstained in rows:
-        st = stats.setdefault(chat_id, {"n": 0, "last": "", "nf": False})
+        st = stats.setdefault(chat_id, {"n": 0, "first": "", "last": "", "nf": False})
         st["n"] += 1
         if role == "user":
+            st["first"] = st["first"] or body
             st["last"] = body
         st["nf"] = st["nf"] or bool(abstained)
-    return [
-        ConversationOut(
-            id=c.id,
-            started_at=c.created_at,
-            origin=c.origin,
-            messages=stats.get(c.id, {}).get("n", 0),
-            last_question=stats.get(c.id, {}).get("last", ""),
-            not_found=stats.get(c.id, {}).get("nf", False),
-        )
-        for c in chats
-    ]
+    empty = {"n": 0, "first": "", "last": "", "nf": False}
+    return ConversationsOut(
+        items=[
+            ConversationOut(
+                id=c.id,
+                started_at=c.created_at,
+                updated_at=c.updated_at,
+                origin=c.origin,
+                messages=stats.get(c.id, empty)["n"],
+                first_question=stats.get(c.id, empty)["first"] or c.title,
+                last_question=stats.get(c.id, empty)["last"],
+                not_found=stats.get(c.id, empty)["nf"],
+            )
+            for c in chats
+        ],
+        total=total,
+        page=page,
+        per_page=per_page,
+    )
 
 
 @router.get("/website-chat/conversations/{chat_id}")

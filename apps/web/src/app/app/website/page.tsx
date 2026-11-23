@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { Suspense } from "react";
 import { QueryProvider } from "@/components/query";
 import { navFor } from "@/lib/nav";
 import { getUser } from "@/lib/session";
@@ -14,7 +15,9 @@ export default async function WebsitePage() {
   if (!user || !navFor(user.person.role).some((i) => i.slug === "website")) notFound();
   return (
     <QueryProvider>
-      <Website />
+      <Suspense>
+        <Website />
+      </Suspense>
     </QueryProvider>
   );
 }
