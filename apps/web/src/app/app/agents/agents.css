@@ -9,3 +9,34 @@
 .tok-args { min-width: 12ch; max-width: 32ch; overflow-wrap: break-word; color: var(--color-ink-2); }
 .tok-fail { font-size: var(--text-xs); font-weight: 600; color: var(--color-error); }
 .tok-revoked td { color: var(--color-muted); }
+
+/* UI phase 8: token cards, 3-step setup, audit filters + pages. Tokens only. */
+.tok-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr)); gap: var(--space-sm); margin: 0; padding: 0; list-style: none; }
+.tok-card { display: grid; gap: var(--space-sm); align-content: start; padding: var(--space-md); border: var(--rule-hair) solid var(--color-rule-soft); border-radius: var(--radius-input); background: var(--color-paper); }
+.tok-card[data-revoked] { opacity: 0.7; }
+.tok-card-head { display: flex; align-items: center; justify-content: space-between; gap: var(--space-xs); }
+.tok-name { min-width: 0; overflow-wrap: anywhere; }
+.tok-card .person { min-width: 0; }
+.tok-card .avatar { width: 32px; height: 32px; }
+.tok-dates { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-xs); margin: 0; }
+.tok-dates dt { font-size: var(--text-xs); color: var(--color-muted); }
+.tok-dates dd { margin: 0; font-size: var(--text-sm); }
+.tok-revoke { justify-self: start; }
+
+.steps { display: grid; gap: 0; margin: 0; padding: 0; list-style: none; }
+.step { position: relative; display: grid; grid-template-columns: 32px minmax(0, 1fr); gap: var(--space-md); padding-bottom: var(--space-lg); }
+.step:last-child { padding-bottom: 0; }
+.step:not(:last-child)::before { content: ""; position: absolute; left: 15px; top: 34px; bottom: 4px; width: 2px; background: var(--color-rule-soft); }
+.step-n { display: grid; place-items: center; width: 32px; height: 32px; border-radius: var(--radius-pill); background: var(--color-accent-soft); color: var(--color-accent-deep); font-weight: 600; font-size: var(--text-sm); }
+.step[data-done] .step-n { background: var(--color-accent); color: var(--color-accent-ink); }
+.step-body { display: grid; gap: var(--space-xs); min-width: 0; }
+.step-body h3 { font-size: var(--text-md); font-weight: 600; line-height: 32px; }
+.tok-prompts { display: grid; gap: var(--space-xs); margin: 0; padding: 0; list-style: none; }
+.tok-prompts li { display: flex; align-items: center; justify-content: space-between; gap: var(--space-sm); padding: var(--space-xs) var(--space-sm); border: var(--rule-hair) dashed var(--color-rule); border-radius: var(--radius-input); font-size: var(--text-sm); color: var(--color-ink-2); }
+.tok-prompts .btn { flex: none; }
+
+.aud-filters { display: flex; flex-wrap: wrap; gap: var(--space-sm); }
+.aud-filters label { display: grid; gap: 4px; font-size: var(--text-xs); font-weight: 600; color: var(--color-muted); }
+.aud-filters .field { min-width: 11rem; }
+.aud-pages { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-sm); padding-top: var(--space-sm); }
+@media (max-width: 40rem) { .aud-filters label { flex: 1 1 100%; } .aud-filters .field { width: 100%; } .tok-prompts li { flex-direction: column; align-items: stretch; } }

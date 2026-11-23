@@ -55,7 +55,9 @@ The same rule becomes a SQL `WHERE` filter on chunks (`org_id`, `access`) in Pha
 |---|---|---|---|
 | GET | `/me` | any user | `{email, name, title, role, departments: [str], org: {slug, name}}` |
 | GET | `/documents` | any user | documents the user can read: `[{id, title, doc_no, access, is_public, format, status, error, pages, chunks, version, effective, superseded_by, updated_at}]`, newest first. `status`: `queued`, `processing`, `ready`, `failed`. Optional `?q=` filters by title, `?access=` by department. |
-| GET | `/documents/{id}/file` | users who can read it | the original file (PDF/DOCX/MD) |
+| GET | `/documents/{id}` | users who can read it | one document's metadata (same fields as the list); 404 if missing or not readable |
+| GET | `/documents/{id}/file` | users who can read it | the original file (PDF/DOCX/MD/TXT) as a download (`attachment`); `?inline=1` → `inline` with the real content type, for the in-app viewer (pdf.js). Same access check, `nosniff`, `private, no-store` |
+| GET | `/documents/{id}/text` | users who can read it | `{format, markdown}`: what Atlas read, for the viewer (MD/TXT from the file; DOCX/PDF from the chunks, overlaps removed) |
 | POST | `/documents` | admin, or manager uploading into one of their own departments | multipart `file` + `access` (+ optional `is_public` admin only). Saves the file, creates the row with `status=queued`, queues the Celery task, returns the document. Max 10 MB; pdf/docx/md/txt only. |
 | DELETE | `/documents/{id}` | admin, or a manager of that document's department | `204`, removes the file, row and chunks |
 | GET | `/departments` | any user | the org's departments `[{name, description, members}]` |
@@ -92,24 +94,38 @@ The Ask page uses the Vercel AI SDK `useChat` with `DefaultChatTransport({ api: 
 
 Roles: **admin** = whole company; **manager** = own departments (can add/remove members and guests in them); members and guests see none of these.
 
-**Manager scope** (`access.team_scope`): a manager's departments **minus the shared `Managers` department**. Every manager is in `Managers` (for manager-only documents), so counting it would let the HR manager manage every manager; the `Managers` department and its people are admin-managed. This scope drives `/team`, `/access` columns, `/insights` and who a manager may add/change/remove.
+**Manager scope** (`access.team_scope`): a manager's departments **minus the shared `Managers` department**. Every manager is in `Managers` (for manager-only documents), so counting it would let the HR manager manage every manager; the `Managers` department and its people are admin-managed. This scope drives `/team`, `/team/people`, `/team/groups`, `/insights` and who a manager may add/change/remove.
 
 Ids are integers. Dates are ISO strings (`guest_until` `YYYY-MM-DD`, timestamps ISO 8601 with offset). Percentages are **0–100** with one decimal, or `null` when there is nothing to divide by.
 
 | Method | Path | Who | Returns |
 |---|---|---|---|
-| GET | `/team` | admin, manager | `[{id, name, email, title, role, departments, guest_until, last_active}]` (manager: people in their departments) |
-| POST | `/team` | admin; manager (role member/guest, only own departments) | `{name, email, title, role, departments, guest_until?}` → the person (`409` if the email exists) |
+| GET | `/team` | admin, manager | `[{id, name, email, title, role, departments, guest_until, last_active, status}]` (manager: people in their departments). Whole list: small companies and pickers only; the Team page uses `/team/people` |
+| POST | `/team` | admin; manager (role member/guest, only own departments) | `{name?, email, title, role, departments, guest_until?}` → the person (`409` if the email exists; `name` defaults to one made from the email) |
 | PATCH | `/team/{id}` | same rules | any of `{title, role, departments, guest_until}` → the person. Nobody can change their own role; the last admin can't be demoted. |
 | DELETE | `/team/{id}` | same rules | `204` (not yourself, not the last admin) |
 | POST | `/departments` | admin | `{name, description}` → department (`409` duplicate) |
 | PATCH / DELETE | `/departments/{name}` | admin | rename/describe; delete only when no documents and no people |
-| GET | `/access` | admin, manager | who can read what: `{departments: [str], people: [{id, name, role, can_read: {<department>: bool}, everyone: true}]}` (manager: only departments in their scope as columns; admin rows are all `true`) |
-| GET | `/insights?days=30` | admin (company), manager (people in their scope) | `{questions, answered, not_found, blocked, smalltalk, answered_pct, avg_latency_ms, p95_latency_ms, feedback: {up, down}, top_unanswered: [{question, count}], document_requests: [{question, note, by, created_at}], top_documents: [{document_id, title, citations}], by_department: [{department, questions}], per_day: [{date, questions, not_found}]}` — computed from stored chat messages. `days` 1–365. `questions` counts every assistant turn; `answered_pct` = answered / document questions (route `rag`), 0–100 or `null`; latencies (ms) over `rag` turns, `null` when none; `per_day` has exactly `days` entries, oldest first, `date` = `YYYY-MM-DD` (UTC), zero-filled; top lists ≤ 10, `document_requests` ≤ 50 newest first, `note` may be `null` |
+| GET | `/insights?days=30` | admin (company), manager (people in their scope) | `{questions, answered, not_found, blocked, smalltalk, answered_pct, avg_latency_ms, p95_latency_ms, feedback: {up, down}, top_unanswered: [{question, count}], document_requests: [{question, note, by, created_at}], top_documents: [{document_id, title, citations}], by_department: [{department, questions}], per_day: [{date, questions, answered, not_found}], previous: {questions, answered, not_found, answered_pct, helpful}}` — computed from stored chat messages. `days` 1–365. `questions` counts every assistant turn; `answered_pct` = answered / document questions (route `rag`), 0–100 or `null`; latencies (ms) over `rag` turns, `null` when none; `per_day` has exactly `days` entries, oldest first, `date` = `YYYY-MM-DD` (UTC), zero-filled (`answered` + `not_found` ≤ `questions`; the rest is small talk/blocked); `previous` = the same totals for the `days` before this window (`helpful` = thumbs-up); top lists ≤ 10, `document_requests` ≤ 50 newest first, `note` may be `null` |
 | GET | `/documents/review` | admin, manager | documents needing review: past their `review` date or effective > 12 months ago, in scope: `[{id, title, access, effective, review, reason}]` |
 | GET / PATCH | `/org` | GET admin, PATCH admin | `{slug, name, industry, description}` |
 | GET | `/org/plan` | admin | `{plan, questions_month, questions_used, documents, documents_used, people, people_used}` (limits `null` = none) |
 | POST | `/demo/reset` | admin of a demo company | `202 {status: "queued"}`; 403 other companies; 429 within 5 min of the last reset |
+
+### Team for big companies (UI phase 5)
+
+**Groups = departments.** A person's groups are their departments; a group reads the documents filed under its own name (`documents.access`) plus `Everyone` documents. One group = one department of documents: there is no per-group list of extra departments (the access rule in `access.py` is unchanged). Admins read everything.
+
+| Method | Path | Who | Returns |
+|---|---|---|---|
+| GET | `/team/people?q=&role=&dept=&status=&page=1&per_page=25` | admin, manager (own scope) | one page of the directory: `{people: [person], total, page, per_page}`. `q` matches name, email or job title (case-insensitive, `%`/`_` literal); `role` admin/manager/member/guest; `dept` a group name, `Everyone` (= everybody) or `-` (in no group); `status` `active` (signed in at least once) / `invited` (never signed in) / `expired` (guest past `guest_until`). Sorted by name. `per_page` 1–100. Each person has `status` |
+| GET | `/team/groups` | admin, manager (own scope) | `{total, roles: {admin, manager, member, guest}, no_group, everyone: {people, documents}, groups: [{name, description, people, documents, reads: [name, "Everyone"], managers: [≤4 names], managers_more}]}` — counted in SQL |
+| POST | `/team/bulk` | admin, manager | `{ids: [1–500 ids], role? \| add_group? \| remove_group?}` (exactly one change) → `{changed, errors: [{id, name, error}]}`. Same rules as `PATCH /team/{id}` per person; people the caller can't change, unknown ids and a demotion that would remove the last admin are skipped and listed |
+| POST | `/team/import` | admin, manager | `{csv: "email,name,title,role,groups\n…"` **or** `rows: [{email, name?, title?, role?, groups?}]`, `dry_run: true}` → `{dry_run, rows: [{line, email, name, title, role, groups: [str], error, invite}], valid, invalid, created}`. Header row required (case-insensitive, only `email` required); groups separated by `;` or `\|`; role defaults to member; max 500 rows / 300 KB. Row errors: not an email, twice in the file, already in Atlas, unknown role, unknown group, outside the caller's scope (managers: members/guests of their own groups), plan full. `dry_run: false` adds the valid rows, skips the rest, and sends Clerk invitations (5 at a time; `invite` per row as for `POST /team`) |
+| GET | `/org/auto-join` | admin | `{domains: [str], role, departments: [str], available, allowed_domains: [str]}` — `available` false for demo companies; `allowed_domains` = domains of this company's admins' emails |
+| PATCH | `/org/auto-join` | admin | any of `{domains: [≤20], role, departments}` → as GET. `403` on demo companies. Domains are lower-cased, `@` stripped; rejected: not a domain, public email services (`clerk.FREE_MAIL`: gmail.com, outlook.com, hotmail.com, yahoo.com, icloud.com, proton.me, …) `400`, a domain no admin of this company signs in with `403`, a domain another company already auto-joins `409`. `role` member or guest only; `departments` must exist and can't include `Managers`. `domains: []` turns it off |
+
+**Auto-join on sign-in** (`clerk.resolve`): a verified Clerk user with no Atlas person, who can't be linked by email, and whose **verified primary email**'s domain is in a real (non-demo) company's `auto_join.domains`, is created in that company with its `role` and `departments` (and linked to the Clerk user). Unverified emails, demo companies, public email domains, a full plan or an email already used by another person → no auto-join (onboarding as before).
 
 ### Super admin (the Atlas owner, not a company)
 
@@ -143,7 +159,9 @@ retrieval as staff). No staff document, chat history or name is ever reachable f
 | PATCH | `/website-chat` | any of `{enabled, allowed_origins, greeting, accent, position}` (`show_badge` stays true until Pro) |
 | POST | `/website-chat/rotate-key` | new `site_key` (old one stops working) |
 | PATCH | `/documents/{id}` | `{is_public: bool}` (admin) → the document |
-| GET | `/website-chat/conversations?days=30` | `[{id, started_at, origin, messages, last_question, not_found}]`, and `GET /website-chat/conversations/{id}` → messages |
+| GET | `/website-chat/documents?public=true&q=&page=1&per_page=20` | `{items: [document], total, public_total, page, per_page}`; `public=false` lists the rest of the library (Everyone first, department documents show their `access`, can't be made public) |
+| GET | `/website-chat/conversations?days=30&q=&not_found=false&page=1&per_page=20` | `{items: [{id, started_at, updated_at, origin, messages, first_question, last_question, not_found}], total, page, per_page}`, newest activity first; `q` matches any message text or the website address (literal, `%`/`_` not wildcards); `per_page` ≤ 100 |
+| GET | `/website-chat/conversations/{id}` | `{id, started_at, origin, messages: [UI message]}` |
 
 ### Public (no cookie; CORS/`frame-ancestors` limited to `allowed_origins` + p10 itself)
 
@@ -162,10 +180,10 @@ sees exactly what that person can see (same `access.py` filters). Every tool cal
 
 | Method | Path | Returns |
 |---|---|---|
-| GET | `/tokens` | `[{id, name, user: {id, name, email}, created_at, last_used_at, revoked}]` (never the secret) |
+| GET | `/tokens` | `[{id, name, user: {id, name, email, avatar_url}, created_at, last_used_at, revoked}]` (never the secret) |
 | POST | `/tokens` | `{name, user_id}` → `{id, name, token}` — the secret `atl_…` is shown **once**; only a hash is stored |
 | DELETE | `/tokens/{id}` | revoke → `204` |
-| GET | `/tokens/audit?days=7` | `[{at, token_name, user_email, tool, args_summary, ok, latency_ms}]` |
+| GET | `/tokens/audit?days=7&page=1&per_page=25&token=&tool=` | one page, newest first: `{items: [{at, token_name, user_email, tool, args_summary, ok, latency_ms}], total, page, per_page, tools: [str]}`. `days` 1–365, `page` ≥ 1, `per_page` 1–100 (default 25), `token` = token id, `tool` = tool name (`tools` lists the names) |
 
 ### MCP tools (`Authorization: Bearer atl_…`)
 
@@ -177,6 +195,30 @@ sees exactly what that person can see (same `access.py` filters). Every tool cal
 | `list_departments` | `{}` | departments the bound person can read, with document counts |
 
 Unknown tool → JSON-RPC error; invalid/revoked token → `401`; per-token rate limit.
+
+## Settings and profile (UI phase 8, `profile_routes.py`)
+
+Images are stored on our own server under `<files_dir>/<org slug>/images/` (`avatar-<user id>.webp`,
+`logo.webp`) in the `atlasv2_files` volume. Upload: multipart `file`, PNG/JPEG/WebP only (magic bytes +
+decoded by Pillow, format must match), ≤ 2 MB, 16–6,000 px; re-encoded to a 256×256 WebP (profile picture:
+centre square crop; logo: whole image on a transparent square), which drops metadata. Image URLs carry
+`?v=<version>` (changes on every upload) and are served `Cache-Control: private, immutable` to people of
+the **same company only** (not public; the website chat doesn't use the logo). Demo reset deletes them.
+
+| Method | Path | Who | Returns |
+|---|---|---|---|
+| GET | `/profile` | anyone logged in | `{id, email, name, title, role, departments, guest_until, avatar_url, org: {slug, name, logo_url}}` (`*_url` `null` = none) |
+| PATCH | `/profile` | anyone (self) | any of `{name (1–200), title (≤ 200)}` → the profile. Email, role and groups are read-only here |
+| PUT / DELETE | `/profile/avatar` | anyone (self) | upload → the profile / remove → `204`. `422` bad type, too big, unreadable |
+| GET | `/people/{id}/avatar` | same company | `image/webp`; `404` no picture or another company |
+| PUT / DELETE | `/org/logo` | admin | upload → org settings (below) / remove → `204` |
+| GET | `/org/logo` | anyone in the company | `image/webp`; `404` none |
+| GET | `/org/settings` | admin | `{access_defaults: {role: "manager"\|"member"\|"guest", departments: [str], guest_days (1–365)}, notifications: {weekly_summary, review_reminders}, logo_url}` |
+| PATCH | `/org/settings` | admin | any of `{access_defaults: {role?, departments?, guest_days?}, notifications: {weekly_summary?, review_reminders?}}` (partial, merged) → the settings. `422` unknown group, role `admin`, days out of range |
+
+`access_defaults` = what new people get when added without explicit values (read with
+`profile_routes.access_defaults(org)`). `notifications` are **stored preferences only**: no emails are
+sent yet.
 
 ## Plans and limits (Phase 10, `plans.py`)
 

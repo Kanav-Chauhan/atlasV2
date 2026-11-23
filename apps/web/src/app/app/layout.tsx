@@ -4,13 +4,15 @@ import { auth } from "@clerk/nextjs/server";
 import { logout } from "@/app/actions";
 import { MaybeClerk } from "@/components/clerk-provider";
 import { ClerkLogout } from "@/components/clerk-logout";
+import { Avatar } from "@/components/avatar";
 import { CompanyLogo, HAS_LOGO } from "@/components/company-logo";
 import { Icon } from "@/components/ui/icons";
 import { RailDests } from "@/components/rail";
 import { ThemeToggle } from "@/components/theme-toggle";
-import { DEMO_COMPANIES, initials } from "@/lib/demo-users";
+import { DEMO_COMPANIES } from "@/lib/demo-users";
 import { CLERK_ON } from "@/lib/clerk";
 import { navGroupsFor } from "@/lib/nav";
+import { getProfile } from "@/lib/profile-server";
 import { getUser } from "@/lib/session";
 import "./controls.css";
 import "./dash.css";
@@ -27,12 +29,16 @@ export default async function AppLayout({ children }: { children: React.ReactNod
   const clerkUser = user.auth === "clerk";
 
   const brand = DEMO_COMPANIES.find((c) => c.slug === company.slug);
+  const profile = await getProfile(); // uploaded picture + company logo (Settings)
 
   const shell = (
     <div className="app">
       <nav className="rail" aria-label="Main">
         <Link className="rail-logo" href="/app" aria-label={`${company.name}, Atlas home`}>
-          {brand && HAS_LOGO(brand.slug) ? (
+          {profile?.org.logo_url ? (
+            // eslint-disable-next-line @next/next/no-img-element -- private, same-origin API image
+            <img src={profile.org.logo_url} alt="" aria-hidden="true" width={30} height={30} className="rail-mark rail-logo-img" />
+          ) : brand && HAS_LOGO(brand.slug) ? (
             <CompanyLogo slug={brand.slug} color={brand.color} second={brand.accent} className="rail-mark" />
           ) : (
             <span className="rail-mark rail-mono" aria-hidden="true">{company.name.slice(0, 1)}</span>
@@ -44,13 +50,13 @@ export default async function AppLayout({ children }: { children: React.ReactNod
         </Link>
         <RailDests groups={navGroupsFor(person.role)} />
         <div className="rail-foot">
-          <div className="rail-me" title={`${person.name}, ${person.role}, ${company.name}`}>
-            <span className="avatar" aria-hidden="true">{initials(person.name)}</span>
+          <Link className="rail-me" href="/app/settings?section=profile" title={`${person.name}, ${person.role}, ${company.name}: your profile`}>
+            <Avatar name={profile?.name ?? person.name} url={profile?.avatar_url} />
             <span className="rail-me-text">
-              <strong>{person.name}</strong>
+              <strong>{profile?.name ?? person.name}</strong>
               <small>{person.role}</small>
             </span>
-          </div>
+          </Link>
           <div className="rail-tools">
             <ThemeToggle className="rail-btn" />
             {clerkUser ? (

@@ -1,5 +1,6 @@
 """Onboarding for real sign-ins (Phase 10): a Clerk user with no Atlas person creates their
-company and becomes its Admin. Invited people never see this: they link by email (clerk.py)."""
+company and becomes its Admin. Invited people never see this: they link by email (clerk.py), and
+people whose email domain a company turned on for auto-join join that company instead."""
 
 import re
 import secrets
@@ -76,8 +77,10 @@ async def onboard(
 ) -> tuple[User, bool]:
     """(person, created). Idempotent: a Clerk user who already has (or can be linked to) a
     person gets that person back and nothing new is made."""
-    user = await clerk.linked_user(s, clerk_user_id) or await clerk.link_by_email(
-        s, clerk_user_id, email
+    user = (
+        await clerk.linked_user(s, clerk_user_id)
+        or await clerk.link_by_email(s, clerk_user_id, email)
+        or await clerk.auto_join(s, clerk_user_id, email, name)
     )
     if user is not None:
         return user, False

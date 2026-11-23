@@ -4,6 +4,7 @@ import { QueryProvider } from "@/components/query";
 import { navFor } from "@/lib/nav";
 import { getUser } from "@/lib/session";
 import { Team } from "./team";
+import "./team.css";
 
 export const metadata: Metadata = { title: "Team & access" };
 

@@ -6,8 +6,9 @@ from typing import Annotated
 from fastapi import APIRouter, HTTPException, Query
 from fastapi.responses import Response
 from pydantic import BaseModel, StringConstraints
-from sqlalchemy import select
+from sqlalchemy import func, select
 
+from atlas_api import profile_routes
 from atlas_api.models import User
 from atlas_api.routes import DB
 from atlas_api.team_routes import Admin
@@ -22,6 +23,7 @@ class TokenUser(BaseModel):
     id: int
     name: str
     email: str
+    avatar_url: str | None = None
 
 
 class TokenOut(BaseModel):
@@ -65,7 +67,12 @@ async def list_tokens(user: Admin, s: DB) -> list[TokenOut]:
         TokenOut(
             id=t.id,
             name=t.name,
-            user=TokenUser(id=t.user.id, name=t.user.name, email=t.user.email),
+            user=TokenUser(
+                id=t.user.id,
+                name=t.user.name,
+                email=t.user.email,
+                avatar_url=profile_routes.avatar_url(t.user),
+            ),
             created_at=t.created_at,
             last_used_at=t.last_used_at,
             revoked=t.revoked_at is not None,
@@ -103,28 +110,59 @@ async def revoke_token(token_id: int, user: Admin, s: DB) -> Response:
     return Response(status_code=204)
 
 
+TOOLS = ("search_knowledge", "ask_question", "get_document", "list_departments")
+
+
+class AuditPage(BaseModel):
+    items: list[AuditOut]
+    total: int
+    page: int
+    per_page: int
+    tools: list[str]
+
+
 @router.get("/tokens/audit")
 async def token_audit(
-    user: Admin, s: DB, days: Annotated[int, Query(ge=1, le=365)] = 7
-) -> list[AuditOut]:
+    user: Admin,
+    s: DB,
+    days: Annotated[int, Query(ge=1, le=365)] = 7,
+    page: Annotated[int, Query(ge=1, le=10_000)] = 1,
+    per_page: Annotated[int, Query(ge=1, le=100)] = 25,
+    token: Annotated[int | None, Query(ge=1)] = None,
+    tool: Annotated[str | None, Query(max_length=64)] = None,
+) -> AuditPage:
+    """Newest first, one page at a time. Filters: token id, tool name, last `days` days."""
     since = datetime.now(UTC) - timedelta(days=days)
+    where = [McpAudit.org_id == user.org_id, McpAudit.at >= since]
+    if token is not None:
+        where.append(McpAudit.token_id == token)
+    if tool:
+        where.append(McpAudit.tool == tool)
+    total = await s.scalar(select(func.count()).select_from(McpAudit).where(*where)) or 0
     rows = await s.execute(
         select(McpAudit, ApiToken.name, User.email)
         .join(ApiToken, ApiToken.id == McpAudit.token_id)
         .join(User, User.id == ApiToken.user_id)
-        .where(McpAudit.org_id == user.org_id, McpAudit.at >= since)
+        .where(*where)
         .order_by(McpAudit.at.desc(), McpAudit.id.desc())
-        .limit(200)
+        .offset((page - 1) * per_page)
+        .limit(per_page)
     )
-    return [
-        AuditOut(
-            at=a.at,
-            token_name=name,
-            user_email=email,
-            tool=a.tool,
-            args_summary=a.args_summary,
-            ok=a.ok,
-            latency_ms=a.latency_ms,
-        )
-        for a, name, email in rows
-    ]
+    return AuditPage(
+        items=[
+            AuditOut(
+                at=a.at,
+                token_name=name,
+                user_email=email,
+                tool=a.tool,
+                args_summary=a.args_summary,
+                ok=a.ok,
+                latency_ms=a.latency_ms,
+            )
+            for a, name, email in rows
+        ],
+        total=total,
+        page=page,
+        per_page=per_page,
+        tools=list(TOOLS),
+    )

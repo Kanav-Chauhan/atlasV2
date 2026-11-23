@@ -125,6 +125,14 @@ def test_reset_puts_a_messed_up_demo_back(nimbus: dict[str, Any]) -> None:
         # settings + activity
         org.name, org.description = "Hacked Ltd", "pwned"
         org.website_chat = website.config(org) | {"site_key": "rotated", "greeting": "yo"}
+        org.auto_join = {"domains": ["nimbus.example"], "role": "guest"}  # UI phase 5
+        # profile picture + logo + org settings (UI phase 8)
+        images = nimbus["files"] / SLUG / "images"
+        images.mkdir(parents=True)
+        (images / f"avatar-{employee.id}.webp").write_bytes(b"x")
+        (images / "logo.webp").write_bytes(b"x")
+        employee.avatar = "abc"
+        org.settings = {"logo": "def", "notifications": {"weekly_summary": True}}
         s.add(Chat(id="c1", user_id=employee.id, org_id=org_id, title="hi"))
         s.add(Chat(id="v1", user_id=None, org_id=org_id, title="visitor", origin="https://x"))
         s.add(DocumentRequest(org_id=org_id, user_id=employee.id, question="pls"))
@@ -162,6 +170,17 @@ def test_reset_puts_a_messed_up_demo_back(nimbus: dict[str, Any]) -> None:
         assert org is not None
         assert (org.name, org.description) == (data["name"], "")
         assert org.website_chat == website.demo_config(data["site_key"], data["accent"])
+        assert org.auto_join == {}
+        assert org.settings == {}
+        assert (
+            s.scalar(
+                select(func.count())
+                .select_from(User)
+                .where(User.org_id == org_id, User.avatar.is_not(None))
+            )
+            == 0
+        )
+        assert not (nimbus["files"] / SLUG / "images").exists()
         assert s.scalar(select(func.count()).select_from(Chat).where(Chat.org_id == org_id)) == 0
 
 

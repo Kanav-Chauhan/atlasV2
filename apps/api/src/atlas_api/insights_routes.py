@@ -41,14 +41,29 @@ class Turn:
     departments: set[str] = field(default_factory=set)  # the asker's
 
 
+def totals(turns: list[Turn]) -> dict[str, Any]:
+    """The headline numbers (also used for the previous period, to show a change)."""
+    rag = [t for t in turns if t.route == "rag"]
+    answered = sum(not t.abstained for t in rag)
+    return {
+        "questions": len(turns),
+        "answered": answered,
+        "not_found": len(rag) - answered,
+        "answered_pct": round(100 * answered / len(rag), 1) if rag else None,
+        "helpful": sum(t.feedback == "up" for t in turns),
+    }
+
+
 def aggregate(
     turns: list[Turn],
     requests: list[dict[str, Any]],
     days: int,
     today: date,
     departments: set[str] | None = None,
+    previous: list[Turn] | None = None,
 ) -> dict[str, Any]:
-    """`departments`: limit by_department to these (manager); None = all (admin)."""
+    """`departments`: limit by_department to these (manager); None = all (admin).
+    `previous`: turns from the `days` before this window (for `previous` totals)."""
     rag = [t for t in turns if t.route == "rag"]
     answered = [t for t in rag if not t.abstained]
     not_found = [t for t in rag if t.abstained]
@@ -62,12 +77,13 @@ def aggregate(
                 cited[int(src["document_id"])] += 1
                 titles[int(src["document_id"])] = str(src.get("title", ""))
     by_dept = Counter(d for t in turns for d in t.departments)
-    per_day = {today - timedelta(days=i): [0, 0] for i in range(days - 1, -1, -1)}
+    per_day = {today - timedelta(days=i): [0, 0, 0] for i in range(days - 1, -1, -1)}
     for t in turns:
         day = per_day.get(t.created_at.astimezone(UTC).date())
         if day is not None:
             day[0] += 1
             day[1] += t.route == "rag" and t.abstained
+            day[2] += t.route == "rag" and not t.abstained
     return {
         "questions": len(turns),
         "answered": len(answered),
@@ -93,9 +109,10 @@ def aggregate(
             if departments is None or d in departments
         ],
         "per_day": [
-            {"date": d.isoformat(), "questions": q, "not_found": nf}
-            for d, (q, nf) in per_day.items()
+            {"date": d.isoformat(), "questions": q, "answered": a, "not_found": nf}
+            for d, (q, nf, a) in per_day.items()
         ],
+        "previous": totals(previous or []),
     }
 
 
@@ -114,6 +131,7 @@ async def people_departments(s: AsyncSession, org_id: int) -> dict[int, set[str]
 async def insights_for(s: AsyncSession, actor: User, days: int) -> dict[str, Any]:
     """Admin: the whole org. Manager: questions and requests from people in own departments."""
     since = datetime.now(UTC) - timedelta(days=days)
+    prev_since = since - timedelta(days=days)  # the period before, for the change figures
     depts = await people_departments(s, actor.org_id)
 
     def in_scope(user_id: int) -> bool:
@@ -126,11 +144,12 @@ async def insights_for(s: AsyncSession, actor: User, days: int) -> dict[str, Any
         .where(
             Chat.org_id == actor.org_id,
             Chat.user_id.is_not(None),  # website visitors have their own list (Phase 8)
-            Message.created_at >= since,
+            Message.created_at >= prev_since,
         )
         .order_by(Message.chat_id, Message.created_at, Message.id)
     )
-    turns, last_question = [], ""
+    turns: list[Turn] = []
+    last_question = ""
     for m, uid in rows:
         if m.role == "user":
             last_question = m.text
@@ -159,7 +178,9 @@ async def insights_for(s: AsyncSession, actor: User, days: int) -> dict[str, Any
         if in_scope(r.user_id)
     ][:50]
     scope = None if actor.role == Role.admin else access.team_scope(actor)
-    return aggregate(turns, requests, days, datetime.now(UTC).date(), scope)
+    now = [t for t in turns if t.created_at >= since]
+    before = [t for t in turns if t.created_at < since]
+    return aggregate(now, requests, days, datetime.now(UTC).date(), scope, before)
 
 
 @router.get("/insights")

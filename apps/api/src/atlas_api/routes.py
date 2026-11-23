@@ -1,7 +1,7 @@
 from collections.abc import AsyncIterator
 from datetime import UTC, date, datetime, timedelta
 from pathlib import Path
-from typing import Annotated
+from typing import Annotated, Any
 from urllib.parse import unquote
 
 from fastapi import (
@@ -171,12 +171,73 @@ async def readable_doc(s: AsyncSession, user: User, doc_id: int) -> Document:
     return doc
 
 
+@router.get("/documents/{doc_id:int}")  # :int so /documents/review still reaches its route
+async def get_document(doc_id: int, user: CurrentUser, s: DB) -> DocumentOut:
+    return DocumentOut.model_validate(await readable_doc(s, user, doc_id))
+
+
+MEDIA_TYPES = {
+    "pdf": "application/pdf",
+    "docx": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+    "md": "text/markdown; charset=utf-8",
+    "txt": "text/plain; charset=utf-8",
+}
+
+
 @router.get("/documents/{doc_id}/file")
-async def document_file(doc_id: int, user: CurrentUser, s: DB) -> FileResponse:
+async def document_file(
+    doc_id: int, user: CurrentUser, s: DB, inline: bool = False
+) -> FileResponse:
+    """The original file. Downloads by default; ?inline=1 lets the in-app viewer (pdf.js)
+    read it in the page. Same access check either way."""
     doc = await readable_doc(s, user, doc_id)
     if not Path(doc.file_path).is_file():
         raise HTTPException(404, "The file for this document is missing.")
-    return FileResponse(doc.file_path, filename=f"{doc.title}.{doc.format}")
+    return FileResponse(
+        doc.file_path,
+        filename=f"{doc.title}.{doc.format}",
+        media_type=MEDIA_TYPES.get(doc.format, "application/octet-stream"),
+        content_disposition_type="inline" if inline else "attachment",
+        headers={"X-Content-Type-Options": "nosniff", "Cache-Control": "private, no-store"},
+    )
+
+
+def merge_chunks(texts: list[str]) -> str:
+    """Chunks back into one markdown text: chunks of one section overlap (the splitter repeats
+    the tail of the previous chunk), so drop the repeated start; sections join with a blank line."""
+    out: list[str] = []
+    for t in texts:
+        t = t.strip()
+        if out:
+            prev = out[-1]
+            for k in range(min(len(prev), len(t)) - 1, 19, -1):
+                if prev.endswith(t[:k]):
+                    out[-1] = prev + t[k:]
+                    break
+            else:
+                out.append(t)
+            continue
+        out.append(t)
+    return "\n\n".join(out)
+
+
+class DocumentText(BaseModel):
+    format: str
+    markdown: str
+
+
+@router.get("/documents/{doc_id}/text")
+async def document_text(doc_id: int, user: CurrentUser, s: DB) -> DocumentText:
+    """What Atlas read from the file, as markdown, for the in-app viewer (Word, Markdown, text).
+    Markdown and text come from the file itself; other formats from their chunks."""
+    doc = await readable_doc(s, user, doc_id)
+    if doc.format in ("md", "txt") and Path(doc.file_path).is_file():
+        body = await run_in_threadpool(
+            Path(doc.file_path).read_text, encoding="utf-8", errors="replace"
+        )
+        return DocumentText(format=doc.format, markdown=body)
+    rows = await chunk_rows(s, doc_id)
+    return DocumentText(format=doc.format, markdown=merge_chunks([body for _, body, _ in rows]))
 
 
 @router.post("/documents", status_code=201)
@@ -381,9 +442,8 @@ class ChunkOut(BaseModel):
     text: str
 
 
-@router.get("/documents/{doc_id}/chunks")
-async def document_chunks(doc_id: int, user: CurrentUser, s: DB) -> list[ChunkOut]:
-    await readable_doc(s, user, doc_id)
+async def chunk_rows(s: AsyncSession, doc_id: int) -> list[tuple[str, str, dict[str, Any]]]:
+    """(node_id, text, metadata) of a document's chunks, in reading order."""
     rows = await s.execute(
         text(
             f"SELECT node_id, text, metadata_ FROM {CHUNKS_TABLE}"
@@ -391,6 +451,13 @@ async def document_chunks(doc_id: int, user: CurrentUser, s: DB) -> list[ChunkOu
         ),
         {"id": str(doc_id)},
     )
+    return [tuple(r) for r in rows]
+
+
+@router.get("/documents/{doc_id}/chunks")
+async def document_chunks(doc_id: int, user: CurrentUser, s: DB) -> list[ChunkOut]:
+    await readable_doc(s, user, doc_id)
+    rows = await chunk_rows(s, doc_id)
     tokens = get_tokenizer()  # the tokenizer the splitter counted with
     return [
         ChunkOut(

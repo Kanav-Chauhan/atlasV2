@@ -59,6 +59,12 @@ class Organization(Base):
     # Phase 8: {enabled, site_key, allowed_origins, greeting, accent, position, show_badge};
     # read through atlas_api.website.config(), which fills in the defaults.
     website_chat: Mapped[dict[str, Any]] = mapped_column(JSONB, default=dict)
+    # UI phase 5: email-domain auto-join {domains: [str], role: "member"|"guest",
+    # departments: [str]}; read through clerk.auto_join_config(). Never used on demo orgs.
+    auto_join: Mapped[dict[str, Any]] = mapped_column(JSONB, default=dict)
+    # UI phase 8: {access_defaults, notifications, logo}; read through
+    # profile_routes.org_settings(), which fills in the defaults.
+    settings: Mapped[dict[str, Any]] = mapped_column(JSONB, default=dict)
 
 
 class Department(Base):
@@ -82,6 +88,8 @@ class User(Base):
     last_active: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
     # Clerk user id ("user_…") for real sign-ins (clerk.py); None for demo people.
     clerk_user_id: Mapped[str | None] = mapped_column(String(64), unique=True)
+    # UI phase 8: version of the uploaded profile picture (profile_routes); None = initials.
+    avatar: Mapped[str | None] = mapped_column(String(16))
     org: Mapped[Organization] = relationship(lazy="joined")
     departments: Mapped[list[Department]] = relationship(
         secondary=user_departments, lazy="selectin"

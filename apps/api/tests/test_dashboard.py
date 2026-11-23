@@ -154,7 +154,7 @@ ENDPOINTS = [
     ("POST", "/departments", {"name": "Ops"}, ADMIN),
     ("PATCH", "/departments/HR", {"description": "d"}, ADMIN),
     ("DELETE", "/departments/HR", None, ADMIN),
-    ("GET", "/access", None, LEADS),
+    ("GET", "/team/groups", None, LEADS),
     ("GET", "/insights?days=7", None, LEADS),
     ("GET", "/documents/review", None, LEADS),
     ("GET", "/org", None, ADMIN),
@@ -241,14 +241,40 @@ def test_aggregate() -> None:
         {"department": "Finance", "questions": 1},
     ]
     assert out["per_day"] == [
-        {"date": "2026-11-20", "questions": 0, "not_found": 0},
-        {"date": "2026-11-21", "questions": 1, "not_found": 0},
-        {"date": "2026-11-22", "questions": 5, "not_found": 2},
+        {"date": "2026-11-20", "questions": 0, "answered": 0, "not_found": 0},
+        {"date": "2026-11-21", "questions": 1, "answered": 0, "not_found": 0},
+        {"date": "2026-11-22", "questions": 5, "answered": 2, "not_found": 2},
     ]
+    assert out["previous"] == {
+        "questions": 0,
+        "answered": 0,
+        "not_found": 0,
+        "answered_pct": None,
+        "helpful": 0,
+    }
     scoped = aggregate(turns, [], 3, date(2026, 11, 22), departments={"HR"})
     assert scoped["by_department"] == [{"department": "HR", "questions": 5}]
     empty = aggregate([], [], 1, date(2026, 11, 22))
     assert empty["answered_pct"] is None and empty["p95_latency_ms"] is None
+
+
+def test_aggregate_previous_period() -> None:
+    before = [
+        turn(feedback="up"),
+        turn(abstained=True),
+        turn(abstained=True),
+        turn(route="smalltalk"),
+    ]
+    out = aggregate([turn()], [], 7, date(2026, 11, 22), previous=before)
+    assert out["previous"] == {
+        "questions": 4,
+        "answered": 1,
+        "not_found": 2,
+        "answered_pct": 33.3,
+        "helpful": 1,
+    }
+    # The headline numbers of this period are unchanged by the previous one.
+    assert (out["questions"], out["answered_pct"]) == (1, 100.0)
 
 
 # ------------------------------------------------------------------ super admin

@@ -1,0 +1,55 @@
+/* Chart colours + chart chrome (components/ui/chart.tsx). Scope: any element with class .viz or a chart box.
+   Categorical slots, fixed order, never cycled (dataviz skill, validated with validate_palette.js against our
+   surfaces: light #ffffff, dark #0f151e — all checks pass, CVD ΔE 28.2 light / 28.5 dark):
+     slot 1 = brand accent blue (#1e59cd / #5a8ff3, the --color-accent values)
+     slot 2 = orange (#eb6834 / #d95926)
+   --series-quiet is the de-emphasis grey ("other", sparkline history), never an identity on its own.
+   Text never wears a series colour: labels and values use the ink tokens. */
+.viz, [data-slot="chart"] {
+  --series-1: #1e59cd;
+  --series-2: #eb6834;
+  --series-quiet: oklch(84% 0.012 245);
+  --series-1-track: color-mix(in oklch, var(--series-1) 14%, var(--color-surface));
+  --viz-grid: var(--color-rule-soft);
+  --viz-axis: var(--color-muted);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) :is(.viz, [data-slot="chart"]) {
+    --series-1: #5a8ff3;
+    --series-2: #d95926;
+    --series-quiet: oklch(40% 0.02 250);
+    --series-1-track: color-mix(in oklch, var(--series-1) 22%, var(--color-surface));
+  }
+}
+:root[data-theme="dark"] :is(.viz, [data-slot="chart"]) {
+  --series-1: #5a8ff3;
+  --series-2: #d95926;
+  --series-quiet: oklch(40% 0.02 250);
+  --series-1-track: color-mix(in oklch, var(--series-1) 22%, var(--color-surface));
+}
+
+.chart-box { position: relative; width: 100%; min-width: 0; }
+.chart-box .recharts-surface { overflow: visible; }
+.chart-box .recharts-surface:focus { outline: none; }
+.chart-box:has(.recharts-surface:focus-visible) { outline: 2px solid var(--color-focus); outline-offset: 4px; border-radius: 6px; }
+/* Axis text: muted ink, tabular figures; gridlines: solid hairlines one step off the surface. */
+.chart-box .recharts-cartesian-axis-tick-value { fill: var(--viz-axis); font-size: 12px; font-variant-numeric: tabular-nums; }
+.chart-box .recharts-cartesian-grid line { stroke: var(--viz-grid); }
+.chart-box .recharts-label-list text, .chart-box .chart-value { fill: var(--color-ink-2); font-size: 12px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.chart-box .recharts-tooltip-cursor { fill: var(--color-paper-2); }
+
+.chart-tip {
+  min-width: 10rem; padding: 10px 12px; border-radius: 10px; background: var(--color-surface); color: var(--color-ink);
+  border: 1px solid var(--color-rule-soft); box-shadow: var(--shadow-md); font-size: var(--text-xs); line-height: 1.35;
+}
+.chart-tip-head { margin-bottom: 6px; color: var(--color-muted); font-weight: 600; }
+.chart-tip ul { display: grid; gap: 4px; margin: 0; padding: 0; list-style: none; }
+.chart-tip li { display: grid; grid-template-columns: 12px auto 1fr; align-items: center; gap: 8px; }
+.chart-tip li i { width: 12px; height: 3px; border-radius: 2px; }
+.chart-tip li strong { font-size: var(--text-sm); font-weight: 600; font-variant-numeric: tabular-nums; }
+.chart-tip li span { color: var(--color-muted); }
+.chart-tip-foot { margin-top: 6px; padding-top: 6px; border-top: 1px solid var(--color-rule-soft); color: var(--color-ink-2); font-weight: 600; }
+
+.chart-legend { display: flex; flex-wrap: wrap; gap: 4px 14px; margin: 0; padding: 0; list-style: none; font-size: var(--text-xs); color: var(--color-ink-2); }
+.chart-legend li { display: inline-flex; align-items: center; gap: 6px; }
+.chart-legend i { width: 10px; height: 10px; border-radius: 3px; }

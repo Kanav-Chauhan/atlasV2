@@ -1,31 +1,47 @@
 "use client";
 
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { keepPreviousData, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
+import { Avatar } from "@/components/avatar";
 import { Region } from "@/components/region";
+import { Card, Page, PageHeader } from "@/components/ui/page";
 import { api } from "@/lib/api";
-import { initials } from "@/lib/demo-users";
 import { day, type Person } from "@/lib/types";
 
 type Token = {
-  id: number; name: string; user: { id: number; name: string; email: string };
+  id: number; name: string; user: { id: number; name: string; email: string; avatar_url?: string | null };
   created_at: string; last_used_at: string | null; revoked: boolean;
 };
 type Created = { id: number; name: string; token: string };
 type Audit = { at: string; token_name: string; user_email: string; tool: string; args_summary: string; ok: boolean; latency_ms: number };
+type AuditPage = { items: Audit[]; total: number; page: number; per_page: number; tools: string[] };
 
 const MCP_URL = "https://p1.kanav.space/api/mcp";
+const PLACEHOLDER = "<your atl_ token>";
+const PER_PAGE = 20;
 const when = new Intl.DateTimeFormat("en-IN", { day: "numeric", month: "short", hour: "numeric", minute: "2-digit", timeZone: "Asia/Kolkata" });
 
-const SETUPS = [
+const CLIENTS = [
   {
-    id: "code", label: "Claude Code", where: "Save as .mcp.json in your project, or run claude mcp add with the same URL and header.",
-    config: { mcpServers: { atlas: { type: "http", url: MCP_URL, headers: { Authorization: "Bearer <your atl_ token>" } } } },
+    id: "code", label: "Claude Code",
+    where: "Run this once in a terminal. It adds Atlas to Claude Code for your user.",
+    config: (t: string) => `claude mcp add --transport http --scope user atlas ${MCP_URL} \\\n  --header "Authorization: Bearer ${t}"`,
   },
   {
-    id: "desktop", label: "Claude Desktop", where: "Settings, Developer, Edit config. It connects through the mcp-remote bridge (needs Node).",
-    config: { mcpServers: { atlas: { command: "npx", args: ["-y", "mcp-remote", MCP_URL, "--header", "Authorization:${ATLAS_TOKEN}"], env: { ATLAS_TOKEN: "Bearer <your atl_ token>" } } } },
+    id: "desktop", label: "Claude Desktop",
+    where: "Claude Desktop: Settings, Developer, Edit config. Paste this, save, restart Claude. It connects through the mcp-remote bridge (needs Node.js).",
+    config: (t: string) => JSON.stringify({ mcpServers: { atlas: { command: "npx", args: ["-y", "mcp-remote", MCP_URL, "--header", "Authorization:${ATLAS_TOKEN}"], env: { ATLAS_TOKEN: `Bearer ${t}` } } } }, null, 2),
   },
+  {
+    id: "any", label: "Any MCP client",
+    where: "Cursor, VS Code and other clients that speak MCP over Streamable HTTP: use this server URL and header.",
+    config: (t: string) => `Server URL:  ${MCP_URL}\nTransport:   Streamable HTTP\nHeader:      Authorization: Bearer ${t}`,
+  },
+];
+
+const PROMPTS = [
+  "Use Atlas to find our leave policy and tell me how many days of earned leave I get, with sources.",
+  "Search Atlas for the travel reimbursement rules and summarise them in 5 bullet points.",
 ];
 
 function useCopy() {
@@ -38,8 +54,9 @@ function useCopy() {
 export function Agents() {
   const client = useQueryClient();
   const tokens = useQuery({ queryKey: ["tokens"], queryFn: () => api<Token[]>("/tokens") });
-  const audit = useQuery({ queryKey: ["tokens-audit"], queryFn: () => api<Audit[]>("/tokens/audit?days=7") });
   const [creating, setCreating] = useState(false);
+  const [fresh, setFresh] = useState<Created | null>(null); // the secret, kept only in this tab's memory
+  const [showRevoked, setShowRevoked] = useState(false);
   const [err, setErr] = useState("");
   const refresh = () => ["tokens", "tokens-audit"].forEach((k) => client.invalidateQueries({ queryKey: [k] }));
 
@@ -48,6 +65,7 @@ export function Agents() {
     setErr("");
     try {
       await api(`/tokens/${t.id}`, undefined, "DELETE");
+      if (fresh?.id === t.id) setFresh(null);
       refresh();
     } catch (e) {
       setErr((e as Error).message);
@@ -55,111 +73,204 @@ export function Agents() {
   }
 
   return (
-    <div className="mx-auto grid max-w-6xl gap-10 px-[var(--gutter)] py-10">
-      <header className="flex flex-wrap items-end justify-between gap-4">
-        <div className="grid gap-1">
-          <h1 className="text-3xl font-semibold">Agent access</h1>
-          <p className="max-w-[60ch] text-muted">AI agents like Claude connect to Atlas with a token. Each token acts as one person and reads only what that person can.</p>
-        </div>
-        <button type="button" className="btn btn-primary" onClick={() => setCreating(true)}>Create token</button>
-      </header>
+    <Page>
+      <PageHeader title="Agent access"
+        description="AI agents like Claude connect to Atlas with a token. Each token acts as one person and reads only what that person can."
+        actions={<button type="button" className="btn btn-primary" onClick={() => setCreating(true)}>Create token</button>} />
       {err && <p className="state text-sm text-error" role="alert">{err}</p>}
 
-      <section className="block" aria-labelledby="tok-h">
-        <div className="block-head"><div>
-          <h2 id="tok-h">Tokens</h2>
-          <p>Revoke a token the moment it is not needed.</p>
-        </div></div>
-        <Region q={tokens} what="tokens" rows={3}
-          empty={<><p className="font-semibold">No tokens yet</p><p className="text-sm text-muted">Create one to let an agent search Atlas as a person.</p>
+      <Setup fresh={fresh} hasTokens={(tokens.data ?? []).some((t) => !t.revoked)} onCreate={() => setCreating(true)} />
+
+      <Card id="tok" title="Tokens" note="Revoke a token the moment it is not needed."
+        action={(tokens.data ?? []).some((t) => t.revoked) ? (
+          <button type="button" className="btn" aria-pressed={showRevoked} onClick={() => setShowRevoked((v) => !v)}>
+            {showRevoked ? "Hide revoked" : `Show revoked (${(tokens.data ?? []).filter((t) => t.revoked).length})`}
+          </button>
+        ) : undefined}>
+        <Region q={tokens} what="tokens" rows={2} isEmpty={(l) => !l.some((t) => showRevoked || !t.revoked)}
+          empty={<><p className="font-semibold">No active tokens</p><p className="text-sm text-muted">Create one to let an agent search Atlas as a person.</p>
             <button type="button" className="btn" onClick={() => setCreating(true)}>Create token</button></>}>
           {(list) => (
-            <div className="table-wrap">
-              <table className="tbl">
-                <thead><tr><th scope="col">Name</th><th scope="col">Acts as</th><th scope="col" className="hide-sm">Created</th><th scope="col" className="hide-sm">Last used</th><th scope="col"><span className="sr-only">Actions</span></th></tr></thead>
-                <tbody>
-                  {list.map((t) => (
-                    <tr key={t.id} className={t.revoked ? "tok-revoked" : undefined}>
-                      <td><strong>{t.name}</strong>{t.revoked && <span className="block text-xs text-muted">Revoked</span>}</td>
-                      <td><div className="person"><span className="avatar" aria-hidden="true">{initials(t.user.name)}</span><div><strong>{t.user.name}</strong><span>{t.user.email}</span></div></div></td>
-                      <td className="hide-sm text-muted">{day.format(new Date(t.created_at))}</td>
-                      <td className="hide-sm text-muted">{t.last_used_at ? when.format(new Date(t.last_used_at)) : "Not yet"}</td>
-                      <td>{!t.revoked && (
-                        <div className="row-actions"><button type="button" className="btn" onClick={() => revoke(t)}>Revoke<span className="sr-only"> {t.name}</span></button></div>
-                      )}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+            <ul className="tok-cards">
+              {list.filter((t) => showRevoked || !t.revoked).map((t) => (
+                <li key={t.id} className="tok-card" data-revoked={t.revoked || undefined}>
+                  <div className="tok-card-head">
+                    <strong className="tok-name">{t.name}</strong>
+                    {t.revoked ? <span className="badge">Revoked</span>
+                      : t.last_used_at ? <span className="badge" data-tone="success"><span className="dot" />In use</span>
+                      : <span className="badge" data-tone="info"><span className="dot" />Not used yet</span>}
+                  </div>
+                  <div className="person">
+                    <Avatar name={t.user.name} url={t.user.avatar_url} />
+                    <div><strong>Acts as {t.user.name}</strong><span>{t.user.email}</span></div>
+                  </div>
+                  <dl className="tok-dates">
+                    <div><dt>Created</dt><dd>{day.format(new Date(t.created_at))}</dd></div>
+                    <div><dt>Last used</dt><dd>{t.last_used_at ? when.format(new Date(t.last_used_at)) : "Not yet"}</dd></div>
+                  </dl>
+                  {!t.revoked && (
+                    <button type="button" className="btn tok-revoke" onClick={() => revoke(t)}>Revoke<span className="sr-only"> {t.name}</span></button>
+                  )}
+                </li>
+              ))}
+            </ul>
           )}
         </Region>
-      </section>
+      </Card>
 
-      <Setup />
+      <AuditLog tokens={tokens.data ?? []} />
 
-      <section className="block" aria-labelledby="aud-h">
-        <div className="block-head"><div>
-          <h2 id="aud-h">What agents did</h2>
-          <p>Every tool call in the last 7 days, newest first.</p>
-        </div></div>
-        <Region q={audit} what="activity log" rows={4}
-          empty={<><p className="font-semibold">No agent activity yet</p><p className="text-sm text-muted">Calls appear here as soon as an agent uses a token.</p></>}>
-          {(rows) => (
-            <div className="table-wrap">
+      {creating && <CreateDialog onCreated={(c) => { setFresh(c); refresh(); }} onClose={() => setCreating(false)} />}
+    </Page>
+  );
+}
+
+// ------------------------------------------------------------------ 3-step setup
+
+function Setup({ fresh, hasTokens, onCreate }: { fresh: Created | null; hasTokens: boolean; onCreate: () => void }) {
+  const [tab, setTab] = useState(CLIENTS[0].id);
+  const { copied, copy } = useCopy();
+  const c = CLIENTS.find((x) => x.id === tab) ?? CLIENTS[0];
+  const text = c.config(fresh?.token ?? PLACEHOLDER);
+  const step1Done = Boolean(fresh) || hasTokens;
+  return (
+    <Card id="setup" title="Connect an agent in 3 steps" note="Works with Claude Code, Claude Desktop and any MCP client.">
+      <ol className="steps">
+        <li className="step" data-done={step1Done || undefined}>
+          <span className="step-n" aria-hidden="true">1</span>
+          <div className="step-body">
+            <h3>Create a token</h3>
+            {fresh ? (
+              <p className="text-sm text-ink-2">Token <strong>{fresh.name}</strong> is ready. It is filled into the config below for as long as this page is open.</p>
+            ) : (
+              <p className="text-sm text-muted">Choose the person the agent acts as. The agent reads exactly what that person can read.</p>
+            )}
+            {!fresh && <div><button type="button" className="btn" onClick={onCreate}>Create token</button></div>}
+          </div>
+        </li>
+        <li className="step">
+          <span className="step-n" aria-hidden="true">2</span>
+          <div className="step-body">
+            <h3>Add Atlas to your agent</h3>
+            <div className="seg" role="group" aria-label="Agent">
+              {CLIENTS.map((x) => (
+                <button key={x.id} type="button" aria-pressed={tab === x.id} onClick={() => setTab(x.id)}>{x.label}</button>
+              ))}
+            </div>
+            <div className="grid gap-2">
+              <p className="text-sm text-ink-2">{c.where}</p>
+              <div className="tok-code">
+                <pre><code>{text}</code></pre>
+                <button type="button" className="btn" onClick={() => copy(c.id, text)}>{copied === c.id ? "Copied" : "Copy"}</button>
+              </div>
+              {!fresh && <p className="text-xs text-muted">Replace <code>{PLACEHOLDER}</code> with your token.</p>}
+            </div>
+          </div>
+        </li>
+        <li className="step">
+          <span className="step-n" aria-hidden="true">3</span>
+          <div className="step-body">
+            <h3>Test it</h3>
+            <p className="text-sm text-muted">Ask your agent one of these. The call shows up in the activity log below within seconds.</p>
+            <ul className="tok-prompts">
+              {PROMPTS.map((p, i) => (
+                <li key={p}>
+                  <span>{p}</span>
+                  <button type="button" className="btn" onClick={() => copy(`p${i}`, p)}>{copied === `p${i}` ? "Copied" : "Copy"}</button>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </li>
+      </ol>
+      <span className="sr-only" role="status">{copied ? "Copied" : ""}</span>
+    </Card>
+  );
+}
+
+// ------------------------------------------------------------------ audit log
+
+function AuditLog({ tokens }: { tokens: Token[] }) {
+  const [token, setToken] = useState("");
+  const [tool, setTool] = useState("");
+  const [days, setDays] = useState("7");
+  const [page, setPage] = useState(1);
+  const qs = new URLSearchParams({ days, page: String(page), per_page: String(PER_PAGE) });
+  if (token) qs.set("token", token);
+  if (tool) qs.set("tool", tool);
+  const audit = useQuery({
+    queryKey: ["tokens-audit", days, token, tool, page],
+    queryFn: () => api<AuditPage>(`/tokens/audit?${qs}`),
+    placeholderData: keepPreviousData,
+  });
+  const filter = (set: (v: string) => void) => (e: React.ChangeEvent<HTMLSelectElement>) => { set(e.target.value); setPage(1); };
+  const d = audit.data;
+  const pages = d ? Math.max(1, Math.ceil(d.total / d.per_page)) : 1;
+
+  return (
+    <Card id="aud" title="What agents did" note="Every tool call, newest first.">
+      <div className="aud-filters">
+        <label>Token
+          <select className="field" value={token} onChange={filter(setToken)}>
+            <option value="">All tokens</option>
+            {tokens.map((t) => <option key={t.id} value={t.id}>{t.name}{t.revoked ? " (revoked)" : ""}</option>)}
+          </select>
+        </label>
+        <label>Tool
+          <select className="field" value={tool} onChange={filter(setTool)}>
+            <option value="">All tools</option>
+            {(d?.tools ?? []).map((t) => <option key={t} value={t}>{t}</option>)}
+          </select>
+        </label>
+        <label>Period
+          <select className="field" value={days} onChange={filter(setDays)}>
+            <option value="1">Last 24 hours</option>
+            <option value="7">Last 7 days</option>
+            <option value="30">Last 30 days</option>
+            <option value="90">Last 90 days</option>
+          </select>
+        </label>
+      </div>
+      <Region q={audit} what="activity log" rows={4} isEmpty={(p) => p.items.length === 0}
+        empty={<><p className="font-semibold">No agent activity {token || tool ? "for these filters" : "in this period"}</p><p className="text-sm text-muted">Calls appear here as soon as an agent uses a token.</p></>}>
+        {(p) => (
+          <>
+            <div className="table-wrap" aria-busy={audit.isFetching}>
               <table className="tbl">
-                <thead><tr><th scope="col">Tool</th><th scope="col" className="hide-sm">Token</th><th scope="col">Asked</th><th scope="col" className="num">Result</th></tr></thead>
+                <thead><tr><th scope="col">When</th><th scope="col">Tool</th><th scope="col" className="hide-sm">Token</th><th scope="col">Asked</th><th scope="col" className="num">Result</th></tr></thead>
                 <tbody>
-                  {rows.map((a, i) => (
+                  {p.items.map((a, i) => (
                     <tr key={`${a.at}-${i}`}>
-                      <td><code className="tok-tool">{a.tool}</code><span className="block whitespace-nowrap text-xs text-muted">{when.format(new Date(a.at))}</span></td>
+                      <td className="whitespace-nowrap text-muted">{when.format(new Date(a.at))}</td>
+                      <td><code className="tok-tool">{a.tool}</code></td>
                       <td className="hide-sm"><span className="grid"><span>{a.token_name}</span><span className="text-xs text-muted">{a.user_email}</span></span></td>
                       <td className="tok-args">{a.args_summary || "No input"}</td>
-                      <td className="num whitespace-nowrap">{a.ok ? <span className="yes">Done</span> : <span className="tok-fail">Failed</span>}<span className="block text-xs text-muted">{a.latency_ms} ms</span></td>
+                      <td className="num whitespace-nowrap">{a.ok ? <span className="badge" data-tone="success">Done</span> : <span className="badge" data-tone="error">Failed</span>}<span className="block text-xs text-muted">{a.latency_ms} ms</span></td>
                     </tr>
                   ))}
                 </tbody>
               </table>
             </div>
-          )}
-        </Region>
-      </section>
-
-      {creating && <CreateDialog onDone={refresh} onClose={() => setCreating(false)} />}
-    </div>
+            <nav className="aud-pages" aria-label="Activity pages">
+              <p className="text-sm text-muted">{(p.page - 1) * p.per_page + 1}–{(p.page - 1) * p.per_page + p.items.length} of {p.total}</p>
+              <div className="flex gap-2">
+                <button type="button" className="btn" disabled={page <= 1} onClick={() => setPage(page - 1)}>Previous</button>
+                <button type="button" className="btn" disabled={page >= pages} onClick={() => setPage(page + 1)}>Next</button>
+              </div>
+            </nav>
+          </>
+        )}
+      </Region>
+    </Card>
   );
 }
 
-function Setup() {
-  const [tab, setTab] = useState(SETUPS[0].id);
-  const { copied, copy } = useCopy();
-  const s = SETUPS.find((x) => x.id === tab) ?? SETUPS[0];
-  const json = JSON.stringify(s.config, null, 2);
-  return (
-    <section className="block" aria-labelledby="set-h">
-      <div className="block-head">
-        <div>
-          <h2 id="set-h">Connect an agent</h2>
-          <p>Replace the placeholder with a token. The server URL is <code>{MCP_URL}</code>.</p>
-        </div>
-        <div className="seg" role="group" aria-label="Agent">
-          {SETUPS.map((x) => <button key={x.id} type="button" aria-pressed={tab === x.id} onClick={() => setTab(x.id)}>{x.label}</button>)}
-        </div>
-      </div>
-      <p className="text-sm text-ink-2">{s.where}</p>
-      <div className="tok-code">
-        <pre><code>{json}</code></pre>
-        <button type="button" className="btn" onClick={() => copy(s.id, json)}>{copied === s.id ? "Copied" : "Copy"}</button>
-      </div>
-      <span className="sr-only" role="status">{copied === s.id ? "Config copied" : ""}</span>
-    </section>
-  );
-}
+// ------------------------------------------------------------------ create
 
 // Opens as a modal on mount; closing (Esc, Cancel, Done) unmounts it.
 const openModal = (d: HTMLDialogElement | null) => { if (d && !d.open) d.showModal(); };
 
-function CreateDialog({ onDone, onClose }: { onDone: () => void; onClose: () => void }) {
+function CreateDialog({ onCreated, onClose }: { onCreated: (c: Created) => void; onClose: () => void }) {
   const team = useQuery({ queryKey: ["team"], queryFn: () => api<Person[]>("/team") });
   const [created, setCreated] = useState<Created | null>(null);
   const [err, setErr] = useState("");
@@ -172,8 +283,9 @@ function CreateDialog({ onDone, onClose }: { onDone: () => void; onClose: () => 
     setBusy(true);
     setErr("");
     try {
-      setCreated(await api<Created>("/tokens", { name: String(f.get("name")).trim(), user_id: Number(f.get("user_id")) }));
-      onDone();
+      const c = await api<Created>("/tokens", { name: String(f.get("name")).trim(), user_id: Number(f.get("user_id")) });
+      setCreated(c);
+      onCreated(c);
     } catch (x) {
       setErr((x as Error).message);
     } finally {
@@ -186,7 +298,7 @@ function CreateDialog({ onDone, onClose }: { onDone: () => void; onClose: () => 
       {created ? (
         <div className="grid gap-4">
           <h2 id="ct-title" className="text-xl font-semibold">Copy your token</h2>
-          <p className="text-sm text-ink-2">This is the only time you will see it. Atlas keeps only a fingerprint, so a lost token can&apos;t be shown again; revoke it and make a new one.</p>
+          <p className="text-sm text-ink-2">This is the only time you will see it. Atlas keeps only a fingerprint, so a lost token can&apos;t be shown again; revoke it and make a new one. Step 2 on this page now has it filled in.</p>
           <div className="tok-code">
             <code className="tok-secret">{created.token}</code>
             <button type="button" className="btn" onClick={() => copy("secret", created.token)}>{copied === "secret" ? "Copied" : "Copy"}</button>

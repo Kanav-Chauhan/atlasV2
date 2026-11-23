@@ -9,17 +9,19 @@ Surgical, so it is cheap: only documents that were deleted get re-ingested.
   documents are registered again and queued for ingestion
 - team: people not in demo_corpus/orgs/<slug>.json deleted, the rest reset (role,
   departments); departments not in the file deleted, missing ones re-created
-- settings: name, industry, description, website chat (with the fixed demo site key)
+- settings: name, industry, description, website chat (with the fixed demo site key),
+  org settings + logo, profile pictures (files under <files_dir>/<slug>/images/)
 The semantic answer cache is off on p10 (settings.semantic_cache); if it is turned on, it
 needs clearing here too.
 """
 
 import json
+import shutil
 from collections import Counter
 from pathlib import Path
 from typing import Any, cast
 
-from sqlalchemy import CursorResult, delete, select, text
+from sqlalchemy import CursorResult, delete, select, text, update
 from sqlalchemy.orm import Session
 
 from atlas_api import cache, website
@@ -158,6 +160,14 @@ def reset_org(slug: str) -> dict[str, int]:
         seed_org(s, data)
         org.description = ""
         org.website_chat = website.demo_config(data.get("site_key"), data.get("accent"))
+        org.auto_join = {}  # UI phase 5 (never used on demo orgs; kept clean anyway)
+        # UI phase 8: settings (access defaults, notifications, logo) + profile pictures
+        org.settings = {}
+        out["avatars_cleared"] = run(
+            s,
+            update(User).where(User.org_id == org.id, User.avatar.is_not(None)).values(avatar=None),
+        )
+        shutil.rmtree(Path(settings.files_dir, slug, "images"), ignore_errors=True)
         s.commit()
         cache.invalidate_sync(org.id)  # documents, access and public flags are back to seed
 

@@ -9,9 +9,9 @@ from llama_index.core.vector_stores import (
     MetadataFilter,
     MetadataFilters,
 )
-from sqlalchemy import ColumnElement, and_, or_, true
+from sqlalchemy import ColumnElement, and_, false, or_, true
 
-from atlas_api.models import EVERYONE, Document, Role, User
+from atlas_api.models import EVERYONE, Department, Document, Role, User
 
 
 @dataclass(frozen=True)
@@ -107,6 +107,21 @@ def team_scope(actor: User) -> set[str]:
 
 def sees_person(actor: User, depts: set[str]) -> bool:
     return actor.role == Role.admin or bool(depts & team_scope(actor))
+
+
+def people_visible(actor: User) -> ColumnElement[bool]:
+    """sees_person as a SQL WHERE clause on users (the paginated directory, groups, bulk)."""
+    if actor.role == Role.admin:
+        return User.org_id == actor.org_id
+    scope = team_scope(actor)
+    if not scope:
+        return false()
+    return and_(
+        User.org_id == actor.org_id,
+        User.departments.any(
+            and_(Department.org_id == actor.org_id, Department.name.in_(sorted(scope)))
+        ),
+    )
 
 
 def can_manage_person(actor: User, role: Role, depts: set[str]) -> bool:

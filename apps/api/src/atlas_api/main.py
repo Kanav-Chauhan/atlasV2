@@ -7,8 +7,10 @@ from sqlalchemy import text
 from atlas_api import (
     chat_routes,
     insights_routes,
+    library_routes,
     mcp_server,
     metrics,
+    profile_routes,
     routes,
     signup_routes,
     super_routes,
@@ -57,6 +59,7 @@ async def ready(response: Response) -> dict[str, str]:
 
 
 app.include_router(routes.router)
+app.include_router(library_routes.router)
 app.include_router(chat_routes.router)
 app.include_router(team_routes.router)
 app.include_router(insights_routes.router)
@@ -65,4 +68,5 @@ app.include_router(website_routes.router)
 app.include_router(token_routes.router)
 app.include_router(waitlist.router)
 app.include_router(signup_routes.router)
+app.include_router(profile_routes.router)
 app.router.routes.append(mcp_server.route)  # MCP Streamable HTTP (Phase 9)

@@ -196,7 +196,7 @@ function LeadTiles({ h }: { h: HomeData }) {
         <Spark values={ins.per_day.map((d) => d.questions)} />
       </Tile>
       <Tile icon="fileQuestion" tone={ins.not_found ? "warn" : "success"} label="No answer found" value={n.format(ins.not_found)}
-        sub={ins.not_found ? "Add documents that cover them" : "Nothing missing this month"} href="/app/library" cta={ins.not_found ? "Add documents" : undefined} />
+        sub={ins.not_found ? "Add documents that cover them" : "Nothing missing this month"} href={ins.not_found ? "/app/library?upload=1" : "/app/library"} cta={ins.not_found ? "Add documents" : undefined} />
       <Tile icon="clock" tone={worst ? worst.tone : "success"} label="Overdue reviews" value={n.format(rev.length)}
         sub={worst ? `Oldest: ${worst.label}` : "All documents are current"} href="/app/library" cta={rev.length ? "Review" : undefined} />
       <Tile icon="ask" tone="accent" label="Your chats" value={n.format(chats.length)}
@@ -233,11 +233,11 @@ function TodoList({ h }: { h: HomeData }) {
   const tasks: Task[] = [
     ...(rev ?? []).map((r): Task => ({
       key: `r${r.id}`, tone: r.u.tone, icon: TONE_ICON[r.u.tone], title: `Review “${r.title}”`,
-      sub: `${r.access}${r.review ? ` · was due ${r.review}` : ""}`, badge: r.u.label, href: `/api/documents/${r.id}/file`, external: true, rank: rank[r.u.tone] * 1e6 - r.u.days,
+      sub: `${r.access}${r.review ? ` · was due ${r.review}` : ""}`, badge: r.u.label, href: `/app/library?doc=${r.id}`, rank: rank[r.u.tone] * 1e6 - r.u.days,
     })),
     ...(ins?.top_unanswered ?? []).map((u): Task => ({
       key: `u${u.question}`, tone: "warn", icon: "fileQuestion", title: `Add a document that answers “${u.question}”`,
-      sub: `Asked ${u.count}× with no answer`, badge: "No answer", href: "/app/library", rank: rank.warn * 1e6,
+      sub: `Asked ${u.count}× with no answer`, badge: "No answer", href: "/app/library?upload=1", rank: rank.warn * 1e6,
     })),
   ];
   // Keep room for up to two unanswered questions, so they are not pushed out by a long review list.

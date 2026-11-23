@@ -25,7 +25,10 @@ export type Insights = {
   document_requests: { question: string; note: string | null; by: string; created_at: string }[];
   top_documents: { document_id: number; title: string; citations: number }[];
   by_department: { department: string; questions: number }[];
-  per_day: { date: string; questions: number; not_found: number }[];
+  /** Zero-filled, oldest first; answered + not_found ≤ questions (the rest is small talk / blocked). */
+  per_day: { date: string; questions: number; answered: number; not_found: number }[];
+  /** The same totals for the period just before this one (for the change figures). */
+  previous: { questions: number; answered: number; not_found: number; answered_pct: number | null; helpful: number };
 };
 
 export type Org = { slug: string; name: string; industry: string; description: string };

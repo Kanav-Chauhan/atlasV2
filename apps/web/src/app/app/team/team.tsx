@@ -1,321 +1,130 @@
 "use client";
 
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { useState } from "react";
-import { Region } from "@/components/region";
+import Link from "next/link";
+import { useRef, useState } from "react";
+import { Page, PageHeader } from "@/components/ui/page";
 import { api } from "@/lib/api";
 import { initials } from "@/lib/demo-users";
-import { day, type Access, type ApiRole, type Department, type Person } from "@/lib/types";
+import { day, type Department, type Person } from "@/lib/types";
+import { Directory } from "./directory";
+import { DeptDialog, ImportDialog, InviteDialog, PersonDialog } from "./dialogs";
+import { GroupCards, RoleSummary } from "./groups";
+import { cap, type AutoJoin, type Filters, type Groups } from "./types";
+
+// Team & access for companies of any size (UI phase 5, docs/DECISIONS.md "Team for big companies"):
+// groups first (a group = a department: its people read its documents + Everyone), then a server-side
+// paged people directory with bulk changes. Nothing here loads the whole company.
 
 type Props = { isAdmin: boolean; me: string; myDepts: string[] };
-type Editing = { person?: Person; dept?: string } | null;
+type Dialog =
+  | { kind: "edit"; person: Person }
+  | { kind: "invite"; dept?: string }
+  | { kind: "import" }
+  | { kind: "dept"; dept?: Department }
+  | null;
 
-const ROLES: ApiRole[] = ["admin", "manager", "member", "guest"];
-const cap = (s: string) => s[0].toUpperCase() + s.slice(1);
-const Tick = () => (
-  <span className="yes"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5 6.5 12 13 4.5" fill="none" stroke="currentColor" strokeWidth="2" /></svg>Yes</span>
-);
+export const EMPTY: Filters = { q: "", role: "", dept: "", status: "", page: 1 };
 
 export function Team({ isAdmin, me, myDepts }: Props) {
   const client = useQueryClient();
-  const team = useQuery({ queryKey: ["team"], queryFn: () => api<Person[]>("/team") });
-  const access = useQuery({ queryKey: ["access"], queryFn: () => api<Access>("/access") });
+  const groups = useQuery({ queryKey: ["team-groups"], queryFn: () => api<Groups>("/team/groups") });
   const depts = useQuery({ queryKey: ["departments"], queryFn: () => api<Department[]>("/departments") });
-  const [q, setQ] = useState("");
-  const [role, setRole] = useState("");
-  const [editing, setEditing] = useState<Editing>(null);
-  const [deptEdit, setDeptEdit] = useState<Department | "new" | null>(null);
+  const autoJoin = useQuery({ queryKey: ["auto-join"], queryFn: () => api<AutoJoin>("/org/auto-join"), enabled: isAdmin });
+  const [filters, setFilters] = useState<Filters>(EMPTY);
+  const [dialog, setDialog] = useState<Dialog>(null);
   const [err, setErr] = useState("");
   const [note, setNote] = useState("");
+  const directory = useRef<HTMLElement>(null);
 
-  // Managers act only on members and guests (the API scopes the list to their departments); nobody edits themselves here.
-  const canManage = (p: Person) => p.email !== me && (isAdmin || p.role === "member" || p.role === "guest");
-  // The shared Managers department is admin-managed; it never widens a manager's scope (access.team_scope).
+  // The shared Managers group is admin-managed; it never widens a manager's scope (access.team_scope).
   const scope = myDepts.filter((d) => d !== "Managers");
-  const myDeptList = (depts.data ?? []).filter((d) => isAdmin || scope.includes(d.name));
-  const deptNames = isAdmin ? (depts.data ?? []).map((d) => d.name) : scope;
-  const refresh = () => ["team", "access", "departments"].forEach((k) => client.invalidateQueries({ queryKey: [k] }));
+  const groupNames = isAdmin ? (depts.data ?? []).map((d) => d.name) : scope;
+  const refresh = () => ["team-groups", "team-people", "departments", "team"].forEach((k) => client.invalidateQueries({ queryKey: [k] }));
+  const close = () => setDialog(null);
+  const done = (msg = "") => { setDialog(null); setNote(msg); refresh(); };
 
-  async function act(fn: () => Promise<unknown>) {
+  function showPeople(next: Partial<Filters>) {
+    setFilters({ ...EMPTY, ...next });
+    directory.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    directory.current?.querySelector<HTMLInputElement>("input[type=search]")?.focus({ preventScroll: true });
+  }
+
+  async function removeDept(name: string) {
+    if (!confirm(`Delete the ${name} group?`)) return;
     setErr("");
     try {
-      await fn();
+      await api(`/departments/${encodeURIComponent(name)}`, undefined, "DELETE");
       refresh();
     } catch (e) {
       setErr((e as Error).message);
     }
   }
 
-  const needle = q.trim().toLowerCase();
-  const shown = (team.data ?? []).filter((p) => (!role || p.role === role) && `${p.name} ${p.email} ${p.title}`.toLowerCase().includes(needle));
-
+  const aj = autoJoin.data;
   return (
-    <div className="mx-auto grid max-w-6xl gap-10 px-[var(--gutter)] py-10">
-      <header className="flex flex-wrap items-end justify-between gap-4">
-        <div className="grid gap-1">
-          <h1 className="text-3xl font-semibold">Team & access</h1>
-          <p className="text-muted">A role sets what someone can do. Departments set what they can read.</p>
-        </div>
-        <button type="button" className="btn btn-primary" onClick={() => setEditing({})}>Add person</button>
-      </header>
+    <Page className="team">
+      <PageHeader
+        title="Team & access"
+        description="Access is given to groups. A role sets what someone can do; their groups set what they can read."
+        actions={<>
+          {isAdmin && aj?.available && (
+            <Link href="/app/settings#auto-join" className="aj-chip" title="People who sign in with this email domain join automatically">
+              <span className="dot" data-tone={aj.domains.length ? "success" : undefined} aria-hidden="true" />
+              {aj.domains.length ? `Auto-join: ${aj.domains.map((d) => `@${d}`).join(", ")}` : "Auto-join off"}
+            </Link>
+          )}
+          <button type="button" className="btn" onClick={() => setDialog({ kind: "import" })}>Import CSV</button>
+          <button type="button" className="btn btn-primary" onClick={() => setDialog({ kind: "invite" })}>Invite people</button>
+        </>}
+      />
       {err && <p className="state text-sm text-error" role="alert">{err}</p>}
-      {note && <p className="state text-sm" role="status">{note}</p>}
+      {note && (
+        <p className="team-note" role="status">
+          {note}
+          <button type="button" className="icon-btn" aria-label="Dismiss" onClick={() => setNote("")}>×</button>
+        </p>
+      )}
 
-      <section className="block" aria-labelledby="people-h">
-        <div className="block-head">
-          <div>
-            <h2 id="people-h">People</h2>
-            <p>{isAdmin ? "Everyone in the company." : "People in your departments. You can add members and guests."}</p>
-          </div>
-          <div className="flex flex-wrap gap-2">
-            <label className="sr-only" htmlFor="t-q">Search people</label>
-            <input id="t-q" type="search" className="field w-56" placeholder="Search people" value={q} onChange={(e) => setQ(e.target.value)} autoComplete="off" />
-            <label className="sr-only" htmlFor="t-role">Role</label>
-            <select id="t-role" className="field" value={role} onChange={(e) => setRole(e.target.value)}>
-              <option value="">All roles</option>
-              {ROLES.map((r) => <option key={r} value={r}>{cap(r)}</option>)}
-            </select>
-          </div>
-        </div>
-        <Region q={team} what="people list" rows={5}
-          empty={<><p className="font-semibold">No people yet</p><p className="text-sm text-muted">Add someone to give them access.</p></>}>
-          {() => shown.length ? (
-            <PeopleTable people={shown} canManage={canManage}
-              onEdit={(p) => setEditing({ person: p })}
-              onRemove={(p) => confirm(`Remove ${p.name}? They lose access straight away.`) && act(() => api(`/team/${p.id}`, undefined, "DELETE"))} />
-          ) : <p className="text-sm text-muted">No one matches this search.</p>}
-        </Region>
-      </section>
+      <RoleSummary q={groups} onRole={(role) => showPeople({ role })} />
 
-      <section className="block" aria-labelledby="grid-h">
-        <div className="block-head"><div>
-          <h2 id="grid-h">Who can read what</h2>
-          <p>Each row is a person. A tick means they can open that department&apos;s documents.</p>
-        </div></div>
-        <Region q={access} what="access grid" rows={4} isEmpty={(d) => d.people.length === 0}
-          empty={<p className="text-sm text-muted">No people to show yet.</p>}>
-          {(d) => (
-            <div className="table-wrap">
-              <table className="tbl grid-table">
-                <thead><tr><th scope="col">Person</th>{d.departments.map((x) => <th key={x} scope="col">{x}</th>)}<th scope="col">Everyone</th></tr></thead>
-                <tbody>
-                  {d.people.map((p) => (
-                    <tr key={p.id}>
-                      <th scope="row">{p.name}</th>
-                      {d.departments.map((x) => <td key={x}>{p.can_read[x] ? <Tick /> : <span className="no">No</span>}</td>)}
-                      <td>{p.everyone ? <Tick /> : <span className="no">No</span>}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          )}
-        </Region>
-      </section>
+      <GroupCards q={groups} isAdmin={isAdmin} depts={depts.data ?? []}
+        onPeople={(dept) => showPeople({ dept })}
+        onInvite={(dept) => setDialog({ kind: "invite", dept })}
+        onRename={(d) => setDialog({ kind: "dept", dept: d })}
+        onDelete={removeDept}
+        onAdd={() => setDialog({ kind: "dept" })} />
 
-      <section className="block" aria-labelledby="dept-h">
-        <div className="block-head">
-          <div>
-            <h2 id="dept-h">Departments</h2>
-            <p>{isAdmin ? "People in a department can read its documents." : "Your departments."}</p>
-          </div>
-          {isAdmin && <button type="button" className="btn" onClick={() => setDeptEdit("new")}>Add department</button>}
-        </div>
-        <Region q={depts} what="departments" rows={3} isEmpty={() => myDeptList.length === 0}
-          empty={<><p className="font-semibold">No departments yet</p><p className="text-sm text-muted">{isAdmin ? "Add one, then add people to it." : "You are not in a department yet."}</p></>}>
-          {() => (
-            <ul className="list">
-              {myDeptList.map((d) => (
-                <li key={d.name} className="stack">
-                  <div className="flex flex-wrap items-baseline justify-between gap-2">
-                    <span className="grid min-w-0">
-                      <span className="font-semibold">{d.name}</span>
-                      {d.description && <span className="text-xs text-muted">{d.description}</span>}
-                    </span>
-                    <span className="row-actions items-center">
-                      <span className="count">{d.members === 1 ? "1 person" : `${d.members} people`}</span>
-                      {isAdmin && <button type="button" className="btn" onClick={() => setDeptEdit(d)}>Rename<span className="sr-only"> {d.name}</span></button>}
-                      {isAdmin && (
-                        <button type="button" className="btn" onClick={() => confirm(`Delete ${d.name}?`) && act(() => api(`/departments/${encodeURIComponent(d.name)}`, undefined, "DELETE"))}>
-                          Delete<span className="sr-only"> {d.name}</span>
-                        </button>
-                      )}
-                    </span>
-                  </div>
-                  {d.members === 0 && (
-                    <div className="state">
-                      <p className="text-sm font-semibold">No one is in {d.name} yet</p>
-                      <p className="text-sm text-muted">Nobody can read {d.name} documents until someone joins.</p>
-                      <button type="button" className="btn" onClick={() => setEditing({ dept: d.name })}>Add people</button>
-                    </div>
-                  )}
-                </li>
-              ))}
-            </ul>
-          )}
-        </Region>
-      </section>
+      <Directory ref={directory} filters={filters} setFilters={setFilters} isAdmin={isAdmin} me={me}
+        groupNames={groupNames} allGroups={(depts.data ?? []).map((d) => d.name)}
+        onEdit={(person) => setDialog({ kind: "edit", person })}
+        onChanged={(msg) => { setNote(msg); refresh(); }} onError={setErr} />
 
-      {editing && <PersonDialog key={editing.person?.id ?? "new"} {...editing} isAdmin={isAdmin} deptNames={deptNames} onNote={setNote}
-        onDone={() => { setEditing(null); refresh(); }} onClose={() => setEditing(null)} />}
-      {deptEdit && <DeptDialog dept={deptEdit === "new" ? undefined : deptEdit} onDone={() => { setDeptEdit(null); refresh(); }} onClose={() => setDeptEdit(null)} />}
-    </div>
+      {dialog?.kind === "edit" && <PersonDialog person={dialog.person} isAdmin={isAdmin} groupNames={groupNames} onDone={() => done()} onClose={close} />}
+      {dialog?.kind === "invite" && <InviteDialog dept={dialog.dept} isAdmin={isAdmin} groupNames={groupNames} onDone={done} onClose={close} />}
+      {dialog?.kind === "import" && <ImportDialog isAdmin={isAdmin} groupNames={groupNames} onDone={done} onClose={close} />}
+      {dialog?.kind === "dept" && <DeptDialog dept={dialog.dept} onDone={() => done()} onClose={close} />}
+    </Page>
   );
 }
 
-/** People table from option A. Without onEdit/onRemove it is read-only (super admin company view). */
-export function PeopleTable({ people, canManage, onEdit, onRemove }: {
-  people: Person[]; canManage?: (p: Person) => boolean; onEdit?: (p: Person) => void; onRemove?: (p: Person) => void;
-}) {
+/** Read-only people table (super admin company view). */
+export function PeopleTable({ people }: { people: Person[] }) {
   return (
     <div className="table-wrap">
       <table className="tbl">
-        <thead><tr><th scope="col">Name</th><th scope="col">Role</th><th scope="col">Departments</th><th scope="col" className="hide-sm">Last active</th>{onEdit && <th scope="col"><span className="sr-only">Actions</span></th>}</tr></thead>
+        <thead><tr><th scope="col">Name</th><th scope="col">Role</th><th scope="col">Groups</th><th scope="col" className="hide-sm">Last active</th></tr></thead>
         <tbody>
           {people.map((p) => (
             <tr key={p.id}>
               <td><div className="person"><span className="avatar" aria-hidden="true">{initials(p.name)}</span><div><strong>{p.name}</strong><span>{p.title || p.email}</span></div></div></td>
               <td><span className="role" data-role={p.role}>{cap(p.role)}</span></td>
-              <td className="text-ink-2">
-                {p.role === "admin" ? "All departments" : p.departments.join(", ") || "Everyone only"}
-                {p.guest_until && <span className="block text-xs text-muted">Until {day.format(new Date(p.guest_until))}</span>}
-              </td>
+              <td className="text-ink-2">{p.role === "admin" ? "All groups" : p.departments.join(", ") || "Everyone only"}</td>
               <td className="hide-sm text-muted">{p.last_active ? day.format(new Date(p.last_active)) : "Not yet"}</td>
-              {onEdit && (
-                <td>{canManage?.(p) && (
-                  <div className="row-actions">
-                    <button type="button" className="btn" onClick={() => onEdit(p)}>Edit<span className="sr-only"> {p.name}</span></button>
-                    <button type="button" className="btn" onClick={() => onRemove?.(p)}>Remove<span className="sr-only"> {p.name}</span></button>
-                  </div>
-                )}</td>
-              )}
             </tr>
           ))}
         </tbody>
       </table>
     </div>
-  );
-}
-
-// Opens as a modal on mount; closing (Esc, Cancel) unmounts it.
-const openModal = (d: HTMLDialogElement | null) => { if (d && !d.open) d.showModal(); };
-
-function useSubmit(onDone: () => void) {
-  const [err, setErr] = useState("");
-  const [busy, setBusy] = useState(false);
-  async function run(fn: () => Promise<unknown>) {
-    setBusy(true);
-    setErr("");
-    try {
-      await fn();
-      onDone();
-    } catch (e) {
-      setErr((e as Error).message);
-    } finally {
-      setBusy(false);
-    }
-  }
-  return { err, busy, run };
-}
-
-// POST /team answers `invite` for real companies (Clerk invitation email); demo companies: null.
-const INVITE_NOTE: Record<string, string> = {
-  sent: "invitation email sent. They sign up with that address and land in this company.",
-  exists: "they already have an Atlas login, so they can sign in now.",
-  failed: "added, but the invitation email didn't go out. Ask them to sign up with that address.",
-};
-
-function PersonDialog({ person, dept, isAdmin, deptNames, onDone, onClose, onNote }: {
-  person?: Person; dept?: string; isAdmin: boolean; deptNames: string[]; onDone: () => void; onClose: () => void;
-  onNote: (note: string) => void;
-}) {
-  const [role, setRole] = useState<ApiRole>(person?.role ?? "member");
-  const { err, busy, run } = useSubmit(onDone);
-  const roles: ApiRole[] = isAdmin ? ROLES : ["member", "guest"];
-  const chosen = person?.departments ?? (dept ? [dept] : []);
-
-  function submit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    const f = new FormData(e.currentTarget);
-    const body = {
-      title: String(f.get("title") ?? "").trim(),
-      role,
-      departments: f.getAll("departments").map(String),
-      guest_until: role === "guest" ? String(f.get("guest_until") || "") || null : null,
-    };
-    run(() => person
-      ? api(`/team/${person.id}`, body, "PATCH")
-      : api<{ name: string; invite?: string | null }>("/team", { ...body, name: String(f.get("name")).trim(), email: String(f.get("email")).trim() })
-        .then((p) => onNote(p.invite && INVITE_NOTE[p.invite] ? `${p.name}: ${INVITE_NOTE[p.invite]}` : "")));
-  }
-
-  return (
-    <dialog ref={openModal} className="dialog" aria-labelledby="pd-title" onClose={onClose}>
-      <form className="grid gap-4" onSubmit={submit}>
-        <h2 id="pd-title" className="text-xl font-semibold">{person ? `Edit ${person.name}` : "Add a person"}</h2>
-        {!person && (
-          <>
-            <label className="grid gap-1 text-sm font-medium">Name<input name="name" required className="field" autoComplete="off" /></label>
-            <label className="grid gap-1 text-sm font-medium">Email<input name="email" type="email" required className="field" autoComplete="off" /></label>
-          </>
-        )}
-        <label className="grid gap-1 text-sm font-medium">Job title<input name="title" className="field" defaultValue={person?.title} autoComplete="off" /></label>
-        <label className="grid gap-1 text-sm font-medium">
-          Role
-          <select className="field" value={role} onChange={(e) => setRole(e.target.value as ApiRole)}>
-            {roles.map((r) => <option key={r} value={r}>{cap(r)}</option>)}
-          </select>
-        </label>
-        {role !== "admin" && (
-          <fieldset className="grid gap-1">
-            <legend className="mb-1 text-sm font-medium">Departments</legend>
-            {deptNames.length === 0 && <p className="text-sm text-muted">No departments yet.</p>}
-            <div className="grid grid-cols-2 gap-1">
-              {deptNames.map((d) => (
-                <label key={d} className="flex items-center gap-2 text-sm">
-                  <input type="checkbox" name="departments" value={d} defaultChecked={chosen.includes(d)} className="size-4 accent-accent" />{d}
-                </label>
-              ))}
-            </div>
-            {role === "guest" && <p className="text-xs text-muted">Guests read Everyone documents, plus any department ticked here.</p>}
-          </fieldset>
-        )}
-        {role === "guest" && (
-          <label className="grid gap-1 text-sm font-medium">
-            Access until
-            <input name="guest_until" type="date" className="field" defaultValue={person?.guest_until?.slice(0, 10)} />
-          </label>
-        )}
-        {err && <p className="text-sm text-error" role="alert">{err}</p>}
-        <div className="flex justify-end gap-2">
-          <button type="button" className="btn" onClick={onClose}>Cancel</button>
-          <button type="submit" className="btn btn-primary" disabled={busy}>{busy ? "Saving" : person ? "Save" : "Add person"}</button>
-        </div>
-      </form>
-    </dialog>
-  );
-}
-
-function DeptDialog({ dept, onDone, onClose }: { dept?: Department; onDone: () => void; onClose: () => void }) {
-  const { err, busy, run } = useSubmit(onDone);
-  function submit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    const f = new FormData(e.currentTarget);
-    const body = { name: String(f.get("name")).trim(), description: String(f.get("description") ?? "").trim() };
-    run(() => dept ? api(`/departments/${encodeURIComponent(dept.name)}`, body, "PATCH") : api("/departments", body));
-  }
-  return (
-    <dialog ref={openModal} className="dialog" aria-labelledby="dd-title" onClose={onClose}>
-      <form className="grid gap-4" onSubmit={submit}>
-        <h2 id="dd-title" className="text-xl font-semibold">{dept ? `Rename ${dept.name}` : "Add a department"}</h2>
-        <label className="grid gap-1 text-sm font-medium">Name<input name="name" required className="field" defaultValue={dept?.name} autoComplete="off" /></label>
-        <label className="grid gap-1 text-sm font-medium">Description<input name="description" className="field" defaultValue={dept?.description} autoComplete="off" /></label>
-        {err && <p className="text-sm text-error" role="alert">{err}</p>}
-        <div className="flex justify-end gap-2">
-          <button type="button" className="btn" onClick={onClose}>Cancel</button>
-          <button type="submit" className="btn btn-primary" disabled={busy}>{busy ? "Saving" : "Save"}</button>
-        </div>
-      </form>
-    </dialog>
   );
 }

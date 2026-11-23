@@ -1,0 +1,167 @@
+/* Document viewer (UI Phase 2). Tokens only, so it follows the app's design base in light and dark.
+   Documents themselves sit on light "paper" in both themes, like the PDF pages they stand next to. */
+.dv {
+  --dv-paper: oklch(99.6% 0.003 250);
+  --dv-ink: oklch(21% 0.02 250);
+  --dv-muted: oklch(45% 0.02 250);
+  --dv-rule: oklch(88% 0.01 240);
+  --dv-mark: oklch(90% 0.08 262);
+  --dv-mark-edge: oklch(50% 0.19 262);
+  display: flex; flex-direction: column; min-height: 0; min-width: 0; position: relative;
+  background: var(--color-paper-2); color: var(--color-ink);
+  border-left: var(--rule-hair) solid var(--color-rule);
+  container: dv / inline-size;
+  animation: dv-in var(--dur-short) var(--ease-out);
+}
+@keyframes dv-in { from { opacity: 0; transform: translateX(16px); } }
+
+/* Side sheet over the page (Search, Library). Width snaps to Small / Half / Full; it never animates. */
+.dv[data-mode="overlay"] {
+  position: fixed; z-index: 300; top: 0; right: 0; bottom: 0;
+  width: min(460px, 100vw); box-shadow: -24px 0 48px -32px var(--color-shadow);
+}
+.dv[data-mode="overlay"][data-size="half"] { width: calc((100vw - var(--rail-w, 0px)) / 2); }
+.dv[data-mode="overlay"][data-size="full"] { width: calc(100vw - var(--rail-w, 0px)); }
+.dv-scrim { position: fixed; inset: 0; z-index: 299; background: color-mix(in oklch, var(--color-ink) 18%, transparent); animation: dv-fade var(--dur-short) var(--ease-out); }
+@keyframes dv-fade { from { opacity: 0; } }
+/* Docked (Ask): a column of the parent grid; the parent sets the width. */
+.dv[data-mode="docked"] { height: 100%; }
+
+.dv-handle {
+  position: absolute; z-index: 10; top: 0; bottom: 0; left: -7px; width: 14px;
+  display: grid; place-items: center; cursor: col-resize; touch-action: none;
+}
+.dv-handle span {
+  width: 6px; height: 44px; border-radius: var(--radius-pill);
+  background: var(--color-paper); border: var(--rule-hair) solid var(--color-rule);
+  transition: border-color var(--dur-micro) var(--ease-out), background-color var(--dur-micro) var(--ease-out);
+}
+.dv-handle:hover span, .dv-handle:focus-visible span { border-color: var(--color-accent); background: var(--color-accent-soft); }
+.dv-handle:focus-visible { outline-offset: -2px; }
+
+/* Header: title row (title, meta, Download, close), then tools (tabs, pagers, width). */
+.dv-head { display: grid; gap: var(--space-xs); padding: var(--space-sm) var(--space-lg); border-bottom: var(--rule-hair) solid var(--color-rule); background: var(--color-paper); }
+.dv-title-row { display: flex; align-items: flex-start; gap: var(--space-sm); min-height: 44px; }
+.dv-title { flex: 1; min-width: 0; display: grid; gap: var(--space-3xs); }
+.dv-title h2 { font-size: var(--text-lg); font-weight: 600; line-height: 1.3; overflow-wrap: anywhere; }
+.dv-title h2:focus { outline: none; } /* a focus target for screen readers, not a control */
+.dv-meta { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-3xs) var(--space-sm); font-size: var(--text-xs); color: var(--color-muted); }
+.dv-dept { color: var(--color-ink-2); font-weight: 600; }
+.dv-status { padding: 0 var(--space-xs); border-radius: var(--radius-pill); font-weight: 600; }
+.dv-status-ready { background: var(--color-success-soft); color: var(--color-success); }
+.dv-status-processing { background: var(--color-accent-soft); color: var(--color-accent-deep); }
+.dv-status-queued { background: var(--color-paper-3); color: var(--color-ink-2); }
+.dv-status-failed { background: var(--color-error-soft); color: var(--color-error); }
+.dv .btn { gap: var(--space-xs); text-decoration: none; white-space: nowrap; flex: none; }
+.dv .btn svg, .dv .icon-btn svg { width: 16px; height: 16px; }
+.dv-back { display: none; }
+.dv-tools { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-xs) var(--space-sm); }
+.dv-tools-end { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-xs) var(--space-sm); margin-left: auto; }
+.dv-tabs { display: flex; gap: var(--space-md); }
+.dv-tabs button {
+  padding: var(--space-2xs) 0; min-height: 36px; border: 0; border-bottom: 2px solid transparent; background: none;
+  color: var(--color-muted); font: inherit; font-size: var(--text-sm); font-weight: 600; cursor: pointer;
+  transition: color var(--dur-micro) var(--ease-out), border-color var(--dur-micro) var(--ease-out);
+}
+.dv-tabs button:hover { color: var(--color-ink); }
+.dv-tabs button[aria-selected="true"] { color: var(--color-ink); border-bottom-color: var(--color-accent); }
+.dv-pager { display: flex; align-items: center; gap: var(--space-2xs); }
+.dv-pager span { font-size: var(--text-sm); color: var(--color-muted); min-width: 9ch; text-align: center; font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+/* Body */
+.dv-body { flex: 1; min-height: 0; overflow-y: auto; overflow-x: hidden; padding: var(--space-lg); display: grid; align-content: start; gap: var(--space-md); }
+.dv-body:focus { outline: none; }
+.dv-state { justify-items: start; max-width: 52ch; margin: var(--space-xl) auto 0; }
+.dv-state > svg { width: 28px; height: 28px; color: var(--color-muted); }
+.dv-sheet-skeleton { height: 60vh; }
+.dv-note { font-size: var(--text-sm); color: var(--color-ink-2); background: var(--color-warn-soft); border-radius: var(--radius-input); padding: var(--space-xs) var(--space-sm); max-width: 900px; width: 100%; margin-inline: auto; }
+
+/* PDF pages */
+.dv-pdf { display: grid; justify-items: center; gap: var(--space-md); min-width: 0; width: 100%; max-width: 900px; margin-inline: auto; }
+.dv-sheet { position: relative; max-width: 100%; background: #fff; border-radius: 2px; box-shadow: 0 0 0 1px var(--dv-rule), 0 18px 36px -22px var(--color-shadow); overflow: hidden; scroll-margin-top: var(--space-md); }
+.dv-pdf > .skeleton.dv-sheet { width: 100%; }
+.dv-sheet-inner, .dv-sheet canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+.dv .textLayer { position: absolute; inset: 0; overflow: clip; opacity: 1; line-height: 1; text-align: initial; transform-origin: 0 0; z-index: 0; -webkit-text-size-adjust: none; text-size-adjust: none; forced-color-adjust: none; color-scheme: only light; --min-font-size: 1; --text-scale-factor: calc(var(--total-scale-factor) * var(--min-font-size)); --min-font-size-inv: calc(1 / var(--min-font-size)); }
+.dv .textLayer :is(span, br) { color: transparent; position: absolute; white-space: pre; cursor: text; transform-origin: 0% 0%; user-select: text; }
+.dv .textLayer > :not(.markedContent), .dv .textLayer .markedContent span:not(.markedContent) { z-index: 1; --font-height: 0; font-size: calc(var(--text-scale-factor) * var(--font-height)); --scale-x: 1; --rotate: 0deg; transform: rotate(var(--rotate)) scaleX(var(--scale-x)) scale(var(--min-font-size-inv)); }
+.dv .textLayer .markedContent { display: contents; }
+.dv .textLayer ::selection { background: color-mix(in srgb, AccentColor, transparent 60%); color: transparent; }
+.dv .textLayer .dv-hit { background: oklch(80% 0.14 262 / 0.42); border-radius: 2px; box-shadow: 0 0 0 2px oklch(80% 0.14 262 / 0.42); }
+
+/* Cited passage strip (PDFs): the exact words Atlas used, above the pages. */
+.dv-passage { width: 100%; max-width: 900px; margin-inline: auto; border-radius: var(--radius-card); background: var(--color-paper); box-shadow: 0 0 0 var(--rule-hair) var(--color-rule), inset 4px 0 0 var(--color-accent); padding: var(--space-xs) var(--space-md) var(--space-sm) calc(var(--space-md) + 4px); }
+.dv-passage summary { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--space-3xs) var(--space-sm); cursor: pointer; min-height: 32px; padding-top: var(--space-2xs); font-size: var(--text-sm); }
+.dv-passage-label { font-weight: 600; color: var(--color-accent-deep); }
+.dv-passage-section, .dv-passage-page { color: var(--color-muted); font-size: var(--text-xs); }
+.dv-passage-body { max-height: 220px; overflow-y: auto; margin-top: var(--space-xs); }
+.dv-passage-body .dv-prose { font-size: var(--text-sm); color: var(--color-ink-2); }
+.dv-passage-go { margin-top: var(--space-sm); }
+
+/* Word / Markdown / text on paper */
+.dv-paper {
+  width: 100%; max-width: 760px; margin-inline: auto; background: var(--dv-paper); color: var(--dv-ink); border-radius: 4px;
+  box-shadow: 0 0 0 1px var(--dv-rule), 0 18px 36px -22px var(--color-shadow);
+  padding: var(--space-xl) var(--space-xl) var(--space-2xl); font-size: 0.9375rem; line-height: 1.7; min-width: 0;
+}
+.dv-letterhead { display: flex; justify-content: space-between; gap: var(--space-md); align-items: start; padding-bottom: var(--space-md); margin-bottom: var(--space-md); border-bottom: 2px solid var(--dv-ink); }
+.dv-letterhead strong { font-family: var(--font-display); font-size: var(--text-lg); display: block; line-height: 1.2; }
+.dv-letterhead span { color: var(--dv-muted); font-size: var(--text-xs); }
+.dv-letterhead dl { display: grid; grid-template-columns: auto auto; gap: var(--space-3xs) var(--space-sm); font-size: var(--text-xs); margin: 0; }
+.dv-letterhead dt { color: var(--dv-muted); }
+.dv-letterhead dd { margin: 0; font-weight: 600; font-variant-numeric: tabular-nums; }
+.dv-cited-label { font-size: var(--text-xs); font-weight: 600; color: var(--dv-mark-edge); margin-bottom: var(--space-sm); }
+.dv-prose { display: grid; gap: var(--space-sm); overflow-wrap: anywhere; min-width: 0; }
+.dv-prose :is(h2, h3, h4, h5, h6) { font-family: var(--font-display); color: inherit; line-height: 1.3; margin-top: var(--space-sm); }
+.dv-prose h2 { font-size: var(--text-xl); } .dv-prose h3 { font-size: var(--text-lg); } .dv-prose :is(h4, h5, h6) { font-size: var(--text-md); }
+.dv-prose ul, .dv-prose ol { margin: 0; padding-left: 1.35rem; display: grid; gap: var(--space-2xs); }
+.dv-prose ul { list-style: disc; } .dv-prose ol { list-style: decimal; }
+.dv-prose strong { font-weight: 600; }
+.dv-prose blockquote { margin: 0; padding-left: var(--space-sm); border-left: 3px solid var(--dv-rule); color: var(--dv-muted); }
+.dv-prose pre { margin: 0; padding: var(--space-sm); overflow-x: auto; border-radius: var(--radius-input); background: oklch(96% 0.005 250); font-size: var(--text-sm); white-space: pre; overflow-wrap: normal; }
+.dv-prose code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.9em; }
+.dv-prose hr { border: 0; border-top: 1px solid var(--dv-rule); width: 100%; }
+.dv-table { overflow-x: auto; max-width: 100%; }
+.dv-table:focus-visible { outline: 2px solid var(--color-focus); }
+.dv-table table { border-collapse: collapse; font-size: var(--text-sm); line-height: 1.45; min-width: 100%; overflow-wrap: normal; }
+.dv-table th, .dv-table td { text-align: left; vertical-align: top; padding: var(--space-2xs) var(--space-xs); border-bottom: 1px solid var(--dv-rule); }
+.dv-table th { font-weight: 600; }
+/* The cited passage, in text documents: the same mark as Ask's reader always had. */
+.dv-paper .dv-hit { background: var(--dv-mark); box-shadow: -4px 0 0 var(--dv-mark-edge); border-radius: 0 3px 3px 0; padding-inline: var(--space-2xs); scroll-margin: var(--space-xl); }
+.dv-paper li.dv-hit { box-shadow: none; }
+.dv-paper :is(ul, ol):has(> li.dv-hit) { box-shadow: -4px 0 0 var(--dv-mark-edge); }
+.dv-paper tr.dv-hit { box-shadow: inset 4px 0 0 var(--dv-mark-edge); }
+
+/* How Atlas reads this */
+.dv-chunk-intro { max-width: 760px; width: 100%; margin-inline: auto; font-size: var(--text-sm); color: var(--color-muted); }
+.dv-chunk-skeleton { height: 140px; }
+.dv-chunks { display: grid; gap: var(--space-sm); margin: 0 auto; padding: 0; list-style: none; max-width: 760px; width: 100%; }
+.dv-chunk { display: grid; gap: var(--space-xs); padding: var(--space-md); border-radius: var(--radius-card); background: var(--color-paper); box-shadow: 0 0 0 var(--rule-hair) var(--color-rule); scroll-margin: var(--space-lg); }
+.dv-chunk[aria-current="true"] { box-shadow: 0 0 0 2px var(--color-accent); }
+.dv-chunk-meta { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-3xs) var(--space-md); font-size: var(--text-xs); color: var(--color-muted); }
+.dv-chunk-meta strong { color: var(--color-ink); font-variant-numeric: tabular-nums; }
+.dv-chunk-section { flex-basis: 100%; }
+.dv-chunk-text { font-size: var(--text-sm); color: var(--color-ink-2); white-space: pre-wrap; overflow-wrap: anywhere; }
+
+/* Narrow viewer (Small): fewer words, tighter paper. */
+@container dv (max-width: 560px) {
+  .dv-head, .dv-body { padding-inline: var(--space-md); }
+  .dv-paper { padding: var(--space-lg) var(--space-md) var(--space-xl); }
+  .dv-letterhead { flex-direction: column; }
+  .dv-download-label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+  .dv-download { padding-inline: var(--space-xs); }
+}
+
+@media (prefers-reduced-motion: reduce) { .dv, .dv-scrim { animation: none; } }
+
+/* Phone: the viewer is the whole screen, with Back. */
+@media (max-width: 60rem) {
+  .dv, .dv[data-mode][data-size] { position: fixed; inset: 0; z-index: 300; width: 100%; height: 100%; border-left: 0; }
+  .dv-handle, .dv-close, .dv-sizes { display: none; }
+  .dv-back { display: inline-flex; }
+  .dv-head { padding-inline: var(--gutter, var(--space-md)); }
+  .dv-title-row { flex-wrap: wrap; }
+  .dv-title { order: 3; flex-basis: 100%; }
+  .dv-download { margin-left: auto; }
+  .dv-tools-end { margin-left: 0; width: 100%; justify-content: space-between; }
+  .dv-body { padding: var(--space-md) var(--gutter, var(--space-md)); }
+}
