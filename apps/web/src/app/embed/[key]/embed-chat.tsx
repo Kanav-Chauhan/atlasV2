@@ -20,37 +20,75 @@ function threadId(key: string) {
 }
 
 const close = () => window.parent.postMessage("atlas:close", "*");
+// No new answer text for this long (from the question or the last token) = give up, abort the fetch, offer Retry.
+const NO_ANSWER_MS = 60_000;
+const NO_ANSWER = "No answer came. Try again.";
+const reducedMotion = () => matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 export function EmbedChat({ siteKey, config, preview }: { siteKey: string; config: PublicConfig; preview: boolean }) {
   const [id] = useState(() => threadId(siteKey));
   const [transport] = useState(() => new DefaultChatTransport<AtlasMessage>({ api: `/api/public/${siteKey}/chat` }));
   const [stage, setStage] = useState<Stage | null>(null);
   const [input, setInput] = useState("");
+  // The answer never came: 60 s without new text, or the stream closed without its finish part.
+  const [failed, setFailed] = useState(false);
+  const timedOut = useRef(false);
   const honeypot = useRef<HTMLInputElement>(null);
+  const box = useRef<HTMLTextAreaElement>(null);
   const scroller = useRef<HTMLDivElement>(null);
+  const shownQ = useRef<string | null>(null);
   const framed = useSyncExternalStore(() => () => {}, () => !preview && window.parent !== window, () => false);
 
   const { messages, sendMessage, status, stop, error, regenerate } = useChat<AtlasMessage>({
     id, transport,
     onData: (p) => { if (p.type === "data-status") setStage(p.data.stage); },
-    onFinish: () => setStage(null),
+    onFinish: ({ message, isAbort, isError, finishReason }) => {
+      setStage(null);
+      // A cut connection ends the stream without a finish part and the SDK reports no error:
+      // without this the visitor saw their question and then nothing at all.
+      if (timedOut.current || (!isAbort && !isError && (!finishReason || (message.role === "assistant" && !textOf(message) && !metaOf(message)?.abstained)))) setFailed(true);
+      timedOut.current = false;
+    },
     onError: () => setStage(null),
   });
   const busy = status === "submitted" || status === "streaming";
   const last = messages.at(-1);
+  const body = () => ({ body: { website: honeypot.current?.value ?? "" } });
 
   const ask = () => {
-    const text = input.trim();
+    // Read the box itself: text typed before the page finished loading never reached `input`.
+    const text = (box.current?.value ?? input).trim();
     if (!text || busy) return;
     setStage(null);
-    sendMessage({ text }, { body: { website: honeypot.current?.value ?? "" } });
+    setFailed(false);
+    sendMessage({ text }, body());
     setInput("");
   };
+  const retry = () => {
+    if (busy) return;
+    setStage(null);
+    setFailed(false);
+    regenerate(body()); // resends the same question (drops a half answer first)
+  };
 
+  // Watchdog: restarts on every new piece of answer text; stop() aborts the hung fetch.
+  const answered = last?.role === "assistant" ? textOf(last).length : 0;
+  useEffect(() => {
+    if (!busy) return;
+    const t = setTimeout(() => { timedOut.current = true; stop(); }, NO_ANSWER_MS);
+    return () => clearTimeout(t);
+  }, [busy, answered, stop]);
+
+  // A new question scrolls to the top of the thread once (like ChatGPT); the answer grows below it
+  // and the thread never auto-scrolls after that, so the visitor's own scrolling is left alone.
+  const lastQ = messages.findLast((m) => m.role === "user")?.id ?? null;
   useEffect(() => {
     const el = scroller.current;
-    if (el && (status === "submitted" || el.scrollHeight - el.scrollTop - el.clientHeight < 120)) el.scrollTop = el.scrollHeight;
-  }, [messages, status]);
+    if (!el || !lastQ || lastQ === shownQ.current) return;
+    shownQ.current = lastQ;
+    const q = el.querySelector<HTMLElement>(".embed-last .q");
+    if (q) el.scrollTo({ top: q.offsetTop - parseFloat(getComputedStyle(el).paddingTop), behavior: reducedMotion() ? "auto" : "smooth" });
+  }, [lastQ]);
 
   useEffect(() => {
     if (!framed) return;
@@ -58,6 +96,10 @@ export function EmbedChat({ siteKey, config, preview }: { siteKey: string; confi
     addEventListener("keydown", esc);
     return () => removeEventListener("keydown", esc);
   }, [framed]);
+
+  const split = Math.max(0, messages.findLastIndex((m) => m.role === "user"));
+  const item = (m: AtlasMessage, i: number) => m.role === "user" ? <p key={m.id} className="q">{textOf(m)}</p>
+    : <Reply key={m.id} m={m} live={busy && i === messages.length - 1} company={config.company} />;
 
   const accent = HEX.test(config.accent) ? config.accent : null;
   const style = accent ? ({ "--site-accent": accent, "--site-ink": inkOn(accent) } as React.CSSProperties) : undefined;
@@ -76,18 +118,24 @@ export function EmbedChat({ siteKey, config, preview }: { siteKey: string; confi
         )}
       </header>
 
-      <div className="embed-thread" ref={scroller} aria-live="polite">
+      <div className="embed-thread" ref={scroller}>
         <p className="embed-greet">{config.greeting || `Hi! Ask me anything about ${config.company}.`}</p>
-        {messages.map((m, i) => m.role === "user" ? <p key={m.id} className="q">{textOf(m)}</p>
-          : <Reply key={m.id} m={m} live={busy && i === messages.length - 1} company={config.company} />)}
-        {busy && (last?.role === "user" || !textOf(last!)) && (
-          <p className="status" role="status"><span className="pulse" aria-hidden="true" />{STAGE_TEXT[stage ?? "guard"].replace("your documents", "our documents")}</p>
-        )}
-        {error && (
-          <div className="notfound" role="alert">
-            <strong>That didn&apos;t go through</strong>
-            <p>{errorText(error)}</p>
-            <button type="button" className="btn" onClick={() => regenerate()}>Try again</button>
+        {messages.slice(0, split).map(item)}
+        {split < messages.length && (
+          // The latest question and its answer: at least one screen tall, so the question can sit at the top.
+          <div className="embed-last">
+            {messages.slice(split).map((m, i) => item(m, split + i))}
+            <p className="status" role="status" aria-live="polite">
+              {busy && (last?.role === "user" || !textOf(last!)) && (
+                <><span className="pulse" aria-hidden="true" />{STAGE_TEXT[stage ?? "guard"].replace("your documents", "our documents")}</>
+              )}
+            </p>
+            {!busy && (error || failed) && (
+              <div className="notfound" role="alert">
+                <p>{error && errorText(error) !== errorText(new Error()) ? errorText(error) : NO_ANSWER}</p>
+                <button type="button" className="btn" onClick={retry}>Retry</button>
+              </div>
+            )}
           </div>
         )}
       </div>
@@ -98,7 +146,7 @@ export function EmbedChat({ siteKey, config, preview }: { siteKey: string; confi
           <label>Website<input ref={honeypot} name="website" tabIndex={-1} autoComplete="off" /></label>
         </div>
         <label className="sr-only" htmlFor="embed-q">Your question</label>
-        <textarea id="embed-q" rows={1} maxLength={500} value={input} placeholder="Type your question" autoComplete="off" autoFocus
+        <textarea ref={box} id="embed-q" rows={1} maxLength={500} value={input} placeholder="Type your question" autoComplete="off" autoFocus
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={(e) => { if (e.key === "Enter" && !e.shiftKey && !e.nativeEvent.isComposing) { e.preventDefault(); ask(); } }} />
         {busy
@@ -121,7 +169,7 @@ function Reply({ m, live, company }: { m: AtlasMessage; live: boolean; company: 
       <p>{text.replace(/^\s*Not found in your documents\.?\s*/i, "") || `${company} hasn't published an answer to this. Try asking another way, or contact ${company} directly.`}</p>
     </div>
   );
-  if (!text && live) return null;
+  if (!text) return null;
   return (
     <div className="a">
       <Markdown text={text} sources={sources} live={live} current={null} />

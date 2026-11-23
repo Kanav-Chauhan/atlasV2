@@ -19,7 +19,7 @@ from fastapi.responses import Response, StreamingResponse
 from pydantic import BaseModel, ConfigDict, StringConstraints, field_validator
 from sqlalchemy import func, select, text
 
-from atlas_api import access, chat_routes, graph, plans, website
+from atlas_api import access, cache, chat_routes, graph, plans, website
 from atlas_api.cache import visitor_scope
 from atlas_api.db import CHUNKS_TABLE, Session, redis
 from atlas_api.llm import VisitorModels
@@ -144,6 +144,7 @@ async def set_public(doc_id: int, body: PublicPatch, user: CurrentUser, s: DB) -
             {"v": body.is_public, "id": str(doc.id)},
         )
     await s.commit()
+    await cache.invalidate(user.org_id)  # visitors' cached answers may cite it
     return DocumentOut.model_validate(doc)
 
 
@@ -330,6 +331,7 @@ def visitor_context(org: Organization) -> graph.Ctx:
         threshold=settings.grade_threshold,
         models=VisitorModels(),
         cache=chat_routes.answer_cache,
+        org_id=org_id,
         visitor=True,
         greeting=website.greeting(org),
     )

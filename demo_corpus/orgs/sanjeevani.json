@@ -3,6 +3,7 @@
   "name": "Sanjeevani Pharma Ltd.",
   "industry": "Pharmaceuticals",
   "site_key": "bS50iH8Uf0adAga3pZNB-A",
+  "accent": "#00796B",
   "departments": [
     {"name": "HR", "description": "Pay grades, allowances, hiring and campus programme"},
     {"name": "R&D", "description": "R&D reports and clinical trials, including the SJ-2041 Phase III programme"},

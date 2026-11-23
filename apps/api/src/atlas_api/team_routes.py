@@ -12,7 +12,7 @@ from pydantic import BaseModel, StringConstraints
 from sqlalchemy import func, select, text, update
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from atlas_api import access, clerk, plans
+from atlas_api import access, cache, clerk, plans
 from atlas_api.db import CHUNKS_TABLE
 from atlas_api.models import EVERYONE, Department, Document, Organization, Role, User
 from atlas_api.routes import DB, CurrentUser
@@ -261,6 +261,7 @@ async def change_department(name: str, body: DepartmentPatch, user: Admin, s: DB
             )
         d.name = body.name
     await s.commit()
+    await cache.invalidate(user.org_id)  # documents' access labels changed
     return DepartmentOut(name=d.name, description=d.description)
 
 

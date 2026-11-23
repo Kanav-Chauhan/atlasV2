@@ -5,8 +5,13 @@ guard → route → (smalltalk | offtopic | blocked | rewrite) → cache_lookup 
   → answer | not_found → cite_check → cache_store
 
 grade (corrective RAG, Phase 6) has two checks: the cross-encoder's top score against a
-calibrated threshold, then the `fast` model's relevance verdict (yes / partial / no + which
-passages). Only the passages it marks reach the answer model.
+calibrated threshold, then the `fast` model's relevance verdict (yes / partial / no). It is a
+gate: on yes/partial every passage reaches the answer model.
+
+Speed (2026-11-23): the answer model starts in `grade`, concurrently with the relevance check
+(AnswerDraft below), and `answer` releases its buffered tokens only once the gate said yes;
+"no" cancels it. route, rewrite and the relevance check each have a time limit
+(settings.*_timeout_s) with a safe default when the model is slow.
 
 The semantic cache sits after rewrite because its key is the rewritten English question.
 Nodes stream to the client through the runtime stream writer: {"status": stage} and
@@ -17,7 +22,7 @@ import asyncio
 import logging
 import re
 import time
-from collections.abc import Callable
+from collections.abc import AsyncIterator, Awaitable, Callable
 from dataclasses import dataclass, field
 from typing import Annotated, Any, Literal, TypedDict
 
@@ -41,6 +46,11 @@ NOT_FOUND_REASON = {
     "en": "No document you can open answers this, so Atlas did not guess.",
     "hi": "आप जिन दस्तावेज़ों को खोल सकते हैं, उनमें से किसी में इसका जवाब नहीं है, "
     "इसलिए Atlas ने अनुमान नहीं लगाया।",
+}
+# Both answer tries came back empty (answer_node).
+TRY_AGAIN = {
+    "en": "Sorry, I couldn't write an answer just now. Please try again in a moment.",
+    "hi": "माफ़ कीजिए, अभी जवाब नहीं बन पाया। कृपया थोड़ी देर में फिर से पूछिए।",
 }
 # Website visitors (Phase 8): no "your documents"; point them to the company instead.
 VISITOR_NOT_FOUND = {
@@ -70,6 +80,7 @@ class State(TypedDict, total=False):
     sources: list[dict[str, Any]]
     abstained: bool
     cached: bool
+    timeouts: list[str]  # model steps that ran out of time this turn (route, rewrite, grade, …)
 
 
 def new_turn(question: str) -> State:
@@ -94,6 +105,7 @@ def new_turn(question: str) -> State:
         sources=[],
         abstained=False,
         cached=False,
+        timeouts=[],
     )
 
 
@@ -112,11 +124,61 @@ class Ctx:
     models: Models = field(default_factory=Models)
     search: SearchFn | None = None
     cache: AnswerCache | None = None
+    org_id: int = 0  # the cache's invalidation counter is per company (cache.invalidate)
     # Website visitor (Phase 8): public documents only, no suggestions, website wording.
     visitor: bool = False
     greeting: str = ""
     # LLM relevance grade after the score threshold (ATLAS_RELEVANCE_GRADE).
     relevance: bool = field(default_factory=lambda: settings.relevance_grade)
+    # Time limits in seconds (settings.*_timeout_s; tests shorten them).
+    grade_timeout: float = field(default_factory=lambda: settings.grade_timeout_s)
+    route_timeout: float = field(default_factory=lambda: settings.route_timeout_s)
+    rewrite_timeout: float = field(default_factory=lambda: settings.rewrite_timeout_s)
+    # The answer started early by `grade` and handed to `answer` (never checkpointed: a live
+    # asyncio task belongs to this request only).
+    draft: "AnswerDraft | None" = None
+
+
+class AnswerDraft:
+    """The answer model's stream, started before the relevance gate has decided.
+
+    Why: the relevance check and the answer both wait on the gateway (median 3.4 s and 4.9 s,
+    p90 17 s and 12 s). Run one after the other they add up; started together the answer is
+    usually ready, or well under way, when the gate opens. A background task pulls the model's
+    deltas into a queue; nothing reaches the user until `answer_node` drains it, which it does
+    only when the gate said yes/partial (or timed out with a passing score). On "no" the task
+    is cancelled, so the gate still decides exactly as before: the cost is only the tokens of
+    an answer that was thrown away (questions that end in "not found").
+    `key` ties the draft to the query + passages it was written for; `answer_node` never uses
+    a draft for anything else.
+    """
+
+    def __init__(self, key: tuple[str, ...], stream: AsyncIterator[str]) -> None:
+        self.key = key
+        self._queue: asyncio.Queue[str | Exception | None] = asyncio.Queue()
+        self._task = asyncio.create_task(self._pump(stream))
+
+    async def _pump(self, stream: AsyncIterator[str]) -> None:
+        try:
+            async for delta in stream:
+                self._queue.put_nowait(delta)
+        except Exception as e:  # handed to the reader, raised where the answer streams
+            self._queue.put_nowait(e)
+        finally:
+            self._queue.put_nowait(None)
+
+    async def deltas(self) -> AsyncIterator[str]:
+        while (item := await self._queue.get()) is not None:
+            if isinstance(item, Exception):
+                raise item
+            yield item
+
+    def cancel(self) -> None:
+        self._task.cancel()
+
+
+def draft_key(state: "State") -> tuple[str, ...]:
+    return (state["question"], state["query"], *(p["chunk_id"] for p in state["passages"]))
 
 
 # ---------------------------------------------------------------- instant rules (no AI call)
@@ -218,12 +280,29 @@ async def route_node(state: State, runtime: Runtime[Ctx]) -> dict[str, Any]:
     if kind := smalltalk_kind(q):
         return {"route": "smalltalk", "smalltalk": kind, "language": lang}
     ctx = runtime.context
+    # Out of time -> a document question (the normal RAG path). The router is also a second
+    # safety check ("blocked" for jailbreaks the rules miss); on a timeout that check is
+    # skipped, and the safety net is the rule guard (guard_node, always run first) plus the
+    # answer prompt, which treats passages and question as data and answers only from
+    # documents the asker can open (retrieval filters are never relaxed).
     try:
-        out = await ctx.models.route(q, ctx.org, history_text(state["messages"][:-1]))
+        out = await limited(
+            ctx.models.route(q, ctx.org, history_text(state["messages"][:-1])), ctx.route_timeout
+        )
         return {"route": out.route, "language": "hi" if lang == "hi" else out.language}
+    except TimeoutError:
+        log.warning(
+            "router timed out after %.1fs; treating the message as a question", ctx.route_timeout
+        )
+        return {"route": "rag", "language": lang, "timeouts": [*state.get("timeouts", []), "route"]}
     except Exception:
         log.exception("router model failed; treating the message as a question")
         return {"route": "rag", "language": lang}
+
+
+async def limited[T](call: Awaitable[T], seconds: float) -> T:
+    """`call` with a time limit (TimeoutError when it runs out; the call is cancelled)."""
+    return await asyncio.wait_for(call, seconds)
 
 
 def after_guard(state: State) -> Literal["blocked", "route"]:
@@ -270,7 +349,12 @@ async def rewrite_node(state: State, runtime: Runtime[Ctx]) -> dict[str, Any]:
     if state.get("attempt", 0) > 0:  # corrective retry: a different formulation
         _status(runtime, "retry")
         try:
-            alt = await ctx.models.reformulate(state["query"], ctx.org)
+            alt = await limited(
+                ctx.models.reformulate(state["query"], ctx.org), ctx.rewrite_timeout
+            )
+        except TimeoutError:
+            log.warning("reformulate timed out; retrying with the same query")
+            return {"timeouts": [*state.get("timeouts", []), "reformulate"]}
         except Exception:
             log.exception("reformulate failed")
             alt = ""
@@ -280,14 +364,21 @@ async def rewrite_node(state: State, runtime: Runtime[Ctx]) -> dict[str, Any]:
     needs_model = bool(history) or state["language"] == "hi" or _COMPANY_WORDS.search(q)
     if not needs_model:
         return {"query": q, "first_query": q, "used_history": False}
+    timeouts = state.get("timeouts", [])
     try:
-        out = await ctx.models.rewrite(q, ctx.org, history_text(history))
+        out = await limited(
+            ctx.models.rewrite(q, ctx.org, history_text(history)), ctx.rewrite_timeout
+        )
         query = out.query.strip() or q
         used = bool(history) and out.used_history
+    except TimeoutError:
+        log.warning("rewrite timed out; searching with the question as asked")
+        query, used, timeouts = q, bool(history), [*timeouts, "rewrite"]
     except Exception:
         log.exception("rewrite failed; searching with the question as asked")
         query, used = q, bool(history)
-    return {"query": query, "first_query": query, "used_history": used}
+    # used=True whenever there was history and no clean rewrite: such a turn is never cached.
+    return {"query": query, "first_query": query, "used_history": used, "timeouts": timeouts}
 
 
 def after_rewrite(state: State) -> Literal["cache_lookup", "retrieve"]:
@@ -300,7 +391,7 @@ async def cache_lookup_node(state: State, runtime: Runtime[Ctx]) -> dict[str, An
         return {}
     _status(runtime, "cache")
     try:
-        hit = await ctx.cache.lookup(state["query"], ctx.scope(state["language"]))
+        hit = await ctx.cache.lookup(state["query"], ctx.scope(state["language"]), ctx.org_id)
     except Exception:
         log.exception("semantic cache lookup failed")
         return {}
@@ -357,7 +448,10 @@ async def grade_node(state: State, runtime: Runtime[Ctx]) -> dict[str, Any]:
     The grade is a GATE, not a filter: on yes/partial ALL passages go to the answer model.
     Keeping only the marked ones (first version) cut fully correct answers from 149 to 140
     of 167 in the Phase 6 exam: the second half of an answer often sat in an unmarked passage
-    (evals/grading/run1)."""
+    (evals/grading/run1).
+    Once the score passes, the answer model starts right away (AnswerDraft, buffered) while
+    the relevance check runs; the check has ctx.grade_timeout seconds, after which the score
+    decides alone (the pre-Phase-6 rule, which already passed here) and the turn answers."""
     _status(runtime, "grade")
     ctx = runtime.context
     passages = state["passages"]
@@ -370,17 +464,40 @@ async def grade_node(state: State, runtime: Runtime[Ctx]) -> dict[str, Any]:
     if not ctx.relevance:
         log_entry["verdict"] = "off"
         return {"grade": "answer", "relevance": "off", "grade_log": grade_log}
+    text = passages_text(passages)
+    draft = AnswerDraft(
+        draft_key(state), ctx.models.answer(state["question"], state["query"], text, ctx.org)
+    )
     try:
-        out = await ctx.models.relevance(
-            state["question"], state["query"], passages_text(passages), ctx.org
+        out = await limited(
+            ctx.models.relevance(state["question"], state["query"], text, ctx.org),
+            ctx.grade_timeout,
         )
+    except TimeoutError:
+        log.warning(
+            "relevance grade timed out after %.1fs; answering on the score alone (%.2f)",
+            ctx.grade_timeout,
+            state["top_score"],
+        )
+        log_entry["verdict"] = "timeout"
+        ctx.draft = draft
+        timeouts = [*state.get("timeouts", []), "grade"]
+        return {"grade": "answer", "relevance": "timeout", "grade_log": grade_log} | {
+            "timeouts": timeouts
+        }
+    except asyncio.CancelledError:  # the turn itself was cancelled (client went away)
+        draft.cancel()
+        raise
     except Exception:
         log.exception("relevance grade failed; answering on the score alone")
         log_entry["verdict"] = "error"
+        ctx.draft = draft
         return {"grade": "answer", "relevance": "error", "grade_log": grade_log}
     log_entry |= {"verdict": out.verdict, "marked": out.passages}
     if out.verdict == "no":
+        draft.cancel()  # the gate is closed: the early answer is thrown away unseen
         return fail | {"relevance": "no", "grade_log": grade_log}
+    ctx.draft = draft
     return {"grade": "answer", "relevance": out.verdict, "grade_log": grade_log}
 
 
@@ -412,21 +529,73 @@ def passages_text(passages: list[dict[str, Any]]) -> str:
     return "\n\n".join(out)
 
 
+async def stream_cited(
+    deltas: AsyncIterator[str], passages: int, runtime: Runtime[Ctx]
+) -> tuple[str, list[int]]:
+    """Stream an answer through the citation check. Leading blank text is held back, so an
+    answer that turns out empty sends nothing (answer_node then retries)."""
+    cites = citations.Citations(passages)
+    parts: list[str] = []
+    held = ""  # blank text not sent yet
+
+    def emit(out: str) -> None:
+        nonlocal held
+        parts.append(out)
+        held += out
+        if held.strip():
+            _say(runtime, held)
+            held = ""
+
+    async for delta in deltas:
+        if out := cites.feed(delta):
+            emit(out)
+    if out := cites.flush():
+        emit(out)
+    return "".join(parts), cites.order
+
+
 async def answer_node(state: State, runtime: Runtime[Ctx]) -> dict[str, Any]:
+    """Release the answer (the draft `grade` started, else a fresh call when the gate is off).
+    An empty answer never reaches the user as a success: the reasoning models can spend the
+    whole token budget thinking (finish_reason=length, no text: visitor answers, 2026-11-23),
+    or the citation check can strip an answer that was only bad markers. Then one retry on
+    the fallback models only; still empty → a "please try again" reply, marked abstained so
+    it is never cached."""
     _status(runtime, "answer")
     ctx = runtime.context
-    cites = citations.Citations(len(state["passages"]))
-    parts: list[str] = []
-    async for delta in ctx.models.answer(
-        state["question"], state["query"], passages_text(state["passages"]), ctx.org
-    ):
-        if out := cites.feed(delta):
-            parts.append(out)
-            _say(runtime, out)
-    if out := cites.flush():
-        parts.append(out)
-        _say(runtime, out)
-    return {"answer": "".join(parts), "cite_order": cites.order}
+    n = len(state["passages"])
+    text = passages_text(state["passages"])
+    draft, ctx.draft = ctx.draft, None
+    if draft is not None and draft.key != draft_key(state):
+        draft.cancel()
+        draft = None
+    deltas = (
+        draft.deltas()
+        if draft is not None
+        else ctx.models.answer(state["question"], state["query"], text, ctx.org)
+    )
+    try:
+        answer, order = await stream_cited(deltas, n, runtime)
+    finally:
+        if draft is not None:
+            draft.cancel()  # no-op once finished; stops the model if this turn is cancelled
+    if not answer.strip():
+        log.warning("empty answer; retrying on the fallback models: %r", state["question"][:80])
+        try:
+            answer, order = await stream_cited(
+                ctx.models.answer(state["question"], state["query"], text, ctx.org, retry=True),
+                n,
+                runtime,
+            )
+        except Exception:
+            log.exception("answer retry failed")
+            answer, order = "", []
+    if not answer.strip():
+        log.error("empty answer twice; asking the user to try again: %r", state["question"][:80])
+        reply = TRY_AGAIN.get(state["language"], TRY_AGAIN["en"])
+        _say(runtime, reply)
+        return {"answer": reply, "cite_order": [], "abstained": True}
+    return {"answer": answer, "cite_order": order}
 
 
 async def not_found_node(state: State, runtime: Runtime[Ctx]) -> dict[str, Any]:
@@ -461,6 +630,7 @@ async def cache_store_node(state: State, runtime: Runtime[Ctx]) -> dict[str, Any
         await ctx.cache.store(
             state["first_query"],
             ctx.scope(state["language"]),
+            ctx.org_id,
             {"answer": state["answer"], "sources": state["sources"]},
         )
     except Exception:

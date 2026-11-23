@@ -70,7 +70,7 @@ async def test_low_score_skips_the_grader() -> None:
 async def test_grader_failure_answers_on_the_score() -> None:
     class Broken(FakeModels):
         async def relevance(self, *a: Any) -> RelevanceOut:
-            raise TimeoutError
+            raise RuntimeError("gateway 500")
 
     models = Broken()
     _, final = await run(graph.build(InMemorySaver()), "Notice period?", make_ctx(models))

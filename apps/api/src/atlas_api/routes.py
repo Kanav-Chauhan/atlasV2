@@ -23,7 +23,7 @@ from pydantic import BaseModel, ConfigDict, Field, StringConstraints
 from sqlalchemy import func, select, text
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from atlas_api import access, clerk, plans, retrieve, uploads
+from atlas_api import access, cache, clerk, plans, retrieve, uploads
 from atlas_api.db import CHUNKS_TABLE, Session
 from atlas_api.models import (
     EVERYONE,
@@ -244,6 +244,7 @@ async def delete_document(doc_id: int, user: CurrentUser, s: DB) -> Response:
     path = Path(doc.file_path)
     await s.delete(doc)
     await s.commit()
+    await cache.invalidate(user.org_id)  # cached answers may cite it
     # Corpus files are mounted read-only; only uploads are ours to remove.
     if path.is_relative_to(settings.files_dir):
         path.unlink(missing_ok=True)

@@ -22,7 +22,7 @@ from typing import Any, cast
 from sqlalchemy import CursorResult, delete, select, text
 from sqlalchemy.orm import Session
 
-from atlas_api import website
+from atlas_api import cache, website
 from atlas_api.db import CHUNKS_TABLE, SyncSession
 from atlas_api.models import Chat, Department, Document, DocumentRequest, Organization, User
 from atlas_api.scripts.load_corpus import corpus_docs
@@ -157,8 +157,9 @@ def reset_org(slug: str) -> dict[str, int]:
         s.expire_all()
         seed_org(s, data)
         org.description = ""
-        org.website_chat = website.demo_config(data.get("site_key"))
+        org.website_chat = website.demo_config(data.get("site_key"), data.get("accent"))
         s.commit()
+        cache.invalidate_sync(org.id)  # documents, access and public flags are back to seed
 
     if queue:
         from atlas_api.worker import ingest_document

@@ -11,7 +11,10 @@
 }
 .embed-head h1 { font-size: var(--text-md); font-weight: 600; }
 .embed-head p { font-size: var(--text-xs); color: var(--color-muted); }
-.embed-thread { overflow-y: auto; display: grid; align-content: start; gap: var(--space-md); padding: var(--space-md); font-size: var(--text-sm); }
+.embed-thread { overflow-y: auto; display: grid; align-content: start; gap: var(--space-md); padding: var(--space-md); font-size: var(--text-sm); position: relative; container-type: size; }
+/* The latest question + answer fill at least the visible thread, so a new question can scroll to the top. */
+.embed-last { display: grid; align-content: start; gap: var(--space-md); min-height: 100cqh; }
+.embed-last .status:empty { display: block; height: 0; margin-top: calc(-1 * var(--space-md)); }
 .embed-greet { justify-self: start; max-width: 90%; background: var(--color-paper-2); padding: var(--space-xs) var(--space-sm); border-radius: var(--radius-card); }
 .embed .q { background: var(--accent); color: var(--accent-ink); padding: var(--space-xs) var(--space-sm); max-width: 90%; }
 .embed .a { line-height: 1.6; }
@@ -37,3 +40,4 @@
 .embed .notfound { font-size: var(--text-sm); }
 /* Standalone in a wide window: keep the chat at a readable measure. */
 .embed-head, .embed-thread, .embed-composer { padding-inline: max(var(--space-md), calc((100% - 720px) / 2)); }
+.embed .pulse { background: var(--accent); }

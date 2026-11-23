@@ -5,6 +5,7 @@ from typing import Any
 from celery import Celery
 from celery.schedules import crontab
 
+from atlas_api import cache
 from atlas_api.db import SyncSession
 from atlas_api.models import Document, Status
 from atlas_api.settings import settings
@@ -74,6 +75,7 @@ def ingest_document(self: Any, document_id: int) -> str:
         )
         raise self.retry(exc=e, countdown=30 * 2**self.request.retries) from e
     set_status(document_id, status=Status.ready, pages=pages, chunks=chunks)
+    cache.invalidate_sync(doc.org_id)  # a new or changed document: earlier answers may be stale
     log.info(
         "ingest %s: %s pages, %s chunks, %.1fs",
         document_id,

@@ -172,9 +172,9 @@ class FakeModels:
         return self.verdicts[min(len(self.graded), len(self.verdicts)) - 1]
 
     async def answer(
-        self, question: str, standalone: str, passages: str, org: str
+        self, question: str, standalone: str, passages: str, org: str, retry: bool = False
     ) -> AsyncIterator[str]:
-        self.calls.append("answer")
+        self.calls.append("answer_retry" if retry else "answer")
         self.answered_with.append(passages)
         for d in ["Earned leave is 18 days [", "2]. Carry forward up to 30 days [2][5]."]:
             yield d
@@ -184,10 +184,10 @@ class FakeCache:
     def __init__(self) -> None:
         self.data: dict[tuple[str, str], dict[str, Any]] = {}
 
-    async def lookup(self, query: str, scope_key: str) -> dict[str, Any] | None:
+    async def lookup(self, query: str, scope_key: str, org_id: int) -> dict[str, Any] | None:
         return self.data.get((scope_key, query))
 
-    async def store(self, query: str, scope_key: str, payload: dict[str, Any]) -> None:
+    async def store(self, query: str, scope_key: str, org_id: int, payload: dict[str, Any]) -> None:
         self.data[(scope_key, query)] = payload
 
 

@@ -36,14 +36,17 @@ def new_key() -> str:
     return secrets.token_urlsafe(16)
 
 
-def demo_config(site_key: str | None = None) -> dict[str, Any]:
-    """A demo company's website chat: on for p10, with its fixed key from demo_corpus/orgs/*.json
-    (the web app's demo sites carry the same key, src/lib/demo-site-keys.ts)."""
-    return {
+def demo_config(site_key: str | None = None, accent: str | None = None) -> dict[str, Any]:
+    """A demo company's website chat: on for p1, with its fixed key and brand colour from
+    demo_corpus/orgs/*.json (the web demo sites carry the same key: src/lib/demo-site-keys.ts)."""
+    out: dict[str, Any] = {
         "enabled": True,
         "site_key": site_key or new_key(),
         "allowed_origins": [settings.app_origin],
     }
+    if accent:
+        out["accent"] = accent
+    return out
 
 
 def normalize_origin(value: str) -> str | None:

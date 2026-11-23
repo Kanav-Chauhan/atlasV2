@@ -35,7 +35,9 @@ def seed_org(s: Session, data: dict[str, Any]) -> Organization:
         plan="demo" if data["slug"] in website.DEMO_SLUGS else "pro",
     )
     if data["slug"] in website.DEMO_SLUGS and not (org.website_chat or {}).get("site_key"):
-        org.website_chat = website.demo_config(data.get("site_key"))  # on for p10 (Phase 8)
+        org.website_chat = website.demo_config(
+            data.get("site_key"), data.get("accent")
+        )  # on for p10 (Phase 8)
     depts = {
         d["name"]: upsert(
             s,

@@ -92,6 +92,7 @@ def context(user: User) -> graph.Ctx:
         suggested=suggested_for(user),
         threshold=settings.grade_threshold,
         cache=answer_cache,
+        org_id=org_id,
     )
 
 

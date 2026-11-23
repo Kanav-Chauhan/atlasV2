@@ -161,7 +161,7 @@ def test_reset_puts_a_messed_up_demo_back(nimbus: dict[str, Any]) -> None:
         org = s.get(Organization, org_id)
         assert org is not None
         assert (org.name, org.description) == (data["name"], "")
-        assert org.website_chat == website.demo_config(data["site_key"])
+        assert org.website_chat == website.demo_config(data["site_key"], data["accent"])
         assert s.scalar(select(func.count()).select_from(Chat).where(Chat.org_id == org_id)) == 0
 
 

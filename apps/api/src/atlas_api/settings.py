@@ -34,6 +34,18 @@ class Settings(BaseSettings):
     # LLM relevance grade after the score threshold (corrective RAG, Phase 6): the `fast` model
     # checks the passages really answer (a gate: yes/partial → all passages go to the answer).
     relevance_grade: bool = True
+    # Time limits on the small model calls (seconds). The shared gateway sometimes stalls on a
+    # slow provider for 8-16 s before falling back (LangSmith, 2026-11-23: grade p90 17 s).
+    # grade: no verdict in time -> decide on the reranker score alone (grade_threshold).
+    # route: no class in time -> a document question (the rule guard already ran).
+    # rewrite: no rewrite in time -> search with the question as asked.
+    # NIM's reasoning ("thinking") for the answer model. Off: same answer content in ~2 s
+    # instead of 12-40 s on long questions (2026-11-23 test); Groq/Cloudflare ignore the switch
+    # (the gateway drops chat_template_kwargs for them).
+    answer_thinking: bool = True
+    grade_timeout_s: float = 4.0
+    route_timeout_s: float = 3.0
+    rewrite_timeout_s: float = 3.0
     # RedisVL semantic cache needs Redis with the query engine (redis:8 or Redis Stack).
     semantic_cache: bool = False
     cache_similarity: float = 0.95
@@ -47,7 +59,10 @@ class Settings(BaseSettings):
     # Website chat (Phase 8). The app's own origin: the /embed iframe calls the public API from
     # here, so it is always allowed next to each company's allowed_origins.
     app_origin: str = "https://p1.kanav.space"
-    visitor_max_tokens: int = 400  # answer token cap for website visitors
+    # Answer token cap for website visitors. It counts the models' hidden reasoning too: at 400
+    # the reasoning used it all up on longer questions (finish_reason=length, empty answer,
+    # 2026-11-23); 1500 leaves room for reasoning plus a brief answer.
+    visitor_max_tokens: int = 1500
     visitor_history_h: int = 24  # visitor thread memory (LangGraph checkpointer) lifetime
 
     @property

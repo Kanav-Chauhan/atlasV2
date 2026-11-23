@@ -5,6 +5,14 @@ x-api-env: &api-env
   ATLAS_REDIS_URL: redis://redis:6379/0
   ATLAS_LLM_BASE_URL: ${ATLAS_LLM_BASE_URL:-http://ai-gateway:4000/v1}
   ATLAS_LLM_API_KEY: ${ATLAS_LLM_API_KEY:-}
+  # Gateway model names. On this server infra/.env picks the Atlas-only aliases (atlas-fast,
+  # atlas-smart: short per-attempt timeouts, no same-provider retry); default = shared names.
+  ATLAS_LLM_FAST: ${ATLAS_LLM_FAST:-fast}
+  ATLAS_LLM_SMART: ${ATLAS_LLM_SMART:-smart}
+  ATLAS_LLM_SMART_FALLBACKS: ${ATLAS_LLM_SMART_FALLBACKS:-smart-groq,smart-cf}
+  # RedisVL semantic answer cache (needs Redis 8: the query engine is built in).
+  ATLAS_SEMANTIC_CACHE: ${ATLAS_SEMANTIC_CACHE:-false}
+  ATLAS_ANSWER_THINKING: ${ATLAS_ANSWER_THINKING:-true}
 
 x-api-volumes: &api-volumes
   - ../demo_corpus:/corpus:ro
@@ -29,9 +37,14 @@ services:
       retries: 10
 
   redis:
-    image: redis:7-alpine
+    # Redis 8: the query engine (vector search) the semantic cache needs is part of it.
+    image: redis:8-alpine
     restart: unless-stopped
     mem_limit: 128m
+    # Named volume: redis:8-alpine declares no VOLUME, so nothing would survive a recreate
+    # (plan counters, rate limits, the semantic cache, Celery queue).
+    volumes:
+      - atlasv2_redis:/data
     healthcheck:
       test: ["CMD", "redis-cli", "ping"]
       interval: 5s
@@ -162,6 +175,8 @@ volumes:
     name: atlasv2_files
   atlasv2_models:
     name: atlasv2_models
+  atlasv2_redis:
+    name: atlasv2_redis
 
 networks:
   ai-gateway:

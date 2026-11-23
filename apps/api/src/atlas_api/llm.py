@@ -34,11 +34,20 @@ def fast() -> BaseChatModel:
     return chat_model(settings.llm_fast, temperature=0, timeout=20)
 
 
-@cache
-def smart() -> Runnable[Any, Any]:
+def smart_chain(skip_first: bool = False, **kw: Any) -> Runnable[Any, Any]:
+    """`smart` then the client-side fallbacks; skip_first = the fallbacks only (used for the
+    second try after the first model returned an empty answer)."""
     names = [settings.llm_smart, *filter(None, settings.llm_smart_fallbacks.split(","))]
-    models = [chat_model(n, temperature=0.1, timeout=60, streaming=True) for n in names]
+    names = names[1:] if skip_first and len(names) > 1 else names
+    if not settings.answer_thinking:
+        kw["extra_body"] = {"chat_template_kwargs": {"enable_thinking": False}}
+    models = [chat_model(n, temperature=0.1, timeout=60, streaming=True, **kw) for n in names]
     return models[0].with_fallbacks(models[1:])
+
+
+@cache
+def smart(skip_first: bool = False) -> Runnable[Any, Any]:
+    return smart_chain(skip_first)
 
 
 class RouteOut(BaseModel):
@@ -218,14 +227,21 @@ class Models:
         assert isinstance(out, RelevanceOut)
         return out
 
+    prompt_template = ANSWER_PROMPT
+
+    def answer_model(self, retry: bool) -> Runnable[Any, Any]:
+        return smart(retry)
+
     async def answer(
-        self, question: str, standalone: str, passages: str, org: str
+        self, question: str, standalone: str, passages: str, org: str, retry: bool = False
     ) -> AsyncIterator[str]:
+        """The cited answer, streamed. retry=True: the fallback models only (the graph's
+        second try after an empty answer)."""
         extra = f"\n(Standalone form: {standalone})" if standalone != question else ""
-        prompt = ANSWER_PROMPT.format_messages(
+        prompt = self.prompt_template.format_messages(
             org=org, passages=passages, question=question, standalone=extra
         )
-        async for chunk in smart().astream(prompt):
+        async for chunk in self.answer_model(retry).astream(prompt):
             if isinstance(chunk, AIMessageChunk) and isinstance(chunk.content, str):
                 if chunk.content:
                     yield chunk.content
@@ -235,16 +251,9 @@ class Models:
 
 
 @cache
-def smart_visitor() -> Runnable[Any, Any]:
+def smart_visitor(skip_first: bool = False) -> Runnable[Any, Any]:
     """`smart` with an answer token cap: public traffic must not run long answers."""
-    names = [settings.llm_smart, *filter(None, settings.llm_smart_fallbacks.split(","))]
-    models = [
-        chat_model(
-            n, temperature=0.1, timeout=60, streaming=True, max_tokens=settings.visitor_max_tokens
-        )
-        for n in names
-    ]
-    return models[0].with_fallbacks(models[1:])
+    return smart_chain(skip_first, max_tokens=settings.visitor_max_tokens)
 
 
 VISITOR_ROUTE_PROMPT = ChatPromptTemplate.from_messages(
@@ -299,14 +308,7 @@ class VisitorModels(Models):
         assert isinstance(out, RouteOut)
         return out
 
-    async def answer(
-        self, question: str, standalone: str, passages: str, org: str
-    ) -> AsyncIterator[str]:
-        extra = f"\n(Standalone form: {standalone})" if standalone != question else ""
-        prompt = VISITOR_ANSWER_PROMPT.format_messages(
-            org=org, passages=passages, question=question, standalone=extra
-        )
-        async for chunk in smart_visitor().astream(prompt):
-            if isinstance(chunk, AIMessageChunk) and isinstance(chunk.content, str):
-                if chunk.content:
-                    yield chunk.content
+    prompt_template = VISITOR_ANSWER_PROMPT
+
+    def answer_model(self, retry: bool) -> Runnable[Any, Any]:
+        return smart_visitor(retry)
