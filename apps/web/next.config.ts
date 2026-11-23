@@ -19,7 +19,11 @@ const nextConfig: NextConfig = {
   async rewrites() {
     return {
       // "/" is the static landing page in public/home (no React, copied from the old Atlas).
-      beforeFiles: [{ source: "/", destination: "/home/index.html" }],
+      beforeFiles: [
+        { source: "/", destination: "/home/index.html" },
+        { source: "/privacy", destination: "/legal/privacy.html" },
+        { source: "/terms", destination: "/legal/terms.html" },
+      ],
       afterFiles: [{ source: "/api/:path*", destination: `${API_URL}/:path*` }],
       fallback: [],
     };
