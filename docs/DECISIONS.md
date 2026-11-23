@@ -278,7 +278,7 @@ Measured cause (LangSmith, last 100 questions): relevance check median 3.4 s but
 - **Review:** Search leaves the sidebar when it merges into Ask (Phase 3).
 
 #### D-050 · Home: two options for the owner to pick (A hero ask, B command centre)
-`2026-11-24 · active, review (owner picks)`
+`2026-11-24 · active — owner picked B (command centre); A deleted`
 - **Problem:** Home sections looked the same, Needs review had no urgency, "This month" repeated Insights, recent chats were duplicated.
 - **Decision:**
   - `/app?home=a` (default) and `/app?home=b`, both on the same data.
@@ -286,7 +286,7 @@ Measured cause (LangSmith, last 100 questions): relevance check median 3.4 s but
   - Reviews coloured by how overdue: ≥ 90 days red, less amber, over a year old blue.
   - Only numbers you can act on (unanswered questions → Add documents).
   - Members and guests (no insights/review rights) see their documents instead.
-- **Open:** owner picks A or B; delete the other.
+- **Owner's pick (2026-11-24):** **B** (command centre). A was deleted. B is the only Home at `/app`.
 
 #### D-042 · Atlas logo = the owner's "A", traced to SVG
 `2026-11-23 · active`

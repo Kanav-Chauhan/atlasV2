@@ -1,16 +1,13 @@
 import { QueryProvider } from "@/components/query";
 import { firstName } from "@/lib/demo-users";
 import { getUser } from "@/lib/session";
-import { HomeA, HomeB, type HomeProps } from "./home";
+import { Home, type HomeProps } from "./home";
 import "./home.css";
 
-// Two Home designs for the owner to choose from: /app?home=a (default) and /app?home=b.
-// Both use the same data; see home.tsx.
-export default async function HomePage({ searchParams }: { searchParams: Promise<{ home?: string }> }) {
+export default async function HomePage() {
   const user = await getUser();
   if (!user) return null; // the layout already redirects
   const { person, company } = user;
-  const variant = (await searchParams).home === "b" ? "b" : "a";
 
   const now = new Date();
   const hour = Number(new Intl.DateTimeFormat("en-IN", { hour: "numeric", hourCycle: "h23", timeZone: "Asia/Kolkata" }).format(now));
@@ -26,5 +23,5 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
     departments: person.departments,
   };
 
-  return <QueryProvider>{variant === "b" ? <HomeB {...props} /> : <HomeA {...props} />}</QueryProvider>;
+  return <QueryProvider><Home {...props} /></QueryProvider>;
 }

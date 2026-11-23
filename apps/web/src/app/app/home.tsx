@@ -9,7 +9,7 @@ import { api } from "@/lib/api";
 import type { Role } from "@/lib/demo-users";
 import type { ChatSummary, Insights, Review } from "@/lib/types";
 
-// Home, two designs (page.tsx picks one with ?home=a|b). Same data in both:
+// Home ("command centre", owner's pick of the two Phase 1 options, docs/DECISIONS.md D-050):
 // everyone: suggested questions + recent chats (deduplicated by question);
 // admins and managers: documents past review (coloured by how overdue) + questions Atlas couldn't answer;
 // members and guests (no review or insights rights in the API): the documents they can read.
@@ -138,92 +138,6 @@ function ChatRows({ q, limit }: { q: UseQueryResult<ChatSummary[]>; limit: numbe
   );
 }
 
-type Ranked = Review & { u: ReturnType<typeof urgency> };
-
-function ReviewRows({ q, limit }: { q: UseQueryResult<Ranked[]>; limit: number }) {
-  return (
-    <Region q={q} what="review list"
-      empty={<><p className="text-sm font-semibold">Nothing to review</p><p className="text-sm text-muted">Documents past their review date show up here.</p></>}>
-      {(d) => (
-        <>
-          <ul className="home-rows">
-            {d.slice(0, limit).map((r) => (
-              <li key={r.id}><a className="home-row" href={`/api/documents/${r.id}/file`} target="_blank" rel="noreferrer">
-                <span className="home-row-icon" data-tone={r.u.tone}><Icon name={TONE_ICON[r.u.tone]} className="size-4" /></span>
-                <span className="home-row-main">
-                  <span className="home-row-title">{r.title}</span>
-                  <span className="home-row-sub">{r.access}{r.review ? ` · review was due ${r.review}` : ""}</span>
-                </span>
-                <span className="badge" data-tone={r.u.tone}>{r.u.label}</span>
-              </a></li>
-            ))}
-          </ul>
-          {d.length > limit && <p className="text-sm text-muted">And {d.length - limit} more in the Library.</p>}
-        </>
-      )}
-    </Region>
-  );
-}
-
-/** Not a copy of Insights: only what someone should act on (questions with no answer → add documents). */
-function Gaps({ q, compact = false }: { q: HomeData["insights"]; compact?: boolean }) {
-  return (
-    <Region q={q} what="unanswered questions" rows={2} isEmpty={() => false} empty={null}>
-      {(d) => d.not_found === 0 ? (
-        <p className="home-callout" data-tone="success"><Icon name="check" className="size-5" />Every question in the last 30 days found an answer in your documents.</p>
-      ) : (
-        <div className="grid gap-3">
-          <p className="home-callout" data-tone="warn">
-            <Icon name="fileQuestion" className="size-5" />
-            <span><strong>{n.format(d.not_found)} {d.not_found === 1 ? "question" : "questions"}</strong> found no answer in your documents in the last 30 days.
-              {d.document_requests.length > 0 && <> {n.format(d.document_requests.length)} people asked for a document.</>}</span>
-          </p>
-          {!compact && d.top_unanswered.length > 0 && (
-            <ul className="home-rows">
-              {d.top_unanswered.slice(0, 3).map((u) => (
-                <li key={u.question} className="home-row home-row-static">
-                  <span className="home-row-main"><span className="home-row-title">&ldquo;{u.question}&rdquo;</span></span>
-                  <span className="home-row-meta">asked {u.count}×</span>
-                </li>
-              ))}
-            </ul>
-          )}
-          <div className="flex flex-wrap gap-2">
-            <Link className="btn btn-primary" href="/app/library"><Icon name="upload" />Add documents</Link>
-            <Link className="btn" href="/app/insights">See all questions</Link>
-          </div>
-        </div>
-      )}
-    </Region>
-  );
-}
-
-function DocRows({ q, limit, linked }: { q: UseQueryResult<LiteDoc[]>; limit: number; linked: boolean }) {
-  return (
-    <Region q={q} what="your documents"
-      empty={<><p className="text-sm font-semibold">No documents yet</p><p className="text-sm text-muted">Documents shared with you show up here.</p></>}>
-      {(d) => (
-        <>
-          <p className="text-sm text-muted">You can ask about <strong className="text-ink">{n.format(d.length)} documents</strong>. Newest first:</p>
-          <ul className="home-rows">
-            {d.slice(0, limit).map((doc) => {
-              const row = (
-                <>
-                  <span className="home-row-icon"><Icon name="file" className="size-4" /></span>
-                  <span className="home-row-main">
-                    <span className="home-row-title">{doc.title}</span>
-                    <span className="home-row-sub">{doc.access}{doc.effective ? ` · from ${doc.effective}` : ""}</span>
-                  </span>
-                </>
-              );
-              return <li key={doc.id}>{linked ? <a className="home-row" href={`/api/documents/${doc.id}/file`} target="_blank" rel="noreferrer">{row}</a> : <span className="home-row home-row-static">{row}</span>}</li>;
-            })}
-          </ul>
-        </>
-      )}
-    </Region>
-  );
-}
 
 function Who({ p }: { p: HomeProps }) {
   return (
@@ -235,55 +149,6 @@ function Who({ p }: { p: HomeProps }) {
 }
 
 /* ── Option A: hero ask card + two-column cards ────────────────────────── */
-
-export function HomeA(p: HomeProps) {
-  const h = useHomeData(p.role);
-  return (
-    <Page className="home home-a">
-      <section className="home-hero" aria-labelledby="home-h">
-        <p className="eyebrow">{p.company} · {p.today}</p>
-        <h1 id="home-h">{p.greeting}</h1>
-        <Who p={p} />
-        <AskForm id="home-q" size="lg" />
-        <div className="grid gap-2">
-          <p className="home-label">Try asking</p>
-          <Suggestions q={h.suggested} layout="chips" />
-        </div>
-      </section>
-
-      <div className="home-grid">
-        <Card id="recent" title="Continue where you left off" note="Your latest chats" action={<Link className="link" href="/app/ask">New chat</Link>}>
-          <ChatRows q={h.chats} limit={5} />
-        </Card>
-        {h.lead ? (
-          <Card id="gaps" title="Questions Atlas couldn't answer" note="Fill the gaps so the next person gets an answer">
-            <Gaps q={h.insights} />
-          </Card>
-        ) : (
-          <Card id="docs" title={p.role === "Guest" ? "What you can ask about" : "In your library"} note={`Shared with ${p.departments.join(", ") || "you"}`}
-            action={p.role !== "Guest" ? <Link className="link" href="/app/library">Open Library</Link> : undefined}>
-            <DocRows q={h.docs} limit={4} linked={p.role !== "Guest"} />
-          </Card>
-        )}
-      </div>
-
-      {h.lead && (
-        <Card id="review" title={<>Needs review <ReviewCount q={h.review} /></>} note="Documents past their review date, most overdue first"
-          action={<Link className="link" href="/app/library">Library</Link>}>
-          <ReviewRows q={h.review} limit={5} />
-        </Card>
-      )}
-    </Page>
-  );
-}
-
-function ReviewCount({ q }: { q: UseQueryResult<Ranked[]> }) {
-  if (!q.data?.length) return null;
-  const worst = q.data[0].u.tone;
-  return <span className="badge ml-1 align-middle" data-tone={worst}>{q.data.length}</span>;
-}
-
-/* ── Option B: command centre (stat tiles + to-do list) ────────────────── */
 
 function Spark({ values }: { values: number[] }) {
   if (values.length < 2) return null;
@@ -405,7 +270,7 @@ function TaskCount({ h }: { h: HomeData }) {
   return <span className="badge ml-1 align-middle" data-tone={h.review.data?.[0]?.u.tone ?? "warn"}>{total}</span>;
 }
 
-export function HomeB(p: HomeProps) {
+export function Home(p: HomeProps) {
   const h = useHomeData(p.role);
   return (
     <Page className="home home-b">
