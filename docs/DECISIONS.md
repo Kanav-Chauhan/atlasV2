@@ -213,6 +213,15 @@ Measured cause (LangSmith, last 100 questions): relevance check median 3.4 s but
   - People are shown in a grid grouped by role.
 - **Why:** the owner found the vertical list hard to scan, and it wasn't clear which people belonged to which company.
 
+#### D-045 · While invite-only, "Join the waitlist" is the main action, "Sign in" is second
+`2026-11-23 · active (swap back when sign-ups open)`
+- **Problem:** Clerk is in waitlist mode, but the login page's biggest button was "Sign in with Google". Visitors clicked it, got "sign-ups unavailable", and Clerk's "Join waitlist" link was small text at the bottom.
+- **Decision:**
+  - `/login`: an "Atlas is invite-only for now" box with an email field and a big **Join the waitlist** button (our own form → `/api/public/waitlist` → Clerk waitlist), then a smaller "Already invited? Sign in with Google or email".
+  - `/sign-in` and `/sign-up`: the same note above the Clerk box, and a waitlist form below it.
+  - The demo is unchanged.
+- **Revisit when:** sign-ups open (PayU or 100+ waitlist). Then Clerk goes back to open mode and "Sign in" becomes the main button again. Where: `app/login/page.tsx` `SignInButton`, `components/waitlist-form.tsx`.
+
 #### D-042 · Atlas logo = the owner's "A", traced to SVG
 `2026-11-23 · active`
 - **Decision:** the PNG's transparent edge was traced with potrace (99.8% shape overlap).

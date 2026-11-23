@@ -3,6 +3,7 @@ import Link from "next/link";
 import { loginAs, startSignIn } from "@/app/actions";
 import { Logo } from "@/components/logo";
 import { CompanyLogo } from "@/components/company-logo";
+import { WaitlistForm } from "@/components/waitlist-form";
 import { BackHome } from "@/components/auth-frame";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { OwnerForm } from "./owner-form";
@@ -30,7 +31,7 @@ export default async function LoginPage({ searchParams }: { searchParams: Promis
             <Link href="/" aria-label="Atlas home"><Logo className="size-8 text-accent" /></Link>
             <div>
               <h1 className="text-lg font-semibold">Log in to Atlas</h1>
-              <p className="text-sm text-muted">Sign in to your company, or try the demo as someone at a fictional one</p>
+              <p className="text-sm text-muted">Answers from your company&apos;s documents, with the source</p>
             </div>
           </div>
           {owner ? (
@@ -54,27 +55,31 @@ export default async function LoginPage({ searchParams }: { searchParams: Promis
   );
 }
 
+// While Clerk is in Waitlist mode only invited people can sign in, so the main action is joining
+// the waitlist and "Sign in" is the second option (swap back when sign-ups open: docs/DECISIONS.md D-045).
 function SignInButton() {
   return (
-    <form action={startSignIn} className="mb-8">
-      <button
-        type="submit"
-        data-track="sign_in_click"
-        className="flex min-h-14 w-full cursor-pointer items-center justify-center gap-3 rounded-card bg-accent px-5 py-3 text-accent-ink shadow-sm transition-[filter] hover:brightness-110 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
-      >
-        <GoogleMark />
-        <span className="text-left">
-          <span className="block text-sm font-semibold">Sign in with Google or email</span>
-          <span className="block text-xs opacity-85">Your company&apos;s workspace, or the Atlas owner area</span>
-        </span>
-      </button>
-    </form>
+    <section aria-labelledby="access-heading" className="mb-8 rounded-card border border-rule bg-paper p-4 shadow-sm sm:p-5">
+      <h2 id="access-heading" className="text-sm font-semibold">Atlas is invite-only for now</h2>
+      <p className="mt-1 mb-3 text-sm text-muted">Join the waitlist for your own company, or try the full demo below with no sign-up.</p>
+      <WaitlistForm source="login" />
+      <form action={startSignIn} className="mt-1 flex flex-wrap items-center gap-x-3 gap-y-2 border-t border-rule pt-3">
+        <span className="text-sm text-muted">Already invited?</span>
+        <button
+          type="submit"
+          data-track="sign_in_click"
+          className="inline-flex min-h-10 cursor-pointer items-center gap-2 rounded-input border border-rule bg-paper px-3 text-sm font-medium hover:bg-paper-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+        >
+          <GoogleMark small /> Sign in with Google or email
+        </button>
+      </form>
+    </section>
   );
 }
 
-const GoogleMark = () => (
-  <span aria-hidden="true" className="grid size-8 shrink-0 place-items-center rounded-full bg-white">
-    <svg viewBox="0 0 24 24" width="18" height="18">
+const GoogleMark = ({ small }: { small?: boolean }) => (
+  <span aria-hidden="true" className={`grid shrink-0 place-items-center rounded-full bg-white ${small ? "size-5" : "size-8"}`}>
+    <svg viewBox="0 0 24 24" width={small ? 14 : 18} height={small ? 14 : 18}>
       <path fill="#4285F4" d="M22.6 12.2c0-.8-.1-1.5-.2-2.2H12v4.2h5.9a5 5 0 0 1-2.2 3.3v2.7h3.6c2.1-1.9 3.3-4.8 3.3-8Z" />
       <path fill="#34A853" d="M12 23c3 0 5.5-1 7.3-2.7l-3.6-2.8c-1 .7-2.2 1.1-3.7 1.1-2.9 0-5.3-1.9-6.2-4.5H2.1v2.9A11 11 0 0 0 12 23Z" />
       <path fill="#FBBC05" d="M5.8 14.1a6.6 6.6 0 0 1 0-4.2V7H2.1a11 11 0 0 0 0 10l3.7-2.9Z" />
