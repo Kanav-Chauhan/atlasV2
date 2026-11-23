@@ -405,7 +405,8 @@ fieldset { margin: 0; padding: 0; border: 0; min-width: 0; }
 .chapter__aside { font-size: var(--text-md); color: var(--color-muted); max-width: 46ch; }
 .slab .chapter__aside { color: var(--color-slab-muted); }
 .shot { margin: 0; display: grid; gap: var(--space-sm); }
-.shot img { border-radius: var(--radius-shot); box-shadow: var(--shadow-shot); background: var(--color-paper); }
+.shot img, .shot__video { border-radius: var(--radius-shot); box-shadow: var(--shadow-shot); background: var(--color-paper); }
+.shot__video { display: block; width: 100%; height: auto; }
 .shot figcaption { font-size: var(--text-sm); color: var(--color-muted); }
 .slab .shot figcaption { color: var(--color-slab-muted); }
 
@@ -720,8 +721,8 @@ fieldset { margin: 0; padding: 0; border: 0; min-width: 0; }
         <p class="chapter__aside">Reads PDF, Word, Markdown and text. AI agents over MCP see only what their person sees.</p>
       </div>
       <figure class="shot">
-        <picture><source media="(max-width: 40rem)" srcset="/home/img/staff-m.webp" width="640" height="591"><img src="/home/img/staff.webp" width="1200" height="310" loading="lazy" decoding="async" alt="Atlas answering an engineer: the hybrid work policy requires 3 office days a week, with the matching passage from the Hybrid Work Policy highlighted beside it"></picture>
-        <figcaption>An engineer at Nimbus Infotech, in the live demo.</figcaption>
+        <video class="shot__video" src="/home/img/atlas-demo.mp4" poster="/home/img/demo-poster.webp" width="1280" height="800" muted loop playsinline preload="none" aria-label="Atlas demo: an HR manager asks how many earned leave days she gets, the answer streams in with numbered sources, and clicking source 1 opens the Leave Policy with the entitlements table highlighted. Then a visitor asks the Nimbus website chat bubble what NimbusOps is."></video>
+        <figcaption>An HR manager at Nimbus Infotech, then a website visitor, in the live demo (30 s, sped up while it searches).</figcaption>
       </figure>
     </section>
 
@@ -875,6 +876,15 @@ fieldset { margin: 0; padding: 0; border: 0; min-width: 0; }
   const still = matchMedia('(prefers-reduced-motion: reduce)');
   const set = d.getElementById('instrument'), track = d.querySelector('[data-fader]');
   const stage = d.querySelector('.stage'), say = d.getElementById('say'), meta = d.querySelector('meta[name="theme-color"]');
+
+  // Demo video: plays only while on screen; reduced motion gets the poster plus controls.
+  const vid = d.querySelector('.shot__video');
+  if (vid) {
+    if (still.matches) vid.controls = true;
+    else if ('IntersectionObserver' in window) {
+      new IntersectionObserver(([e]) => { e.isIntersecting ? vid.play().catch(() => {}) : vid.pause(); }, { threshold: 0.4 }).observe(vid);
+    }
+  }
 
   if (set && track) {
     const roles = ['visitor', 'engineer', 'hr', 'owner'];
