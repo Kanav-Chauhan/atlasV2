@@ -248,6 +248,46 @@ Measured cause (LangSmith, last 100 questions): relevance check median 3.4 s but
 - **Cost:** Clerk's scripts load on /login (in the background; the demo works at once, and the placeholder card covers the box).
 - **Checked live:** both tabs, Clerk's links switching tabs, unknown email → "Couldn't find your account" on /login, demo company switch + demo login, phone 390 px, no sideways scroll at 1024/1440.
 
+#### D-048 · UI design base: one page frame, white cards on a tinted canvas, status colours with words
+`2026-11-24 · active`
+- **Problem:** owner: everything black-and-white and hard to scan, nothing stands out, should feel premium; page widths differed (Home ~960, Library/Team/Insights ~1088, Settings ~608); headings heavy.
+- **Decision:**
+  - Tokens `canvas` / `surface` / `rule-soft`, and status colours `success` / `warn` / `error` / `info`, each with `-soft` / `-line` (light + dark, text on soft ≥ 5.4:1).
+  - `--shadow-xs/sm/md` and `--page-max` 1152px.
+  - One page frame and header on every page: title 28px weight 500, description, action on the right.
+  - Sections are white cards with a soft edge. Badges are tinted pills that always say their meaning in words.
+  - One inline SVG icon set: `components/ui/icons.tsx`, plus `components/ui/page.tsx` (Page, PageHeader, Card).
+- **Why:** research patterns, ideas only:
+  - Linear: dimmer sidebar, softer separators.
+  - Vercel Geist: two backgrounds, ring + soft shadow, colour only for state.
+  - Stripe: spacing scale, badge types, loading → error → empty → content.
+  - Refactoring UI: tinted badges.
+- **Trade-off:** older pages inherit it through CSS selectors (`.app > main > .mx-auto`), which is implicit. Pages move to `<Page>`/`<PageHeader>` as each phase rewrites them.
+
+#### D-049 · Sidebar grouped into Work / Manage; Lab moved to the Owner area
+`2026-11-24 · active`
+- **Problem:** 10 ungrouped rail items for an admin; the Retrieval Lab is an owner/interview tool, not a company feature.
+- **Decision:**
+  - A 232px labelled sidebar:
+    - company at the top;
+    - **Work**: Home, Ask, Search, Library;
+    - **Manage**: Team, Website chat, Insights, Agent access, Settings;
+    - you, the theme switch and Log out at the bottom.
+  - Group labels only show when a role has both groups. Phones keep the bottom bar.
+  - Lab is removed from all company roles. `/app/lab` needs the owner cookie plus an Admin login, and is linked from the `/super` nav.
+- **Review:** Search leaves the sidebar when it merges into Ask (Phase 3).
+
+#### D-050 · Home: two options for the owner to pick (A hero ask, B command centre)
+`2026-11-24 · active, review (owner picks)`
+- **Problem:** Home sections looked the same, Needs review had no urgency, "This month" repeated Insights, recent chats were duplicated.
+- **Decision:**
+  - `/app?home=a` (default) and `/app?home=b`, both on the same data.
+  - Chats with duplicates removed.
+  - Reviews coloured by how overdue: ≥ 90 days red, less amber, over a year old blue.
+  - Only numbers you can act on (unanswered questions → Add documents).
+  - Members and guests (no insights/review rights) see their documents instead.
+- **Open:** owner picks A or B; delete the other.
+
 #### D-042 · Atlas logo = the owner's "A", traced to SVG
 `2026-11-23 · active`
 - **Decision:** the PNG's transparent edge was traced with potrace (99.8% shape overlap).
