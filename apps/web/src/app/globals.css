@@ -83,3 +83,19 @@ p { text-wrap: pretty; }
 @media (max-width: 60rem) { :root { --gutter: 24px; } }
 @media (max-width: 40rem) { :root { --gutter: 16px; } }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } }
+
+/* YouTube-style loading skeleton (components/clerk-skeleton.tsx): grey bars with a light sweep.
+   Uses the theme tokens, so it works in light and dark; still bars for reduced motion. */
+.skeleton-bar {
+  border-radius: 6px;
+  background: linear-gradient(90deg, var(--color-paper-3) 0%, var(--color-paper-3) 35%, color-mix(in oklch, var(--color-paper-3) 40%, var(--color-paper)) 50%, var(--color-paper-3) 65%, var(--color-paper-3) 100%);
+  background-size: 300% 100%;
+  animation: skeleton-sweep 1.4s ease-in-out infinite;
+}
+@keyframes skeleton-sweep {
+  from { background-position: 100% 0; }
+  to { background-position: 0% 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .skeleton-bar { animation: none; }
+}
