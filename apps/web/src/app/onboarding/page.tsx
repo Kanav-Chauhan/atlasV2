@@ -17,12 +17,12 @@ type State = { linked: boolean; email: string | null; name: string | null };
 // Invited people and existing admins never stay here (the API links them; → /app).
 export default async function OnboardingPage() {
   if (!CLERK_ON) notFound();
-  if (!(await auth()).userId) redirect("/sign-in");
+  if (!(await auth()).userId) redirect("/login?tab=signin");
   const res = await fetch(`${API}/onboarding`, {
     headers: { cookie: (await headers()).get("cookie") ?? "" },
     cache: "no-store",
   }).catch(() => null);
-  if (res?.status === 401) redirect("/sign-in");
+  if (res?.status === 401) redirect("/login?tab=signin");
   const state: State | null = res?.ok ? await res.json() : null;
   if (state?.linked) redirect("/app");
 

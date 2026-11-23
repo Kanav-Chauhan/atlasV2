@@ -2,6 +2,7 @@ import { auth } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
 import { CLERK_ON } from "@/lib/clerk";
 import { ATLAS_ORIGIN } from "@/lib/website";
+import { COOKIE } from "@/lib/session";
 
 const API = process.env.API_URL || "http://localhost:8000";
 
@@ -13,7 +14,7 @@ export async function GET() {
   const to = (path: string) => NextResponse.redirect(new URL(path, ATLAS_ORIGIN));
   if (!CLERK_ON) return to("/login?owner=1");
   const { userId, getToken } = await auth();
-  if (!userId) return to("/sign-in?redirect_url=/auth/owner");
+  if (!userId) return to("/login?tab=signin");
   const token = await getToken();
   const res = await fetch(`${API}/auth/super/clerk`, {
     method: "POST",
@@ -21,8 +22,14 @@ export async function GET() {
     cache: "no-store",
   }).catch(() => null);
   const value = res?.status === 204 ? /atlas_super=([^;]+)/.exec(res.headers.get("set-cookie") ?? "")?.[1] : undefined;
-  if (!value) return to("/app");
+  // A real sign-in replaces any demo login (the demo cookie would otherwise win in the API).
+  if (!value) {
+    const app = to("/app");
+    app.cookies.delete(COOKIE);
+    return app;
+  }
   const out = to("/super");
+  out.cookies.delete(COOKIE);
   out.cookies.set("atlas_super", value, { httpOnly: true, secure: true, sameSite: "strict", path: "/", maxAge: 8 * 60 * 60 });
   return out;
 }

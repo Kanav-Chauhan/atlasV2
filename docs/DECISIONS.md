@@ -214,7 +214,7 @@ Measured cause (LangSmith, last 100 questions): relevance check median 3.4 s but
 - **Why:** the owner found the vertical list hard to scan, and it wasn't clear which people belonged to which company.
 
 #### D-045 · While invite-only, "Join the waitlist" is the main action, "Sign in" is second
-`2026-11-23 · active (swap back when sign-ups open)`
+`2026-11-23 · replaced by D-047 (layout); the invite-only wording still applies`
 - **Problem:** Clerk is in waitlist mode, but the login page's biggest button was "Sign in with Google". Visitors clicked it, got "sign-ups unavailable", and Clerk's "Join waitlist" link was small text at the bottom.
 - **Decision:**
   - `/login`: an "Atlas is invite-only for now" box with a big **Join the waitlist** button, then a smaller "Already invited? Sign in with Google or email".
@@ -226,12 +226,24 @@ Measured cause (LangSmith, last 100 questions): relevance check median 3.4 s but
 - **Revisit when:** sign-ups open (PayU or 100+ waitlist). Then Clerk goes back to open mode and "Sign in" becomes the main button again. Where: `app/login/page.tsx` `SignInButton`, `components/waitlist-form.tsx`.
 
 #### D-046 · One waitlist: Clerk's own `<Waitlist />`, hosted on our site
-`2026-11-23 · active`
+`2026-11-23 · active (now inside /login, D-047)`
 - **Problem:** two waitlist forms (ours and Clerk's) felt repetitive, and Clerk's "Join waitlist" link sent visitors off-site to `accounts.kanav.space/waitlist`, whose home link pointed at the portfolio.
 - **Decision:** a new page `/waitlist` renders Clerk's `<Waitlist />` component. `ClerkProvider waitlistUrl="/waitlist"` makes Clerk's own link go there. The login button and the landing page's "Join the Pro waitlist" both link to it. Our custom form component was deleted.
 - **Both paths land in the same Clerk waitlist** (Clerk dashboard + Owner area → Waitlist).
 - **Loading:** Clerk's card appears ~1–2 s after our page (its scripts, then settings, then the card's own files, one after another). A same-size placeholder card (`components/clerk-skeleton.tsx`, inside `<ClerkLoading>`) fills the gap on /waitlist, /sign-in and /sign-up. Not fixable to 0: it's Clerk's loading chain.
 - **Trade-off:** PostHog now sees the click (`waitlist_click`), not the join itself. `POST /api/public/waitlist` is left in the API but unused by the web.
+
+#### D-047 · Everything on /login: Join waitlist + Sign in tabs (Clerk's own boxes) and the demo
+`2026-11-23 · active (replaces the separate pages of D-045/D-046)`
+- **Problem:** waitlist, sign-in and the demo were on three pages, with links and redirects between them. The owner said: one page, no redirect mess.
+- **Decision:**
+  - `/login` left column (400 px, Clerk's card width): tabs **Join waitlist** (default while invite-only) and **Sign in**, each showing Clerk's real `<Waitlist />` or `<SignIn routing="hash" />`. Right column: the demo.
+  - `?tab=` holds the tab, so Clerk's own links (`signInUrl` / `waitlistUrl` = `/login?tab=…`) just switch it.
+  - **`/sign-in` and `/waitlist` pages deleted** (404).
+  - **`/sign-up` kept:** Clerk invitation emails link to `<origin>/sign-up` (`clerk.py` invite `redirect_url`).
+  - `/auth/owner` (the post-sign-in landing) now clears the demo cookie; the old "Sign in" server action is removed.
+- **Cost:** Clerk's scripts load on /login (in the background; the demo works at once, and the placeholder card covers the box).
+- **Checked live:** both tabs, Clerk's links switching tabs, unknown email → "Couldn't find your account" on /login, demo company switch + demo login, phone 390 px, no sideways scroll at 1024/1440.
 
 #### D-042 · Atlas logo = the owner's "A", traced to SVG
 `2026-11-23 · active`

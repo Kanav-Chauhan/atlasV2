@@ -46,7 +46,7 @@ export function OnboardingForm({ name }: { name: string }) {
       </form>
       <p className="mt-2 text-xs text-muted">
         Invited by a colleague? Sign in with the email the invitation went to.{" "}
-        <button type="button" className="cursor-pointer underline" onClick={() => signOut({ redirectUrl: "/sign-in" })}>Use another account</button>
+        <button type="button" className="cursor-pointer underline" onClick={() => signOut({ redirectUrl: "/login?tab=signin" })}>Use another account</button>
       </p>
     </>
   );

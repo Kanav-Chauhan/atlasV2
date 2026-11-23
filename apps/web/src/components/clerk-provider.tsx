@@ -1,16 +1,16 @@
 import { ClerkProvider } from "@clerk/nextjs";
 import { CLERK_ON } from "@/lib/clerk";
 
-// Clerk is mounted only on pages that need it (login, sign-in/up, onboarding, /app), never on
+// Clerk is mounted only on pages that need it (login, sign-up, onboarding, /app), never on
 // /embed, /demo-site or the landing page, so those stay free of Clerk scripts and cookies.
 // Colours come from the Atlas tokens, so the Clerk card follows light/dark like the rest.
 export function MaybeClerk({ children }: { children: React.ReactNode }) {
   if (!CLERK_ON) return children;
   return (
     <ClerkProvider
-      signInUrl="/sign-in"
+      signInUrl="/login?tab=signin"
       signUpUrl="/sign-up"
-      waitlistUrl="/waitlist"
+      waitlistUrl="/login?tab=waitlist"
       signInFallbackRedirectUrl="/app"
       signUpFallbackRedirectUrl="/app"
       afterSignOutUrl="/login"

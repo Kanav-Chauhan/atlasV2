@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { loginAs, startSignIn } from "@/app/actions";
+import { Suspense } from "react";
+import { loginAs } from "@/app/actions";
+import { MaybeClerk } from "@/components/clerk-provider";
+import { AccessPanel } from "./access-panel";
 import { Logo } from "@/components/logo";
 import { CompanyLogo } from "@/components/company-logo";
 import { BackHome } from "@/components/auth-frame";
@@ -11,7 +14,9 @@ import { DEMO_COMPANIES, type DemoCompany, type Role } from "@/lib/demo-users";
 
 export const metadata: Metadata = { title: "Log in" };
 
-// Real users (and the Atlas owner): the big "Sign in" button → Clerk (/sign-in, Google or email).
+// Everything on one page: Join waitlist / Sign in tabs with Clerk's own boxes (access-panel.tsx) on the
+// left, the demo on the right. There is no /sign-in or /waitlist page (docs/DECISIONS.md D-047);
+// /sign-up stays because Clerk invitation emails link to it.
 // Demo: company tabs (?company=, default the first) and a one-click grid of people grouped by role.
 // /login?owner=1 = backup owner login (email + password), not linked.
 export default async function LoginPage({ searchParams }: { searchParams: Promise<{ company?: string; owner?: string }> }) {
@@ -39,10 +44,16 @@ export default async function LoginPage({ searchParams }: { searchParams: Promis
           </div>
         ) : (
           // Laptop: access (waitlist / sign in) on the left, the demo on the right. Phone: stacked.
-          <div className="grid w-full max-w-6xl items-start gap-8 lg:grid-cols-[minmax(300px,360px)_1fr] lg:gap-10">
+          <div className="grid w-full max-w-6xl items-start gap-8 lg:grid-cols-[400px_1fr] lg:gap-10">
             <div className="lg:sticky lg:top-6">
               <Title />
-              {CLERK_ON && <SignInButton />}
+              {CLERK_ON && (
+                <MaybeClerk>
+                  <Suspense>
+                    <AccessPanel />
+                  </Suspense>
+                </MaybeClerk>
+              )}
             </div>
             <Demo company={company} />
           </div>
@@ -63,47 +74,6 @@ function Title() {
     </div>
   );
 }
-
-// While Clerk is in Waitlist mode only invited people can sign in, so the main action is joining
-// the waitlist and "Sign in" is the second option (swap back when sign-ups open: docs/DECISIONS.md D-045, D-046).
-function SignInButton() {
-  return (
-    <section aria-labelledby="access-heading" className="mb-2 rounded-card border border-rule bg-paper p-4 shadow-sm sm:p-5">
-      <h2 id="access-heading" className="text-sm font-semibold">Atlas is invite-only for now</h2>
-      <p className="mt-1 mb-3 text-sm text-muted">Join the waitlist for your own company, or try the full demo now with no sign-up.</p>
-      {/* Plain <a>: Clerk's components only mount on a full page load, not on a client-side route change. */}
-      {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
-      <a
-        href="/waitlist"
-        data-track="waitlist_click"
-        className="flex min-h-12 w-full items-center justify-center rounded-input bg-accent px-6 text-sm font-semibold text-accent-ink shadow-sm transition-[filter] hover:brightness-110 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
-      >
-        Join the waitlist
-      </a>
-      <form action={startSignIn} className="mt-4 flex flex-wrap items-center gap-x-3 gap-y-2 border-t border-rule pt-3">
-        <span className="text-sm text-muted">Already invited?</span>
-        <button
-          type="submit"
-          data-track="sign_in_click"
-          className="inline-flex min-h-10 cursor-pointer items-center gap-2 rounded-input border border-rule bg-paper px-3 text-sm font-medium hover:bg-paper-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
-        >
-          <GoogleMark small /> Sign in with Google or email
-        </button>
-      </form>
-    </section>
-  );
-}
-
-const GoogleMark = ({ small }: { small?: boolean }) => (
-  <span aria-hidden="true" className={`grid shrink-0 place-items-center rounded-full bg-white ${small ? "size-5" : "size-8"}`}>
-    <svg viewBox="0 0 24 24" width={small ? 14 : 18} height={small ? 14 : 18}>
-      <path fill="#4285F4" d="M22.6 12.2c0-.8-.1-1.5-.2-2.2H12v4.2h5.9a5 5 0 0 1-2.2 3.3v2.7h3.6c2.1-1.9 3.3-4.8 3.3-8Z" />
-      <path fill="#34A853" d="M12 23c3 0 5.5-1 7.3-2.7l-3.6-2.8c-1 .7-2.2 1.1-3.7 1.1-2.9 0-5.3-1.9-6.2-4.5H2.1v2.9A11 11 0 0 0 12 23Z" />
-      <path fill="#FBBC05" d="M5.8 14.1a6.6 6.6 0 0 1 0-4.2V7H2.1a11 11 0 0 0 0 10l3.7-2.9Z" />
-      <path fill="#EA4335" d="M12 5.4c1.6 0 3.1.6 4.2 1.7l3.2-3.2A11 11 0 0 0 2.1 7l3.7 2.9C6.7 7.3 9.1 5.4 12 5.4Z" />
-    </svg>
-  </span>
-);
 
 const GROUPS: { title: string; roles: Role[] }[] = [
   { title: "Admin · sees everything in the company", roles: ["Admin"] },
