@@ -288,6 +288,71 @@ Measured cause (LangSmith, last 100 questions): relevance check median 3.4 s but
   - Members and guests (no insights/review rights) see their documents instead.
 - **Owner's pick (2026-11-24):** **B** (command centre). A was deleted. B is the only Home at `/app`.
 
+#### D-051 · One side document viewer; nothing downloads on click
+`2026-11-24 · active`
+- **Problem:** Search downloaded documents instead of opening them; Library should open documents on the side like the old Atlas.
+- **Decision:** one shared viewer (`components/doc-viewer`), used in Ask (docked) and Search/Library (side sheet).
+  - Small / Half / Full sizes, full screen on phones, Esc closes, focus trapped and returned.
+  - URL keeps `?doc=&page=&chunk=&tab=`, so a refresh or a shared link reopens it.
+  - Download is a separate, explicit button.
+- **PDFs:** drawn as real pages with pdf.js (`pdfjs-dist` 6.5.438, loaded only when a PDF opens, worker from our own `/_next/static`). The cited passage is highlighted (best effort) and shown word for word in a "Cited passage" strip.
+- **Word / Markdown / text:** formatted text from `GET /documents/{id}/text`, with the cited blocks highlighted.
+- **"How Atlas reads this" tab:** the chunks (the old Library "Chunks" link); hidden for Guests.
+- **API:** `/documents/{id}/file?inline=1` (default is still attachment); `GET /documents/{id:int}`. Same `can_read` check everywhere; visitors still have no file route.
+- **Gotcha:** update the URL with `history.replaceState(null, …)`. Passing `history.state` makes Next skip it, and the viewer never opens.
+
+#### D-052 · Team = groups; people get access from their group; built for thousands
+`2026-11-24 · active`
+- **Problem:** owner: a big company can't list every employee or tick a person × department grid.
+- **Decision:**
+  - Groups = departments: a group reads its own documents plus Everyone; admins read everything. One group = one department of documents, because a document is filed under one department, so there is no new permission model.
+  - The page leads with role tiles and group cards.
+  - **People directory:** server-side search, filters and 25 per page (`/team/people`). Bulk changes (`/team/bulk`) use the same `access.py` rules (last-admin rule, manager scope).
+  - **Invites:** role + groups chosen at invite time. **CSV import:** max 500 rows, dry run first.
+  - The person × department grid and `GET /access` are removed.
+- **Email-domain auto-join (owner OK):** `organizations.auto_join` (migration 0012). Rules:
+  - real companies only, verified email only;
+  - free-mail domains refused;
+  - **only a domain one of the company's admins signs in with**, and one company per domain (so no one can claim someone else's staff);
+  - joins as member or guest only, never the Managers group.
+- **Open:** no DNS proof of domain ownership yet; `GET /team` (all people) is still used by Agents and should move to `/team/people`.
+
+#### D-053 · Website chat in three tabs; website documents managed on the page
+`2026-11-24 · active`
+- **Problem:** the page was ~2,500 px long, visitor chats piled up endlessly, and it wasn't clear how to choose what the bot reads.
+- **Decision:**
+  - `/app/website?tab=setup|documents|conversations`.
+  - **Conversations:** server-paged (20), with search, period and not-found filter. One chat opens in a side panel (`?chat=`), and its sources open in the doc viewer.
+  - **Website documents:** "answers only from these N documents". Upload a file (becomes Everyone + public) or **Pick from Library**, Everyone documents only. Department documents show their department and can't be picked, so restricted documents never go public quietly.
+- **Fixed:** `PATCH /documents/{id}` returned 500 after saving.
+
+#### D-054 · Insights on Recharts (shadcn chart pattern), dataviz rules
+`2026-11-24 · active`
+- **Problem:** hand-made SVG charts looked unfinished with sparse data.
+- **Decision:** `recharts` 3.11.0 pinned, wrapped by `components/ui/chart.tsx` (shadcn ChartContainer/Tooltip pattern, colours as `--chart-<key>`, reduced motion turns animation off). Series colours in `components/ui/chart.css`: accent blue and orange, checked with the dataviz palette checker in light and dark.
+- **Forms:**
+  - number tiles with change vs the previous period;
+  - questions over time as stacked columns (daily for 7 and 30 days, weekly for 90; zero-day stubs; table view);
+  - how questions ended as a **split bar, not a donut** (better for part-to-whole);
+  - departments as ranked bars;
+  - cited documents as a bar list linking to the viewer.
+- **API:** `/insights` adds `per_day[].answered` and `previous` totals.
+- **Open:** demo data sits on one day. Seeding a few weeks of question history in the demo reset would make the charts look like a real company (offered).
+
+#### D-055 · Settings full width; profile pictures and company logo on our own server
+`2026-11-24 · active`
+- **Problem:** Settings was a narrow column with few options; no profile or picture.
+- **Decision:**
+  - Section menu (`?section=`): Profile (everyone); Company, Access defaults (incl. auto-join), Plan & usage, Notifications, Danger zone (admin only).
+  - Preferences live in one JSON column, `organizations.settings` (migration 0013, plus `users.avatar`).
+  - Notification switches are stored but **not sent**, and the page says so.
+- **Images:**
+  - Stored in the files volume (`<slug>/images/`), so no outside image service.
+  - Checked by magic bytes and Pillow, max 2 MB, then re-encoded to a 256 px WebP, which strips metadata such as photo location.
+  - Private: only the same company can load them. The browser crops and shrinks first, so big phone photos work.
+- **Agent access:** token cards; 3-step setup with copy tabs (Claude Code, Claude Desktop, any MCP client); audit log paged on the server with filters (`/tokens/audit` response shape changed to `{items,total,page,per_page,tools}`).
+- **Open:** removed people's picture files stay until a demo reset; images share the documents' (not yet off-server) backup.
+
 #### D-042 · Atlas logo = the owner's "A", traced to SVG
 `2026-11-23 · active`
 - **Decision:** the PNG's transparent edge was traced with potrace (99.8% shape overlap).
