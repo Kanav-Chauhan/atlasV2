@@ -19,9 +19,13 @@
   --color-accent: oklch(50% 0.19 262); --color-accent-ink: oklch(98.5% 0.004 250); --color-accent-deep: oklch(42% 0.17 262);
   --color-accent-soft: oklch(93% 0.035 262); --color-mark: oklch(88% 0.07 262);
   --color-focus: oklch(45% 0.18 262);
-  --color-error: oklch(48% 0.18 27); --color-error-soft: oklch(95% 0.03 27);
-  --color-success: oklch(48% 0.12 150); --color-success-soft: oklch(95% 0.03 150);
-  --color-warn: oklch(55% 0.13 70); --color-warn-soft: oklch(95% 0.04 80);
+  /* Surfaces: the app canvas sits under white cards (surface); rule-soft is the card edge. */
+  --color-canvas: oklch(97.2% 0.005 250); --color-surface: oklch(100% 0 0); --color-rule-soft: oklch(91.5% 0.008 245);
+  /* Status colours (text on its -soft fill ≥ 5.4:1, AA). Colour is never the only cue: pair with an icon or word. */
+  --color-error: oklch(50% 0.18 27); --color-error-soft: oklch(95.5% 0.03 27); --color-error-line: oklch(87% 0.07 27);
+  --color-success: oklch(45% 0.12 150); --color-success-soft: oklch(95.5% 0.035 150); --color-success-line: oklch(86% 0.07 150);
+  --color-warn: oklch(50% 0.12 65); --color-warn-soft: oklch(96% 0.045 85); --color-warn-line: oklch(86% 0.09 80);
+  --color-info: oklch(48% 0.14 240); --color-info-soft: oklch(95.5% 0.03 240); --color-info-line: oklch(87% 0.06 240);
   --color-slab: oklch(23% 0.02 250); --color-slab-ink: oklch(95% 0.008 230); --color-slab-muted: oklch(76% 0.018 240); --color-slab-rule: oklch(38% 0.02 250);
   --color-shadow: oklch(21% 0.02 250 / 0.12);
   /* Retrieval lab: one soft colour per document, followed across columns. */
@@ -38,6 +42,12 @@
   --dur-micro: 120ms; --dur-short: 220ms; --dur-long: 420ms;
   --gutter: 32px; --rule-hair: 1px;
   --shadow-card: 0 1px 0 var(--color-rule), 0 12px 24px -16px var(--color-shadow);
+  /* Layered, very soft shadows for cards (ring + contact + ambient); dark mode leans on the ring. */
+  --shadow-xs: 0 1px 2px oklch(21% 0.02 250 / 0.05);
+  --shadow-sm: 0 1px 2px oklch(21% 0.02 250 / 0.04), 0 4px 12px -6px oklch(21% 0.02 250 / 0.08);
+  --shadow-md: 0 2px 4px oklch(21% 0.02 250 / 0.04), 0 12px 28px -12px oklch(21% 0.02 250 / 0.16);
+  /* One page width for every dashboard page (gutters included) and the page rhythm. */
+  --page-max: 1152px; --page-pad-top: 40px; --page-gap: 32px; --card-pad: 20px;
   --tracking-display: -0.02em;
   color-scheme: light;
 }
@@ -50,9 +60,11 @@
     --color-accent: oklch(66% 0.16 262); --color-accent-ink: oklch(17% 0.02 255); --color-accent-deep: oklch(74% 0.12 262);
     --color-accent-soft: oklch(30% 0.07 262); --color-mark: oklch(40% 0.1 262);
     --color-focus: oklch(74% 0.12 262);
-    --color-error: oklch(70% 0.15 27); --color-error-soft: oklch(28% 0.06 27);
-    --color-success: oklch(72% 0.12 150); --color-success-soft: oklch(27% 0.05 150);
-    --color-warn: oklch(78% 0.12 80); --color-warn-soft: oklch(29% 0.05 80);
+    --color-canvas: oklch(15% 0.018 255); --color-surface: oklch(19.5% 0.02 255); --color-rule-soft: oklch(27% 0.02 252);
+    --color-error: oklch(74% 0.14 27); --color-error-soft: oklch(28% 0.06 27); --color-error-line: oklch(40% 0.08 27);
+    --color-success: oklch(76% 0.13 150); --color-success-soft: oklch(27% 0.05 150); --color-success-line: oklch(38% 0.07 150);
+    --color-warn: oklch(80% 0.12 80); --color-warn-soft: oklch(28% 0.05 75); --color-warn-line: oklch(40% 0.07 75);
+    --color-info: oklch(76% 0.11 240); --color-info-soft: oklch(28% 0.05 240); --color-info-line: oklch(40% 0.07 240);
     --color-shadow: oklch(5% 0.02 255 / 0.5);
     --color-doc-1: oklch(38% 0.08 262); --color-doc-2: oklch(38% 0.08 150); --color-doc-3: oklch(38% 0.08 70); --color-doc-4: oklch(38% 0.08 27); --color-doc-5: oklch(38% 0.08 320); --color-doc-6: oklch(38% 0.08 200); --color-doc-7: oklch(38% 0.08 110); --color-doc-8: oklch(38% 0.08 290);
     color-scheme: dark;
@@ -65,9 +77,11 @@
   --color-accent: oklch(66% 0.16 262); --color-accent-ink: oklch(17% 0.02 255); --color-accent-deep: oklch(74% 0.12 262);
   --color-accent-soft: oklch(30% 0.07 262); --color-mark: oklch(40% 0.1 262);
   --color-focus: oklch(74% 0.12 262);
-  --color-error: oklch(70% 0.15 27); --color-error-soft: oklch(28% 0.06 27);
-  --color-success: oklch(72% 0.12 150); --color-success-soft: oklch(27% 0.05 150);
-  --color-warn: oklch(78% 0.12 80); --color-warn-soft: oklch(29% 0.05 80);
+  --color-canvas: oklch(15% 0.018 255); --color-surface: oklch(19.5% 0.02 255); --color-rule-soft: oklch(27% 0.02 252);
+  --color-error: oklch(74% 0.14 27); --color-error-soft: oklch(28% 0.06 27); --color-error-line: oklch(40% 0.08 27);
+  --color-success: oklch(76% 0.13 150); --color-success-soft: oklch(27% 0.05 150); --color-success-line: oklch(38% 0.07 150);
+  --color-warn: oklch(80% 0.12 80); --color-warn-soft: oklch(28% 0.05 75); --color-warn-line: oklch(40% 0.07 75);
+  --color-info: oklch(76% 0.11 240); --color-info-soft: oklch(28% 0.05 240); --color-info-line: oklch(40% 0.07 240);
   --color-shadow: oklch(5% 0.02 255 / 0.5);
   --color-doc-1: oklch(38% 0.08 262); --color-doc-2: oklch(38% 0.08 150); --color-doc-3: oklch(38% 0.08 70); --color-doc-4: oklch(38% 0.08 27); --color-doc-5: oklch(38% 0.08 320); --color-doc-6: oklch(38% 0.08 200); --color-doc-7: oklch(38% 0.08 110); --color-doc-8: oklch(38% 0.08 290);
   color-scheme: dark;

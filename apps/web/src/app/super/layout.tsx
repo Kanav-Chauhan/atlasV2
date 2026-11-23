@@ -18,7 +18,7 @@ export default async function SuperLayout({ children }: { children: React.ReactN
   if (!(await cookies()).get("atlas_super")) redirect(CLERK_ON ? "/auth/owner" : "/login?owner=1");
 
   return (
-    <div className="min-h-dvh">
+    <div className="min-h-dvh bg-canvas">
       <header className="super-bar">
         <Link href="/super" className="super-brand"><Logo className="size-6 text-accent" />Atlas owner</Link>
         <nav aria-label="Owner" className="super-nav">
@@ -33,7 +33,7 @@ export default async function SuperLayout({ children }: { children: React.ReactN
           <form action={superLogout}><button type="submit" className="btn">Log out</button></form>
         </div>
       </header>
-      <main className="mx-auto grid max-w-6xl gap-10 px-[var(--gutter)] py-10">
+      <main className="super-main">
         <QueryProvider>{children}</QueryProvider>
       </main>
     </div>

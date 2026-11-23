@@ -1,31 +1,30 @@
 import { QueryProvider } from "@/components/query";
 import { firstName } from "@/lib/demo-users";
 import { getUser } from "@/lib/session";
-import { HomeData } from "./home";
+import { HomeA, HomeB, type HomeProps } from "./home";
+import "./home.css";
 
-export default async function HomePage() {
+// Two Home designs for the owner to choose from: /app?home=a (default) and /app?home=b.
+// Both use the same data; see home.tsx.
+export default async function HomePage({ searchParams }: { searchParams: Promise<{ home?: string }> }) {
   const user = await getUser();
   if (!user) return null; // the layout already redirects
   const { person, company } = user;
+  const variant = (await searchParams).home === "b" ? "b" : "a";
 
-  return (
-    <div className="mx-auto grid max-w-5xl gap-8 px-[var(--gutter)] py-10">
-      <header className="grid gap-2">
-        <p className="text-sm text-muted">{company.name}</p>
-        <h1 className="text-3xl font-semibold">Hello, {firstName(person.name)}</h1>
-        <p className="flex flex-wrap items-center gap-2 text-muted">
-          <span className="rounded-pill bg-accent-soft px-2.5 py-0.5 text-sm font-medium text-accent-deep">{person.role}</span>
-          {person.title}, {person.departments.join(", ")}
-        </p>
-      </header>
-      <form action="/app/ask" className="flex gap-2">
-        <label className="sr-only" htmlFor="home-q">Ask about any company document</label>
-        <input id="home-q" name="q" required className="field min-w-0 flex-1" placeholder="Ask about any company document" autoComplete="off" />
-        <button type="submit" className="btn btn-primary">Ask</button>
-      </form>
-      <QueryProvider>
-        <HomeData manage={person.role === "Admin" || person.role === "Manager"} />
-      </QueryProvider>
-    </div>
-  );
+  const now = new Date();
+  const hour = Number(new Intl.DateTimeFormat("en-IN", { hour: "numeric", hourCycle: "h23", timeZone: "Asia/Kolkata" }).format(now));
+  const part = hour < 12 ? "Good morning" : hour < 17 ? "Good afternoon" : "Good evening";
+  const today = new Intl.DateTimeFormat("en-IN", { weekday: "long", day: "numeric", month: "long", timeZone: "Asia/Kolkata" }).format(now);
+
+  const props: HomeProps = {
+    greeting: `${part}, ${firstName(person.name)}`,
+    today,
+    company: company.name,
+    role: person.role,
+    title: person.title,
+    departments: person.departments,
+  };
+
+  return <QueryProvider>{variant === "b" ? <HomeB {...props} /> : <HomeA {...props} />}</QueryProvider>;
 }
