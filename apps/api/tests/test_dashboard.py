@@ -258,6 +258,19 @@ def test_aggregate() -> None:
     assert empty["answered_pct"] is None and empty["p95_latency_ms"] is None
 
 
+def test_aggregate_per_day_uses_india_date() -> None:
+    # 23:30 UTC on 21 Nov is 05:00 IST on 22 Nov; 18:00 UTC on 21 Nov is still 23:30 IST on 21 Nov.
+    turns = [
+        turn(created_at=datetime(2026, 11, 21, 23, 30, tzinfo=UTC)),
+        turn(created_at=datetime(2026, 11, 21, 18, 0, tzinfo=UTC), abstained=True),
+    ]
+    out = aggregate(turns, [], days=2, today=date(2026, 11, 22))
+    assert out["per_day"] == [
+        {"date": "2026-11-21", "questions": 1, "answered": 0, "not_found": 1},
+        {"date": "2026-11-22", "questions": 1, "answered": 1, "not_found": 0},
+    ]
+
+
 def test_aggregate_previous_period() -> None:
     before = [
         turn(feedback="up"),

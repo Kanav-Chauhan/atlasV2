@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import type { UseQueryResult } from "@tanstack/react-query";
 import { Region } from "@/components/region";
 import { Icon } from "@/components/ui/icons";
@@ -55,20 +56,7 @@ export function GroupCards({ q, isAdmin, depts, onPeople, onInvite, onRename, on
       <Region q={q} what="groups" rows={3} isEmpty={() => false} empty={null}>
         {(g) => (
           <ul className="group-grid">
-            <li className="group-card" data-everyone="">
-              <div className="group-top">
-                <h3>Everyone</h3>
-                <span className="badge">{people(g.everyone.people)}</span>
-              </div>
-              <p className="group-desc">{isAdmin ? "Every person is in it, guests too. It can't be removed." : "Everyone in your groups also reads Everyone documents."}</p>
-              <dl className="group-facts">
-                <div><dt>Reads</dt><dd><span className="read-chip">Everyone · {docs(g.everyone.documents)}</span></dd></div>
-                {g.no_group > 0 && <div><dt>In no other group</dt><dd>{people(g.no_group)}</dd></div>}
-              </dl>
-              <div className="group-actions">
-                <button type="button" className="btn" onClick={() => onPeople("")}>See people<Icon name="arrowRight" /></button>
-              </div>
-            </li>
+            <EveryoneCard g={g} isAdmin={isAdmin} onPeople={onPeople} />
             {g.groups.map((x) => (
               <GroupCard key={x.name} g={x} isAdmin={isAdmin} dept={depts.find((d) => d.name === x.name)}
                 onPeople={onPeople} onInvite={onInvite} onRename={onRename} onDelete={onDelete} />
@@ -80,21 +68,54 @@ export function GroupCards({ q, isAdmin, depts, onPeople, onInvite, onRename, on
   );
 }
 
+/** Phones only (team.css shows it under 40rem): the card collapses to name, people and reads; a tap on the head expands it. */
+function Expand({ name, open, onToggle }: { name: string; open: boolean; onToggle: () => void }) {
+  return (
+    <button type="button" className="group-toggle" aria-expanded={open} onClick={onToggle}>
+      <span className="sr-only">{open ? "Hide" : "Show"} details for {name}</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6" /></svg>
+    </button>
+  );
+}
+
+function EveryoneCard({ g, isAdmin, onPeople }: { g: Groups; isAdmin: boolean; onPeople: (dept: string) => void }) {
+  const [open, setOpen] = useState(false);
+  return (
+    <li className="group-card" data-everyone="" data-open={open || undefined}>
+      <div className="group-top">
+        <h3>Everyone</h3>
+        <span className="badge">{people(g.everyone.people)}</span>
+        <Expand name="Everyone" open={open} onToggle={() => setOpen(!open)} />
+      </div>
+      <p className="group-desc">{isAdmin ? "Every person is in it, guests too. It can't be removed." : "Everyone in your groups also reads Everyone documents."}</p>
+      <dl className="group-facts">
+        <div className="group-reads"><dt>Reads</dt><dd><span className="read-chip">Everyone · {docs(g.everyone.documents)}</span></dd></div>
+        {g.no_group > 0 && <div><dt>In no other group</dt><dd>{people(g.no_group)}</dd></div>}
+      </dl>
+      <div className="group-actions">
+        <button type="button" className="btn" onClick={() => onPeople("")}>See people<Icon name="arrowRight" /></button>
+      </div>
+    </li>
+  );
+}
+
 function GroupCard({ g, isAdmin, dept, onPeople, onInvite, onRename, onDelete }: {
   g: Group; isAdmin: boolean; dept?: Department;
   onPeople: (dept: string) => void; onInvite: (dept: string) => void;
   onRename: (d: Department) => void; onDelete: (name: string) => void;
 }) {
   const managers = g.managers.join(", ") + (g.managers_more ? ` and ${g.managers_more} more` : "");
+  const [open, setOpen] = useState(false);
   return (
-    <li className="group-card">
+    <li className="group-card" data-open={open || undefined}>
       <div className="group-top">
         <h3>{g.name}</h3>
         <span className="badge" data-tone={g.people ? undefined : "warn"}>{people(g.people)}</span>
+        <Expand name={g.name} open={open} onToggle={() => setOpen(!open)} />
       </div>
       {g.description && <p className="group-desc">{g.description}</p>}
       <dl className="group-facts">
-        <div>
+        <div className="group-reads">
           <dt>Reads</dt>
           <dd className="read-chips">
             <span className="read-chip" data-own="">{g.name} · {docs(g.documents)}</span>

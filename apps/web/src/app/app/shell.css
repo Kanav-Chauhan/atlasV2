@@ -65,6 +65,8 @@
 .rail-btn svg { width: 18px; height: 18px; }
 .rail-out { flex: 1; justify-content: flex-start; }
 .rail-btn:hover { background: var(--color-paper-3); color: var(--color-ink); }
+/* Touch screens: the theme switch and log out get 40 px targets. */
+@media (pointer: coarse) { .rail-btn { min-height: 40px; min-width: 40px; } }
 .avatar {
   display: grid; place-items: center; width: 32px; height: 32px; flex: none; border-radius: var(--radius-pill);
   background: var(--color-accent-soft); color: var(--color-accent-deep); font-size: var(--text-xs); font-weight: 600;
@@ -84,12 +86,13 @@
     flex-direction: row; gap: 0; overflow-x: auto;
     background: var(--color-paper-2); border-top: var(--rule-hair) solid var(--color-rule-soft); padding: var(--space-2xs);
   }
-  .rail-group { flex-direction: row; flex: 1 0 auto; gap: 0; }
-  .rail-group + .rail-group { border-left: var(--rule-hair) solid var(--color-rule-soft); margin-left: var(--space-2xs); padding-left: var(--space-2xs); }
+  /* All items share the bar equally (an admin's 8 fit at 360 px, no hidden scroll); long labels wrap to two lines. */
+  .rail-group { display: contents; }
+  .rail-group + .rail-group a.dest:first-of-type { box-shadow: inset 1px 0 0 var(--color-rule-soft); }
   .rail-label { display: none; }
   .rail a.dest {
-    flex: 1 0 60px; flex-direction: column; justify-content: center; gap: 2px; min-height: 0; padding: var(--space-2xs) var(--space-xs);
-    white-space: nowrap; font-size: var(--text-xs); font-weight: 500; color: var(--color-muted);
+    flex: 1 1 0; min-width: 0; flex-direction: column; justify-content: flex-start; gap: 2px; min-height: 0; padding: 6px 2px 2px;
+    text-align: center; line-height: 1.15; font-size: 11px; font-weight: 500; color: var(--color-muted);
   }
   .rail a.dest[aria-current="page"] { background: var(--color-accent-soft); color: var(--color-accent-deep); box-shadow: none; font-weight: 600; }
   .rail a.dest[aria-current="page"] .dest-icon { color: var(--color-accent-deep); }

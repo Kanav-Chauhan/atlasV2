@@ -406,13 +406,14 @@ function Meter({ label, used, cap }: { label: string; used: number; cap: number 
   return (
     <div className="meter" data-tone={tone}>
       <p className="meter-label">{label}</p>
-      <p className="meter-num">{num.format(used)}<small>{cap != null ? ` of ${num.format(cap)}` : " · no limit"}</small></p>
-      {cap != null && (
+      <p className="meter-num">{num.format(used)}{cap != null && <small>{` of ${num.format(cap)}`}</small>}</p>
+      {/* No limit: an empty bar in the same slot, so every tile has the same rows and height. */}
+      {cap != null ? (
         <div className="meter-bar" role="meter" aria-label={label} aria-valuemin={0} aria-valuemax={cap} aria-valuenow={used}>
           <div style={{ width: `${pct}%` }} />
         </div>
-      )}
-      {cap != null && <p className="meter-left">{pct >= 100 ? "Limit reached" : `${num.format(Math.max(0, cap - used))} left`}</p>}
+      ) : <div className="meter-bar" data-open="" aria-hidden="true" />}
+      <p className="meter-left">{cap == null ? "No limit" : pct >= 100 ? "Limit reached" : `${num.format(Math.max(0, cap - used))} left`}</p>
     </div>
   );
 }

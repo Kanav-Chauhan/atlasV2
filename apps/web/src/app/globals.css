@@ -113,3 +113,18 @@ p { text-wrap: pretty; }
 @media (prefers-reduced-motion: reduce) {
   .skeleton-bar { animation: none; }
 }
+
+/* Clerk cards (/login, /sign-up, /onboarding): Clerk zeroes border-width and draws field edges with a
+   faint box-shadow that disappears in dark mode, and its own styles beat `appearance.elements`.
+   These rules win (tested live) and use our tokens, so edges show in light and dark. */
+.cl-formFieldInput, .cl-socialButtonsBlockButton, .cl-socialButtonsIconButton {
+  box-shadow: 0 0 0 1px color-mix(in oklch, var(--color-rule) 45%, var(--color-muted)) !important;
+}
+.cl-formFieldInput:hover, .cl-socialButtonsBlockButton:hover, .cl-socialButtonsIconButton:hover {
+  box-shadow: 0 0 0 1px var(--color-muted) !important;
+}
+.cl-formFieldInput:focus, .cl-formFieldInput:focus-visible,
+.cl-socialButtonsBlockButton:focus-visible, .cl-socialButtonsIconButton:focus-visible {
+  outline: none !important;
+  box-shadow: 0 0 0 1px var(--color-accent), 0 0 0 4px color-mix(in srgb, var(--color-accent) 28%, transparent) !important;
+}

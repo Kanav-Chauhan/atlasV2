@@ -65,6 +65,13 @@
 .group-actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-xs); padding-top: var(--space-xs); border-top: var(--rule-hair) solid var(--color-rule-soft); }
 .group-actions .btn { min-height: 32px; padding-inline: var(--space-sm); }
 .group-admin { display: inline-flex; gap: var(--space-sm); margin-left: auto; }
+.group-toggle { display: none; }
+/* Touch screens: 40 px targets for the card buttons and the Rename / Delete text buttons. */
+@media (pointer: coarse) {
+  .group-actions .btn { min-height: 40px; }
+  .group-admin { gap: var(--space-2xs); }
+  .group-admin .link-btn { min-height: 40px; padding-inline: var(--space-xs); }
+}
 
 /* ── Directory ── */
 .dir-filters { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-xs); }
@@ -107,4 +114,22 @@
   .dir-table td:last-child .row-actions { flex-direction: column; }
   .bulk-bar .field { flex: 1 1 100%; }
   .pick-groups { grid-template-columns: minmax(0, 1fr); }
+
+  /* Group cards collapse to a compact list (name, people, reads); a tap on the head expands one. */
+  .group-grid { gap: var(--space-xs); }
+  .group-card { padding: var(--space-sm) var(--space-md); }
+  .group-top { position: relative; align-items: center; }
+  .group-top .badge { margin-left: auto; }
+  .group-toggle {
+    display: grid; place-items: center; flex: none; width: 40px; height: 40px; margin: -8px -10px -8px 0; padding: 0;
+    border: 0; border-radius: var(--radius-input); background: none; color: var(--color-muted); cursor: pointer;
+  }
+  .group-toggle::after { content: ""; position: absolute; inset: 0; }
+  .group-toggle svg { width: 20px; height: 20px; transition: transform var(--dur-micro) var(--ease-out); }
+  .group-toggle[aria-expanded="true"] svg { transform: rotate(180deg); }
+  .group-card:not([data-open]) .group-desc,
+  .group-card:not([data-open]) .group-warn,
+  .group-card:not([data-open]) .group-actions,
+  .group-card:not([data-open]) .group-facts > div:not(.group-reads),
+  .group-card:not([data-open]) .read-chip + .read-chip { display: none; }
 }

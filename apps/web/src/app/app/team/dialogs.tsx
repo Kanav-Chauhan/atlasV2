@@ -145,7 +145,7 @@ export function InviteDialog({ dept, isAdmin, groupNames, onDone, onClose }: {
           <span className="text-xs font-normal text-muted">One per line, or separated by commas.</span>
         </label>
         <div className="grid gap-4 sm:grid-cols-2">
-          <label className="grid gap-1 text-sm font-medium">Name <span className="sr-only">(one person only)</span><input name="name" className="field" placeholder="Only when inviting one person" autoComplete="off" /></label>
+          <label className="grid gap-1 text-sm font-medium">Name <span className="sr-only">(one person only)</span><input name="name" className="field" placeholder="One person only" autoComplete="off" /></label>
           <label className="grid gap-1 text-sm font-medium">Job title<input name="title" className="field" autoComplete="off" /></label>
         </div>
         <label className="grid gap-1 text-sm font-medium">

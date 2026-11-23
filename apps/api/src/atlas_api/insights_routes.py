@@ -3,7 +3,7 @@
 import math
 from collections import Counter
 from dataclasses import dataclass, field
-from datetime import UTC, date, datetime, timedelta
+from datetime import UTC, date, datetime, timedelta, timezone
 from typing import Annotated, Any
 
 from fastapi import APIRouter, Query
@@ -25,6 +25,9 @@ from atlas_api.team_routes import Lead
 
 router = APIRouter()
 TOP = 10
+# Days are counted on India time (Asia/Kolkata, UTC+5:30, no daylight saving), so a question at
+# 23:30 UTC lands on the next day, as people in India see it. A fixed offset needs no tz database.
+IST = timezone(timedelta(hours=5, minutes=30), "Asia/Kolkata")
 
 
 @dataclass
@@ -63,7 +66,8 @@ def aggregate(
     previous: list[Turn] | None = None,
 ) -> dict[str, Any]:
     """`departments`: limit by_department to these (manager); None = all (admin).
-    `previous`: turns from the `days` before this window (for `previous` totals)."""
+    `previous`: turns from the `days` before this window (for `previous` totals).
+    `today` and the per_day dates are India (IST) dates."""
     rag = [t for t in turns if t.route == "rag"]
     answered = [t for t in rag if not t.abstained]
     not_found = [t for t in rag if t.abstained]
@@ -79,7 +83,7 @@ def aggregate(
     by_dept = Counter(d for t in turns for d in t.departments)
     per_day = {today - timedelta(days=i): [0, 0, 0] for i in range(days - 1, -1, -1)}
     for t in turns:
-        day = per_day.get(t.created_at.astimezone(UTC).date())
+        day = per_day.get(t.created_at.astimezone(IST).date())
         if day is not None:
             day[0] += 1
             day[1] += t.route == "rag" and t.abstained
@@ -180,7 +184,7 @@ async def insights_for(s: AsyncSession, actor: User, days: int) -> dict[str, Any
     scope = None if actor.role == Role.admin else access.team_scope(actor)
     now = [t for t in turns if t.created_at >= since]
     before = [t for t in turns if t.created_at < since]
-    return aggregate(now, requests, days, datetime.now(UTC).date(), scope, before)
+    return aggregate(now, requests, days, datetime.now(IST).date(), scope, before)
 
 
 @router.get("/insights")

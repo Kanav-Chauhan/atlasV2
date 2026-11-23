@@ -198,7 +198,7 @@ function Thread({ id, q, company, canSeeChunks }: { id: string; q: string | null
       <section className="chat" aria-labelledby="chat-title">
         <PaneHead title={title} company={company} find={false} q={lastQ} thread={id} historyOpen={historyOpen}
           onHistory={() => setHistoryOpen(!historyOpen)} onNew={() => router.push(newChatUrl())} />
-        {historyOpen && <History current={id} />}
+        {historyOpen && <History current={id} onClose={() => setHistoryOpen(false)} />}
 
         <div className="chat-body" data-side={showMatches || undefined}>
           <div className="thread" ref={scroller}>
@@ -248,7 +248,8 @@ function Thread({ id, q, company, canSeeChunks }: { id: string; q: string | null
           <form className="composer" onSubmit={(e) => { e.preventDefault(); ask(input); }}>
             <div className="composer-inner">
               {messages.length > 0 && questions.length > 0 && (
-                <div className="chips" aria-label="Suggested questions">
+                <div className="chips" role="group" aria-labelledby="chips-label">
+                  <span id="chips-label" className="chips-label">Try asking</span>
                   {questions.slice(0, 3).map((s) => <button key={s} type="button" className="chip" onClick={() => ask(s)} disabled={busy}>{s}</button>)}
                 </div>
               )}
@@ -303,7 +304,7 @@ function Find({ q, company, canSeeChunks }: { q: string; company: string; canSee
       <section className="chat" aria-labelledby="chat-title">
         <PaneHead title="Find documents" company={company} find q={q} historyOpen={historyOpen}
           onHistory={() => setHistoryOpen(!historyOpen)} />
-        {historyOpen && <History current="" />}
+        {historyOpen && <History current="" onClose={() => setHistoryOpen(false)} />}
 
         <div className="chat-body">
           <div className="thread">
@@ -328,7 +329,7 @@ function Find({ q, company, canSeeChunks }: { q: string; company: string; canSee
             <div className="composer-inner">
               <label className="sr-only" htmlFor="question">Words to find</label>
               <div className="composer-row">
-                <input id="question" type="search" value={input} placeholder="Words, a policy number or a question" autoComplete="off"
+                <input id="question" type="search" value={input} placeholder="Words or a policy number" autoComplete="off"
                   autoFocus={!q} onChange={(e) => setInput(e.target.value)} />
                 <button type="submit" className="btn btn-primary send" disabled={!input.trim()}>Find</button>
               </div>
@@ -447,7 +448,7 @@ export function Markdown({ text, sources, live, current, onCite }: { text: strin
     : <b.kind key={i}>{b.items.map((t, j) => <li key={j}>{inline(t)}</li>)}</b.kind>);
 }
 
-function History({ current }: { current: string }) {
+function History({ current, onClose }: { current: string; onClose: () => void }) {
   const router = useRouter();
   const qc = useQueryClient();
   const { data, error, isPending, refetch } = useQuery({ queryKey: ["chats"], queryFn: () => api<ChatSummary[]>("/chats") });
@@ -471,6 +472,9 @@ function History({ current }: { current: string }) {
   ];
 
   return (
+    <>
+    {/* Phones: a dimmed backdrop behind the drawer; a tap on it closes the drawer (hidden on wider screens). */}
+    <div className="history-scrim" aria-hidden="true" onClick={onClose} />
     <nav id="history" className="history-panel" aria-label="Past chats">
       {error ? (
         <section className="grid justify-items-start gap-2 p-2" role="alert">
@@ -502,5 +506,6 @@ function History({ current }: { current: string }) {
       ))}
       {remove.error && <p className="p-2 text-sm text-error" role="alert">{remove.error.message}</p>}
     </nav>
+    </>
   );
 }

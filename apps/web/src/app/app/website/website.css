@@ -36,6 +36,11 @@
   background: var(--color-accent-soft); color: var(--color-accent-deep); font-size: var(--text-sm); font-weight: 700;
 }
 button.link { padding: 0; border: 0; background: none; cursor: pointer; text-decoration: underline; }
+/* Touch screens: "Rotate key" (and its confirm buttons) get a 40 px tall target. */
+@media (pointer: coarse) {
+  button.link { display: inline-flex; align-items: center; min-height: 40px; vertical-align: middle; }
+  .site-note .btn { min-height: 40px; }
+}
 
 /* Setup: settings left, live preview right (sticky). */
 .site-setup { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 400px); gap: var(--page-gap); align-items: start; }

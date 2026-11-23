@@ -32,6 +32,13 @@
 .mode-switch a { white-space: nowrap; }
 .pane-head .btn[aria-expanded="true"] { background: var(--color-accent-soft); border-color: var(--color-accent); color: var(--color-accent-deep); }
 
+/* Narrow chat beside an open viewer (desktop): icon-only buttons and no company line, so the title keeps room. */
+@container (max-width: 45rem) {
+  .pane-head .btn-label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+  .pane-head > .btn { min-width: 40px; justify-content: center; padding-inline: var(--space-xs); }
+  .chat-title p { display: none; }
+}
+
 /* History drawer */
 .history-panel {
   position: absolute; z-index: 100; top: var(--head-h); bottom: 0; left: 0; width: min(320px, 88%);
@@ -42,6 +49,8 @@
   animation: drawer-in var(--dur-short) var(--ease-out);
 }
 @keyframes drawer-in { from { transform: translateX(-12px); opacity: 0; } }
+/* Phones only: the dimmed backdrop behind the drawer (a tap closes it), like the viewer's scrim. */
+.history-scrim { display: none; }
 .history-panel h2 { font-family: var(--font-body); font-size: var(--text-sm); font-weight: 600; color: var(--color-muted); padding-inline: var(--space-xs); margin-top: var(--space-xs); }
 .history-panel ul { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-3xs); }
 .history-panel li { display: flex; align-items: center; gap: var(--space-2xs); }
@@ -129,6 +138,8 @@
 .composer-inner { display: grid; gap: var(--space-xs); }
 .chips { display: flex; flex-wrap: wrap; gap: var(--space-xs); }
 .chips .chip { color: var(--color-accent-deep); white-space: nowrap; }
+/* Says these are suggestions, so they don't read as the "Matching documents" list just above them. */
+.chips-label { align-self: center; flex: none; font-size: var(--text-xs); color: var(--color-muted); }
 .chips .chip:disabled { opacity: 0.55; cursor: not-allowed; }
 .composer-row { display: flex; gap: var(--space-xs); align-items: end; }
 .composer textarea, .composer input {
@@ -194,6 +205,11 @@
 .matches-full .match-text { -webkit-line-clamp: 4; }
 .matches-full .match-list { gap: var(--space-sm); margin-top: var(--space-xs); }
 
+@media (max-width: 60rem) and (prefers-reduced-motion: no-preference) {
+  .history-scrim { animation: history-fade var(--dur-short) var(--ease-out); }
+}
+@keyframes history-fade { from { opacity: 0; } }
+
 /* Phone: title on its own row; the reader opens full screen with Back. */
 @media (max-width: 60rem) {
   :root { --head-h: 104px; }
@@ -213,6 +229,10 @@
   .q { max-width: 100%; }
 
   .ask[data-reader] { grid-template-columns: minmax(0, 1fr); }
+  .history-scrim {
+    display: block; position: absolute; z-index: 99; top: var(--head-h); right: 0; bottom: 0; left: 0;
+    background: color-mix(in oklch, var(--color-ink) 18%, transparent);
+  }
   .ask[data-reader] .chat { visibility: visible; }
 }
 

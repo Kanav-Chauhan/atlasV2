@@ -153,6 +153,14 @@
 
 @media (prefers-reduced-motion: reduce) { .dv, .dv-scrim { animation: none; } }
 
+/* Touch screens: 40 px targets for Back, Download, close, the pagers and Small / Half / Full. */
+@media (pointer: coarse) {
+  .dv .btn { min-height: 40px; }
+  .dv .icon-btn { width: 40px; height: 40px; }
+  .dv-download { min-width: 40px; justify-content: center; }
+  .dv-tabs button { min-height: 40px; }
+}
+
 /* Phone: the viewer is the whole screen, with Back. */
 @media (max-width: 60rem) {
   .dv, .dv[data-mode][data-size] { position: fixed; inset: 0; z-index: 300; width: 100%; height: 100%; border-left: 0; }
