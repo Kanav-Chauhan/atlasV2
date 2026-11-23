@@ -217,10 +217,18 @@ Measured cause (LangSmith, last 100 questions): relevance check median 3.4 s but
 `2026-11-23 · active (swap back when sign-ups open)`
 - **Problem:** Clerk is in waitlist mode, but the login page's biggest button was "Sign in with Google". Visitors clicked it, got "sign-ups unavailable", and Clerk's "Join waitlist" link was small text at the bottom.
 - **Decision:**
-  - `/login`: an "Atlas is invite-only for now" box with an email field and a big **Join the waitlist** button (our own form → `/api/public/waitlist` → Clerk waitlist), then a smaller "Already invited? Sign in with Google or email".
-  - `/sign-in` and `/sign-up`: the same note above the Clerk box, and a waitlist form below it.
+  - `/login`: an "Atlas is invite-only for now" box with a big **Join the waitlist** button, then a smaller "Already invited? Sign in with Google or email".
+  - `/sign-in` and `/sign-up`: the same note above the Clerk box.
+  - (Our own email form was used here at first; replaced the same day by Clerk's own waitlist, see [D-046](#d-046).)
   - The demo is unchanged.
 - **Revisit when:** sign-ups open (PayU or 100+ waitlist). Then Clerk goes back to open mode and "Sign in" becomes the main button again. Where: `app/login/page.tsx` `SignInButton`, `components/waitlist-form.tsx`.
+
+#### D-046 · One waitlist: Clerk's own `<Waitlist />`, hosted on our site
+`2026-11-23 · active`
+- **Problem:** two waitlist forms (ours and Clerk's) felt repetitive, and Clerk's "Join waitlist" link sent visitors off-site to `accounts.kanav.space/waitlist`, whose home link pointed at the portfolio.
+- **Decision:** a new page `/waitlist` renders Clerk's `<Waitlist />` component. `ClerkProvider waitlistUrl="/waitlist"` makes Clerk's own link go there. The login button and the landing page's "Join the Pro waitlist" both link to it. Our custom form component was deleted.
+- **Both paths land in the same Clerk waitlist** (Clerk dashboard + Owner area → Waitlist).
+- **Trade-off:** PostHog now sees the click (`waitlist_click`), not the join itself. `POST /api/public/waitlist` is left in the API but unused by the web.
 
 #### D-042 · Atlas logo = the owner's "A", traced to SVG
 `2026-11-23 · active`

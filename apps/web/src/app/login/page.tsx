@@ -3,7 +3,6 @@ import Link from "next/link";
 import { loginAs, startSignIn } from "@/app/actions";
 import { Logo } from "@/components/logo";
 import { CompanyLogo } from "@/components/company-logo";
-import { WaitlistForm } from "@/components/waitlist-form";
 import { BackHome } from "@/components/auth-frame";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { OwnerForm } from "./owner-form";
@@ -56,14 +55,20 @@ export default async function LoginPage({ searchParams }: { searchParams: Promis
 }
 
 // While Clerk is in Waitlist mode only invited people can sign in, so the main action is joining
-// the waitlist and "Sign in" is the second option (swap back when sign-ups open: docs/DECISIONS.md D-045).
+// the waitlist and "Sign in" is the second option (swap back when sign-ups open: docs/DECISIONS.md D-045, D-046).
 function SignInButton() {
   return (
     <section aria-labelledby="access-heading" className="mb-8 rounded-card border border-rule bg-paper p-4 shadow-sm sm:p-5">
       <h2 id="access-heading" className="text-sm font-semibold">Atlas is invite-only for now</h2>
       <p className="mt-1 mb-3 text-sm text-muted">Join the waitlist for your own company, or try the full demo below with no sign-up.</p>
-      <WaitlistForm source="login" />
-      <form action={startSignIn} className="mt-1 flex flex-wrap items-center gap-x-3 gap-y-2 border-t border-rule pt-3">
+      <Link
+        href="/waitlist"
+        data-track="waitlist_click"
+        className="flex min-h-12 w-full items-center justify-center rounded-input bg-accent px-6 text-sm font-semibold text-accent-ink shadow-sm transition-[filter] hover:brightness-110 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+      >
+        Join the waitlist
+      </Link>
+      <form action={startSignIn} className="mt-4 flex flex-wrap items-center gap-x-3 gap-y-2 border-t border-rule pt-3">
         <span className="text-sm text-muted">Already invited?</span>
         <button
           type="submit"

@@ -10,6 +10,7 @@ export function MaybeClerk({ children }: { children: React.ReactNode }) {
     <ClerkProvider
       signInUrl="/sign-in"
       signUpUrl="/sign-up"
+      waitlistUrl="/waitlist"
       signInFallbackRedirectUrl="/app"
       signUpFallbackRedirectUrl="/app"
       afterSignOutUrl="/login"

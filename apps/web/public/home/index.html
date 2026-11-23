@@ -810,14 +810,8 @@ fieldset { margin: 0; padding: 0; border: 0; min-width: 0; }
             <li>5,000 questions a month</li>
             <li>Website chat in your colours, no badge</li>
           </ul>
-          <form class="signup" data-endpoint="/api/public/waitlist" novalidate>
-            <label for="email">Not on sale yet. Leave your email to hear first.</label>
-            <div class="signup__row">
-              <input id="email" name="email" type="email" autocomplete="email" required>
-              <button class="btn btn--on-slab" type="submit">Join the Pro waitlist</button>
-            </div>
-            <p class="signup__help" id="email-help" aria-live="polite"></p>
-          </form>
+          <p class="signup"><span>Not on sale yet. Join the waitlist to hear first.</span>
+            <a class="btn btn--on-slab" href="/waitlist" data-track="waitlist_click">Join the Pro waitlist</a></p>
         </article>
         <article class="tier tier--free" aria-labelledby="free-title">
           <h3 id="free-title">Free</h3>
