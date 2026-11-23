@@ -1,0 +1,742 @@
+<!doctype html>
+<html lang="en-IN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Atlas: answers from your own documents</title>
+<meta name="description" content="Atlas answers staff and website visitors from your company's documents, cites the exact page, and shows each person only what they may read.">
+<meta name="theme-color" content="#0b0f17">
+<link rel="icon" href="https://p1.kanav.space/brand/atlas-mark.svg" type="image/svg+xml">
+<link rel="preload" href="https://p1.kanav.space/home/fonts/display.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+/* Hallmark · v2.0.0 · custom: "dark cinematic AI-infra" (by request, option A) · genre atmospheric · shape: product stage → fan-out differentiator → proof film → bento → numbers → steps → table → FAQ · signature: one question fanning out to four people, four different answers */
+/* critique: the hero must show the real app, not a drawing of one; the role fan-out carries the page's one idea; glow stays behind product only, never behind text */
+/* numbers: every figure is from docs/DECISIONS.md D-020/D-023 and README, none invented */
+/* waive 24b: product mocks (chips, tool list, chat bubbles) use a 2px sub-grid to match the real app density */
+/* waive 58: the brief asks for a 7-question FAQ and plan lists; sections above the FAQ stay within one idea each */
+/* waive 29: sticky nav keeps a translucent bar so the hero glow reads through, as on the reference sites */
+
+@font-face { font-family: "Funnel Display"; src: url("https://p1.kanav.space/home/fonts/display.woff2") format("woff2"); font-weight: 300 800; font-display: swap; }
+@font-face { font-family: "Funnel Sans"; src: url("https://p1.kanav.space/home/fonts/body.woff2") format("woff2"); font-weight: 300 800; font-display: swap; }
+@font-face { font-family: "Funnel Fallback"; src: local("Arial"); size-adjust: 98%; ascent-override: 96%; descent-override: 26%; line-gap-override: 0%; }
+
+:root {
+  color-scheme: dark;
+  --bg: oklch(13.5% 0.018 260);
+  --bg-2: oklch(15.5% 0.02 260);
+  --surface: oklch(18.5% 0.022 258);
+  --surface-2: oklch(22% 0.024 258);
+  --line: oklch(27% 0.022 256);
+  --line-strong: oklch(36% 0.03 256);
+  --ink: oklch(96.5% 0.006 240);
+  --ink-2: oklch(84% 0.014 245);
+  --muted: oklch(70% 0.018 250);
+  --faint: oklch(63% 0.02 250);
+  --accent: oklch(72% 0.15 252);
+  --accent-ink: oklch(99% 0.005 250);
+  --accent-fill: oklch(54% 0.22 262);
+  --accent-fill-hover: oklch(60% 0.21 260);
+  --accent-soft: oklch(30% 0.08 260);
+  --glow: oklch(58% 0.2 258 / 0.38);
+  --glow-2: oklch(70% 0.13 220 / 0.18);
+  --yes: oklch(80% 0.13 160);
+  --yes-soft: oklch(30% 0.06 160);
+  --no: oklch(78% 0.08 60);
+  --no-soft: oklch(28% 0.04 60);
+  --code-key: oklch(80% 0.12 220);
+  --code-str: oklch(82% 0.11 150);
+  --focus: oklch(82% 0.13 230);
+  --shadow: oklch(5% 0.02 260 / 0.7);
+
+  --btn-ring: oklch(70% 0.18 258 / 0.5);
+  --tint-1: oklch(100% 0 0 / 0.03); --tint-2: oklch(100% 0 0 / 0.06);
+  --underline: oklch(72% 0.15 252 / 0.4);
+  --glass: oklch(13.5% 0.018 260 / 0.74); --glass-line: oklch(27% 0.022 256 / 0.6);
+  --frame-hi: oklch(100% 0 0 / 0.10); --frame-lo: oklch(100% 0 0 / 0.02);
+  --line-lit: oklch(52% 0.13 257 / 0.8);
+  --pro-top: oklch(22% 0.05 260);
+  --font-display: "Funnel Display", "Funnel Fallback", ui-sans-serif, sans-serif;
+  --font-body: "Funnel Sans", "Funnel Fallback", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", "Cascadia Mono", "Roboto Mono", Menlo, Consolas, monospace;
+
+  --max: 1200px;
+  --pad: clamp(16px, 4vw, 40px);
+  --gap: clamp(16px, 2vw, 24px);
+  --r-lg: 20px; --r-md: 14px; --r-sm: 10px; --r-pill: 999px;
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --section: clamp(88px, 12vw, 160px);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html, body { overflow-x: clip; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font-family: var(--font-body); font-size: 17px; line-height: 1.6;
+  -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+}
+img, video, svg { display: block; max-width: 100%; }
+a { color: inherit; }
+h1, h2, h3 { font-family: var(--font-display); font-weight: 600; letter-spacing: -0.025em; line-height: 1.05; margin: 0; overflow-wrap: break-word; min-width: 0; text-wrap: balance; }
+p { margin: 0; text-wrap: pretty; }
+:focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; border-radius: 6px; transition: none; }
+.skip { position: absolute; left: 16px; top: -60px; padding: 10px 14px; background: var(--ink); color: var(--bg); border-radius: var(--r-sm); z-index: 10; text-decoration: none; }
+.skip:focus-visible { top: 12px; }
+.wrap { width: 100%; max-width: var(--max); margin-inline: auto; padding-inline: var(--pad); }
+.vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* ---------- buttons ---------- */
+.btn {
+  display: inline-flex; align-items: center; gap: 10px; min-height: 46px; padding: 0 20px;
+  border-radius: var(--r-pill); font: 600 16px/1 var(--font-body); text-decoration: none;
+  border: 1px solid transparent; cursor: pointer;
+  transition: background-color 180ms var(--ease), border-color 180ms var(--ease), transform 180ms var(--ease), color 180ms var(--ease);
+}
+.btn:active { transform: translateY(1px); }
+.btn-primary { background: var(--accent-fill); color: var(--accent-ink); box-shadow: 0 0 0 1px var(--btn-ring) inset, 0 8px 30px -8px var(--glow); }
+.btn-primary:hover { background: var(--accent-fill-hover); }
+.btn-ghost { color: var(--ink); border-color: var(--line-strong); background: var(--tint-1); }
+.btn-ghost:hover { border-color: var(--muted); background: var(--tint-2); }
+.btn svg { width: 16px; height: 16px; flex: none; }
+.link { color: var(--accent); text-decoration: underline; text-decoration-color: var(--underline); text-underline-offset: 4px; transition: text-decoration-color 160ms var(--ease); }
+.link:hover { text-decoration-color: var(--accent); }
+
+/* ---------- nav ---------- */
+.nav { position: sticky; top: 0; z-index: 5; background: var(--glass); backdrop-filter: blur(14px) saturate(140%); -webkit-backdrop-filter: blur(14px) saturate(140%); border-bottom: 1px solid var(--glass-line); }
+.nav .wrap { display: flex; align-items: center; gap: 28px; height: 64px; }
+.brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; font: 600 19px/1 var(--font-display); letter-spacing: -0.02em; }
+.brand img { width: 26px; height: 26px; }
+.nav-links { display: flex; gap: 24px; margin-left: 12px; }
+.nav-links a { color: var(--muted); text-decoration: none; font-size: 15px; transition: color 160ms var(--ease); }
+.nav-links a:hover { color: var(--ink); }
+.nav-cta { margin-left: auto; display: flex; gap: 10px; align-items: center; }
+.nav-cta .btn { min-height: 38px; padding: 0 16px; font-size: 15px; }
+@media (max-width: 860px) { .nav-links { display: none; } }
+@media (max-width: 480px) { .nav-cta .btn-ghost { display: none; } }
+
+/* ---------- hero ---------- */
+.hero { position: relative; padding-top: clamp(56px, 9vw, 112px); isolation: isolate; }
+.hero::before {
+  content: ""; position: absolute; inset: 0 0 auto 0; height: 900px; z-index: -1; pointer-events: none;
+  background:
+    radial-gradient(60% 50% at 70% 62%, var(--glow) 0%, transparent 70%),
+    radial-gradient(40% 35% at 20% 80%, var(--glow-2) 0%, transparent 70%);
+  opacity: 0.9;
+}
+.hero-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 0.62fr); gap: 32px 64px; align-items: end; }
+.hero h1 { font-size: clamp(46px, 7vw, 100px); letter-spacing: -0.045em; line-height: 0.96; }
+.hero-side { display: grid; gap: 28px; padding-bottom: 8px; }
+.hero-side p { font-size: clamp(18px, 1.6vw, 20px); color: var(--ink-2); max-width: 34ch; }
+.actions { display: flex; flex-wrap: wrap; gap: 12px; }
+.stage { position: relative; margin: 0; margin-top: clamp(48px, 7vw, 88px); perspective: 2000px; }
+.stage-frame {
+  position: relative; border-radius: var(--r-lg); padding: 8px;
+  background: linear-gradient(180deg, var(--frame-hi), var(--frame-lo) 40%);
+  box-shadow: 0 0 0 1px var(--line), 0 40px 120px -30px var(--glow), 0 30px 60px -30px var(--shadow);
+  transform: rotateX(8deg) scale(0.985); transform-origin: 50% 0;
+  animation: stage-in 1.4s var(--ease) both 0.15s;
+}
+.stage-frame picture { display: block; }
+.stage-frame img { width: 100%; height: auto; border-radius: 13px; background: var(--surface); aspect-ratio: 1600 / 1000; object-fit: cover; object-position: top left; }
+.stage::after { content: ""; position: absolute; left: 0; right: 0; bottom: -2px; height: 30%; background: linear-gradient(to bottom, transparent, var(--bg)); pointer-events: none; border-radius: 0 0 var(--r-lg) var(--r-lg); }
+.stage figcaption { position: relative; z-index: 1; margin-top: -12px; font-size: 14px; color: var(--faint); text-align: center; }
+@keyframes stage-in { from { opacity: 0; transform: rotateX(22deg) translateY(40px) scale(0.96); } to { opacity: 1; transform: rotateX(8deg) scale(0.985); } }
+@media (max-width: 860px) {
+  .hero-grid { grid-template-columns: minmax(0, 1fr); }
+  .stage-frame { transform: none; padding: 5px; animation-name: fade-up; }
+  .stage::after { display: none; }
+  .stage figcaption { margin-top: 12px; }
+}
+@keyframes fade-up { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: none; } }
+
+/* facts strip */
+.facts { border-block: 1px solid var(--line); margin-top: clamp(40px, 6vw, 72px); }
+.facts ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.facts li { padding: 22px 0 22px 24px; border-left: 1px solid var(--line); color: var(--muted); font-size: 15px; line-height: 1.4; }
+.facts li:first-child { border-left: 0; padding-left: 0; }
+.facts strong { display: block; color: var(--ink); font: 600 20px/1.2 var(--font-display); letter-spacing: -0.01em; margin-bottom: 4px; }
+@media (max-width: 860px) {
+  .facts ul { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .facts li:nth-child(3) { border-left: 0; padding-left: 0; }
+  .facts li:nth-child(n+3) { border-top: 1px solid var(--line); }
+}
+
+/* ---------- sections ---------- */
+section { scroll-margin-top: 72px; }
+.sec { padding-top: var(--section); }
+.sec-head { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 16px 48px; align-items: end; margin-bottom: clamp(36px, 5vw, 64px); }
+.sec-head h2 { font-size: clamp(34px, 5vw, 64px); letter-spacing: -0.035em; }
+.sec-head p { color: var(--muted); font-size: 18px; max-width: 40ch; }
+@media (max-width: 860px) { .sec-head { grid-template-columns: minmax(0, 1fr); } }
+
+/* ---------- who's asking ---------- */
+.ask-q {
+  display: flex; align-items: center; gap: 14px; width: fit-content; max-width: 100%; margin-inline: auto;
+  padding: 14px 22px 14px 14px; border-radius: var(--r-pill); background: var(--surface); border: 1px solid var(--line-strong);
+  font: 500 clamp(16px, 1.8vw, 20px)/1.35 var(--font-body); color: var(--ink);
+  box-shadow: 0 20px 60px -20px var(--glow);
+}
+.ask-q .mark { width: 34px; height: 34px; flex: none; border-radius: 50%; background: var(--bg); display: grid; place-items: center; border: 1px solid var(--line); }
+.ask-q .mark img { width: 20px; height: 20px; }
+.fan { display: block; width: 100%; height: 72px; color: var(--line-strong); }
+.fan path { fill: none; stroke: currentColor; stroke-width: 1.5; vector-effect: non-scaling-stroke; }
+.fan .lit { stroke: var(--accent); stroke-dasharray: 6 6; animation: dash 1.4s linear infinite; }
+@keyframes dash { to { stroke-dashoffset: -24; } }
+.people { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+.person {
+  position: relative; display: grid; grid-template-rows: auto auto 1fr; gap: 16px; padding: 22px;
+  border-radius: var(--r-md); background: var(--bg-2); border: 1px solid var(--line);
+}
+.person.can { background: linear-gradient(180deg, var(--surface), var(--bg-2)); border-color: var(--line-lit); box-shadow: 0 30px 70px -40px var(--glow); }
+.who { display: flex; align-items: center; gap: 12px; }
+.av { width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; flex: none; font: 600 15px/1 var(--font-body); color: var(--ink); background: var(--surface-2); border: 1px solid var(--line-strong); }
+.can .av { background: var(--accent-soft); border-color: var(--line-lit); }
+.who b { display: block; font-weight: 600; font-size: 16px; line-height: 1.3; }
+.who small { display: block; color: var(--muted); font-size: 14px; line-height: 1.3; }
+.reads { font-size: 14px; color: var(--muted); line-height: 1.45; padding-top: 14px; border-top: 1px solid var(--line); }
+.reads em { font-style: normal; color: var(--ink-2); }
+.ans { align-self: end; display: grid; gap: 10px; }
+.ans .big { font: 600 clamp(24px, 2.4vw, 30px)/1.1 var(--font-display); letter-spacing: -0.02em; color: var(--ink); }
+.ans .tag { display: inline-flex; align-items: center; gap: 6px; width: fit-content; padding: 4px 10px; border-radius: var(--r-pill); font-size: 13px; line-height: 1.3; }
+.ans .tag svg { width: 13px; height: 13px; }
+.tag.yes { background: var(--yes-soft); color: var(--yes); }
+.tag.no { background: var(--no-soft); color: var(--no); }
+.ans .none { font-size: 16px; color: var(--ink-2); line-height: 1.45; }
+.cite { display: inline-flex; gap: 8px; align-items: baseline; font-size: 14px; color: var(--muted); }
+.cite i { font-style: normal; display: inline-grid; place-items: center; min-width: 20px; height: 20px; padding: 0 5px; border-radius: 6px; background: var(--accent-soft); color: var(--accent); font: 600 12px/1 var(--font-body); }
+.note { margin-top: 28px; text-align: center; color: var(--muted); font-size: 16px; }
+@media (max-width: 1000px) { .people { grid-template-columns: repeat(2, minmax(0, 1fr)); } .fan { display: none; } .ask-q { margin-bottom: 24px; } }
+@media (max-width: 560px) { .people { grid-template-columns: minmax(0, 1fr); } .ask-q { border-radius: var(--r-md); } }
+
+/* ---------- proof film ---------- */
+.film { display: grid; grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr); gap: 48px; align-items: center; }
+.film-frame { position: relative; border-radius: var(--r-lg); padding: 6px; background: linear-gradient(180deg, var(--frame-hi), var(--frame-lo)); box-shadow: 0 0 0 1px var(--line), 0 50px 120px -40px var(--glow); }
+.film-frame video { width: 100%; height: auto; border-radius: 14px; background: var(--surface); aspect-ratio: 16 / 10; object-fit: cover; }
+.play { position: absolute; right: 18px; top: 18px; min-height: 38px; padding: 0 14px; font-size: 14px; background: var(--glass); backdrop-filter: blur(8px); }
+.film-frame figcaption { padding: 12px 8px 4px; font-size: 14px; color: var(--faint); }
+.points { list-style: none; margin: 0; padding: 0; display: grid; gap: 28px; counter-reset: p; }
+.points li { display: grid; grid-template-columns: 32px minmax(0, 1fr); gap: 14px; }
+.points li::before { counter-increment: p; content: counter(p); display: grid; place-items: center; width: 28px; height: 28px; border-radius: 8px; background: var(--accent-soft); color: var(--accent); font: 600 14px/1 var(--font-body); }
+.points b { display: block; font: 600 19px/1.3 var(--font-display); letter-spacing: -0.01em; margin-bottom: 4px; }
+.points span { color: var(--muted); font-size: 16px; }
+@media (max-width: 960px) { .film { grid-template-columns: minmax(0, 1fr); } }
+
+/* ---------- bento ---------- */
+.bento { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 14px; }
+.tile { position: relative; overflow: hidden; border-radius: var(--r-lg); background: var(--bg-2); border: 1px solid var(--line); padding: clamp(22px, 3vw, 32px); display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+.tile h3 { font-size: clamp(22px, 2.2vw, 28px); letter-spacing: -0.02em; line-height: 1.15; }
+.tile > p { color: var(--muted); font-size: 16px; max-width: 46ch; }
+.t-chat { grid-column: span 6; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 32px; align-items: stretch; }
+.t-chat::before { content: ""; position: absolute; right: -10%; bottom: -40%; width: 70%; height: 120%; background: radial-gradient(closest-side, var(--glow), transparent); pointer-events: none; }
+.t-chat .copy { display: flex; flex-direction: column; gap: 16px; position: relative; }
+.code { position: relative; margin: 8px 0 0; padding: 16px 18px; border-radius: var(--r-sm); background: var(--bg); border: 1px solid var(--line); font: 14px/1.6 var(--font-mono); color: var(--ink-2); overflow-x: auto; white-space: pre; }
+.code .k { color: var(--code-key); } .code .s { color: var(--code-str); }
+.copy-btn { align-self: flex-start; min-height: 36px; padding: 0 14px; font-size: 14px; }
+.sites { display: flex; flex-wrap: wrap; gap: 8px 18px; font-size: 15px; color: var(--muted); }
+.shot { position: relative; margin: 0; border-radius: var(--r-md); overflow: hidden; border: 1px solid var(--line-strong); background: var(--surface); min-height: 280px; }
+.shot img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
+.t-mcp, .t-roles, .t-lang { grid-column: span 2; }
+.tools { list-style: none; margin: auto 0 0; padding: 14px 16px; border-radius: var(--r-sm); background: var(--bg); border: 1px solid var(--line); font: 14px/1.9 var(--font-mono); color: var(--ink-2); }
+.tools li { display: flex; justify-content: space-between; gap: 12px; }
+.tools li span:last-child { color: var(--faint); font-family: var(--font-body); font-size: 13px; }
+.ladder { list-style: none; margin: auto 0 0; padding: 0; display: grid; gap: 6px; }
+.ladder li { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 9px 14px; border-radius: var(--r-sm); background: var(--surface); border: 1px solid var(--line); font-size: 15px; }
+.ladder li:nth-child(2) { margin-left: 10px; } .ladder li:nth-child(3) { margin-left: 20px; } .ladder li:nth-child(4) { margin-left: 30px; } .ladder li:nth-child(5) { margin-left: 40px; }
+.ladder small { color: var(--faint); font-size: 13px; }
+.bubble { margin-top: auto; display: grid; gap: 8px; }
+.msg { max-width: 92%; padding: 10px 14px; border-radius: 14px; font-size: 15px; line-height: 1.45; }
+.msg.me { justify-self: end; background: var(--accent-fill); color: var(--accent-ink); border-bottom-right-radius: 4px; }
+.msg.at { background: var(--surface); border: 1px solid var(--line); color: var(--ink-2); border-bottom-left-radius: 4px; }
+.msg.at small { display: block; margin-top: 6px; color: var(--muted); font-size: 13px; }
+@media (max-width: 1000px) { .t-mcp, .t-roles, .t-lang { grid-column: span 3; } .t-lang { grid-column: span 6; } }
+@media (max-width: 760px) {
+  .bento { grid-template-columns: minmax(0, 1fr); }
+  .t-chat, .t-mcp, .t-roles, .t-lang { grid-column: auto; }
+  .t-chat { grid-template-columns: minmax(0, 1fr); }
+  .shot { min-height: 0; aspect-ratio: 4 / 3; }
+}
+
+/* ---------- numbers ---------- */
+.nums { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 1px solid var(--line); }
+.num { padding: 32px 24px 8px 0; border-right: 1px solid var(--line); margin-right: 24px; }
+.num:last-child { border-right: 0; margin-right: 0; }
+.num strong { display: block; font: 600 clamp(48px, 6vw, 80px)/1 var(--font-display); letter-spacing: -0.045em; color: var(--ink); }
+.num b { display: block; margin-top: 14px; font-weight: 600; font-size: 16px; }
+.num span { display: block; color: var(--muted); font-size: 15px; line-height: 1.45; margin-top: 4px; }
+.nums-note { margin-top: 32px; color: var(--faint); font-size: 14px; max-width: 70ch; }
+@media (max-width: 860px) {
+  .nums { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .num:nth-child(2) { border-right: 0; margin-right: 0; }
+  .num:nth-child(n+3) { border-top: 1px solid var(--line); }
+}
+@media (max-width: 420px) { .num { padding-right: 14px; margin-right: 14px; } }
+
+/* ---------- steps ---------- */
+.steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; counter-reset: s; }
+.steps li { position: relative; padding: 28px; border-radius: var(--r-lg); border: 1px solid var(--line); background: linear-gradient(180deg, var(--bg-2), var(--bg)); display: grid; gap: 10px; align-content: start; }
+.steps li::before { counter-increment: s; content: "0" counter(s); font: 600 15px/1 var(--font-mono); color: var(--accent); }
+.steps h3 { font-size: 24px; letter-spacing: -0.02em; }
+.steps p { color: var(--muted); font-size: 16px; }
+.steps .pills { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
+.steps .pills span { padding: 4px 10px; border-radius: var(--r-pill); border: 1px solid var(--line-strong); font-size: 13px; color: var(--ink-2); }
+@media (max-width: 860px) { .steps { grid-template-columns: minmax(0, 1fr); } }
+
+/* ---------- plans ---------- */
+.plans { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; align-items: stretch; }
+.plan { display: flex; flex-direction: column; gap: 18px; padding: 32px 28px; border-radius: var(--r-lg); border: 1px solid var(--line); background: var(--bg-2); }
+.plan.pro { position: relative; background: linear-gradient(180deg, var(--pro-top), var(--bg-2) 60%); border-color: var(--line-lit); box-shadow: 0 40px 100px -50px var(--glow); }
+.plan h3 { font-size: 22px; letter-spacing: -0.01em; display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+.plan h3 small { font: 500 13px/1 var(--font-body); color: var(--accent); padding: 6px 10px; border-radius: var(--r-pill); background: var(--accent-soft); letter-spacing: 0; }
+.plan .price { font: 600 clamp(40px, 4.4vw, 54px)/1 var(--font-display); letter-spacing: -0.04em; color: var(--ink); margin-top: 4px; }
+.plan .price span { font: 400 16px/1 var(--font-body); color: var(--muted); letter-spacing: 0; margin-left: 6px; }
+.plan > p { color: var(--muted); font-size: 15px; margin-top: -8px; }
+.plan ul { list-style: none; margin: 0; padding: 18px 0 0; border-top: 1px solid var(--line); display: grid; gap: 10px; flex: 1; align-content: start; }
+.plan li { display: grid; grid-template-columns: 18px minmax(0, 1fr); gap: 10px; font-size: 15px; color: var(--ink-2); line-height: 1.45; }
+.plan li svg { width: 16px; height: 16px; margin-top: 3px; color: var(--accent); }
+.plan li.off { color: var(--faint); }
+.plan li.off svg { color: var(--faint); }
+.plan .btn { justify-content: center; }
+.plan .fine { font-size: 14px; color: var(--faint); margin-top: -6px; }
+@media (max-width: 960px) { .plans { grid-template-columns: minmax(0, 1fr); max-width: 520px; margin-inline: auto; } }
+
+/* ---------- faq ---------- */
+.faq-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr); gap: 48px; }
+.faq-grid h2 { font-size: clamp(34px, 5vw, 64px); letter-spacing: -0.035em; }
+.faq-grid > div > p { margin-top: 16px; color: var(--muted); }
+.faq details { border-bottom: 1px solid var(--line); }
+.faq details:first-child { border-top: 1px solid var(--line); }
+.faq summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 20px; padding: 22px 0; font: 600 18px/1.35 var(--font-display); letter-spacing: -0.01em; border-radius: 4px; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: ""; flex: none; width: 12px; height: 12px; border-right: 2px solid var(--muted); border-bottom: 2px solid var(--muted); transform: rotate(45deg) translate(-3px, -3px); transition: transform 200ms var(--ease); }
+.faq details[open] summary::after { transform: rotate(-135deg) translate(-3px, -3px); }
+.faq summary:hover { color: var(--accent); }
+.faq details p { padding: 0 40px 24px 0; color: var(--muted); font-size: 16px; }
+@media (max-width: 860px) { .faq-grid { grid-template-columns: minmax(0, 1fr); gap: 24px; } }
+
+/* ---------- final + footer ---------- */
+.final { position: relative; margin-top: var(--section); padding: clamp(72px, 10vw, 128px) 0; border-top: 1px solid var(--line); overflow: hidden; isolation: isolate; }
+.final::before { content: ""; position: absolute; inset: auto -20% -60% -20%; height: 120%; z-index: -1; background: radial-gradient(50% 50% at 50% 100%, var(--glow), transparent 70%); }
+.final .wrap { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 32px 48px; align-items: end; }
+.final h2 { font-size: clamp(40px, 6.4vw, 88px); letter-spacing: -0.04em; }
+.final p { color: var(--ink-2); font-size: 18px; margin-bottom: 24px; max-width: 36ch; }
+@media (max-width: 860px) { .final .wrap { grid-template-columns: minmax(0, 1fr); } }
+footer { border-top: 1px solid var(--line); padding: 48px 0 40px; color: var(--muted); font-size: 15px; }
+footer .wrap { display: grid; grid-template-columns: minmax(0, 1.4fr) repeat(2, minmax(0, 1fr)); gap: 32px; }
+footer .brand { margin-bottom: 14px; color: var(--ink); }
+footer .brand img { width: 30px; height: 30px; }
+footer a[href^="mailto"] { overflow-wrap: anywhere; }
+footer h2 { font: 600 15px/1.3 var(--font-body); color: var(--ink); letter-spacing: 0; margin-bottom: 12px; }
+footer ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+footer a { text-decoration: none; transition: color 160ms var(--ease); }
+footer a:hover { color: var(--ink); }
+.foot-base { grid-column: 1 / -1; padding-top: 24px; border-top: 1px solid var(--line); color: var(--faint); font-size: 14px; }
+@media (max-width: 760px) { footer .wrap { grid-template-columns: minmax(0, 1fr); } }
+
+/* reveal: visible by default, only hidden when JS has opted in */
+.js .rv { opacity: 0; transform: translateY(24px); transition: opacity 0.9s var(--ease), transform 0.9s var(--ease); }
+.js .rv.in { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .stage-frame { animation: none; }
+  .fan .lit { animation: none; }
+  .js .rv { opacity: 1; transform: none; transition: none; }
+  .btn, .link, .faq summary::after { transition: none; }
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="nav">
+  <nav class="wrap" aria-label="Main">
+    <a class="brand" href="#top" aria-label="Atlas home"><img src="https://p1.kanav.space/brand/atlas-mark.svg" alt="" width="26" height="26">Atlas</a>
+    <div class="nav-links">
+      <a href="#roles">Who’s asking</a>
+      <a href="#how">How it works</a>
+      <a href="#plans">Plans</a>
+      <a href="#faq">FAQ</a>
+    </div>
+    <div class="nav-cta">
+      <a class="btn btn-ghost" href="https://p1.kanav.space/login?tab=waitlist">Join the waitlist</a>
+      <a class="btn btn-primary" href="https://p1.kanav.space/login">Try the live demo</a>
+    </div>
+  </nav>
+</header>
+
+<main id="main">
+  <!-- HERO -->
+  <section class="hero" id="top" aria-labelledby="hero-title">
+    <div class="wrap">
+      <div class="hero-grid">
+        <h1 id="hero-title">Answers from your own documents.</h1>
+        <div class="hero-side">
+          <p>Cited to the page, and limited to what each person may read.</p>
+          <div class="actions">
+            <a class="btn btn-primary" href="https://p1.kanav.space/login">Try the live demo
+              <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+            <a class="btn btn-ghost" href="https://p1.kanav.space/login?tab=waitlist">Join the waitlist</a>
+          </div>
+        </div>
+      </div>
+      <figure class="stage">
+        <div class="stage-frame">
+          <picture>
+            <source media="(max-width: 640px)" srcset="img/hero-m.webp" width="1000" height="625">
+            <img src="img/hero.webp" width="1600" height="1000" alt="The Atlas app in dark mode: asked how many days of earned leave can be carried forward, Atlas answers up to 30 days with two numbered sources, and the Leave Policy FY2026-27 is open beside the chat with the carry-forward passage highlighted." fetchpriority="high">
+          </picture>
+        </div>
+        <figcaption>The live demo, signed in as Vikram at Nimbus Infotech.</figcaption>
+      </figure>
+    </div>
+    <div class="facts">
+      <div class="wrap">
+        <ul>
+          <li><strong>3 demo companies</strong>IT services, pharma and finance</li>
+          <li><strong>199 documents</strong>PDF, Word and Markdown</li>
+          <li><strong>Every role</strong>From website visitor to owner</li>
+          <li><strong>English and Hindi</strong>Hinglish too</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHO'S ASKING -->
+  <section class="sec" id="roles" aria-labelledby="roles-title">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <h2 id="roles-title">Who’s asking changes the answer.</h2>
+        <p>One question, four people at Nimbus Infotech. Atlas filters by access before it searches, so the AI never reads what the asker can’t.</p>
+      </div>
+
+      <div class="ask-q rv"><span class="mark"><img src="https://p1.kanav.space/brand/atlas-mark.svg" alt="" width="20" height="20"></span>What is the salary band for an L4 Tech Lead?</div>
+      <svg class="fan" viewBox="0 0 1000 72" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M500 0 C500 40 125 30 125 72"/>
+        <path d="M500 0 C500 40 375 30 375 72"/>
+        <path class="lit" d="M500 0 C500 40 625 30 625 72"/>
+        <path class="lit" d="M500 0 C500 40 875 30 875 72"/>
+      </svg>
+
+      <ul class="people" role="list">
+        <li class="person rv">
+          <div class="who"><span class="av" aria-hidden="true">W</span><div><b>Website visitor</b><small>On nimbus’s site</small></div></div>
+          <p class="reads">Reads <em>public documents only</em></p>
+          <div class="ans">
+            <span class="tag no"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="3.5" y="7" width="9" height="6.5" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M5.5 7V5.5a2.5 2.5 0 0 1 5 0V7" stroke="currentColor" stroke-width="1.5"/></svg>Not in what they can read</span>
+            <p class="none">“I couldn’t find this in the documents I can read.”</p>
+          </div>
+        </li>
+        <li class="person rv">
+          <div class="who"><span class="av" aria-hidden="true">AS</span><div><b>Aditya</b><small>Software engineer</small></div></div>
+          <p class="reads">Reads <em>Everyone + Engineering</em></p>
+          <div class="ans">
+            <span class="tag no"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="3.5" y="7" width="9" height="6.5" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M5.5 7V5.5a2.5 2.5 0 0 1 5 0V7" stroke="currentColor" stroke-width="1.5"/></svg>Not in what they can read</span>
+            <p class="none">“I couldn’t find this in the documents you have access to.”</p>
+          </div>
+        </li>
+        <li class="person can rv">
+          <div class="who"><span class="av" aria-hidden="true">RM</span><div><b>Ritika Menon</b><small>HR</small></div></div>
+          <p class="reads">Reads <em>Everyone + HR + Managers</em></p>
+          <div class="ans">
+            <span class="tag yes"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>Answered</span>
+            <p class="big">₹18 to 28 lakh a year</p>
+            <p class="cite"><i>1</i>Salary Bands FY2026-27</p>
+          </div>
+        </li>
+        <li class="person can rv">
+          <div class="who"><span class="av" aria-hidden="true">VK</span><div><b>Vikram Kulkarni</b><small>Admin</small></div></div>
+          <p class="reads">Reads <em>every document</em></p>
+          <div class="ans">
+            <span class="tag yes"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>Answered</span>
+            <p class="big">₹18 to 28 lakh a year</p>
+            <p class="cite"><i>1</i>Salary Bands FY2026-27</p>
+          </div>
+        </li>
+      </ul>
+      <p class="note rv">Try it yourself: <a class="link" href="https://p1.kanav.space/login?company=nimbus">sign in as each of them</a> and ask the same thing.</p>
+    </div>
+  </section>
+
+  <!-- EVERY ANSWER SHOWS ITS PAGE -->
+  <section class="sec" id="sources" aria-labelledby="sources-title">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <h2 id="sources-title">Every answer shows its page.</h2>
+        <p>Click a source number and the document opens beside the chat, scrolled to the passage.</p>
+      </div>
+      <div class="film">
+        <figure class="film-frame rv" style="margin:0">
+          <video id="demo" src="https://p1.kanav.space/home/img/atlas-demo.mp4" poster="https://p1.kanav.space/home/img/demo-poster.webp" muted loop playsinline preload="metadata" aria-label="Screen recording of the Atlas live demo: a question is asked, the answer streams in with numbered sources, and the cited passage opens in a side viewer."></video>
+          <button class="btn btn-ghost play" type="button" id="play" aria-pressed="false" hidden>Pause</button>
+          <figcaption>Recorded in the live demo, sped up while it searches.</figcaption>
+        </figure>
+        <ol class="points rv">
+          <li><div><b>Numbered sources</b><span>Every claim links to the document it came from.</span></div></li>
+          <li><div><b>The passage, side by side</b><span>Check the exact lines without leaving the chat.</span></div></li>
+          <li><div><b>No guessing</b><span>If it isn’t written down, Atlas says so.</span></div></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- BENTO -->
+  <section class="sec" id="more" aria-labelledby="more-title">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <h2 id="more-title">One engine. Your site, your team, your agents.</h2>
+        <p>The same permission check runs everywhere Atlas answers.</p>
+      </div>
+      <div class="bento">
+        <article class="tile t-chat rv">
+          <div class="copy">
+            <h3>A chat bubble on your website, in one line.</h3>
+            <p>Mark documents public, paste the line before <code>&lt;/body&gt;</code>. Visitors get answers from those documents alone.</p>
+<pre class="code" id="snippet"><span class="k">&lt;script</span> src=<span class="s">"https://p1.kanav.space/widget.js"</span>
+        data-atlas-key=<span class="s">"your-site-key"</span> async<span class="k">&gt;&lt;/script&gt;</span></pre>
+            <button class="btn btn-ghost copy-btn" type="button" id="copy" hidden>Copy the line</button>
+            <p class="sites">See it live:
+              <a class="link" href="https://p1.kanav.space/demo-site/nimbus">Nimbus Infotech</a>
+              <a class="link" href="https://p1.kanav.space/demo-site/sanjeevani">Sanjeevani Pharma</a>
+              <a class="link" href="https://p1.kanav.space/demo-site/kaveri">Kaveri Capital</a></p>
+          </div>
+          <figure class="shot" style="margin:0">
+            <img src="img/site-chat.webp" width="1000" height="725" loading="lazy" alt="Nimbus Infotech’s demo website with the Atlas chat bubble open, answering a visitor from a public document.">
+          </figure>
+        </article>
+
+        <article class="tile t-mcp rv">
+          <h3>Agents over MCP</h3>
+          <p>Claude and other agents connect with a token that acts as one person. Every call is logged.</p>
+          <ul class="tools" aria-label="MCP tools">
+            <li><span>ask_question</span><span>answer + sources</span></li>
+            <li><span>search_knowledge</span><span>passages</span></li>
+            <li><span>get_document</span><span>full text</span></li>
+            <li><span>list_departments</span><span>scope</span></li>
+          </ul>
+        </article>
+
+        <article class="tile t-roles rv">
+          <h3>Roles and departments</h3>
+          <p>Roles say what someone can do. Departments say what they can read.</p>
+          <ol class="ladder" aria-label="Roles, most access first">
+            <li>Super admin <small>owner</small></li>
+            <li>Admin <small>runs the company</small></li>
+            <li>Manager <small>own departments</small></li>
+            <li>Member</li>
+            <li>Guest</li>
+          </ol>
+        </article>
+
+        <article class="tile t-lang rv">
+          <h3>Ask in Hindi or Hinglish</h3>
+          <p>Atlas searches in English and replies in the language you asked in.</p>
+          <div class="bubble" aria-label="Example chat">
+            <p class="msg me">Earned leave kitni carry forward ho sakti hai?</p>
+            <p class="msg at">Aap 30 din tak ki earned leave agle saal le ja sakte hain.<small>Source 1, Leave Policy FY2026-27</small></p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- NUMBERS -->
+  <section class="sec" id="quality" aria-labelledby="quality-title">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <h2 id="quality-title">Measured, not promised.</h2>
+        <p>Fixed test questions with known right answers, scored on the demo companies’ documents.</p>
+      </div>
+      <div class="nums rv">
+        <div class="num"><strong>0</strong><b>Permission leaks</b><span>In every test run. Access is checked inside the search itself.</span></div>
+        <div class="num"><strong>0.988</strong><b>Hit@5</b><span>The right document is in the top 5 results.</span></div>
+        <div class="num"><strong>0.926</strong><b>MRR</b><span>The right document is usually the first one.</span></div>
+        <div class="num"><strong>98.8%</strong><b>Answers correct or partly correct</b><span>Graded blind against a rubric.</span></div>
+      </div>
+      <p class="nums-note rv">Retrieval: hybrid keyword and vector search, then a reranker, over 167 test questions. Full method and results are in the <a class="link" href="https://github.com/Kanav-Chauhan/atlasV2">public repository</a>.</p>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="sec" id="how" aria-labelledby="how-title">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <h2 id="how-title">Three steps to your first answer.</h2>
+        <p>No training, no prompt writing. Your documents stay the source of truth.</p>
+      </div>
+      <ol class="steps">
+        <li class="rv"><h3>Upload</h3><p>Drop in your PDFs, Word files and Markdown. Atlas reads and indexes them.</p><div class="pills" aria-hidden="true"><span>PDF</span><span>Word</span><span>Markdown</span></div></li>
+        <li class="rv"><h3>Set who reads what</h3><p>Put each document in a department, or mark it public for your website.</p><div class="pills" aria-hidden="true"><span>HR</span><span>Engineering</span><span>Public</span></div></li>
+        <li class="rv"><h3>Ask</h3><p>Your team asks in the app, visitors in the bubble, agents over MCP.</p><div class="pills" aria-hidden="true"><span>App</span><span>Website</span><span>MCP</span></div></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- PLANS -->
+  <section class="sec" id="plans" aria-labelledby="plans-title">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <h2 id="plans-title">Free on the demo. Paid when it’s your company.</h2>
+        <p>Atlas is invite-only for now. Join the waitlist and you’ll hear first when Pro opens.</p>
+      </div>
+      <div class="plans">
+        <div class="plan rv">
+          <h3>Free</h3>
+          <p class="price">₹0</p>
+          <p>Try the whole demo</p>
+          <ul>
+            <li><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>3 demo companies, 199 documents</li>
+            <li><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>Every role, employee to owner</li>
+            <li><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>Website chat on demo sites</li>
+            <li class="off"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4.5 8h7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>No company of your own</li>
+          </ul>
+          <a class="btn btn-ghost" href="https://p1.kanav.space/login">Try the live demo</a>
+        </div>
+        <div class="plan pro rv">
+          <h3>Pro <small>Waitlist</small></h3>
+          <p class="price">₹1,499<span>a month</span></p>
+          <p>Your own company</p>
+          <ul>
+            <li><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>5 companies, 200 documents</li>
+            <li><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>25 team members</li>
+            <li><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>5,000 questions a month</li>
+            <li><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>Website chat in your colours, no badge</li>
+          </ul>
+          <a class="btn btn-primary" href="https://p1.kanav.space/login?tab=waitlist">Join the waitlist</a>
+          <p class="fine">Not on sale yet.</p>
+        </div>
+        <div class="plan rv">
+          <h3>Enterprise</h3>
+          <p class="price">Let’s talk</p>
+          <p>Bigger teams</p>
+          <ul>
+            <li><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>More companies, documents and questions</li>
+            <li><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>Help moving your documents in</li>
+            <li><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>A direct line to the builder</li>
+          </ul>
+          <a class="btn btn-ghost" href="mailto:kanavchauhan08@gmail.com?subject=Atlas%20Enterprise">Email Kanav</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="sec" id="faq" aria-labelledby="faq-title">
+    <div class="wrap faq-grid">
+      <div class="rv">
+        <h2 id="faq-title">Questions</h2>
+        <p>Anything else: <a class="link" href="mailto:kanavchauhan08@gmail.com">kanavchauhan08@gmail.com</a></p>
+      </div>
+      <div class="faq rv">
+        <details>
+          <summary>Can I use Atlas for my own company today?</summary>
+          <p>Not yet. Atlas is invite-only while Pro gets ready. You can use the full demo now and join the waitlist to hear first.</p>
+        </details>
+        <details>
+          <summary>Can the AI see documents I’m not allowed to read?</summary>
+          <p>No. Every passage carries its company, departments and public flag, and the database filters on them before anything is ranked. The AI only ever receives text the asker may read. The test set has found 0 leaks in every run.</p>
+        </details>
+        <details>
+          <summary>What happens when the answer isn’t in my documents?</summary>
+          <p>Atlas checks that the passages it found really answer the question. If they don’t, it says it couldn’t find it instead of guessing.</p>
+        </details>
+        <details>
+          <summary>Which files can it read?</summary>
+          <p>PDF, Word and Markdown. Each document is split into passages you can inspect in the library, and older versions of a document are ranked down.</p>
+        </details>
+        <details>
+          <summary>What does the website chat bubble see?</summary>
+          <p>Only the documents you mark public. It works on the websites you allow, with rate limits, and the bubble never reaches private files.</p>
+        </details>
+        <details>
+          <summary>Does it understand Hindi?</summary>
+          <p>Yes. Ask in English, Hindi or Hinglish and Atlas replies in the same language, with the same sources.</p>
+        </details>
+        <details>
+          <summary>Can I see how it is built?</summary>
+          <p>Yes. The source code and the test results are on <a class="link" href="https://github.com/Kanav-Chauhan/atlasV2">GitHub</a>.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL -->
+  <section class="final" aria-labelledby="final-title">
+    <div class="wrap">
+      <h2 id="final-title">Ask it something.</h2>
+      <div>
+        <p>Sign in to a demo company as HR, then as an engineer, and ask the same question twice.</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="https://p1.kanav.space/login">Try the live demo</a>
+          <a class="btn btn-ghost" href="https://p1.kanav.space/login?tab=waitlist">Join the waitlist</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <a class="brand" href="#top"><img src="https://p1.kanav.space/brand/atlas-logo.svg" alt="" width="30" height="30">Atlas</a>
+      <p>Built in India by Kanav Chauhan.</p>
+    </div>
+    <nav aria-labelledby="f-product">
+      <h2 id="f-product">Product</h2>
+      <ul>
+        <li><a href="https://p1.kanav.space/login">Live demo</a></li>
+        <li><a href="https://p1.kanav.space/login?tab=waitlist">Waitlist</a></li>
+        <li><a href="https://p1.kanav.space/demo-site/nimbus">Demo website</a></li>
+        <li><a href="https://github.com/Kanav-Chauhan/atlasV2">Source code</a></li>
+      </ul>
+    </nav>
+    <nav aria-labelledby="f-company">
+      <h2 id="f-company">Contact and legal</h2>
+      <ul>
+        <li><a href="mailto:kanavchauhan08@gmail.com">kanavchauhan08@gmail.com</a></li>
+        <li><a href="https://p1.kanav.space/privacy">Privacy</a></li>
+        <li><a href="https://p1.kanav.space/terms">Terms</a></li>
+      </ul>
+    </nav>
+    <p class="foot-base">© 2026 Atlas. Demo companies and people are made up.</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var d = document.documentElement;
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if ('IntersectionObserver' in window && !reduce) {
+    d.classList.add('js');
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { rootMargin: '0px 0px -8% 0px' });
+    document.querySelectorAll('.rv').forEach(function (el) { io.observe(el); });
+  }
+  // video: play when on screen (not under reduced motion); a visible pause control
+  var v = document.getElementById('demo'), b = document.getElementById('play');
+  if (v && b) {
+    b.hidden = false;
+    var userPaused = reduce;
+    function sync() { var p = !v.paused; b.textContent = p ? 'Pause' : 'Play'; b.setAttribute('aria-pressed', String(!p)); }
+    b.addEventListener('click', function () { if (v.paused) { userPaused = false; v.play(); } else { userPaused = true; v.pause(); } });
+    v.addEventListener('play', sync); v.addEventListener('pause', sync); sync();
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (es) {
+        es.forEach(function (e) { if (e.isIntersecting && !userPaused) { v.play().catch(function () {}); } else if (!e.isIntersecting) { v.pause(); } });
+      }, { threshold: 0.35 }).observe(v);
+    }
+  }
+  // copy snippet
+  var c = document.getElementById('copy'), s = document.getElementById('snippet');
+  if (c && s && navigator.clipboard) {
+    c.hidden = false;
+    c.addEventListener('click', function () {
+      navigator.clipboard.writeText(s.textContent.replace(/\s+/g, ' ').trim()).then(function () {
+        c.textContent = 'Copied'; setTimeout(function () { c.textContent = 'Copy the line'; }, 1800);
+      });
+    });
+  }
+})();
+</script>
+</body>
+</html>

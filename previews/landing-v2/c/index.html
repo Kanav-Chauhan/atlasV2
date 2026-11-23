@@ -1,0 +1,1018 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Atlas: answers that depend on who is asking</title>
+<meta name="description" content="Atlas answers questions from your company's documents, cites the exact page, and shows each person only what they may read. A website chat bubble answers visitors from public documents.">
+<link rel="icon" href="https://p1.kanav.space/brand/atlas-mark.svg" type="image/svg+xml">
+<link rel="preload" href="https://p1.kanav.space/home/fonts/display.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+/* Hallmark · shape: a stage you play, then the answer built in four rooms, the real recording, the bubble, the agent, the figures, plans, questions · genre: modern-minimal · theme: custom · job: try · idea: "the answer depends on who is asking: the visitor becomes six people at Nimbus Infotech and watches one question come back six true ways" · vibe: "a control room at night, exact, playful, honest" · paper: oklch(97.5% 0.006 250) · night: oklch(19% 0.055 262) · accent: oklch(50% 0.19 262) sapphire from the Atlas mark · lock: oklch(50% 0.12 65) amber, only for "you may not read this" · display: Funnel Display · body: Funnel Sans (the brand faces) · hero: night stage, a seven-word head over a full-width console where the visitor picks who asks and which question, the answer streams with its citation and the cited page opens beside it · nav: wordmark, five text links, one action · footer: a signed line with links · imagery: the product built faithfully (console, library, access, pipeline, bubble, agent), the real screen recording, a real screenshot of the Nimbus demo site · signature: the "who is asking" console · axes: dark-hero/grotesk/chromatic-sapphire · posture: committed, the person chosen in the hero follows the visitor down the page · v2.0.0 */
+/* Hallmark · pre-emit critique: P5 H5 E4 S4 R4 V5 · weakest: E, the streamed answer must stay readable with motion off and scripting off, so every answer state is plain markup first */
+/* Facts: every figure comes from docs/DECISIONS.md D-020 and D-023, README Measured quality, or the live demo database (document counts per person, 2026-11-24). */
+@font-face { font-family: "Funnel Display"; src: url("https://p1.kanav.space/home/fonts/display.woff2") format("woff2"); font-weight: 300 800; font-display: swap; }
+@font-face { font-family: "Funnel Sans"; src: url("https://p1.kanav.space/home/fonts/body.woff2") format("woff2"); font-weight: 300 800; font-display: swap; }
+@font-face { font-family: "Funnel Fallback"; src: local("Arial"); size-adjust: 98%; ascent-override: 96%; descent-override: 26%; line-gap-override: 0%; }
+:root {
+  color-scheme: light;
+  --font-display: "Funnel Display", "Funnel Fallback", sans-serif;
+  --font-body: "Funnel Sans", "Funnel Fallback", sans-serif;
+  --font-code: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+
+  --color-paper: oklch(97.5% 0.006 250);
+  --color-paper-2: oklch(94.5% 0.01 245);
+  --color-surface: oklch(100% 0 0);
+  --color-canvas: oklch(97.2% 0.005 250);
+  --color-ink: oklch(21% 0.02 250);
+  --color-ink-2: oklch(31% 0.022 250);
+  --color-muted: oklch(45% 0.02 250);
+  --color-rule: oklch(87% 0.012 235);
+  --color-rule-soft: oklch(91.5% 0.008 245);
+
+  --color-night: oklch(19% 0.055 262);
+  --color-night-2: oklch(24% 0.07 262);
+  --color-night-3: oklch(30% 0.08 262);
+  --color-night-ink: oklch(97% 0.01 250);
+  --color-night-muted: oklch(81% 0.04 255);
+  --color-night-rule: oklch(38% 0.06 262);
+  --color-glow: oklch(50% 0.19 262 / 0.45);
+  --color-glow-0: oklch(50% 0.19 262 / 0);
+
+  --color-accent: oklch(50% 0.19 262);
+  --color-accent-deep: oklch(42% 0.17 262);
+  --color-accent-ink: oklch(98.5% 0.004 250);
+  --color-accent-soft: oklch(93% 0.035 262);
+  --color-accent-bright: oklch(78% 0.12 255);
+  --color-mark: oklch(88% 0.07 262);
+  --color-focus: oklch(45% 0.18 262);
+  --color-focus-night: oklch(82% 0.11 255);
+
+  --color-lock: oklch(48% 0.12 65);
+  --color-lock-soft: oklch(96% 0.045 85);
+  --color-lock-line: oklch(86% 0.09 80);
+  --color-lock-bright: oklch(84% 0.12 80);
+  --color-ok: oklch(45% 0.12 150);
+  --color-ok-soft: oklch(95.5% 0.035 150);
+
+  --color-shadow: oklch(15% 0.05 262 / 0.35);
+  --color-shadow-soft: oklch(21% 0.02 250 / 0.12);
+
+  --text-xs: 0.8125rem; --text-sm: 0.9375rem; --text-md: 1.0625rem; --text-lg: 1.25rem; --text-xl: 1.5rem;
+  --text-hero: clamp(2.5rem, 5vw + 0.25rem, 5.4rem);
+  --text-section: clamp(2.1rem, 3.4vw + 0.8rem, 4.25rem);
+  --text-figure: clamp(3rem, 5vw + 1rem, 6.5rem);
+  --text-step: clamp(1.6rem, 1.6vw + 1rem, 2.4rem);
+
+  --space-3xs: 2px; --space-2xs: 4px; --space-xs: 8px; --space-sm: 12px; --space-md: 16px; --space-lg: 24px; --space-xl: 40px; --space-2xl: 64px; --space-3xl: 104px; --space-4xl: 152px;
+  --container: 1320px; --gutter: clamp(16px, 4.4vw, 64px); --gap: 32px;
+  --radius-panel: 18px; --radius-card: 12px; --radius-input: 8px; --radius-pill: 999px;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-micro: 120ms; --dur-short: 220ms; --dur-long: 480ms;
+  --z-raised: 10; --z-nav: 200;
+  --color-glow-low: oklch(50% 0.19 262 / 0.18);
+  --color-edge-light: oklch(100% 0 0 / 0.08);
+  --color-accent-line: oklch(80% 0.08 262);
+  --color-accent-line-2: oklch(82% 0.07 262);
+  --color-code-tag: oklch(80% 0.1 255);
+  --color-code-attr: oklch(85% 0.1 80);
+  --color-code-str: oklch(85% 0.11 150);
+  --color-veil-0: oklch(97.5% 0.006 250 / 0);
+  --color-veil: oklch(97.5% 0.006 250 / 0.55);
+  --color-widget: oklch(45% 0.16 262);
+  --color-term: oklch(14% 0.04 262);
+  --color-lock-rule: oklch(55% 0.1 70);
+}
+*, *::before, *::after { box-sizing: border-box; }
+html, body { overflow-x: clip; }
+html { scroll-behavior: smooth; scroll-padding-top: 88px; -webkit-text-size-adjust: 100%; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+::selection { background: var(--color-mark); color: var(--color-ink); }
+html { scrollbar-color: var(--color-muted) var(--color-paper); }
+body { caret-color: var(--color-accent); margin: 0; background: var(--color-paper); color: var(--color-ink); font-family: var(--font-body); font-size: var(--text-md); line-height: 1.55; -webkit-font-smoothing: antialiased; }
+h1, h2, h3 { margin: 0; font-family: var(--font-display); font-weight: 650; letter-spacing: -0.035em; line-height: 1.02; overflow-wrap: break-word; min-width: 0; text-wrap: balance; font-synthesis: none; }
+p { margin: 0; text-wrap: pretty; }
+img, video { max-width: 100%; display: block; }
+button, input { font: inherit; color: inherit; }
+fieldset { margin: 0; padding: 0; border: 0; min-width: 0; }
+legend { padding: 0; }
+a { color: inherit; text-underline-offset: 0.18em; text-decoration-thickness: 1px; }
+a:hover { text-decoration-thickness: 2px; }
+:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 3px; }
+.night :focus-visible { outline-color: var(--color-focus-night); }
+code { font-family: var(--font-code); font-size: 0.9em; }
+.container { width: 100%; max-width: var(--container); margin-inline: auto; padding-inline: var(--gutter); }
+[hidden] { display: none !important; }
+.visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.skip { position: absolute; left: var(--space-md); top: -100px; z-index: 300; background: var(--color-surface); color: var(--color-ink); padding: var(--space-sm) var(--space-md); border-radius: var(--radius-input); }
+.skip:focus-visible { top: var(--space-md); }
+
+/* Buttons: one shape, two grounds */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: var(--space-xs); min-height: 48px; padding: 0 var(--space-lg); border-radius: var(--radius-pill); border: 1px solid var(--color-accent); background: var(--color-accent); color: var(--color-accent-ink); font-weight: 600; font-size: var(--text-md); line-height: 1; text-decoration: none; white-space: nowrap; cursor: pointer; transition: background-color var(--dur-short) var(--ease-out), border-color var(--dur-short) var(--ease-out), transform var(--dur-micro) var(--ease-out); }
+.btn:hover { background: var(--color-accent-deep); border-color: var(--color-accent-deep); text-decoration: none; }
+.btn:active { transform: translateY(1px) scale(0.985); }
+.btn:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 3px; }
+.btn--ghost { background: transparent; color: var(--color-ink); border-color: var(--color-ink); }
+.btn--ghost:hover { background: var(--color-paper-2); border-color: var(--color-ink); }
+.night .btn:focus-visible { outline-color: var(--color-focus-night); }
+.night .btn--ghost { color: var(--color-night-ink); border-color: var(--color-night-muted); }
+.night .btn--ghost:hover { background: var(--color-night-2); border-color: var(--color-night-ink); }
+.btn[aria-disabled="true"] { opacity: 0.55; cursor: not-allowed; }
+
+/* Nav */
+.nav { position: sticky; top: 0; z-index: var(--z-nav); background: var(--color-night); color: var(--color-night-ink); border-bottom: 1px solid var(--color-night-rule); }
+.nav__row { display: flex; align-items: center; gap: var(--space-lg); min-height: 68px; }
+.brand { display: inline-flex; align-items: center; gap: var(--space-sm); font-family: var(--font-display); font-weight: 650; font-size: 1.375rem; letter-spacing: -0.03em; text-decoration: none; }
+.brand img { width: 30px; height: 30px; }
+.nav__links { display: flex; gap: var(--space-lg); margin: 0 0 0 auto; padding: 0; list-style: none; font-size: var(--text-sm); }
+.nav__links a { text-decoration: none; color: var(--color-night-muted); padding: var(--space-xs) 0; }
+.nav__links a:hover { color: var(--color-night-ink); text-decoration: underline; }
+.nav .btn { min-height: 42px; padding: 0 var(--space-md); font-size: var(--text-sm); }
+@media (max-width: 62rem) { .nav__links { display: none; } .nav .btn { margin-left: auto; } }
+
+/* Hero: the night stage */
+.hero { position: relative; background: var(--color-night); color: var(--color-night-ink); padding: var(--space-xl) 0 var(--space-3xl); isolation: isolate; }
+.hero::before { content: ""; position: absolute; inset: 0; z-index: -1; background: radial-gradient(60% 55% at 78% 8%, var(--color-glow), var(--color-glow-0) 70%), radial-gradient(40% 40% at 4% 92%, var(--color-glow-low), var(--color-glow-0) 70%); pointer-events: none; }
+.nowrap { white-space: nowrap; }
+.hero__head { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); gap: var(--gap); align-items: end; }
+.hero h1 { font-size: var(--text-hero); font-weight: 700; letter-spacing: -0.045em; line-height: 0.95; }
+.hero__side { display: grid; gap: var(--space-lg); padding-bottom: var(--space-xs); }
+.hero__lede { font-size: clamp(1.125rem, 0.5vw + 1rem, 1.375rem); color: var(--color-night-muted); line-height: 1.45; }
+.actions { display: flex; flex-wrap: wrap; gap: var(--space-sm); }
+@media (max-width: 62rem) { .hero__head { grid-template-columns: minmax(0, 1fr); gap: var(--space-lg); } }
+
+/* The console (the signature) */
+.console-wrap { margin-top: var(--space-xl); }
+.console-cue { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: var(--space-xs) var(--space-lg); margin-bottom: var(--space-sm); color: var(--color-night-muted); font-size: var(--text-sm); }
+.console-cue strong { color: var(--color-night-ink); font-weight: 600; font-size: var(--text-md); }
+.console { display: grid; grid-template-columns: minmax(0, 240px) minmax(0, 1.3fr) minmax(0, 1fr); background: var(--color-canvas); color: var(--color-ink); border-radius: var(--radius-panel); box-shadow: 0 0 0 1px var(--color-edge-light), 0 40px 80px -30px var(--color-shadow); overflow: hidden; min-height: 470px; }
+.who { background: var(--color-surface); border-right: 1px solid var(--color-rule-soft); padding: var(--space-md); display: grid; align-content: start; gap: var(--space-3xs); }
+.who legend, .pane-title { font-size: var(--text-xs); color: var(--color-muted); font-weight: 600; margin-bottom: var(--space-xs); }
+.who legend { float: left; width: 100%; padding: var(--space-3xs) var(--space-xs) var(--space-xs); }
+.person { position: relative; display: grid; grid-template-columns: 36px minmax(0, 1fr); gap: var(--space-sm); align-items: center; padding: var(--space-xs) var(--space-sm); border-radius: 10px; cursor: pointer; border: 1px solid transparent; transition: background-color var(--dur-short) var(--ease-out), border-color var(--dur-short) var(--ease-out); }
+.person input { position: absolute; opacity: 0; inset: 0; margin: 0; cursor: pointer; }
+.person:hover { background: var(--color-paper-2); }
+.person:has(input:checked) { background: var(--color-accent-soft); border-color: var(--color-accent-line); }
+.person:has(input:focus-visible) { outline: 2px solid var(--color-focus); outline-offset: 2px; }
+.avatar { width: 36px; height: 36px; border-radius: 50%; display: grid; place-items: center; font-weight: 700; font-size: 0.8125rem; background: var(--color-paper-2); color: var(--color-ink-2); }
+.person:has(input:checked) .avatar { background: var(--color-accent); color: var(--color-accent-ink); }
+.avatar--visitor { background: var(--color-lock-soft); color: var(--color-lock); }
+.person__name { display: block; font-weight: 600; font-size: var(--text-sm); line-height: 1.2; }
+.person__role { display: block; font-size: var(--text-xs); color: var(--color-muted); line-height: 1.3; }
+
+.chat { display: grid; grid-template-rows: auto minmax(0, 1fr); border-right: 1px solid var(--color-rule-soft); min-width: 0; }
+.qs__row { display: flex; flex-wrap: wrap; gap: var(--space-xs); }
+.qs { display: grid; gap: 0; gap: var(--space-xs); padding: var(--space-md); border-bottom: 1px solid var(--color-rule-soft); background: var(--color-surface); }
+.qs legend { width: 100%; font-size: var(--text-xs); color: var(--color-muted); font-weight: 600; margin-bottom: var(--space-xs); float: left; }
+.qchip { position: relative; display: inline-flex; align-items: center; min-height: 38px; padding: 0 var(--space-md); border-radius: var(--radius-pill); border: 1px solid var(--color-rule); font-size: var(--text-sm); cursor: pointer; background: var(--color-surface); transition: background-color var(--dur-short) var(--ease-out), border-color var(--dur-short) var(--ease-out), color var(--dur-short) var(--ease-out); }
+.qchip input { position: absolute; opacity: 0; inset: 0; margin: 0; cursor: pointer; }
+.qchip:hover { border-color: var(--color-ink-2); }
+.qchip:has(input:checked) { background: var(--color-ink); color: var(--color-paper); border-color: var(--color-ink); }
+.qchip:has(input:focus-visible) { outline: 2px solid var(--color-focus); outline-offset: 2px; }
+.thread { padding: var(--space-lg) var(--space-lg) var(--space-xl); display: grid; align-content: start; gap: var(--space-md); }
+.bubble-q { justify-self: end; max-width: 88%; background: var(--color-accent); color: var(--color-accent-ink); padding: var(--space-sm) var(--space-md); border-radius: 18px 18px 4px 18px; font-size: var(--text-md); }
+.asker { justify-self: end; font-size: var(--text-xs); color: var(--color-muted); margin-top: calc(var(--space-sm) * -1); }
+.steps { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: var(--space-xs) var(--space-md); font-size: var(--text-sm); color: var(--color-muted); }
+.steps li { display: flex; gap: var(--space-sm); align-items: baseline; }
+.steps li::before { content: ""; flex: none; width: 8px; height: 8px; border-radius: 50%; background: var(--color-ok); transform: translateY(-1px); }
+.steps li[data-state="wait"] { opacity: 0.35; }
+.steps li[data-state="wait"]::before { background: var(--color-rule); }
+.steps li[data-state="run"]::before { background: var(--color-accent); animation: pulse 900ms ease-in-out infinite; }
+@keyframes pulse { 50% { transform: translateY(-1px) scale(1.6); opacity: 0.5; } }
+.atlas-says { display: grid; gap: var(--space-sm); }
+.atlas-says__who { display: flex; align-items: center; gap: var(--space-xs); font-size: var(--text-xs); font-weight: 600; color: var(--color-muted); }
+.atlas-says__who img { width: 18px; height: 18px; }
+.answer { font-size: clamp(1.125rem, 0.6vw + 0.95rem, 1.375rem); line-height: 1.45; font-weight: 500; color: var(--color-ink); }
+.answer .w { transition: opacity 160ms linear; }
+.answer.is-typing .w:not(.on) { opacity: 0; }
+.answer--no { color: var(--color-ink-2); }
+.answer--no strong { display: block; color: var(--color-lock); font-weight: 650; }
+.cite { display: inline-grid; place-items: center; min-width: 26px; height: 26px; padding: 0 var(--space-xs); margin-left: var(--space-2xs); vertical-align: 2px; border-radius: 7px; border: 0; background: var(--color-accent-soft); color: var(--color-accent-deep); font-size: 0.8125rem; font-weight: 700; cursor: pointer; transition: background-color var(--dur-short) var(--ease-out), transform var(--dur-micro) var(--ease-out); }
+.cite:hover { background: var(--color-mark); }
+.cite:active { transform: scale(0.94); }
+.source-chip { display: inline-flex; gap: var(--space-xs); align-items: center; justify-self: start; font-size: var(--text-xs); color: var(--color-ink-2); background: var(--color-surface); border: 1px solid var(--color-rule); border-radius: var(--radius-pill); padding: var(--space-2xs) var(--space-sm) var(--space-2xs) var(--space-xs); }
+.source-chip b { display: inline-grid; place-items: center; width: 20px; height: 20px; border-radius: 6px; background: var(--color-accent-soft); color: var(--color-accent-deep); font-size: 0.75rem; }
+.aside-note { font-size: var(--text-sm); color: var(--color-muted); border-left: 2px solid var(--color-rule); padding-left: var(--space-sm); }
+.aside-note--lock { border-left-color: var(--color-lock-line); }
+
+.page { background: var(--color-surface); padding: var(--space-lg); display: grid; align-content: start; gap: var(--space-md); min-width: 0; transition: opacity var(--dur-long) var(--ease-out); }
+.page__doc { display: flex; gap: var(--space-sm); align-items: flex-start; }
+.doc-icon { flex: none; width: 34px; height: 42px; border-radius: 5px; background: var(--color-paper-2); border: 1px solid var(--color-rule); display: grid; place-items: end center; padding-bottom: var(--space-2xs); font-size: 0.625rem; font-weight: 700; color: var(--color-muted); }
+.page__title { font-weight: 650; font-size: var(--text-md); line-height: 1.25; }
+.page__meta { font-size: var(--text-xs); color: var(--color-muted); }
+.sheet { border: 1px solid var(--color-rule-soft); border-radius: 10px; padding: var(--space-md) var(--space-lg); background: var(--color-surface); box-shadow: 0 10px 30px -20px var(--color-shadow-soft); font-size: var(--text-sm); display: grid; gap: var(--space-sm); }
+.sheet .sheet__h { margin: 0; font-family: var(--font-display); font-weight: 650; font-size: 1.0625rem; letter-spacing: -0.01em; }
+.sheet p { color: var(--color-ink-2); }
+.sheet mark, .sheet tr.hit td { background: var(--color-mark); color: var(--color-ink); }
+.sheet mark { padding: 1px var(--space-3xs); border-radius: 3px; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+.sheet table { width: 100%; border-collapse: collapse; font-size: var(--text-xs); font-variant-numeric: tabular-nums; }
+.sheet th { text-align: left; font-weight: 600; color: var(--color-muted); padding: var(--space-2xs) var(--space-xs); border-bottom: 1px solid var(--color-rule); }
+.sheet td { padding: var(--space-xs); border-bottom: 1px solid var(--color-rule-soft); }
+.sheet .num { text-align: right; }
+.sheet--faded { opacity: 0.4; }
+.page.is-flash .sheet { animation: flash 900ms var(--ease-out); }
+@keyframes flash { 0% { box-shadow: 0 0 0 0 var(--color-accent); } 30% { box-shadow: 0 0 0 4px var(--color-mark); } 100% { box-shadow: 0 10px 30px -20px var(--color-shadow-soft); } }
+.empty-page { display: grid; gap: var(--space-sm); place-items: start; padding: var(--space-lg); border: 1px dashed var(--color-lock-line); border-radius: 10px; background: var(--color-lock-soft); color: var(--color-lock); font-size: var(--text-sm); }
+.empty-page strong { font-size: var(--text-md); }
+.empty-page span { color: var(--color-ink-2); }
+.console-foot { margin-top: var(--space-md); color: var(--color-night-muted); font-size: var(--text-sm); max-width: 70ch; }
+
+.is-swapping .thread, .is-swapping .page { opacity: 0.25; }
+.thread { transition: opacity var(--dur-short) var(--ease-out); }
+
+@media (max-width: 75rem) {
+  .console { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .who { grid-column: 1 / -1; grid-template-columns: repeat(3, minmax(0, 1fr)); border-right: 0; border-bottom: 1px solid var(--color-rule-soft); }
+  .who legend { grid-column: 1 / -1; }
+}
+@media (max-width: 48rem) {
+  .console { grid-template-columns: minmax(0, 1fr); min-height: 0; }
+  .who { grid-template-columns: repeat(2, minmax(0, 1fr)); padding: var(--space-sm); }
+  .person { grid-template-columns: 30px minmax(0, 1fr); padding: var(--space-xs) var(--space-xs); gap: var(--space-xs); }
+  .avatar { width: 30px; height: 30px; font-size: 0.75rem; }
+  .chat { border-right: 0; border-bottom: 1px solid var(--color-rule-soft); }
+  .thread { padding: var(--space-md); }
+  .page { padding: var(--space-md); }
+  .qchip { font-size: var(--text-xs); min-height: 40px; padding: 0 var(--space-sm); }
+}
+
+/* Sections */
+.section { padding: var(--space-4xl) 0; }
+.section--tight { padding: var(--space-3xl) 0; }
+.night { background: var(--color-night); color: var(--color-night-ink); }
+.night .muted, .night .lede { color: var(--color-night-muted); }
+.section-head { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: var(--gap); align-items: end; margin-bottom: var(--space-2xl); }
+.section-head h2 { font-size: var(--text-section); }
+.lede { font-size: var(--text-lg); color: var(--color-muted); line-height: 1.5; max-width: 46ch; }
+@media (max-width: 62rem) { .section-head { grid-template-columns: minmax(0, 1fr); gap: var(--space-md); } .section { padding: var(--space-3xl) 0; } }
+
+/* Story: four rooms, each a row; the words pin while the picture passes */
+.story { counter-reset: room; }
+.room { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: var(--space-2xl); padding: var(--space-2xl) 0; border-top: 1px solid var(--color-rule); }
+.room:last-child { padding-bottom: 0; }
+.room__words { position: sticky; top: 108px; align-self: start; display: grid; gap: var(--space-md); }
+.room h3 { font-size: var(--text-step); }
+.room p { color: var(--color-muted); max-width: 40ch; }
+.room__stage { background: var(--color-surface); border: 1px solid var(--color-rule-soft); border-radius: var(--radius-panel); padding: var(--space-lg); box-shadow: 0 30px 60px -40px var(--color-shadow-soft); min-width: 0; }
+@media (max-width: 62rem) { .room { grid-template-columns: minmax(0, 1fr); gap: var(--space-lg); } .room__words { position: static; } }
+
+/* Room 1: library */
+.lib { width: 100%; border-collapse: collapse; font-size: var(--text-sm); }
+.lib th { text-align: left; font-size: var(--text-xs); color: var(--color-muted); font-weight: 600; padding: 0 var(--space-sm) var(--space-sm); border-bottom: 1px solid var(--color-rule); }
+.lib td { padding: var(--space-sm) var(--space-sm); border-bottom: 1px solid var(--color-rule-soft); vertical-align: middle; }
+.lib tr:last-child td { border-bottom: 0; }
+.lib .t { font-weight: 600; }
+.fmt { display: inline-block; min-width: 46px; text-align: center; font-size: 0.75rem; font-weight: 700; padding: var(--space-2xs) var(--space-xs); border-radius: 6px; background: var(--color-paper-2); color: var(--color-ink-2); }
+.tag { display: inline-block; font-size: 0.75rem; font-weight: 600; padding: var(--space-2xs) var(--space-xs); border-radius: var(--radius-pill); white-space: nowrap; }
+.tag--ok { background: var(--color-ok-soft); color: var(--color-ok); }
+.tag--old { background: var(--color-lock-soft); color: var(--color-lock); }
+.tag--pub { background: var(--color-accent-soft); color: var(--color-accent-deep); }
+.lib .num { font-variant-numeric: tabular-nums; color: var(--color-muted); }
+@media (max-width: 40rem) { .lib .hide-s { display: none; } .lib td, .lib th { padding-inline: var(--space-xs); } }
+
+/* Room 2: who reads what */
+.mini-who { display: flex; flex-wrap: wrap; gap: var(--space-xs); margin-bottom: var(--space-lg); }
+.mini-who .qchip { min-height: 36px; }
+.shelves { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-xs); }
+.shelf { display: flex; justify-content: space-between; align-items: center; gap: var(--space-sm); padding: var(--space-sm) var(--space-md); border-radius: 10px; border: 1px solid var(--color-rule-soft); background: var(--color-canvas); font-size: var(--text-sm); transition: background-color var(--dur-long) var(--ease-out), border-color var(--dur-long) var(--ease-out), color var(--dur-long) var(--ease-out); }
+.shelf__name { font-weight: 600; }
+.shelf__state { font-size: var(--text-xs); color: var(--color-muted); white-space: nowrap; }
+.shelf[data-open="yes"] { background: var(--color-accent-soft); border-color: var(--color-accent-line-2); }
+.shelf[data-open="yes"] .shelf__state { color: var(--color-accent-deep); font-weight: 600; }
+.shelf[data-open="no"] { color: var(--color-muted); }
+.shelf[data-open="no"] .shelf__name { font-weight: 500; }
+.reach { margin-top: var(--space-lg); display: flex; align-items: baseline; gap: var(--space-sm); flex-wrap: wrap; }
+.reach__n { font-family: var(--font-display); font-weight: 700; font-size: clamp(2.5rem, 3vw + 1rem, 3.75rem); letter-spacing: -0.04em; line-height: 1; color: var(--color-ink); font-variant-numeric: tabular-nums; }
+.reach__t { color: var(--color-muted); }
+@media (max-width: 22rem) { .shelves { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 40rem) { .shelf { padding: var(--space-sm); flex-direction: column; align-items: flex-start; gap: 0; } }
+
+/* Room 3: the answer flow */
+.flow { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; counter-reset: flow; }
+.flow li { display: grid; grid-template-columns: 36px minmax(0, 1fr); gap: var(--space-md); padding: var(--space-sm) 0; position: relative; }
+.flow li::before { counter-increment: flow; content: counter(flow); width: 36px; height: 36px; border-radius: 50%; display: grid; place-items: center; font-weight: 700; font-size: var(--text-sm); background: var(--color-paper-2); color: var(--color-ink-2); transition: background-color var(--dur-short) var(--ease-out), color var(--dur-short) var(--ease-out), transform var(--dur-short) var(--ease-out); }
+.flow li:not(:last-child)::after { content: ""; position: absolute; left: 17px; top: 50px; bottom: -10px; width: 2px; background: var(--color-rule-soft); }
+.flow b { display: block; font-weight: 650; }
+.flow span { color: var(--color-muted); font-size: var(--text-sm); }
+.flow li.is-lit::before { background: var(--color-accent); color: var(--color-accent-ink); transform: scale(1.08); }
+.flow-q { display: flex; gap: var(--space-sm); align-items: center; justify-content: space-between; flex-wrap: wrap; padding-bottom: var(--space-md); margin-bottom: var(--space-sm); border-bottom: 1px solid var(--color-rule-soft); }
+.flow-q p { font-weight: 600; }
+.linkbtn { background: none; border: 0; padding: var(--space-xs) 0; color: var(--color-accent-deep); font-weight: 600; font-size: var(--text-sm); cursor: pointer; text-decoration: underline; text-underline-offset: 0.2em; }
+.linkbtn:hover { text-decoration-thickness: 2px; }
+
+/* Room 4: the real recording */
+.film { background: var(--color-night); border-radius: var(--radius-panel); padding: var(--space-xs); box-shadow: 0 40px 80px -40px var(--color-shadow); }
+.film video { width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; border-radius: 10px; background: var(--color-night-2); }
+.film__bar { display: flex; justify-content: space-between; align-items: center; gap: var(--space-sm); flex-wrap: wrap; padding: var(--space-sm) var(--space-xs) var(--space-3xs); color: var(--color-night-muted); font-size: var(--text-xs); }
+.film__bar button { background: transparent; border: 1px solid var(--color-night-rule); color: var(--color-night-ink); border-radius: var(--radius-pill); padding: var(--space-xs) var(--space-md); font-size: var(--text-xs); cursor: pointer; }
+.film__bar button:hover { background: var(--color-night-2); }
+.film__bar button:focus-visible { outline: 2px solid var(--color-focus-night); outline-offset: 2px; }
+
+/* Website chat */
+.site-grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: var(--space-2xl); align-items: start; }
+.snippet { margin-top: var(--space-xl); border-radius: var(--radius-card); background: var(--color-night); color: var(--color-night-ink); overflow: hidden; }
+.snippet__bar { display: flex; justify-content: space-between; align-items: center; padding: var(--space-sm) var(--space-md); border-bottom: 1px solid var(--color-night-rule); font-size: var(--text-xs); color: var(--color-night-muted); }
+.snippet__bar button { background: var(--color-night-2); border: 1px solid var(--color-night-rule); color: var(--color-night-ink); border-radius: var(--radius-pill); padding: var(--space-xs) var(--space-md); font-size: var(--text-xs); cursor: pointer; min-height: 32px; }
+.snippet__bar button:hover { background: var(--color-night-3); }
+.snippet__bar button:focus-visible { outline: 2px solid var(--color-focus-night); outline-offset: 2px; }
+.snippet pre { margin: 0; padding: var(--space-md); font-family: var(--font-code); font-size: 0.875rem; line-height: 1.6; white-space: pre-wrap; overflow-wrap: anywhere; }
+.tok-tag { color: var(--color-code-tag); }
+.tok-attr { color: var(--color-code-attr); }
+.tok-str { color: var(--color-code-str); }
+.demo-links { margin-top: var(--space-lg); display: grid; gap: var(--space-xs); }
+.demo-links p { color: var(--color-muted); font-size: var(--text-sm); }
+.demo-links ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: var(--space-xs); }
+.demo-links a { display: inline-flex; align-items: center; min-height: 40px; padding: 0 var(--space-md); border-radius: var(--radius-pill); border: 1px solid var(--color-rule); background: var(--color-surface); text-decoration: none; font-weight: 600; font-size: var(--text-sm); }
+.demo-links a:hover { border-color: var(--color-ink); }
+.visit { position: relative; border-radius: var(--radius-panel); overflow: hidden; background: var(--color-paper-2); border: 1px solid var(--color-rule-soft); min-height: 560px; }
+.visit__shot { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top left; filter: saturate(0.9); }
+.visit__shot-veil { position: absolute; inset: 0; background: linear-gradient(180deg, var(--color-veil-0) 40%, var(--color-veil)); }
+.widget { position: absolute; right: clamp(12px, 3vw, 28px); bottom: clamp(12px, 3vw, 28px); width: min(380px, calc(100% - 24px)); background: var(--color-surface); border-radius: 16px; box-shadow: 0 30px 60px -20px var(--color-shadow), 0 0 0 1px var(--color-rule-soft); overflow: hidden; display: grid; }
+.widget__head { background: var(--color-widget); color: var(--color-accent-ink); padding: var(--space-md) var(--space-md); display: grid; gap: var(--space-3xs); }
+.widget__head b { font-size: var(--text-md); }
+.widget__head span { font-size: var(--text-xs); opacity: 0.9; }
+.widget__body { padding: var(--space-md) var(--space-md); display: grid; gap: var(--space-sm); min-height: 180px; align-content: start; }
+.widget__q { justify-self: end; background: var(--color-paper-2); padding: var(--space-xs) var(--space-sm); border-radius: 14px 14px 4px 14px; font-size: var(--text-sm); max-width: 90%; }
+.widget__a { font-size: var(--text-sm); line-height: 1.5; }
+.widget__src { font-size: var(--text-xs); color: var(--color-muted); }
+.widget__src--no { color: var(--color-lock); }
+.widget__asks { display: flex; flex-wrap: wrap; gap: var(--space-xs); padding: var(--space-sm) var(--space-md) var(--space-md); border-top: 1px solid var(--color-rule-soft); }
+.widget__asks button { border: 1px solid var(--color-rule); background: var(--color-surface); border-radius: var(--radius-pill); min-height: 34px; padding: 0 var(--space-sm); font-size: var(--text-xs); cursor: pointer; transition: border-color var(--dur-short) var(--ease-out), background-color var(--dur-short) var(--ease-out); }
+.widget__asks button:hover { border-color: var(--color-ink-2); }
+.widget__asks button[aria-pressed="true"] { background: var(--color-ink); color: var(--color-paper); border-color: var(--color-ink); }
+.widget__asks button:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 2px; }
+@media (max-width: 62rem) { .site-grid { grid-template-columns: minmax(0, 1fr); } .visit { min-height: 600px; } }
+@media (max-width: 40rem) { .visit { min-height: 560px; } .widget { left: 12px; right: 12px; width: auto; } }
+
+/* Agents */
+.agent-grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: var(--space-2xl); align-items: start; }
+.tools { list-style: none; margin: var(--space-xl) 0 0; padding: 0; display: grid; gap: 0; }
+.tools li { display: grid; grid-template-columns: minmax(0, 11rem) minmax(0, 1fr); gap: var(--space-md); padding: var(--space-md) 0; border-top: 1px solid var(--color-night-rule); }
+.tools code { color: var(--color-accent-bright); font-size: var(--text-sm); }
+.tools span { color: var(--color-night-muted); font-size: var(--text-sm); }
+.term { background: var(--color-term); border: 1px solid var(--color-night-rule); border-radius: var(--radius-panel); overflow: hidden; }
+.term__bar { display: flex; justify-content: space-between; align-items: center; gap: var(--space-sm); padding: var(--space-sm) var(--space-md); border-bottom: 1px solid var(--color-night-rule); font-size: var(--text-xs); color: var(--color-night-muted); flex-wrap: wrap; }
+.term__bar b { color: var(--color-night-ink); font-weight: 600; }
+.term__bar button { background: var(--color-night-2); border: 1px solid var(--color-night-rule); color: var(--color-night-ink); border-radius: var(--radius-pill); padding: var(--space-xs) var(--space-md); font-size: var(--text-xs); cursor: pointer; min-height: 32px; }
+.term__bar button:hover { background: var(--color-night-3); }
+.term__bar button:focus-visible { outline: 2px solid var(--color-focus-night); outline-offset: 2px; }
+.term__body { padding: var(--space-md); font-family: var(--font-code); font-size: 0.875rem; line-height: 1.65; display: grid; gap: var(--space-sm); min-height: 420px; align-content: start; }
+.term__line { white-space: pre-wrap; word-break: break-word; transition: opacity 260ms var(--ease-out), transform 260ms var(--ease-out); }
+.term.is-playing .term__line:not(.on) { opacity: 0; transform: translateY(6px); }
+.l-cmd { color: var(--color-night-ink); }
+.l-cmd::before { content: "$ "; color: var(--color-night-muted); }
+.l-you { color: var(--color-night-ink); }
+.l-you::before { content: "> "; color: var(--color-accent-bright); }
+.l-tool { color: var(--color-accent-bright); }
+.l-out { color: var(--color-night-muted); padding-left: var(--space-md); border-left: 2px solid var(--color-night-rule); }
+.l-out b { color: var(--color-night-ink); font-weight: 600; }
+.l-no { color: var(--color-lock-bright); padding-left: var(--space-md); border-left: 2px solid var(--color-lock-rule); }
+@media (max-width: 62rem) { .agent-grid { grid-template-columns: minmax(0, 1fr); } .tools li { grid-template-columns: minmax(0, 1fr); gap: var(--space-3xs); } }
+
+/* Figures */
+.figs { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0; border-top: 2px solid var(--color-ink); }
+.fig { padding: var(--space-lg) var(--space-lg) 0 0; display: grid; gap: var(--space-sm); align-content: start; }
+.fig + .fig { padding-left: var(--space-lg); border-left: 1px solid var(--color-rule); }
+.fig__n { font-family: var(--font-display); font-weight: 700; font-size: var(--text-figure); letter-spacing: -0.05em; line-height: 0.9; font-variant-numeric: tabular-nums; }
+.fig__n--zero { color: var(--color-accent); }
+.fig__t { font-weight: 600; }
+.fig__s { color: var(--color-muted); font-size: var(--text-sm); }
+.figs-note { margin-top: var(--space-xl); color: var(--color-muted); font-size: var(--text-sm); max-width: 80ch; }
+@media (max-width: 62rem) { .figs { grid-template-columns: repeat(2, minmax(0, 1fr)); } .fig:nth-child(3) { padding-left: 0; border-left: 0; } .fig:nth-child(n+3) { padding-top: var(--space-xl); } }
+@media (max-width: 30rem) { .figs { grid-template-columns: minmax(0, 1fr); } .fig + .fig { padding-left: 0; border-left: 0; border-top: 1px solid var(--color-rule); margin-top: var(--space-lg); } }
+
+/* Plans */
+.plans { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 5fr) minmax(0, 4fr); gap: var(--space-md); align-items: stretch; }
+.plan { border: 1px solid var(--color-rule); border-radius: var(--radius-panel); padding: var(--space-xl) var(--space-lg); display: grid; gap: var(--space-lg); align-content: start; background: var(--color-surface); }
+.plan--pro { background: var(--color-night); color: var(--color-night-ink); border-color: var(--color-night); }
+.plan h3 { font-size: var(--text-xl); letter-spacing: -0.02em; }
+.plan__price { font-family: var(--font-display); font-weight: 700; font-size: clamp(2.5rem, 2.4vw + 1.4rem, 3.75rem); letter-spacing: -0.045em; line-height: 1; }
+.plan__price small { font-family: var(--font-body); font-size: var(--text-md); font-weight: 500; letter-spacing: 0; color: var(--color-muted); }
+.plan--pro .plan__price small, .plan--pro .plan__note { color: var(--color-night-muted); }
+.plan ul { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-sm); }
+.plan li { padding-left: var(--space-lg); position: relative; }
+.plan li::before { content: ""; position: absolute; left: 2px; top: 0.62em; width: 10px; height: 2px; background: currentColor; opacity: 0.5; }
+.plan__note { font-size: var(--text-sm); color: var(--color-muted); }
+.plan .btn { justify-self: start; }
+@media (max-width: 62rem) { .plans { grid-template-columns: minmax(0, 1fr); } .plan--pro { order: -1; } }
+
+/* FAQ */
+.faq { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); gap: var(--space-2xl); }
+.faq h2 { font-size: var(--text-section); }
+.qa { border-top: 1px solid var(--color-rule); }
+.qa:last-child { border-bottom: 1px solid var(--color-rule); }
+.qa summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; gap: var(--space-lg); align-items: center; padding: var(--space-lg) 0; font-family: var(--font-display); font-weight: 600; font-size: var(--text-lg); letter-spacing: -0.015em; }
+.qa summary::-webkit-details-marker { display: none; }
+.qa summary::after { content: ""; flex: none; width: 12px; height: 12px; border-right: 2px solid currentColor; border-bottom: 2px solid currentColor; transform: rotate(45deg) translate(-3px, -3px); transition: transform var(--dur-short) var(--ease-out); }
+.qa[open] summary::after { transform: rotate(225deg) translate(-3px, -3px); }
+.qa summary:hover { color: var(--color-accent-deep); }
+.qa summary:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 4px; border-radius: 4px; }
+.qa p { padding: 0 0 var(--space-lg); color: var(--color-ink-2); max-width: 62ch; }
+@media (max-width: 62rem) { .faq { grid-template-columns: minmax(0, 1fr); gap: var(--space-lg); } }
+
+/* Close and footer */
+.close { padding: var(--space-4xl) 0 var(--space-3xl); position: relative; isolation: isolate; }
+.close::before { content: ""; position: absolute; inset: 0; z-index: -1; background: radial-gradient(50% 70% at 50% 100%, var(--color-glow), var(--color-glow-0) 70%); }
+.close h2 { font-size: var(--text-hero); letter-spacing: -0.045em; line-height: 0.95; max-width: 14ch; }
+.close__row { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: var(--gap); align-items: end; }
+.close__side { display: grid; gap: var(--space-lg); }
+.footer { border-top: 1px solid var(--color-night-rule); padding: var(--space-xl) 0 var(--space-2xl); font-size: var(--text-sm); color: var(--color-night-muted); }
+.footer__row { display: flex; flex-wrap: wrap; gap: var(--space-md) var(--space-xl); justify-content: space-between; align-items: center; }
+.footer__links { display: flex; flex-wrap: wrap; gap: var(--space-xs) var(--space-lg); }
+.footer a { color: var(--color-night-ink); }
+@media (max-width: 62rem) { .close__row { grid-template-columns: minmax(0, 1fr); } }
+
+
+/* Scroll: the one pattern. Each room's picture rises into place as it enters; static everywhere else. */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) and (min-width: 62rem) {
+    .room__stage, .room .film { animation: stage-in linear both; animation-timeline: view(); animation-range: entry 0% entry 70%; }
+    @keyframes stage-in { from { opacity: 0.2; transform: translateY(48px) scale(0.97); } to { opacity: 1; transform: none; } }
+  }
+}
+.console { transition: box-shadow var(--dur-long) var(--ease-out); }
+.console[data-result="no"] { box-shadow: 0 0 0 2px var(--color-lock-bright), 0 40px 80px -30px var(--color-shadow); }
+.console[data-result="partial"] { box-shadow: 0 0 0 2px var(--color-lock-line), 0 40px 80px -30px var(--color-shadow); }
+.console[data-result="yes"] { box-shadow: 0 0 0 2px var(--color-accent-bright), 0 40px 80px -30px var(--color-shadow); }
+
+/* Motion: one reveal, visible by default */
+@media (prefers-reduced-motion: no-preference) {
+  .js [data-reveal] { opacity: 0; transform: translateY(18px); transition: opacity 700ms var(--ease-out), transform 700ms var(--ease-out); }
+  .js [data-reveal].is-seen { opacity: 1; transform: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 1ms !important; animation-iteration-count: 1 !important; transition-duration: 1ms !important; }
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="nav night">
+  <div class="container nav__row">
+    <a class="brand" href="https://p1.kanav.space/" aria-label="Atlas home"><img src="https://p1.kanav.space/brand/atlas-mark.svg" alt="" width="30" height="30">Atlas</a>
+    <ul class="nav__links">
+      <li><a href="#story">How it works</a></li>
+      <li><a href="#website">Website chat</a></li>
+      <li><a href="#agents">Agents</a></li>
+      <li><a href="#plans">Plans</a></li>
+      <li><a href="#faq">Questions</a></li>
+    </ul>
+    <a class="btn" href="https://p1.kanav.space/login">Try the live demo</a>
+  </div>
+</header>
+
+<main id="main">
+<section class="hero night" aria-labelledby="hero-title">
+  <div class="container hero__head">
+    <h1 id="hero-title">The answer depends <span class="nowrap">on who’s asking.</span></h1>
+    <div class="hero__side">
+      <p class="hero__lede">Cited answers from your documents, limited to what each person may read.</p>
+      <div class="actions">
+        <a class="btn" href="https://p1.kanav.space/login">Try the live demo</a>
+        <a class="btn btn--ghost" href="https://p1.kanav.space/login?tab=waitlist">Join the waitlist</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="container console-wrap">
+    <div class="console-cue"><strong>Be someone at Nimbus Infotech, a demo company.</strong><span>Pick a person, then a question.</span></div>
+    <form class="console" id="console" data-result="yes" aria-label="Try it: who is asking changes the answer" onsubmit="return false">
+      <fieldset class="who">
+        <legend>Who’s asking?</legend>
+        <label class="person"><input type="radio" name="who" value="visitor"><span class="avatar avatar--visitor" aria-hidden="true">W</span><span><span class="person__name">Website visitor</span><span class="person__role">On nimbus’s website</span></span></label>
+        <label class="person"><input type="radio" name="who" value="riya"><span class="avatar" aria-hidden="true">RS</span><span><span class="person__name">Riya Saxena</span><span class="person__role">Design intern</span></span></label>
+        <label class="person"><input type="radio" name="who" value="aditya"><span class="avatar" aria-hidden="true">AS</span><span><span class="person__name">Aditya Sharma</span><span class="person__role">Software engineer</span></span></label>
+        <label class="person"><input type="radio" name="who" value="ritika" checked><span class="avatar" aria-hidden="true">RM</span><span><span class="person__name">Ritika Menon</span><span class="person__role">HR manager</span></span></label>
+        <label class="person"><input type="radio" name="who" value="arjun"><span class="avatar" aria-hidden="true">AN</span><span><span class="person__name">Arjun Nair</span><span class="person__role">VP Sales</span></span></label>
+        <label class="person"><input type="radio" name="who" value="vikram"><span class="avatar" aria-hidden="true">VK</span><span><span class="person__name">Vikram Kulkarni</span><span class="person__role">Founder and CEO</span></span></label>
+      </fieldset>
+
+      <div class="chat">
+        <div class="qs" role="radiogroup" aria-labelledby="qs-label">
+          <p class="pane-title" id="qs-label">Ask</p>
+          <div class="qs__row">
+          <label class="qchip"><input type="radio" name="q" value="salary" checked>L4 salary band</label>
+          <label class="qchip"><input type="radio" name="q" value="price">Enterprise plan price</label>
+          <label class="qchip"><input type="radio" name="q" value="leave">Leave carry-forward</label>
+          </div>
+        </div>
+        <div class="thread" id="thread" aria-live="polite">
+          <p class="bubble-q" id="q-text">What is the salary band for an L4 Tech Lead?</p>
+          <p class="asker" id="q-asker">Ritika Menon asks</p>
+          <ol class="steps" id="steps">
+            <li data-state="done" id="step-access">Ritika may read 30 of 68 documents</li>
+            <li data-state="done">Searched and re-ranked</li>
+            <li data-state="done">Checked it answers</li>
+          </ol>
+          <div class="atlas-says">
+            <p class="atlas-says__who"><img src="https://p1.kanav.space/brand/atlas-mark.svg" alt="" width="18" height="18">Atlas</p>
+            <p class="answer" id="answer">An L4 Tech Lead is paid ₹18 to 28 lakh a year, fixed pay, with a midpoint of ₹23 lakh. <button type="button" class="cite" aria-label="Source 1: open the cited page">1</button></p>
+            <p class="source-chip" id="source-chip"><b>1</b>Salary Bands FY2026-27, page 1</p>
+            <p class="aside-note" id="aside">Behind the scenes: Salary Bands lives in HR. Ritika is in HR, so her search may use it.</p>
+          </div>
+        </div>
+      </div>
+
+      <section class="page" id="page" aria-label="The cited page" tabindex="-1">
+        <p class="pane-title">The page it came from</p>
+        <div id="page-body">
+          <div class="page__doc"><span class="doc-icon" aria-hidden="true">PDF</span><div><p class="page__title">Salary Bands FY2026-27</p><p class="page__meta">NIM/HR/STD-001, page 1</p></div></div>
+          <div class="sheet" style="margin-top:16px">
+            <p class="sheet__h">4. Salary bands (₹ lakh per annum, fixed pay)</p>
+            <table><thead><tr><th>Grade</th><th>Title</th><th class="num">Min</th><th class="num">Mid</th><th class="num">Max</th></tr></thead>
+            <tbody><tr><td>L3</td><td>Senior Software Engineer</td><td class="num">10.0</td><td class="num">14.0</td><td class="num">18.0</td></tr>
+            <tr class="hit"><td>L4</td><td>Tech Lead</td><td class="num">18.0</td><td class="num">23.0</td><td class="num">28.0</td></tr>
+            <tr><td>L5</td><td>Engineering Manager / Architect</td><td class="num">28.0</td><td class="num">35.0</td><td class="num">42.0</td></tr></tbody></table>
+          </div>
+        </div>
+      </section>
+    </form>
+    <p class="console-foot">These answers are written from the demo’s real documents and access rules. Sign in as any of these people and ask for yourself.</p>
+  </div>
+</section>
+
+<section class="section story" id="story" aria-labelledby="story-title">
+  <div class="container">
+    <div class="section-head">
+      <h2 id="story-title">How one answer gets made.</h2>
+      <p class="lede">Four steps sit behind every reply. You set up the first two once.</p>
+    </div>
+
+    <article class="room">
+      <div class="room__words">
+        <h3>Drop in your files.</h3>
+        <p>PDF, Word, Markdown or plain text. Atlas splits each one into passages and keeps track of which version replaced which.</p>
+      </div>
+      <div class="room__stage">
+        <p class="pane-title">Library, Nimbus Infotech</p>
+        <table class="lib">
+          <thead><tr><th>Document</th><th>Type</th><th class="hide-s">Passages</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td class="t">Leave Policy FY2026-27</td><td><span class="fmt">PDF</span></td><td class="num hide-s">20</td><td><span class="tag tag--ok">Ready</span></td></tr>
+            <tr><td class="t">Leave Policy FY2024-25</td><td><span class="fmt">PDF</span></td><td class="num hide-s">17</td><td><span class="tag tag--old">Superseded</span></td></tr>
+            <tr><td class="t">Holiday Calendar FY2026-27</td><td><span class="fmt">DOCX</span></td><td class="num hide-s">12</td><td><span class="tag tag--ok">Ready</span></td></tr>
+            <tr><td class="t">Welcome to Nimbus</td><td><span class="fmt">MD</span></td><td class="num hide-s">13</td><td><span class="tag tag--pub">Public</span></td></tr>
+            <tr><td class="t">Release and Rollback Procedure</td><td><span class="fmt">DOCX</span></td><td class="num hide-s">16</td><td><span class="tag tag--ok">Ready</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </article>
+
+    <article class="room">
+      <div class="room__words">
+        <h3>Decide who reads what.</h3>
+        <p>Each document lives in a department. People see the departments they belong to, and the website sees only what you mark public.</p>
+      </div>
+      <div class="room__stage" id="access">
+        <p class="pane-title">Departments at Nimbus Infotech, seen as</p>
+        <div class="mini-who" role="radiogroup" aria-label="Seen as">
+          <label class="qchip"><input type="radio" name="who2" value="visitor">Visitor</label>
+          <label class="qchip"><input type="radio" name="who2" value="riya">Riya</label>
+          <label class="qchip"><input type="radio" name="who2" value="aditya">Aditya</label>
+          <label class="qchip"><input type="radio" name="who2" value="ritika" checked>Ritika</label>
+          <label class="qchip"><input type="radio" name="who2" value="arjun">Arjun</label>
+          <label class="qchip"><input type="radio" name="who2" value="vikram">Vikram</label>
+        </div>
+        <div class="shelves" id="shelves">
+          <div class="shelf" data-dept="Public"><span class="shelf__name">Public</span><span class="shelf__state">2 docs</span></div>
+          <div class="shelf" data-dept="Everyone"><span class="shelf__name">Everyone</span><span class="shelf__state">18 docs</span></div>
+          <div class="shelf" data-dept="Engineering"><span class="shelf__name">Engineering</span><span class="shelf__state">23 docs</span></div>
+          <div class="shelf" data-dept="HR"><span class="shelf__name">HR</span><span class="shelf__state">5 docs</span></div>
+          <div class="shelf" data-dept="Managers"><span class="shelf__name">Managers</span><span class="shelf__state">5 docs</span></div>
+          <div class="shelf" data-dept="Sales"><span class="shelf__name">Sales</span><span class="shelf__state">4 docs</span></div>
+          <div class="shelf" data-dept="Leadership"><span class="shelf__name">Leadership</span><span class="shelf__state">4 docs</span></div>
+          <div class="shelf" data-dept="Finance"><span class="shelf__name">Finance</span><span class="shelf__state">2 docs</span></div>
+          <div class="shelf" data-dept="Legal"><span class="shelf__name">Legal</span><span class="shelf__state">2 docs</span></div>
+          <div class="shelf" data-dept="IT Security"><span class="shelf__name">IT Security</span><span class="shelf__state">2 docs</span></div>
+          <div class="shelf" data-dept="Product"><span class="shelf__name">Product</span><span class="shelf__state">1 doc</span></div>
+        </div>
+        <p class="reach"><span class="reach__n" id="reach-n">30</span><span class="reach__t" id="reach-t">of 68 documents are in reach for Ritika Menon, HR manager.</span></p>
+      </div>
+    </article>
+
+    <article class="room">
+      <div class="room__words">
+        <h3>Ask in plain words.</h3>
+        <p>English, Hindi or Hinglish. The permission filter runs inside the search, before ranking, so the AI never reads a passage the person can’t open.</p>
+      </div>
+      <div class="room__stage" id="flow-stage">
+        <div class="flow-q"><p>“How many days of earned leave can I carry forward?”</p><button type="button" class="linkbtn" id="flow-run">Run it again</button></div>
+        <ol class="flow" id="flow">
+          <li><span><b>Guard</b><span>Stops prompt tricks and abuse.</span></span></li>
+          <li><span><b>Route</b><span>“Hi” gets a hello. Only real questions search.</span></span></li>
+          <li><span><b>Rewrite</b><span>Uses the chat so far, and turns Hindi into an English search.</span></span></li>
+          <li><span><b>Search</b><span>Meaning and keywords together, only in documents this person may open.</span></span></li>
+          <li><span><b>Re-rank</b><span>The best passages go first. Superseded versions drop.</span></span></li>
+          <li><span><b>Check</b><span>Do these passages really answer it? If not, try once more, then say “Not found”.</span></span></li>
+          <li><span><b>Answer</b><span>Streamed, with numbered citations checked on the server.</span></span></li>
+        </ol>
+      </div>
+    </article>
+
+    <article class="room">
+      <div class="room__words">
+        <h3>Every answer shows its page.</h3>
+        <p>Tap a citation and the document opens beside the chat, on the cited passage. This is the live demo, recorded.</p>
+      </div>
+      <figure class="film night" style="margin:0">
+        <video id="film" src="https://p1.kanav.space/home/img/atlas-demo.mp4" poster="https://p1.kanav.space/home/img/demo-poster.webp" muted loop playsinline preload="none" aria-label="Screen recording: an HR manager at Nimbus Infotech asks a question, the answer streams with citations, the cited passage opens, then the website chat answers a visitor"></video>
+        <figcaption class="film__bar"><span>An HR manager at Nimbus Infotech, then a website visitor. Sped up while it searches.</span><button type="button" id="film-toggle" aria-pressed="false">Play</button></figcaption>
+      </figure>
+    </article>
+  </div>
+</section>
+
+<section class="section" id="website" aria-labelledby="site-title" style="background:var(--color-paper-2)">
+  <div class="container site-grid">
+    <div data-reveal>
+      <h2 id="site-title" style="font-size:var(--text-section)">One line puts Atlas on your website.</h2>
+      <p class="lede" style="margin-top:24px">Mark the documents a visitor may read. The chat bubble answers from those alone, only on websites you allow.</p>
+      <div class="snippet">
+        <div class="snippet__bar"><span>Paste before &lt;/body&gt;</span><button type="button" id="copy">Copy</button></div>
+        <pre id="snippet-code"><span class="tok-tag">&lt;script</span> <span class="tok-attr">src</span>=<span class="tok-str">"https://p1.kanav.space/widget.js"</span> <span class="tok-attr">data-atlas-key</span>=<span class="tok-str">"your-site-key"</span> <span class="tok-attr">async</span><span class="tok-tag">&gt;&lt;/script&gt;</span></pre>
+      </div>
+      <div class="demo-links">
+        <p>See it live on the demo companies’ websites:</p>
+        <ul>
+          <li><a href="https://p1.kanav.space/demo-site/nimbus">Nimbus Infotech</a></li>
+          <li><a href="https://p1.kanav.space/demo-site/sanjeevani">Sanjeevani Pharma</a></li>
+          <li><a href="https://p1.kanav.space/demo-site/kaveri">Kaveri Capital</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="visit" data-reveal>
+      <img class="visit__shot" src="img/nimbus-site.webp" alt="The Nimbus Infotech demo website" width="1200" height="900" loading="lazy">
+      <div class="visit__shot-veil" aria-hidden="true"></div>
+      <div class="widget" role="group" aria-label="Website chat preview">
+        <div class="widget__head"><b>Ask Nimbus Infotech</b><span>Answers from public documents</span></div>
+        <div class="widget__body" aria-live="polite" id="w-body">
+          <p class="widget__q" id="w-q">Where are your offices?</p>
+          <p class="widget__a" id="w-a">Pune (head office), Bengaluru (Whitefield) and Hyderabad (HITEC City), plus a sales office in Dubai.</p>
+          <p class="widget__src" id="w-src">Source: Welcome to Nimbus</p>
+        </div>
+        <div class="widget__asks" id="w-asks">
+          <button type="button" data-w="offices" aria-pressed="true">Where are your offices?</button>
+          <button type="button" data-w="uptime" aria-pressed="false">What uptime do you promise?</button>
+          <button type="button" data-w="trial" aria-pressed="false">Is there a free trial?</button>
+          <button type="button" data-w="salary" aria-pressed="false">What do you pay a Tech Lead?</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section night" id="agents" aria-labelledby="agents-title">
+  <div class="container agent-grid">
+    <div data-reveal>
+      <h2 id="agents-title" style="font-size:var(--text-section)">Your AI agents follow the same rules.</h2>
+      <p class="lede" style="margin-top:24px">Claude and other agents connect over MCP with a token that acts as one person. They see what that person sees, and every call is logged.</p>
+      <ul class="tools">
+        <li><code>ask_question</code><span>A cited answer, the same flow as the chat.</span></li>
+        <li><code>search_knowledge</code><span>The best passages for a query.</span></li>
+        <li><code>get_document</code><span>Opens one document the person may read.</span></li>
+        <li><code>list_departments</code><span>Shows what can be searched.</span></li>
+      </ul>
+    </div>
+    <div class="term" id="term" data-reveal>
+      <div class="term__bar"><span>Claude Code, token for <b>Aditya Sharma, Engineering</b></span><button type="button" id="term-run">Replay</button></div>
+      <div class="term__body" aria-live="off">
+        <p class="term__line l-cmd">claude mcp add --transport http atlas https://p1.kanav.space/api/mcp --header "Authorization: Bearer atl_…"</p>
+        <p class="term__line l-you">What are the RPO and RTO for NimbusOps?</p>
+        <p class="term__line l-tool">atlas.ask_question("RPO and RTO for NimbusOps")</p>
+        <p class="term__line l-out"><b>RPO 15 minutes, RTO 1 hour.</b> [1] NimbusOps Platform Architecture, NIM/ENG/STD-001</p>
+        <p class="term__line l-you">And the salary band for an L4 Tech Lead?</p>
+        <p class="term__line l-tool">atlas.ask_question("salary band L4 Tech Lead")</p>
+        <p class="term__line l-no">Not found in your documents. No document you can open answers this, so Atlas did not guess.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="quality" aria-labelledby="quality-title">
+  <div class="container">
+    <div class="section-head">
+      <h2 id="quality-title">Graded on 199 documents and their exam.</h2>
+      <p class="lede">The three demo companies come with fixed exam questions. These are the latest results.</p>
+    </div>
+    <div class="figs" data-reveal>
+      <div class="fig"><p class="fig__n fig__n--zero">0</p><p class="fig__t">permission leaks</p><p class="fig__s">Restricted questions asked by people who may not see the answer, in every run.</p></div>
+      <div class="fig"><p class="fig__n" data-count="98.8" data-suffix="%">98.8%</p><p class="fig__t">right document in the top 5</p><p class="fig__s">Hybrid search plus re-ranking, 167 questions.</p></div>
+      <div class="fig"><p class="fig__n" data-count="0.926" data-dec="3">0.926</p><p class="fig__t">mean reciprocal rank</p><p class="fig__s">The right passage is usually the very first one.</p></div>
+      <div class="fig"><p class="fig__n" data-count="98.8" data-suffix="%">98.8%</p><p class="fig__t">answers correct or partly correct</p><p class="fig__s">224 answers graded blind against the source.</p></div>
+    </div>
+    <p class="figs-note">Measured on 22 November 2026 across Nimbus Infotech, Sanjeevani Pharma and Kaveri Capital. Method and every run are in the <a href="https://github.com/Kanav-Chauhan/atlasV2">source code on GitHub</a>.</p>
+  </div>
+</section>
+
+<section class="section" id="plans" aria-labelledby="plans-title" style="background:var(--color-paper-2)">
+  <div class="container">
+    <div class="section-head">
+      <h2 id="plans-title">Free to try. Paid when it’s your company.</h2>
+      <p class="lede">Atlas is invite-only for now. Pro opens to the waitlist first.</p>
+    </div>
+    <div class="plans">
+      <article class="plan">
+        <h3>Free</h3>
+        <p class="plan__price">₹0</p>
+        <ul><li>The full demo: 3 companies, 199 documents</li><li>Every role, intern to owner</li><li>Website chat on the demo sites</li><li>No company of your own</li></ul>
+        <a class="btn btn--ghost" href="https://p1.kanav.space/login">Try the live demo</a>
+      </article>
+      <article class="plan plan--pro night">
+        <h3>Pro</h3>
+        <p class="plan__price">₹1,499 <small>a month</small></p>
+        <ul><li>Your own company</li><li>5 companies, 200 documents</li><li>25 team members</li><li>5,000 questions a month</li><li>Website chat in your colours, no badge</li></ul>
+        <p class="plan__note">Not on sale yet. The waitlist hears first.</p>
+        <a class="btn" href="https://p1.kanav.space/login?tab=waitlist">Join the waitlist</a>
+      </article>
+      <article class="plan">
+        <h3>Enterprise</h3>
+        <p class="plan__price">Let’s talk</p>
+        <ul><li>Bigger teams</li><li>More companies, documents and questions</li><li>Help moving your documents in</li><li>A direct line to the builder</li></ul>
+        <a class="btn btn--ghost" href="mailto:kanavchauhan08@gmail.com?subject=Atlas%20Enterprise">Email Kanav</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="faq" aria-labelledby="faq-title">
+  <div class="container faq">
+    <h2 id="faq-title">Questions, answered.</h2>
+    <div>
+      <details class="qa" open><summary>Can someone read a document they shouldn’t?</summary><p>No. Every passage carries its company and department, and the search filters by the person’s access before anything is ranked. The AI never sees text the person can’t open. The leak test has found 0 leaks in every run.</p></details>
+      <details class="qa"><summary>What if the answer isn’t written down?</summary><p>Atlas says “Not found in your documents” instead of guessing. On the website, the bubble asks the visitor to contact the company.</p></details>
+      <details class="qa"><summary>Which files can I upload?</summary><p>PDF, Word, Markdown and plain text. You can see how each one was split into passages, and older versions marked as replaced are ranked down.</p></details>
+      <details class="qa"><summary>Can my team ask in Hindi?</summary><p>Yes. Ask in Hindi or Hinglish and Atlas understands the question, searches your documents and answers with the same citations.</p></details>
+      <details class="qa"><summary>What can the website chat see?</summary><p>Only the documents you mark public. It runs only on the websites you allow, with rate limits, so a visitor never reaches staff documents.</p></details>
+      <details class="qa"><summary>Where do my documents go?</summary><p>Files are stored, split and searched on Atlas’s own server. To write an answer, only the few matching passages are sent to the AI model.</p></details>
+      <details class="qa"><summary>Why is it invite-only?</summary><p>Atlas is new and run by one builder. The demo is open to everyone now; Pro opens to the waitlist first, before payments go live.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="night close" aria-labelledby="close-title">
+  <div class="container close__row">
+    <h2 id="close-title">Now be <span id="close-name">Ritika</span> for real.</h2>
+    <div class="close__side">
+      <p class="lede" id="close-line">Sign in to Nimbus Infotech as Ritika in HR, then as Aditya, an engineer, and ask the salary question both times.</p>
+      <div class="actions">
+        <a class="btn" href="https://p1.kanav.space/login">Try the live demo</a>
+        <a class="btn btn--ghost" href="https://p1.kanav.space/login?tab=waitlist">Join the waitlist</a>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="night">
+  <div class="container footer">
+    <div class="footer__row">
+      <a class="brand" href="https://p1.kanav.space/"><img src="https://p1.kanav.space/brand/atlas-mark.svg" alt="" width="30" height="30">Atlas</a>
+      <p>Built in India by Kanav Chauhan.</p>
+      <div class="footer__links">
+        <a href="mailto:kanavchauhan08@gmail.com">kanavchauhan08@gmail.com</a>
+        <a href="https://github.com/Kanav-Chauhan/atlasV2">Source code on GitHub</a>
+        <a href="https://p1.kanav.space/privacy">Privacy</a>
+        <a href="https://p1.kanav.space/terms">Terms</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(() => {
+  document.documentElement.classList.add('js');
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const $ = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+
+  /* People at Nimbus Infotech and what they may read (live demo database, 68 documents). */
+  const P = {
+    visitor: { name: 'Website visitor', first: 'The visitor', role: 'on the website', reads: 2, depts: ['Public'] },
+    riya:    { name: 'Riya Saxena', first: 'Riya', role: 'design intern', reads: 20, depts: ['Public', 'Everyone'] },
+    aditya:  { name: 'Aditya Sharma', first: 'Aditya', role: 'software engineer', reads: 43, depts: ['Public', 'Everyone', 'Engineering'] },
+    ritika:  { name: 'Ritika Menon', first: 'Ritika', role: 'HR manager', reads: 30, depts: ['Public', 'Everyone', 'HR', 'Managers'] },
+    arjun:   { name: 'Arjun Nair', first: 'Arjun', role: 'VP Sales', reads: 24, depts: ['Public', 'Everyone', 'Sales'] },
+    vikram:  { name: 'Vikram Kulkarni', first: 'Vikram', role: 'founder and CEO', reads: 68, depts: ['Public', 'Everyone', 'Engineering', 'HR', 'Managers', 'Sales', 'Leadership', 'Finance', 'Legal', 'IT Security', 'Product'] },
+  };
+
+  /* Cited pages, quoted from the demo documents. */
+  const DOCS = {
+    salary: { icon: 'PDF', title: 'Salary Bands FY2026-27', meta: 'NIM/HR/STD-001, page 1', chip: 'Salary Bands FY2026-27, page 1',
+      body: '<p class="sheet__h">4. Salary bands (₹ lakh per annum, fixed pay)</p><table><thead><tr><th>Grade</th><th>Title</th><th class="num">Min</th><th class="num">Mid</th><th class="num">Max</th></tr></thead><tbody><tr><td>L3</td><td>Senior Software Engineer</td><td class="num">10.0</td><td class="num">14.0</td><td class="num">18.0</td></tr><tr class="hit"><td>L4</td><td>Tech Lead</td><td class="num">18.0</td><td class="num">23.0</td><td class="num">28.0</td></tr><tr><td>L5</td><td>Engineering Manager / Architect</td><td class="num">28.0</td><td class="num">35.0</td><td class="num">42.0</td></tr></tbody></table>' },
+    rate: { icon: 'PDF', title: 'Rate Card FY2026-27', meta: 'NIM/SAL/GDL-001, page 2', chip: 'Rate Card FY2026-27, page 2',
+      body: '<p class="sheet__h">8. NimbusOps subscriptions (per monitored host per month, billed annually)</p><table><thead><tr><th>Plan</th><th class="num">USD</th><th class="num">₹</th></tr></thead><tbody><tr><td>Starter</td><td class="num">2.00</td><td class="num">150</td></tr><tr><td>Standard</td><td class="num">3.50</td><td class="num">270</td></tr><tr class="hit"><td>Enterprise</td><td class="num">5.00</td><td class="num">390</td></tr></tbody></table><p><mark>Volume tiers (applied automatically, not counted as discount): 5,000–19,999 hosts 10% off; 20,000+ hosts 18% off.</mark></p>' },
+    faq: { icon: 'MD', title: 'NimbusOps Product FAQ', meta: 'NIM/ENG/GDL-002, public', chip: 'NimbusOps Product FAQ',
+      body: '<p class="sheet__h">NimbusOps Product FAQ</p><p>Answers to the questions we hear most often from teams evaluating NimbusOps. <mark>For pricing, please talk to our sales team; prices depend on the number of monitored hosts and the contract term.</mark></p>' },
+    leave: { icon: 'PDF', title: 'Leave Policy FY2026-27', meta: 'NIM/HR/POL-004, page 2', chip: 'Leave Policy FY2026-27, page 2',
+      body: '<p class="sheet__h">4.3 Carry forward and lapse</p><p><mark>At the end of the financial year, up to 30 days of unused earned leave are carried forward into the next year. EL beyond 30 days lapses on 31 March.</mark> There is no encashment of earned leave while in service.</p>' },
+  };
+
+  const Q = {
+    salary: 'What is the salary band for an L4 Tech Lead?',
+    price: 'What does the NimbusOps Enterprise plan cost?',
+    leave: 'How many days of earned leave can I carry forward?',
+  };
+  const VISITOR_NO = 'I couldn’t find that in Nimbus Infotech’s public information. Please contact Nimbus Infotech directly and they will help you.';
+  const STAFF_NO = 'No document you can open answers this, so Atlas did not guess.';
+
+  function answerFor(q, who) {
+    const p = P[who];
+    if (q === 'salary') {
+      if (who === 'ritika' || who === 'vikram') return { text: 'An L4 Tech Lead is paid ₹18 to 28 lakh a year, fixed pay, with a midpoint of ₹23 lakh.', doc: 'salary',
+        note: who === 'ritika' ? 'Behind the scenes: Salary Bands lives in HR. Ritika is in HR, so her search may use it.' : 'Behind the scenes: Salary Bands lives in HR. Vikram owns the company and may read all 68 documents.' };
+      return { no: true, visitor: who === 'visitor', note: who === 'visitor'
+        ? 'Behind the scenes: the website chat reads only the 2 public documents. Salary Bands is not one of them.'
+        : `Behind the scenes: Salary Bands lives in HR. ${p.first}’s search never sees it, so there is nothing to cite.` };
+    }
+    if (q === 'price') {
+      if (who === 'arjun' || who === 'vikram') return { text: 'NimbusOps Enterprise lists at USD 5.00 (₹390) per monitored host per month, billed annually. Volume tiers apply on their own: 10% off from 5,000 hosts, 18% off from 20,000.', doc: 'rate',
+        note: who === 'arjun' ? 'Behind the scenes: the price is in the Rate Card, which lives in Sales. Arjun runs sales in North America.' : 'Behind the scenes: the price is in the Rate Card, in Sales. Vikram may read every department.' };
+      return { text: 'The price isn’t published in what you can read. The NimbusOps FAQ says pricing depends on the number of monitored hosts and the contract term, and to talk to the sales team.', doc: 'faq',
+        note: `Behind the scenes: the Rate Card lives in Sales. ${p.first} can’t reach it, so Atlas answers from the public FAQ instead.`, partial: true };
+    }
+    if (who === 'visitor') return { no: true, visitor: true, note: 'Behind the scenes: the leave policy is for staff. The website chat reads only the 2 public documents.' };
+    return { text: 'Up to 30 days of unused earned leave carry forward into the next year. Anything beyond 30 days lapses on 31 March.', doc: 'leave',
+      note: 'Behind the scenes: the older FY2024-25 policy said 24 days. It is marked superseded, so Atlas ranks it down.' };
+  }
+
+  const form = $('#console');
+  if (!form) return;
+  const thread = $('#thread'), steps = $$('#steps li'), answerEl = $('#answer'), chipEl = $('#source-chip'), asideEl = $('#aside');
+  const pageBody = $('#page-body'), page = $('#page');
+  let run = 0;
+  const wait = (ms) => new Promise((r) => setTimeout(r, reduce ? 0 : ms));
+
+  function renderPage(a) {
+    if (a.no) {
+      pageBody.innerHTML = `<div class="empty-page"><strong>No page to open</strong><span>${a.visitor ? 'The bubble found nothing public that answers this.' : 'Nothing this person may read answers it.'}</span></div>`;
+      return;
+    }
+    const d = DOCS[a.doc];
+    pageBody.innerHTML = `<div class="page__doc"><span class="doc-icon" aria-hidden="true">${d.icon}</span><div><p class="page__title">${d.title}</p><p class="page__meta">${d.meta}</p></div></div><div class="sheet" style="margin-top:16px">${d.body}</div>`;
+  }
+
+  function renderAnswer(a) {
+    answerEl.className = 'answer' + (a.no ? ' answer--no' : '');
+    if (a.no) {
+      answerEl.innerHTML = a.visitor ? VISITOR_NO : `<strong>Not found in your documents.</strong>${STAFF_NO}`;
+      chipEl.hidden = true;
+    } else {
+      const words = a.text.split(' ').map((w) => `<span class="w">${w}</span>`).join(' ');
+      answerEl.innerHTML = `${words} <button type="button" class="cite" aria-label="Source 1: open the cited page">1</button>`;
+      chipEl.hidden = false;
+      chipEl.innerHTML = `<b>1</b>${DOCS[a.doc].chip}`;
+    }
+    asideEl.textContent = a.note;
+    asideEl.className = 'aside-note' + (a.no || a.partial ? ' aside-note--lock' : '');
+  }
+
+  async function update() {
+    const me = ++run;
+    const who = form.who.value, q = form.q.value, p = P[who];
+    const a = answerFor(q, who);
+    syncAccess(who);
+    $('#q-text').textContent = Q[q];
+    $('#q-asker').textContent = who === 'visitor' ? 'A visitor asks the website chat' : `${p.name} asks`;
+    steps[0].textContent = who === 'visitor' ? 'Website chat: 2 public documents' : `${p.first} may read ${p.reads} of 68 documents`;
+    if (reduce) { steps.forEach((s) => s.dataset.state = 'done'); renderAnswer(a); renderPage(a); form.dataset.result = a.no ? 'no' : a.partial ? 'partial' : 'yes'; return; }
+    form.classList.add('is-swapping'); delete form.dataset.result;
+    await wait(160);
+    if (me !== run) return;
+    form.classList.remove('is-swapping');
+    steps.forEach((s) => s.dataset.state = 'wait');
+    answerEl.innerHTML = ''; chipEl.hidden = true; asideEl.textContent = '';
+    page.style.opacity = '0.35';
+    for (let i = 0; i < steps.length; i++) {
+      steps[i].dataset.state = 'run';
+      await wait(i === 0 ? 420 : 380);
+      if (me !== run) return;
+      steps[i].dataset.state = 'done';
+    }
+    renderAnswer(a);
+    renderPage(a);
+    form.dataset.result = a.no ? 'no' : a.partial ? 'partial' : 'yes';
+    page.style.opacity = '';
+    const ws = $$('.w', answerEl);
+    if (ws.length) {
+      answerEl.classList.add('is-typing');
+      for (const w of ws) { w.classList.add('on'); await wait(28); if (me !== run) return; }
+      answerEl.classList.remove('is-typing');
+      page.classList.remove('is-flash'); void page.offsetWidth; page.classList.add('is-flash');
+    }
+  }
+  form.addEventListener('change', (e) => { if (e.target.name === 'who' || e.target.name === 'q') update(); });
+  form.addEventListener('click', (e) => {
+    if (!e.target.closest('.cite')) return;
+    page.classList.remove('is-flash'); void page.offsetWidth; page.classList.add('is-flash');
+    if (matchMedia('(max-width: 48rem)').matches) page.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+    page.focus({ preventScroll: true });
+  });
+
+  /* Room 2: the shelves follow whoever is asking. */
+  const reachN = $('#reach-n'), reachT = $('#reach-t');
+  function syncAccess(who) {
+    const p = P[who];
+    $$('#shelves .shelf').forEach((s) => {
+      const open = p.depts.includes(s.dataset.dept);
+      s.dataset.open = open ? 'yes' : 'no';
+      const n = s.querySelector('.shelf__state');
+      n.dataset.n = n.dataset.n || n.textContent;
+      n.textContent = open ? `${n.dataset.n}, open` : `${n.dataset.n}, closed`;
+    });
+    reachN.textContent = p.reads;
+    reachT.textContent = who === 'visitor' ? 'of 68 documents are in reach for a website visitor: the two marked public.' : `of 68 documents are in reach for ${p.name}, ${p.role}.`;
+    const r2 = $(`input[name="who2"][value="${who}"]`); if (r2) r2.checked = true;
+    const C = {
+      visitor: ['the visitor', 'Open the Nimbus Infotech demo website and ask its chat bubble about offices, uptime or salaries.'],
+      riya: ['Riya', 'Sign in to Nimbus Infotech as Riya, the intern, and ask about leave. Then ask about salaries.'],
+      aditya: ['Aditya', 'Sign in to Nimbus Infotech as Aditya, an engineer, and ask about RPO and RTO. Then ask about salaries.'],
+      ritika: ['Ritika', 'Sign in to Nimbus Infotech as Ritika in HR, then as Aditya, an engineer, and ask the salary question both times.'],
+      arjun: ['Arjun', 'Sign in to Nimbus Infotech as Arjun in Sales and ask what NimbusOps Enterprise costs. Then try it as anyone else.'],
+      vikram: ['Vikram', 'Sign in to Nimbus Infotech as Vikram, the owner, and ask for the FY27 revenue target. It sits in Leadership, where only he looks.'],
+    };
+    $('#close-name').textContent = C[who][0]; $('#close-line').textContent = C[who][1];
+  }
+  $$('input[name="who2"]').forEach((r) => r.addEventListener('change', () => {
+    syncAccess(r.value);
+    const r1 = $(`input[name="who"][value="${r.value}"]`); if (r1) { r1.checked = true; update(); }
+  }));
+  syncAccess('ritika');
+
+  /* Room 3: light the flow once when it comes into view. */
+  const flowItems = $$('#flow li');
+  let flowRun = 0;
+  async function playFlow() {
+    const me = ++flowRun;
+    flowItems.forEach((li) => li.classList.remove('is-lit'));
+    for (const li of flowItems) { li.classList.add('is-lit'); await wait(260); if (me !== flowRun) return; }
+  }
+  $('#flow-run').addEventListener('click', playFlow);
+
+  /* Website bubble. */
+  const W = {
+    offices: ['Where are your offices?', 'Pune (head office), Bengaluru (Whitefield) and Hyderabad (HITEC City), plus a sales office in Dubai.', 'Source: Welcome to Nimbus'],
+    uptime: ['What uptime do you promise?', 'NimbusOps is designed for 99.9% monthly availability. On the Enterprise plan that is a contractual SLA with service credits.', 'Source: NimbusOps Product FAQ'],
+    trial: ['Is there a free trial?', 'Yes: 14 days of the Standard plan for up to 50 hosts, with no credit card needed.', 'Source: NimbusOps Product FAQ'],
+    salary: ['What do you pay a Tech Lead?', VISITOR_NO, 'Salary Bands is not public, so the bubble never sees it.'],
+  };
+  $$('#w-asks button').forEach((b) => b.addEventListener('click', async () => {
+    $$('#w-asks button').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+    const [q, a, s] = W[b.dataset.w];
+    $('#w-q').textContent = q; $('#w-a').textContent = '…'; $('#w-src').textContent = '';
+    await wait(450);
+    $('#w-a').textContent = a; $('#w-src').textContent = s;
+    $('#w-src').className = 'widget__src' + (b.dataset.w === 'salary' ? ' widget__src--no' : '');
+  }));
+
+  /* Copy the snippet. */
+  $('#copy').addEventListener('click', async (e) => {
+    try { await navigator.clipboard.writeText($('#snippet-code').textContent); e.target.textContent = 'Copied'; }
+    catch { e.target.textContent = 'Select and copy'; }
+    setTimeout(() => { e.target.textContent = 'Copy'; }, 1800);
+  });
+
+  /* Agent transcript. */
+  const term = $('#term'), lines = $$('.term__line', term);
+  let termRun = 0;
+  async function playTerm() {
+    if (reduce) return;
+    const me = ++termRun;
+    term.classList.add('is-playing');
+    lines.forEach((l) => l.classList.remove('on'));
+    for (const l of lines) { await wait(l.classList.contains('l-out') || l.classList.contains('l-no') ? 900 : 520); if (me !== termRun) return; l.classList.add('on'); }
+    term.classList.remove('is-playing');
+  }
+  $('#term-run').addEventListener('click', playTerm);
+
+  /* Film. */
+  const film = $('#film'), ft = $('#film-toggle');
+  ft.addEventListener('click', () => { if (film.paused) { film.play(); } else { film.pause(); } });
+  film.addEventListener('play', () => { ft.textContent = 'Pause'; ft.setAttribute('aria-pressed', 'true'); });
+  film.addEventListener('pause', () => { ft.textContent = 'Play'; ft.setAttribute('aria-pressed', 'false'); });
+
+  /* Figures count up once. */
+  function countUp(el) {
+    const to = parseFloat(el.dataset.count), dec = +(el.dataset.dec || 1), suf = el.dataset.suffix || '';
+    if (reduce) return;
+    const t0 = performance.now();
+    const tick = (t) => { const k = Math.min(1, (t - t0) / 1100); const e = 1 - Math.pow(1 - k, 3); el.textContent = (to * e).toFixed(dec) + suf; if (k < 1) requestAnimationFrame(tick); };
+    requestAnimationFrame(tick);
+  }
+
+  /* One observer: reveal, and start each piece the first time it is seen. */
+  const io = new IntersectionObserver((es) => es.forEach((e) => {
+    if (!e.isIntersecting) return;
+    const t = e.target;
+    t.classList.add('is-seen');
+    if (t.id === 'flow-stage') playFlow();
+    if (t.id === 'term') playTerm();
+    if (t.classList.contains('figs')) $$('[data-count]', t).forEach(countUp);
+    if (t.id === 'film' && !reduce) film.play().catch(() => {});
+    io.unobserve(t);
+  }), { rootMargin: '0px 0px -15%' });
+  $$('[data-reveal], #flow-stage, #term, #film').forEach((el) => io.observe(el));
+})();
+</script>
+</body>
+</html>
