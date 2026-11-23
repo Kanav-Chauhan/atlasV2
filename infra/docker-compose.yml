@@ -48,8 +48,10 @@ services:
       <<: *api-env
       # Super admin login: only the api needs these (not the worker).
       ATLAS_SUPERADMIN_EMAIL: ${ATLAS_SUPERADMIN_EMAIL:-}
-      # Clerk Waitlist (Phase 10): api only. Test key now, sk_live_ at launch.
+      # Clerk (Phase 10): waitlist, invitations, linking sign-ins (secret key); session-JWT
+      # issuer + JWKS come from the publishable key. Production instance (clerk.kanav.space).
       ATLAS_CLERK_SECRET_KEY: ${CLERK_SECRET_KEY:-}
+      ATLAS_CLERK_PUBLISHABLE_KEY: ${CLERK_PUBLISHABLE_KEY:-}
       ATLAS_METRICS_PORT: "9464"  # Prometheus (metrics.py), internal network only
       ATLAS_SUPERADMIN_PASSWORD_HASH: ${ATLAS_SUPERADMIN_PASSWORD_HASH:-}
       ATLAS_SESSION_SECRET: ${ATLAS_SESSION_SECRET:-}
@@ -86,10 +88,14 @@ services:
       context: ../apps/web
       args:
         API_URL: http://api:8000
+        NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: ${CLERK_PUBLISHABLE_KEY:-}
     restart: unless-stopped
     mem_limit: 384m
     environment:
       API_URL: http://api:8000
+      # Clerk middleware (session refresh on /app, /sign-in, /sign-up, /onboarding).
+      CLERK_SECRET_KEY: ${CLERK_SECRET_KEY:-}
+      NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: ${CLERK_PUBLISHABLE_KEY:-}
       # Product analytics (/analytics.js → PostHog capture API); empty key = off.
       POSTHOG_KEY: ${NEXT_PUBLIC_POSTHOG_KEY:-}
       POSTHOG_HOST: ${NEXT_PUBLIC_POSTHOG_HOST:-https://us.i.posthog.com}

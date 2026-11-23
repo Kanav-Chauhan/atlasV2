@@ -76,7 +76,12 @@ async def test_entries_maps_clerk_rows(monkeypatch: pytest.MonkeyPatch) -> None:
     def handler(req: httpx.Request) -> httpx.Response:
         assert req.headers["Authorization"] == "Bearer sk_test_x"
         assert req.url.params["order_by"] == "-created_at"
-        row = {"email_address": "a@b.co", "status": "pending", "created_at": 1795360058317}
+        row = {
+            "id": "wle_1",
+            "email_address": "a@b.co",
+            "status": "pending",
+            "created_at": 1795360058317,
+        }
         return httpx.Response(200, json={"data": [row], "total_count": 1})
 
     real = httpx.AsyncClient
@@ -86,5 +91,5 @@ async def test_entries_maps_clerk_rows(monkeypatch: pytest.MonkeyPatch) -> None:
         lambda **kw: real(transport=httpx.MockTransport(handler), **kw),
     )
     assert await waitlist.entries() == [
-        {"email": "a@b.co", "status": "pending", "created_at": 1795360058317}
+        {"id": "wle_1", "email": "a@b.co", "status": "pending", "created_at": 1795360058317}
     ]

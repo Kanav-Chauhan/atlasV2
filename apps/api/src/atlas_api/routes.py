@@ -2,8 +2,19 @@ from collections.abc import AsyncIterator
 from datetime import UTC, date, datetime, timedelta
 from pathlib import Path
 from typing import Annotated
+from urllib.parse import unquote
 
-from fastapi import APIRouter, Cookie, Depends, File, Form, HTTPException, Query, UploadFile
+from fastapi import (
+    APIRouter,
+    Cookie,
+    Depends,
+    File,
+    Form,
+    HTTPException,
+    Query,
+    Request,
+    UploadFile,
+)
 from fastapi.concurrency import run_in_threadpool
 from fastapi.responses import FileResponse, Response
 from llama_index.core.schema import NodeWithScore
@@ -12,13 +23,14 @@ from pydantic import BaseModel, ConfigDict, Field, StringConstraints
 from sqlalchemy import func, select, text
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from atlas_api import access, plans, retrieve, uploads
+from atlas_api import access, clerk, plans, retrieve, uploads
 from atlas_api.db import CHUNKS_TABLE, Session
 from atlas_api.models import (
     EVERYONE,
     Department,
     Document,
     EvalRun,
+    Organization,
     Role,
     User,
     user_departments,
@@ -36,10 +48,38 @@ async def db() -> AsyncIterator[AsyncSession]:
 DB = Annotated[AsyncSession, Depends(db)]
 
 
-async def current_user(s: DB, atlas_demo_user: Annotated[str | None, Cookie()] = None) -> User:
-    user = None
-    if atlas_demo_user:
-        user = await s.scalar(select(User).where(User.email == atlas_demo_user))
+def session_token(request: Request) -> str | None:
+    """Clerk session JWT: `Authorization: Bearer` (server-side calls) or the same-site
+    `__session` cookie (browser calls through the /api rewrite)."""
+    scheme, _, value = request.headers.get("authorization", "").partition(" ")
+    if scheme.lower() == "bearer" and value.count(".") == 2:
+        return value.strip()
+    return request.cookies.get("__session")
+
+
+async def demo_user(s: AsyncSession, email: str) -> User | None:
+    """The demo cookie only ever names a person at a demo company (plan "demo"): it is a plain
+    email, so trusting it for a real company would let anyone act as anyone."""
+    user: User | None = await s.scalar(
+        select(User)
+        .join(Organization, Organization.id == User.org_id)
+        .where(User.email == email, Organization.plan == "demo", User.clerk_user_id.is_(None))
+    )
+    return user
+
+
+async def current_user(
+    s: DB, request: Request, atlas_demo_user: Annotated[str | None, Cookie()] = None
+) -> User:
+    """Demo cookie (demo companies only) first, else a verified Clerk session (clerk.py)."""
+    # Next's cookies().set() URL-encodes the value (hr%40nimbus.example); Starlette doesn't decode.
+    email = unquote(atlas_demo_user).strip().lower() if atlas_demo_user else ""
+    user = await demo_user(s, email) if email else None
+    if user is None:
+        token = session_token(request)
+        claims = await clerk.verify(token) if token else None
+        if claims is not None:
+            user = await clerk.resolve(s, claims["sub"])
     if user is None:
         raise HTTPException(401, "Please log in.")
     if user.role == Role.guest and user.guest_until and user.guest_until < date.today():
@@ -66,6 +106,8 @@ class Me(BaseModel):
     role: Role
     departments: list[str]
     org: Org
+    plan: str
+    auth: str  # "clerk" (real sign-in) or "demo"
 
 
 class DocumentOut(BaseModel):
@@ -101,6 +143,8 @@ async def me(user: CurrentUser) -> Me:
         role=user.role,
         departments=sorted(user.department_names),
         org=Org(slug=user.org.slug, name=user.org.name),
+        plan=user.org.plan,
+        auth="clerk" if user.clerk_user_id else "demo",
     )
 
 

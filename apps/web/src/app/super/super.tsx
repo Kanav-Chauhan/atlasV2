@@ -1,6 +1,7 @@
 "use client";
 
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useState } from "react";
 import Link from "next/link";
 import { EvalTable, type Eval } from "@/app/app/lab/lab";
 import { Region } from "@/components/region";
@@ -9,7 +10,7 @@ import { day } from "@/lib/types";
 
 type OrgRow = { slug: string; name: string; people: number; documents: number; chunks: number; questions_30d: number; not_found_pct_30d: number | null; last_activity: string | null };
 type Usage = { org: string; model: string; questions: number; tokens_in: number | null; tokens_out: number | null; avg_latency_ms: number | null };
-type Waiter = { email: string; status: string; created_at: number }; // Clerk Waitlist, newest first
+type Waiter = { id: string; email: string; status: string; created_at: number }; // Clerk Waitlist, newest first
 type Rate = number | null;
 type AnswerSummary = {
   runs: number; errors: number; answerable: number; negatives: number;
@@ -106,15 +107,43 @@ export function SuperHome() {
       <section id="waitlist" className="block" aria-labelledby="wl-h">
         <div className="block-head"><h2 id="wl-h">Waitlist</h2></div>
         <Region q={waitlist} what="waitlist" rows={1}
-          empty={<><p className="font-semibold">No one yet</p><p className="text-sm text-muted">Emails from &quot;Join the Pro waitlist&quot; on the home page show here. Approve and invite people in the Clerk Dashboard.</p></>}>
+          empty={<><p className="font-semibold">No one yet</p><p className="text-sm text-muted">Emails from &quot;Join the Pro waitlist&quot; on the home page show here. Invite them here: Clerk emails a sign-up link that works while sign-up is waitlist-only.</p></>}>
           {(d) => (
             <ul className="list">
-              {d.map((w) => <li key={w.email}><span>{w.email}</span><span className="count">{w.status} · {day.format(new Date(w.created_at))}</span></li>)}
+              {d.map((w) => (
+                <li key={w.id}>
+                  <span>{w.email}</span>
+                  <span className="count flex items-center gap-2">
+                    {w.status} · {day.format(new Date(w.created_at))}
+                    {w.status === "pending" && <InviteButton id={w.id} />}
+                  </span>
+                </li>
+              ))}
             </ul>
           )}
         </Region>
       </section>
     </>
+  );
+}
+
+function InviteButton({ id }: { id: string }) {
+  const client = useQueryClient();
+  const [state, setState] = useState<"" | "busy" | "error">("");
+  async function invite() {
+    setState("busy");
+    try {
+      await api(`/super/waitlist/${encodeURIComponent(id)}/invite`, {});
+      await client.invalidateQueries({ queryKey: ["super-waitlist"] });
+      setState("");
+    } catch {
+      setState("error");
+    }
+  }
+  return (
+    <button type="button" className="btn" onClick={invite} disabled={state === "busy"}>
+      {state === "busy" ? "Inviting" : state === "error" ? "Failed, try again" : "Invite"}
+    </button>
   );
 }
 

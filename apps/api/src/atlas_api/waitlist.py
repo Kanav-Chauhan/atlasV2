@@ -47,7 +47,7 @@ async def add(email: str) -> None:
 
 
 async def entries(limit: int = 100) -> list[dict[str, Any]]:
-    """Newest first: [{email, status, created_at}]."""
+    """Newest first: [{id, email, status, created_at}]."""
     if not settings.clerk_secret_key:
         return []
     async with httpx.AsyncClient(timeout=10) as c:
@@ -58,7 +58,12 @@ async def entries(limit: int = 100) -> list[dict[str, Any]]:
         )
     r.raise_for_status()
     return [
-        {"email": e["email_address"], "status": e["status"], "created_at": e["created_at"]}
+        {
+            "id": e["id"],
+            "email": e["email_address"],
+            "status": e["status"],
+            "created_at": e["created_at"],
+        }
         for e in r.json()["data"]
     ]
 

@@ -80,6 +80,8 @@ class User(Base):
     role: Mapped[Role] = mapped_column(Enum(Role, name="role"))
     guest_until: Mapped[date | None] = mapped_column(Date)
     last_active: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
+    # Clerk user id ("user_…") for real sign-ins (clerk.py); None for demo people.
+    clerk_user_id: Mapped[str | None] = mapped_column(String(64), unique=True)
     org: Mapped[Organization] = relationship(lazy="joined")
     departments: Mapped[list[Department]] = relationship(
         secondary=user_departments, lazy="selectin"

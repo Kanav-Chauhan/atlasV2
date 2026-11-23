@@ -25,8 +25,11 @@ class Settings(BaseSettings):
     # (evals/results/20261122T142654Z-grade-relevance.json: accuracy 0.968). MiniLM used 1.3.
     # Prometheus metrics port (metrics.py); 0 = off. Compose sets 9464 for the api only.
     metrics_port: int = 0
-    # Clerk Backend API (Phase 10 waitlist); empty = waitlist closed.
+    # Clerk Backend API (Phase 10 waitlist, invitations, sign-in linking); empty = waitlist closed.
     clerk_secret_key: str = ""
+    # Clerk publishable key: the session-JWT issuer and JWKS URL come from it (clerk.py).
+    # Empty = real sign-in off (only demo logins and the super admin work).
+    clerk_publishable_key: str = ""
     grade_threshold: float = -1.1
     # LLM relevance grade after the score threshold (corrective RAG, Phase 6): the `fast` model
     # checks the passages really answer (a gate: yes/partial → all passages go to the answer).

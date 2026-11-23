@@ -38,6 +38,7 @@ def hr_doc(tmp_path_factory: pytest.TempPathFactory) -> Iterator[int]:
     with SyncSession() as s:
         s.execute(delete(Organization).where(Organization.slug == ORG["slug"]))  # stale run
         org = seed_org(s, ORG)
+        org.plan = "demo"  # these tests log in with the demo cookie (demo companies only)
         doc = Document(
             org_id=org.id,
             title="Leave Policy",

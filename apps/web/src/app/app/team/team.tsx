@@ -26,6 +26,7 @@ export function Team({ isAdmin, me, myDepts }: Props) {
   const [editing, setEditing] = useState<Editing>(null);
   const [deptEdit, setDeptEdit] = useState<Department | "new" | null>(null);
   const [err, setErr] = useState("");
+  const [note, setNote] = useState("");
 
   // Managers act only on members and guests (the API scopes the list to their departments); nobody edits themselves here.
   const canManage = (p: Person) => p.email !== me && (isAdmin || p.role === "member" || p.role === "guest");
@@ -58,6 +59,7 @@ export function Team({ isAdmin, me, myDepts }: Props) {
         <button type="button" className="btn btn-primary" onClick={() => setEditing({})}>Add person</button>
       </header>
       {err && <p className="state text-sm text-error" role="alert">{err}</p>}
+      {note && <p className="state text-sm" role="status">{note}</p>}
 
       <section className="block" aria-labelledby="people-h">
         <div className="block-head">
@@ -154,7 +156,7 @@ export function Team({ isAdmin, me, myDepts }: Props) {
         </Region>
       </section>
 
-      {editing && <PersonDialog key={editing.person?.id ?? "new"} {...editing} isAdmin={isAdmin} deptNames={deptNames}
+      {editing && <PersonDialog key={editing.person?.id ?? "new"} {...editing} isAdmin={isAdmin} deptNames={deptNames} onNote={setNote}
         onDone={() => { setEditing(null); refresh(); }} onClose={() => setEditing(null)} />}
       {deptEdit && <DeptDialog dept={deptEdit === "new" ? undefined : deptEdit} onDone={() => { setDeptEdit(null); refresh(); }} onClose={() => setDeptEdit(null)} />}
     </div>
@@ -216,8 +218,16 @@ function useSubmit(onDone: () => void) {
   return { err, busy, run };
 }
 
-function PersonDialog({ person, dept, isAdmin, deptNames, onDone, onClose }: {
+// POST /team answers `invite` for real companies (Clerk invitation email); demo companies: null.
+const INVITE_NOTE: Record<string, string> = {
+  sent: "invitation email sent. They sign up with that address and land in this company.",
+  exists: "they already have an Atlas login, so they can sign in now.",
+  failed: "added, but the invitation email didn't go out. Ask them to sign up with that address.",
+};
+
+function PersonDialog({ person, dept, isAdmin, deptNames, onDone, onClose, onNote }: {
   person?: Person; dept?: string; isAdmin: boolean; deptNames: string[]; onDone: () => void; onClose: () => void;
+  onNote: (note: string) => void;
 }) {
   const [role, setRole] = useState<ApiRole>(person?.role ?? "member");
   const { err, busy, run } = useSubmit(onDone);
@@ -235,7 +245,8 @@ function PersonDialog({ person, dept, isAdmin, deptNames, onDone, onClose }: {
     };
     run(() => person
       ? api(`/team/${person.id}`, body, "PATCH")
-      : api("/team", { ...body, name: String(f.get("name")).trim(), email: String(f.get("email")).trim() }));
+      : api<{ name: string; invite?: string | null }>("/team", { ...body, name: String(f.get("name")).trim(), email: String(f.get("email")).trim() })
+        .then((p) => onNote(p.invite && INVITE_NOTE[p.invite] ? `${p.name}: ${INVITE_NOTE[p.invite]}` : "")));
   }
 
   return (

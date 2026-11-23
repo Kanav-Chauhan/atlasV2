@@ -1,20 +1,24 @@
 """Phase 7 dashboard: team, departments, who-sees-what, documents to review, org
 (docs/API.md "Endpoints (Phase 7: dashboard)"). Rules live in access.py."""
 
+import logging
 from datetime import date, datetime, timedelta
 from typing import Annotated, Any
 
+import httpx
 from fastapi import APIRouter, Depends, HTTPException
 from fastapi.responses import Response
 from pydantic import BaseModel, StringConstraints
 from sqlalchemy import func, select, text, update
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from atlas_api import access, plans
+from atlas_api import access, clerk, plans
 from atlas_api.db import CHUNKS_TABLE
 from atlas_api.models import EVERYONE, Department, Document, Organization, Role, User
 from atlas_api.routes import DB, CurrentUser
+from atlas_api.settings import settings
 
+log = logging.getLogger(__name__)
 router = APIRouter()
 
 
@@ -51,6 +55,12 @@ class Person(BaseModel):
     departments: list[str]
     guest_until: date | None
     last_active: datetime | None
+
+
+class AddedPerson(Person):
+    # Clerk invitation email (real companies only): "sent", "exists" (already has a Clerk
+    # login: they just sign in), "failed" (person added, invitation not sent), None (demo).
+    invite: str | None = None
 
 
 class PersonIn(BaseModel):
@@ -119,8 +129,18 @@ async def team(user: Lead, s: DB) -> list[Person]:
     return [person(u) for u in await org_people(s, user)]
 
 
+async def send_invite(org: Organization, email: str) -> str | None:
+    if org.plan == "demo" or not settings.clerk_secret_key:
+        return None
+    try:
+        return await clerk.invite(email)
+    except httpx.HTTPError as e:
+        log.warning("clerk invitation failed: %s", type(e).__name__)
+        return "failed"
+
+
 @router.post("/team", status_code=201)
-async def add_person(body: PersonIn, user: Lead, s: DB) -> Person:
+async def add_person(body: PersonIn, user: Lead, s: DB) -> AddedPerson:
     if not access.can_manage_person(user, body.role, set(body.departments)):
         raise HTTPException(403, "You can only add members and guests to your own departments.")
     email = body.email
@@ -138,7 +158,8 @@ async def add_person(body: PersonIn, user: Lead, s: DB) -> Person:
     )
     s.add(u)
     await s.commit()
-    return person(u)
+    invite = await send_invite(user.org, email)
+    return AddedPerson(**person(u).model_dump(), invite=invite)
 
 
 @router.patch("/team/{person_id}")

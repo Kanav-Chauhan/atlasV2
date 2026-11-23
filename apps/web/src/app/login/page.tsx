@@ -1,15 +1,16 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { loginAs } from "@/app/actions";
+import { loginAs, startSignIn } from "@/app/actions";
 import { Logo } from "@/components/logo";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { OwnerForm } from "./owner-form";
+import { CLERK_ON } from "@/lib/clerk";
 import { DEMO_COMPANIES, type DemoCompany } from "@/lib/demo-users";
 
 export const metadata: Metadata = { title: "Log in" };
 
 // Demo login: pick a company, then a person (one click). Step lives in ?company= so no client state is needed.
-// TODO(Phase 4/10): real auth (email login, then Clerk) replaces this picker for non-demo users.
+// Real users: "Sign in" → Clerk (/sign-in, Google or email) when CLERK_ON.
 export default async function LoginPage({ searchParams }: { searchParams: Promise<{ company?: string; owner?: string }> }) {
   const { company: slug, owner } = await searchParams;
   const company = DEMO_COMPANIES.find((c) => c.slug === slug);
@@ -89,7 +90,19 @@ function CompanyPicker() {
         ))}
       </ul>
       <p className="mt-2 text-xs text-muted">Fictional companies with their own documents. Each person sees different departments.</p>
-      <Link href="/login?owner=1" className="group mt-6 flex items-center gap-3 rounded-card border border-rule bg-paper px-4 py-3 hover:bg-paper-2">
+      {CLERK_ON && (
+        <form action={startSignIn} className="mt-6">
+          <button type="submit" data-track="sign_in_click" className="group flex w-full cursor-pointer items-center gap-3 rounded-card border border-rule bg-paper px-4 py-3 text-left hover:bg-paper-2">
+            <span aria-hidden="true" className="grid size-7 shrink-0 place-items-center rounded-[8px] bg-accent text-xs font-semibold text-accent-ink">↪</span>
+            <span className="min-w-0 flex-1">
+              <span className="block text-sm font-medium">Sign in to your company</span>
+              <span className="block text-xs text-muted">With Google or your work email</span>
+            </span>
+            <Arrow />
+          </button>
+        </form>
+      )}
+      <Link href="/login?owner=1" className={`group ${CLERK_ON ? "mt-2" : "mt-6"} flex items-center gap-3 rounded-card border border-rule bg-paper px-4 py-3 hover:bg-paper-2`}>
         <Logo className="size-7 shrink-0 text-muted" />
         <span className="min-w-0 flex-1">
           <span className="block text-sm font-medium">Atlas owner</span>

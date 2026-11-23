@@ -1,4 +1,6 @@
-import { type NextRequest, NextResponse } from "next/server";
+import { clerkMiddleware } from "@clerk/nextjs/server";
+import { type NextFetchEvent, type NextRequest, NextResponse } from "next/server";
+import { CLERK_ON } from "@/lib/clerk";
 import { ATLAS_ORIGIN, publicConfig } from "@/lib/website";
 
 // The website chat panel (/embed/<key>) may only be framed by Atlas itself and the company's
@@ -18,11 +20,22 @@ async function ancestors(key: string) {
   return value;
 }
 
-export async function proxy(req: NextRequest) {
+async function embed(req: NextRequest) {
   const key = req.nextUrl.pathname.split("/")[2] ?? "";
   const res = NextResponse.next();
   res.headers.set("Content-Security-Policy", `frame-ancestors ${await ancestors(key)}`);
   return res;
 }
 
-export const config = { matcher: "/embed/:path*" };
+// Clerk keeps the session cookie fresh (handshake) on the signed-in pages only. It never runs on
+// /embed (framed on other sites), /widget.js, /demo-site or /api/* (the API checks the token).
+const clerk = CLERK_ON ? clerkMiddleware() : null;
+
+export async function proxy(req: NextRequest, event: NextFetchEvent) {
+  if (req.nextUrl.pathname.startsWith("/embed/")) return embed(req);
+  return clerk ? clerk(req, event) : NextResponse.next();
+}
+
+export const config = {
+  matcher: ["/embed/:path*", "/sign-in/:path*", "/sign-up/:path*", "/onboarding", "/app/:path*"],
+};

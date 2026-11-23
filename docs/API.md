@@ -2,11 +2,43 @@
 
 The web app proxies `/api/*` to the API (`next.config.ts` rewrite), so the browser's cookies reach the API.
 
-## Who is calling (until Clerk, Phase 10)
+## Who is calling (`routes.current_user`, Phase 10)
 
-The login page sets the httpOnly cookie `atlas_demo_user=<email>`. The API reads that cookie and
-loads the user from the database (`users.email`). No cookie or unknown email → `401`.
-Every query is scoped to that user's organization. Nothing crosses organizations.
+Two ways in, checked in this order. Every query is then scoped to that person's organization.
+
+1. **Demo login.** The login page sets the httpOnly cookie `atlas_demo_user=<email>` (Next
+   URL-encodes it; the API decodes it). It is only a plain email, so the API accepts it **only for
+   people at a demo company** (`organizations.plan = 'demo'`, never a person with a Clerk link).
+   Naming anyone at a real company with it → `401`.
+2. **Real users: a Clerk session** (`clerk.py`). The Clerk session JWT reaches the API as
+   - the `__session` cookie: clerk-js sets it on p10.kanav.space (same site), and the browser's
+     `/api/*` calls carry it through the Next rewrite; `lib/api.ts` asks clerk-js for a fresh one
+     and retries once on a `401` (the cookie lives ~60 s; clerk-js renews it in the background), or
+   - `Authorization: Bearer <jwt>` (any server-side caller; a Bearer that is not a JWT is ignored).
+   Next server components call `GET /me` forwarding the request's cookies.
+
+   The API verifies it without a per-request network call: RS256 signature with the instance's
+   JWKS (`https://clerk.kanav.space/.well-known/jwks.json`, cached 1 h; the frontend API host comes
+   from `ATLAS_CLERK_PUBLISHABLE_KEY`), `iss`, `exp`/`nbf`/`iat` (5 s leeway), `azp` must be
+   `ATLAS_APP_ORIGIN` (https://p10.kanav.space) and `sub` a Clerk user id. Then
+   `users.clerk_user_id = sub`. The first time a Clerk user is seen, the API looks them up in the
+   Clerk Backend API and links them to an existing, unlinked person **at a non-demo company** whose
+   email equals Clerk's **verified primary email** (invited people). Nobody → `401` from normal
+   routes and the web sends them to `/onboarding`.
+
+No cookie/token, an invalid token, or no person → `401 "Please log in."`.
+Super admin is separate (`atlas_super` cookie, below).
+
+| Method | Path | Who | Returns |
+|---|---|---|---|
+| GET | `/me` | anyone logged in | `{email, name, title, role, departments, org: {slug, name}, plan, auth: "demo" \| "clerk"}` |
+| GET | `/onboarding` | valid Clerk session | `{linked, email, name, org}`: `linked: true` (+ `org` slug) when the person exists or was just linked by email; else `email`/`name` from Clerk. `403` without a verified email, `401` without a valid session |
+| POST | `/onboarding` | valid Clerk session | `{company (2–200), industry?}` → creates the organization (plan `pro` until payments) and the caller as its `admin` → `{linked: true, email, name, org}`. Idempotent: if the caller already has (or can be linked to) a person, nothing is created and that person's org is returned; a double submit keeps one company. `409` if the email belongs to a demo person or another Clerk login |
+
+**Invitations.** `POST /team` on a real company also sends a Clerk invitation
+(`/v1/invitations`, redirect `https://p10.kanav.space/sign-up`, works while sign-up is
+waitlist-only); the response adds `invite: "sent" | "exists" | "failed" | null` (`null` = demo
+company, nothing sent). The person signs up with that email and links on first sign-in.
 
 ## Access rule (one place: `atlas_api/access.py`)
 
@@ -90,7 +122,8 @@ Login is a separate option on the login page: email `sa@kanav.space` + password,
 | GET | `/super/orgs` | `[{slug, name, people, documents, chunks, questions_30d, not_found_pct_30d, last_activity}]` (`not_found_pct_30d` 0–100 or `null`; `last_activity` timestamp or `null`) |
 | GET | `/super/evals` | all eval runs, newest first. Retrieval runs: `{kind: "retrieval", run_id, created_at, modes: {<mode>: {hit_at_1, hit_at_3, hit_at_5, mrr, context_recall, leaks, n}}}` (same item shape as `/evals/latest`). Answer runs (Phase 6, `scripts/eval_answers.py`): `{kind: "answers", run_id, created_at, summary: {runs, errors, answerable, negatives, correct_answer, correct_or_partial, false_not_found, correct_not_found, declined_in_words, leaks, latency_p50_ms, latency_p95_ms, relevance: {verdict: count}, ragas: {faithfulness, answer_relevancy, context_precision, context_recall, n}, by_org: {<slug>: {correct_answer, false_not_found, correct_not_found, leaks, n}}, config: {threshold, relevance_grade, judge, questions, org, ragas}, seconds}}`; rates are 0–1 or `null` |
 | GET | `/super/usage?days=30` | `[{org (slug), model, questions, tokens_in, tokens_out, avg_latency_ms}]` per org and model; `model` is the gateway slot (`smart` for document answers, `none` otherwise) until Phase 6 logs it; tokens `null` until then |
-| GET | `/super/waitlist` | `[{email, status, created_at (ms)}]` from Clerk Waitlist, newest 100; `[]` without a Clerk key; 502 if Clerk fails |
+| GET | `/super/waitlist` | `[{id, email, status, created_at (ms)}]` from Clerk Waitlist, newest 100; `[]` without a Clerk key; 502 if Clerk fails |
+| POST | `/super/waitlist/{id}/invite` | `204`: Clerk invites that entry (email with a sign-up link); `404` unknown entry, `502` Clerk failed, `503` no Clerk key |
 | POST | `/public/waitlist` | `{email, website?}` (honeypot) → 204, added to Clerk Waitlist (repeat = same entry); 422 bad email, 429 after 5/hour/IP, 503 without a Clerk key. No login; Caddy-exempt like /public/* |
 | GET | `/super/orgs/{slug}/view` | read-only snapshot: `{org: {slug, name, industry, description}, team: [person as in /team], documents: [document as in /documents, newest first], insights: (as /insights?days=30, whole company)}`; `404` unknown slug |
 

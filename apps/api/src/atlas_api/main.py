@@ -10,6 +10,7 @@ from atlas_api import (
     mcp_server,
     metrics,
     routes,
+    signup_routes,
     super_routes,
     team_routes,
     token_routes,
@@ -63,4 +64,5 @@ app.include_router(super_routes.router)
 app.include_router(website_routes.router)
 app.include_router(token_routes.router)
 app.include_router(waitlist.router)
+app.include_router(signup_routes.router)
 app.router.routes.append(mcp_server.route)  # MCP Streamable HTTP (Phase 9)

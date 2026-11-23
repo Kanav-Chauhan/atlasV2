@@ -4,6 +4,7 @@ cookie, and the /super/* pages (docs/API.md "Super admin")."""
 import hashlib
 import hmac
 import logging
+import re
 import time
 from datetime import UTC, datetime, timedelta
 from typing import Annotated, Any
@@ -220,6 +221,26 @@ async def super_waitlist() -> list[dict[str, Any]]:
         return await waitlist.entries()
     except httpx.HTTPError as e:
         raise HTTPException(502, "Clerk did not answer. Try again in a minute.") from e
+
+
+@router.post("/super/waitlist/{entry_id}/invite", status_code=204, dependencies=[Super])
+async def super_waitlist_invite(entry_id: str) -> Response:
+    """Invite one waitlist entry (Clerk emails them a sign-up link that works in Waitlist mode)."""
+    from atlas_api import clerk
+
+    if not re.fullmatch(r"[A-Za-z0-9_]{1,64}", entry_id):
+        raise HTTPException(404, "Waitlist entry not found.")
+    if not settings.clerk_secret_key:
+        raise HTTPException(503, "Clerk is not set up.")
+    try:
+        await clerk.invite_waitlist_entry(entry_id)
+    except httpx.HTTPStatusError as e:
+        if e.response.status_code == 404:
+            raise HTTPException(404, "Waitlist entry not found.") from e
+        raise HTTPException(502, "Clerk did not accept the invitation. Try again.") from e
+    except httpx.HTTPError as e:
+        raise HTTPException(502, "Clerk did not answer. Try again in a minute.") from e
+    return Response(status_code=204)
 
 
 @router.get("/super/orgs/{slug}/view", dependencies=[Super])
