@@ -1,9 +1,10 @@
 import { headers } from "next/headers";
 import { notFound } from "next/navigation";
+import { QueryProvider } from "@/components/query";
 import { navFor } from "@/lib/nav";
 import { getUser } from "@/lib/session";
-import type { Review } from "@/lib/types";
-import { Library, type Doc } from "./library";
+import { Library } from "./library";
+import { type LibraryPage, libraryQuery } from "./params";
 import "./library.css";
 
 const API = process.env.API_URL || "http://localhost:8000";
@@ -18,20 +19,23 @@ async function get<T>(path: string): Promise<T | null> {
   }
 }
 
-export default async function LibraryPage() {
+export default async function LibraryRoute({ searchParams }: { searchParams: Promise<Record<string, string | string[] | undefined>> }) {
   const user = await getUser();
   if (!user || !navFor(user.person.role).some((i) => i.slug === "library")) notFound();
   const { role, departments } = user.person;
   const isAdmin = role === "Admin";
-  const canUpload = isAdmin || role === "Manager";
+  const lead = isAdmin || role === "Manager";
 
-  const [docs, depts, review] = await Promise.all([
-    get<Doc[]>("/documents"),
-    isAdmin ? get<{ name: string }[]>("/departments") : null,
-    canUpload ? get<Review[]>("/documents/review") : null,
-  ]);
-  // Where this person may upload: admin anywhere (incl. Everyone), managers only their own departments.
-  const uploadTo = isAdmin ? ["Everyone", ...(depts ?? []).map((d) => d.name)] : canUpload ? departments : [];
+  // The first page for the filters in the URL, so a shared link paints with its rows.
+  const flat = new URLSearchParams();
+  for (const [k, v] of Object.entries(await searchParams)) if (typeof v === "string") flat.set(k, v);
+  const query = libraryQuery(flat);
+  const initial = await get<LibraryPage>(`/documents/library?${query}`);
 
-  return <Library initial={docs} canUpload={canUpload} isAdmin={isAdmin} uploadTo={uploadTo} review={review ?? []} />;
+  return (
+    <QueryProvider>
+      <Library company={user.company.name} initial={initial} initialQuery={query} isAdmin={isAdmin} lead={lead}
+        ownDepartments={departments} />
+    </QueryProvider>
+  );
 }

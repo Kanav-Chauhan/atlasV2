@@ -7,7 +7,9 @@ import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Fragment, useEffect, useRef, useState } from "react";
 import { api } from "@/lib/api";
-import { Reader, type Size } from "./reader";
+import { DocViewer } from "@/components/doc-viewer/doc-viewer";
+import { useDocViewer, useViewerSize } from "@/components/doc-viewer/use-doc-viewer";
+import { type Hit, Matches } from "./matches";
 
 // Stream parts from /api/chat (docs/API.md, Phase 5).
 export type Source = {
@@ -51,26 +53,73 @@ const Icon = ({ d }: { d: string }) => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true"><path d={d} /></svg>
 );
 
-export function Ask({ company }: { company: string }) {
+export function Ask({ company, canSeeChunks }: { company: string; canSeeChunks: boolean }) {
   const params = useSearchParams();
   const router = useRouter();
   const c = params.get("c");
   const q = params.get("q");
-  useEffect(() => { if (!c) router.replace(newChatUrl(q)); }, [c, q, router]);
-  return c ? <Thread key={c} id={c} q={q} company={company} /> : null;
+  const find = params.get("mode") === "find";
+  useEffect(() => { if (!c && !find) router.replace(newChatUrl(q)); }, [c, q, find, router]);
+  if (find) return <Find key={q ?? ""} q={q?.trim() ?? ""} company={company} canSeeChunks={canSeeChunks} />;
+  return c ? <Thread key={c} id={c} q={q} company={company} canSeeChunks={canSeeChunks} /> : null;
 }
 
-function Thread({ id, q, company }: { id: string; q: string | null; company: string }) {
+/** History drawer state; Esc closes it first (capture: before the viewer's own Esc). */
+function useDrawer() {
+  const [open, setOpen] = useState(false);
+  useEffect(() => {
+    const esc = (e: KeyboardEvent) => {
+      if (e.key === "Escape" && open) { e.preventDefault(); setOpen(false); }
+    };
+    addEventListener("keydown", esc, { capture: true });
+    return () => removeEventListener("keydown", esc, { capture: true });
+  }, [open]);
+  return [open, setOpen] as const;
+}
+
+type HeadProps = {
+  title: string; company: string; find: boolean; q: string; thread?: string;
+  historyOpen: boolean; onHistory: () => void; onNew?: () => void;
+};
+
+/** One header for both modes: History, the title, the Answer / Just find documents switch, New chat. */
+function PaneHead({ title, company, find, q, thread, historyOpen, onHistory, onNew }: HeadProps) {
+  const enc = q ? encodeURIComponent(q) : "";
+  // Answer from find mode: a new chat that asks the same words (the Ask page turns /app/ask?q= into one).
+  const answerHref = find ? `/app/ask${enc ? `?q=${enc}` : ""}` : thread ? `/app/ask?c=${thread}` : "/app/ask";
+  return (
+    <header className="pane-head">
+      <button type="button" className="btn" aria-expanded={historyOpen} aria-controls="history" onClick={onHistory}>
+        <Icon d="M3.5 12a8.5 8.5 0 1 0 2.5-6M3.5 4v4h4M12 8v4.5l3 2" /><span className="btn-label">History</span>
+      </button>
+      <div className="chat-title">
+        <h1 id="chat-title" tabIndex={-1}>{title}</h1>
+        <p>{company}</p>
+      </div>
+      <nav className="seg mode-switch" aria-label="Ask mode">
+        <Link href={answerHref} aria-current={find ? undefined : "page"}>Answer</Link>
+        <Link href={`/app/ask?mode=find${enc ? `&q=${enc}` : ""}`} aria-current={find ? "page" : undefined}>Just find documents</Link>
+      </nav>
+      {onNew && (
+        <button type="button" className="btn" onClick={onNew}>
+          <Icon d="M12 5v14M5 12h14" /><span className="btn-label">New chat</span>
+        </button>
+      )}
+    </header>
+  );
+}
+
+function Thread({ id, q, company, canSeeChunks }: { id: string; q: string | null; company: string; canSeeChunks: boolean }) {
   const router = useRouter();
   const qc = useQueryClient();
   const [stage, setStage] = useState<Stage | null>(null);
   const [input, setInput] = useState("");
-  const [historyOpen, setHistoryOpen] = useState(false);
-  const [open, setOpen] = useState<{ msg: string; n: number } | null>(null);
-  const [size, setSize] = useState<Size>("half");
-  const opener = useRef<HTMLElement | null>(null);
-  const workspace = useRef<HTMLDivElement>(null);
+  const [historyOpen, setHistoryOpen] = useDrawer();
+  const viewer = useDocViewer();
+  const [size, setSize] = useViewerSize();
   const scroller = useRef<HTMLDivElement>(null);
+  // A matching document opened from the side list: its passage, so the viewer needn't look it up.
+  const [hit, setHit] = useState<Hit | null>(null);
 
   const { messages, sendMessage, setMessages, status, stop, error, regenerate } = useChat<AtlasMessage>({
     id, transport,
@@ -115,104 +164,178 @@ function Thread({ id, q, company }: { id: string; q: string | null; company: str
     if (el && (status === "submitted" || el.scrollHeight - el.scrollTop - el.clientHeight < 160)) el.scrollTop = el.scrollHeight;
   }, [messages, status]);
 
-  const close = () => { setOpen(null); opener.current?.focus(); };
-  const cite = (msg: string, n: number) => { opener.current = document.activeElement as HTMLElement; setOpen({ msg, n }); };
-  useEffect(() => {
-    const esc = (e: KeyboardEvent) => {
-      if (e.key !== "Escape") return;
-      if (historyOpen) setHistoryOpen(false);
-      else if (open) { setOpen(null); opener.current?.focus(); }
-    };
-    addEventListener("keydown", esc);
-    return () => removeEventListener("keydown", esc);
-  }, [historyOpen, open]);
-
-  const openMsg = open && messages.find((m) => m.id === open.msg);
+  // A citation opens the shared document viewer (?doc=&page=&chunk= in the URL, so it survives a refresh).
+  const show = (s: Source) => viewer.open({ doc: String(s.document_id), page: s.page, chunk: s.chunk_id });
+  const cite = (msg: string, n: number) => {
+    const s = sourcesOf(messages.find((m) => m.id === msg)!).find((x) => x.n === n);
+    if (s) show(s);
+  };
+  // Which answer's source is open (for the highlighted [n] and stepping through that answer's sources).
+  const cur = viewer.current;
+  const openMsg = cur?.chunk ? messages.find((m) => m.role === "assistant" && sourcesOf(m).some((s) => s.chunk_id === cur.chunk && String(s.document_id) === cur.doc)) : undefined;
+  const openSources = openMsg ? sourcesOf(openMsg) : [];
+  const openIdx = openSources.findIndex((s) => s.chunk_id === cur?.chunk);
+  const openSrc = openSources[openIdx];
+  const openHit = !openSrc && hit && cur?.chunk === hit.chunk_id ? hit : null;
   const title = saved.data?.title || (messages[0] ? textOf(messages[0]) : "New chat");
   const last = messages.at(-1);
 
+  // Matching documents for the latest question, fetched as soon as it is sent (in parallel with the answer).
+  // Hidden once the router says it wasn't a document question ("Hi", off-topic, blocked).
+  const lastUser = messages.findLast((m) => m.role === "user");
+  const lastQ = lastUser ? textOf(lastUser).trim() : "";
+  const lastMeta = last?.role === "assistant" ? metaOf(last) : undefined;
+  const showMatches = !!lastQ && !loadFailed && (!lastMeta || lastMeta.route === "rag");
+
   return (
-    <div className="ask" ref={workspace} data-reader={openMsg ? size : "closed"}>
+    <div className="ask" data-reader={cur ? size : "closed"}>
       <section className="chat" aria-labelledby="chat-title">
-        <header className="pane-head">
-          <button type="button" className="btn" aria-expanded={historyOpen} aria-controls="history" onClick={() => setHistoryOpen(!historyOpen)}>
-            <Icon d="M3.5 12a8.5 8.5 0 1 0 2.5-6M3.5 4v4h4M12 8v4.5l3 2" />History
-          </button>
-          <div className="chat-title">
-            <h1 id="chat-title">{title}</h1>
-            <p>{company}</p>
-          </div>
-          <button type="button" className="btn" onClick={() => router.push(newChatUrl())}>
-            <Icon d="M12 5v14M5 12h14" />New chat
-          </button>
-        </header>
+        <PaneHead title={title} company={company} find={false} q={lastQ} thread={id} historyOpen={historyOpen}
+          onHistory={() => setHistoryOpen(!historyOpen)} onNew={() => router.push(newChatUrl())} />
         {historyOpen && <History current={id} />}
 
-        <div className="thread" ref={scroller}>
-          <div className="thread-inner">
-            {loadFailed ? (
-              <section className="state" role="alert">
-                <h2 className="font-body text-md font-semibold">This chat didn&apos;t load</h2>
-                <p className="text-sm text-muted">{saved.error.message}</p>
-                <button type="button" className="btn" onClick={() => saved.refetch()}>Retry</button>
-              </section>
-            ) : messages.length === 0 && saved.isFetching ? (
-              <div className="grid gap-3" aria-busy="true" aria-label="Loading chat">
-                <div className="skeleton" /><div className="skeleton" />
-              </div>
-            ) : messages.length === 0 ? (
-              <section className="empty-chat">
-                <h2>Ask a question</h2>
-                <p>Atlas answers from {company || "company"} documents you can open, and shows the passage it used.</p>
-                <div className="starters">
-                  {questions.map((s) => <button key={s} type="button" onClick={() => ask(s)}>{s}</button>)}
+        <div className="chat-body" data-side={showMatches || undefined}>
+          <div className="thread" ref={scroller}>
+            <div className="thread-inner">
+              {loadFailed ? (
+                <section className="state" role="alert">
+                  <h2 className="font-body text-md font-semibold">This chat didn&apos;t load</h2>
+                  <p className="text-sm text-muted">{saved.error.message}</p>
+                  <button type="button" className="btn" onClick={() => saved.refetch()}>Retry</button>
+                </section>
+              ) : messages.length === 0 && saved.isFetching ? (
+                <div className="grid gap-3" aria-busy="true" aria-label="Loading chat">
+                  <div className="skeleton" /><div className="skeleton" />
                 </div>
-              </section>
-            ) : messages.map((m, i) => m.role === "user" ? (
-              <p key={m.id} className="q">{textOf(m)}</p>
-            ) : (
-              <Answer key={m.id} m={m} question={i > 0 ? textOf(messages[i - 1]) : ""}
-                live={busy && m === last} current={open?.msg === m.id ? open.n : null} onCite={(n) => cite(m.id, n)} />
-            ))}
-            {busy && (last?.role === "user" || !textOf(last!)) && (
-              <p className="status" role="status"><span className="pulse" aria-hidden="true" />{STAGE_TEXT[stage ?? "guard"]}</p>
-            )}
-            {error && (
-              <section className="state" role="alert">
-                <h2 className="font-body text-md font-semibold">The answer didn&apos;t finish</h2>
-                <p className="text-sm text-muted">{errorText(error)}</p>
-                <button type="button" className="btn" onClick={() => regenerate()}>Retry</button>
-              </section>
-            )}
-          </div>
-        </div>
-
-        <form className="composer" onSubmit={(e) => { e.preventDefault(); ask(input); }}>
-          <div className="composer-inner">
-            {messages.length > 0 && questions.length > 0 && (
-              <div className="chips" aria-label="Suggested questions">
-                {questions.slice(0, 3).map((s) => <button key={s} type="button" className="chip" onClick={() => ask(s)} disabled={busy}>{s}</button>)}
-              </div>
-            )}
-            <label className="sr-only" htmlFor="question">Your question</label>
-            <div className="composer-row">
-              <textarea id="question" rows={1} value={input} placeholder="Ask about any company document" autoComplete="off"
-                onChange={(e) => setInput(e.target.value)}
-                onKeyDown={(e) => {
-                  if (e.key === "Enter" && !e.shiftKey && !e.nativeEvent.isComposing) { e.preventDefault(); ask(input); }
-                }} />
-              {busy
-                ? <button type="button" className="btn send" onClick={() => stop()}>Stop</button>
-                : <button type="submit" className="btn btn-primary send" disabled={!input.trim()}>Ask</button>}
+              ) : messages.length === 0 ? (
+                <section className="empty-chat">
+                  <h2>Ask a question</h2>
+                  <p>Atlas answers from {company || "company"} documents you can open, shows the passage it used, and lists the matching documents beside the answer.</p>
+                  <div className="starters">
+                    {questions.map((s) => <button key={s} type="button" onClick={() => ask(s)}>{s}</button>)}
+                  </div>
+                </section>
+              ) : messages.map((m, i) => m.role === "user" ? (
+                <p key={m.id} className="q">{textOf(m)}</p>
+              ) : (
+                <Answer key={m.id} m={m} question={i > 0 ? textOf(messages[i - 1]) : ""}
+                  live={busy && m === last} current={openMsg?.id === m.id && openSrc ? openSrc.n : null} onCite={(n) => cite(m.id, n)} />
+              ))}
+              {busy && (last?.role === "user" || !textOf(last!)) && (
+                <p className="status" role="status"><span className="pulse" aria-hidden="true" />{STAGE_TEXT[stage ?? "guard"]}</p>
+              )}
+              {error && (
+                <section className="state" role="alert">
+                  <h2 className="font-body text-md font-semibold">The answer didn&apos;t finish</h2>
+                  <p className="text-sm text-muted">{errorText(error)}</p>
+                  <button type="button" className="btn" onClick={() => regenerate()}>Retry</button>
+                </section>
+              )}
             </div>
-            <p className="hint">Answers come only from documents you can open. Hindi works too.</p>
           </div>
-        </form>
+
+          {showMatches && (
+            <Matches key={lastQ} q={lastQ} variant="side" openChunk={cur?.chunk ?? null}
+              onOpen={(ref, h) => { setHit(h); viewer.open(ref); }} />
+          )}
+
+          <form className="composer" onSubmit={(e) => { e.preventDefault(); ask(input); }}>
+            <div className="composer-inner">
+              {messages.length > 0 && questions.length > 0 && (
+                <div className="chips" aria-label="Suggested questions">
+                  {questions.slice(0, 3).map((s) => <button key={s} type="button" className="chip" onClick={() => ask(s)} disabled={busy}>{s}</button>)}
+                </div>
+              )}
+              <label className="sr-only" htmlFor="question">Your question</label>
+              <div className="composer-row">
+                <textarea id="question" rows={1} value={input} placeholder="Ask about any company document" autoComplete="off"
+                  onChange={(e) => setInput(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" && !e.shiftKey && !e.nativeEvent.isComposing) { e.preventDefault(); ask(input); }
+                  }} />
+                {busy
+                  ? <button type="button" className="btn send" onClick={() => stop()}>Stop</button>
+                  : <button type="submit" className="btn btn-primary send" disabled={!input.trim()}>Ask</button>}
+              </div>
+              <p className="hint">Answers come only from documents you can open. Hindi works too.</p>
+            </div>
+          </form>
+        </div>
       </section>
 
-      {openMsg && (
-        <Reader key={open.msg} sources={sourcesOf(openMsg)} n={open.n} onN={(n) => setOpen({ msg: open.msg, n })}
-          size={size} onSize={setSize} onClose={close} company={company} workspace={workspace} />
+      {cur && (
+        <DocViewer mode="docked" current={cur} onUpdate={viewer.update} onClose={viewer.close} size={size} onSize={setSize}
+          canSeeChunks={canSeeChunks} company={company}
+          passage={openSrc ? { text: openSrc.text, section: openSrc.section, page: openSrc.page }
+            : openHit ? { text: openHit.text, section: openHit.section, page: openHit.page } : null}
+          sources={openSrc ? { index: openIdx, total: openSources.length, go: (i) => show(openSources[i]) } : null} />
+      )}
+    </div>
+  );
+}
+
+/** "Just find documents" (?mode=find&q=): the search list full width, no AI answer. */
+function Find({ q, company, canSeeChunks }: { q: string; company: string; canSeeChunks: boolean }) {
+  const router = useRouter();
+  const [input, setInput] = useState(q);
+  const [historyOpen, setHistoryOpen] = useDrawer();
+  const viewer = useDocViewer();
+  const [size, setSize] = useViewerSize();
+  const [hit, setHit] = useState<Hit | null>(null);
+  const suggested = useQuery({ queryKey: ["suggested"], staleTime: Infinity, queryFn: () => api<{ questions: string[] }>("/me/suggested") });
+  const cur = viewer.current;
+  const openHit = hit && cur?.chunk === hit.chunk_id ? hit : null;
+
+  const find = (text: string) => {
+    if (!text.trim()) return;
+    window.atlasTrack?.("documents_found", { from: "ask" });
+    router.push(`/app/ask?mode=find&q=${encodeURIComponent(text.trim())}`, { scroll: false });
+  };
+
+  return (
+    <div className="ask" data-reader={cur ? size : "closed"}>
+      <section className="chat" aria-labelledby="chat-title">
+        <PaneHead title="Find documents" company={company} find q={q} historyOpen={historyOpen}
+          onHistory={() => setHistoryOpen(!historyOpen)} />
+        {historyOpen && <History current="" />}
+
+        <div className="chat-body">
+          <div className="thread">
+            <div className="thread-inner find-inner">
+              {q ? (
+                <Matches q={q} variant="full" openChunk={cur?.chunk ?? null} onOpen={(ref, h) => { setHit(h); viewer.open(ref); }} />
+              ) : (
+                <section className="empty-chat">
+                  <h2>Find documents</h2>
+                  <p>Lists the passages and documents that match your words, from documents you can open. No AI answer, so it&apos;s instant.</p>
+                  {(suggested.data?.questions.length ?? 0) > 0 && (
+                    <div className="starters">
+                      {suggested.data!.questions.map((s) => <button key={s} type="button" onClick={() => find(s)}>{s}</button>)}
+                    </div>
+                  )}
+                </section>
+              )}
+            </div>
+          </div>
+
+          <form className="composer" role="search" onSubmit={(e) => { e.preventDefault(); find(input); }}>
+            <div className="composer-inner">
+              <label className="sr-only" htmlFor="question">Words to find</label>
+              <div className="composer-row">
+                <input id="question" type="search" value={input} placeholder="Words, a policy number or a question" autoComplete="off"
+                  autoFocus={!q} onChange={(e) => setInput(e.target.value)} />
+                <button type="submit" className="btn btn-primary send" disabled={!input.trim()}>Find</button>
+              </div>
+              <p className="hint">Only documents you can open are searched. Switch to Answer for a written answer with sources.</p>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      {cur && (
+        <DocViewer mode="docked" current={cur} onUpdate={viewer.update} onClose={viewer.close} size={size} onSize={setSize}
+          canSeeChunks={canSeeChunks} company={company}
+          passage={openHit ? { text: openHit.text, section: openHit.section, page: openHit.page } : null} />
       )}
     </div>
   );

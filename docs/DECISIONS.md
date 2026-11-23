@@ -353,6 +353,24 @@ Measured cause (LangSmith, last 100 questions): relevance check median 3.4 s but
 - **Agent access:** token cards; 3-step setup with copy tabs (Claude Code, Claude Desktop, any MCP client); audit log paged on the server with filters (`/tokens/audit` response shape changed to `{items,total,page,per_page,tools}`).
 - **Open:** removed people's picture files stay until a demo reset; images share the documents' (not yet off-server) backup.
 
+#### D-056 · Ask and Search merged into one Ask page
+`2026-11-24 · active (updates D-049: Work = Home, Ask, Library)`
+- **Problem:** owner: "we have an Ask tab and a Search tab, they can be a single tab."
+- **Decision:**
+  - One Ask page, one input. In Answer mode the streamed answer with sources sits beside a "Matching documents" list. The list comes from `POST /search` for the same question, fetched in parallel, permission-filtered, one row per document. It is a right column at ≥ 960 px and a collapsible row above the input when narrower or when the viewer is open. It hides when the router says it wasn't a document question.
+  - "Just find documents" (`?mode=find`) skips the LLM and lists documents full width.
+  - The Search page and its nav item are removed.
+- **Trade-off:** one extra retrieval per question. The list searches the raw words, not the rewritten question, so Hindi questions may list fewer documents than the answer cites.
+
+#### D-057 · Library lists from its own paginated endpoint; drag-and-drop upload
+`2026-11-24 · active`
+- **Problem:** one 5,175 px list of every document; jargon ("Chunks", "Not yet"); clicking downloaded files.
+- **Decision:**
+  - `GET /documents/library` handles search (title or code), filters (department, type, status, needs review, public), sort and counts on the server, 20 per page. It always starts from `access.readable`, tested across 80 filter combinations per role so no one sees another department's documents.
+  - `GET /documents` stays a plain list for Home and MCP. The list page parameter is `?p=` because the viewer owns `?page=`.
+  - Rows open the side viewer. The upload dialog sets who can read first, then drag and drop of several files, with per-file progress and Processing → Ready. `?upload=1` opens it.
+  - Ideas borrowed from the old Atlas: drop zone, per-file status list, errors under the title, processing and failed counts.
+
 #### D-042 · Atlas logo = the owner's "A", traced to SVG
 `2026-11-23 · active`
 - **Decision:** the PNG's transparent edge was traced with potrace (99.8% shape overlap).

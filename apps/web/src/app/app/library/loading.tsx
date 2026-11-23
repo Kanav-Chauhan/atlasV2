@@ -1,16 +1,14 @@
+import { Page, PageHeader } from "@/components/ui/page";
 import "./library.css";
 
-// Shown while the server fetches the document list.
+// Shown while the server fetches the first page of documents.
 export default function Loading() {
   return (
-    <div className="lib mx-auto grid max-w-6xl gap-6 px-[var(--gutter)] py-10" aria-busy="true" aria-label="Loading documents">
-      <div className="grid gap-1">
-        <h1 className="text-3xl font-semibold">Library</h1>
-        <p className="text-muted">Documents you can open.</p>
+    <Page className="lib">
+      <PageHeader title="Library" description="Loading documents…" />
+      <div className="grid gap-3" aria-busy="true" aria-label="Loading documents">
+        {Array.from({ length: 8 }, (_, i) => <div key={i} className="skeleton" />)}
       </div>
-      <div className="grid gap-3">
-        {Array.from({ length: 6 }, (_, i) => <div key={i} className="skeleton" />)}
-      </div>
-    </div>
+    </Page>
   );
 }

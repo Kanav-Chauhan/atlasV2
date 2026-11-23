@@ -10,7 +10,7 @@ export default async function AskPage() {
   const user = await getUser();
   return (
     <QueryProvider>
-      <Ask company={user?.company.name ?? ""} />
+      <Ask company={user?.company.name ?? ""} canSeeChunks={!!user && user.person.role !== "Guest"} />
     </QueryProvider>
   );
 }

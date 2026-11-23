@@ -1,87 +1,96 @@
 "use client";
 
-import { QueryClient, QueryClientProvider, useQuery, useQueryClient } from "@tanstack/react-query";
+import { keepPreviousData, useQuery } from "@tanstack/react-query";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { useRef, useState } from "react";
-import { detail } from "@/lib/api";
-import type { Review } from "@/lib/types";
-import { ChunkPanel } from "./chunks";
+import { useEffect, useRef, useState } from "react";
+import { DocViewer } from "@/components/doc-viewer/doc-viewer";
+import { useDocViewer, useViewerSize } from "@/components/doc-viewer/use-doc-viewer";
+import { Icon } from "@/components/ui/icons";
+import { Page, PageHeader } from "@/components/ui/page";
+import { api } from "@/lib/api";
+import { FILTER_KEYS, type LibraryDoc, type LibraryPage, libraryQuery, SORTS, STATUSES, TYPES } from "./params";
+import { DropZone, UploadDialog } from "./upload";
 
-export type Doc = {
-  id: string;
-  title: string;
-  doc_no: string | null;
-  access: string;
-  is_public: boolean;
-  format: string;
-  status: "queued" | "processing" | "ready" | "failed";
-  error: string | null;
-  pages: number | null;
-  updated_at: string;
-  superseded_by: string | null;
+// UI Phase 4: the Library like the old Atlas — 20 documents a page with server-side search,
+// filters and sort; a click opens the shared side viewer (?doc=); upload by drag and drop.
+
+type Props = {
+  company: string;
+  initial: LibraryPage | null;
+  initialQuery: string;
+  isAdmin: boolean;
+  /** Admin or manager: may upload (managers into their own departments) and sees "Needs review". */
+  lead: boolean;
+  ownDepartments: string[];
 };
 
-type Props = { initial: Doc[] | null; canUpload: boolean; isAdmin: boolean; uploadTo: string[]; review: Review[] };
-
-const STATUS = { ready: "Ready", processing: "Processing", queued: "Queued", failed: "Failed" } as const;
-const MAX_BYTES = 10 * 1024 * 1024;
 const date = new Intl.DateTimeFormat("en-IN", { day: "numeric", month: "short", year: "numeric", timeZone: "Asia/Kolkata" });
+const nf = new Intl.NumberFormat("en-IN");
+const plural = (n: number, one: string, many = `${one}s`) => `${nf.format(n)} ${n === 1 ? one : many}`;
 
-async function fetchDocs(): Promise<Doc[]> {
-  const res = await fetch("/api/documents", { cache: "no-store" });
-  if (!res.ok) throw new Error(await detail(res));
-  return res.json();
-}
-
-export function Library(props: Props) {
-  const [client] = useState(() => new QueryClient());
-  return (
-    <QueryClientProvider client={client}>
-      <LibraryView {...props} />
-    </QueryClientProvider>
-  );
-}
-
-function LibraryView({ initial, canUpload, isAdmin, uploadTo, review }: Props) {
+export function Library({ company, initial, initialQuery, isAdmin, lead, ownDepartments }: Props) {
   const params = useSearchParams();
   const router = useRouter();
   const path = usePathname();
-  const q = params.get("q") ?? "";
-  const dept = params.get("access") ?? "";
-  const dialog = useRef<HTMLDialogElement>(null);
-  const [chunksOf, setChunksOf] = useState<Doc | null>(null);
+  const viewer = useDocViewer();
+  const [size, setSize] = useViewerSize();
+  const [uploadOpen, setUploadOpen] = useState(params.get("upload") === "1");
+  const [dropped, setDropped] = useState<File[]>([]);
+  const listTop = useRef<HTMLDivElement>(null);
+  const canUpload = isAdmin || (lead && ownDepartments.length > 0);
 
-  const { data, error, isPending, refetch, isRefetching } = useQuery({
-    queryKey: ["documents"],
-    queryFn: fetchDocs,
-    initialData: initial ?? undefined,
-    retry: 1,
-    // Poll every 5 s while anything is still being read.
-    refetchInterval: (query) => (query.state.data?.some((d) => d.status === "queued" || d.status === "processing") ? 5000 : false),
+  const query = libraryQuery(params);
+  const { data, error, isPending, isFetching, refetch, isRefetching } = useQuery({
+    queryKey: ["library", query],
+    queryFn: () => api<LibraryPage>(`/documents/library?${query}`),
+    initialData: query === initialQuery && initial ? initial : undefined,
+    placeholderData: keepPreviousData,
+    // Poll every 5 s while anything is still being read, so Processing turns into Ready by itself.
+    refetchInterval: (q) => (q.state.data && q.state.data.counts.processing > 0 ? 5000 : false),
   });
 
-  const setParam = (key: string, value: string) => {
-    const next = new URLSearchParams(params);
-    if (value) next.set(key, value);
-    else next.delete(key);
+  /** Change URL params (null removes); any filter change goes back to page 1. Reads the live URL so
+   * the viewer's ?doc= (written with history.replaceState) is kept. */
+  const setParams = (patch: Record<string, string | null>) => {
+    const next = new URLSearchParams(window.location.search);
+    for (const [k, v] of Object.entries(patch)) {
+      if (v) next.set(k, v);
+      else next.delete(k);
+    }
+    if (!("p" in patch)) next.delete("p");
+    next.delete("access"); // old key, now "dept"
     router.replace(next.size ? `${path}?${next}` : path, { scroll: false });
   };
+  const goPage = (p: number) => {
+    setParams({ p: p > 1 ? String(p) : null });
+    const top = listTop.current;
+    if (top && top.getBoundingClientRect().top < 0) top.scrollIntoView({ block: "start" });
+  };
 
-  const depts = [...new Set((data ?? []).map((d) => d.access))].sort((a, b) => (a === "Everyone" ? -1 : b === "Everyone" ? 1 : a.localeCompare(b)));
-  const shown = (data ?? []).filter((d) => (!dept || d.access === dept) && d.title.toLowerCase().includes(q.trim().toLowerCase()));
-  const uploadBtn = canUpload && (
-    <button type="button" className="btn btn-primary" onClick={() => dialog.current?.showModal()}>Upload</button>
-  );
+  const openUpload = (files: File[] = []) => {
+    setDropped(files);
+    setUploadOpen(true);
+  };
+  const closeUpload = () => {
+    setUploadOpen(false);
+    setDropped([]);
+    if (new URLSearchParams(window.location.search).has("upload")) setParams({ upload: null, p: params.get("p") });
+  };
+
+  // Where this person may upload: admin anywhere (incl. Everyone), managers only their own departments.
+  const uploadTo = isAdmin ? (data?.departments ?? ["Everyone"]) : ownDepartments;
+  const filtered = FILTER_KEYS.some((k) => params.get(k)) || !!params.get("access");
+  const dept = params.get("dept") ?? params.get("access") ?? "";
 
   return (
-    <div className="lib mx-auto grid max-w-6xl gap-6 px-[var(--gutter)] py-10">
-      <header className="flex flex-wrap items-end justify-between gap-4">
-        <div className="grid gap-1">
-          <h1 className="text-3xl font-semibold">Library</h1>
-          <p className="text-muted">Documents you can open.</p>
-        </div>
-        {uploadBtn}
-      </header>
+    <Page className="lib">
+      <PageHeader title="Library"
+        description={lead ? "Every document Atlas answers from. Open one to read it or see how Atlas reads it." : "The documents you can read. Atlas answers only from these."}
+        actions={canUpload && (
+          <button type="button" className="btn btn-primary" onClick={() => openUpload()}>
+            <Icon name="upload" className="size-4" />Upload documents
+          </button>
+        )} />
 
       {error && !data ? (
         <section className="state" role="alert">
@@ -91,140 +100,274 @@ function LibraryView({ initial, canUpload, isAdmin, uploadTo, review }: Props) {
         </section>
       ) : isPending ? (
         <Skeleton />
-      ) : data.length === 0 ? (
-        <section className="state">
-          <h2 className="font-body text-md font-semibold">{canUpload ? "No documents yet" : "No documents in your departments yet"}</h2>
-          <p className="text-sm text-muted">{canUpload ? "Upload a PDF, Word, Markdown or text file to start." : "When someone adds one, it shows up here."}</p>
-          {uploadBtn}
-        </section>
+      ) : data.all === 0 ? (
+        canUpload ? (
+          <DropZone big onFiles={openUpload}
+            title="Add your company's first documents"
+            body="Drop PDFs, Word, Markdown or text files here. Atlas reads them, and then everyone you allow can ask questions about them." />
+        ) : (
+          <section className="state lib-empty">
+            <Icon name="library" className="size-8 text-muted" />
+            <h2 className="font-body text-md font-semibold">No documents in your departments yet</h2>
+            <p className="text-sm text-muted">When an admin or your manager adds one, it shows up here.</p>
+          </section>
+        )
       ) : (
         <>
-          <div className="flex flex-wrap items-center gap-3">
-            <label className="sr-only" htmlFor="lib-q">Search by title</label>
-            <input id="lib-q" type="search" className="field w-full sm:w-72" placeholder="Search by title" defaultValue={q} onChange={(e) => setParam("q", e.target.value)} />
-            <div className="flex flex-wrap gap-2" role="group" aria-label="Department">
-              {["", ...depts].map((d) => (
-                <button key={d || "all"} type="button" className="chip" aria-pressed={dept === d} onClick={() => setParam("access", d)}>
-                  {d || "All departments"}
-                </button>
-              ))}
-            </div>
+          <Summary data={data} status={params.get("status") ?? ""} onStatus={(s) => setParams({ status: s })} />
+          <Toolbar params={params} departments={data.departments} lead={lead} filtered={filtered} dept={dept} onChange={setParams}
+            onClear={() => setParams(Object.fromEntries([...FILTER_KEYS, "access"].map((k) => [k, null])))} />
+
+          <div ref={listTop} className="lib-results" aria-busy={isFetching || undefined}>
+            <h2 className="sr-only">Documents</h2>
+            {data.total === 0 ? (
+              <section className="state lib-empty">
+                <Icon name="search" className="size-8 text-muted" />
+                <h3 className="font-body text-md font-semibold">No documents match</h3>
+                <p className="text-sm text-muted">Try other words, or clear the filters to see all {plural(data.all, "document")}.</p>
+                <button type="button" className="btn" onClick={() => setParams(Object.fromEntries([...FILTER_KEYS, "access"].map((k) => [k, null])))}>Clear filters</button>
+              </section>
+            ) : (
+              <>
+                <DocTable docs={data.items} onOpen={(id) => viewer.open({ doc: String(id) })} />
+                <DocCards docs={data.items} onOpen={(id) => viewer.open({ doc: String(id) })} />
+                <Pager page={data.page} perPage={data.per_page} total={data.total} onPage={goPage} />
+              </>
+            )}
           </div>
-          {shown.length === 0 ? (
-            <p className="text-sm text-muted">No documents match this search.</p>
-          ) : (
-            <DocTable docs={shown} onChunks={setChunksOf} review={new Map(review.map((r) => [String(r.id), r.reason]))} />
-          )}
         </>
       )}
 
-      {chunksOf && <ChunkPanel doc={chunksOf} onClose={() => setChunksOf(null)} />}
-      {canUpload && <UploadDialog ref={dialog} isAdmin={isAdmin} uploadTo={uploadTo} />}
+      {/* Everyone who sees the Library may see how Atlas reads a document (Guests have no Library). */}
+      {viewer.current && (
+        <DocViewer mode="overlay" current={viewer.current} onUpdate={viewer.update} onClose={viewer.close}
+          size={size} onSize={setSize} canSeeChunks company={company} />
+      )}
+      {canUpload && (
+        <UploadDialog open={uploadOpen} onClose={closeUpload} files={dropped} isAdmin={isAdmin} uploadTo={uploadTo}
+          preferred={uploadTo.includes(dept) ? dept : ""} />
+      )}
+    </Page>
+  );
+}
+
+/** "68 documents · 2 processing · 1 failed": the old Atlas's per-collection counts, as filters. */
+function Summary({ data, status, onStatus }: { data: LibraryPage; status: string; onStatus: (s: string | null) => void }) {
+  const { processing, failed } = data.counts;
+  return (
+    <p className="lib-summary" aria-live="polite">
+      <span>{plural(data.all, "document")}</span>
+      {processing > 0 && (
+        <button type="button" className="lib-sum-btn" data-tone="info" aria-pressed={status === "processing"}
+          onClick={() => onStatus(status === "processing" ? null : "processing")}>
+          <span className="dot lib-pulse" aria-hidden="true" />{nf.format(processing)} processing
+        </button>
+      )}
+      {failed > 0 && (
+        <button type="button" className="lib-sum-btn" data-tone="error" aria-pressed={status === "failed"}
+          onClick={() => onStatus(status === "failed" ? null : "failed")}>
+          <span className="dot" aria-hidden="true" />{nf.format(failed)} failed
+        </button>
+      )}
+    </p>
+  );
+}
+
+function useDebounced<T>(value: T, ms = 300) {
+  const [v, setV] = useState(value);
+  useEffect(() => {
+    const t = setTimeout(() => setV(value), ms);
+    return () => clearTimeout(t);
+  }, [value, ms]);
+  return v;
+}
+
+function Toolbar({ params, departments, lead, filtered, dept, onChange, onClear }: {
+  params: URLSearchParams; departments: string[]; lead: boolean; filtered: boolean; dept: string;
+  onChange: (patch: Record<string, string | null>) => void; onClear: () => void;
+}) {
+  const urlQ = params.get("q") ?? "";
+  const [q, setQ] = useState(urlQ);
+  const debounced = useDebounced(q);
+  const last = useRef(urlQ);
+  // Typing → URL (debounced); URL → box when it changes from outside (Clear filters, back button).
+  useEffect(() => {
+    if (debounced.trim() !== last.current.trim()) {
+      last.current = debounced;
+      onChange({ q: debounced.trim() || null });
+    }
+  }, [debounced, onChange]);
+  useEffect(() => {
+    if (urlQ.trim() !== last.current.trim()) {
+      last.current = urlQ;
+      setQ(urlQ);
+    }
+  }, [urlQ]);
+
+  const status = params.get("status") ?? "";
+  const statuses = Object.entries(STATUSES).filter(([k]) => lead || k !== "review");
+  const isPublic = params.get("public") === "1";
+
+  return (
+    <div className="lib-toolbar" role="search" aria-label="Find documents">
+      <div className="lib-search">
+        <Icon name="search" className="size-4" />
+        <label className="sr-only" htmlFor="lib-q">Search by title or document code</label>
+        <input id="lib-q" type="search" className="field" placeholder="Search by title or code" value={q} maxLength={200}
+          onChange={(e) => setQ(e.target.value)} />
+      </div>
+      <div className="lib-filters">
+        <Select id="lib-dept" label="Department" value={dept} onChange={(v) => onChange({ dept: v, access: null })}
+          options={[["", "All departments"], ...departments.map((d) => [d, d] as [string, string])]} />
+        <Select id="lib-type" label="Type" value={params.get("type") ?? ""} onChange={(v) => onChange({ type: v })}
+          options={[["", "All types"], ...Object.entries(TYPES)]} />
+        <Select id="lib-status" label="Status" value={status} onChange={(v) => onChange({ status: v })}
+          options={[["", "Any status"], ...statuses]} />
+        <button type="button" className="chip lib-public" aria-pressed={isPublic} onClick={() => onChange({ public: isPublic ? null : "1" })}>
+          <Icon name="website" className="size-4" />Public on website
+        </button>
+      </div>
+      <div className="lib-sort">
+        {filtered && <button type="button" className="btn btn-quiet" onClick={onClear}>Clear filters</button>}
+        <Select id="lib-sort" label="Sort" value={params.get("sort") === "title" ? "title" : "updated"}
+          onChange={(v) => onChange({ sort: v === "title" ? "title" : null })} options={Object.entries(SORTS)} />
+      </div>
     </div>
   );
 }
 
-function DocTable({ docs, onChunks, review }: { docs: Doc[]; onChunks: (d: Doc) => void; review: Map<string, string> }) {
+function Select({ id, label, value, options, onChange }: {
+  id: string; label: string; value: string; options: [string, string][]; onChange: (v: string) => void;
+}) {
   return (
-    <table className="docs">
-      <thead>
-        <tr><th scope="col">Title</th><th scope="col">Department</th><th scope="col">Format</th><th scope="col">Status</th><th scope="col">Pages</th><th scope="col">Updated</th></tr>
-      </thead>
-      <tbody>
-        {docs.map((d) => (
-          <tr key={d.id}>
-            <td className="title-cell"><div>
-              <a href={`/api/documents/${d.id}/file`} target="_blank" rel="noreferrer">{d.title}</a>
-              <span className="meta">
-                {d.doc_no && <span className="text-muted">{d.doc_no}</span>}
-                {d.is_public && <span className="tag">Public</span>}
-                {d.superseded_by && <span className="tag tag-warn">Superseded</span>}
-                {review.has(String(d.id)) && <span className="tag tag-warn" title={review.get(String(d.id))}>Needs review<span className="sr-only">: {review.get(String(d.id))}</span></span>}
-                {d.status === "ready" && (
-                  <button type="button" className="chunks-btn" onClick={() => onChunks(d)}>Chunks<span className="sr-only">: {d.title}</span></button>
-                )}
-              </span>
-            </div></td>
-            <td data-label="Department">{d.access}</td>
-            <td data-label="Format">{d.format.toUpperCase()}</td>
-            <td data-label="Status" className="status-cell">
-              <span className={`status status-${d.status}`} title={d.status === "failed" ? d.error ?? "Reading this file failed." : undefined}>
-                {STATUS[d.status]}
-              </span>
-              {d.status === "failed" && d.error && <span className="sr-only">: {d.error}</span>}
-            </td>
-            <td data-label="Pages">{d.pages ?? <span className="text-muted">Not yet</span>}</td>
-            <td data-label="Updated">{date.format(new Date(d.updated_at))}</td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
+    <span className="lib-select">
+      <label className="sr-only" htmlFor={id}>{label}</label>
+      <select id={id} className="field" value={value} onChange={(e) => onChange(e.target.value)} data-active={value ? "" : undefined}>
+        {options.map(([v, l]) => <option key={v} value={v}>{l}</option>)}
+      </select>
+    </span>
+  );
+}
+
+// ------------------------------------------------------------------ rows
+
+const TYPE_SHORT: Record<string, string> = { pdf: "PDF", docx: "DOC", md: "MD", txt: "TXT" };
+
+function TypeIcon({ format }: { format: string }) {
+  return <span className="ftype" data-format={format} aria-hidden="true">{TYPE_SHORT[format] ?? format.toUpperCase()}</span>;
+}
+
+/** Same department, same colour everywhere (8 soft document colours); Everyone stays neutral. */
+function deptTone(name: string) {
+  let h = 0;
+  for (const c of name) h = (h * 31 + c.charCodeAt(0)) >>> 0;
+  return `var(--color-doc-${(h % 8) + 1})`;
+}
+
+function DeptBadge({ name }: { name: string }) {
+  return (
+    <span className="badge dept" style={name === "Everyone" ? undefined : { background: deptTone(name) }}>
+      {name === "Everyone" ? "Everyone" : name}
+    </span>
+  );
+}
+
+function Badges({ d }: { d: LibraryDoc }) {
+  const busy = d.status === "queued" || d.status === "processing";
+  return (
+    <span className="lib-badges">
+      {d.status === "ready" && <span className="badge" data-tone="success"><Icon name="check" />Ready</span>}
+      {busy && <span className="badge" data-tone="info"><span className="dot lib-pulse" aria-hidden="true" />Processing</span>}
+      {d.status === "failed" && <span className="badge" data-tone="error"><Icon name="alert" />Failed</span>}
+      {d.review && (
+        <span className="badge" data-tone="warn" title={d.review}><Icon name="clock" />Needs review<span className="sr-only">: {d.review}</span></span>
+      )}
+      {d.is_public && <span className="badge" data-tone="accent" title="Visitors to your website can get answers from it"><Icon name="website" />Public</span>}
+      {d.superseded_by && <span className="badge" title="A newer version replaces this document">Superseded</span>}
+    </span>
+  );
+}
+
+function Title({ d, onOpen }: { d: LibraryDoc; onOpen: (id: number) => void }) {
+  const meta = [d.doc_no, d.pages ? plural(d.pages, "page") : null].filter(Boolean).join(" · ");
+  return (
+    <div className="lib-title">
+      <TypeIcon format={d.format} />
+      <div className="min-w-0">
+        <button type="button" className="lib-open" aria-haspopup="dialog" onClick={() => onOpen(d.id)}>
+          {d.title}<span className="sr-only">, {TYPES[d.format as keyof typeof TYPES] ?? d.format}</span>
+        </button>
+        {meta && <p className="lib-meta">{meta}</p>}
+        {d.status === "failed" && <p className="lib-error">{d.error ?? "Atlas couldn't read this file."}</p>}
+      </div>
+    </div>
+  );
+}
+
+function DocTable({ docs, onOpen }: { docs: LibraryDoc[]; onOpen: (id: number) => void }) {
+  return (
+    <div className="table-wrap lib-table">
+      <table className="tbl">
+        <thead>
+          <tr><th scope="col">Document</th><th scope="col">Department</th><th scope="col">Status</th><th scope="col">Updated</th></tr>
+        </thead>
+        <tbody>
+          {docs.map((d) => (
+            <tr key={d.id}>
+              <td><Title d={d} onOpen={onOpen} /></td>
+              <td><DeptBadge name={d.access} /></td>
+              <td><Badges d={d} /></td>
+              <td className="lib-date"><time dateTime={d.updated_at}>{date.format(new Date(d.updated_at))}</time></td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+/** Phone: one card per document instead of the table. */
+function DocCards({ docs, onOpen }: { docs: LibraryDoc[]; onOpen: (id: number) => void }) {
+  return (
+    <ul className="lib-cards">
+      {docs.map((d) => (
+        <li key={d.id} className="lib-card">
+          <Title d={d} onOpen={onOpen} />
+          <div className="lib-card-foot">
+            <DeptBadge name={d.access} />
+            <Badges d={d} />
+            <time className="lib-date" dateTime={d.updated_at}>{date.format(new Date(d.updated_at))}</time>
+          </div>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+function Pager({ page, perPage, total, onPage }: { page: number; perPage: number; total: number; onPage: (p: number) => void }) {
+  const pages = Math.max(1, Math.ceil(total / perPage));
+  const from = Math.min(total, (page - 1) * perPage + 1);
+  const to = Math.min(total, page * perPage);
+  return (
+    <nav className="lib-pager" aria-label="Document pages">
+      <span className="text-sm text-muted" aria-live="polite">
+        {from > total ? `Page ${page} is empty` : `${nf.format(from)}–${nf.format(to)} of ${nf.format(total)}`}
+      </span>
+      {pages > 1 || page > 1 ? (
+        <span className="lib-pager-btns">
+          <button type="button" className="btn" disabled={page <= 1} onClick={() => onPage(Math.min(page - 1, pages))}>Previous</button>
+          <span className="text-sm">Page {nf.format(page)} of {nf.format(pages)}</span>
+          <button type="button" className="btn" disabled={page >= pages} onClick={() => onPage(page + 1)}>Next</button>
+        </span>
+      ) : null}
+    </nav>
   );
 }
 
 function Skeleton() {
   return (
     <div className="grid gap-3" aria-busy="true" aria-label="Loading documents">
-      {Array.from({ length: 6 }, (_, i) => <div key={i} className="skeleton" />)}
+      {Array.from({ length: 8 }, (_, i) => <div key={i} className="skeleton" />)}
     </div>
-  );
-}
-
-function UploadDialog({ ref, isAdmin, uploadTo }: { ref: React.RefObject<HTMLDialogElement | null>; isAdmin: boolean; uploadTo: string[] }) {
-  const client = useQueryClient();
-  const [err, setErr] = useState("");
-  const [busy, setBusy] = useState(false);
-
-  async function submit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    const form = e.currentTarget;
-    const body = new FormData(form);
-    const file = body.get("file");
-    if (file instanceof File && file.size > MAX_BYTES) return setErr("That file is over 10 MB. Pick a smaller one.");
-    if (!isAdmin) body.delete("is_public");
-    setBusy(true);
-    setErr("");
-    try {
-      const res = await fetch("/api/documents", { method: "POST", body });
-      if (!res.ok) return setErr(await detail(res));
-      const doc: Doc = await res.json();
-      client.setQueryData<Doc[]>(["documents"], (old) => [doc, ...(old ?? [])]);
-      form.reset();
-      ref.current?.close();
-    } catch {
-      setErr("The upload didn't reach the server. Check your connection and try again.");
-    } finally {
-      setBusy(false);
-    }
-  }
-
-  return (
-    <dialog ref={ref} className="dialog" aria-labelledby="up-title" onClose={() => setErr("")}>
-      <form className="grid gap-4" onSubmit={submit}>
-        <h2 id="up-title" className="text-xl font-semibold">Upload a document</h2>
-        <label className="grid gap-1 text-sm font-medium">
-          File
-          <input name="file" type="file" required accept=".pdf,.docx,.md,.txt" className="field" />
-          <span className="font-normal text-muted">PDF, Word, Markdown or text, up to 10 MB.</span>
-        </label>
-        <label className="grid gap-1 text-sm font-medium">
-          Department
-          <select name="access" required className="field">
-            {uploadTo.map((d) => <option key={d} value={d}>{d}</option>)}
-          </select>
-        </label>
-        {isAdmin && (
-          <label className="flex items-center gap-2 text-sm">
-            <input name="is_public" type="checkbox" value="true" className="size-4 accent-accent" />
-            Show on website
-          </label>
-        )}
-        {err && <p className="text-sm text-error" role="alert">{err}</p>}
-        <div className="flex justify-end gap-2">
-          <button type="button" className="btn" onClick={() => ref.current?.close()}>Cancel</button>
-          <button type="submit" className="btn btn-primary" disabled={busy}>{busy ? "Uploading" : "Upload"}</button>
-        </div>
-      </form>
-    </dialog>
   );
 }

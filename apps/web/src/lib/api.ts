@@ -5,7 +5,7 @@ type ClerkGlobal = { session?: { getToken(o?: { skipCache?: boolean }): Promise<
 
 /** Clerk's __session cookie lives ~60 s and clerk-js renews it in the background; after a sleeping
  * tab the first call can carry a stale one. Renew it now (true) so the call can be retried once. */
-async function renewedClerkSession() {
+export async function renewedClerkSession() {
   const clerk = (globalThis as { Clerk?: ClerkGlobal }).Clerk;
   if (!clerk?.session) return false;
   try {
