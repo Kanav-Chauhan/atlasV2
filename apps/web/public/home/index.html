@@ -148,6 +148,7 @@ fieldset { margin: 0; padding: 0; border: 0; min-width: 0; }
 /* Nav */
 .nav { display: flex; align-items: center; justify-content: space-between; gap: var(--space-md); padding-block: var(--space-md); }
 .wordmark { font: 600 1.625rem/1 var(--font-display); letter-spacing: -0.04em; text-decoration: none; display: inline-flex; align-items: center; gap: var(--space-xs); min-height: 44px; }
+.wordmark__mark { width: 30px; height: 30px; flex: none; }
 .wordmark__cap { width: 26px; height: 14px; border-radius: var(--radius-pill); background: var(--s-cap); box-shadow: inset 0 0 0 2px var(--s-ink); transition: background-color var(--dur-long) var(--ease-out); }
 .nav__links { display: flex; align-items: center; gap: var(--space-lg); }
 .nav__link { min-height: 44px; display: inline-flex; align-items: center; font-weight: 400; text-decoration: none; }
@@ -558,7 +559,7 @@ fieldset { margin: 0; padding: 0; border: 0; min-width: 0; }
 <main id="top">
   <header class="intro">
   <div class="container nav">
-    <a class="wordmark" href="#top" aria-label="Atlas, back to top"><span class="wordmark__cap" aria-hidden="true"></span>Atlas</a>
+    <a class="wordmark" href="#top" aria-label="Atlas, back to top"><img class="wordmark__mark" src="/brand/atlas-mark.svg" alt="" width="30" height="30">Atlas</a>
     <nav class="nav__links" aria-label="Main">
       <a class="nav__link" href="#how">How it works</a>
       <a class="nav__link" href="#plans">Plans</a>
@@ -578,7 +579,7 @@ fieldset { margin: 0; padding: 0; border: 0; min-width: 0; }
         <p class="visually-hidden">Example: Ritika from HR asks Atlas for the L3 Senior Software Engineer salary band. Atlas checks she may read 29 of 58 documents, searches them, re-ranks the passages and answers ₹10 to 18 lakh per annum, fixed pay, citing Salary Bands FY2026-27, page 1. On the company website, a visitor asks where the offices are and the chat bubble answers from the public Welcome to Nimbus document.</p>
         <div class="live" aria-hidden="true" data-step="5">
           <div class="live__top">
-            <span class="live__brand"><span class="live__logo">A</span>Nimbus Infotech</span>
+            <span class="live__brand"><img src="/brand/atlas-mark.svg" alt="" width="22" height="22">Nimbus Infotech</span>
             <span class="live__who">Ritika Menon, HR</span>
           </div>
           <div class="live__body">

@@ -1,9 +1,6 @@
-// The Atlas globe mark from the option C rail.
-export function Logo({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="2.2" aria-hidden="true" className={className}>
-      <circle cx="16" cy="16" r="12" />
-      <path d="M4 16h24M16 4c4 4 4 20 0 24M16 4c-4 4-4 20 0 24" />
-    </svg>
-  );
+// The Atlas mark (public/brand/atlas-mark.svg: the owner's "A", traced from the original PNG).
+// Full-detail version for large sizes: /brand/atlas-logo.svg (+ 512/1024 PNG exports).
+export function Logo({ className = "size-7" }: { className?: string }) {
+  // eslint-disable-next-line @next/next/no-img-element -- tiny static SVG, no optimisation needed
+  return <img src="/brand/atlas-mark.svg" alt="" aria-hidden="true" width={32} height={32} className={`shrink-0 ${className}`} />;
 }

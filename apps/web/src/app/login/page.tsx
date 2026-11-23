@@ -90,15 +90,20 @@ const GROUPS: { title: string; roles: Role[] }[] = [
 ];
 
 function Demo({ company }: { company: DemoCompany }) {
+  const tint = { "--co": company.color } as React.CSSProperties;
   return (
     <section aria-labelledby="demo-heading">
-      <div className="mb-3 flex items-center gap-3">
+      <div className="mb-4 flex items-center gap-3">
         <span className="h-px flex-1 bg-rule" />
         <h2 id="demo-heading" className="font-body text-xs font-medium text-muted">Or try the demo · no sign-up</h2>
         <span className="h-px flex-1 bg-rule" />
       </div>
 
-      <nav aria-label="Demo companies" className="mb-4 grid grid-cols-3 gap-2">
+      <p className="mb-2 flex items-center gap-2 text-sm font-medium">
+        <Step n={1} /> Choose a company
+      </p>
+      {/* Folder tabs: the chosen company's tab joins the panel below it, so the people clearly belong to it. */}
+      <nav aria-label="Demo companies" className="relative z-10 grid grid-cols-3 gap-2 px-2 sm:gap-3 sm:px-3">
         {DEMO_COMPANIES.map((c) => {
           const on = c.slug === company.slug;
           return (
@@ -107,53 +112,72 @@ function Demo({ company }: { company: DemoCompany }) {
               href={`/login?company=${c.slug}`}
               scroll={false}
               aria-current={on ? "page" : undefined}
-              className={`flex flex-col items-center gap-1.5 rounded-card border px-2 py-2.5 text-center sm:flex-row sm:gap-3 sm:px-3 sm:text-left ${on ? "border-accent bg-paper ring-1 ring-accent" : "border-rule bg-paper/60 hover:bg-paper"}`}
+              style={{ "--co": c.color } as React.CSSProperties}
+              className={
+                on
+                  ? "-mb-px flex flex-col items-center gap-1.5 rounded-t-card border-x-2 border-t-2 border-(--co) bg-paper px-2 pt-2.5 pb-3 text-center sm:flex-row sm:gap-3 sm:px-3 sm:text-left"
+                  : "mb-1.5 flex flex-col items-center gap-1.5 rounded-card border border-rule bg-paper-2 px-2 py-2 text-center opacity-80 hover:bg-paper hover:opacity-100 sm:flex-row sm:gap-3 sm:px-3 sm:text-left"
+              }
             >
               <CompanyLogo slug={c.slug} color={c.color} second={c.accent} className="size-9 shrink-0" />
               <span className="w-full min-w-0">
                 <span className="block text-xs leading-tight font-medium sm:truncate sm:text-sm">{c.name}</span>
-                <span className="hidden truncate text-xs text-muted sm:block">{c.industry}</span>
+                <span className="hidden truncate text-xs text-muted sm:block">{on ? "Selected" : c.industry}</span>
               </span>
             </Link>
           );
         })}
       </nav>
 
-      <p className="mb-4 text-xs text-muted">{company.description} Pick a person to log in as them.</p>
+      <div style={tint} className="rounded-card border-2 border-(--co) bg-paper p-3 shadow-sm sm:p-5">
+        <div className="mb-4 flex items-start gap-3 border-b border-rule pb-4">
+          <CompanyLogo slug={company.slug} color={company.color} second={company.accent} className="size-11 shrink-0" />
+          <div className="min-w-0">
+            <p className="flex flex-wrap items-center gap-2 text-sm font-medium">
+              <Step n={2} /> Log in as someone at {company.name}
+            </p>
+            <p className="mt-1 text-xs text-muted">{company.industry} · {company.description}</p>
+          </div>
+        </div>
 
-      <form action={loginAs} className="space-y-4">
-        {GROUPS.map((g) => {
-          const people = company.people.filter((p) => g.roles.includes(p.role));
-          if (!people.length) return null;
-          return (
-            <div key={g.title}>
-              <h3 className="mb-1.5 font-body text-[11px] font-medium tracking-wide text-muted uppercase">{g.title}</h3>
-              <ul className="grid grid-cols-1 gap-2 sm:grid-cols-2 md:grid-cols-3">
-                {people.map((p) => (
-                  <li key={p.email}>
-                    <button
-                      type="submit"
-                      name="email"
-                      value={p.email}
-                      data-track="demo_login"
-                      data-track-props={JSON.stringify({ company: company.slug, role: p.role })}
-                      className="h-full w-full cursor-pointer rounded-card border border-rule bg-paper px-3 py-2.5 text-left transition-colors hover:border-accent hover:bg-accent-soft/40 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
-                    >
-                      <span className="flex items-center justify-between gap-2">
-                        <span className="truncate text-sm font-medium">{p.name}</span>
-                        <span className="shrink-0 rounded-pill bg-accent-soft px-2 text-[11px] leading-5 font-medium text-accent-deep">{p.role}</span>
-                      </span>
-                      <span className="mt-0.5 block truncate text-xs text-muted">{p.title}</span>
-                      <span className="mt-0.5 block truncate text-xs text-muted">{p.departments.join(", ")}</span>
-                    </button>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          );
-        })}
-      </form>
-      <p className="mt-4 text-xs text-muted">Ask the same question as two people and compare the answers.</p>
+        <form action={loginAs} className="space-y-4">
+          {GROUPS.map((g) => {
+            const people = company.people.filter((p) => g.roles.includes(p.role));
+            if (!people.length) return null;
+            return (
+              <div key={g.title}>
+                <h3 className="mb-1.5 font-body text-[11px] font-medium tracking-wide text-muted uppercase">{g.title}</h3>
+                <ul className="grid grid-cols-1 gap-2 sm:grid-cols-2 md:grid-cols-3">
+                  {people.map((p) => (
+                    <li key={p.email}>
+                      <button
+                        type="submit"
+                        name="email"
+                        value={p.email}
+                        data-track="demo_login"
+                        data-track-props={JSON.stringify({ company: company.slug, role: p.role })}
+                        className="h-full w-full cursor-pointer rounded-input border border-rule bg-paper-2 px-3 py-2.5 text-left transition-colors hover:border-(--co) hover:bg-paper focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+                      >
+                        <span className="flex items-center justify-between gap-2">
+                          <span className="truncate text-sm font-medium">{p.name}</span>
+                          <span className="shrink-0 rounded-pill bg-accent-soft px-2 text-[11px] leading-5 font-medium text-accent-deep">{p.role}</span>
+                        </span>
+                        <span className="mt-0.5 block truncate text-xs text-muted">{p.title}</span>
+                        <span className="mt-0.5 block truncate text-xs text-muted">{p.departments.join(", ")}</span>
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            );
+          })}
+        </form>
+      </div>
+      <p className="mt-3 text-xs text-muted">Tip: ask the same question as two people and compare the answers.</p>
     </section>
   );
 }
+
+const Step = ({ n }: { n: number }) => (
+  <span aria-hidden="true" className="grid size-5 shrink-0 place-items-center rounded-full bg-ink text-[11px] font-semibold text-paper">{n}</span>
+);
