@@ -67,6 +67,15 @@ export function Library({ company, initial, initialQuery, isAdmin, lead, ownDepa
     if (top && top.getBoundingClientRect().top < 0) top.scrollIntoView({ block: "start" });
   };
 
+  // A stale link past the last page (?p=9 after documents were removed or filters narrowed): go to the last page.
+  const lastPage = data ? Math.max(1, Math.ceil(data.total / data.per_page)) : 1;
+  useEffect(() => {
+    if (data && !isFetching && data.items.length === 0 && data.total > 0 && data.page > lastPage) {
+      setParams({ p: lastPage > 1 ? String(lastPage) : null });
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps -- setParams reads the live URL; re-run only on new data
+  }, [data, isFetching, lastPage]);
+
   const openUpload = (files: File[] = []) => {
     setDropped(files);
     setUploadOpen(true);

@@ -22,9 +22,22 @@ const STOP = new Set(["the", "and", "for", "are", "how", "what", "who", "when", 
 function Highlight({ text, q }: { text: string; q: string }) {
   const words = q.toLowerCase().match(/[\p{L}\p{N}]{3,}/gu)?.filter((w) => !STOP.has(w)) ?? [];
   if (!words.length) return text;
-  const re = new RegExp(`(${words.map((w) => w.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")).join("|")})`, "giu");
+  // Word starts only ("days" marks "days" and "days'", not the end of "holidays").
+  const re = new RegExp(`((?<![\\p{L}\\p{N}])(?:${words.map((w) => w.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")).join("|")}))`, "giu");
   return text.split(re).map((part, i) => (i % 2 ? <mark key={i}>{part}</mark> : part));
 }
+
+/** Passages are stored as markdown; a snippet shows the words without heading hashes, bold stars or table rules. */
+const plain = (t: string) => t
+  .replace(/(^|\s)#{1,6}\s+/g, "$1")
+  .replace(/\*\*|__/g, "")
+  .replace(/(^|\s)\*(?=\S)|(?<=\S)\*(?=\s|[.,;:!?)]|$)/g, "$1")
+  .replace(/\|?(\s*:?-{3,}:?\s*\|)+\s*:?-*:?/g, " ")
+  .replace(/\s*\|\s*/g, " · ")
+  .replace(/(?:\s*·\s*){2,}/g, " · ")
+  .replace(/^\s*·\s*|\s*·\s*$/g, "")
+  .replace(/\s{2,}/g, " ")
+  .trim();
 
 /** Best passage per document, in rank order; `more` counts the document's other passages. */
 function byDocument(hits: Hit[]): Match[] {
@@ -83,7 +96,7 @@ export function Matches({ q, variant, openChunk, onOpen }: Props) {
               {m.more > 0 && <span>+{m.more} more {m.more === 1 ? "passage" : "passages"}</span>}
               {m.superseded && <span className="tag tag-warn">Superseded</span>}
             </span>
-            <span className="match-text"><Highlight text={m.text} q={q} /></span>
+            <span className="match-text"><Highlight text={plain(m.text)} q={q} /></span>
             <span className="sr-only">Open in the document viewer</span>
           </button>
         </li>

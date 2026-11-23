@@ -41,7 +41,13 @@ export function useDocViewer() {
     const back = opener;
     opener = null;
     // The row that opened it may have re-rendered; fall back to the page's main heading.
-    requestAnimationFrame(() => (back?.isConnected ? back : document.querySelector<HTMLElement>("main h1"))?.focus());
+    requestAnimationFrame(() => {
+      if (back?.isConnected) return back.focus();
+      // A heading isn't focusable by default; without tabindex focus would fall back to <body>.
+      const h1 = document.querySelector<HTMLElement>("main h1");
+      if (h1 && !h1.hasAttribute("tabindex")) h1.tabIndex = -1;
+      h1?.focus({ preventScroll: true });
+    });
   }, []);
 
   return { current, open, update, close };

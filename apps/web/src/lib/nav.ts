@@ -27,7 +27,15 @@ const GROUPS: { label: string; slugs: string[] }[] = [
 
 export const navFor = (role: Role): NavItem[] => BY_ROLE[role].map((slug) => ({ slug, label: ITEMS[slug] }));
 
-/** The rail's groups for this role; empty groups are dropped. */
-export const navGroupsFor = (role: Role): NavGroup[] =>
-  GROUPS.map((g) => ({ label: g.label, items: g.slugs.filter((s) => BY_ROLE[role].includes(s)).map((slug) => ({ slug, label: ITEMS[slug] })) }))
+/** The rail's groups for this role; empty groups are dropped. Members and guests manage nothing
+ *  (their Settings is only their profile), so a "Manage" group holding just Settings folds into one
+ *  unlabelled list. */
+export const navGroupsFor = (role: Role): NavGroup[] => {
+  const groups = GROUPS.map((g) => ({ label: g.label, items: g.slugs.filter((s) => BY_ROLE[role].includes(s)).map((slug) => ({ slug, label: ITEMS[slug] })) }))
     .filter((g) => g.items.length > 0);
+  const last = groups.at(-1);
+  if (groups.length > 1 && last && last.items.length === 1 && last.items[0].slug === "settings") {
+    return [{ label: groups[0].label, items: groups.flatMap((g) => g.items) }];
+  }
+  return groups;
+};

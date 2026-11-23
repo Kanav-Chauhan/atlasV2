@@ -198,7 +198,7 @@ function LeadTiles({ h }: { h: HomeData }) {
       <Tile icon="fileQuestion" tone={ins.not_found ? "warn" : "success"} label="No answer found" value={n.format(ins.not_found)}
         sub={ins.not_found ? "Add documents that cover them" : "Nothing missing this month"} href={ins.not_found ? "/app/library?upload=1" : "/app/library"} cta={ins.not_found ? "Add documents" : undefined} />
       <Tile icon="clock" tone={worst ? worst.tone : "success"} label="Overdue reviews" value={n.format(rev.length)}
-        sub={worst ? `Oldest: ${worst.label}` : "All documents are current"} href="/app/library" cta={rev.length ? "Review" : undefined} />
+        sub={worst ? `Oldest: ${worst.label}` : "All documents are current"} href={rev.length ? "/app/library?status=review" : "/app/library"} cta={rev.length ? "Review" : undefined} />
       <Tile icon="ask" tone="accent" label="Your chats" value={n.format(chats.length)}
         sub={chats[0] ? `Last one ${ago(chats[0].updated_at)}` : "Ask your first question"} href="/app/ask" cta="New chat" />
     </div>

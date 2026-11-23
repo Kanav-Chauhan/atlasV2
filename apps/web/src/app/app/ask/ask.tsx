@@ -59,7 +59,13 @@ export function Ask({ company, canSeeChunks }: { company: string; canSeeChunks: 
   const c = params.get("c");
   const q = params.get("q");
   const find = params.get("mode") === "find";
-  useEffect(() => { if (!c && !find) router.replace(newChatUrl(q)); }, [c, q, find, router]);
+  useEffect(() => {
+    if (c || find) return;
+    // Keep an open document (?doc=&page=&chunk=&tab=) so a shared /app/ask?doc= link still opens it.
+    const keep = new URLSearchParams();
+    for (const k of ["doc", "page", "chunk", "tab"]) { const v = params.get(k); if (v) keep.set(k, v); }
+    router.replace(newChatUrl(q) + (keep.size ? `&${keep}` : ""));
+  }, [c, q, find, router, params]);
   if (find) return <Find key={q ?? ""} q={q?.trim() ?? ""} company={company} canSeeChunks={canSeeChunks} />;
   return c ? <Thread key={c} id={c} q={q} company={company} canSeeChunks={canSeeChunks} /> : null;
 }

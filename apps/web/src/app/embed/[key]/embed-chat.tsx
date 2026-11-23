@@ -146,7 +146,7 @@ export function EmbedChat({ siteKey, config, preview }: { siteKey: string; confi
           <label>Website<input ref={honeypot} name="website" tabIndex={-1} autoComplete="off" /></label>
         </div>
         <label className="sr-only" htmlFor="embed-q">Your question</label>
-        <textarea ref={box} id="embed-q" rows={1} maxLength={500} value={input} placeholder="Type your question" autoComplete="off" autoFocus
+        <textarea ref={box} id="embed-q" rows={1} maxLength={500} value={input} placeholder="Type your question" autoComplete="off" autoFocus={!preview}
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={(e) => { if (e.key === "Enter" && !e.shiftKey && !e.nativeEvent.isComposing) { e.preventDefault(); ask(); } }} />
         {busy
