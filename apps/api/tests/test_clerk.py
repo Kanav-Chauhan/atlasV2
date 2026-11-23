@@ -26,7 +26,7 @@ from atlas_api.settings import settings
 HOST = "clerk.atlas-test.example"
 PK = "pk_test_" + base64.b64encode(f"{HOST}$".encode()).decode().rstrip("=")
 ISS = f"https://{HOST}"
-P10 = "https://p10.kanav.space"
+P10 = "https://p1.kanav.space"
 
 KEY = rsa.generate_private_key(public_exponent=65537, key_size=2048)
 OTHER_KEY = rsa.generate_private_key(public_exponent=65537, key_size=2048)

@@ -1,5 +1,5 @@
 /*! Atlas website chat. Paste before </body>:
- *  <script src="https://p10.kanav.space/widget.js" data-atlas-key="SITE_KEY" async></script>
+ *  <script src="https://p1.kanav.space/widget.js" data-atlas-key="SITE_KEY" async></script>
  * Draws a chat bubble; it opens the Atlas panel (/embed/SITE_KEY) in an iframe. No dependencies. */
 (function () {
   var me = document.currentScript || document.querySelector("script[data-atlas-key]");

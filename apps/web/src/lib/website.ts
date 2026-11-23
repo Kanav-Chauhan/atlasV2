@@ -20,7 +20,7 @@ export function inkOn(hex: string) {
   return r * 0.299 + g * 0.587 + b * 0.114 > 150 ? "#111111" : "#ffffff";
 }
 
-export const ATLAS_ORIGIN = "https://p10.kanav.space";
+export const ATLAS_ORIGIN = "https://p1.kanav.space";
 
 export const snippet = (key: string) =>
   `<script src="${ATLAS_ORIGIN}/widget.js" data-atlas-key="${key}" async></script>`;

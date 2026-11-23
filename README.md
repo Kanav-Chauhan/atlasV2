@@ -6,7 +6,7 @@
 
 <sub>30 s, sped up while the answer is searched. [MP4 version](docs/media/atlas-demo.mp4).</sub>
 
-Live demo: **https://p10.kanav.space** — three made-up companies (IT services, pharma, finance), 199 documents, one-click logins for every role from employee to owner.
+Live demo: **https://p1.kanav.space** — three made-up companies (IT services, pharma, finance), 199 documents, one-click logins for every role from employee to owner.
 
 ## What it does
 

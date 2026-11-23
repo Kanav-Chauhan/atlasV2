@@ -14,7 +14,7 @@ type Token = {
 type Created = { id: number; name: string; token: string };
 type Audit = { at: string; token_name: string; user_email: string; tool: string; args_summary: string; ok: boolean; latency_ms: number };
 
-const MCP_URL = "https://p10.kanav.space/api/mcp";
+const MCP_URL = "https://p1.kanav.space/api/mcp";
 const when = new Intl.DateTimeFormat("en-IN", { day: "numeric", month: "short", hour: "numeric", minute: "2-digit", timeZone: "Asia/Kolkata" });
 
 const SETUPS = [

@@ -134,7 +134,7 @@ services:
     restart: unless-stopped
     mem_limit: 384m  # 256m was too tight: restarts while loading the dashboard
     environment:
-      GF_SERVER_ROOT_URL: https://p10.kanav.space/grafana/
+      GF_SERVER_ROOT_URL: https://p1.kanav.space/grafana/
       GF_SERVER_SERVE_FROM_SUB_PATH: "true"
       GF_SECURITY_ADMIN_USER: admin
       GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_ADMIN_PASSWORD:?set GRAFANA_ADMIN_PASSWORD in infra/.env}

@@ -18,7 +18,7 @@ from atlas_api.models import Chat, Department, Document, Organization, Role, Use
 from atlas_api.routes import current_user, db
 
 NOW = datetime(2026, 11, 22, tzinfo=UTC)
-P10 = "https://p10.kanav.space"
+P10 = "https://p1.kanav.space"
 SHOP = "https://shop.example.com"
 KEY = "k" * 22
 

@@ -44,7 +44,7 @@ class Settings(BaseSettings):
     session_secret: str = ""
     # Website chat (Phase 8). The app's own origin: the /embed iframe calls the public API from
     # here, so it is always allowed next to each company's allowed_origins.
-    app_origin: str = "https://p10.kanav.space"
+    app_origin: str = "https://p1.kanav.space"
     visitor_max_tokens: int = 400  # answer token cap for website visitors
     visitor_history_h: int = 24  # visitor thread memory (LangGraph checkpointer) lifetime
 

@@ -106,7 +106,7 @@ export function EmbedChat({ siteKey, config, preview }: { siteKey: string; confi
           : <button type="submit" className="btn embed-send" disabled={!input.trim()}>Send</button>}
       </form>
       {config.show_badge && (
-        <a className="embed-badge" href="https://p10.kanav.space" target="_blank" rel="noopener">Powered by Atlas</a>
+        <a className="embed-badge" href="https://p1.kanav.space" target="_blank" rel="noopener">Powered by Atlas</a>
       )}
     </main>
   );

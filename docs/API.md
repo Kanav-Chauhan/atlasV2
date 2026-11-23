@@ -11,7 +11,7 @@ Two ways in, checked in this order. Every query is then scoped to that person's 
    people at a demo company** (`organizations.plan = 'demo'`, never a person with a Clerk link).
    Naming anyone at a real company with it → `401`.
 2. **Real users: a Clerk session** (`clerk.py`). The Clerk session JWT reaches the API as
-   - the `__session` cookie: clerk-js sets it on p10.kanav.space (same site), and the browser's
+   - the `__session` cookie: clerk-js sets it on p1.kanav.space (same site), and the browser's
      `/api/*` calls carry it through the Next rewrite; `lib/api.ts` asks clerk-js for a fresh one
      and retries once on a `401` (the cookie lives ~60 s; clerk-js renews it in the background), or
    - `Authorization: Bearer <jwt>` (any server-side caller; a Bearer that is not a JWT is ignored).
@@ -20,7 +20,7 @@ Two ways in, checked in this order. Every query is then scoped to that person's 
    The API verifies it without a per-request network call: RS256 signature with the instance's
    JWKS (`https://clerk.kanav.space/.well-known/jwks.json`, cached 1 h; the frontend API host comes
    from `ATLAS_CLERK_PUBLISHABLE_KEY`), `iss`, `exp`/`nbf`/`iat` (5 s leeway), `azp` must be
-   `ATLAS_APP_ORIGIN` (https://p10.kanav.space) and `sub` a Clerk user id. Then
+   `ATLAS_APP_ORIGIN` (https://p1.kanav.space) and `sub` a Clerk user id. Then
    `users.clerk_user_id = sub`. The first time a Clerk user is seen, the API looks them up in the
    Clerk Backend API and links them to an existing, unlinked person **at a non-demo company** whose
    email equals Clerk's **verified primary email** (invited people). Nobody → `401` from normal
@@ -36,7 +36,7 @@ Super admin is separate (`atlas_super` cookie, below).
 | POST | `/onboarding` | valid Clerk session | `{company (2–200), industry?}` → creates the organization (plan `pro` until payments) and the caller as its `admin` → `{linked: true, email, name, org}`. Idempotent: if the caller already has (or can be linked to) a person, nothing is created and that person's org is returned; a double submit keeps one company. `409` if the email belongs to a demo person or another Clerk login |
 
 **Invitations.** `POST /team` on a real company also sends a Clerk invitation
-(`/v1/invitations`, redirect `https://p10.kanav.space/sign-up`, works while sign-up is
+(`/v1/invitations`, redirect `https://p1.kanav.space/sign-up`, works while sign-up is
 waitlist-only); the response adds `invite: "sent" | "exists" | "failed" | null` (`null` = demo
 company, nothing sent). The person signs up with that email and links on first sign-in.
 
@@ -130,7 +130,7 @@ Login is a separate option on the login page: email `sa@kanav.space` + password,
 ## Endpoints (Phase 8: website chat)
 
 A company marks documents **public** and pastes one line on its website:
-`<script src="https://p10.kanav.space/widget.js" data-atlas-key="<site_key>" async></script>`.
+`<script src="https://p1.kanav.space/widget.js" data-atlas-key="<site_key>" async></script>`.
 The bubble opens an iframe `/embed/<site_key>` that talks to the public API. A website visitor is a built-in
 principal that can read **only `is_public` documents of that company** (filter built in `access.py`, same
 retrieval as staff). No staff document, chat history or name is ever reachable from public routes.
