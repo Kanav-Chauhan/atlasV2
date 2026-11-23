@@ -2,6 +2,10 @@
 
 **Answers from your own documents.** Staff and website visitors ask in plain words; Atlas answers from the company's files **with the source**, and shows each person **only what they may see**.
 
+![Atlas demo: demo login as an HR manager, a streamed answer about earned leave with numbered citations, the cited passage opened in the document reader, then the chat bubble on a company website answering a visitor](docs/media/atlas-demo.gif)
+
+<sub>30 s, sped up while the answer is searched. [MP4 version](docs/media/atlas-demo.mp4).</sub>
+
 Live demo: **https://p10.kanav.space** — three made-up companies (IT services, pharma, finance), 199 documents, one-click logins for every role from employee to owner.
 
 ## What it does
