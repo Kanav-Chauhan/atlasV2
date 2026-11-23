@@ -26,6 +26,11 @@ Decisions the owner still has to make. Each links to the decision it would chang
 | Q4 | Does the answer cache match too loosely? | similarity threshold as shipped ([D-033](#d-033)) | keep · tighten | A longer "step by step" question got the shorter question's cached answer. |
 | Q5 | Treat an answer with no citations as "Not found"? | no | yes · no | Cheap way to get the formal Not found back when the 4 s limit hits. |
 | Q6 | Browser (Playwright) tests in CI? | run by hand only | add to CI | Planned in Phase 7, never added to CI. |
+| Q7 | Which new landing page: A (dark cinematic), B (light editorial, self-citing), C (interactive "who's asking")? | old landing live | A · B · C | Previews at /previews/landing-v2/{a,b,c}/ (password). The pick replaces apps/web/public/home. |
+| Q8 | Find → Answer starts a new chat (and a new AI call) each time | as built | keep · reuse the last chat | From the Phase 9 test pass. |
+| Q9 | Managers can upload into the shared "Managers" group but invite only into their own group | as built | intended · restrict upload | From the Phase 9 test pass. |
+| Q10 | Library has no delete / replace for documents | none | add | From the Phase 9 test pass. |
+| Q11 | Seed a few weeks of demo question history so Insights charts look real | no | yes · no | Demo data sits on 1–2 days. |
 
 ---
 
@@ -370,6 +375,13 @@ Measured cause (LangSmith, last 100 questions): relevance check median 3.4 s but
   - `GET /documents` stays a plain list for Home and MCP. The list page parameter is `?p=` because the viewer owns `?page=`.
   - Rows open the side viewer. The upload dialog sets who can read first, then drag and drop of several files, with per-file progress and Processing → Ready. `?upload=1` opens it.
   - Ideas borrowed from the old Atlas: drop zone, per-file status list, errors under the title, processing and failed counts.
+
+#### D-058 · Demo video re-recorded on the new UI; reproducible script
+`2026-11-24 · active`
+- **Decision:** `tools/demo-video/record.js` captures lossless page frames with Playwright (Playwright's built-in recording blurred the text and made a 2+ MB GIF), speeds up the AI waits, and encodes with the ffmpeg already on the machine (imageio-ffmpeg, libx264).
+- **Story:** HR manager (Ritika) asks about earned leave → answer + Matching documents → citation opens the Leave Policy in the side viewer with the passage highlighted → Nimbus website bubble answers "What is NimbusOps?".
+- **Outputs:** 28.6 s, 856 KB MP4 (landing + README), 914 KB GIF.
+- **Gotchas:** the semantic cache answers instantly ("From cache"), so bump `atlas:cache:gen:<org>` before a take. The demo allows 40 questions a day per IP, so clear only the server IP's `plan:demo:*:<ip>:*` keys.
 
 #### D-042 · Atlas logo = the owner's "A", traced to SVG
 `2026-11-23 · active`
