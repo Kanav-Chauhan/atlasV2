@@ -24,17 +24,11 @@ export default async function LoginPage({ searchParams }: { searchParams: Promis
         <BackHome />
         <ThemeToggle className="grid size-11 cursor-pointer place-items-center rounded-input text-muted hover:bg-paper-3 hover:text-ink" />
       </div>
-      <main className="flex flex-1 items-start justify-center px-4 pt-[3vh] pb-12">
-        <div className={`w-full ${owner ? "max-w-md" : "max-w-3xl"}`}>
-          <div className="mb-6 flex items-center gap-3">
-            <Link href="/" aria-label="Atlas home"><Logo className="size-8 text-accent" /></Link>
-            <div>
-              <h1 className="text-lg font-semibold">Log in to Atlas</h1>
-              <p className="text-sm text-muted">Answers from your company&apos;s documents, with the source</p>
-            </div>
-          </div>
-          {owner ? (
-            // Backup owner login (email + password), not linked anywhere: the owner normally signs in with Clerk.
+      <main className="flex flex-1 items-start justify-center px-4 pt-[3vh] pb-12 lg:pt-[5vh]">
+        {owner ? (
+          <div className="w-full max-w-md">
+            <Title />
+            {/* Backup owner login (email + password), not linked anywhere: the owner normally signs in with Clerk. */}
             <section aria-labelledby="owner-heading">
               <div className="mb-2 flex items-center justify-between gap-2">
                 <h2 id="owner-heading" className="font-body text-xs font-medium text-muted">Atlas owner (backup login)</h2>
@@ -42,14 +36,30 @@ export default async function LoginPage({ searchParams }: { searchParams: Promis
               </div>
               <OwnerForm />
             </section>
-          ) : (
-            <>
+          </div>
+        ) : (
+          // Laptop: access (waitlist / sign in) on the left, the demo on the right. Phone: stacked.
+          <div className="grid w-full max-w-6xl items-start gap-8 lg:grid-cols-[minmax(300px,360px)_1fr] lg:gap-10">
+            <div className="lg:sticky lg:top-6">
+              <Title />
               {CLERK_ON && <SignInButton />}
-              <Demo company={company} />
-            </>
-          )}
-        </div>
+            </div>
+            <Demo company={company} />
+          </div>
+        )}
       </main>
+    </div>
+  );
+}
+
+function Title() {
+  return (
+    <div className="mb-6 flex items-center gap-3">
+      <Link href="/" aria-label="Atlas home"><Logo className="size-8 text-accent" /></Link>
+      <div>
+        <h1 className="text-lg font-semibold">Log in to Atlas</h1>
+        <p className="text-sm text-muted">Answers from your company&apos;s documents, with the source</p>
+      </div>
     </div>
   );
 }
@@ -58,16 +68,18 @@ export default async function LoginPage({ searchParams }: { searchParams: Promis
 // the waitlist and "Sign in" is the second option (swap back when sign-ups open: docs/DECISIONS.md D-045, D-046).
 function SignInButton() {
   return (
-    <section aria-labelledby="access-heading" className="mb-8 rounded-card border border-rule bg-paper p-4 shadow-sm sm:p-5">
+    <section aria-labelledby="access-heading" className="mb-2 rounded-card border border-rule bg-paper p-4 shadow-sm sm:p-5">
       <h2 id="access-heading" className="text-sm font-semibold">Atlas is invite-only for now</h2>
-      <p className="mt-1 mb-3 text-sm text-muted">Join the waitlist for your own company, or try the full demo below with no sign-up.</p>
-      <Link
+      <p className="mt-1 mb-3 text-sm text-muted">Join the waitlist for your own company, or try the full demo now with no sign-up.</p>
+      {/* Plain <a>: Clerk's components only mount on a full page load, not on a client-side route change. */}
+      {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
+      <a
         href="/waitlist"
         data-track="waitlist_click"
         className="flex min-h-12 w-full items-center justify-center rounded-input bg-accent px-6 text-sm font-semibold text-accent-ink shadow-sm transition-[filter] hover:brightness-110 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
       >
         Join the waitlist
-      </Link>
+      </a>
       <form action={startSignIn} className="mt-4 flex flex-wrap items-center gap-x-3 gap-y-2 border-t border-rule pt-3">
         <span className="text-sm text-muted">Already invited?</span>
         <button

@@ -15,7 +15,9 @@ export default function SignInPage() {
     <AuthFrame title="Sign in to Atlas" sub="Your own company's documents">
       <div className="mb-4 rounded-card border border-rule bg-paper p-4">
         <p className="text-sm font-semibold">Atlas is invite-only for now</p>
-        <p className="mt-1 text-sm text-muted">Signing in works once you&apos;ve been invited. New here? <Link href="/waitlist" className="font-medium text-accent-deep underline underline-offset-2">Join the waitlist</Link>, or <Link href="/login" className="font-medium text-accent-deep underline underline-offset-2">try the demo</Link> with no sign-up.</p>
+        <p className="mt-1 text-sm text-muted">Signing in works once you&apos;ve been invited. New here?{" "}
+          {/* eslint-disable-next-line @next/next/no-html-link-for-pages -- full load so Clerk mounts */}
+          <a href="/waitlist" className="font-medium text-accent-deep underline underline-offset-2">Join the waitlist</a>, or <Link href="/login" className="font-medium text-accent-deep underline underline-offset-2">try the demo</Link> with no sign-up.</p>
       </div>
       <MaybeClerk>
         <SignIn path="/sign-in" routing="path" signUpUrl="/sign-up" fallbackRedirectUrl="/auth/owner" />

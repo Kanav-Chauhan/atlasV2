@@ -221,6 +221,8 @@ Measured cause (LangSmith, last 100 questions): relevance check median 3.4 s but
   - `/sign-in` and `/sign-up`: the same note above the Clerk box.
   - (Our own email form was used here at first; replaced the same day by Clerk's own waitlist, see [D-046](#d-046).)
   - The demo is unchanged.
+- **Layout (same day):** on laptop the access box sits in a left column and the demo in a right column, so the whole page fits one screen; on phones they stack.
+- **Gotcha:** links INTO Clerk pages (`/waitlist`, `/sign-in`) must be plain `<a>` (full page load). With Next's client-side `<Link>`, Clerk's box didn't appear (seen: sign-in → note link → empty waitlist).
 - **Revisit when:** sign-ups open (PayU or 100+ waitlist). Then Clerk goes back to open mode and "Sign in" becomes the main button again. Where: `app/login/page.tsx` `SignInButton`, `components/waitlist-form.tsx`.
 
 #### D-046 · One waitlist: Clerk's own `<Waitlist />`, hosted on our site
