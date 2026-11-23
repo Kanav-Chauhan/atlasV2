@@ -1,5 +1,5 @@
 """Querying: vector + keyword search (each top 20, permission pre-filter inside the SQL),
-Reciprocal Rank Fusion, then a local cross-encoder reranks the fused top 10 down to 5."""
+Reciprocal Rank Fusion, then a local cross-encoder reranks the fused top 15 down to 5."""
 
 import os
 import time
@@ -23,9 +23,10 @@ FINAL_K = 5
 # Picked on the 167 answerable eval questions (docs/RAG_GUIDE.md, step 7): beats hybrid on
 # MRR and context recall; MiniLM-L-6 alone lost questions hybrid had, L-12 was 2x slower.
 RERANKER_MODEL = "jinaai/jina-reranker-v1-turbo-en"
-# Only the fused top 10 are reranked: half the time of 20, and on the eval set the same or
-# better numbers (what hybrid ranks 11-20 rarely holds the answer).
-RERANK_POOL = 10
+# Only the fused top 15 are reranked. 10 (Phase 4) missed a newer status table at hybrid #14
+# (Phase 6 exam: an older interim report answered instead); 15 = Hit@5 0.988 -> 0.994, recall
+# 0.976 -> 0.982, no question lost, ~+200 ms; 20 loses it again (more noise in the top 5).
+RERANK_POOL = 15
 # Subtracted from the cross-encoder logit. Jina-turbo scores span about -4..+3 (sd ~1.2);
 # 0.75, 1.0, 1.5 and 3.0 gave identical eval numbers.
 SUPERSEDED_PENALTY = 1.0

@@ -22,7 +22,7 @@ from atlas_api.settings import settings
 PAGE_BREAK = "<!-- atlas:page-break -->"
 EMBED_MODEL = "BAAI/bge-small-en-v1.5"
 # Metadata used for filtering, not meaning: keep it out of the embedded / LLM text.
-HIDDEN = ["org_id", "document_id", "access", "is_public", "superseded", "page"]
+HIDDEN = ["org_id", "document_id", "access", "is_public", "superseded", "effective", "page"]
 
 
 @cache
@@ -88,6 +88,7 @@ def chunk(doc: Document, pages: list[str]) -> list[BaseNode]:
         "title": doc.title,
         "doc_no": doc.doc_no or "",
         "superseded": doc.superseded_by is not None,
+        "effective": doc.effective or "",  # shown to the answer model, not embedded
     }
     source = LIDocument(
         id_=str(doc.id),  # LlamaIndex writes this into node metadata as document_id / ref_doc_id

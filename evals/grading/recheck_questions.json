@@ -1,0 +1,232 @@
+{
+ "name": "phase6-fix-recheck",
+ "description": "superseded/date + DR subject fix re-check",
+ "questions": [
+  {
+   "q": "How many patients discontinued the SJ-2041 Phase III trial?",
+   "doc": "Clinical Site List and Enrolment Status",
+   "evidence": "92 (7.4% of randomised)",
+   "answer": "92 patients, 7.4% of the 1,240 randomised (as of 30 September 2026).",
+   "as": "rnd@sanjeevani.example",
+   "tags": [
+    "fact",
+    "table"
+   ]
+  },
+  {
+   "q": "What RPO and RTO does the new NimbusOps DR design target?",
+   "doc": "Design Doc – NimbusOps Multi-Region Active-Passive DR",
+   "evidence": "Design targets: RPO of 5 minutes and RTO of 30 minutes.",
+   "answer": "RPO 5 minutes and RTO 30 minutes, inside the contractual 15 minutes / 1 hour.",
+   "as": "employee@nimbus.example",
+   "tags": [
+    "fact"
+   ],
+   "denied_as": "product@nimbus.example"
+  },
+  {
+   "q": "What RPO and RTO were measured in the April 2026 full DR drill, and did it pass?",
+   "doc": "Disaster Recovery Drill Procedure",
+   "evidence": "47 min",
+   "answer": "The 18 April 2026 full drill measured RPO 6 minutes and RTO 47 minutes and passed.",
+   "as": "employee@nimbus.example",
+   "denied_as": "hr@nimbus.example",
+   "tags": [
+    "table",
+    "restricted"
+   ]
+  },
+  {
+   "q": "What HbA1c reduction did SJ-2041 show at the Phase III interim analysis?",
+   "doc": "SJ-2041 Interim Analysis Report",
+   "evidence": "HbA1c change from baseline of −1.1% with SJ-2041 versus −0.6% with comparator",
+   "answer": "−1.1% with SJ-2041 versus −0.6% with the comparator (difference −0.5%), with a dropout rate of 7.4% and 2 serious adverse events judged unrelated.",
+   "as": "rnd@sanjeevani.example",
+   "denied_as": "sales@sanjeevani.example",
+   "tags": [
+    "restricted"
+   ]
+  },
+  {
+   "q": "How much does Sanjeevani pay a site for each patient who completes the SJ-2041 trial?",
+   "doc": "Investigator Payments Policy",
+   "evidence": "₹42,000 per completed patient",
+   "answer": "₹42,000 per completed patient, paid visit by visit, with 10% held back until close-out.",
+   "as": "rnd@sanjeevani.example",
+   "denied_as": "qa@sanjeevani.example",
+   "tags": [
+    "restricted",
+    "multi_hop"
+   ]
+  },
+  {
+   "q": "Which payment milestone is tied to database lock in the SJ-2041 CRO agreement?",
+   "doc": "Clinical Research Services Agreement – SJ-2041 (CRO)",
+   "evidence": "The M6 payment is the largest milestone at 20% of the fee",
+   "answer": "Milestone M6: 20% of the ₹18.6 crore fee, ₹3.72 crore, due on database lock (planned 30 November 2026).",
+   "as": "rnd@sanjeevani.example",
+   "tags": [
+    "table",
+    "restricted"
+   ],
+   "denied_as": "qa@sanjeevani.example"
+  },
+  {
+   "q": "What is the list price of the NimbusOps Enterprise plan?",
+   "doc": "Rate Card FY2026-27",
+   "evidence": "5.00",
+   "answer": "USD 5.00 (₹390) per monitored host per month, billed annually.",
+   "as": "owner@nimbus.example",
+   "denied_as": "employee@nimbus.example",
+   "tags": [
+    "table",
+    "restricted"
+   ]
+  },
+  {
+   "q": "How many days of unused earned leave can a Nimbus employee carry forward into the next year?",
+   "doc": "Leave Policy FY2026-27",
+   "evidence": "of unused earned leave are carried forward into the next year",
+   "answer": "Up to 30 days; earned leave beyond 30 days lapses on 31 March.",
+   "as": "hr@nimbus.example",
+   "tags": [
+    "fact",
+    "superseded"
+   ]
+  },
+  {
+   "q": "Within how many working days must site QA approve the initial assessment of a major deviation?",
+   "doc": "SOP – Deviation Handling",
+   "evidence": "Initial assessment approved by site QA within 3 working days",
+   "answer": "Within 3 working days, with closure targeted within 30 calendar days.",
+   "as": "qa@sanjeevani.example",
+   "tags": [
+    "table",
+    "superseded"
+   ]
+  },
+  {
+   "q": "How often must Kaveri re-do KYC for high-risk clients?",
+   "doc": "KYC and Customer Due Diligence Policy",
+   "evidence": "Every 2 years",
+   "answer": "Every 2 years for high-risk clients.",
+   "as": "compliance@kaveri.example",
+   "tags": [
+    "table",
+    "superseded"
+   ]
+  },
+  {
+   "q": "How much extra per month does the active-passive DR design cost?",
+   "doc": "Design Doc – NimbusOps Multi-Region Active-Passive DR",
+   "evidence": "The additional ₹9.6 lakh per month",
+   "answer": "₹9.6 lakh per month extra, approved by Pradeep Joshi on 2 June 2026.",
+   "as": "employee@nimbus.example",
+   "tags": [
+    "table"
+   ]
+  },
+  {
+   "q": "Where is NimbusOps customer data stored?",
+   "doc": "NimbusOps Product FAQ",
+   "evidence": "We do not replicate customer data outside India.",
+   "answer": "In India: AWS ap-south-1 (Mumbai), with disaster recovery in ap-south-2 (Hyderabad); it is never replicated outside India.",
+   "as": "product@nimbus.example",
+   "tags": [
+    "fact"
+   ]
+  },
+  {
+   "q": "What is Sanjeevani's FY27 R&D budget and how much of it goes to the SJ-2041 programme?",
+   "doc": "R&D Pipeline Review FY27",
+   "evidence": "The FY27 budget of ₹185 crore",
+   "answer": "₹185 crore in total, of which ₹62 crore (33.5%) is for the SJ-2041 clinical programme.",
+   "as": "rnd@sanjeevani.example",
+   "tags": [
+    "multi_hop",
+    "table"
+   ]
+  },
+  {
+   "q": "What is the compensation insurance cover for the SJ-2041 trial?",
+   "doc": "Serious Adverse Event Reporting SOP",
+   "evidence": "covers up to ₹10 crore aggregate with ₹50 lakh per participant",
+   "answer": "Up to ₹10 crore in aggregate, with ₹50 lakh per participant.",
+   "as": "rnd@sanjeevani.example",
+   "tags": [
+    "fact"
+   ]
+  },
+  {
+   "q": "How often is the full disaster recovery drill held, and when is the next one?",
+   "doc": "Business Continuity and Disaster Recovery Plan",
+   "evidence": "Twice a year",
+   "answer": "Twice a year (February and November); the next is due 30 November 2026.",
+   "as": "owner@kaveri.example",
+   "tags": [
+    "table"
+   ]
+  },
+  {
+   "q": "What is the monthly error budget for NimbusOps under its availability SLO?",
+   "doc": "NimbusOps Database Failover Runbook",
+   "evidence": "43 min 12 s",
+   "answer": "43 minutes 12 seconds per 30-day month (99.9% monthly availability SLO).",
+   "as": "employee@nimbus.example",
+   "tags": [
+    "fact",
+    "table"
+   ]
+  },
+  {
+   "q": "Can employees bring their pets to the Nimbus office?",
+   "doc": null,
+   "evidence": null,
+   "answer": "not found",
+   "as": "employee@nimbus.example",
+   "tags": [
+    "not_found"
+   ]
+  },
+  {
+   "q": "What is the price of the AI alert summaries add-on for the Starter plan?",
+   "doc": null,
+   "evidence": null,
+   "answer": "not found",
+   "as": "product@nimbus.example",
+   "tags": [
+    "not_found"
+   ]
+  },
+  {
+   "q": "What is the planned launch price (MRP) of SJ-2041?",
+   "doc": null,
+   "evidence": null,
+   "answer": "not found",
+   "as": "owner@sanjeevani.example",
+   "tags": [
+    "not_found"
+   ]
+  },
+  {
+   "q": "What is the stockist margin on SJ-2041?",
+   "doc": null,
+   "evidence": null,
+   "answer": "not found",
+   "as": "salesmanager@sanjeevani.example",
+   "tags": [
+    "not_found"
+   ]
+  },
+  {
+   "q": "What is on the Kaveri office cafeteria menu on Fridays?",
+   "doc": null,
+   "evidence": null,
+   "answer": "not found",
+   "as": "analyst@kaveri.example",
+   "tags": [
+    "not_found"
+   ]
+  }
+ ]
+}

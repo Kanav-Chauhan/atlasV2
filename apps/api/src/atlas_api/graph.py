@@ -330,6 +330,7 @@ def passage(n: NodeWithScore) -> dict[str, Any]:
         "section": m.get("header_path") or None,
         "text": n.node.get_content(),
         "superseded": bool(m.get("superseded")),
+        "effective": m.get("effective") or None,
         "score": float(n.score or 0.0),
     }
 
@@ -400,6 +401,9 @@ def passages_text(passages: list[dict[str, Any]]) -> str:
                 p.get("doc_no"),
                 f"section {p['section']}" if p.get("section") not in (None, "/") else None,
                 f"page {p['page']}" if p.get("page") else None,
+                # the document's date, so the answer model can tell an older snapshot from
+                # the current figure (Phase 6 exam: an interim report beat the newer status)
+                f"dated {p['effective']}" if p.get("effective") else None,
             )
             if x
         )

@@ -1,0 +1,203 @@
+{
+ "run_id": "20261123T064011Z",
+ "summary": {
+  "runs": 3,
+  "errors": 0,
+  "answerable": 2,
+  "negatives": 1,
+  "correct_answer": 0.0,
+  "correct_or_partial": 0.0,
+  "false_not_found": 0.0,
+  "correct_not_found": 0.0,
+  "declined_in_words": 0,
+  "leaks": 0,
+  "latency_p50_ms": 16256.0,
+  "latency_p95_ms": 21152.0,
+  "relevance": {
+   "yes": 3
+  },
+  "ragas": {
+   "faithfulness": null,
+   "answer_relevancy": null,
+   "context_precision": null,
+   "context_recall": null,
+   "n": 0
+  },
+  "by_org": {
+   "nimbus": {
+    "correct_answer": 0.0,
+    "false_not_found": 0.0,
+    "correct_not_found": 0.0,
+    "leaks": 0,
+    "n": 2
+   },
+   "sanjeevani": {
+    "correct_answer": 0.0,
+    "false_not_found": 0.0,
+    "correct_not_found": null,
+    "leaks": 0,
+    "n": 1
+   }
+  },
+  "config": {
+   "threshold": -1.1,
+   "relevance_grade": true,
+   "judge": "json",
+   "questions": 2,
+   "org": "all",
+   "ragas": false
+  },
+  "seconds": 46
+ },
+ "questions": [
+  {
+   "org": "sanjeevani",
+   "q": "How many patients discontinued the SJ-2041 Phase III trial?",
+   "kind": "answerable",
+   "as": "rnd@sanjeevani.example",
+   "doc": "Clinical Site List and Enrolment Status",
+   "tags": [
+    "fact",
+    "table"
+   ],
+   "ms": 21152,
+   "route": "rag",
+   "abstained": false,
+   "answer": "According to the interim analysis data cut-off of 15 February 2026, **87 patients** had discontinued the trial in total (40 from the SJ-2041 arm and 47 from the comparator arm) [1]. This is interim data; the trial was still ongoing with final treatment completion expected in August 2026 [2].",
+   "query": "How many patients discontinued the SJ-2041 Phase III trial?",
+   "relevance": "yes",
+   "grade_log": [
+    {
+     "attempt": 0,
+     "score": 0.6969594955444336,
+     "verdict": "yes",
+     "marked": [
+      3
+     ]
+    }
+   ],
+   "sources": [
+    "SJ-2041 Interim Analysis Report",
+    "R&D Pipeline Review FY27"
+   ],
+   "cited": [
+    {
+     "n": 1,
+     "title": "SJ-2041 Interim Analysis Report",
+     "text": "## 5. Patient Disposition (all randomised at cut-off)\n\n| Disposition   | SJ-2041   | Comparator   | Total   |\n|---------------|-----------|--------------|---------|\n| Randomised    | 590       | 590          | 1,180   |\n| Discontinued  | 40        | 47           | 87      |\n| Dropout rate  | 6.8%      | 8.0%         | 7.4%    |\n\nReasons for discontinuation (total 87): withdrawal of consent 33, lost to follow-up 26, adverse event 15, protocol deviation 8, lack of efficacy 5."
+    },
+    {
+     "n": 2,
+     "title": "R&D Pipeline Review FY27",
+     "text": "### 5. SJ-2041 Programme Highlights\n\n- Phase III trial (protocol SPL/CLN/PRT-017) is a 24-week study in 1,240 patients at 38 sites in India; primary endpoint is HbA1c change from baseline.\n- Enrolment of 1,240 patients was completed in March 2026; the last patients finish 24-week treatment in August 2026 and database lock is planned for November 2026.\n- Commercial scale-up: dedicated bilayer press for Unit I to be requested via change control in Q3 FY27, contingent on topline results.\n- Peak domestic sales potential estimated at \u20b9350 crore by FY31 (Strategy team estimate; not a forecast)."
+    }
+   ],
+   "context_titles": [
+    "R&D Pipeline Review FY27",
+    "SJ-2041 Interim Analysis Report",
+    "SJ-2041 Interim Analysis Report",
+    "Serious Adverse Event Reporting SOP",
+    "SJ-2041 Phase III Protocol Synopsis"
+   ],
+   "leak": false,
+   "reference": "92 patients, 7.4% of the 1,240 randomised (as of 30 September 2026)."
+  },
+  {
+   "org": "nimbus",
+   "q": "What RPO and RTO does the new NimbusOps DR design target?",
+   "kind": "answerable",
+   "as": "employee@nimbus.example",
+   "doc": "Design Doc \u2013 NimbusOps Multi-Region Active-Passive DR",
+   "tags": [
+    "fact"
+   ],
+   "ms": 8851,
+   "route": "rag",
+   "abstained": false,
+   "answer": "The new NimbusOps DR design targets an **RPO of 5 minutes** and an **RTO of 30 minutes** [1].",
+   "query": "What RPO and RTO does the new NimbusOps DR design target?",
+   "relevance": "yes",
+   "grade_log": [
+    {
+     "attempt": 0,
+     "score": 1.755359172821045,
+     "verdict": "yes",
+     "marked": [
+      1
+     ]
+    }
+   ],
+   "sources": [
+    "Design Doc \u2013 NimbusOps Multi-Region Active-Passive DR"
+   ],
+   "cited": [
+    {
+     "n": 1,
+     "title": "Design Doc \u2013 NimbusOps Multi-Region Active-Passive DR",
+     "text": "## 2. Goals\n\n1. Keep the contractual RPO of 15 minutes and RTO of 1 hour with a wide margin. **Design targets: RPO of 5 minutes and RTO of 30 minutes.**\n2. Reduce manual steps from 14 to 3 or fewer (decide, approve, verify).\n3. Make the drill and a real failover use exactly the same automation."
+    }
+   ],
+   "context_titles": [
+    "Design Doc \u2013 NimbusOps Multi-Region Active-Passive DR",
+    "Design Doc \u2013 NimbusOps Multi-Region Active-Passive DR",
+    "Information Security Policy",
+    "Design Doc \u2013 NimbusOps Multi-Region Active-Passive DR",
+    "Disaster Recovery Drill Procedure"
+   ],
+   "leak": false,
+   "reference": "RPO 5 minutes and RTO 30 minutes, inside the contractual 15 minutes / 1 hour."
+  },
+  {
+   "org": "nimbus",
+   "q": "What RPO and RTO does the new NimbusOps DR design target?",
+   "kind": "denied",
+   "as": "product@nimbus.example",
+   "doc": "Design Doc \u2013 NimbusOps Multi-Region Active-Passive DR",
+   "tags": [
+    "fact"
+   ],
+   "ms": 16256,
+   "route": "rag",
+   "abstained": false,
+   "answer": "The NimbusOps DR design targets an **RPO of 15 minutes** and an **RTO of 1 hour** [1][2].",
+   "query": "What RPO and RTO does the new NimbusOps DR design target?",
+   "relevance": "yes",
+   "grade_log": [
+    {
+     "attempt": 0,
+     "score": 0.960584282875061,
+     "verdict": "yes",
+     "marked": [
+      1,
+      2
+     ]
+    }
+   ],
+   "sources": [
+    "Information Security Policy",
+    "NimbusOps Product FAQ"
+   ],
+   "cited": [
+    {
+     "n": 1,
+     "title": "Information Security Policy",
+     "text": "## 6.6 Business continuity\n\nCritical services have documented recovery objectives. For NimbusOps, the targets are RPO 15 minutes and RTO 1 hour, tested by a DR drill at least twice a year."
+    },
+    {
+     "n": 2,
+     "title": "NimbusOps Product FAQ",
+     "text": "### What happens if a whole data centre region fails?\n\nNimbusOps runs a warm standby in a second region. Our recovery objectives are a **recovery point objective (RPO) of 15 minutes** and a **recovery time objective (RTO) of 1 hour**. We test full regional failover twice a year, in April and October."
+    }
+   ],
+   "context_titles": [
+    "Information Security Policy",
+    "NimbusOps Product FAQ",
+    "NimbusOps Product FAQ",
+    "BRD \u2013 NimbusOps AI Alert Summaries",
+    "BRD \u2013 NimbusOps AI Alert Summaries"
+   ],
+   "leak": false,
+   "reference": "RPO 5 minutes and RTO 30 minutes, inside the contractual 15 minutes / 1 hour."
+  }
+ ]
+}

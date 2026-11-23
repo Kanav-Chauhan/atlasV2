@@ -8,7 +8,7 @@ import pytest
 from langgraph.checkpoint.memory import InMemorySaver
 from test_chat import FakeModels, make_ctx, run, stages, text
 
-from atlas_api import graph, tracing
+from atlas_api import graph, llm, tracing
 from atlas_api import settings as settings_module
 from atlas_api.llm import RelevanceOut
 from atlas_api.scripts import calibrate_grade, eval_answers
@@ -100,6 +100,67 @@ async def test_visitor_grader_no_gives_contact_wording() -> None:
     events, final = await run(graph.build(InMemorySaver()), "Salary band for L4?", ctx)
     assert final["abstained"] and "contact Nimbus" in text(events)
     assert models.calls.count("relevance") == 2
+
+
+def test_passages_show_document_date_and_superseded_flag() -> None:
+    """The answer model sees each document's date (older snapshot vs current figure) and the
+    SUPERSEDED flag; a passage without a date gets no empty 'dated' part."""
+    text_ = graph.passages_text(
+        [
+            {
+                "title": "Interim Report",
+                "doc_no": "RPT-022",
+                "section": "/5. Disposition/",
+                "page": 3,
+                "effective": "27 March 2026",
+                "text": "87 discontinued",
+            },
+            {
+                "title": "Site Status",
+                "doc_no": None,
+                "section": None,
+                "page": None,
+                "effective": "05 October 2026",
+                "text": "92 discontinued",
+            },
+            {
+                "title": "Old SOP",
+                "doc_no": None,
+                "section": "/",
+                "effective": None,
+                "superseded": True,
+                "text": "5 days",
+            },
+        ]
+    )
+    assert (
+        "[1] Interim Report (RPT-022, section /5. Disposition/, page 3, dated 27 March 2026)"
+        in text_
+    )
+    assert "[2] Site Status (dated 05 October 2026)\n92 discontinued" in text_
+    assert "[3] Old SOP [SUPERSEDED]\n5 days" in text_
+    assert "dated None" not in text_
+
+
+def test_passage_carries_effective_date() -> None:
+    from llama_index.core.schema import NodeWithScore, TextNode
+
+    n = TextNode(id_="c1", text="t", metadata={"title": "T", "effective": "05 October 2026"})
+    assert graph.passage(NodeWithScore(node=n, score=1.0))["effective"] == "05 October 2026"
+    old = TextNode(id_="c2", text="t", metadata={"title": "T"})  # chunks ingested before dates
+    assert graph.passage(NodeWithScore(node=old, score=1.0))["effective"] is None
+
+
+@pytest.mark.parametrize("system", [llm.ANSWER_SYSTEM, llm.VISITOR_ANSWER_SYSTEM])
+def test_answer_prompts_keep_the_asked_subject(system: str) -> None:
+    """Phase 6 exam: public contractual DR targets were given as the new design's targets."""
+    assert "exactly what was asked" in system
+    assert "related but different" in system
+
+
+def test_staff_answer_prompt_prefers_the_most_recent_document() -> None:
+    assert "most recent document" in llm.ANSWER_SYSTEM
+    assert "SUPERSEDED" in llm.ANSWER_SYSTEM
 
 
 async def test_hi_never_grades() -> None:
