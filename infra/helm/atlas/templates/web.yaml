@@ -21,6 +21,13 @@ spec:
             - { name: API_URL, value: "http://{{ .Values.api.serviceName }}:8000" }
             - { name: POSTHOG_KEY, value: {{ .Values.config.POSTHOG_KEY | quote }} }
             - { name: POSTHOG_HOST, value: {{ .Values.config.POSTHOG_HOST | quote }} }
+            - { name: NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY, value: {{ .Values.config.ATLAS_CLERK_PUBLISHABLE_KEY | quote }} }
+            - name: CLERK_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.existingSecret | default (printf "%s-secrets" .Release.Name) }}
+                  key: ATLAS_CLERK_SECRET_KEY
+                  optional: true
           readinessProbe:
             httpGet: { path: /login, port: http }
             periodSeconds: 10

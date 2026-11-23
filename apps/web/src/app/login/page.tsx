@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { loginAs, startSignIn } from "@/app/actions";
 import { Logo } from "@/components/logo";
+import { CompanyLogo } from "@/components/company-logo";
+import { BackHome } from "@/components/auth-frame";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { OwnerForm } from "./owner-form";
 import { CLERK_ON } from "@/lib/clerk";
@@ -17,13 +19,14 @@ export default async function LoginPage({ searchParams }: { searchParams: Promis
 
   return (
     <div className="flex min-h-dvh flex-col bg-paper-2">
-      <div className="flex justify-end p-3">
+      <div className="flex items-center justify-between p-3">
+        <BackHome />
         <ThemeToggle className="grid size-11 cursor-pointer place-items-center rounded-input text-muted hover:bg-paper-3 hover:text-ink" />
       </div>
       <main className="flex flex-1 items-start justify-center px-4 pt-[6vh] pb-12">
         <div className="w-full max-w-md">
           <div className="mb-6 flex items-center gap-3">
-            <Logo className="size-8 text-accent" />
+            <Link href="/" aria-label="Atlas home"><Logo className="size-8 text-accent" /></Link>
             <div>
               <h1 className="text-lg font-semibold">Log in to Atlas</h1>
               <p className="text-sm text-muted">Try the demo as someone at a fictional company</p>
@@ -55,15 +58,7 @@ const Arrow = () => (
 );
 
 function Monogram({ company, small }: { company: DemoCompany; small?: boolean }) {
-  return (
-    <span
-      aria-hidden="true"
-      className={`grid shrink-0 place-items-center font-semibold text-white ${small ? "size-7 rounded-[8px] text-xs" : "size-9 rounded-[10px] text-sm"}`}
-      style={{ background: company.color, boxShadow: `inset 0 -3px 0 ${company.accent}` }}
-    >
-      {company.monogram}
-    </span>
-  );
+  return <CompanyLogo slug={company.slug} color={company.color} second={company.accent} className={`shrink-0 ${small ? "size-7" : "size-9"}`} />;
 }
 
 function CompanyPicker() {

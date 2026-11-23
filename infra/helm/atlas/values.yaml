@@ -14,13 +14,16 @@ secrets:
   ATLAS_LLM_API_KEY: ""
   ATLAS_SESSION_SECRET: ""          # openssl rand -hex 32
   ATLAS_SUPERADMIN_PASSWORD_HASH: "" # argon2 hash
-  ATLAS_CLERK_SECRET_KEY: ""
+  ATLAS_CLERK_SECRET_KEY: ""        # Clerk sk_live_/sk_test_ key: api (waitlist, invites) and web (session refresh)
   LANGSMITH_API_KEY: ""
 
 config:
   ATLAS_LLM_BASE_URL: http://ai-gateway:4000/v1  # any OpenAI-compatible gateway (LiteLLM)
   ATLAS_APP_ORIGIN: https://atlas.example.com
   ATLAS_SUPERADMIN_EMAIL: ""
+  # Clerk login (Google + email). Empty = Clerk off: demo + owner login only.
+  # The web image must ALSO be built with --build-arg NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=<same key>.
+  ATLAS_CLERK_PUBLISHABLE_KEY: ""
   LANGSMITH_TRACING: "false"
   LANGSMITH_PROJECT: atlas-v2
   LANGSMITH_ENDPOINT: https://api.smith.langchain.com

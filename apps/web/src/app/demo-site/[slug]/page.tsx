@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { DEMO_SITE_KEYS } from "@/lib/demo-site-keys";
 import { SITES } from "./sites";
+import { CompanyLogo } from "@/components/company-logo";
 import "./demo-site.css";
 
 export function generateStaticParams() {
@@ -30,7 +31,7 @@ export default async function DemoSite({ params }: { params: Promise<{ slug: str
         Fictional company for the Atlas demo. Try the chat bubble: it answers from this company&apos;s public documents only. <a href="/">About Atlas</a>
       </p>
       <header className="ds-nav ds-wrap">
-        <a className="ds-logo" href="#top"><span aria-hidden="true">{s.name[0]}</span>{s.name}</a>
+        <a className="ds-logo" href="#top"><CompanyLogo slug={slug} color={s.brand} second={s.second} className="ds-logo-mark" />{s.name}</a>
         <nav aria-label="Sections">
           <a href={`#${s.offer.id}`}>{s.offer.title}</a>
           <a href={`#${s.more.id}`}>{s.more.title}</a>
