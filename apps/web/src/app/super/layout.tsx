@@ -4,6 +4,7 @@ import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { superLogout } from "@/app/actions";
 import { Logo } from "@/components/logo";
+import { CLERK_ON } from "@/lib/clerk";
 import { QueryProvider } from "@/components/query";
 import { ThemeToggle } from "@/components/theme-toggle";
 import "../app/controls.css";
@@ -14,7 +15,7 @@ export const metadata: Metadata = { title: "Atlas owner" };
 
 // The API checks the signature on every call; here we only send visitors without the cookie to /login.
 export default async function SuperLayout({ children }: { children: React.ReactNode }) {
-  if (!(await cookies()).get("atlas_super")) redirect("/login?owner=1");
+  if (!(await cookies()).get("atlas_super")) redirect(CLERK_ON ? "/auth/owner" : "/login?owner=1");
 
   return (
     <div className="min-h-dvh">

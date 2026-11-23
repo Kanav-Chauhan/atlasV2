@@ -317,3 +317,55 @@ async def test_invite_existing_clerk_user_is_not_an_error(monkeypatch: pytest.Mo
         lambda **kw: real(transport=httpx.MockTransport(handler), **kw),
     )
     assert await clerk.invite("a@b.io") == "exists"
+
+
+# ------------------------------------------------------------------ owner login through Clerk
+
+
+def _clerk_user(email: str, verified: bool = True) -> dict[str, Any]:
+    status = "verified" if verified else "unverified"
+    return {
+        "primary_email_address_id": "e1",
+        "email_addresses": [
+            {"id": "e1", "email_address": email, "verification": {"status": status}}
+        ],
+    }
+
+
+@pytest.mark.parametrize(
+    ("email", "verified", "expected"),
+    [
+        ("Owner@Example.com", True, 204),  # case-insensitive match
+        ("owner@example.com", False, 403),  # unverified email never counts
+        ("someone@example.com", True, 403),
+    ],
+)
+async def test_owner_login_through_clerk(
+    monkeypatch: pytest.MonkeyPatch, email: str, verified: bool, expected: int
+) -> None:
+    monkeypatch.setattr(settings, "superadmin_clerk_emails", "owner@example.com, x@y.z")
+    monkeypatch.setattr(settings, "session_secret", "s" * 32)
+
+    async def fake_get_user(_sub: str) -> dict[str, Any]:
+        return _clerk_user(email, verified)
+
+    monkeypatch.setattr(clerk, "get_user", fake_get_user)
+    async with AsyncClient(transport=ASGITransport(app=app), base_url="http://test") as c:
+        r = await c.post("/auth/super/clerk", headers={"authorization": f"Bearer {token()}"})
+    assert r.status_code == expected
+    assert ("atlas_super=" in r.headers.get("set-cookie", "")) == (expected == 204)
+
+
+async def test_owner_login_through_clerk_needs_session_and_setting(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    monkeypatch.setattr(settings, "session_secret", "s" * 32)
+    async with AsyncClient(transport=ASGITransport(app=app), base_url="http://test") as c:
+        monkeypatch.setattr(settings, "superadmin_clerk_emails", "")
+        off = await c.post("/auth/super/clerk", headers={"authorization": f"Bearer {token()}"})
+        assert off.status_code == 403
+        monkeypatch.setattr(settings, "superadmin_clerk_emails", "owner@example.com")
+        assert (await c.post("/auth/super/clerk")).status_code == 401
+        forged = token(key=OTHER_KEY)
+        r = await c.post("/auth/super/clerk", headers={"authorization": f"Bearer {forged}"})
+        assert r.status_code == 401

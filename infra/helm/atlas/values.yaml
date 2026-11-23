@@ -21,6 +21,7 @@ config:
   ATLAS_LLM_BASE_URL: http://ai-gateway:4000/v1  # any OpenAI-compatible gateway (LiteLLM)
   ATLAS_APP_ORIGIN: https://atlas.example.com
   ATLAS_SUPERADMIN_EMAIL: ""
+  ATLAS_SUPERADMIN_CLERK_EMAILS: ""  # verified Clerk emails that get the owner area
   # Clerk login (Google + email). Empty = Clerk off: demo + owner login only.
   # The web image must ALSO be built with --build-arg NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=<same key>.
   ATLAS_CLERK_PUBLISHABLE_KEY: ""

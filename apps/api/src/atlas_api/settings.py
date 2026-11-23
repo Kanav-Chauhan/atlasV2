@@ -41,6 +41,8 @@ class Settings(BaseSettings):
     # Super admin login (docs/API.md). Empty = super login disabled.
     superadmin_email: str = ""
     superadmin_password_hash: str = ""
+    # Verified Clerk emails that get the owner area (comma-separated). Empty = password login only.
+    superadmin_clerk_emails: str = ""
     session_secret: str = ""
     # Website chat (Phase 8). The app's own origin: the /embed iframe calls the public API from
     # here, so it is always allowed next to each company's allowed_origins.

@@ -7,15 +7,16 @@ import { BackHome } from "@/components/auth-frame";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { OwnerForm } from "./owner-form";
 import { CLERK_ON } from "@/lib/clerk";
-import { DEMO_COMPANIES, type DemoCompany } from "@/lib/demo-users";
+import { DEMO_COMPANIES, type DemoCompany, type Role } from "@/lib/demo-users";
 
 export const metadata: Metadata = { title: "Log in" };
 
-// Demo login: pick a company, then a person (one click). Step lives in ?company= so no client state is needed.
-// Real users: "Sign in" → Clerk (/sign-in, Google or email) when CLERK_ON.
+// Real users (and the Atlas owner): the big "Sign in" button → Clerk (/sign-in, Google or email).
+// Demo: company tabs (?company=, default the first) and a one-click grid of people grouped by role.
+// /login?owner=1 = backup owner login (email + password), not linked.
 export default async function LoginPage({ searchParams }: { searchParams: Promise<{ company?: string; owner?: string }> }) {
   const { company: slug, owner } = await searchParams;
-  const company = DEMO_COMPANIES.find((c) => c.slug === slug);
+  const company = DEMO_COMPANIES.find((c) => c.slug === slug) ?? DEMO_COMPANIES[0];
 
   return (
     <div className="flex min-h-dvh flex-col bg-paper-2">
@@ -23,26 +24,29 @@ export default async function LoginPage({ searchParams }: { searchParams: Promis
         <BackHome />
         <ThemeToggle className="grid size-11 cursor-pointer place-items-center rounded-input text-muted hover:bg-paper-3 hover:text-ink" />
       </div>
-      <main className="flex flex-1 items-start justify-center px-4 pt-[6vh] pb-12">
-        <div className="w-full max-w-md">
+      <main className="flex flex-1 items-start justify-center px-4 pt-[3vh] pb-12">
+        <div className={`w-full ${owner ? "max-w-md" : "max-w-3xl"}`}>
           <div className="mb-6 flex items-center gap-3">
             <Link href="/" aria-label="Atlas home"><Logo className="size-8 text-accent" /></Link>
             <div>
               <h1 className="text-lg font-semibold">Log in to Atlas</h1>
-              <p className="text-sm text-muted">Try the demo as someone at a fictional company</p>
+              <p className="text-sm text-muted">Sign in to your company, or try the demo as someone at a fictional one</p>
             </div>
           </div>
           {owner ? (
+            // Backup owner login (email + password), not linked anywhere: the owner normally signs in with Clerk.
             <section aria-labelledby="owner-heading">
               <div className="mb-2 flex items-center justify-between gap-2">
-                <h2 id="owner-heading" className="font-body text-xs font-medium text-muted">Atlas owner</h2>
-                <Link href="/login" className="rounded-md px-1.5 py-0.5 text-xs text-muted hover:bg-paper-3 hover:text-ink">Back to demo</Link>
+                <h2 id="owner-heading" className="font-body text-xs font-medium text-muted">Atlas owner (backup login)</h2>
+                <Link href="/login" className="rounded-md px-1.5 py-0.5 text-xs text-muted hover:bg-paper-3 hover:text-ink">Back</Link>
               </div>
               <OwnerForm />
-              <p className="mt-2 text-xs text-muted">For the person who runs Atlas: every company, evaluations and usage.</p>
             </section>
           ) : (
-            <section aria-labelledby="demo-heading">{company ? <PersonPicker company={company} /> : <CompanyPicker />}</section>
+            <>
+              {CLERK_ON && <SignInButton />}
+              <Demo company={company} />
+            </>
           )}
         </div>
       </main>
@@ -50,113 +54,106 @@ export default async function LoginPage({ searchParams }: { searchParams: Promis
   );
 }
 
-const Arrow = () => (
-  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"
-    className="mt-0.5 shrink-0 text-muted opacity-0 transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100">
-    <path d="M5 12h14M13 6l6 6-6 6" />
-  </svg>
-);
-
-function Monogram({ company, small }: { company: DemoCompany; small?: boolean }) {
-  return <CompanyLogo slug={company.slug} color={company.color} second={company.accent} className={`shrink-0 ${small ? "size-7" : "size-9"}`} />;
-}
-
-function CompanyPicker() {
+function SignInButton() {
   return (
-    <>
-      <h2 id="demo-heading" className="mb-2 font-body text-xs font-medium text-muted">
-        Demo · step 1 of 2 · Pick a company
-      </h2>
-      <ul className="overflow-hidden rounded-card border border-rule bg-paper">
-        {DEMO_COMPANIES.map((c) => (
-          <li key={c.slug} className="border-b border-rule last:border-b-0">
-            <Link href={`/login?company=${c.slug}`} className="group flex items-center gap-3 px-4 py-3 hover:bg-paper-2">
-              <Monogram company={c} />
-              <span className="min-w-0 flex-1">
-                <span className="flex flex-wrap items-baseline gap-x-2">
-                  <span className="text-sm font-medium">{c.name}</span>
-                  <span className="text-xs text-muted">{c.industry}</span>
-                </span>
-                <span className="mt-0.5 block text-xs text-muted">{c.description}</span>
-              </span>
-              <Arrow />
-            </Link>
-          </li>
-        ))}
-      </ul>
-      <p className="mt-2 text-xs text-muted">Fictional companies with their own documents. Each person sees different departments.</p>
-      {CLERK_ON && (
-        <form action={startSignIn} className="mt-6">
-          <button type="submit" data-track="sign_in_click" className="group flex w-full cursor-pointer items-center gap-3 rounded-card border border-rule bg-paper px-4 py-3 text-left hover:bg-paper-2">
-            <span aria-hidden="true" className="grid size-7 shrink-0 place-items-center rounded-[8px] bg-accent text-xs font-semibold text-accent-ink">↪</span>
-            <span className="min-w-0 flex-1">
-              <span className="block text-sm font-medium">Sign in to your company</span>
-              <span className="block text-xs text-muted">With Google or your work email</span>
-            </span>
-            <Arrow />
-          </button>
-        </form>
-      )}
-      <Link href="/login?owner=1" className={`group ${CLERK_ON ? "mt-2" : "mt-6"} flex items-center gap-3 rounded-card border border-rule bg-paper px-4 py-3 hover:bg-paper-2`}>
-        <Logo className="size-7 shrink-0 text-muted" />
-        <span className="min-w-0 flex-1">
-          <span className="block text-sm font-medium">Atlas owner</span>
-          <span className="block text-xs text-muted">Log in with the owner email and password</span>
+    <form action={startSignIn} className="mb-8">
+      <button
+        type="submit"
+        data-track="sign_in_click"
+        className="flex min-h-14 w-full cursor-pointer items-center justify-center gap-3 rounded-card bg-accent px-5 py-3 text-accent-ink shadow-sm transition-[filter] hover:brightness-110 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+      >
+        <GoogleMark />
+        <span className="text-left">
+          <span className="block text-sm font-semibold">Sign in with Google or email</span>
+          <span className="block text-xs opacity-85">Your company&apos;s workspace, or the Atlas owner area</span>
         </span>
-        <Arrow />
-      </Link>
-    </>
+      </button>
+    </form>
   );
 }
 
-function PersonPicker({ company }: { company: DemoCompany }) {
+const GoogleMark = () => (
+  <span aria-hidden="true" className="grid size-8 shrink-0 place-items-center rounded-full bg-white">
+    <svg viewBox="0 0 24 24" width="18" height="18">
+      <path fill="#4285F4" d="M22.6 12.2c0-.8-.1-1.5-.2-2.2H12v4.2h5.9a5 5 0 0 1-2.2 3.3v2.7h3.6c2.1-1.9 3.3-4.8 3.3-8Z" />
+      <path fill="#34A853" d="M12 23c3 0 5.5-1 7.3-2.7l-3.6-2.8c-1 .7-2.2 1.1-3.7 1.1-2.9 0-5.3-1.9-6.2-4.5H2.1v2.9A11 11 0 0 0 12 23Z" />
+      <path fill="#FBBC05" d="M5.8 14.1a6.6 6.6 0 0 1 0-4.2V7H2.1a11 11 0 0 0 0 10l3.7-2.9Z" />
+      <path fill="#EA4335" d="M12 5.4c1.6 0 3.1.6 4.2 1.7l3.2-3.2A11 11 0 0 0 2.1 7l3.7 2.9C6.7 7.3 9.1 5.4 12 5.4Z" />
+    </svg>
+  </span>
+);
+
+const GROUPS: { title: string; roles: Role[] }[] = [
+  { title: "Admin · sees everything in the company", roles: ["Admin"] },
+  { title: "Managers · their own departments", roles: ["Manager"] },
+  { title: "Members and guests · the least access", roles: ["Member", "Guest"] },
+];
+
+function Demo({ company }: { company: DemoCompany }) {
   return (
-    <>
-      <div className="mb-2 flex items-center justify-between gap-2">
-        <h2 id="demo-heading" className="font-body text-xs font-medium text-muted">
-          Demo · step 2 of 2 · Pick a person at {company.name}
-        </h2>
-        <Link href="/login" className="rounded-md px-1.5 py-0.5 text-xs text-muted hover:bg-paper-3 hover:text-ink">
-          ← Companies
-        </Link>
+    <section aria-labelledby="demo-heading">
+      <div className="mb-3 flex items-center gap-3">
+        <span className="h-px flex-1 bg-rule" />
+        <h2 id="demo-heading" className="font-body text-xs font-medium text-muted">Or try the demo · no sign-up</h2>
+        <span className="h-px flex-1 bg-rule" />
       </div>
-      <div className="overflow-hidden rounded-card border border-rule bg-paper">
-        <div className="flex items-center gap-3 border-b border-rule bg-paper-2 px-4 py-2.5">
-          <Monogram company={company} small />
-          <span className="text-sm font-medium">{company.name}</span>
-          <span className="text-xs text-muted">{company.industry}</span>
-        </div>
-        <form action={loginAs}>
-          <ul>
-            {company.people.map((p) => (
-              <li key={p.email} className="border-b border-rule last:border-b-0">
-                <button
-                  type="submit"
-                  name="email"
-                  value={p.email}
-                  data-track="demo_login"
-                  data-track-props={JSON.stringify({ company: company.slug, role: p.role })}
-                  className="group flex w-full cursor-pointer items-start gap-3 px-4 py-3 text-left hover:bg-paper-2"
-                >
-                  <span className="min-w-0 flex-1">
-                    <span className="flex flex-wrap items-baseline gap-x-2">
-                      <span className="text-sm font-medium">{p.name}</span>
-                      <span className="text-xs text-muted">{p.title}</span>
-                    </span>
-                    <span className="mt-1 flex flex-wrap items-center gap-x-2 text-xs leading-5 text-muted">
-                      <span className="rounded-pill bg-accent-soft px-2 font-medium text-accent-deep">{p.role}</span>
-                      {p.departments.join(", ")}
-                    </span>
-                    <span className="mt-0.5 block truncate font-mono text-[11px] text-muted">{p.email}</span>
-                  </span>
-                  <Arrow />
-                </button>
-              </li>
-            ))}
-          </ul>
-        </form>
-      </div>
-      <p className="mt-2 text-xs text-muted">Ask the same question as two people and compare the answers.</p>
-    </>
+
+      <nav aria-label="Demo companies" className="mb-4 grid grid-cols-3 gap-2">
+        {DEMO_COMPANIES.map((c) => {
+          const on = c.slug === company.slug;
+          return (
+            <Link
+              key={c.slug}
+              href={`/login?company=${c.slug}`}
+              scroll={false}
+              aria-current={on ? "page" : undefined}
+              className={`flex flex-col items-center gap-1.5 rounded-card border px-2 py-2.5 text-center sm:flex-row sm:gap-3 sm:px-3 sm:text-left ${on ? "border-accent bg-paper ring-1 ring-accent" : "border-rule bg-paper/60 hover:bg-paper"}`}
+            >
+              <CompanyLogo slug={c.slug} color={c.color} second={c.accent} className="size-9 shrink-0" />
+              <span className="w-full min-w-0">
+                <span className="block text-xs leading-tight font-medium sm:truncate sm:text-sm">{c.name}</span>
+                <span className="hidden truncate text-xs text-muted sm:block">{c.industry}</span>
+              </span>
+            </Link>
+          );
+        })}
+      </nav>
+
+      <p className="mb-4 text-xs text-muted">{company.description} Pick a person to log in as them.</p>
+
+      <form action={loginAs} className="space-y-4">
+        {GROUPS.map((g) => {
+          const people = company.people.filter((p) => g.roles.includes(p.role));
+          if (!people.length) return null;
+          return (
+            <div key={g.title}>
+              <h3 className="mb-1.5 font-body text-[11px] font-medium tracking-wide text-muted uppercase">{g.title}</h3>
+              <ul className="grid grid-cols-1 gap-2 sm:grid-cols-2 md:grid-cols-3">
+                {people.map((p) => (
+                  <li key={p.email}>
+                    <button
+                      type="submit"
+                      name="email"
+                      value={p.email}
+                      data-track="demo_login"
+                      data-track-props={JSON.stringify({ company: company.slug, role: p.role })}
+                      className="h-full w-full cursor-pointer rounded-card border border-rule bg-paper px-3 py-2.5 text-left transition-colors hover:border-accent hover:bg-accent-soft/40 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+                    >
+                      <span className="flex items-center justify-between gap-2">
+                        <span className="truncate text-sm font-medium">{p.name}</span>
+                        <span className="shrink-0 rounded-pill bg-accent-soft px-2 text-[11px] leading-5 font-medium text-accent-deep">{p.role}</span>
+                      </span>
+                      <span className="mt-0.5 block truncate text-xs text-muted">{p.title}</span>
+                      <span className="mt-0.5 block truncate text-xs text-muted">{p.departments.join(", ")}</span>
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          );
+        })}
+      </form>
+      <p className="mt-4 text-xs text-muted">Ask the same question as two people and compare the answers.</p>
+    </section>
   );
 }

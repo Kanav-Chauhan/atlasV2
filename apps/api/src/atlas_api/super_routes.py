@@ -17,6 +17,7 @@ from fastapi.responses import Response
 from pydantic import BaseModel, StringConstraints
 from sqlalchemy import case, func, select
 
+from atlas_api import clerk
 from atlas_api.db import redis
 from atlas_api.insights_routes import insights_for
 from atlas_api.models import (
@@ -29,7 +30,7 @@ from atlas_api.models import (
     Role,
     User,
 )
-from atlas_api.routes import DB, DocumentOut
+from atlas_api.routes import DB, DocumentOut, session_token
 from atlas_api.settings import settings
 from atlas_api.team_routes import org_people, person
 
@@ -96,6 +97,34 @@ async def super_login(body: SuperLogin, request: Request) -> Response:
     if not settings.session_secret or not password_ok(body.email, body.password):
         log.warning("super admin login failed from %s", client_ip(request))  # never the password
         raise HTTPException(401, "Wrong email or password.")
+    response = Response(status_code=204)
+    response.set_cookie(
+        COOKIE, make_token(), max_age=TTL_S, httponly=True, secure=True, samesite="strict"
+    )
+    return response
+
+
+def owner_emails() -> set[str]:
+    return {e.strip().lower() for e in settings.superadmin_clerk_emails.split(",") if e.strip()}
+
+
+@router.post("/auth/super/clerk", status_code=204)
+async def super_login_clerk(request: Request) -> Response:
+    """Owner login through Clerk: a verified Clerk session whose verified primary email is in
+    ATLAS_SUPERADMIN_CLERK_EMAILS gets the same signed atlas_super cookie as the password login."""
+    allowed = owner_emails()
+    if not allowed or not settings.session_secret:
+        raise HTTPException(403, "Owner sign-in through Clerk is off.")
+    token = session_token(request)
+    claims = await clerk.verify(token) if token else None
+    if not claims:
+        raise HTTPException(401, "Sign in first.")
+    try:
+        email = clerk.verified_primary_email(await clerk.get_user(claims["sub"]))
+    except httpx.HTTPError:
+        raise HTTPException(503, "Clerk isn't answering right now.") from None
+    if not email or email not in allowed:
+        raise HTTPException(403, "Not the Atlas owner.")
     response = Response(status_code=204)
     response.set_cookie(
         COOKIE, make_token(), max_age=TTL_S, httponly=True, secure=True, samesite="strict"

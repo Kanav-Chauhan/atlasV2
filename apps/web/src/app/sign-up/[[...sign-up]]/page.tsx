@@ -14,7 +14,7 @@ export default function SignUpPage() {
   return (
     <AuthFrame title="Create your Atlas account" sub="Use the email address your invitation went to">
       <MaybeClerk>
-        <SignUp path="/sign-up" routing="path" signInUrl="/sign-in" fallbackRedirectUrl="/app" />
+        <SignUp path="/sign-up" routing="path" signInUrl="/sign-in" fallbackRedirectUrl="/auth/owner" />
       </MaybeClerk>
     </AuthFrame>
   );

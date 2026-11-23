@@ -13,7 +13,7 @@ export default function SignInPage() {
   return (
     <AuthFrame title="Sign in to Atlas" sub="Your own company's documents">
       <MaybeClerk>
-        <SignIn path="/sign-in" routing="path" signUpUrl="/sign-up" fallbackRedirectUrl="/app" />
+        <SignIn path="/sign-in" routing="path" signUpUrl="/sign-up" fallbackRedirectUrl="/auth/owner" />
       </MaybeClerk>
     </AuthFrame>
   );
