@@ -24,7 +24,6 @@ Decisions the owner still has to make. Each links to the decision it would chang
 | Q4 | Does the answer cache match too loosely? | similarity threshold as shipped ([D-033](#d-033)) | keep · tighten | A longer "step by step" question got the shorter question's cached answer. |
 | Q5 | Treat an answer with no citations as "Not found"? | no | yes · no | Cheap way to get the formal Not found back when the 4 s limit hits. |
 | Q6 | Browser (Playwright) tests in CI? | run by hand only | add to CI | Planned in Phase 7, never added to CI. |
-| Q7 | Landing: A in white (dark switch) replaces the live page? | preview ready | approve · change | Owner picked A in white by default with a dark option ([D-059](#d-059)); preview at /previews/landing-v2/a-white/. |
 
 ---
 
@@ -378,7 +377,7 @@ Measured cause (LangSmith, last 100 questions): relevance check median 3.4 s but
 - **Gotchas:** the semantic cache answers instantly ("From cache"), so bump `atlas:cache:gen:<org>` before a take. The demo allows 40 questions a day per IP, so clear only the server IP's `plan:demo:*:<ip>:*` keys.
 
 #### D-059 · Landing: option A, white by default, dark as a choice
-`2026-11-24 · active` (answers Q7; preview until the owner approves)
+`2026-11-24 · active` (answers Q7; live, owner approved 2026-11-24)
 - **Decision:** A's layout and words; white page with light blue-grey bands; a switch in the header turns it dark. The choice is saved under the app's own key (`atlas-theme`). A computer set to dark mode still gets white first (owner's choice).
 - Glows became soft shadows, the code box stays dark, every text colour passes 4.5:1 in both themes, and each theme has its own hero screenshot.
 
