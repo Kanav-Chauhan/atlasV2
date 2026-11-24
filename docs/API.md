@@ -59,6 +59,7 @@ The same rule becomes a SQL `WHERE` filter on chunks (`org_id`, `access`) in Pha
 | GET | `/documents/{id}/file` | users who can read it | the original file (PDF/DOCX/MD/TXT) as a download (`attachment`); `?inline=1` → `inline` with the real content type, for the in-app viewer (pdf.js). Same access check, `nosniff`, `private, no-store` |
 | GET | `/documents/{id}/text` | users who can read it | `{format, markdown}`: what Atlas read, for the viewer (MD/TXT from the file; DOCX/PDF from the chunks, overlaps removed) |
 | POST | `/documents` | admin, or manager uploading into one of their own departments | multipart `file` + `access` (+ optional `is_public` admin only). Saves the file, creates the row with `status=queued`, queues the Celery task, returns the document. Max 10 MB; pdf/docx/md/txt only. |
+| PUT | `/documents/{id}/file` | admin, or a manager of that document's department | multipart `file`: a new file for the same document; re-read in the background. `409` same or already known file |
 | DELETE | `/documents/{id}` | admin, or a manager of that document's department | `204`, removes the file, row and chunks |
 | GET | `/departments` | any user | the org's departments `[{name, description, members}]` |
 

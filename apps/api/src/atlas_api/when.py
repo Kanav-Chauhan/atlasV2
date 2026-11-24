@@ -94,7 +94,7 @@ def plain(d: date) -> str:
 
 _WORDS = {
     r"\b(today|aaj)\b|आज": 0,
-    r"\b(tom|tmrw|tmw|tomm?orr?ow)\b": 1,
+    r"\b(tmrw|tmw|tomm?orr?ow)\b": 1,
     r"\byesterday\b": -1,
     r"\bday after tomorrow\b": 2,
 }
@@ -103,6 +103,12 @@ _WORDS = {
 def resolve(text: str, now: date | None = None) -> str:
     """Without a model: "holiday tom" -> "holiday 25 November 2026", "26 january" gets its year."""
     now = now or today()
+    # "tom" is also a name: a date only in lower case and next to a word about days off.
+    if re.search(r"holiday|chh?utti|\b(office|off|open|closed|wfh|leave)\b", text, re.I):
+        text = re.sub(r"\btom\b", "tomorrow", text)
+    # Hindi "kal" is yesterday or tomorrow; the verb says which.
+    past = re.search(r"\b(tha|thi|the|thee|hua|gaya)\b|था|थी|थे|हुआ", text, re.I)
+    text = re.sub(r"\bkal\b|कल", "yesterday" if past else "tomorrow", text, flags=re.I)
     for pattern, days in reversed(_WORDS.items()):  # "day after tomorrow" before "tomorrow"
         text = re.sub(pattern, plain(now + timedelta(days=days)), text, flags=re.I)
 

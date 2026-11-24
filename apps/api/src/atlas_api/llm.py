@@ -106,7 +106,8 @@ REWRITE_PROMPT = ChatPromptTemplate.from_messages(
             "is the next one to come.\n"
             "- Resolve follow-ups ('and for interns?', 'what about it', 'next month this date') "
             "with the chat history: keep the last question's subject and change only what the user "
-            "changed. 'This date' or 'same date' means the date last talked about, not today. "
+            "changed. 'This date' or 'same date' means the date last talked about, not today; "
+            "'today', 'tomorrow', 'tom', 'aaj' and 'kal' always count from today. "
             "Example: after 'Is 25 November 2026 a holiday at {org}?', 'what about next month this "
             "date' becomes 'Is 25 December 2026 a holiday at {org}?'.\n"
             "- If the message makes sense on its own or changes the subject, ignore the history.\n"
@@ -296,9 +297,10 @@ class Models:
         chain = GRADE_PROMPT | fast().with_structured_output(
             RelevanceOut, method="function_calling"
         )
-        extra = standalone_note(question, standalone)
-        if when.names_a_day(standalone):
-            extra += DAY_HINT
+        if when.names_a_day(standalone):  # judge the real date: "tom" alone gets a "no"
+            question, extra = standalone, DAY_HINT
+        else:
+            extra = standalone_note(question, standalone)
         out = await chain.ainvoke(
             {
                 "question": question,

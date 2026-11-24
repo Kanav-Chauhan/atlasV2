@@ -123,10 +123,12 @@ async def test_a_one_day_question_searches_for_its_calendar() -> None:
             out = await super().rewrite(question, org, history)
             return out.model_copy(update={"lookup": "holiday calendar 2026"})
 
-    ctx = make_ctx(Dated())
+    models = Dated()
+    ctx = make_ctx(models)
     _, final = await run(graph.build(InMemorySaver()), "is it holiday tom", ctx)
     assert ctx.searches == ["holiday calendar 2026"]  # type: ignore[attr-defined]
     assert final["query"] == "Is 25 November 2026 a holiday at Nimbus?"  # what is answered
+    assert "relevance" not in models.calls  # the calendar's score decides
 
 
 @pytest.mark.parametrize(
@@ -151,3 +153,11 @@ def test_resolve_and_calendar() -> None:
     assert when.resolve("may I carry 30 days?", now) == "may I carry 30 days?"
     assert when.calendar_for("is 26 January 2027 a holiday") == "holiday calendar 2027"
     assert when.calendar_for("Is the review due on 26 January 2027?") == ""
+
+
+def test_kal_and_a_person_called_tom() -> None:
+    now = date(2026, 11, 24)
+    assert when.resolve("kal chutti hai kya?", now) == "25 November 2026 chutti hai kya?"
+    assert when.resolve("kal chutti thi kya?", now) == "23 November 2026 chutti thi kya?"
+    assert when.resolve("what is tom's role", now) == "what is tom's role"
+    assert when.resolve("Is Tom on leave?", now) == "Is Tom on leave?"

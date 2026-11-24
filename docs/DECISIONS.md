@@ -20,17 +20,11 @@ Decisions the owner still has to make. Each links to the decision it would chang
 
 | # | Question | Now | Options | Notes |
 |---|---|---|---|---|
-| Q1 | Relevance check time limit: 4 s or 6 s? | 4 s ([D-031](#d-031)) | 4 s · 6 s · 8 s | Owner: keep 4 s for now, **ask again when back**. Main session recommends 6 s with free models. |
-| Q2 | Answer model "thinking": on or off? | off ([D-032](#d-032)) | off · on · on only for staff | Owner unsure. Off = same answers in tests, ~2 s instead of ~15 s. |
 | Q3 | Free models or paid (Claude Haiku 5.5)? | free ([D-012](#d-012)) | A all free · B paid for small steps only · C paid for Pro customers | Owner: free for now. Recommended: free demo, Haiku for Pro, after the 187-question exam on Haiku. |
 | Q4 | Does the answer cache match too loosely? | similarity threshold as shipped ([D-033](#d-033)) | keep · tighten | A longer "step by step" question got the shorter question's cached answer. |
 | Q5 | Treat an answer with no citations as "Not found"? | no | yes · no | Cheap way to get the formal Not found back when the 4 s limit hits. |
 | Q6 | Browser (Playwright) tests in CI? | run by hand only | add to CI | Planned in Phase 7, never added to CI. |
-| Q7 | Which new landing page: A (dark cinematic), B (light editorial, self-citing), C (interactive "who's asking")? | old landing live | A · B · C | Previews at /previews/landing-v2/{a,b,c}/ (password). The pick replaces apps/web/public/home. |
-| Q8 | Find → Answer starts a new chat (and a new AI call) each time | as built | keep · reuse the last chat | From the Phase 9 test pass. |
-| Q9 | Managers can upload into the shared "Managers" group but invite only into their own group | as built | intended · restrict upload | From the Phase 9 test pass. |
-| Q10 | Library has no delete / replace for documents | none | add | From the Phase 9 test pass. |
-| Q11 | Seed a few weeks of demo question history so Insights charts look real | no | yes · no | Demo data sits on 1–2 days. |
+| Q7 | Landing: A in white (dark switch) replaces the live page? | preview ready | approve · change | Owner picked A in white by default with a dark option ([D-059](#d-059)); preview at /previews/landing-v2/a-white/. |
 
 ---
 
@@ -382,6 +376,40 @@ Measured cause (LangSmith, last 100 questions): relevance check median 3.4 s but
 - **Story:** HR manager (Ritika) asks about earned leave → answer + Matching documents → citation opens the Leave Policy in the side viewer with the passage highlighted → Nimbus website bubble answers "What is NimbusOps?".
 - **Outputs:** 28.6 s, 856 KB MP4 (landing + README), 914 KB GIF.
 - **Gotchas:** the semantic cache answers instantly ("From cache"), so bump `atlas:cache:gen:<org>` before a take. The demo allows 40 questions a day per IP, so clear only the server IP's `plan:demo:*:<ip>:*` keys.
+
+#### D-059 · Landing: option A, white by default, dark as a choice
+`2026-11-24 · active` (answers Q7; preview until the owner approves)
+- **Decision:** A's layout and words; white page with light blue-grey bands; a switch in the header turns it dark. The choice is saved under the app's own key (`atlas-theme`). A computer set to dark mode still gets white first (owner's choice).
+- Glows became soft shadows, the code box stays dark, every text colour passes 4.5:1 in both themes, and each theme has its own hero screenshot.
+
+#### D-060 · Only "New chat" starts a new chat
+`2026-11-24 · active` (answers Q8, owner's rule)
+- **Decision:** the sidebar, Home's box and Find → Answer go back to the last chat. Find → Answer with the same words shows the existing answer, with no AI call.
+- After 8 hours without activity, a new chat starts.
+- **Kept in the browser per person, not on the server:** demo people are shared by every visitor, so the server's "latest chat" could be a stranger's. **Trade-off:** it does not follow you to another device (History does).
+
+#### D-061 · Chat memory: small, and it knows the date
+`2026-11-24 · active`
+- **Problem:** owner: "is it holiday tom", then "what about next month this date" must be understood, without overloading the context. The models did not know today's date, and memory was the last 3 raw turns.
+- **Decision:**
+  - Each answer is stored with its standalone question ("Is 25 November 2026 a holiday at Nimbus?"). Memory = the last 4 turns with short answers + one line for each of 12 older questions, about 4,000 characters at most however long the chat is. No extra AI call (a summary model was rejected: slower, and it drops dates).
+  - `when.py` does the date arithmetic; the model never does. If the rewrite fails or is slow, code moves the last question's date itself. Follow-ups and date questions get 6 s for the rewrite instead of 3.
+  - A question about one day searches for its calendar by name ("holiday calendar 2026"): the day itself scored 0.7, below the 1.3 threshold; the calendar scores 2.5. For holiday look-ups that score decides, because the small model called a missing day "no" in 2 of 8 live runs.
+  - Date-dependent answers are never cached, and a cached answer is refused when a number, month or weekday differs.
+
+#### D-062 · Library: replace and delete; managers leave "Managers" to admins
+`2026-11-24 · active` (answers Q9, Q10)
+- **Replace** keeps the id, title, department, public flag and links. The old text answers until the new file is read. Version, effective and review dates are cleared, because they described the old file.
+- A document deleted while it is being read leaves nothing behind (its chunks are removed at the end).
+- Managers can read the shared Managers group but not upload, replace or delete there, the same scope as invites.
+
+#### D-063 · Sample question history in the demo companies
+`2026-11-24 · active` (answers Q11)
+- **Decision:** 60 days from the exam's own questions and askers, `chats.origin = "sample"`. Insights says how many are samples; History, Home's recent chats and the owner's usage numbers leave them out. Refilled by every demo reset.
+
+#### D-064 · Relevance check 6 s; thinking off in the code too
+`2026-11-24 · active` (answers Q1, Q2)
+- Measure the timeout rate after a few days of use.
 
 #### D-042 · Atlas logo = the owner's "A", traced to SVG
 `2026-11-23 · active`

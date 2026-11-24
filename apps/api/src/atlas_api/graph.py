@@ -388,7 +388,7 @@ async def rewrite_node(state: State, runtime: Runtime[Ctx]) -> dict[str, Any]:
     timeouts, lookup = state.get("timeouts", []), ""
     try:
         out = await limited(
-            ctx.models.rewrite(q, ctx.org, history_text(history)),
+            ctx.models.rewrite(when.resolve(q), ctx.org, history_text(history)),
             # A follow-up or a date means nothing without its rewrite: worth a longer wait.
             ctx.rewrite_timeout * (2 if history or dated else 1),
         )
@@ -496,7 +496,10 @@ async def grade_node(state: State, runtime: Runtime[Ctx]) -> dict[str, Any]:
     if not passages or state["top_score"] < ctx.threshold:
         log_entry["verdict"] = "skipped"
         return fail | {"relevance": "skipped", "grade_log": grade_log}
-    if not ctx.relevance:
+    # "Is <day> a holiday?" and the calendar was found: a day missing from the list is the answer,
+    # which the small model keeps calling "no". The answer prompt still claims only what is there.
+    day_lookup = bool(state.get("lookup") and when.calendar_for(state["query"]))
+    if not ctx.relevance or day_lookup:
         log_entry["verdict"] = "off"
         return {"grade": "answer", "relevance": "off", "grade_log": grade_log}
     text = passages_text(passages)
