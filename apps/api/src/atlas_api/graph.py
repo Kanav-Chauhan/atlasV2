@@ -67,6 +67,7 @@ class State(TypedDict, total=False):
     smalltalk: str  # greeting | thanks | who | bye
     language: str  # en | hi
     query: str  # the search query (rewritten, English)
+    lookup: str  # "holiday calendar 2026": what to search for a one-day question, "" otherwise
     first_query: str  # the first rewrite: the semantic-cache key
     used_history: bool
     attempt: int
@@ -92,6 +93,7 @@ def new_turn(question: str) -> State:
         smalltalk="",
         language="en",
         query="",
+        lookup="",
         first_query="",
         used_history=False,
         attempt=0,
@@ -371,6 +373,9 @@ async def rewrite_node(state: State, runtime: Runtime[Ctx]) -> dict[str, Any]:
         except Exception:
             log.exception("reformulate failed")
             alt = ""
+        # The meaning stays the first query (the date must not get lost); only the search changes.
+        if when.names_a_day(state["query"]):
+            return {"lookup": alt}
         return {"query": alt or state["query"]}
     _status(runtime, "rewrite")
     history = state["messages"][:-1]
@@ -378,12 +383,14 @@ async def rewrite_node(state: State, runtime: Runtime[Ctx]) -> dict[str, Any]:
     needs_model = bool(history) or state["language"] == "hi" or _COMPANY_WORDS.search(q) or dated
     if not needs_model:
         return {"query": q, "first_query": q, "used_history": False}
-    timeouts = state.get("timeouts", [])
+    timeouts, lookup = state.get("timeouts", []), ""
     try:
         out = await limited(
             ctx.models.rewrite(q, ctx.org, history_text(history)), ctx.rewrite_timeout
         )
         query = out.query.strip() or q
+        # One day scores badly against a table of dates; the table's name finds it.
+        lookup = out.lookup.strip() if when.names_a_day(query) else ""
         used = (bool(history) and out.used_history) or dated
     except TimeoutError:
         log.warning("rewrite timed out; searching with the question as asked")
@@ -394,7 +401,13 @@ async def rewrite_node(state: State, runtime: Runtime[Ctx]) -> dict[str, Any]:
         query, used = plain_followup(q, history), bool(history) or dated
     # used=True = never cached: the turn leaned on the chat, or on the day it was asked, or
     # there was no clean rewrite.
-    return {"query": query, "first_query": query, "used_history": used, "timeouts": timeouts}
+    return {
+        "query": query,
+        "lookup": lookup,
+        "first_query": query,
+        "used_history": used,
+        "timeouts": timeouts,
+    }
 
 
 def after_rewrite(state: State) -> Literal["cache_lookup", "retrieve"]:
@@ -451,7 +464,8 @@ def default_search(q: str, filters: MetadataFilters) -> list[NodeWithScore]:
 async def retrieve_node(state: State, runtime: Runtime[Ctx]) -> dict[str, Any]:
     _status(runtime, "retrieve")
     ctx = runtime.context
-    hits = await asyncio.to_thread(ctx.search or default_search, state["query"], ctx.filters)
+    q = state.get("lookup") or state["query"]
+    hits = await asyncio.to_thread(ctx.search or default_search, q, ctx.filters)
     passages = [passage(h) for h in hits]
     return {"passages": passages, "top_score": passages[0]["score"] if passages else -99.0}
 

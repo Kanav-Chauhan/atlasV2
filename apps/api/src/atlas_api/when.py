@@ -54,6 +54,16 @@ def relative(text: str) -> bool:
     return bool(RELATIVE.search(text))
 
 
+_FULL_DATE = re.compile(
+    r"\b\d{1,2}(?:st|nd|rd|th)?\s+(?:of\s+)?[A-Z][a-z]{2,8}\.?,?\s+20\d\d\b"
+    r"|\b[A-Z][a-z]{2,8}\.?\s+\d{1,2}(?:st|nd|rd|th)?,?\s+20\d\d\b"
+)
+
+
+def names_a_day(text: str) -> bool:
+    return bool(_FULL_DATE.search(text))
+
+
 _FACTS = re.compile(
     r"\d+|\b(?:jan(?:uary)?|feb(?:ruary)?|mar(?:ch)?|apr(?:il)?|may|june?|july?|aug(?:ust)?"
     r"|sep(?:t(?:ember)?)?|oct(?:ober)?|nov(?:ember)?|dec(?:ember)?|monday|tuesday|wednesday"

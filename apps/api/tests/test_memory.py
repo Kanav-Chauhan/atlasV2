@@ -115,3 +115,15 @@ async def test_cache_refuses_a_near_match_with_another_number(
     assert await c.lookup("is 25 dec 2026 a holiday", "s", 1) == {"answer": "Yes"}
     assert await c.lookup("Is 26 December 2026 a holiday?", "s", 1) is None
     assert await c.lookup("Is 25 November 2026 a holiday?", "s", 1) is None
+
+
+async def test_a_one_day_question_searches_for_its_calendar() -> None:
+    class Dated(Holiday):
+        async def rewrite(self, question: str, org: str, history: str) -> RewriteOut:
+            out = await super().rewrite(question, org, history)
+            return out.model_copy(update={"lookup": "holiday calendar 2026"})
+
+    ctx = make_ctx(Dated())
+    _, final = await run(graph.build(InMemorySaver()), "is it holiday tom", ctx)
+    assert ctx.searches == ["holiday calendar 2026"]  # type: ignore[attr-defined]
+    assert final["query"] == "Is 25 November 2026 a holiday at Nimbus?"  # what is answered
