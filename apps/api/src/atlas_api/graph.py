@@ -349,7 +349,9 @@ def plain_followup(question: str, history: list[AnyMessage]) -> str:
     """The search query when the rewrite step failed: a short follow-up ("what about next
     month?") means nothing alone, so the last question's standalone form goes with it."""
     before = last_standalone(history)
-    return f"{before} {question}" if before and len(question.split()) <= 8 else question
+    if not before or len(question.split()) > 8:
+        return when.resolve(question)
+    return when.shift(before, question) or f"{before} {when.resolve(question)}"
 
 
 def said(state: State, text: str) -> AIMessage:
@@ -386,7 +388,9 @@ async def rewrite_node(state: State, runtime: Runtime[Ctx]) -> dict[str, Any]:
     timeouts, lookup = state.get("timeouts", []), ""
     try:
         out = await limited(
-            ctx.models.rewrite(q, ctx.org, history_text(history)), ctx.rewrite_timeout
+            ctx.models.rewrite(q, ctx.org, history_text(history)),
+            # A follow-up or a date means nothing without its rewrite: worth a longer wait.
+            ctx.rewrite_timeout * (2 if history or dated else 1),
         )
         query = out.query.strip() or q
         # One day scores badly against a table of dates; the table's name finds it.
@@ -399,6 +403,7 @@ async def rewrite_node(state: State, runtime: Runtime[Ctx]) -> dict[str, Any]:
     except Exception:
         log.exception("rewrite failed; searching with the question as asked")
         query, used = plain_followup(q, history), bool(history) or dated
+    lookup = lookup or when.calendar_for(query)
     # used=True = never cached: the turn leaned on the chat, or on the day it was asked, or
     # there was no clean rewrite.
     return {

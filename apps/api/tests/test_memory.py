@@ -91,7 +91,7 @@ async def test_follow_up_keeps_its_subject_when_the_rewrite_fails() -> None:
     g = graph.build(InMemorySaver())
     await run(g, "is it holiday tom", ctx, "u:c")
     _, final = await run(g, "what about next month this date", ctx, "u:c")
-    assert final["query"].startswith("Is 25 November 2026 a holiday at Nimbus? what about")
+    assert final["query"] == "Is 25 December 2026 a holiday at Nimbus?"
 
 
 async def test_cache_refuses_a_near_match_with_another_number(
@@ -127,3 +127,27 @@ async def test_a_one_day_question_searches_for_its_calendar() -> None:
     _, final = await run(graph.build(InMemorySaver()), "is it holiday tom", ctx)
     assert ctx.searches == ["holiday calendar 2026"]  # type: ignore[attr-defined]
     assert final["query"] == "Is 25 November 2026 a holiday at Nimbus?"  # what is answered
+
+
+@pytest.mark.parametrize(
+    ("last", "said", "want"),
+    [
+        ("Is 25 November 2026 a holiday?", "what about next month this date", "25 December 2026"),
+        ("Is 25 December 2026 a holiday?", "and the day after that?", "26 December 2026"),
+        ("Is 25 December 2026 a holiday?", "what about 26 jan", "26 January 2027"),
+        ("Is 31 January 2027 a holiday?", "next month?", "28 February 2027"),
+    ],
+)
+def test_dates_move_without_a_model(last: str, said: str, want: str) -> None:
+    assert want in when.shift(last, said, date(2026, 11, 24))
+    assert when.shift("How many leave days?", said) == ""
+
+
+def test_resolve_and_calendar() -> None:
+    now = date(2026, 11, 24)
+    assert when.resolve("is it holiday tom", now) == "is it holiday 25 November 2026"
+    assert when.resolve("day after tomorrow off?", now) == "26 November 2026 off?"
+    assert when.resolve("is 26 january a holiday", now) == "is 26 January 2027 a holiday"
+    assert when.resolve("may I carry 30 days?", now) == "may I carry 30 days?"
+    assert when.calendar_for("is 26 January 2027 a holiday") == "holiday calendar 2027"
+    assert when.calendar_for("Is the review due on 26 January 2027?") == ""
