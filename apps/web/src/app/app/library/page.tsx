@@ -35,7 +35,7 @@ export default async function LibraryRoute({ searchParams }: { searchParams: Pro
   return (
     <QueryProvider>
       <Library company={user.company.name} initial={initial} initialQuery={query} isAdmin={isAdmin} lead={lead}
-        ownDepartments={departments} />
+        ownDepartments={departments.filter((d) => d !== "Managers")} />
     </QueryProvider>
   );
 }

@@ -9,6 +9,7 @@ import { Icon } from "@/components/ui/icons";
 import { Page, PageHeader } from "@/components/ui/page";
 import { api } from "@/lib/api";
 import { FILTER_KEYS, type LibraryDoc, type LibraryPage, libraryQuery, SORTS, STATUSES, TYPES } from "./params";
+import { ManageDialog, type ManageTarget, RowActions } from "./manage";
 import { DropZone, UploadDialog } from "./upload";
 
 // UI Phase 4: the Library like the old Atlas — 20 documents a page with server-side search,
@@ -36,6 +37,7 @@ export function Library({ company, initial, initialQuery, isAdmin, lead, ownDepa
   const [size, setSize] = useViewerSize();
   const [uploadOpen, setUploadOpen] = useState(params.get("upload") === "1");
   const [dropped, setDropped] = useState<File[]>([]);
+  const [manage, setManage] = useState<ManageTarget | null>(null);
   const listTop = useRef<HTMLDivElement>(null);
   const canUpload = isAdmin || (lead && ownDepartments.length > 0);
 
@@ -138,8 +140,8 @@ export function Library({ company, initial, initialQuery, isAdmin, lead, ownDepa
               </section>
             ) : (
               <>
-                <DocTable docs={data.items} onOpen={(id) => viewer.open({ doc: String(id) })} />
-                <DocCards docs={data.items} onOpen={(id) => viewer.open({ doc: String(id) })} />
+                <DocTable docs={data.items} onOpen={(id) => viewer.open({ doc: String(id) })} onManage={setManage} />
+                <DocCards docs={data.items} onOpen={(id) => viewer.open({ doc: String(id) })} onManage={setManage} />
                 <Pager page={data.page} perPage={data.per_page} total={data.total} onPage={goPage} />
               </>
             )}
@@ -151,6 +153,10 @@ export function Library({ company, initial, initialQuery, isAdmin, lead, ownDepa
       {viewer.current && (
         <DocViewer mode="overlay" current={viewer.current} onUpdate={viewer.update} onClose={viewer.close}
           size={size} onSize={setSize} canSeeChunks company={company} />
+      )}
+      {manage && (
+        <ManageDialog key={`${manage.action}-${manage.doc.id}`} target={manage} onClose={() => setManage(null)}
+          onDeleted={(id) => { if (viewer.current?.doc === String(id)) viewer.close(); }} />
       )}
       {canUpload && (
         <UploadDialog open={uploadOpen} onClose={closeUpload} files={dropped} isAdmin={isAdmin} uploadTo={uploadTo}
@@ -313,12 +319,14 @@ function Title({ d, onOpen }: { d: LibraryDoc; onOpen: (id: number) => void }) {
   );
 }
 
-function DocTable({ docs, onOpen }: { docs: LibraryDoc[]; onOpen: (id: number) => void }) {
+type ListProps = { docs: LibraryDoc[]; onOpen: (id: number) => void; onManage: (t: ManageTarget) => void };
+
+function DocTable({ docs, onOpen, onManage }: ListProps) {
   return (
     <div className="table-wrap lib-table">
       <table className="tbl">
         <thead>
-          <tr><th scope="col">Document</th><th scope="col">Department</th><th scope="col">Status</th><th scope="col">Updated</th></tr>
+          <tr><th scope="col">Document</th><th scope="col">Department</th><th scope="col">Status</th><th scope="col">Updated</th>{docs.some((d) => d.can_manage) && <th scope="col"><span className="sr-only">Actions</span></th>}</tr>
         </thead>
         <tbody>
           {docs.map((d) => (
@@ -327,6 +335,7 @@ function DocTable({ docs, onOpen }: { docs: LibraryDoc[]; onOpen: (id: number) =
               <td><DeptBadge name={d.access} /></td>
               <td><Badges d={d} /></td>
               <td className="lib-date"><time dateTime={d.updated_at}>{date.format(new Date(d.updated_at))}</time></td>
+              {docs.some((x) => x.can_manage) && <td className="lib-actions-cell"><RowActions d={d} onManage={onManage} /></td>}
             </tr>
           ))}
         </tbody>
@@ -336,7 +345,7 @@ function DocTable({ docs, onOpen }: { docs: LibraryDoc[]; onOpen: (id: number) =
 }
 
 /** Phone: one card per document instead of the table. */
-function DocCards({ docs, onOpen }: { docs: LibraryDoc[]; onOpen: (id: number) => void }) {
+function DocCards({ docs, onOpen, onManage }: ListProps) {
   return (
     <ul className="lib-cards">
       {docs.map((d) => (
@@ -346,6 +355,7 @@ function DocCards({ docs, onOpen }: { docs: LibraryDoc[]; onOpen: (id: number) =
             <DeptBadge name={d.access} />
             <Badges d={d} />
             <time className="lib-date" dateTime={d.updated_at}>{date.format(new Date(d.updated_at))}</time>
+            <RowActions d={d} onManage={onManage} />
           </div>
         </li>
       ))}

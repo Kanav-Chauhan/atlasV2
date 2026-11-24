@@ -32,6 +32,7 @@ from atlas_api.models import (
     EvalRun,
     Organization,
     Role,
+    Status,
     User,
     user_departments,
 )
@@ -290,6 +291,44 @@ def queue_ingest(doc_id: int) -> None:
     from atlas_api.worker import ingest_document
 
     ingest_document.delay(doc_id)
+
+
+@router.put("/documents/{doc_id}/file")
+async def replace_document(
+    doc_id: int, user: CurrentUser, s: DB, file: Annotated[UploadFile, File()]
+) -> DocumentOut:
+    """A new file for the same document: same id, title, department and public flag. The old
+    text keeps answering until the new file is read (ingest swaps the chunks at the end)."""
+    doc = await readable_doc(s, user, doc_id)
+    if not access.can_manage(user, doc.access):
+        raise HTTPException(403, "Only an admin or this department's manager can replace it.")
+    data = await file.read(settings.max_upload_mb * 1024 * 1024 + 1)
+    try:
+        fmt = uploads.check_upload(file.filename or "", data)
+    except ValueError as e:
+        raise HTTPException(400, str(e)) from None
+    digest = uploads.sha256(data)
+    if digest == doc.sha256:
+        raise HTTPException(409, "This is the same file. Pick the new version.")
+    if await s.scalar(
+        select(Document.id).where(Document.org_id == user.org_id, Document.sha256 == digest)
+    ):
+        raise HTTPException(409, "This file is already in the library as another document.")
+    old = Path(doc.file_path)
+    doc.file_path = uploads.save(user.org.slug, digest, fmt, data)
+    doc.sha256, doc.format = digest, fmt
+    doc.status, doc.error = Status.queued, None
+    # These described the old file; the new one must not answer under the old date.
+    doc.version = doc.effective = doc.superseded_by = None
+    doc.meta = {k: v for k, v in (doc.meta or {}).items() if k != "review"} | {
+        "replaced_by": user.email
+    }
+    await s.commit()
+    await s.refresh(doc)
+    if old.is_relative_to(settings.files_dir):
+        old.unlink(missing_ok=True)
+    queue_ingest(doc.id)
+    return DocumentOut.model_validate(doc)
 
 
 @router.delete("/documents/{doc_id}", status_code=204)

@@ -31,6 +31,7 @@ from atlas_api.models import (
     User,
 )
 from atlas_api.routes import DB, DocumentOut, session_token
+from atlas_api.sample_history import SAMPLE
 from atlas_api.settings import settings
 from atlas_api.team_routes import org_people, person
 
@@ -178,6 +179,7 @@ async def super_orgs(s: DB) -> list[dict[str, Any]]:
                 func.max(Message.created_at),
             )
             .join(Message, Message.chat_id == Chat.id)
+            .where(Chat.origin.is_distinct_from(SAMPLE))
             .group_by(Chat.org_id)
         )
     }
@@ -225,7 +227,11 @@ async def super_usage(s: DB, days: Days = 30) -> list[dict[str, Any]]:
         select(Organization.slug, model, func.count(), func.avg(Message.latency_ms))
         .join(Chat, Chat.org_id == Organization.id)
         .join(Message, Message.chat_id == Chat.id)
-        .where(Message.role == "assistant", Message.created_at >= since)
+        .where(
+            Message.role == "assistant",
+            Message.created_at >= since,
+            Chat.origin.is_distinct_from(SAMPLE),
+        )
         .group_by(Organization.slug, model)
         .order_by(Organization.slug)
     )

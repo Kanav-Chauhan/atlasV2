@@ -20,6 +20,7 @@ from typing import Any
 import redis
 from llama_index.core.base.embeddings.base import BaseEmbedding
 
+from atlas_api import when
 from atlas_api.db import redis as aredis
 from atlas_api.models import Role
 from atlas_api.settings import settings
@@ -110,6 +111,9 @@ class AnswerCache:
             num_results=1,
         )
         if not hits:
+            return None
+        # Close embeddings are not the same question when a number or a date differs.
+        if when.facts(hits[0]["prompt"]) != when.facts(query):
             return None
         payload: dict[str, Any] = json.loads(hits[0]["response"])
         return payload

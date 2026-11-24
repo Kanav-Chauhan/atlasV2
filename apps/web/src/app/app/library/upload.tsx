@@ -10,7 +10,7 @@ import type { LibraryDoc } from "./params";
 // may read them, then each file uploads on its own (3 at a time) with its own progress bar and
 // status: Uploading → Processing (Atlas is reading it) → Ready, or why it failed.
 
-const ACCEPT = ".pdf,.docx,.md,.txt";
+export const ACCEPT = ".pdf,.docx,.md,.txt";
 const MAX_MB = 10; // the API's max_upload_mb; the API checks again
 const CONCURRENCY = 3;
 const POLL_MS = 3000;
@@ -22,7 +22,7 @@ let nextKey = 0;
 const mb = (n: number) => (n < 1024 * 1024 ? `${Math.max(1, Math.round(n / 1024))} KB` : `${(n / 1024 / 1024).toFixed(1)} MB`);
 
 /** Problems we can see before uploading; the API checks the same things again. */
-function precheck(file: File): string | undefined {
+export function precheck(file: File): string | undefined {
   const ext = file.name.toLowerCase().match(/\.[a-z0-9]+$/)?.[0] ?? "";
   if (!ACCEPT.split(",").includes(ext)) return "Atlas reads PDF, Word (.docx), Markdown or text files.";
   if (file.size > MAX_MB * 1024 * 1024) return `Over ${MAX_MB} MB. Pick a smaller file.`;
@@ -38,15 +38,15 @@ function message(status: number, body: string): string {
   return status >= 500 ? "The Atlas server isn't answering right now." : `The server answered ${status}.`;
 }
 
-/** POST /documents with upload progress (fetch can't report it). Renews a stale Clerk session once on 401. */
-function send(form: FormData, onProgress: (pct: number) => void, retried = false): Promise<LibraryDoc> {
+/** POST /documents (or PUT a replacement) with upload progress (fetch can't report it). Renews a stale Clerk session once on 401. */
+export function send(form: FormData, onProgress: (pct: number) => void, url = "/api/documents", method = "POST", retried = false): Promise<LibraryDoc> {
   return new Promise((resolve, reject) => {
     const xhr = new XMLHttpRequest();
-    xhr.open("POST", "/api/documents");
+    xhr.open(method, url);
     xhr.upload.onprogress = (e) => e.lengthComputable && onProgress(Math.round((e.loaded / e.total) * 100));
     xhr.onload = async () => {
       if (xhr.status === 401 && !retried && (await renewedClerkSession())) {
-        send(form, onProgress, true).then(resolve, reject);
+        send(form, onProgress, url, method, true).then(resolve, reject);
       } else if (xhr.status >= 200 && xhr.status < 300) {
         resolve(JSON.parse(xhr.responseText));
       } else {
@@ -194,7 +194,7 @@ export function UploadDialog({ open, onClose, files, isAdmin, uploadTo, preferre
           </label>
           <p className="text-xs text-muted">
             {access === "Everyone" ? "Everyone in the company can read them and get answers from them." : `Only ${access} and admins can read them.`}
-            {!isAdmin && " You can add documents to your own departments."}
+            {!isAdmin && " You can add documents to your own departments; only admins add to Managers."}
           </p>
           {isAdmin && access === "Everyone" && (
             <label className="flex items-center gap-2 text-sm">

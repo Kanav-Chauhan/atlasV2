@@ -22,6 +22,7 @@ const PATHS = {
   check: <><circle cx="12" cy="12" r="8.5" /><path d="M8.2 12.3l2.6 2.6 5-5.4" /></>,
   file: <><path d="M6 3h8l4 4v14H6z" /><path d="M14 3v4h4M9 12h6M9 16h6" /></>,
   fileQuestion: <><path d="M6 3h8l4 4v14H6z" /><path d="M14 3v4h4M10 11.5a2 2 0 1 1 2.8 1.8c-.5.3-.8.7-.8 1.3M12 17.3v.2" /></>,
+  trash: <path d="M5 7h14M10 7V4h4v3M7 7l1 13h8l1-13" />,
   upload: <path d="M12 16V4M7 9l5-5 5 5M4 16v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3" />,
   history: <path d="M3.5 12a8.5 8.5 0 1 0 2.5-6M3.5 4v4h4M12 8v4.5l3 2" />,
   book: <path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5zM4 20.5A2.5 2.5 0 0 0 6.5 23H20v-5" />,

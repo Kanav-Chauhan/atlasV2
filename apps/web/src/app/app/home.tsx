@@ -200,7 +200,7 @@ function LeadTiles({ h }: { h: HomeData }) {
       <Tile icon="clock" tone={worst ? worst.tone : "success"} label="Overdue reviews" value={n.format(rev.length)}
         sub={worst ? `Oldest: ${worst.label}` : "All documents are current"} href={rev.length ? "/app/library?status=review" : "/app/library"} cta={rev.length ? "Review" : undefined} />
       <Tile icon="ask" tone="accent" label="Your chats" value={n.format(chats.length)}
-        sub={chats[0] ? `Last one ${ago(chats[0].updated_at)}` : "Ask your first question"} href="/app/ask" cta="New chat" />
+        sub={chats[0] ? `Last one ${ago(chats[0].updated_at)}` : "Ask your first question"} href="/app/ask?new=1" cta="New chat" />
     </div>
   );
 }
@@ -216,7 +216,7 @@ function MemberTiles({ h, p }: { h: HomeData; p: HomeProps }) {
       <Tile icon="library" tone="accent" label="Documents you can ask about" value={n.format(docs.length)}
         sub={`Shared with ${p.departments.join(", ")}`} href={p.role !== "Guest" ? "/app/library" : undefined} cta="Open Library" />
       <Tile icon="ask" tone="info" label="Your chats" value={n.format(chats.length)}
-        sub={chats[0] ? `Last one ${ago(chats[0].updated_at)}` : "Ask your first question"} href="/app/ask" cta="New chat" />
+        sub={chats[0] ? `Last one ${ago(chats[0].updated_at)}` : "Ask your first question"} href="/app/ask?new=1" cta="New chat" />
       <Tile icon="file" tone="success" label="Newest document" value={<span className="tile-value-text">{docs[0]?.title ?? "None yet"}</span>}
         sub={docs[0]?.effective ? `In effect from ${docs[0].effective}` : undefined} />
     </div>
@@ -291,13 +291,13 @@ export function Home(p: HomeProps) {
             <TodoList h={h} />
           </Card>
         ) : (
-          <Card id="recent" title="Pick up where you left off" note="Your latest chats" action={<Link className="link" href="/app/ask">New chat</Link>}>
+          <Card id="recent" title="Pick up where you left off" note="Your latest chats" action={<Link className="link" href="/app/ask?new=1">New chat</Link>}>
             <ChatRows q={h.chats} limit={6} />
           </Card>
         )}
         <div className="grid content-start gap-[var(--page-gap)]">
           {h.lead && (
-            <Card id="recent" title="Recent chats" action={<Link className="link" href="/app/ask">New chat</Link>}>
+            <Card id="recent" title="Recent chats" action={<Link className="link" href="/app/ask?new=1">New chat</Link>}>
               <ChatRows q={h.chats} limit={4} />
             </Card>
           )}

@@ -29,6 +29,8 @@ export type Insights = {
   per_day: { date: string; questions: number; answered: number; not_found: number }[];
   /** The same totals for the period just before this one (for the change figures). */
   previous: { questions: number; answered: number; not_found: number; answered_pct: number | null; helpful: number };
+  /** How many of these questions are sample history (demo companies only). */
+  sample?: number;
 };
 
 export type Org = { slug: string; name: string; industry: string; description: string };

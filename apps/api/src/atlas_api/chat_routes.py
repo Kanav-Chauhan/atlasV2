@@ -21,6 +21,7 @@ from atlas_api.cache import AnswerCache, scope
 from atlas_api.db import Session
 from atlas_api.models import Chat, DocumentRequest, Message, User
 from atlas_api.routes import DB, CurrentUser
+from atlas_api.sample_history import SAMPLE
 from atlas_api.settings import settings
 from atlas_api.stream import DONE, HEADERS, sse, ui_parts
 
@@ -128,7 +129,7 @@ def meta(m: Message) -> dict[str, Any]:
 
 async def owned_chat(s: Any, user: User, chat_id: str) -> Chat:
     chat: Chat | None = await s.get(Chat, chat_id)
-    if chat is None or chat.user_id != user.id:
+    if chat is None or chat.user_id != user.id or chat.origin == SAMPLE:
         raise HTTPException(404, "Chat not found.")
     return chat
 
@@ -260,7 +261,10 @@ def ui_message(m: Message) -> dict[str, Any]:
 @router.get("/chats")
 async def list_chats(user: CurrentUser, s: DB) -> list[ChatSummary]:
     chats = await s.scalars(
-        select(Chat).where(Chat.user_id == user.id).order_by(Chat.updated_at.desc()).limit(200)
+        select(Chat)
+        .where(Chat.user_id == user.id, Chat.origin.is_(None))  # no sample history
+        .order_by(Chat.updated_at.desc())
+        .limit(200)
     )
     return [ChatSummary(id=c.id, title=c.title, updated_at=c.updated_at) for c in chats]
 

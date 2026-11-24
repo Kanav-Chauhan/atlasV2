@@ -31,6 +31,7 @@ class LibraryDoc(DocumentOut):
     # Why it needs review (review date passed, effective > 12 months); only for documents this
     # person may manage (admin: all, manager: own departments), like GET /documents/review.
     review: str | None = None
+    can_manage: bool = False  # may replace or delete it
 
 
 class StatusCounts(BaseModel):
@@ -94,6 +95,7 @@ def reason(user: User, d: Document, today: date) -> str | None:
 def item(user: User, d: Document, today: date) -> LibraryDoc:
     out = LibraryDoc.model_validate(d)
     out.review = reason(user, d, today)
+    out.can_manage = access.can_manage(user, d.access)
     return out
 
 

@@ -21,6 +21,7 @@ from atlas_api.models import (
     user_departments,
 )
 from atlas_api.routes import DB
+from atlas_api.sample_history import SAMPLE
 from atlas_api.team_routes import Lead
 
 router = APIRouter()
@@ -41,6 +42,7 @@ class Turn:
     feedback: str | None
     sources: list[dict[str, Any]]
     created_at: datetime
+    sample: bool = False  # demo companies only (sample_history.py)
     departments: set[str] = field(default_factory=set)  # the asker's
 
 
@@ -116,6 +118,7 @@ def aggregate(
             {"date": d.isoformat(), "questions": q, "answered": a, "not_found": nf}
             for d, (q, nf, a) in per_day.items()
         ],
+        "sample": sum(t.sample for t in turns),  # labelled on the page
         "previous": totals(previous or []),
     }
 
@@ -143,7 +146,7 @@ async def insights_for(s: AsyncSession, actor: User, days: int) -> dict[str, Any
 
     # shortcut: aggregates in Python over the window; move to SQL GROUP BYs past ~100k messages.
     rows = await s.execute(
-        select(Message, Chat.user_id)
+        select(Message, Chat.user_id, Chat.origin)
         .join(Chat, Chat.id == Message.chat_id)
         .where(
             Chat.org_id == actor.org_id,
@@ -154,7 +157,7 @@ async def insights_for(s: AsyncSession, actor: User, days: int) -> dict[str, Any
     )
     turns: list[Turn] = []
     last_question = ""
-    for m, uid in rows:
+    for m, uid, origin in rows:
         if m.role == "user":
             last_question = m.text
         elif in_scope(uid):
@@ -167,6 +170,7 @@ async def insights_for(s: AsyncSession, actor: User, days: int) -> dict[str, Any
                     feedback=m.feedback,
                     sources=m.sources or [],
                     created_at=m.created_at,
+                    sample=origin == SAMPLE,
                     departments=depts.get(uid, set()),
                 )
             )

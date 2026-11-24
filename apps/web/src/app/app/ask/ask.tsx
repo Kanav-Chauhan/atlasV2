@@ -7,6 +7,7 @@ import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Fragment, useEffect, useRef, useState } from "react";
 import { api } from "@/lib/api";
+import { lastChat, rememberChat } from "@/lib/last-chat";
 import { DocViewer } from "@/components/doc-viewer/doc-viewer";
 import { useDocViewer, useViewerSize } from "@/components/doc-viewer/use-doc-viewer";
 import { type Hit, Matches } from "./matches";
@@ -53,7 +54,7 @@ const Icon = ({ d }: { d: string }) => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true"><path d={d} /></svg>
 );
 
-export function Ask({ company, canSeeChunks }: { company: string; canSeeChunks: boolean }) {
+export function Ask({ me, company, canSeeChunks }: { me: string; company: string; canSeeChunks: boolean }) {
   const params = useSearchParams();
   const router = useRouter();
   const c = params.get("c");
@@ -61,13 +62,16 @@ export function Ask({ company, canSeeChunks }: { company: string; canSeeChunks: 
   const find = params.get("mode") === "find";
   useEffect(() => {
     if (c || find) return;
+    // Back to the chat this person was in; a new one only from New chat (?new=1), or when there is none.
+    const last = params.get("new") ? null : lastChat(me);
+    const url = last ? `/app/ask?c=${last}${q ? `&q=${encodeURIComponent(q)}` : ""}` : newChatUrl(q);
     // Keep an open document (?doc=&page=&chunk=&tab=) so a shared /app/ask?doc= link still opens it.
     const keep = new URLSearchParams();
-    for (const k of ["doc", "page", "chunk", "tab"]) { const v = params.get(k); if (v) keep.set(k, v); }
-    router.replace(newChatUrl(q) + (keep.size ? `&${keep}` : ""));
-  }, [c, q, find, router, params]);
+    for (const k of ["from", "doc", "page", "chunk", "tab"]) { const v = params.get(k); if (v) keep.set(k, v); }
+    router.replace(url + (keep.size ? `&${keep}` : ""));
+  }, [c, q, find, router, params, me]);
   if (find) return <Find key={q ?? ""} q={q?.trim() ?? ""} company={company} canSeeChunks={canSeeChunks} />;
-  return c ? <Thread key={c} id={c} q={q} company={company} canSeeChunks={canSeeChunks} /> : null;
+  return c ? <Thread key={c} id={c} q={q} fromFind={params.get("from") === "find"} me={me} company={company} canSeeChunks={canSeeChunks} /> : null;
 }
 
 /** History drawer state; Esc closes it first (capture: before the viewer's own Esc). */
@@ -91,8 +95,8 @@ type HeadProps = {
 /** One header for both modes: History, the title, the Answer / Just find documents switch, New chat. */
 function PaneHead({ title, company, find, q, thread, historyOpen, onHistory, onNew }: HeadProps) {
   const enc = q ? encodeURIComponent(q) : "";
-  // Answer from find mode: a new chat that asks the same words (the Ask page turns /app/ask?q= into one).
-  const answerHref = find ? `/app/ask${enc ? `?q=${enc}` : ""}` : thread ? `/app/ask?c=${thread}` : "/app/ask";
+  // Answer from find mode: back to the chat, asking these words there unless its last answer is already about them.
+  const answerHref = find ? `/app/ask${enc ? `?q=${enc}&from=find` : ""}` : thread ? `/app/ask?c=${thread}` : "/app/ask";
   return (
     <header className="pane-head">
       <button type="button" className="btn" aria-expanded={historyOpen} aria-controls="history" onClick={onHistory}>
@@ -115,7 +119,9 @@ function PaneHead({ title, company, find, q, thread, historyOpen, onHistory, onN
   );
 }
 
-function Thread({ id, q, company, canSeeChunks }: { id: string; q: string | null; company: string; canSeeChunks: boolean }) {
+type ThreadProps = { id: string; q: string | null; fromFind: boolean; me: string; company: string; canSeeChunks: boolean };
+
+function Thread({ id, q, fromFind, me, company, canSeeChunks }: ThreadProps) {
   const router = useRouter();
   const qc = useQueryClient();
   const [stage, setStage] = useState<Stage | null>(null);
@@ -130,39 +136,53 @@ function Thread({ id, q, company, canSeeChunks }: { id: string; q: string | null
   const { messages, sendMessage, setMessages, status, stop, error, regenerate } = useChat<AtlasMessage>({
     id, transport,
     onData: (p) => { if (p.type === "data-status") setStage(p.data.stage); },
-    onFinish: () => { setStage(null); fresh.delete(id); qc.invalidateQueries({ queryKey: ["chats"] }); },
+    onFinish: () => { setStage(null); rememberChat(me, id); qc.invalidateQueries({ queryKey: ["chats"] }); },
     onError: () => setStage(null),
   });
   const busy = status === "submitted" || status === "streaming";
+  useEffect(() => rememberChat(me, id), [me, id]);
 
   const [load] = useState(() => !fresh.has(id));
   const saved = useQuery({
     queryKey: ["chat", id], enabled: load, retry: false,
+    // Read it again on every visit; never in the middle of one (it would overwrite an answer being written).
+    refetchOnMount: "always", refetchOnWindowFocus: false, refetchOnReconnect: false,
+    // The person left while an answer was being written: look for it for a little while.
+    refetchInterval: (x) => (x.state.data?.messages.at(-1)?.role === "user" && x.state.dataUpdateCount < 15 ? 2000 : false),
     queryFn: () => api<{ id: string; title: string; messages: AtlasMessage[] }>(`/chats/${id}`),
   });
-  useEffect(() => { if (saved.data) setMessages(saved.data.messages); }, [saved.data, setMessages]);
+  const busyRef = useRef(false);
+  useEffect(() => { busyRef.current = busy; }, [busy]);
+  useEffect(() => { if (saved.data && !busyRef.current) setMessages(saved.data.messages); }, [saved.data, setMessages]);
+  const loading = load && !saved.isFetchedAfterMount;
   const loadFailed = saved.error && (saved.error as Error & { status?: number }).status !== 404;
 
   const suggested = useQuery({ queryKey: ["suggested"], staleTime: Infinity, queryFn: () => api<{ questions: string[] }>("/me/suggested") });
   const questions = suggested.data?.questions ?? [];
 
   const ask = (text: string) => {
-    if (!text.trim() || busy) return;
+    if (!text.trim() || busy || loading) return;
     setStage(null);
+    fresh.delete(id); // from here on the server has it
     sendMessage({ text: text.trim() });
     window.atlasTrack?.("question_asked", { from: "ask" });
     setInput("");
   };
 
-  // ?q= from Home's ask box: send it once, then drop it from the URL.
+  // ?q= from Home's ask box or from Find: send it once the chat is here, then drop it from the URL.
   const sentQ = useRef(false);
   useEffect(() => {
-    if (!q || sentQ.current) return;
+    if (!q || sentQ.current || loading || loadFailed) return;
     sentQ.current = true;
-    sendMessage({ text: q });
-    window.atlasTrack?.("question_asked", { from: "link" });
+    const asked = saved.data?.messages.findLast((m) => m.role === "user");
+    // Find → Answer with the same words: the answer is already in this chat, no new AI call.
+    if (!(fromFind && asked && textOf(asked).trim() === q.trim())) {
+      fresh.delete(id);
+      sendMessage({ text: q });
+      window.atlasTrack?.("question_asked", { from: "link" });
+    }
     router.replace(`/app/ask?c=${id}`);
-  }, [q, id, router, sendMessage]);
+  }, [q, id, router, sendMessage, loading, loadFailed, fromFind, saved.data]);
 
   // Follow the answer while it streams, unless the reader scrolled up.
   useEffect(() => {
@@ -262,7 +282,7 @@ function Thread({ id, q, company, canSeeChunks }: { id: string; q: string | null
                   }} />
                 {busy
                   ? <button type="button" className="btn send" onClick={() => stop()}>Stop</button>
-                  : <button type="submit" className="btn btn-primary send" disabled={!input.trim()}>Ask</button>}
+                  : <button type="submit" className="btn btn-primary send" disabled={!input.trim() || loading}>Ask</button>}
               </div>
               <p className="hint">Answers come only from documents you can open. Hindi works too.</p>
             </div>

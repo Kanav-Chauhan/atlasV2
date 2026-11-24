@@ -16,6 +16,8 @@ export type LibraryDoc = {
   superseded_by: string | null;
   /** Why it needs review; only on documents this person may manage. */
   review: string | null;
+  /** This person may replace or delete it. */
+  can_manage: boolean;
 };
 
 export type LibraryPage = {

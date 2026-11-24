@@ -1,0 +1,380 @@
+[
+ {
+  "q": "How many days of privilege, casual and sick leave do Sanjeevani employees get each year?",
+  "as": "rnd@sanjeevani.example",
+  "doc": "Leave Policy 2026",
+  "answer": "21 days of privilege leave, 7 days of casual leave and 7 days of sick leave per calendar year."
+ },
+ {
+  "q": "What is the night-shift allowance for plant employees?",
+  "as": "qa@sanjeevani.example",
+  "doc": "Shift and Overtime Policy",
+  "answer": "₹2,800 per month for employees working at least 10 night shifts in the month; otherwise ₹280 per night shift pro-rata."
+ },
+ {
+  "q": "How should Glucosan-M 500 be stored and what is its shelf life?",
+  "as": "sales@sanjeevani.example",
+  "doc": "Glucosan-M 500 Product Monograph",
+  "answer": "Store below 30°C and protect from moisture; shelf life is 36 months from the date of manufacture."
+ },
+ {
+  "q": "What is the maximum daily dose of Glucosan-M 500 SR?",
+  "as": "sales@sanjeevani.example",
+  "doc": "Glucosan-M 500 Product Monograph",
+  "answer": "2,000 mg once daily, taken with the evening meal."
+ },
+ {
+  "q": "Can Sanjeevani Cough Relief Syrup be given to a three-year-old child?",
+  "as": "sales@sanjeevani.example",
+  "doc": "Sanjeevani Cough Relief Syrup Product Sheet",
+  "answer": "No. The syrup must not be used in children below four years of age (mandatory CDSCO label warning)."
+ },
+ {
+  "q": "Which product in the Sanjeevani portfolio must be stored below 25°C?",
+  "as": "qa@sanjeevani.example",
+  "doc": "Product Portfolio and Storage Conditions",
+  "answer": "Dermacalm Cream (mometasone 0.1%); in non-air-conditioned warehouses it must be kept in the cool room."
+ },
+ {
+  "q": "How many strips of Glucosan-M samples can a medical representative give a doctor per month?",
+  "as": "sales@sanjeevani.example",
+  "doc": "Field Force Guidelines FY27",
+  "answer": "A maximum of 10 strips per doctor per month."
+ },
+ {
+  "q": "What is the monthly doctor call target for a medical representative in FY27?",
+  "as": "sales@sanjeevani.example",
+  "doc": "Field Force Guidelines FY27",
+  "answer": "180 doctor visits per MR per month (about 8–9 calls per field day over at least 22 field days)."
+ },
+ {
+  "q": "What is the FY27 sales target for the West zone?",
+  "as": "sales@sanjeevani.example",
+  "doc": "FY27 Sales Targets by Zone",
+  "answer": "₹425.6 crore, 28% of the ₹1,520 crore national domestic target."
+ },
+ {
+  "q": "What dividend did the Board recommend for FY2025-26?",
+  "as": "owner@sanjeevani.example",
+  "doc": "Board Meeting Minutes – 22 April 2026",
+  "answer": "A final dividend of ₹4.50 per equity share (45% on ₹10 face value), about ₹55.8 crore in total, subject to AGM approval."
+ },
+ {
+  "q": "How is the ₹310 crore Vizag capacity expansion being funded?",
+  "as": "owner@sanjeevani.example",
+  "doc": "Board Meeting Minutes – 22 April 2026",
+  "answer": "₹190 crore from internal accruals and a term loan of up to ₹120 crore."
+ },
+ {
+  "q": "How many ANDA approvals did Sanjeevani receive in FY2025-26, and for which applications?",
+  "as": "qa@sanjeevani.example",
+  "doc": "ANDA Submission Status Tracker",
+  "answer": "Three: ANDAs 215529 (telmisartan), 216604 (glimepiride) and 217248 (atorvastatin)."
+ },
+ {
+  "q": "By when must the Unit III Vizag manufacturing licence retention fee be paid?",
+  "as": "qa@sanjeevani.example",
+  "doc": "CDSCO Product Licence Renewal Summary",
+  "answer": "Internally by 06 November 2026; the statutory deadline is 20 November 2026."
+ },
+ {
+  "q": "As a Band C employee staying at the Baddi plant guest house, what daily allowance do I get?",
+  "as": "rnd@sanjeevani.example",
+  "doc": "Travel Policy",
+  "answer": "₹500 per day: the Band C daily allowance is ₹1,000, reduced by 50% when a plant guest house is used."
+ },
+ {
+  "q": "How long does Sanjeevani take to complete a whistleblower investigation?",
+  "as": "sales@sanjeevani.example",
+  "doc": "Whistleblower Policy",
+  "answer": "Within 60 days of receipt of the complaint; extensions need the Audit Committee Chairperson's approval."
+ },
+ {
+  "q": "What is the Group Mediclaim sum insured for a Band C employee?",
+  "as": "rnd@sanjeevani.example",
+  "doc": "Employee Medical Insurance Guide",
+  "answer": "₹5,00,000 family floater (employee, spouse and up to two children)."
+ },
+ {
+  "q": "What is the work-from-home allowance for head office employees?",
+  "as": "rnd@sanjeevani.example",
+  "doc": null,
+  "answer": null
+ },
+ {
+  "q": "What is the cafeteria meal subsidy at the Hyderabad R&D centre?",
+  "as": "sales@sanjeevani.example",
+  "doc": null,
+  "answer": null
+ },
+ {
+  "q": "Within how long must the Head of QA be informed of a critical deviation at Sanjeevani?",
+  "as": "qa@sanjeevani.example",
+  "doc": "SOP – Deviation Handling",
+  "answer": "Within 24 hours of discovery (current SOP SPL/QA/SOP-004 v3.0); the investigation closure target for a Critical deviation is 15 working days."
+ },
+ {
+  "q": "What is the dissolution acceptance criterion for Glucosan-M 500 SR tablets?",
+  "as": "qa@sanjeevani.example",
+  "doc": "Specification – Glucosan-M 500 SR Tablets",
+  "answer": "Not less than 80% (Q) released in 10 hours (with 20–40% at 1 hour and 45–65% at 3 hours)."
+ },
+ {
+  "q": "What is the alert level for purified water conductivity?",
+  "as": "qa@sanjeevani.example",
+  "doc": "SOP – Purified Water System Monitoring",
+  "answer": "1.0 µS/cm; the action level and specification is 1.3 µS/cm at 25°C."
+ },
+ {
+  "q": "What is the finger-dab acceptance limit for Grade C gowning qualification?",
+  "as": "qa@sanjeevani.example",
+  "doc": "SOP – Cleanroom Gowning",
+  "answer": "Finger dab ≤ 5 CFU per glove, and gown contact plates ≤ 5 CFU per plate."
+ },
+ {
+  "q": "What is the target time to complete a Phase I OOS laboratory investigation?",
+  "as": "qa@sanjeevani.example",
+  "doc": "SOP – Out of Specification Investigation",
+  "answer": "5 working days."
+ },
+ {
+  "q": "When did Sanjeevani submit its response to the 2024 US FDA Form 483 for Unit III Vizag?",
+  "as": "qa@sanjeevani.example",
+  "doc": "US FDA Inspection 2024 – Response and CAPA Summary",
+  "answer": "On 05 April 2024, within 15 business days of the inspection that ended 19 March 2024."
+ },
+ {
+  "q": "During the February 2026 FDA re-inspection, how many OOS results from 2025 did the investigators review and how many were closed within 30 days?",
+  "as": "owner@sanjeevani.example",
+  "doc": "FDA Re-inspection February 2026 Summary",
+  "answer": "41 OOS results; 40 were closed within 30 days and 1 was extended with Head QA approval (closed on day 37)."
+ },
+ {
+  "q": "How many observations did the Q4 FY26 internal audit of Unit II Baddi raise, by classification?",
+  "as": "owner@sanjeevani.example",
+  "doc": "Internal Audit Report – Unit II Baddi Q4 FY26",
+  "answer": "8 observations: 0 Critical, 2 Major and 6 Minor."
+ },
+ {
+  "q": "What exactly was wrong with the label on cough syrup batch CR-2309?",
+  "as": "qa@sanjeevani.example",
+  "doc": "Recall Report – Cough Syrup Batch CR-2309",
+  "answer": "The bottle label carried the manufacturing licence number of Unit I (Ahmedabad) instead of Unit II (Baddi); all other label information was correct, so there was no safety impact."
+ },
+ {
+  "q": "What was the overall CAPA on-time closure rate in Q1 FY27, and which unit was lowest?",
+  "as": "owner@sanjeevani.example",
+  "doc": "CAPA Register Q1 FY27",
+  "answer": "88% overall against a 90% target; Unit II Baddi was lowest at 78% (Unit I 90%, Unit III 100%)."
+ },
+ {
+  "q": "How often do passwords expire on GxP computerised systems under the data integrity policy?",
+  "as": "qa@sanjeevani.example",
+  "doc": "Data Integrity Policy – ALCOA+",
+  "answer": "Every 90 days; accounts lock after 3 failed attempts and screens lock after 10 minutes of inactivity."
+ },
+ {
+  "q": "How many expedited pharmacovigilance reports were submitted late in FY2025-26?",
+  "as": "qa@sanjeevani.example",
+  "doc": "Pharmacovigilance System Master File Summary",
+  "answer": "2 out of 143 expedited reports were late (both by one day), giving 98.6% compliance."
+ },
+ {
+  "q": "What long-term storage condition was used in the Glucosan-M 500 SR stability study?",
+  "as": "rnd@sanjeevani.example",
+  "doc": "Stability Study Report – Glucosan-M 500 SR",
+  "answer": "30°C ± 2°C / 75% ± 5% RH (Climatic Zone IVb), with 40°C/75% RH as the accelerated condition; the data supported a 36-month shelf life."
+ },
+ {
+  "q": "What was the Cmax test/reference ratio and 90% confidence interval in the Cardivas 10 bioequivalence study?",
+  "as": "rnd@sanjeevani.example",
+  "doc": "Bioequivalence Study Summary – Cardivas 10",
+  "answer": "Cmax ratio 98.4% with a 90% CI of 91.2–106.1%, within the 80.00–125.00% limits."
+ },
+ {
+  "q": "What is Sanjeevani's FY27 R&D budget and how much of it goes to the SJ-2041 programme?",
+  "as": "rnd@sanjeevani.example",
+  "doc": "R&D Pipeline Review FY27",
+  "answer": "₹185 crore in total, of which ₹62 crore (33.5%) is for the SJ-2041 clinical programme."
+ },
+ {
+  "q": "What HbA1c reduction did SJ-2041 show at the Phase III interim analysis?",
+  "as": "rnd@sanjeevani.example",
+  "doc": "SJ-2041 Interim Analysis Report",
+  "answer": "−1.1% with SJ-2041 versus −0.6% with the comparator (difference −0.5%), with a dropout rate of 7.4% and 2 serious adverse events judged unrelated."
+ },
+ {
+  "q": "How many patients discontinued the SJ-2041 Phase III trial?",
+  "as": "rnd@sanjeevani.example",
+  "doc": "Clinical Site List and Enrolment Status",
+  "answer": "92 patients, 7.4% of the 1,240 randomised (as of 30 September 2026)."
+ },
+ {
+  "q": "How much does Sanjeevani pay a site for each patient who completes the SJ-2041 trial?",
+  "as": "rnd@sanjeevani.example",
+  "doc": "Investigator Payments Policy",
+  "answer": "₹42,000 per completed patient, paid visit by visit, with 10% held back until close-out."
+ },
+ {
+  "q": "What is the compensation insurance cover for the SJ-2041 trial?",
+  "as": "rnd@sanjeevani.example",
+  "doc": "Serious Adverse Event Reporting SOP",
+  "answer": "Up to ₹10 crore in aggregate, with ₹50 lakh per participant."
+ },
+ {
+  "q": "What is the planned launch price (MRP) of SJ-2041?",
+  "as": "owner@sanjeevani.example",
+  "doc": null,
+  "answer": null
+ },
+ {
+  "q": "What is the plasma half-life of SPL-DP41?",
+  "as": "rnd@sanjeevani.example",
+  "doc": null,
+  "answer": null
+ },
+ {
+  "q": "What is the shelf life of Glucosan-M 500?",
+  "as": "sales@sanjeevani.example",
+  "doc": "Glucosan-M 500 Product Monograph",
+  "answer": "36 months from the date of manufacture; store below 30°C and protect from moisture."
+ },
+ {
+  "q": "What is the dissolution specification for Glucosan-M 500 SR tablets?",
+  "as": "qa@sanjeevani.example",
+  "doc": "Specification – Glucosan-M 500 SR Tablets",
+  "answer": "Not less than 80% (Q) released in 10 hours."
+ },
+ {
+  "q": "How many days of privilege, casual and sick leave do Sanjeevani employees get?",
+  "as": "rnd@sanjeevani.example",
+  "doc": "Leave Policy 2026",
+  "answer": "21 privilege leave, 7 casual leave and 7 sick leave per calendar year."
+ },
+ {
+  "q": "Within how many working days must site QA approve the initial assessment of a major deviation?",
+  "as": "qa@sanjeevani.example",
+  "doc": "SOP – Deviation Handling",
+  "answer": "Within 3 working days, with closure targeted within 30 calendar days."
+ },
+ {
+  "q": "What is the pay range for a Grade M2 medical representative?",
+  "as": "hr@sanjeevani.example",
+  "doc": "Salary Grades and Allowances FY2026-27",
+  "answer": "₹5.6 lakh to ₹8.4 lakh CTC per year (mid-point ₹7.0 lakh), excluding the quarterly sales incentive."
+ },
+ {
+  "q": "What is the FY27 average increment budget?",
+  "as": "owner@sanjeevani.example",
+  "doc": "Salary Grades and Allowances FY2026-27",
+  "answer": "₹28.5 crore, an average increase of 9.5% of fixed pay, effective 01 April 2026 and paid with the June 2026 salary."
+ },
+ {
+  "q": "Does Sanjeevani hire freshers at the Vizag plant?",
+  "as": "hr@sanjeevani.example",
+  "doc": "Careers at Sanjeevani – Hiring and Campus Programme FAQ",
+  "answer": "Yes. Unit III Vizag hires freshers every year through campus drives at Andhra University and pharmacy colleges in Andhra Pradesh, mainly for QC, production and validation roles."
+ },
+ {
+  "q": "Does Sanjeevani charge a fee for job applications?",
+  "as": "owner@sanjeevani.example",
+  "doc": "Careers at Sanjeevani – Hiring and Campus Programme FAQ",
+  "answer": "No. Sanjeevani never charges any fee at any stage of hiring; anyone asking for money in its name is committing fraud."
+ },
+ {
+  "q": "What stipend is paid to trainees in the Sanjeevani Graduate Trainee Programme?",
+  "as": "hr@sanjeevani.example",
+  "doc": null,
+  "answer": null
+ },
+ {
+  "q": "What is the FY27 capex for the Vizag expansion this year?",
+  "as": "owner@sanjeevani.example",
+  "doc": "FY2026-27 Budget and Capex Plan",
+  "answer": "₹135 crore in FY27, year 1 of the ₹310 crore project (₹150 crore in FY28 and ₹25 crore in FY29 follow)."
+ },
+ {
+  "q": "What is the FY27 R&D budget and how is it split between expenses and capital equipment?",
+  "as": "owner@sanjeevani.example",
+  "doc": "FY2026-27 Budget and Capex Plan",
+  "answer": "₹185 crore (6.9% of budgeted revenue): ₹177 crore of revenue expenses and ₹8 crore of capital equipment for the Hyderabad labs; ₹62 crore is for SJ-2041."
+ },
+ {
+  "q": "How many credit days does a stockist get?",
+  "as": "owner@sanjeevani.example",
+  "doc": "Stockist Credit and Collections Policy",
+  "answer": "30 days from invoice date (15 days for a new stockist in its first 6 months)."
+ },
+ {
+  "q": "When are supplies stopped for overdue payments?",
+  "as": "owner@sanjeevani.example",
+  "doc": "Stockist Credit and Collections Policy",
+  "answer": "When any invoice is more than 15 days overdue (45 days from invoice on 30-day terms), when outstanding exceeds the credit limit by more than 10%, after a dishonoured cheque/NACH, or if the drug licence has expired."
+ },
+ {
+  "q": "What margin does a stockist get on Glucosan-M 500?",
+  "as": "sales@sanjeevani.example",
+  "doc": "Stockist and Distributor Agreement – Standard Terms",
+  "answer": "10% on the price to retailer (PTR); the retailer margin is 20% on MRP excluding GST."
+ },
+ {
+  "q": "How much notice ends a stockist agreement?",
+  "as": "salesmanager@sanjeevani.example",
+  "doc": "Stockist and Distributor Agreement – Standard Terms",
+  "answer": "60 days' written notice by either party without cause; immediate for material breach or payment default over 90 days."
+ },
+ {
+  "q": "What is the stockist margin on SJ-2041?",
+  "as": "salesmanager@sanjeevani.example",
+  "doc": null,
+  "answer": null
+ },
+ {
+  "q": "Can a pharmacy return near-expiry Dermacalm Cream?",
+  "as": "sales@sanjeevani.example",
+  "doc": "Product Returns and Expiry Replacement Policy",
+  "answer": "Yes, through its stockist, for replacement, if the tubes are sealed, in their cartons and have 3 months or less of shelf life left, and were stored below 25°C."
+ },
+ {
+  "q": "How are recalled products refunded?",
+  "as": "sales@sanjeevani.example",
+  "doc": "Product Returns and Expiry Replacement Policy",
+  "answer": "Full credit at the invoice price plus return freight, whether packs are sealed, opened or part-used; the 2% expiry cap does not apply. Patients get a replacement or refund at their pharmacy."
+ },
+ {
+  "q": "When does the new Vizag line start commercial batches?",
+  "as": "qa@sanjeevani.example",
+  "doc": "Project Plan – Vizag Unit III Capacity Expansion",
+  "answer": "April 2028, for non-US markets; US supply follows PAS approval in FY29."
+ },
+ {
+  "q": "Who owns qualification of the new Vizag line?",
+  "as": "qa@sanjeevani.example",
+  "doc": "Project Plan – Vizag Unit III Capacity Expansion",
+  "answer": "K. Lavanya, Manager – Validation, Unit III (responsible), with Dr. Farhan Qureshi accountable."
+ },
+ {
+  "q": "Which payment milestone is tied to database lock in the SJ-2041 CRO agreement?",
+  "as": "rnd@sanjeevani.example",
+  "doc": "Clinical Research Services Agreement – SJ-2041 (CRO)",
+  "answer": "Milestone M6: 20% of the ₹18.6 crore fee, ₹3.72 crore, due on database lock (planned 30 November 2026)."
+ },
+ {
+  "q": "Who owns the trial data under the CRO contract?",
+  "as": "rnd@sanjeevani.example",
+  "doc": "Clinical Research Services Agreement – SJ-2041 (CRO)",
+  "answer": "Sanjeevani Pharma owns all trial data exclusively; the CRO acquires no rights and must transfer the database and trial master file at the end."
+ },
+ {
+  "q": "How do I report a side effect of Cardivas 10?",
+  "as": "qa@sanjeevani.example",
+  "doc": "Medicine Information and Side-Effect Reporting FAQ",
+  "answer": "Call the 24×7 toll-free safety hotline 1800-233-4100 (option 1), email drugsafety@sanjeevani.example, or tell your doctor or pharmacist; give the batch number, what happened and your contact."
+ },
+ {
+  "q": "How should Glucosan-M be stored at home?",
+  "as": "owner@sanjeevani.example",
+  "doc": "Medicine Information and Side-Effect Reporting FAQ",
+  "answer": "Below 30°C, protected from moisture: keep tablets in the strip until use and not in the bathroom; shelf life 36 months."
+ }
+]

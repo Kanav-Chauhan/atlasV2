@@ -2,7 +2,8 @@
 
 Runs nightly (Celery beat, worker.py) and from the "Reset demo" button (POST /demo/reset).
 Surgical, so it is cheap: only documents that were deleted get re-ingested.
-- activity: chats + messages, chat memory (LangGraph checkpoints), document requests,
+- activity: sample question history refilled (sample_history.py); chats + messages,
+  chat memory (LangGraph checkpoints), document requests,
   agent tokens + their audit rows
 - documents: uploads deleted (chunks, row, file); clean documents get their corpus values
   back (title, access, public flag, ...) and their chunk metadata re-synced; deleted clean
@@ -24,7 +25,7 @@ from typing import Any, cast
 from sqlalchemy import CursorResult, delete, select, text, update
 from sqlalchemy.orm import Session
 
-from atlas_api import cache, website
+from atlas_api import cache, sample_history, website
 from atlas_api.db import CHUNKS_TABLE, SyncSession
 from atlas_api.models import Chat, Department, Document, DocumentRequest, Organization, User
 from atlas_api.scripts.load_corpus import corpus_docs
@@ -168,6 +169,8 @@ def reset_org(slug: str) -> dict[str, int]:
             update(User).where(User.org_id == org.id, User.avatar.is_not(None)).values(avatar=None),
         )
         shutil.rmtree(Path(settings.files_dir, slug, "images"), ignore_errors=True)
+        s.flush()
+        out["sample_questions"] = sample_history.fill(s, org)
         s.commit()
         cache.invalidate_sync(org.id)  # documents, access and public flags are back to seed
 

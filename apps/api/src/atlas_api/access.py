@@ -83,10 +83,9 @@ def chunk_filters(user: Principal) -> MetadataFilters:
 
 
 def can_manage(user: User, access: str) -> bool:
-    """Upload into / delete from `access`: admin anywhere, manager in own departments only."""
-    return user.role == Role.admin or (
-        user.role == Role.manager and access in user.department_names
-    )
+    """Upload into / replace / delete in `access`: admin anywhere, manager in own departments
+    only, not the shared Managers one (the same scope as inviting people)."""
+    return user.role == Role.admin or access in team_scope(user)
 
 
 # ------------------------------------------------------------------ Phase 7: team rules

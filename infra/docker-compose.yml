@@ -12,7 +12,7 @@ x-api-env: &api-env
   ATLAS_LLM_SMART_FALLBACKS: ${ATLAS_LLM_SMART_FALLBACKS:-smart-groq,smart-cf}
   # RedisVL semantic answer cache (needs Redis 8: the query engine is built in).
   ATLAS_SEMANTIC_CACHE: ${ATLAS_SEMANTIC_CACHE:-false}
-  ATLAS_ANSWER_THINKING: ${ATLAS_ANSWER_THINKING:-true}
+  ATLAS_ANSWER_THINKING: ${ATLAS_ANSWER_THINKING:-false}
 
 x-api-volumes: &api-volumes
   - ../demo_corpus:/corpus:ro

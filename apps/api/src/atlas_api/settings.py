@@ -42,8 +42,8 @@ class Settings(BaseSettings):
     # NIM's reasoning ("thinking") for the answer model. Off: same answer content in ~2 s
     # instead of 12-40 s on long questions (2026-11-23 test); Groq/Cloudflare ignore the switch
     # (the gateway drops chat_template_kwargs for them).
-    answer_thinking: bool = True
-    grade_timeout_s: float = 4.0
+    answer_thinking: bool = False
+    grade_timeout_s: float = 6.0
     route_timeout_s: float = 3.0
     rewrite_timeout_s: float = 3.0
     # RedisVL semantic cache needs Redis with the query engine (redis:8 or Redis Stack).

@@ -100,6 +100,7 @@ function Full({ d, days }: { d: Insights; days: number }) {
   const series = bins(d.per_day, days);
   return (
     <>
+      {!!d.sample && <p className="text-sm text-muted" role="note">Demo data: {n.format(d.sample)} of these {n.format(d.questions)} questions are samples, added so the charts have something to show.</p>}
       <Kpis d={d} days={days} series={series} />
       <OverTime series={series} days={days} total={d.questions} />
       {/* Two stacks rather than rows, so a short card never leaves a hole beside a tall one.

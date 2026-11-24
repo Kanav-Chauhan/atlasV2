@@ -181,7 +181,8 @@ def test_reset_puts_a_messed_up_demo_back(nimbus: dict[str, Any]) -> None:
             == 0
         )
         assert not (nimbus["files"] / SLUG / "images").exists()
-        assert s.scalar(select(func.count()).select_from(Chat).where(Chat.org_id == org_id)) == 0
+        left = list(s.scalars(select(Chat.origin).where(Chat.org_id == org_id)))
+        assert set(left) == {"sample"} and len(left) == out["sample_questions"] > 100
 
 
 def test_reset_refuses_other_companies() -> None:

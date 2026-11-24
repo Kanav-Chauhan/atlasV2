@@ -1,0 +1,386 @@
+[
+ {
+  "q": "What is the minimum password length at Nimbus?",
+  "as": "employee@nimbus.example",
+  "doc": "Acceptable Use Policy",
+  "answer": "At least 14 characters, and MFA is mandatory on every account."
+ },
+ {
+  "q": "After how many minutes of inactivity must a Nimbus laptop screen lock?",
+  "as": "employee@nimbus.example",
+  "doc": "Laptop and Device Security Standard",
+  "answer": "Screens auto-lock after 5 minutes of inactivity; the setting is enforced."
+ },
+ {
+  "q": "Where should I forward a suspicious email?",
+  "as": "employee@nimbus.example",
+  "doc": "Welcome to Nimbus",
+  "answer": "Forward it to phish@nimbus.example."
+ },
+ {
+  "q": "What is the response time for a SEV1 incident and who gets paged?",
+  "as": "employee@nimbus.example",
+  "doc": "Incident Reporting Procedure",
+  "answer": "SEV1 (customer-wide outage or confirmed breach of Confidential/Restricted data) needs a response within 15 minutes; the CISO and CTO are paged along with the incident commander."
+ },
+ {
+  "q": "Which class can I fly on a 10-hour international flight for work?",
+  "as": "employee@nimbus.example",
+  "doc": "Travel and Expense Policy",
+  "answer": "Premium economy, because the flight time is above 8 hours (economy applies under 8 hours)."
+ },
+ {
+  "q": "What is the daily allowance for business travel to a metro city in India?",
+  "as": "employee@nimbus.example",
+  "doc": "Travel and Expense Policy",
+  "answer": "₹3,500 per day (non-metro ₹2,500, international USD 75)."
+ },
+ {
+  "q": "What are the default anchor days for office attendance?",
+  "as": "employee@nimbus.example",
+  "doc": "Hybrid Work Policy",
+  "answer": "Tuesday and Wednesday, as part of the 3 office days a week requirement."
+ },
+ {
+  "q": "Independence Day 2026 falls on a Saturday. Is there still a flag-hoisting at the office?",
+  "as": "employee@nimbus.example",
+  "doc": "Holiday Calendar FY2026-27",
+  "answer": "Yes, a flag-hoisting ceremony is held at each office at 8:30 am on Saturday, 15 August 2026; attendance is voluntary and the day is not counted in the 12 holidays."
+ },
+ {
+  "q": "What is the group term life insurance cover for employees?",
+  "as": "employee@nimbus.example",
+  "doc": "Employee Benefits Guide",
+  "answer": "3 times annual fixed pay, with a minimum of ₹20 lakh, paid by Nimbus."
+ },
+ {
+  "q": "Within how many hours must CERT-In be notified of a reportable cyber incident?",
+  "as": "employee@nimbus.example",
+  "doc": "Information Security Policy",
+  "answer": "Within 6 hours of the incident being noticed."
+ },
+ {
+  "q": "What happens to earned leave above the carry-forward limit at year end?",
+  "as": "hr@nimbus.example",
+  "doc": "Leave Policy FY2026-27",
+  "answer": "Up to 30 days of EL carry forward; anything beyond 30 days lapses on 31 March."
+ },
+ {
+  "q": "If a Principal (L6) resigns, how long is the notice period and when is the full and final settlement paid?",
+  "as": "hr@nimbus.example",
+  "doc": "Notice Period and Exit Process",
+  "answer": "L6 and above serve 90 days' notice; the full and final settlement is paid within 45 days of the last working day, after clearance."
+ },
+ {
+  "q": "What referral bonus does an employee get for referring a Senior Software Engineer (L3)?",
+  "as": "hr@nimbus.example",
+  "doc": "Referral Bonus Policy",
+  "answer": "₹60,000, paid after the hire completes 90 days of service (plus ₹25,000 if it is a hot-skill role)."
+ },
+ {
+  "q": "Can recruitment agencies be used for any role, and what fee is allowed?",
+  "as": "manager@nimbus.example",
+  "doc": "Hiring Approval Workflow",
+  "answer": "Only for L4 and above or hot-skill roles, with the fee capped at 8.33% of first-year fixed pay."
+ },
+ {
+  "q": "What is the salary band for a Tech Lead (L4)?",
+  "as": "hr@nimbus.example",
+  "doc": "Salary Bands FY2026-27",
+  "answer": "₹18–28 lakh per annum fixed pay (midpoint ₹23 lakh)."
+ },
+ {
+  "q": "When is the FY2026-27 variable pay paid out?",
+  "as": "hr@nimbus.example",
+  "doc": "Variable Pay Plan",
+  "answer": "In the July 2027 payroll, after audited results and ratings are final."
+ },
+ {
+  "q": "How long does a formal Performance Improvement Plan (PIP) last?",
+  "as": "manager@nimbus.example",
+  "doc": "Handling Performance Issues – PIP Guide",
+  "answer": "60 days, which may be extended once by up to 30 days, with documented reviews every 2 weeks."
+ },
+ {
+  "q": "Can employees bring their pets to the Nimbus office?",
+  "as": "employee@nimbus.example",
+  "doc": null,
+  "answer": null
+ },
+ {
+  "q": "How much is the Nimbus annual Diwali bonus?",
+  "as": "hr@nimbus.example",
+  "doc": null,
+  "answer": null
+ },
+ {
+  "q": "What is the monthly error budget for NimbusOps under its availability SLO?",
+  "as": "employee@nimbus.example",
+  "doc": "NimbusOps Database Failover Runbook",
+  "answer": "43 minutes 12 seconds per 30-day month (99.9% monthly availability SLO)."
+ },
+ {
+  "q": "How much on-call allowance is paid for a weekend or public holiday day?",
+  "as": "employee@nimbus.example",
+  "doc": "On-Call Policy and Rotation",
+  "answer": "₹3,000 per day (weekdays are ₹1,500 per day)."
+ },
+ {
+  "q": "What RPO and RTO were measured in the April 2026 full DR drill, and did it pass?",
+  "as": "employee@nimbus.example",
+  "doc": "Disaster Recovery Drill Procedure",
+  "answer": "The 18 April 2026 full drill measured RPO 6 minutes and RTO 47 minutes and passed."
+ },
+ {
+  "q": "What is the API rate limit per key for Enterprise-plan customers?",
+  "as": "employee@nimbus.example",
+  "doc": "API Design Standard",
+  "answer": "600 requests per minute per API key, with a burst of 100."
+ },
+ {
+  "q": "Who can accept the risk of a Critical vulnerability that cannot be fixed within SLA, and for how long?",
+  "as": "employee@nimbus.example",
+  "doc": "Secure SDLC Standard",
+  "answer": "The CISO and CTO jointly, for a maximum exception period of 30 days."
+ },
+ {
+  "q": "Why must infrastructure and system logs be kept for at least 180 days?",
+  "as": "employee@nimbus.example",
+  "doc": "Logging and Observability Standard",
+  "answer": "To meet the CERT-In Directions of April 2022, which require ICT system logs to be kept securely within India for a rolling 180 days."
+ },
+ {
+  "q": "Who must approve new recurring cloud spend above ₹5 lakh per month?",
+  "as": "employee@nimbus.example",
+  "doc": "Cloud Cost Management Guideline",
+  "answer": "The Head of Infrastructure & SRE (above ₹25 lakh per month, the CFO)."
+ },
+ {
+  "q": "How long was HarborTrack down during INC-2291 and what service credit did Harbor receive?",
+  "as": "manager@nimbus.example",
+  "doc": "Harbor Logistics – Incident Post-Mortem INC-2291",
+  "answer": "2 hours 47 minutes; a service credit of USD 17,500, i.e. 5% of the USD 112,500 monthly managed cloud operations fee."
+ },
+ {
+  "q": "How many Harbor Logistics applications had been migrated to AWS by 30 June 2026?",
+  "as": "manager@nimbus.example",
+  "doc": "Harbor Logistics – Account Overview",
+  "answer": "287 of 412 applications (70%)."
+ },
+ {
+  "q": "How much is the go-live milestone payment in the Zenith Retail S/4HANA project?",
+  "as": "manager@nimbus.example",
+  "doc": "Zenith Retail – SAP S/4HANA Project Charter",
+  "answer": "₹9.50 crore (25% of the ₹38 crore fixed price), planned for April 2027."
+ },
+ {
+  "q": "How quickly was the May 2026 phishing campaign at Al Noor Healthcare contained?",
+  "as": "manager@nimbus.example",
+  "doc": "Al Noor Healthcare – Managed SOC Service Report",
+  "answer": "Within 41 minutes; two mailboxes were compromised and no patient data was accessed."
+ },
+ {
+  "q": "What is the list price of the NimbusOps Enterprise plan?",
+  "as": "owner@nimbus.example",
+  "doc": "Rate Card FY2026-27",
+  "answer": "USD 5.00 (₹390) per monitored host per month, billed annually."
+ },
+ {
+  "q": "Who approves a discount of more than 10% and up to 15% of total contract value?",
+  "as": "owner@nimbus.example",
+  "doc": "Discount Approval Policy",
+  "answer": "The CFO, Rohan Bhatia, provided deal gross margin is at least 28%."
+ },
+ {
+  "q": "By how much did the Board approve topping up the ESOP pool on 14 May 2026?",
+  "as": "owner@nimbus.example",
+  "doc": "Board Meeting Minutes – 14 May 2026",
+  "answer": "By 1.5% of the fully diluted share capital, subject to shareholder approval by special resolution."
+ },
+ {
+  "q": "What is the planned Hyderabad headcount at 31 March 2027?",
+  "as": "owner@nimbus.example",
+  "doc": "FY2026-27 Budget and Headcount Plan",
+  "answer": "1,360, up 310 from 1,050 at 31 March 2026."
+ },
+ {
+  "q": "What is the capital cost per seat of the Hyderabad campus expansion?",
+  "as": "owner@nimbus.example",
+  "doc": "Hyderabad Campus Expansion Proposal",
+  "answer": "₹2.25 lakh per seat (₹45 crore for about 2,000 seats)."
+ },
+ {
+  "q": "How many story points does the NimbusOps team deliver per sprint on average?",
+  "as": "employee@nimbus.example",
+  "doc": null,
+  "answer": null
+ },
+ {
+  "q": "What is the parking reimbursement for engineers called in to the office during a SEV1?",
+  "as": "employee@nimbus.example",
+  "doc": null,
+  "answer": null
+ },
+ {
+  "q": "How many days of earned leave do Nimbus employees get per financial year?",
+  "as": "hr@nimbus.example",
+  "doc": "Leave Policy FY2026-27",
+  "answer": "18 days of earned leave per financial year, accrued at 1.5 days per completed month."
+ },
+ {
+  "q": "What is the fixed salary band for an L3 Senior Software Engineer at Nimbus?",
+  "as": "hr@nimbus.example",
+  "doc": "Salary Bands FY2026-27",
+  "answer": "₹10–18 lakh per annum fixed."
+ },
+ {
+  "q": "What counts as a SEV1 incident and how fast must on-call respond?",
+  "as": "employee@nimbus.example",
+  "doc": "SEV1 Incident Response Runbook",
+  "answer": "A customer-wide outage or suspected data breach; response within 15 minutes, with the CISO and CTO paged."
+ },
+ {
+  "q": "Can I bring my dog to the Nimbus office in Pune?",
+  "as": "employee@nimbus.example",
+  "doc": null,
+  "answer": null
+ },
+ {
+  "q": "How many days of unused earned leave can a Nimbus employee carry forward into the next year?",
+  "as": "hr@nimbus.example",
+  "doc": "Leave Policy FY2026-27",
+  "answer": "Up to 30 days; earned leave beyond 30 days lapses on 31 March."
+ },
+ {
+  "q": "What stock refresh time does the Zenith inventory sync BRD require?",
+  "as": "employee@nimbus.example",
+  "doc": "BRD – Zenith Retail Omnichannel Inventory Sync",
+  "answer": "Store stock refresh latency under 15 minutes at p95, down from an overnight refresh."
+ },
+ {
+  "q": "Who signs off the Zenith omnichannel inventory sync BRD?",
+  "as": "manager@nimbus.example",
+  "doc": "BRD – Zenith Retail Omnichannel Inventory Sync",
+  "answer": "Rajesh Malhotra (Zenith CFO, sponsor) and Priya Venkatesh (Zenith CIO) for Zenith, and Kavya Reddy (VP Delivery) for Nimbus; signed off on 22 May 2026."
+ },
+ {
+  "q": "Which NimbusOps plans get AI alert summaries?",
+  "as": "product@nimbus.example",
+  "doc": "BRD – NimbusOps AI Alert Summaries",
+  "answer": "Standard (up to 1,000 incidents per month per account) and Enterprise (unlimited); Starter does not get it."
+ },
+ {
+  "q": "What alert-noise reduction is the AI alert summaries feature targeting?",
+  "as": "product@nimbus.example",
+  "doc": "BRD – NimbusOps AI Alert Summaries",
+  "answer": "Cut median notifications per incident by 60%, from 23 to 9 or fewer, within 6 months of GA."
+ },
+ {
+  "q": "Where is NimbusOps customer data stored?",
+  "as": "product@nimbus.example",
+  "doc": "NimbusOps Product FAQ",
+  "answer": "In India: AWS ap-south-1 (Mumbai), with disaster recovery in ap-south-2 (Hyderabad); it is never replicated outside India."
+ },
+ {
+  "q": "How long is the NimbusOps free trial and how many hosts does it cover?",
+  "as": "product@nimbus.example",
+  "doc": "NimbusOps Product FAQ",
+  "answer": "14 days of the Standard plan for up to 50 hosts, with no credit card needed."
+ },
+ {
+  "q": "What is the liability cap in the Harbor Logistics MSA?",
+  "as": "legal@nimbus.example",
+  "doc": "Master Services Agreement – Harbor Logistics Inc.",
+  "answer": "Fees paid or payable in the 12 months before the event, with a 2x super-cap for confidentiality and data protection breaches."
+ },
+ {
+  "q": "How much notice is needed to not renew the Harbor Logistics MSA?",
+  "as": "legal@nimbus.example",
+  "doc": "Master Services Agreement – Harbor Logistics Inc.",
+  "answer": "Written notice at least 90 days before the end of the term (by 2 July 2026); the MSA does not renew automatically."
+ },
+ {
+  "q": "Who can sign a client contract worth more than ₹5 crore?",
+  "as": "legal@nimbus.example",
+  "doc": "Contract Review and Signing Authority Guideline",
+  "answer": "Only the Founder & CEO, Vikram Kulkarni."
+ },
+ {
+  "q": "How long does Legal take to review an NDA on third-party paper?",
+  "as": "legal@nimbus.example",
+  "doc": "Contract Review and Signing Authority Guideline",
+  "answer": "2 business days (1 business day for the Nimbus template with changes)."
+ },
+ {
+  "q": "What are Nimbus's standard vendor payment terms?",
+  "as": "finance@nimbus.example",
+  "doc": "Accounts Payable and Vendor Payment Policy",
+  "answer": "45 days from receipt of a valid invoice; MSME vendors are always paid within 45 days."
+ },
+ {
+  "q": "Who approves a vendor invoice between ₹10 lakh and ₹50 lakh?",
+  "as": "finance@nimbus.example",
+  "doc": "Accounts Payable and Vendor Payment Policy",
+  "answer": "The Chief Financial Officer (above ₹50 lakh, the CFO and the CEO)."
+ },
+ {
+  "q": "What were Nimbus's Q1 FY27 debtor days?",
+  "as": "finance@nimbus.example",
+  "doc": "Q1 FY2026-27 Revenue and Collections Report",
+  "answer": "58 days at 30 June 2026, down from 61 days at 31 March 2026."
+ },
+ {
+  "q": "Which region brought the most revenue in Q1 FY27?",
+  "as": "finance@nimbus.example",
+  "doc": "Q1 FY2026-27 Revenue and Collections Report",
+  "answer": "North America, with ₹197.4 crore (62% of Q1 revenue)."
+ },
+ {
+  "q": "How fast must a critical vulnerability on an internet-facing system be fixed?",
+  "as": "security@nimbus.example",
+  "doc": "Vulnerability Management Standard",
+  "answer": "Within 7 days on internet-facing systems (15 days on internal systems); actively exploited Criticals within 72 hours."
+ },
+ {
+  "q": "Who approves a risk exception for a Medium or Low vulnerability, and for how long?",
+  "as": "security@nimbus.example",
+  "doc": "Vulnerability Management Standard",
+  "answer": "The Engineering Manager together with the Security Champion, for up to 180 days (High: CISO, 90 days; Critical: CISO and CTO jointly, 30 days)."
+ },
+ {
+  "q": "How often is privileged and production access reviewed?",
+  "as": "security@nimbus.example",
+  "doc": "Privileged Access and Quarterly Access Review Procedure",
+  "answer": "Every quarter; managers sign off within 10 business days, otherwise access is revoked automatically."
+ },
+ {
+  "q": "How soon is all access removed after someone leaves?",
+  "as": "security@nimbus.example",
+  "doc": "Privileged Access and Quarterly Access Review Procedure",
+  "answer": "SSO and email are disabled by 6:00 pm on the last working day; all remaining access is removed within 24 hours of the last working day."
+ },
+ {
+  "q": "What RPO and RTO does the new NimbusOps DR design target?",
+  "as": "employee@nimbus.example",
+  "doc": "Design Doc – NimbusOps Multi-Region Active-Passive DR",
+  "answer": "RPO 5 minutes and RTO 30 minutes, inside the contractual 15 minutes / 1 hour."
+ },
+ {
+  "q": "How much extra per month does the active-passive DR design cost?",
+  "as": "employee@nimbus.example",
+  "doc": "Design Doc – NimbusOps Multi-Region Active-Passive DR",
+  "answer": "₹9.6 lakh per month extra, approved by Pradeep Joshi on 2 June 2026."
+ },
+ {
+  "q": "What is the price of the AI alert summaries add-on for the Starter plan?",
+  "as": "product@nimbus.example",
+  "doc": null,
+  "answer": null
+ },
+ {
+  "q": "How many desks does the Nimbus Dubai sales office have?",
+  "as": "owner@nimbus.example",
+  "doc": null,
+  "answer": null
+ }
+]

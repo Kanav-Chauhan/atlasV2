@@ -58,7 +58,7 @@ def ingest_document(self: Any, document_id: int) -> str:
     doc = set_status(document_id, status=Status.processing, error=None)
     if not doc:
         return "missing"
-    from atlas_api.ingest import ingest  # heavy: Docling, torch, FastEmbed
+    from atlas_api.ingest import delete_chunks, ingest  # heavy: Docling, torch, FastEmbed
 
     start = time.monotonic()
     try:
@@ -74,7 +74,9 @@ def ingest_document(self: Any, document_id: int) -> str:
             error=f"Could not read this document ({type(e).__name__}). Try uploading it again.",
         )
         raise self.retry(exc=e, countdown=30 * 2**self.request.retries) from e
-    set_status(document_id, status=Status.ready, pages=pages, chunks=chunks)
+    if not set_status(document_id, status=Status.ready, pages=pages, chunks=chunks):
+        delete_chunks(document_id)  # deleted while it was being read: nothing may answer from it
+        return "deleted"
     cache.invalidate_sync(doc.org_id)  # a new or changed document: earlier answers may be stale
     log.info(
         "ingest %s: %s pages, %s chunks, %.1fs",

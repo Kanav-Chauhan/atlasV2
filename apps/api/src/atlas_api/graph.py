@@ -34,9 +34,9 @@ from langgraph.types import Checkpointer
 from llama_index.core.schema import NodeWithScore
 from llama_index.core.vector_stores import MetadataFilters
 
-from atlas_api import citations, guard
+from atlas_api import citations, guard, when
 from atlas_api.cache import AnswerCache
-from atlas_api.llm import Models, history_text
+from atlas_api.llm import Models, history_text, last_standalone
 from atlas_api.settings import settings
 
 log = logging.getLogger(__name__)
@@ -343,6 +343,19 @@ async def blocked_node(state: State, runtime: Runtime[Ctx]) -> dict[str, Any]:
     return _reply(state, text, runtime) | {"route": "blocked"}
 
 
+def plain_followup(question: str, history: list[AnyMessage]) -> str:
+    """The search query when the rewrite step failed: a short follow-up ("what about next
+    month?") means nothing alone, so the last question's standalone form goes with it."""
+    before = last_standalone(history)
+    return f"{before} {question}" if before and len(question.split()) <= 8 else question
+
+
+def said(state: State, text: str) -> AIMessage:
+    """The answer as stored in the chat, with the question it answered in standalone form
+    (llm.history_text reads it back)."""
+    return AIMessage(text, additional_kwargs={"query": state["first_query"] or state["query"]})
+
+
 async def rewrite_node(state: State, runtime: Runtime[Ctx]) -> dict[str, Any]:
     ctx = runtime.context
     q = state["question"]
@@ -361,7 +374,8 @@ async def rewrite_node(state: State, runtime: Runtime[Ctx]) -> dict[str, Any]:
         return {"query": alt or state["query"]}
     _status(runtime, "rewrite")
     history = state["messages"][:-1]
-    needs_model = bool(history) or state["language"] == "hi" or _COMPANY_WORDS.search(q)
+    dated = when.relative(q)  # "tomorrow": the model must write the real date
+    needs_model = bool(history) or state["language"] == "hi" or _COMPANY_WORDS.search(q) or dated
     if not needs_model:
         return {"query": q, "first_query": q, "used_history": False}
     timeouts = state.get("timeouts", [])
@@ -370,14 +384,16 @@ async def rewrite_node(state: State, runtime: Runtime[Ctx]) -> dict[str, Any]:
             ctx.models.rewrite(q, ctx.org, history_text(history)), ctx.rewrite_timeout
         )
         query = out.query.strip() or q
-        used = bool(history) and out.used_history
+        used = (bool(history) and out.used_history) or dated
     except TimeoutError:
         log.warning("rewrite timed out; searching with the question as asked")
-        query, used, timeouts = q, bool(history), [*timeouts, "rewrite"]
+        query, used = plain_followup(q, history), bool(history) or dated
+        timeouts = [*timeouts, "rewrite"]
     except Exception:
         log.exception("rewrite failed; searching with the question as asked")
-        query, used = q, bool(history)
-    # used=True whenever there was history and no clean rewrite: such a turn is never cached.
+        query, used = plain_followup(q, history), bool(history) or dated
+    # used=True = never cached: the turn leaned on the chat, or on the day it was asked, or
+    # there was no clean rewrite.
     return {"query": query, "first_query": query, "used_history": used, "timeouts": timeouts}
 
 
@@ -402,7 +418,7 @@ async def cache_lookup_node(state: State, runtime: Runtime[Ctx]) -> dict[str, An
         "cached": True,
         "answer": hit["answer"],
         "sources": hit["sources"],
-        "messages": [AIMessage(hit["answer"])],
+        "messages": [said(state, hit["answer"])],
     }
 
 
@@ -619,7 +635,7 @@ async def cite_check_node(state: State) -> dict[str, Any]:
     ]
     if not state["abstained"] and not sources:
         log.warning("answer has no valid citation: %r", state["question"][:80])
-    return {"sources": sources, "messages": [AIMessage(state["answer"])]}
+    return {"sources": sources, "messages": [said(state, state["answer"])]}
 
 
 async def cache_store_node(state: State, runtime: Runtime[Ctx]) -> dict[str, Any]:
