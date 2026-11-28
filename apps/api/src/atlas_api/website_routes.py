@@ -102,10 +102,17 @@ async def save(s: Any, org: Organization, changes: dict[str, Any]) -> None:
     await s.commit()
 
 
+DEMO_LOCKED = ("enabled", "allowed_origins", "site_key")
+
+
 @router.patch("/website-chat")
 async def patch_website_chat(body: WebsiteChatPatch, user: CurrentUser, s: DB) -> WebsiteChatOut:
     admin_only(user)
     changes = body.model_dump(exclude_none=True)
+    if user.org.plan == "demo":
+        # Demo websites embed a fixed key and anyone can be a demo Admin: keep these locked (D-066).
+        for k in DEMO_LOCKED:
+            changes.pop(k, None)
     if changes.get("enabled") and not website.config(user.org)["site_key"]:
         changes["site_key"] = website.new_key()
     await save(s, user.org, changes)
@@ -115,6 +122,10 @@ async def patch_website_chat(body: WebsiteChatPatch, user: CurrentUser, s: DB) -
 @router.post("/website-chat/rotate-key")
 async def rotate_key(user: CurrentUser, s: DB) -> dict[str, str]:
     admin_only(user)
+    if user.org.plan == "demo":
+        raise HTTPException(
+            403, "The demo company's key is fixed so its demo website keeps working."
+        )
     key = website.new_key()
     await save(s, user.org, {"site_key": key})
     return {"site_key": key}

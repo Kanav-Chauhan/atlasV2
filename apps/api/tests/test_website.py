@@ -391,6 +391,21 @@ async def test_rotate_key_invalidates_old_key() -> None:
         assert (await c.get(f"/public/{new}/config", headers={"origin": SHOP})).status_code == 200
 
 
+async def test_demo_company_key_and_switch_are_locked() -> None:
+    """Anyone can log in as a demo Admin; the demo websites embed a fixed key (D-066)."""
+    o = org()
+    o.plan = "demo"
+    async with client(FakeSession(o), user(Role.admin, o)) as c:
+        assert (await c.post("/website-chat/rotate-key")).status_code == 403
+        r = await c.patch(
+            "/website-chat", json={"enabled": False, "allowed_origins": [], "greeting": "Hey"}
+        )
+        assert r.status_code == 200, r.text
+        cfg = website.config(o)
+        assert cfg["enabled"] and cfg["allowed_origins"] == [SHOP] and cfg["greeting"] == "Hey"
+        assert cfg["site_key"] == KEY
+
+
 async def test_patch_is_public_updates_chunks_and_needs_everyone() -> None:
     doc = Document(
         id=3,

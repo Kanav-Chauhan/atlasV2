@@ -415,6 +415,11 @@ Measured cause (LangSmith, last 100 questions): relevance check median 3.4 s but
 - **Problem:** owner: visitors choosing a demo company on /login can't see the website chatbot.
 - **Decision:** under the chosen company's name, a small "Live demo: <company>'s website with the Atlas chatbot ↗" link to `/demo-site/<slug>`, new tab, changes with the company tab. Tracked as `demo_site`.
 
+#### D-066 · Demo companies: website chat key, on/off and allowed sites are locked
+`2026-11-28 · active`
+- **Problem:** a demo visitor (anyone can be the demo Admin) rotated Nimbus's key; the demo website embeds a fixed key, so its chat bubble vanished until the nightly reset.
+- **Decision:** on `plan == "demo"`, `rotate-key` → 403 with a plain message; PATCH ignores `enabled`, `allowed_origins`, `site_key`. Greeting, colour and position stay editable. Nimbus key restored by hand.
+
 #### D-042 · Atlas logo = the owner's "A", traced to SVG
 `2026-11-23 · active`
 - **Decision:** the PNG's transparent edge was traced with potrace (99.8% shape overlap).
