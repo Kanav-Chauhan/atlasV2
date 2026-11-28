@@ -410,6 +410,11 @@ Measured cause (LangSmith, last 100 questions): relevance check median 3.4 s but
 `2026-11-24 · active` (answers Q1, Q2)
 - Measure the timeout rate after a few days of use.
 
+#### D-065 · Login page links to each demo company's website
+`2026-11-28 · active`
+- **Problem:** owner: visitors choosing a demo company on /login can't see the website chatbot.
+- **Decision:** under the chosen company's name, a small "Live demo: <company>'s website with the Atlas chatbot ↗" link to `/demo-site/<slug>`, new tab, changes with the company tab. Tracked as `demo_site`.
+
 #### D-042 · Atlas logo = the owner's "A", traced to SVG
 `2026-11-23 · active`
 - **Decision:** the PNG's transparent edge was traced with potrace (99.8% shape overlap).

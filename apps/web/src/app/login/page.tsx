@@ -129,6 +129,18 @@ function Demo({ company }: { company: DemoCompany }) {
               <Step n={2} /> Log in as someone at {company.name}
             </p>
             <p className="mt-1 text-xs text-muted">{company.industry} · {company.description}</p>
+            <a
+              href={`/demo-site/${company.slug}`}
+              target="_blank"
+              rel="noopener"
+              data-track="demo_site"
+              data-track-props={JSON.stringify({ company: company.slug, from: "login" })}
+              className="mt-2 inline-flex items-center gap-1.5 rounded-pill border border-(--co) px-2.5 py-1 text-xs font-medium text-ink hover:bg-paper-2"
+            >
+              <span aria-hidden="true" className="size-1.5 rounded-full bg-green-500" />
+              Live demo: {company.name}&apos;s website with the Atlas chatbot
+              <span aria-hidden="true">↗</span>
+            </a>
           </div>
         </div>
 
